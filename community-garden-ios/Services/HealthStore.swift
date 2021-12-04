@@ -14,7 +14,6 @@ class HealthStore {
     private var healthStore: HKHealthStore?
     
     init() {
-        print("here")
         // Check if health data is available in current phone
         if HKHealthStore.isHealthDataAvailable() {
             healthStore = HKHealthStore()
@@ -24,21 +23,16 @@ class HealthStore {
     // @escaping means closure argument can outlive scope of caller
     func requestAuthorization(completion: @escaping (Bool) -> Void) {
         
-        // List of health data that application needs to access
-//        let healthKitTypesToRead = Set([HKQuantityType.quantityType(forIdentifier: .stepCount)])
+        let healthKitTypesToRead = Set([HKObjectType.quantityType(forIdentifier: .stepCount)!])
         
-        let allTypes = Set([HKObjectType.workoutType(),
-                            HKObjectType.quantityType(forIdentifier: .stepCount)!,
-                            HKObjectType.quantityType(forIdentifier: .heartRate)!])
-        
-        // Unwrap healthStore and types variables
+        // Unwrap healthStore
         guard let healthStoreUnwrapped = self.healthStore else {
-            print("ERROR: problem has occured when unwrapping healthstore.")
+            print("[ERROR: HealthKit] Problem occured when unwrapping healthStore.")
             return completion(false)
         }
         
         // Asks authorization for given list of health data
-        healthStoreUnwrapped.requestAuthorization(toShare: [], read: allTypes) { (success, error) in
+        healthStoreUnwrapped.requestAuthorization(toShare: [], read: healthKitTypesToRead) { (success, error) in
             completion(success)
         }
     }

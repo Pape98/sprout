@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     
-    private var healthStore: HealthStore
+    private var healthStore: HealthStore?
     
     init() {
         healthStore = HealthStore()
@@ -20,8 +20,10 @@ struct ContentView: View {
             .padding()
         
             .onAppear{
-                healthStore.requestAuthorization { success in
-                    
+                if let healthStore = healthStore {
+                    healthStore.requestAuthorization { success in
+                        print("[HealthKit] Succesfully asked for authorization to read health data")
+                    }
                 }
             }
     }

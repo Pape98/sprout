@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
+		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
+		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA2275AF77700C714A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CA1275AF77700C714A2 /* ContentView.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
@@ -18,6 +20,8 @@
 /* Begin PBXFileReference section */
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
+		F096426B275B513100F1CEC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
 		F0B32CA1275AF77700C714A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -73,7 +77,6 @@
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
 				F0B32CAE275AFA8300C714A2 /* Data */,
-				F0B32CB2275B21A800C714A2 /* Helpers */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0B32CA5275AF77900C714A2 /* Preview Content */,
 			);
@@ -91,6 +94,7 @@
 		F0B32CAD275AFA7A00C714A2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F0B32CB3275B222500C714A2 /* HealthStore.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -120,16 +124,10 @@
 		F0B32CB1275AFA9E00C714A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F0964269275B510300F1CEC1 /* Health.swift */,
+				F096426B275B513100F1CEC1 /* User.swift */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		F0B32CB2275B21A800C714A2 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-				F0B32CB3275B222500C714A2 /* HealthStore.swift */,
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,7 +201,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0B32CA2275AF77700C714A2 /* ContentView.swift in Sources */,
+				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStore.swift in Sources */,
+				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
