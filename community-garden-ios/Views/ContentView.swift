@@ -18,6 +18,12 @@ struct ContentView: View {
     var body: some View {
         Text("Community Garden Application!")
             .padding()
+        
+            .onAppear{
+                healthStore.requestAuthorization { success in
+                    
+                }
+            }
     }
 }
 
