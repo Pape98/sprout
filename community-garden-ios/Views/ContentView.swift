@@ -8,8 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    private var healthStore: HealthStore
+    
+    init() {
+        healthStore = HealthStore()
+    }
+    
     var body: some View {
-        Text("Community Garden!")
+        Text("Community Garden Application!")
             .padding()
     }
 }

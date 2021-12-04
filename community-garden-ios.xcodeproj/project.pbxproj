@@ -7,18 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F0B32CA0275AF77700C714A2 /* community_garden_iosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* community_garden_iosApp.swift */; };
+		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA2275AF77700C714A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CA1275AF77700C714A2 /* ContentView.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
+		F0B32CB4275B222500C714A2 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0B32C9F275AF77700C714A2 /* community_garden_iosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = community_garden_iosApp.swift; sourceTree = "<group>"; };
+		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
 		F0B32CA1275AF77700C714A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F0B32CA3275AF77900C714A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F0B32CB3275B222500C714A2 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,12 +53,13 @@
 		F0B32C9E275AF77700C714A2 /* community-garden-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F0B32C9F275AF77700C714A2 /* community_garden_iosApp.swift */,
+				F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */,
 				F0B32CB0275AFA9500C714A2 /* Views */,
 				F0B32CAF275AFA8900C714A2 /* ViewModels */,
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
 				F0B32CAE275AFA8300C714A2 /* Data */,
+				F0B32CB2275B21A800C714A2 /* Helpers */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0B32CA5275AF77900C714A2 /* Preview Content */,
 			);
@@ -105,6 +108,14 @@
 			children = (
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F0B32CB2275B21A800C714A2 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F0B32CB3275B222500C714A2 /* HealthStore.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -178,7 +189,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0B32CA2275AF77700C714A2 /* ContentView.swift in Sources */,
-				F0B32CA0275AF77700C714A2 /* community_garden_iosApp.swift in Sources */,
+				F0B32CB4275B222500C714A2 /* HealthStore.swift in Sources */,
+				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
