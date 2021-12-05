@@ -6,12 +6,13 @@
 //
 
 import SwiftUI
+import HealthKit
 
 @main
-struct community_garden_iosApp: App {
+struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            HomeView()
         }
     }
 }
