@@ -7,27 +7,26 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct HomeView: View {
     
     @ObservedObject var healthModel = HealthModel()
     
-    let steps = [Step(56, "Wednesday the 23rd"), Step(56, "Wednesday the 23rd") ]
+    let steps = [Step(56, "Monday the 23rd"), Step(78, "Wednesday the 23rd") ]
     
     var body: some View {
         NavigationView {
             List(healthModel.dailySteps){ step in
-                VStack(alignment: .leading, spacing: 15){
-                    Text("Date: \(step.date)")
+                Text("Date: \(step.date)")
+                    .font(.headline)
                     Text("Count: \(step.count)")
-                }
-            }
+            } .navigationBarTitle("Your Steps")
         }
-        .navigationTitle("My Daily Steps")
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
+struct Home_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        HomeView()
     }
 }
+
