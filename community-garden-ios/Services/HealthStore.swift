@@ -26,7 +26,6 @@ class HealthStore {
         
         let healthKitTypesToRead = Set([HKDataTypes.stepCount, HKDataTypes.distanceWalkingRunning])
         
-        // Unwrap healthStore
         guard let healthStoreUnwrapped = self.healthStore else {
             return completion(false)
         }
@@ -34,6 +33,7 @@ class HealthStore {
         // Asks authorization for given list of health data
         healthStoreUnwrapped.requestAuthorization(toShare: [], read: healthKitTypesToRead) { (success, error) in
             guard error == nil else {
+                assertionFailure("*** [HK] healthkit authorization request failed ***")
                 return
             }
             completion(success)
@@ -47,8 +47,7 @@ class HealthStore {
         // Create a 1-day interval.
         let interval = DateComponents(day: 1)
         
-        // Set the anchor for 0 a.m. on Monday.
-        
+        // Set the anchor for 12:00 a.m. on Monday.
         let components = DateComponents(calendar: calendar,
                                         timeZone: calendar.timeZone,
                                         hour: 0,
@@ -61,7 +60,8 @@ class HealthStore {
                                                  matchingPolicy: .nextTime,
                                                  repeatedTimePolicy: .first,
                                                  direction: .backward) else {
-            fatalError("*** unable to find the next Monday. ***")
+            assertionFailure("*** [HK] unable to find the next Monday. ***")
+            return
         }
         
         let query = HKStatisticsCollectionQuery(quantityType: dataType,
@@ -72,20 +72,57 @@ class HealthStore {
         
         query.initialResultsHandler = {
             query, results, error in
+            
+            
+            if let error = error as? HKError {
+                    switch (error.code) {
+                    case .errorDatabaseInaccessible:
+                        assertionFailure("*** [HK] HealthKit couldn't access the database because the device is locked ***")
+                        return
+                    case .errorInvalidArgument:
+                        assertionFailure("*** [HK] The app passed an invalid argument to the HealthKit API ***")
+                        return
+                    case .errorAuthorizationDenied:
+                        assertionFailure("*** [HK] The user hasn’t given the app permission to save data. ***")
+                        return
+                    case .errorAuthorizationNotDetermined:
+                        assertionFailure("*** [HK] The app hasn’t yet asked the user for the authorization required to complete the task. ***" )
+                        return
+                    case .errorNoData:
+                        assertionFailure("*** [HK] Data is unavailable for the requested query and predicate. ***")
+                        return
+                    default:
+                        assertionFailure("*** [HK] Unexpected error occured with Healthkit API ***" )
+                        return
+                    }
+                }
+            
             guard let statsCollection = results else {
-                 assertionFailure("")
+                 assertionFailure("*** [HK] queried sample came back null ****")
                  return
              }
             
-            let twoDaysAgo = DateComponents(day: -2)
+            let today = Date()
             
-            guard let startDate = calendar.date(byAdding: twoDaysAgo, to: Date()) else {
+            let twoDaysAgo = DateComponents(day: -2)
+            guard let startDate = calendar.date(byAdding: twoDaysAgo, to: today) else {
                 fatalError("*** Unable to calculate the start date ***")
             }
             
-            statsCollection.enumerateStatistics(from: startDate, to: Date()){ statistics, stop in
-                print(statistics.sumQuantity())
+            statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
+                if let sum = statistics.sumQuantity() {
+                    
+                    let totalSteps = sum.doubleValue(for: .count())
+                    print(statistics.startDate,totalSteps)
+                }
             }
+        }
+        
+        query.statisticsUpdateHandler = {
+            query, results, collection, error in
+            
+            print("called")
+            
         }
         
         if let healthStore = self.healthStore {
