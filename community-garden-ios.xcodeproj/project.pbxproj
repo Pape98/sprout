@@ -10,6 +10,8 @@
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
+		F0964270275B52AC00F1CEC1 /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426F275B52AC00F1CEC1 /* HealthModel.swift */; };
+		F0964273275C25C800F1CEC1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA2275AF77700C714A2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CA1275AF77700C714A2 /* ContentView.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
@@ -22,6 +24,8 @@
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		F096426B275B513100F1CEC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F096426F275B52AC00F1CEC1 /* HealthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
+		F0964272275C25C800F1CEC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
 		F0B32CA1275AF77700C714A2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -50,6 +54,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F0964271275C25AF00F1CEC1 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F0964272275C25C800F1CEC1 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		F0B32C93275AF77700C714A2 = {
 			isa = PBXGroup;
 			children = (
@@ -76,7 +88,7 @@
 				F0B32CAF275AFA8900C714A2 /* ViewModels */,
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
-				F0B32CAE275AFA8300C714A2 /* Data */,
+				F0964271275C25AF00F1CEC1 /* Helpers */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0B32CA5275AF77900C714A2 /* Preview Content */,
 			);
@@ -99,16 +111,10 @@
 			path = Services;
 			sourceTree = "<group>";
 		};
-		F0B32CAE275AFA8300C714A2 /* Data */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Data;
-			sourceTree = "<group>";
-		};
 		F0B32CAF275AFA8900C714A2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F096426F275B52AC00F1CEC1 /* HealthModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -201,8 +207,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0B32CA2275AF77700C714A2 /* ContentView.swift in Sources */,
+				F0964270275B52AC00F1CEC1 /* HealthModel.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStore.swift in Sources */,
+				F0964273275C25C800F1CEC1 /* Constants.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 			);

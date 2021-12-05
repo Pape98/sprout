@@ -8,6 +8,7 @@
 import Foundation
 import HealthKit
 
+
 class HealthStore {
     
     // Provides all functionalities related health data
@@ -21,19 +22,56 @@ class HealthStore {
     }
     
     // @escaping means closure argument can outlive scope of caller
-    func requestAuthorization(completion: @escaping (Bool) -> Void) {
+    func requestAuthorization(completion: @escaping (Bool)  -> Void) {
         
-        let healthKitTypesToRead = Set([HKObjectType.quantityType(forIdentifier: .stepCount)!])
+        let healthKitTypesToRead = Set([HKDataTypes.stepCount, HKDataTypes.distanceWalkingRunning])
         
         // Unwrap healthStore
         guard let healthStoreUnwrapped = self.healthStore else {
-            print("[ERROR: HealthKit] Problem occured when unwrapping healthStore.")
             return completion(false)
         }
         
         // Asks authorization for given list of health data
         healthStoreUnwrapped.requestAuthorization(toShare: [], read: healthKitTypesToRead) { (success, error) in
+            guard error == nil else {
+                return
+            }
             completion(success)
         }
+    }
+    
+    func startObserverQuery(dataType: HKSampleType) -> Void {
+        
+        healthStore?.enableBackgroundDelivery(for: dataType, frequency: HKUpdateFrequency.immediate) { success, error in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+        }
+        
+        let observerQuery = HKObserverQuery.init(sampleType: dataType, predicate: nil) { (query, completionHandler, error) in
+            guard error == nil else {
+                print(error!)
+                return
+            }
+            
+            let sampleQuery = HKSampleQuery(sampleType: dataType, predicate: nil, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil){
+                query, results, error in
+            
+                guard let samples = results as? [HKQuantitySample] else {
+                    return
+                }
+                
+                print(samples.count)
+                
+            }
+            
+            self.healthStore?.execute(sampleQuery)
+            
+            completionHandler()
+        }
+        
+        healthStore?.execute(observerQuery)
+        
     }
 }
