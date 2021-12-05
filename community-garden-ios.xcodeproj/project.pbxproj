@@ -30,6 +30,10 @@
 		F0ADEA15275CB0AF0039B134 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStore.swift */; };
 		F0ADEA16275CB0BC0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA19275CB2BB0039B134 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0ADEA18275CB2BB0039B134 /* HealthKit.framework */; };
+		F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */; };
+		F0ADEA1C275CDED20039B134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */; };
+		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
+		F0ADEA21275CE6EF0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA20275CE6EF0039B134 /* FirebaseFirestore */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA2275AF77700C714A2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CA1275AF77700C714A2 /* HomeView.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
@@ -109,6 +113,7 @@
 		F09642C1275CAA0700F1CEC1 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		F0ADEA17275CB2BB0039B134 /* watchos WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "watchos WatchKit Extension.entitlements"; sourceTree = "<group>"; };
 		F0ADEA18275CB2BB0039B134 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
 		F0B32CA1275AF77700C714A2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -132,6 +137,7 @@
 			files = (
 				F0ADEA19275CB2BB0039B134 /* HealthKit.framework in Frameworks */,
 				BFA1526B133A01226BBF95A7 /* Pods_watchos_WatchKit_Extension.framework in Frameworks */,
+				F0ADEA21275CE6EF0039B134 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,6 +147,7 @@
 			files = (
 				F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */,
 				F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */,
+				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -157,7 +164,6 @@
 				37C7C388A1D50445C3B3CB74 /* Pods-watchos WatchKit Extension.debug.xcconfig */,
 				3F102F4692D6A3B2906AB6AE /* Pods-watchos WatchKit Extension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -238,7 +244,6 @@
 		F0B32C9E275AF77700C714A2 /* community-garden-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
 				F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */,
 				F0B32CB0275AFA9500C714A2 /* Views */,
 				F0B32CAF275AFA8900C714A2 /* ViewModels */,
@@ -246,6 +251,8 @@
 				F0B32CAD275AFA7A00C714A2 /* Services */,
 				F0964271275C25AF00F1CEC1 /* Helpers */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
+				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
+				F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */,
 				F0B32CA5275AF77900C714A2 /* Preview Content */,
 			);
 			path = "community-garden-ios";
@@ -329,6 +336,9 @@
 			dependencies = (
 			);
 			name = "watchos WatchKit Extension";
+			packageProductDependencies = (
+				F0ADEA20275CE6EF0039B134 /* FirebaseFirestore */,
+			);
 			productName = "watchos WatchKit Extension";
 			productReference = F09642AC275CAA0200F1CEC1 /* watchos WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
@@ -350,6 +360,9 @@
 				F09642C3275CAA0700F1CEC1 /* PBXTargetDependency */,
 			);
 			name = "community-garden-ios";
+			packageProductDependencies = (
+				F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */,
+			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
 			productType = "com.apple.product-type.application";
@@ -384,6 +397,9 @@
 				Base,
 			);
 			mainGroup = F0B32C93275AF77700C714A2;
+			packageReferences = (
+				F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = F0B32C9D275AF77700C714A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -410,6 +426,7 @@
 			files = (
 				F09642BF275CAA0700F1CEC1 /* Preview Assets.xcassets in Resources */,
 				F09642BC275CAA0700F1CEC1 /* Assets.xcassets in Resources */,
+				F0ADEA1C275CDED20039B134 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -419,6 +436,7 @@
 			files = (
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
+				F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -923,6 +941,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F0ADEA20275CE6EF0039B134 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F0B32C94275AF77700C714A2 /* Project object */;
 }
