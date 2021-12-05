@@ -11,6 +11,5 @@ import HealthKit
 struct HKDataTypes {
     
     static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
-    static let distanceWalkingRunning = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
     
 }

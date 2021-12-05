@@ -7,14 +7,17 @@
 
 import Foundation
 
-class Step: Identifiable {
+class Step: Identifiable, CustomStringConvertible {
     
-    let id:UUID
+    let id: UUID = UUID()
     let count: Int
-    let date: Date
+    let date: String
     
-    init(_ id:UUID = UUID(),_ count:Int,_ date:Date) {
-        self.id = id
+    var description: String {
+        return "Step: (Date: \(date), Count: \(count))"
+    }
+    
+    init(_ count: Int, _ date: String) {
         self.count = count
         self.date = date
     }

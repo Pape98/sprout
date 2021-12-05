@@ -8,5 +8,6 @@
 import Foundation
 
 class User: Identifiable {
-    let id:UUID = UUID()
+        
+    let id: UUID = UUID()
 }
