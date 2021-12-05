@@ -15,7 +15,7 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            List(healthModel.dailySteps){ step in
+            List(steps){ step in
                 Text("Date: \(step.date)")
                     .font(.headline)
                     Text("Count: \(step.count)")
