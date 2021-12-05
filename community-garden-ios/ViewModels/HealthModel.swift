@@ -15,7 +15,7 @@ class HealthModel: ObservableObject {
         if let healthStore = healthStore {
             healthStore.requestAuthorization { success in
                 if success {
-                    healthStore.startObserverQuery(dataType: HKDataTypes.stepCount)
+                    healthStore.startQuery(dataType: HKDataTypes.stepCount)
                 }
             }
         }
