@@ -9,7 +9,7 @@ import Foundation
 import HealthKit
 
 
-class HealthStore {
+class HealthStoreService {
     
     
     // MARK: - Properties
@@ -95,7 +95,7 @@ class HealthStore {
             if let sum = statistics.sumQuantity() {
                 let totalSteps = Int(sum.doubleValue(for: .count()))
                 let date = statistics.startDate.ISO8601Format()
-                let stepObject = Step(totalSteps,date)
+                let stepObject = Step(count:totalSteps, date:date)
                 dailySteps.append(stepObject)
             }
         }

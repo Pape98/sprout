@@ -11,21 +11,20 @@ struct HomeView: View {
     
     @ObservedObject var healthModel = HealthModel()
     @EnvironmentObject var authenticationModel: AuthenticationModel
-    
-    let steps = [Step(56, "Monday the 23rd"), Step(78, "Wednesday the 23rd") ]
+        
+    let steps = [Step(count:56, date:"Monday the 23rd"), Step(count:78, date:"Wednesday the 23rd") ]
     
     var body: some View {
         NavigationView {
             
             VStack {
-                
-                Button("Sign Out", action: authenticationModel.signOut)
-
+                Text("Hi \(authenticationModel.loggedInUser?.name ?? "")")
                 List(healthModel.dailySteps){ step in
                     Text("Date: \(step.date)")
                         .font(.headline)
-                        Text("Count: \(step.count)")
+                    Text("Count: \(step.count)")
                 } .navigationBarTitle("Your Steps")
+                Button("Sign Out", action: authenticationModel.signOut)
             }
         }
     }

@@ -10,14 +10,17 @@ import Foundation
 class HealthModel: ObservableObject {
     
     // MARK: - Properties
-
-    private let healthStore: HealthStore?
+    
+    // Service to obtain data from health happ
+    private let healthStore: HealthStoreService?
+    
+    // User's daily step counts
     @Published var dailySteps:[Step]
     
     // MARK: - Methods
     
     init() {
-        healthStore = HealthStore()
+        healthStore = HealthStoreService()
         dailySteps = [Step]()
         
         if let healthStore = healthStore {

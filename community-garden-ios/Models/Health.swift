@@ -7,18 +7,10 @@
 
 import Foundation
 
-class Step: Identifiable, CustomStringConvertible {
+struct Step: Identifiable {
     
-    var id: UUID?
-    var count: Int
-    var date: String
-    
-    var description: String {
-        return "Step: (Date: \(date), Count: \(count))"
-    }
-    
-    init(_ count: Int, _ date: String) {
-        self.count = count
-        self.date = date
-    }
+    var id: String = ""
+    var count: Int = 0
+    var date: String = ""
+
 }

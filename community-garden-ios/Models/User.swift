@@ -7,10 +7,9 @@
 
 import Foundation
 
-class User: Identifiable {
+struct User: Identifiable {
         
-    var id: UUID?
-    var firstName = ""
-    var lastName = ""
-    var email = ""
+    var id: String = ""
+    var name: String = ""
+    var email: String = ""
 }

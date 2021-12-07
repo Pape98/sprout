@@ -14,8 +14,16 @@ class AuthenticationModel: ObservableObject {
     
     // MARK: - Properties
     
+    // Login status of current usrer
     @Published var isLoggedIn = false
+    
+    // Error message to be displayed to user
     @Published var errorMessage: String?
+    
+    // Current user
+    @Published var loggedInUser: User?
+    
+    // Google Sign In configuration
     var configuration: GIDConfiguration?
     
     // MARK: - Methods
@@ -24,11 +32,43 @@ class AuthenticationModel: ObservableObject {
         
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
+        checkLogin()
     }
     
     func checkLogin() {
+        
+        // Check if there's a current user to determine logged in status
         isLoggedIn = Auth.auth().currentUser != nil ? true : false
+        
+        // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
+        if UserService.shared.user.name == "" {
+            setUserProfile()
+        }
     }
+    
+    func setUserProfile() {
+        
+        guard let authUser = Auth.auth().currentUser else {
+            return
+        }
+        
+        var user = UserService.shared.user
+        
+        if (isLoggedIn) {
+            user.id = authUser.uid
+            
+            if let displayName = authUser.displayName,
+               let email = authUser.email
+            {
+                user.email = email
+                user.name = displayName
+            }
+        }
+        
+        loggedInUser = user
+    }
+    
+    
     
     func signOut() {
         let firebaseAuth = Auth.auth()
@@ -41,10 +81,13 @@ class AuthenticationModel: ObservableObject {
     }
     
     func signIn() {
+        
+        self.errorMessage = ""
+        
         if let configuration = self.configuration {
         
             let rootViewController = UIApplication.shared.windows.first!.rootViewController
-            
+                        
             guard rootViewController != nil else {
                 return
             }
@@ -60,25 +103,52 @@ class AuthenticationModel: ObservableObject {
                 }
                 
                 guard let authenticaton = user?.authentication,
+                      let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
                 else { return }
+                
+                // Check if user is using school email
+                if userEmail.contains("dartmouth.edu") == false {
+                    // Update UI from main thread
+                    DispatchQueue.main.async {
+                        self.errorMessage = "You must use your dartmouth email."
+                    }
+                    return
+                }
                 
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
                 
                 
                 // Complete the Firebase login process with the auth credential created in the previous step
-                
                 Auth.auth().signIn(with: credential) { result , error in
                     
                     guard error == nil else {
+                        
+                        // Update UI from main thread
                         DispatchQueue.main.async {
                             self.errorMessage = error!.localizedDescription
                         }
                         return
                     }
                     
-                    // User is logged in
+                    
+                    // Check user if already exists in database
+                    // If not existing already, add new user to database
+                    guard let userID = Auth.auth().currentUser?.uid else { return }
+                    
+                    if DatabaseService.shared.doesUserExist(userID: userID) == false {
+                            // Update UI from main thread
+                            DispatchQueue.main.async {
+                                self.setUserProfile()
+                            }
+                        
+                        guard let loggedInUser = self.loggedInUser else { return }
+                        
+                        DatabaseService.shared.createNewUser(loggedInUser)
+                    }
+                    
+                    // Login is succcessful. Redirect user to home screen
                     self.checkLogin()
                 }
             }
