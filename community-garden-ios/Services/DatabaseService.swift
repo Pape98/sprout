@@ -25,7 +25,7 @@ class DatabaseService {
     
     func createNewUser(_ user: User) {
         
-        let newUser: [String: Any] = ["name": user.name,"email": user.email]
+        let newUser: [String: Any] = ["id": user.id, "name": user.name,"email": user.email]
         
         
         db?.collection(USERS_COLLECTION).document(user.id).setData(newUser){ err in

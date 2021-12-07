@@ -9,7 +9,7 @@ import Foundation
 
 struct Step: Identifiable {
     
-    var id: String = ""
+    var id: String = UUID().uuidString
     var count: Int = 0
     var date: String = ""
 

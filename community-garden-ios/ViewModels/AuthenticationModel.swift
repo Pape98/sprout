@@ -132,6 +132,8 @@ class AuthenticationModel: ObservableObject {
                         return
                     }
                     
+                    // Login is succcessful. Redirect user to home screen
+                    self.checkLogin()
                     
                     // Check user if already exists in database
                     // If not existing already, add new user to database
@@ -147,9 +149,6 @@ class AuthenticationModel: ObservableObject {
                         
                         DatabaseService.shared.createNewUser(loggedInUser)
                     }
-                    
-                    // Login is succcessful. Redirect user to home screen
-                    self.checkLogin()
                 }
             }
         }

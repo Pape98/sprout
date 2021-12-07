@@ -32,7 +32,8 @@ class HealthModel: ObservableObject {
         }
     }
 
-    func updateDailySteps(_ newDailySteps: [Step]) -> Void {
+    func updateDailySteps(_ newDailySteps: [Step]) {
         dailySteps = newDailySteps
+        print(newDailySteps)
     }
 }

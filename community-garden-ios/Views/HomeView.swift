@@ -16,7 +16,6 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            
             VStack {
                 Text("Hi \(authenticationModel.loggedInUser?.name ?? "")")
                 List(healthModel.dailySteps){ step in
