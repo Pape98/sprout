@@ -29,7 +29,7 @@ class HealthStore {
     // @escaping means closure argument can outlive scope of caller
     func requestAuthorization(completion: @escaping (Bool)  -> Void) {
         
-        let healthKitTypesToRead = Set([HKDataTypes.stepCount])
+        let healthKitTypesToRead = Set([Constants.HKDataTypes.stepCount])
         
         guard let healthStoreUnwrapped = self.healthStore else {
             return completion(false)

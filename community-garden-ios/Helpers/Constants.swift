@@ -8,8 +8,15 @@
 import Foundation
 import HealthKit
 
-struct HKDataTypes {
+struct Constants {
     
-    static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
-    
+    enum LoginMode {
+        case login
+        case createAccount
+    }
+ 
+    struct HKDataTypes {
+        static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
+    }
+
 }
