@@ -9,19 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @EnvironmentObject var userModel: UserModel
-    @State var loginMode = Constants.LoginMode.login
+    @EnvironmentObject var authenticationModel: AuthenticationModel
     @State var email = ""
     @State var firstName = ""
     @State var lastName = ""
-    
-    var buttonText: String {
-        if loginMode == Constants.LoginMode.login {
-            return "Login"
-        } else {
-            return "Sign Up"
-        }
-    }
     
     var body: some View {
         VStack (spacing: 10) {
@@ -37,45 +28,30 @@ struct LoginView: View {
             Text("Community Garden")
                 .font(.title)
                 .padding()
-
-            
-            // Picker
-            Picker(selection: $loginMode, label: Text("Hey")){
-                Text("Login")
-                    .tag(Constants.LoginMode.login)
-                Text("Sign Up")
-                    .tag(Constants.LoginMode.createAccount)
-            }
-            .pickerStyle(SegmentedPickerStyle())
             
             // Form
-            TextField("Email", text: $email)
-            
-            if loginMode == Constants.LoginMode.createAccount {
-                TextField("First Name", text: $firstName)
-                TextField("Last Name", text: $lastName)
-            }
-            
-            // Button
-            Button {
+            Group {
                 
-                if loginMode == Constants.LoginMode.login {
-                    // Login in user
-                    
-                } else {
-                    // Create a new account
+                // Button
+                Button {
+                    authenticationModel.signIn()
+                } label: {
+                    ZStack {
+                        Rectangle()
+                            .foregroundColor(.blue)
+                            .frame(height:40)
+                            .cornerRadius(10)
+                        
+                        Text("Sign Up/ Login")
+                            .foregroundColor(.white)
+                    }
                 }
                 
-            } label: {
-                ZStack {
-                    Rectangle()
-                        .foregroundColor(.blue)
-                        .frame(height:40)
-                        .cornerRadius(10)
-                    
-                    Text(buttonText)
-                        .foregroundColor(.white)
+                if let errorMessage = authenticationModel.errorMessage {
+                    Text(errorMessage)
+                        .foregroundColor(.red)
                 }
+                
             }
             
             Spacer()
@@ -88,6 +64,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .environmentObject(UserModel())
+            .environmentObject(AuthenticationModel())
     }
 }

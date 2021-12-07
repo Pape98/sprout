@@ -9,7 +9,8 @@ import Foundation
 
 class User: Identifiable {
         
-    let id: UUID = UUID()
+    var id: UUID?
     var firstName = ""
     var lastName = ""
+    var email = ""
 }

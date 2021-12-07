@@ -9,21 +9,21 @@ import SwiftUI
 
 struct LaunchView: View {
     
-    @EnvironmentObject var userModel: UserModel
+    @EnvironmentObject var authenticationModel: AuthenticationModel
     
     var body: some View {
         
-        if userModel.isLoggedIn == false {
+        if authenticationModel.isLoggedIn == false {
             // Show login view
             LoginView()
                 .onAppear {
                     // Check if user is logged in or out
-                    userModel.checkLogin()
+                    authenticationModel.checkLogin()
                 }
 
         } else {
             // Show home view
-            //HomeView()
+            HomeView()
         }
         
     }
@@ -32,6 +32,6 @@ struct LaunchView: View {
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchView()
-            .environmentObject(UserModel())
+            .environmentObject(AuthenticationModel())
     }
 }

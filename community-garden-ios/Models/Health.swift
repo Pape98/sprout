@@ -9,9 +9,9 @@ import Foundation
 
 class Step: Identifiable, CustomStringConvertible {
     
-    let id: UUID = UUID()
-    let count: Int
-    let date: String
+    var id: UUID?
+    var count: Int
+    var date: String
     
     var description: String {
         return "Step: (Date: \(date), Count: \(count))"
