@@ -130,7 +130,7 @@ class HealthStoreService {
         
         let query = HKStatisticsCollectionQuery(quantityType: dataType,
                                                 quantitySamplePredicate: nil,
-                                                options: .mostRecent,
+                                                options: .cumulativeSum,
                                                 anchorDate: anchorDate,
                                                 intervalComponents: interval)
         
@@ -145,7 +145,6 @@ class HealthStoreService {
         query.statisticsUpdateHandler = {
             query, statistics, collection, error in
             self.statsInitialUpdateHandler(query: query, statistics: collection, error: error, updateHandler: updateHandler)
-            
         }
         
         // Execute query

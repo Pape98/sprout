@@ -9,7 +9,7 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var healthModel = HealthModel()
+    @ObservedObject var userModel = UserModel()
     @EnvironmentObject var authenticationModel: AuthenticationModel
         
 //    let steps = [Step(count:56, date:"Monday the 23rd"), Step(count:78, date:"Wednesday the 23rd") ]
@@ -24,7 +24,7 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
                 
-                List(healthModel.dailySteps){ step in
+                List(userModel.dailySteps){ step in
                     Group {
                         Text("Date: \(step.date)")
                             .font(.headline)

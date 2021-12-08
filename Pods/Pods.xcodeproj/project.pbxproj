@@ -310,7 +310,7 @@
 		3ACC7F094EB5A998C188B1E446A3E759 /* zh_TW.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = zh_TW.lproj; path = GoogleSignIn/Sources/Strings/zh_TW.lproj; sourceTree = "<group>"; };
 		3DBC0B175A8B06781E6770FD1CC7DBC8 /* pt.lproj */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder; name = pt.lproj; path = GoogleSignIn/Sources/Strings/pt.lproj; sourceTree = "<group>"; };
 		3EB909ED99DF45C1AAD05D8ACA865B64 /* OIDAuthState.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = OIDAuthState.h; path = Source/AppAuthCore/OIDAuthState.h; sourceTree = "<group>"; };
-		3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AppAuth; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AppAuth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		40C6884920A8DD81C66B6E102248631A /* GIDSignInButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = GIDSignInButton.m; path = GoogleSignIn/Sources/GIDSignInButton.m; sourceTree = "<group>"; };
 		4153B13B0587B1B15972C359A6FEC458 /* OIDTokenRequest.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = OIDTokenRequest.m; path = Source/AppAuthCore/OIDTokenRequest.m; sourceTree = "<group>"; };
 		417FCB980B2AB55B4E979F04C30FDF62 /* GTMSessionFetcher-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "GTMSessionFetcher-dummy.m"; sourceTree = "<group>"; };
@@ -642,7 +642,7 @@
 		6A1666EA7787449E247EB91D424FC8A6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */,
+				3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */,
 				FD56AB51475BC5F592781EE2692D1412 /* GoogleSignIn */,
 				E5BA41B7F2E1FE47F9ABCAC27C9E4281 /* GoogleSignIn-GoogleSignIn */,
 				6FD122EA0AB9AB2A8FFA5F676C795DF0 /* GTMAppAuth */,
@@ -1048,7 +1048,7 @@
 			);
 			name = AppAuth;
 			productName = AppAuth;
-			productReference = 3FD1B4C1246D643E9476438C28048FA8 /* AppAuth */;
+			productReference = 3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		7DFA91ED3A3D0BC020C3C843A3D1EB38 /* GoogleSignIn-GoogleSignIn */ = {
@@ -1575,7 +1575,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AppAuth/AppAuth-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AppAuth/AppAuth-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1960,7 +1960,7 @@
 				GCC_PREFIX_HEADER = "Target Support Files/AppAuth/AppAuth-prefix.pch";
 				INFOPLIST_FILE = "Target Support Files/AppAuth/AppAuth-Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
