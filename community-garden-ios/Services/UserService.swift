@@ -7,11 +7,10 @@
 
 import Foundation
 
-// Singleton Class
-
+// Singleton Class to represent logged in user
 class UserService {
     
-    var user = User()
+    var loggedInUser = User()
     
     static var shared = UserService()
     

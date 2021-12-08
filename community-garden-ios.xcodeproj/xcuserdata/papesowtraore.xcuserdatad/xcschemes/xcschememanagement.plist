@@ -11,19 +11,12 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
-		<key>watchos (Complication).xcscheme_^#shared#^_</key>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>F0B32C9B275AF77700C714A2</key>
 		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>watchos (Notification).xcscheme_^#shared#^_</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>watchos.xcscheme_^#shared#^_</key>
-		<dict>
-			<key>isShown</key>
+			<key>primary</key>
 			<true/>
 		</dict>
 	</dict>

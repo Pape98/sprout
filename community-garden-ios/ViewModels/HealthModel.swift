@@ -34,6 +34,5 @@ class HealthModel: ObservableObject {
 
     func updateDailySteps(_ newDailySteps: [Step]) {
         dailySteps = newDailySteps
-        print(newDailySteps)
     }
 }

@@ -11,7 +11,6 @@ import HealthKit
 
 class HealthStoreService {
     
-    
     // MARK: - Properties
 
     // Provides all functionalities related health data
@@ -118,7 +117,8 @@ class HealthStoreService {
                                         minute: 0,
                                         second: 0,
                                         weekday: 2) // 1 = Sunday, 2 = Monday
-
+        
+        // Starting date for data gathering
         guard let anchorDate = calendar.nextDate(after: Date(),
                                                  matching: components,
                                                  matchingPolicy: .nextTime,
@@ -127,17 +127,18 @@ class HealthStoreService {
             assertionFailure("*** [HK] unable to find the next Monday. ***")
             return
         }
+        
         let query = HKStatisticsCollectionQuery(quantityType: dataType,
                                                 quantitySamplePredicate: nil,
-                                                options: .cumulativeSum,
+                                                options: .mostRecent,
                                                 anchorDate: anchorDate,
                                                 intervalComponents: interval)
-        
         
         // The results handler for the query’s initial results.
         query.initialResultsHandler = {
             query, statistics, error in
             self.statsInitialUpdateHandler(query: query, statistics: statistics, error: error, updateHandler: updateHandler)
+            return
         }
         
         // The results handler for monitoring updates to the HealthKit store.
@@ -147,6 +148,7 @@ class HealthStoreService {
             
         }
         
+        // Execute query
         if let healthStore = self.healthStore {
             healthStore.execute(query)
         }

@@ -12,26 +12,34 @@ struct HomeView: View {
     @ObservedObject var healthModel = HealthModel()
     @EnvironmentObject var authenticationModel: AuthenticationModel
         
-    let steps = [Step(count:56, date:"Monday the 23rd"), Step(count:78, date:"Wednesday the 23rd") ]
+//    let steps = [Step(count:56, date:"Monday the 23rd"), Step(count:78, date:"Wednesday the 23rd") ]
     
     var body: some View {
         NavigationView {
             VStack {
-                Text("Hi \(authenticationModel.loggedInUser?.name ?? "")")
+                HStack {
+                    Text("Hi \(authenticationModel.loggedInUser?.name ?? "Pape Sow Traore")")
+                    Spacer()
+                    Button("Sign Out", action: authenticationModel.signOut)
+                }
+                .padding(.horizontal)
+                
                 List(healthModel.dailySteps){ step in
-                    Text("Date: \(step.date)")
-                        .font(.headline)
-                    Text("Count: \(step.count)")
-                } .navigationBarTitle("Your Steps")
-                Button("Sign Out", action: authenticationModel.signOut)
-            }
-        }
+                    Group {
+                        Text("Date: \(step.date)")
+                            .font(.headline)
+                        Text("Count: \(step.count)")
+                    }
+                }
+            } .navigationBarTitle("Your Steps")
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         HomeView()
+            .environmentObject(AuthenticationModel())
     }
 }
 
