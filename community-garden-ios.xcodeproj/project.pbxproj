@@ -25,6 +25,7 @@
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
 		F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStoreService.swift */; };
+		F0CA2CE62760A1D300F42683 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Helpers.swift */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		F0B32CA3275AF77900C714A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0B32CB3275B222500C714A2 /* HealthStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreService.swift; sourceTree = "<group>"; };
+		F0CA2CE52760A1D300F42683 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,12 +88,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F0964271275C25AF00F1CEC1 /* Helpers */ = {
+		F0964271275C25AF00F1CEC1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				F0964272275C25C800F1CEC1 /* Constants.swift */,
+				F0CA2CE52760A1D300F42683 /* Helpers.swift */,
 			);
-			path = Helpers;
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F0B32C93275AF77700C714A2 = {
@@ -121,7 +124,7 @@
 				F0B32CAF275AFA8900C714A2 /* ViewModels */,
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
-				F0964271275C25AF00F1CEC1 /* Helpers */,
+				F0964271275C25AF00F1CEC1 /* Utils */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
 				F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */,
@@ -141,8 +144,8 @@
 		F0B32CAD275AFA7A00C714A2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F0B32CB3275B222500C714A2 /* HealthStoreService.swift */,
 				F0172734275F3AB100FAEB12 /* DatabaseService.swift */,
+				F0B32CB3275B222500C714A2 /* HealthStoreService.swift */,
 				F0172736275F687A00FAEB12 /* UserService.swift */,
 			);
 			path = Services;
@@ -151,8 +154,8 @@
 		F0B32CAF275AFA8900C714A2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				F096426F275B52AC00F1CEC1 /* UserModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationModel.swift */,
+				F096426F275B52AC00F1CEC1 /* UserModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -160,8 +163,8 @@
 		F0B32CB0275AFA9500C714A2 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
 				F0B32CA1275AF77700C714A2 /* HomeView.swift */,
+				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
 				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
 			);
 			path = Views;
@@ -308,6 +311,7 @@
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
+				F0CA2CE62760A1D300F42683 /* Helpers.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationModel.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 			);

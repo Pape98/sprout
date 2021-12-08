@@ -41,7 +41,7 @@ class AuthenticationModel: ObservableObject {
         isLoggedIn = Auth.auth().currentUser != nil ? true : false
         
         // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
-        if UserService.shared.loggedInUser.name == "" {
+        if UserService.shared.user.name == "" {
             setUserProfile()
         }
     }
@@ -52,7 +52,7 @@ class AuthenticationModel: ObservableObject {
             return
         }
         
-        let user = UserService.shared.loggedInUser
+        var user = UserService.shared.user
         
         if (isLoggedIn) {
             user.id = firebaseUser.uid
