@@ -123,9 +123,6 @@ class AuthenticationModel: ObservableObject {
                     // Check user if already exists in database
                      self.db.doesUserExist(userID: userID){
                          
-                         // Set profile using data from Google
-                         self.setLoggedInUserProfile()
-                        
                          // If user does not exist, create a new account
                         if self.db.doesUserExsist == false {
                             self.db.createNewUser(UserService.shared.user)

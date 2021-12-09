@@ -72,6 +72,7 @@ class DatabaseService {
         
         // Get document reference
         let userRef = usersCollection.document(userID)
+        
         guard let date = update["date"] as? String else { return }
         
         // Perform update operation
@@ -93,15 +94,17 @@ class DatabaseService {
         subCollection.getDocuments { snapshot, error in
                         
             guard error == nil else { return }
-                        
+                                    
             for doc in snapshot!.documents {
                 
                 // TODO: Generalize to accept other data
+                
                 let item = Step()
                 item.id = doc["id"] as? String ?? ""
                 item.date = doc["date"] as? String ?? ""
                 item.count = doc["count"] as? Int ?? 0
                 
+                let encoder = JSONEncoder()
                 fetchedData.append(item)
             }
     

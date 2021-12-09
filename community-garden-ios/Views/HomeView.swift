@@ -18,7 +18,7 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 HStack {
-//                    Text("Hi \(authenticationModel.loggedInUser?.name ?? "Pape Sow Traore")")
+                    Text("Hi \(userModel.currentUser.name)")
                     Spacer()
                     Button("Sign Out", action: authenticationModel.signOut)
                 }

@@ -21,7 +21,7 @@ class Data: Identifiable, Equatable, Hashable {
     }
 }
 
-class Step: Data {
+class Step: Data, Codable {
     
     var count: Int = 0
     

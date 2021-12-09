@@ -141,6 +141,7 @@
 		AE120EFEA33441343C1B6A0AB92D9CD5 /* GTMSessionFetcher.m in Sources */ = {isa = PBXBuildFile; fileRef = 46B7A31552BD5A67311B924734D8BCC8 /* GTMSessionFetcher.m */; };
 		AE9757CEC9C9AEF8D8E12D51AFF2EE57 /* GTMAppAuthFetcherAuthorization.m in Sources */ = {isa = PBXBuildFile; fileRef = FB297369F2F7D3A3440E973C4976D427 /* GTMAppAuthFetcherAuthorization.m */; };
 		B40B071395954881429075EA56BF9512 /* OIDExternalUserAgentIOSCustomBrowser.h in Headers */ = {isa = PBXBuildFile; fileRef = C26EB7787ED180CBC644FCDAA6247E3D /* OIDExternalUserAgentIOSCustomBrowser.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B47E46A9AE061B331AA5A111D9D75835 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCFD11EE17DEAAD81D01F301E72C3C6 /* CoreGraphics.framework */; };
 		B80AE3D3F79C52F61F9F7D8368612AD3 /* GTMSessionFetcher.h in Headers */ = {isa = PBXBuildFile; fileRef = D963C72390A16A025DEEADAEAA1A4FA6 /* GTMSessionFetcher.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B95B00050CC7DEB50FF7B6E94A67FEC3 /* fi.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 754133E91BFF6E422B61D2CAB1F4CD44 /* fi.lproj */; };
 		BB4A42BC10B2E69F4579A26457C28CDA /* OIDRegistrationRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E37B1385DE81385BA3FE2D7314481C0 /* OIDRegistrationRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -176,8 +177,6 @@
 		E966191B1149AEE7B5295921B2AD7381 /* OIDServiceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFE1BE1C6D52091E7628F847352FB13 /* OIDServiceConfiguration.m */; };
 		EBE36AFF9964F232ABAEA6E260C5CF82 /* OIDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = B41A374291963E7C2FC8CE395487B506 /* OIDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE2C1A0DD32A33303C09254902FEAADC /* GIDSignInStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB6B8BB8616927E38933C2391436936 /* GIDSignInStrings.m */; };
-		F0CA2CE327608A1D00F42683 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DCFD11EE17DEAAD81D01F301E72C3C6 /* CoreGraphics.framework */; };
-		F0CA2CE427608A4B00F42683 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C836841AFA0CD3A8BF8925BC97FBD94 /* Foundation.framework */; };
 		F159FDF0C26037758BF2D029A4BDEF6E /* GIDSignIn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4A17DF35F5124EA6DB3234DB22044C /* GIDSignIn_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F23CEE6326992BCA15408CE8A833123A /* GIDGoogleUser_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = E4D5635B68C398D7C4F61EEDA9555479 /* GIDGoogleUser_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F2D0761B5C842C92D20189388D3B5069 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3DBC0B175A8B06781E6770FD1CC7DBC8 /* pt.lproj */; };
@@ -192,6 +191,7 @@
 		FA57677851302C0F13C69A459895DCEF /* NSBundle+GID3PAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E85BD1F800F8B3611855A2873FDF2C0 /* NSBundle+GID3PAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		FB73A0F735CADE5529DECA4B2D775563 /* ru.lproj in Resources */ = {isa = PBXBuildFile; fileRef = AE1DD3C759E1C2EEC1620AF6CA3CD37B /* ru.lproj */; };
 		FBEA10A4272DA86A395D3C86D9C4D050 /* de.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 4C0E3C3D6B0B2FDE1FE16991F0557F0D /* de.lproj */; };
+		FD05BFE8D404B0BB6ABEDF0FB470D77B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C836841AFA0CD3A8BF8925BC97FBD94 /* Foundation.framework */; };
 		FD48557CD76D990FB5041652368B1C38 /* it.lproj in Resources */ = {isa = PBXBuildFile; fileRef = B3423D390B02A1E9D70E7F856C63C126 /* it.lproj */; };
 		FDE948CC3A35F70EAEB413E5DE09C5ED /* OIDRegistrationResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 75739D421661DD797B7E705AD8A10C21 /* OIDRegistrationResponse.m */; };
 		FE7CF41E3164FB5ABA1F6154A258A602 /* GTMKeychain_iOS.m in Sources */ = {isa = PBXBuildFile; fileRef = 16AE2808FABDCE864FA0FE89784EE101 /* GTMKeychain_iOS.m */; };
@@ -494,7 +494,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0CA2CE327608A1D00F42683 /* CoreGraphics.framework in Frameworks */,
+				B47E46A9AE061B331AA5A111D9D75835 /* CoreGraphics.framework in Frameworks */,
 				E503CCD2253A3675FF0487760DAA134F /* CoreText.framework in Frameworks */,
 				40F9F77138F6863683630F3D6EF49A1C /* Foundation.framework in Frameworks */,
 				7ECA1AE07A77457A0CA3EC39ED873274 /* LocalAuthentication.framework in Frameworks */,
@@ -524,8 +524,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FD05BFE8D404B0BB6ABEDF0FB470D77B /* Foundation.framework in Frameworks */,
 				04F0E6D4414C4C66462F427405602602 /* Security.framework in Frameworks */,
-				F0CA2CE427608A4B00F42683 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
