@@ -7,18 +7,31 @@
 
 import Foundation
 
-class Step: Identifiable, CustomStringConvertible {
+class Data: Identifiable, Equatable, Hashable {
     
-    let id: UUID = UUID()
-    let count: Int
-    let date: String
+    var id: String? = UUID().uuidString
+    var date: String = ""
     
-    var description: String {
-        return "Step: (Date: \(date), Count: \(count))"
+    static func == (lhs: Data, rhs: Data) -> Bool {
+        return lhs.date == rhs.date
     }
     
-    init(_ count: Int, _ date: String) {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(date)
+    }
+}
+
+class Step: Data, Codable {
+    
+    var count: Int = 0
+    
+    override init() {
+        super.init()
+    }
+    
+    init(date: String, count: Int){
+        super.init()
         self.count = count
-        self.date = date
+        super.date = date
     }
 }

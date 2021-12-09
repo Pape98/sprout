@@ -7,140 +7,63 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A6CFD9BDD2C46F5C3D32B8A7 /* Pods_watchos.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 884C2D969921A5BF6BBB73FF /* Pods_watchos.framework */; };
-		BFA1526B133A01226BBF95A7 /* Pods_watchos_WatchKit_Extension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A581CD2511AF073F939ABB9E /* Pods_watchos_WatchKit_Extension.framework */; };
+		F0172730275EDE6200FAEB12 /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationModel.swift */; };
+		F0172735275F3AB100FAEB12 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172734275F3AB100FAEB12 /* DatabaseService.swift */; };
+		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
-		F0964270275B52AC00F1CEC1 /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426F275B52AC00F1CEC1 /* HealthModel.swift */; };
-		F09642A7275CAA0100F1CEC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F09642A6275CAA0100F1CEC1 /* Assets.xcassets */; };
-		F09642AD275CAA0200F1CEC1 /* watchos WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F09642AC275CAA0200F1CEC1 /* watchos WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		F09642B6275CAA0200F1CEC1 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09642B5275CAA0200F1CEC1 /* NotificationController.swift */; };
-		F09642B8275CAA0200F1CEC1 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09642B7275CAA0200F1CEC1 /* NotificationView.swift */; };
-		F09642BA275CAA0200F1CEC1 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09642B9275CAA0200F1CEC1 /* ComplicationController.swift */; };
-		F09642BC275CAA0700F1CEC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F09642BB275CAA0700F1CEC1 /* Assets.xcassets */; };
-		F09642BF275CAA0700F1CEC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F09642BE275CAA0700F1CEC1 /* Preview Assets.xcassets */; };
-		F09642C4275CAA0700F1CEC1 /* watchos.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = F09642A4275CA9F500F1CEC1 /* watchos.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		F0ADEA0B275CAC230039B134 /* HealthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426F275B52AC00F1CEC1 /* HealthModel.swift */; };
-		F0ADEA0C275CAC230039B134 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
-		F0ADEA10275CAE7C0039B134 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CA1275AF77700C714A2 /* HomeView.swift */; };
+		F0964270275B52AC00F1CEC1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426F275B52AC00F1CEC1 /* UserModel.swift */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
-		F0ADEA12275CB0730039B134 /* WatchHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09642B3275CAA0200F1CEC1 /* WatchHomeView.swift */; };
-		F0ADEA13275CB0990039B134 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
-		F0ADEA15275CB0AF0039B134 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStore.swift */; };
-		F0ADEA16275CB0BC0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
-		F0ADEA19275CB2BB0039B134 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0ADEA18275CB2BB0039B134 /* HealthKit.framework */; };
+		F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */; };
+		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
+		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
+		F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2A275ED13D0039B134 /* LoginView.swift */; };
+		F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2C275ED1740039B134 /* LaunchView.swift */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA2275AF77700C714A2 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CA1275AF77700C714A2 /* HomeView.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
-		F0B32CB4275B222500C714A2 /* HealthStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStore.swift */; };
+		F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStoreService.swift */; };
+		F0CA2CE62760A1D300F42683 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Helpers.swift */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		F09642AE275CAA0200F1CEC1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F0B32C94275AF77700C714A2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F09642AB275CAA0200F1CEC1;
-			remoteInfo = "watchos WatchKit Extension";
-		};
-		F09642C2275CAA0700F1CEC1 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F0B32C94275AF77700C714A2 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = F09642A3275CA9F500F1CEC1;
-			remoteInfo = watchos;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		F09642C5275CAA0700F1CEC1 /* Embed Watch Content */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
-			dstSubfolderSpec = 16;
-			files = (
-				F09642C4275CAA0700F1CEC1 /* watchos.app in Embed Watch Content */,
-			);
-			name = "Embed Watch Content";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F09642C8275CAA0700F1CEC1 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				F09642AD275CAA0200F1CEC1 /* watchos WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
-		37C7C388A1D50445C3B3CB74 /* Pods-watchos WatchKit Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchos WatchKit Extension.debug.xcconfig"; path = "Target Support Files/Pods-watchos WatchKit Extension/Pods-watchos WatchKit Extension.debug.xcconfig"; sourceTree = "<group>"; };
-		3F102F4692D6A3B2906AB6AE /* Pods-watchos WatchKit Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchos WatchKit Extension.release.xcconfig"; path = "Target Support Files/Pods-watchos WatchKit Extension/Pods-watchos WatchKit Extension.release.xcconfig"; sourceTree = "<group>"; };
 		47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_community_garden_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7CE174200DE38CD1AA502763 /* Pods-watchos.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchos.debug.xcconfig"; path = "Target Support Files/Pods-watchos/Pods-watchos.debug.xcconfig"; sourceTree = "<group>"; };
 		7E97010C2190A08C6A6A2D8F /* Pods-community-garden-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.release.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.release.xcconfig"; sourceTree = "<group>"; };
-		884C2D969921A5BF6BBB73FF /* Pods_watchos.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchos.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		986482847946EFE3BE2ADFB6 /* Pods-watchos.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-watchos.release.xcconfig"; path = "Target Support Files/Pods-watchos/Pods-watchos.release.xcconfig"; sourceTree = "<group>"; };
-		A581CD2511AF073F939ABB9E /* Pods_watchos_WatchKit_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_watchos_WatchKit_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.debug.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		F017272F275EDE6200FAEB12 /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
+		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0172734275F3AB100FAEB12 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		F096426B275B513100F1CEC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		F096426F275B52AC00F1CEC1 /* HealthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthModel.swift; sourceTree = "<group>"; };
+		F096426F275B52AC00F1CEC1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		F0964272275C25C800F1CEC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F09642A4275CA9F500F1CEC1 /* watchos.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchos.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		F09642A6275CAA0100F1CEC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F09642AC275CAA0200F1CEC1 /* watchos WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watchos WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		F09642B3275CAA0200F1CEC1 /* WatchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeView.swift; sourceTree = "<group>"; };
-		F09642B5275CAA0200F1CEC1 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		F09642B7275CAA0200F1CEC1 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		F09642B9275CAA0200F1CEC1 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		F09642BB275CAA0700F1CEC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		F09642BE275CAA0700F1CEC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F09642C0275CAA0700F1CEC1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F09642C1275CAA0700F1CEC1 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		F0ADEA17275CB2BB0039B134 /* watchos WatchKit Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "watchos WatchKit Extension.entitlements"; sourceTree = "<group>"; };
-		F0ADEA18275CB2BB0039B134 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS8.0.sdk/System/Library/Frameworks/HealthKit.framework; sourceTree = DEVELOPER_DIR; };
+		F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
 		F0B32CA1275AF77700C714A2 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		F0B32CA3275AF77900C714A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		F0B32CB3275B222500C714A2 /* HealthStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStore.swift; sourceTree = "<group>"; };
+		F0B32CB3275B222500C714A2 /* HealthStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreService.swift; sourceTree = "<group>"; };
+		F0CA2CE52760A1D300F42683 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		26286A6A8212AE20E9604BDD /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				A6CFD9BDD2C46F5C3D32B8A7 /* Pods_watchos.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F09642A9275CAA0200F1CEC1 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F0ADEA19275CB2BB0039B134 /* HealthKit.framework in Frameworks */,
-				BFA1526B133A01226BBF95A7 /* Pods_watchos_WatchKit_Extension.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F0B32C99275AF77700C714A2 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */,
 				F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */,
+				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
+				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -152,73 +75,32 @@
 			children = (
 				E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */,
 				7E97010C2190A08C6A6A2D8F /* Pods-community-garden-ios.release.xcconfig */,
-				7CE174200DE38CD1AA502763 /* Pods-watchos.debug.xcconfig */,
-				986482847946EFE3BE2ADFB6 /* Pods-watchos.release.xcconfig */,
-				37C7C388A1D50445C3B3CB74 /* Pods-watchos WatchKit Extension.debug.xcconfig */,
-				3F102F4692D6A3B2906AB6AE /* Pods-watchos WatchKit Extension.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		F0964266275B3A8900F1CEC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F0ADEA18275CB2BB0039B134 /* HealthKit.framework */,
 				F0964267275B3A8900F1CEC1 /* HealthKit.framework */,
 				47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */,
-				884C2D969921A5BF6BBB73FF /* Pods_watchos.framework */,
-				A581CD2511AF073F939ABB9E /* Pods_watchos_WatchKit_Extension.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F0964271275C25AF00F1CEC1 /* Helpers */ = {
+		F0964271275C25AF00F1CEC1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				F0964272275C25C800F1CEC1 /* Constants.swift */,
+				F0CA2CE52760A1D300F42683 /* Helpers.swift */,
 			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
-		F09642A5275CA9F500F1CEC1 /* watchos */ = {
-			isa = PBXGroup;
-			children = (
-				F09642A6275CAA0100F1CEC1 /* Assets.xcassets */,
-			);
-			path = watchos;
-			sourceTree = "<group>";
-		};
-		F09642B0275CAA0200F1CEC1 /* watchos WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				F0ADEA17275CB2BB0039B134 /* watchos WatchKit Extension.entitlements */,
-				F09642B3275CAA0200F1CEC1 /* WatchHomeView.swift */,
-				F09642B5275CAA0200F1CEC1 /* NotificationController.swift */,
-				F09642B7275CAA0200F1CEC1 /* NotificationView.swift */,
-				F09642B9275CAA0200F1CEC1 /* ComplicationController.swift */,
-				F09642BB275CAA0700F1CEC1 /* Assets.xcassets */,
-				F09642C0275CAA0700F1CEC1 /* Info.plist */,
-				F09642C1275CAA0700F1CEC1 /* PushNotificationPayload.apns */,
-				F09642BD275CAA0700F1CEC1 /* Preview Content */,
-			);
-			path = "watchos WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		F09642BD275CAA0700F1CEC1 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				F09642BE275CAA0700F1CEC1 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F0B32C93275AF77700C714A2 = {
 			isa = PBXGroup;
 			children = (
 				F0B32C9E275AF77700C714A2 /* community-garden-ios */,
-				F09642A5275CA9F500F1CEC1 /* watchos */,
-				F09642B0275CAA0200F1CEC1 /* watchos WatchKit Extension */,
 				F0B32C9D275AF77700C714A2 /* Products */,
 				F0964266275B3A8900F1CEC1 /* Frameworks */,
 				C18ED0BE3AAC051BD9EE1AA1 /* Pods */,
@@ -229,8 +111,6 @@
 			isa = PBXGroup;
 			children = (
 				F0B32C9C275AF77700C714A2 /* community-garden-ios.app */,
-				F09642A4275CA9F500F1CEC1 /* watchos.app */,
-				F09642AC275CAA0200F1CEC1 /* watchos WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -238,14 +118,16 @@
 		F0B32C9E275AF77700C714A2 /* community-garden-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
+				F0172731275F168D00FAEB12 /* Info.plist */,
 				F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */,
 				F0B32CB0275AFA9500C714A2 /* Views */,
 				F0B32CAF275AFA8900C714A2 /* ViewModels */,
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
-				F0964271275C25AF00F1CEC1 /* Helpers */,
+				F0964271275C25AF00F1CEC1 /* Utils */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
+				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
+				F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */,
 				F0B32CA5275AF77900C714A2 /* Preview Content */,
 			);
 			path = "community-garden-ios";
@@ -262,7 +144,9 @@
 		F0B32CAD275AFA7A00C714A2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				F0B32CB3275B222500C714A2 /* HealthStore.swift */,
+				F0172734275F3AB100FAEB12 /* DatabaseService.swift */,
+				F0B32CB3275B222500C714A2 /* HealthStoreService.swift */,
+				F0172736275F687A00FAEB12 /* UserService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -270,7 +154,8 @@
 		F0B32CAF275AFA8900C714A2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				F096426F275B52AC00F1CEC1 /* HealthModel.swift */,
+				F017272F275EDE6200FAEB12 /* AuthenticationModel.swift */,
+				F096426F275B52AC00F1CEC1 /* UserModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -279,6 +164,8 @@
 			isa = PBXGroup;
 			children = (
 				F0B32CA1275AF77700C714A2 /* HomeView.swift */,
+				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
+				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -295,44 +182,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		F09642A3275CA9F500F1CEC1 /* watchos */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F09642CC275CAA0700F1CEC1 /* Build configuration list for PBXNativeTarget "watchos" */;
-			buildPhases = (
-				3EA9D83B4FC1D6F90D14AF95 /* [CP] Check Pods Manifest.lock */,
-				F09642A2275CA9F500F1CEC1 /* Resources */,
-				F09642C8275CAA0700F1CEC1 /* Embed App Extensions */,
-				26286A6A8212AE20E9604BDD /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				F09642AF275CAA0200F1CEC1 /* PBXTargetDependency */,
-			);
-			name = watchos;
-			productName = watchos;
-			productReference = F09642A4275CA9F500F1CEC1 /* watchos.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		F09642AB275CAA0200F1CEC1 /* watchos WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = F09642CB275CAA0700F1CEC1 /* Build configuration list for PBXNativeTarget "watchos WatchKit Extension" */;
-			buildPhases = (
-				B148A27D15DC7BA9722382BF /* [CP] Check Pods Manifest.lock */,
-				F09642A8275CAA0200F1CEC1 /* Sources */,
-				F09642A9275CAA0200F1CEC1 /* Frameworks */,
-				F09642AA275CAA0200F1CEC1 /* Resources */,
-				1270CA08E997DE85526B6995 /* [CP] Embed Pods Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "watchos WatchKit Extension";
-			productName = "watchos WatchKit Extension";
-			productReference = F09642AC275CAA0200F1CEC1 /* watchos WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
-		};
 		F0B32C9B275AF77700C714A2 /* community-garden-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F0B32CAA275AF77900C714A2 /* Build configuration list for PBXNativeTarget "community-garden-ios" */;
@@ -341,15 +190,17 @@
 				F0B32C98275AF77700C714A2 /* Sources */,
 				F0B32C99275AF77700C714A2 /* Frameworks */,
 				F0B32C9A275AF77700C714A2 /* Resources */,
-				F09642C5275CAA0700F1CEC1 /* Embed Watch Content */,
-				0A1168798242B09F4D3BB9F6 /* [CP] Embed Pods Frameworks */,
+				D1721EC04174E4FD2D855AF2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				F09642C3275CAA0700F1CEC1 /* PBXTargetDependency */,
 			);
 			name = "community-garden-ios";
+			packageProductDependencies = (
+				F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */,
+				F0ADEA22275ECCA80039B134 /* FirebaseAuth */,
+			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
 			productType = "com.apple.product-type.application";
@@ -364,12 +215,6 @@
 				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
-					F09642A3275CA9F500F1CEC1 = {
-						CreatedOnToolsVersion = 13.1;
-					};
-					F09642AB275CAA0200F1CEC1 = {
-						CreatedOnToolsVersion = 13.1;
-					};
 					F0B32C9B275AF77700C714A2 = {
 						CreatedOnToolsVersion = 13.1;
 					};
@@ -384,48 +229,33 @@
 				Base,
 			);
 			mainGroup = F0B32C93275AF77700C714A2;
+			packageReferences = (
+				F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = F0B32C9D275AF77700C714A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F0B32C9B275AF77700C714A2 /* community-garden-ios */,
-				F09642A3275CA9F500F1CEC1 /* watchos */,
-				F09642AB275CAA0200F1CEC1 /* watchos WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		F09642A2275CA9F500F1CEC1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F09642A7275CAA0100F1CEC1 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		F09642AA275CAA0200F1CEC1 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F09642BF275CAA0700F1CEC1 /* Preview Assets.xcassets in Resources */,
-				F09642BC275CAA0700F1CEC1 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F0B32C9A275AF77700C714A2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
+				F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0A1168798242B09F4D3BB9F6 /* [CP] Embed Pods Frameworks */ = {
+		D1721EC04174E4FD2D855AF2 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -440,67 +270,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		1270CA08E997DE85526B6995 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-watchos WatchKit Extension/Pods-watchos WatchKit Extension-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-watchos WatchKit Extension/Pods-watchos WatchKit Extension-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-watchos WatchKit Extension/Pods-watchos WatchKit Extension-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3EA9D83B4FC1D6F90D14AF95 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-watchos-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B148A27D15DC7BA9722382BF /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-watchos WatchKit Extension-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F174789EAD8EF00B3A3E21EB /* [CP] Check Pods Manifest.lock */ = {
@@ -528,179 +297,29 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		F09642A8275CAA0200F1CEC1 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				F0ADEA0C275CAC230039B134 /* CommunityGardenIosApp.swift in Sources */,
-				F0ADEA12275CB0730039B134 /* WatchHomeView.swift in Sources */,
-				F09642B6275CAA0200F1CEC1 /* NotificationController.swift in Sources */,
-				F0ADEA0B275CAC230039B134 /* HealthModel.swift in Sources */,
-				F0ADEA10275CAE7C0039B134 /* HomeView.swift in Sources */,
-				F0ADEA16275CB0BC0039B134 /* Constants.swift in Sources */,
-				F0ADEA13275CB0990039B134 /* Health.swift in Sources */,
-				F09642BA275CAA0200F1CEC1 /* ComplicationController.swift in Sources */,
-				F0ADEA15275CB0AF0039B134 /* HealthStore.swift in Sources */,
-				F09642B8275CAA0200F1CEC1 /* NotificationView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		F0B32C98275AF77700C714A2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				F0B32CA2275AF77700C714A2 /* HomeView.swift in Sources */,
-				F0964270275B52AC00F1CEC1 /* HealthModel.swift in Sources */,
+				F0172735275F3AB100FAEB12 /* DatabaseService.swift in Sources */,
+				F0964270275B52AC00F1CEC1 /* UserModel.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
-				F0B32CB4275B222500C714A2 /* HealthStore.swift in Sources */,
+				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
+				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
+				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
+				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
+				F0CA2CE62760A1D300F42683 /* Helpers.swift in Sources */,
+				F0172730275EDE6200FAEB12 /* AuthenticationModel.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		F09642AF275CAA0200F1CEC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F09642AB275CAA0200F1CEC1 /* watchos WatchKit Extension */;
-			targetProxy = F09642AE275CAA0200F1CEC1 /* PBXContainerItemProxy */;
-		};
-		F09642C3275CAA0700F1CEC1 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = F09642A3275CA9F500F1CEC1 /* watchos */;
-			targetProxy = F09642C2275CAA0700F1CEC1 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		F09642C6275CAA0700F1CEC1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CE174200DE38CD1AA502763 /* Pods-watchos.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X4FT5J38AS;
-				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = watchos_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = watchos;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "empower.lab.community-garden-ios";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		F09642C7275CAA0700F1CEC1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 986482847946EFE3BE2ADFB6 /* Pods-watchos.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X4FT5J38AS;
-				GENERATE_INFOPLIST_FILE = YES;
-				IBSC_MODULE = watchos_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = watchos;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "empower.lab.community-garden-ios";
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
-		F09642C9275CAA0700F1CEC1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37C7C388A1D50445C3B3CB74 /* Pods-watchos WatchKit Extension.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "watchos WatchKit Extension/watchos WatchKit Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"watchos WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = X4FT5J38AS;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "watchos WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "watchos WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = watchos_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "This ";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Debug;
-		};
-		F09642CA275CAA0700F1CEC1 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3F102F4692D6A3B2906AB6AE /* Pods-watchos WatchKit Extension.release.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_ENTITLEMENTS = "watchos WatchKit Extension/watchos WatchKit Extension.entitlements";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_ASSET_PATHS = "\"watchos WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = X4FT5J38AS;
-				ENABLE_PREVIEWS = YES;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "watchos WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "watchos WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = watchos_WatchKit_Extension.ComplicationController;
-				INFOPLIST_KEY_NSHealthShareUsageDescription = "This ";
-				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "";
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 8.0;
-			};
-			name = Release;
-		};
 		F0B32CA8275AF77900C714A2 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -830,6 +449,7 @@
 				DEVELOPMENT_TEAM = X4FT5J38AS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "community-garden-ios/Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -863,6 +483,7 @@
 				DEVELOPMENT_TEAM = X4FT5J38AS;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "community-garden-ios/Info.plist";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -886,24 +507,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F09642CB275CAA0700F1CEC1 /* Build configuration list for PBXNativeTarget "watchos WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F09642C9275CAA0700F1CEC1 /* Debug */,
-				F09642CA275CAA0700F1CEC1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F09642CC275CAA0700F1CEC1 /* Build configuration list for PBXNativeTarget "watchos" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F09642C6275CAA0700F1CEC1 /* Debug */,
-				F09642C7275CAA0700F1CEC1 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		F0B32C97275AF77700C714A2 /* Build configuration list for PBXProject "community-garden-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -923,6 +526,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 8.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F0ADEA22275ECCA80039B134 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F0B32C94275AF77700C714A2 /* Project object */;
 }

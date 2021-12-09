@@ -7,7 +7,14 @@
 
 import Foundation
 
-class User: Identifiable {
-        
-    let id: UUID = UUID()
+struct User: Identifiable {
+    
+    // Profile Info
+    var id: String = ""
+    var name: String = ""
+    var email: String = ""
+    
+    // Tracked Data
+    var steps: [Step] = [Step]()
+    
 }

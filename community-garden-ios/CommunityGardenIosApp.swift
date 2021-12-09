@@ -6,13 +6,19 @@
 //
 
 import SwiftUI
-import HealthKit
+import Firebase
 
 @main
 struct CommunityGardenIosApp: App {
+    
+    init() {
+        FirebaseApp.configure()
+    }
+    
     var body: some Scene {
         WindowGroup {
-            HomeView()
+            LaunchView()
+                .environmentObject(AuthenticationModel())
         }
     }
 }
