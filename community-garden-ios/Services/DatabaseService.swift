@@ -48,6 +48,7 @@ class DatabaseService {
     }
     
     func doesUserExist(userID: String, completion: @escaping () -> Void) {
+        
         // Get document reference
         let userRef = usersCollection.document(userID)
         
@@ -67,7 +68,7 @@ class DatabaseService {
         }
     }
     
-    func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any]) {
+    func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any], completion: @escaping () -> Void) {
         
         // Get document reference
         let userRef = usersCollection.document(userID)
@@ -78,11 +79,33 @@ class DatabaseService {
             .collection(Collection.steps.rawValue)
             .document(date)
             .setData(update)
+        
+        completion()
     }
     
-    func getUserData(userID: String) {
-        usersCollection.document(userID).getDocument { document, error in
-            guard let userDoc = document else { return }
+    func getUserData(userID: String, collection: Collection, completion: @escaping ([Step]) -> Void) {
+        
+        var fetchedData = [Step]()
+        
+        // Get a reference to the subcollection for data
+        let subCollection = usersCollection.document(userID).collection(collection.rawValue)
+        
+        subCollection.getDocuments { snapshot, error in
+                        
+            guard error == nil else { return }
+                        
+            for doc in snapshot!.documents {
+                
+                // TODO: Generalize to accept other data
+                let item = Step()
+                item.id = doc["id"] as? String ?? ""
+                item.date = doc["date"] as? String ?? ""
+                item.count = doc["count"] as? Int ?? 0
+                
+                fetchedData.append(item)
+            }
+    
+            completion(fetchedData)
         }
     }
     

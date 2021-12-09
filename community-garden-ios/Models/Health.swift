@@ -9,7 +9,7 @@ import Foundation
 
 class Data: Identifiable, Equatable, Hashable {
     
-    var id: String = UUID().uuidString
+    var id: String? = UUID().uuidString
     var date: String = ""
     
     static func == (lhs: Data, rhs: Data) -> Bool {
@@ -24,6 +24,10 @@ class Data: Identifiable, Equatable, Hashable {
 class Step: Data {
     
     var count: Int = 0
+    
+    override init() {
+        super.init()
+    }
     
     init(date: String, count: Int){
         super.init()

@@ -138,7 +138,6 @@ class HealthStoreService {
         query.initialResultsHandler = {
             query, statistics, error in
             self.statsInitialUpdateHandler(query: query, statistics: statistics, error: error, updateHandler: updateHandler)
-            return
         }
         
         // The results handler for monitoring updates to the HealthKit store.

@@ -7,7 +7,7 @@
 
 import Foundation
 
-class User: Identifiable {
+struct User: Identifiable {
     
     // Profile Info
     var id: String = ""

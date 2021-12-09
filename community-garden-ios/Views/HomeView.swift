@@ -18,13 +18,13 @@ struct HomeView: View {
         NavigationView {
             VStack {
                 HStack {
-                    Text("Hi \(authenticationModel.loggedInUser?.name ?? "Pape Sow Traore")")
+//                    Text("Hi \(authenticationModel.loggedInUser?.name ?? "Pape Sow Traore")")
                     Spacer()
                     Button("Sign Out", action: authenticationModel.signOut)
                 }
                 .padding(.horizontal)
                 
-                List(userModel.dailySteps){ step in
+                List(userModel.currentUser.steps){ step in
                     Group {
                         Text("Date: \(step.date)")
                             .font(.headline)

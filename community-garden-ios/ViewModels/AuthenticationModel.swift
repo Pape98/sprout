@@ -20,9 +20,6 @@ class AuthenticationModel: ObservableObject {
     // Error message to be displayed to user
     @Published var errorMessage: String?
     
-    // Current user
-    @Published var loggedInUser: User?
-    
     // Google Sign In configuration
     var configuration: GIDConfiguration?
     
@@ -31,7 +28,7 @@ class AuthenticationModel: ObservableObject {
     
     // MARK: - Methods
     
-    init () {
+    init() {
         
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
@@ -39,16 +36,8 @@ class AuthenticationModel: ObservableObject {
     }
     
     func checkLogin() {
-        
         // Check if there's a current user to determine logged in status
         isLoggedIn = Auth.auth().currentUser != nil ? true : false
-        
-        // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
-        if UserService.shared.user.name == "" {
-            if let userID = Auth.auth().currentUser?.uid {
-                DatabaseService.shared.getUserData(userID: userID)
-            }
-        }
     }
     
     func signOut() {
@@ -66,7 +55,7 @@ class AuthenticationModel: ObservableObject {
         
         let firebaseUser = Auth.auth().currentUser
         
-        let user = UserService.shared.user
+        var user = UserService.shared.user
         
         if (isLoggedIn) {
             user.id = firebaseUser!.uid
@@ -78,8 +67,6 @@ class AuthenticationModel: ObservableObject {
                 user.name = displayName
             }
         }
-        
-        loggedInUser = user
     }
     
     func signIn() {
@@ -141,7 +128,7 @@ class AuthenticationModel: ObservableObject {
                         
                          // If user does not exist, create a new account
                         if self.db.doesUserExsist == false {
-                            self.db.createNewUser(self.loggedInUser!)
+                            self.db.createNewUser(UserService.shared.user)
                         }
                     }
                     // Check login status again to update UI

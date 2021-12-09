@@ -6,51 +6,74 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class UserModel: ObservableObject {
     
     // MARK: - Properties
     
-    // Service to obtain data from health happ
-    private let healthStore: HealthStoreService = HealthStoreService()
+    // To access and edit loggedInUser
+    @Published var currentUser: User = UserService.shared.user
     
-    // Service to interact with firestore database
-    private let databaseService: DatabaseService = DatabaseService.shared
+    // To obtain data from health happ
+    let healthStore: HealthStoreService = HealthStoreService()
     
-    // Service to access and edit loggedInUser
-    private let loggedInUser: User = UserService.shared.user
+    // To interact with firestore database
+    let db: DatabaseService = DatabaseService.shared
     
+    // User's daily step counts from store
+    var storeSteps:[Step] = [Step]()
     
-    
-    // User's daily step counts
-    @Published var dailySteps:[Step] = [Step]()
+    @Published var steps:[Step] = [Step]()
     
     // MARK: - Methods
     
     init() {
+        
+        // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
+        if let userID = Auth.auth().currentUser?.uid {
+            self.setUserData(userID: userID)
+        }
+        
         // Request authorization to access health store
-//        healthStore.requestAuthorization { success in
-//            if success {
-//                // Start listening to changes in step counts
-//                self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
-//            }
-//        }
+        healthStore.requestAuthorization { success in
+            if success {
+                // Start listening to changes in step counts
+                self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
+            }
+        }
+    }
+    
+    func setUserData(userID: String) {
+        db.getUserData(userID: userID, collection: DatabaseService.Collection.steps) { result in
+            DispatchQueue.main.async {
+                print("Here1", self.currentUser.steps)
+                self.currentUser.steps = result
+                print("Here2", self.currentUser.steps)
+            }
+        }
     }
     
     func updateDailySteps(storeSteps: [Step]) {
-        self.dailySteps = storeSteps
         
         // Find the update
-        let storeStepsSet = Set(dailySteps.map({$0}))
-        let loggedInUserStepsSet = Set(loggedInUser.steps.map({$0}))
+        let storeStepsSet = Set(storeSteps.map({$0}))
+        let loggedInUserStepsSet = Set(currentUser.steps.map({$0}))
         let updatesSet = storeStepsSet.subtracting(loggedInUserStepsSet)
-        let update = updatesSet.first!
         
-        var l = UserService.shared.user
-        
+        guard let update = updatesSet.first,
+              let userID = Auth.auth().currentUser?.uid
+        else { return }
+                
         // Perform the update operation
-//        databaseService.updateUserTrackedData(userID: loggedInUser.id,
-//                                              collection: DatabaseService.Collection.steps,
-//                                              update: ["id": update.id, "steps": update.count, "date": update.date])
+        db.updateUserTrackedData(userID: userID,
+                                 collection: DatabaseService.Collection.steps,
+                                 update: ["id": update.id, "count": update.count, "date": update.date])
+        { () in
+            // Get new list
+            self.setUserData(userID: userID)
+        }
+        
+  
     }
 }
