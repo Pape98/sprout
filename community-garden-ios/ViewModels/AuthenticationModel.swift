@@ -26,8 +26,11 @@ class AuthenticationModel: ObservableObject {
     // Google Sign In configuration
     var configuration: GIDConfiguration?
     
+    // Database Instance
+    var db: DatabaseService = DatabaseService.shared
+    
     // MARK: - Methods
-
+    
     init () {
         
         // Create Google Sign In configuration object.
@@ -42,30 +45,10 @@ class AuthenticationModel: ObservableObject {
         
         // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
         if UserService.shared.user.name == "" {
-            setUserProfile()
-        }
-    }
-    
-    func setUserProfile() {
-        
-        guard let firebaseUser = Auth.auth().currentUser else {
-            return
-        }
-        
-        var user = UserService.shared.user
-        
-        if (isLoggedIn) {
-            user.id = firebaseUser.uid
-            
-            if let displayName = firebaseUser.displayName,
-               let email = firebaseUser.email
-            {
-                user.email = email
-                user.name = displayName
+            if let userID = Auth.auth().currentUser?.uid {
+                DatabaseService.shared.getUserData(userID: userID)
             }
         }
-        
-        loggedInUser = user
     }
     
     func signOut() {
@@ -78,18 +61,38 @@ class AuthenticationModel: ObservableObject {
         }
     }
     
+    // Set user information from Google
+    func setLoggedInUserProfile(){
+        
+        let firebaseUser = Auth.auth().currentUser
+        
+        let user = UserService.shared.user
+        
+        if (isLoggedIn) {
+            user.id = firebaseUser!.uid
+            
+            if let displayName = firebaseUser!.displayName,
+               let email = firebaseUser!.email
+            {
+                user.email = email
+                user.name = displayName
+            }
+        }
+        
+        loggedInUser = user
+    }
+    
     func signIn() {
         
         self.errorMessage = ""
         
         if let configuration = self.configuration {
-        
+            
             let rootViewController = UIApplication.shared.windows.first!.rootViewController
-                        
+            
             guard rootViewController != nil else {
                 return
             }
-            
             // Start the Google sign in flow!
             GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController!) { user, error in
                 
@@ -128,21 +131,22 @@ class AuthenticationModel: ObservableObject {
                         return
                     }
                     
-                    // Login is succcessful. Redirect user to home screen
-                    self.checkLogin()
-                   
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
                     // Check user if already exists in database
-                    if DatabaseService.shared.doesUserExist(userID: userID) == false {
-                            // Update UI from main thread
-                            DispatchQueue.main.async {
-                                self.setUserProfile()
-                            }
+                     self.db.doesUserExist(userID: userID){
+                         
+                         // Set profile using data from Google
+                         self.setLoggedInUserProfile()
                         
-                        guard let loggedInUser = self.loggedInUser else { return }
-                        // If not existing already, add new user to database
-                        DatabaseService.shared.createNewUser(loggedInUser)
+                         // If user does not exist, create a new account
+                        if self.db.doesUserExsist == false {
+                            self.db.createNewUser(self.loggedInUser!)
+                        }
+                    }
+                    // Check login status again to update UI
+                    DispatchQueue.main.async {
+                        self.checkLogin()
                     }
                 }
             }

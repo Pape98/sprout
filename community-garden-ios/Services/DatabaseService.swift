@@ -22,6 +22,7 @@ class DatabaseService {
     
     let db: Firestore
     let usersCollection: CollectionReference
+    var doesUserExsist = false
     
     // MARK: - Methods
     init() {
@@ -46,26 +47,24 @@ class DatabaseService {
         }
     }
     
-    func doesUserExist(userID: String) -> Bool {
-        
-        var doesExsist = false
-        
+    func doesUserExist(userID: String, completion: @escaping () -> Void) {
         // Get document reference
-        let docRef = usersCollection.document(userID)
+        let userRef = usersCollection.document(userID)
         
-        // Check if document exists in database
-        docRef.getDocument { document, error in
+        // Check if user exists in database
+        userRef.getDocument { document, error in
             
             guard error == nil else {
                 print(error!)
                 return
             }
             
-            if let condition = document {
-                doesExsist = condition.exists
+            if let condition = document?.exists {
+                self.doesUserExsist = condition
             }
+            
+            completion()
         }
-        return doesExsist
     }
     
     func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any]) {
@@ -79,6 +78,12 @@ class DatabaseService {
             .collection(Collection.steps.rawValue)
             .document(date)
             .setData(update)
+    }
+    
+    func getUserData(userID: String) {
+        usersCollection.document(userID).getDocument { document, error in
+            guard let userDoc = document else { return }
+        }
     }
     
 }
