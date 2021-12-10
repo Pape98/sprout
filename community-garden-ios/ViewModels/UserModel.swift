@@ -75,7 +75,7 @@ class UserModel: ObservableObject {
         guard let update = updatesSet.first,
               let userID = Auth.auth().currentUser?.uid
         else { return }
-                
+                        
         // Perform the update operation
         db.updateUserTrackedData(userID: userID,
                                  collection: DatabaseService.Collection.steps,

@@ -130,10 +130,10 @@ class AuthenticationModel: ObservableObject {
                             self.db.createNewUser(UserService.shared.user)
                         }
                     }
-//                    // Check login status again to update UI
-//                    DispatchQueue.main.async {
-//                        self.checkLogin()
-//                    }
+                    // Check login status again to update UI
+                    DispatchQueue.main.async {
+                        self.checkLogin()
+                    }
                 }
             }
         }
