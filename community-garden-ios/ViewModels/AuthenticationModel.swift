@@ -52,12 +52,11 @@ class AuthenticationModel: ObservableObject {
     
     // Set user information from Google
     func setLoggedInUserProfile(){
-        
-        let firebaseUser = Auth.auth().currentUser
-        
-        var user = UserService.shared.user
-        
+        checkLogin()
+
         if (isLoggedIn) {
+            let firebaseUser = Auth.auth().currentUser
+            let user = UserService.shared.user
             user.id = firebaseUser!.uid
             
             if let displayName = firebaseUser!.displayName,
@@ -67,6 +66,7 @@ class AuthenticationModel: ObservableObject {
                 user.name = displayName
             }
         }
+        
     }
     
     func signIn() {
@@ -120,6 +120,8 @@ class AuthenticationModel: ObservableObject {
                     
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
+                    self.setLoggedInUserProfile()
+                                        
                     // Check user if already exists in database
                      self.db.doesUserExist(userID: userID){
                          
@@ -128,10 +130,10 @@ class AuthenticationModel: ObservableObject {
                             self.db.createNewUser(UserService.shared.user)
                         }
                     }
-                    // Check login status again to update UI
-                    DispatchQueue.main.async {
-                        self.checkLogin()
-                    }
+//                    // Check login status again to update UI
+//                    DispatchQueue.main.async {
+//                        self.checkLogin()
+//                    }
                 }
             }
         }

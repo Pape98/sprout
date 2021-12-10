@@ -10,10 +10,17 @@ import FirebaseAuth
 
 class UserModel: ObservableObject {
     
+    // Struct to publish changes to UI
+    struct CurrentUserData {
+        var steps: [Step] = [Step]()
+    }
+    
     // MARK: - Properties
     
+    @Published var currentUserData = CurrentUserData()
+    
     // To access and edit loggedInUser
-    @Published var currentUser: User = UserService.shared.user
+    var currentUser: User = UserService.shared.user
     
     // To obtain data from health happ
     let healthStore: HealthStoreService = HealthStoreService()
@@ -26,7 +33,8 @@ class UserModel: ObservableObject {
     // User's daily step counts from store
     var storeSteps:[Step] = [Step]()
     
-    @Published var steps:[Step] = [Step]()
+    // Steps data from Health Store
+    var steps:[Step] = [Step]()
     
     // MARK: - Methods
     
@@ -52,6 +60,7 @@ class UserModel: ObservableObject {
         db.getUserData(userID: userID, collection: DatabaseService.Collection.steps) { result in
             DispatchQueue.main.async {
                 self.currentUser.steps = result
+                self.currentUserData.steps = result
             }
         }
     }

@@ -54,7 +54,7 @@ class DatabaseService {
         
         // Check if user exists in database
         userRef.getDocument { document, error in
-            
+                        
             guard error == nil else {
                 print(error!)
                 return
@@ -63,7 +63,7 @@ class DatabaseService {
             if let condition = document?.exists {
                 self.doesUserExsist = condition
             }
-            
+                    
             completion()
         }
     }
@@ -104,7 +104,6 @@ class DatabaseService {
                 item.date = doc["date"] as? String ?? ""
                 item.count = doc["count"] as? Int ?? 0
                 
-                let encoder = JSONEncoder()
                 fetchedData.append(item)
             }
     

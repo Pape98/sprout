@@ -24,7 +24,7 @@ struct HomeView: View {
                 }
                 .padding(.horizontal)
                 
-                List(userModel.currentUser.steps){ step in
+                List(userModel.currentUserData.steps){ step in
                     Group {
                         Text("Date: \(step.date)")
                             .font(.headline)
