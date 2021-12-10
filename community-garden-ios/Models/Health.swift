@@ -35,7 +35,7 @@ class Step: Data, Equatable, Hashable, CustomStringConvertible {
         hasher.combine(super.date)
         hasher.combine(count)
     }
-        
+    
     static func == (lhs: Step, rhs: Step) -> Bool {
         return lhs.date == rhs.date && lhs.count == rhs.count
     }

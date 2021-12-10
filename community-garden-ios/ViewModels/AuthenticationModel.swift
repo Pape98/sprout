@@ -53,7 +53,7 @@ class AuthenticationModel: ObservableObject {
     // Set user information from Google
     func setLoggedInUserProfile(){
         checkLogin()
-
+        
         if (isLoggedIn) {
             let firebaseUser = Auth.auth().currentUser
             let user = UserService.shared.user
@@ -121,11 +121,11 @@ class AuthenticationModel: ObservableObject {
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
                     self.setLoggedInUserProfile()
-                                        
+                    
                     // Check user if already exists in database
-                     self.db.doesUserExist(userID: userID){
-                         
-                         // If user does not exist, create a new account
+                    self.db.doesUserExist(userID: userID){
+                        
+                        // If user does not exist, create a new account
                         if self.db.doesUserExsist == false {
                             self.db.createNewUser(UserService.shared.user)
                         }
