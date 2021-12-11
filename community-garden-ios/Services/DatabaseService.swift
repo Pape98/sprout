@@ -42,7 +42,7 @@ class DatabaseService {
         
         usersCollection.document(user.id).setData(newUser){ err in
             if let err = err {
-                print("Error writing document: \(err)")
+                print("[createNewUser()]","Error writing document: \(err)")
             }
         }
     }
@@ -56,16 +56,16 @@ class DatabaseService {
         userRef.getDocument { document, error in
             
             guard error == nil else {
-                print(error!)
+                print("[doesUserExist()]", error!)
                 return
             }
             
             if let condition = document?.exists {
                 self.doesUserExsist = condition
             }
-            
             completion()
         }
+
     }
     
     func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any], completion: @escaping () -> Void) {
@@ -92,9 +92,12 @@ class DatabaseService {
         let subCollection = usersCollection.document(userID).collection(collection.rawValue)
         
         subCollection.getDocuments { snapshot, error in
-                        
-            guard error == nil else { return }
-                                    
+            
+            guard error == nil else {
+                print("[getUserData()]", error!)
+                return
+            }
+            
             for doc in snapshot!.documents {
                 
                 // TODO: Generalize to accept other data
@@ -104,10 +107,9 @@ class DatabaseService {
                 item.date = doc["date"] as? String ?? ""
                 item.count = doc["count"] as? Int ?? 0
                 
-                let encoder = JSONEncoder()
                 fetchedData.append(item)
             }
-    
+            
             completion(fetchedData)
         }
     }

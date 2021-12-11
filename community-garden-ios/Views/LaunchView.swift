@@ -20,7 +20,7 @@ struct LaunchView: View {
                     // Check if user is logged in or out
                     authenticationModel.checkLogin()
                 }
-
+            
         } else {
             // Show logged in view (home view)
             HomeView()

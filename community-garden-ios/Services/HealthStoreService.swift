@@ -8,16 +8,15 @@
 import Foundation
 import HealthKit
 
-
 class HealthStoreService {
     
     // MARK: - Properties
-
+    
     // Provides all functionalities related health data
     private var healthStore: HKHealthStore?
     
     // MARK: - Methods
-
+    
     init() {
         // Check if health data is available in current phone
         if HKHealthStore.isHealthDataAvailable() {
@@ -53,32 +52,32 @@ class HealthStoreService {
         let calendar = Calendar.current
         
         if let error = error as? HKError {
-                switch (error.code) {
-                case .errorDatabaseInaccessible:
-                    assertionFailure("*** [HK] HealthKit couldn't access the database because the device is locked ***")
-                    return
-                case .errorInvalidArgument:
-                    assertionFailure("*** [HK] The app passed an invalid argument to the HealthKit API ***")
-                    return
-                case .errorAuthorizationDenied:
-                    assertionFailure("*** [HK] The user hasn’t given the app permission to save data. ***")
-                    return
-                case .errorAuthorizationNotDetermined:
-                    assertionFailure("*** [HK] The app hasn’t yet asked the user for the authorization required to complete the task. ***" )
-                    return
-                case .errorNoData:
-                    assertionFailure("*** [HK] Data is unavailable for the requested query and predicate. ***")
-                    return
-                default:
-                    assertionFailure("*** [HK] Unexpected error occured with Healthkit API ***" )
-                    return
-                }
+            switch (error.code) {
+            case .errorDatabaseInaccessible:
+                assertionFailure("*** [HK] HealthKit couldn't access the database because the device is locked ***")
+                return
+            case .errorInvalidArgument:
+                assertionFailure("*** [HK] The app passed an invalid argument to the HealthKit API ***")
+                return
+            case .errorAuthorizationDenied:
+                assertionFailure("*** [HK] The user hasn’t given the app permission to save data. ***")
+                return
+            case .errorAuthorizationNotDetermined:
+                assertionFailure("*** [HK] The app hasn’t yet asked the user for the authorization required to complete the task. ***" )
+                return
+            case .errorNoData:
+                assertionFailure("*** [HK] Data is unavailable for the requested query and predicate. ***")
+                return
+            default:
+                assertionFailure("*** [HK] Unexpected error occured with Healthkit API ***" )
+                return
+            }
         }
         
         guard let statsCollection = statistics else {
-             assertionFailure("*** [HK] queried sample came back null ****")
-             return
-         }
+            assertionFailure("*** [HK] queried sample came back null ****")
+            return
+        }
         
         let today = Date()
         
@@ -152,5 +151,5 @@ class HealthStoreService {
         }
         
     }
-        
+    
 }

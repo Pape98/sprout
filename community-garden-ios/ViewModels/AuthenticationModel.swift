@@ -52,12 +52,11 @@ class AuthenticationModel: ObservableObject {
     
     // Set user information from Google
     func setLoggedInUserProfile(){
-        
-        let firebaseUser = Auth.auth().currentUser
-        
-        var user = UserService.shared.user
+        checkLogin()
         
         if (isLoggedIn) {
+            let firebaseUser = Auth.auth().currentUser
+            let user = UserService.shared.user
             user.id = firebaseUser!.uid
             
             if let displayName = firebaseUser!.displayName,
@@ -67,6 +66,7 @@ class AuthenticationModel: ObservableObject {
                 user.name = displayName
             }
         }
+        
     }
     
     func signIn() {
@@ -95,14 +95,16 @@ class AuthenticationModel: ObservableObject {
                       let idToken = authenticaton.idToken
                 else { return }
                 
+                // TODO: Uncomment if only authorizing Dartmouth email
+                
                 // Check if user is using school email
-                if userEmail.contains("dartmouth.edu") == false {
-                    // Update UI from main thread
-                    DispatchQueue.main.async {
-                        self.errorMessage = "You must use your dartmouth email."
-                    }
-                    return
-                }
+//                if userEmail.contains("dartmouth.edu") == false {
+//                    // Update UI from main thread
+//                    DispatchQueue.main.async {
+//                        self.errorMessage = "You must use your dartmouth email."
+//                    }
+//                    return
+//                }
                 
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
@@ -120,10 +122,12 @@ class AuthenticationModel: ObservableObject {
                     
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
+                    self.setLoggedInUserProfile()
+                    
                     // Check user if already exists in database
-                     self.db.doesUserExist(userID: userID){
-                         
-                         // If user does not exist, create a new account
+                    self.db.doesUserExist(userID: userID){
+                        
+                        // If user does not exist, create a new account
                         if self.db.doesUserExsist == false {
                             self.db.createNewUser(UserService.shared.user)
                         }

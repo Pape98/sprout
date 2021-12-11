@@ -7,23 +7,19 @@
 
 import Foundation
 
-class Data: Identifiable, Equatable, Hashable {
+class Data: Identifiable {
     
     var id: String? = UUID().uuidString
     var date: String = ""
-    
-    static func == (lhs: Data, rhs: Data) -> Bool {
-        return lhs.date == rhs.date
-    }
-    
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(date)
-    }
 }
 
-class Step: Data, Codable {
+class Step: Data, Equatable, Hashable, CustomStringConvertible {
     
     var count: Int = 0
+    
+    var description: String {
+        return "Step => date:\(super.date) count:\(count)"
+    }
     
     override init() {
         super.init()
@@ -33,5 +29,14 @@ class Step: Data, Codable {
         super.init()
         self.count = count
         super.date = date
+    }
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(super.date)
+        hasher.combine(count)
+    }
+    
+    static func == (lhs: Step, rhs: Step) -> Bool {
+        return lhs.date == rhs.date && lhs.count == rhs.count
     }
 }
