@@ -91,7 +91,7 @@ class AuthenticationModel: ObservableObject {
                 }
                 
                 guard let authenticaton = user?.authentication,
-                      let userEmail = user?.profile?.email,
+                      // let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
                 else { return }
                 
