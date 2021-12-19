@@ -23,7 +23,7 @@ struct LaunchView: View {
             
         } else {
             // Show logged in view (home view)
-            HomeView()
+            ContentView()
         }
         
     }

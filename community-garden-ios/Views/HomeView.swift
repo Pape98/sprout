@@ -9,37 +9,16 @@ import SwiftUI
 
 struct HomeView: View {
     
-    @ObservedObject var userModel = UserModel()
-    @EnvironmentObject var authenticationModel: AuthenticationModel
-        
-//    let steps = [Step(count:56, date:"Monday the 23rd"), Step(count:78, date:"Wednesday the 23rd") ]
     
     var body: some View {
-        NavigationView {
-            VStack {
-                HStack {
-                    Text("Hi \(userModel.currentUser.name)")
-                    Spacer()
-                    Button("Sign Out", action: authenticationModel.signOut)
-                }
-                .padding(.horizontal)
-                
-                List(userModel.currentUserData.steps){ step in
-                    Group {
-                        Text("Date: \(step.date)")
-                            .font(.headline)
-                        Text("Count: \(step.count)")
-                    }
-                }
-            } .navigationBarTitle("Your Steps")
-        }.navigationViewStyle(StackNavigationViewStyle())
+        Text("Home View")
     }
-}
-
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
-            .environmentObject(AuthenticationModel())
+    
+    struct Home_Previews: PreviewProvider {
+        static var previews: some View {
+            HomeView()
+                .environmentObject(AuthenticationModel())
+        }
     }
+    
 }
-

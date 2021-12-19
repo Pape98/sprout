@@ -48,12 +48,12 @@ class UserModel: ObservableObject {
         }
         
         // Request authorization to access health store
-        healthStore.requestAuthorization { success in
-            if success {
-                // Start listening to changes in step counts
-                self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
-            }
-        }
+//        healthStore.requestAuthorization { success in
+//            if success {
+//                // Start listening to changes in step counts
+//                self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
+//            }
+//        }
     }
     
     func setUserData(userID: String) {
@@ -75,7 +75,7 @@ class UserModel: ObservableObject {
         guard let update = updatesSet.first,
               let userID = Auth.auth().currentUser?.uid
         else { return }
-                        
+        
         // Perform the update operation
         db.updateUserTrackedData(userID: userID,
                                  collection: DatabaseService.Collection.steps,
@@ -85,6 +85,6 @@ class UserModel: ObservableObject {
             self.setUserData(userID: userID)
         }
         
-  
+        
     }
 }

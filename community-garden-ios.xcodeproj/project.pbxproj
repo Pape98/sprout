@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F005737F276F7F6600EB487B /* MoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005737E276F7F6600EB487B /* MoodView.swift */; };
+		F0057381276F828F00EB487B /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* StepView.swift */; };
+		F0057383276F839E00EB487B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057382276F839E00EB487B /* ContentView.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationModel.swift */; };
 		F0172735275F3AB100FAEB12 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172734275F3AB100FAEB12 /* DatabaseService.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
@@ -33,6 +36,9 @@
 		47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_community_garden_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E97010C2190A08C6A6A2D8F /* Pods-community-garden-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.release.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.release.xcconfig"; sourceTree = "<group>"; };
 		E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.debug.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		F005737E276F7F6600EB487B /* MoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodView.swift; sourceTree = "<group>"; };
+		F0057380276F828F00EB487B /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
+		F0057382276F839E00EB487B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F017272F275EDE6200FAEB12 /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172734275F3AB100FAEB12 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
@@ -166,6 +172,9 @@
 				F0B32CA1275AF77700C714A2 /* HomeView.swift */,
 				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
 				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
+				F005737E276F7F6600EB487B /* MoodView.swift */,
+				F0057380276F828F00EB487B /* StepView.swift */,
+				F0057382276F839E00EB487B /* ContentView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,11 +312,14 @@
 			files = (
 				F0B32CA2275AF77700C714A2 /* HomeView.swift in Sources */,
 				F0172735275F3AB100FAEB12 /* DatabaseService.swift in Sources */,
+				F0057383276F839E00EB487B /* ContentView.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserModel.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
+				F005737F276F7F6600EB487B /* MoodView.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
+				F0057381276F828F00EB487B /* StepView.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,

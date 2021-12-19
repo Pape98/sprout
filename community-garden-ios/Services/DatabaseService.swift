@@ -65,7 +65,7 @@ class DatabaseService {
             }
             completion()
         }
-
+        
     }
     
     func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any], completion: @escaping () -> Void) {

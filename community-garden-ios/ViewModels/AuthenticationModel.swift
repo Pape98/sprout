@@ -98,13 +98,13 @@ class AuthenticationModel: ObservableObject {
                 // TODO: Uncomment if only authorizing Dartmouth email
                 
                 // Check if user is using school email
-//                if userEmail.contains("dartmouth.edu") == false {
-//                    // Update UI from main thread
-//                    DispatchQueue.main.async {
-//                        self.errorMessage = "You must use your dartmouth email."
-//                    }
-//                    return
-//                }
+                //                if userEmail.contains("dartmouth.edu") == false {
+                //                    // Update UI from main thread
+                //                    DispatchQueue.main.async {
+                //                        self.errorMessage = "You must use your dartmouth email."
+                //                    }
+                //                    return
+                //                }
                 
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
