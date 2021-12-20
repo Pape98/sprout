@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @StateObject var userModel: UserModel = UserModel()
+    
     var body: some View {
         TabView {
             MoodView()
@@ -20,12 +23,12 @@ struct ContentView: View {
                     Image(systemName: "bolt.horizontal")
                     Text("Steps")
                 }
-        }
+        }.environmentObject(userModel)
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        ContentView(userModel: UserModel())
     }
 }

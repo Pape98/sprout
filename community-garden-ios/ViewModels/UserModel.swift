@@ -84,7 +84,9 @@ class UserModel: ObservableObject {
             // Get new list
             self.setUserData(userID: userID)
         }
-        
-        
+    }
+    
+    func addMoodEntry(moodType: String, date: Date) {
+        print(moodType, date)
     }
 }

@@ -9,36 +9,38 @@ import SwiftUI
 
 struct MoodView: View {
     
+    @EnvironmentObject var userModel: UserModel
     @State var showAddEntrySheet = false
     
     var body: some View {
-        VStack {
-            
-            Spacer()
-            
-            Button {
-                showAddEntrySheet.toggle()
-            } label: {
-                ZStack {
-                    Rectangle()
-                        .cornerRadius(10)
-                        .frame(width: 200, height: 45)
-                        .padding(40)
-                        .shadow(radius: 5)
-                    
-                    
-                    Text("Add New Entry")
+        NavigationView {
+            VStack {
+                Text("Mood Visualization")
+            }
+            .toolbar {
+                
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Text("Your Mood")
+                        .font(.title)
                         .bold()
-                        .foregroundColor(Color.white)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    
+                    Button {
+                        showAddEntrySheet = true
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .scaledToFit()
+                    }
+                    .sheet(isPresented: $showAddEntrySheet, content: {MoodViewAddEntrySheet(showAddEntrySheet: $showAddEntrySheet)})
                 }
             }
-            .sheet(isPresented: $showAddEntrySheet, content: {AddEntrySheetView()})
-            
         }
-        .navigationTitle("Your Mood")
     }
+    
 }
-
 
 struct MoodView_Previews: PreviewProvider {
     static var previews: some View {
