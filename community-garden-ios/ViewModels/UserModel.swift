@@ -48,12 +48,12 @@ class UserModel: ObservableObject {
         }
         
         // Request authorization to access health store
-//        healthStore.requestAuthorization { success in
-//            if success {
-//                // Start listening to changes in step counts
-//                self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
-//            }
-//        }
+        healthStore.requestAuthorization { success in
+            if success {
+                // Start listening to changes in step counts
+                self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
+            }
+        }
     }
     
     func setUserData(userID: String) {

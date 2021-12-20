@@ -10,20 +10,15 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         TabView {
-            HomeView()
+            MoodView()
                 .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
+                    Image(systemName: "hand.thumbsup")
+                    Text("Mood")
                 }
             StepView()
                 .tabItem {
                     Image(systemName: "bolt.horizontal")
                     Text("Steps")
-                }
-            MoodView()
-                .tabItem {
-                    Image(systemName: "hand.thumbsup")
-                    Text("Mood")
                 }
         }
     }
