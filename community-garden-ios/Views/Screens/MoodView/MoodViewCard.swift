@@ -16,7 +16,7 @@ struct MoodViewCard: View {
     var body: some View {
         Text(text)
             .font(.title2)
-            .frame(width: 135, height: 135)
+            .frame(minWidth: 100, minHeight: 100)
             .foregroundColor(selectedMood != text ? color : Color.white)
             .background(selectedMood == text ? color : Color.white)
             .cornerRadius(20)

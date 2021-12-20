@@ -23,12 +23,12 @@ struct MoodViewAddEntrySheet: View {
         VStack {
             Text("How are you?")
                 .font(.title)
-            Spacer(minLength: 25)
+            Spacer(minLength: 20)
             
             DatePicker("Date", selection: $date, in: ...Date(), displayedComponents: .date)
                 .labelsHidden()
             
-            Spacer(minLength: 50)
+            Spacer(minLength: 30)
             
             ScrollView {
                 LazyVGrid(columns: twoColumnGrid, spacing: 30) {
@@ -42,16 +42,19 @@ struct MoodViewAddEntrySheet: View {
                 .padding()
             }
             
-            CustomButton(title: "Save") {
-                userModel.addMoodEntry(moodType: selectedMood, date: date)
-                showAddEntrySheet = false
+            HStack {
+                
+                CustomButton(title: "Cancel") {
+                    showAddEntrySheet = false
+                }
+                .padding()
+                
+                CustomButton(title: "Save") {
+                    userModel.addMoodEntry(moodType: selectedMood, date: date)
+                    showAddEntrySheet = false
+                }
+                .padding()
             }
-            .padding()
-            
-            CustomButton(title: "Cancel") {
-                showAddEntrySheet = false
-            }
-            .padding()
         }
         .padding()
     }
