@@ -8,7 +8,7 @@
 import Foundation
 
 class User: Identifiable {
-    
+
     // Profile Info
     var id: String = ""
     var name: String = ""

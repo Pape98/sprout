@@ -8,8 +8,17 @@
 import SwiftUI
 
 struct StepView: View {
+    
+    @EnvironmentObject var userModel: UserModel
+    
     var body: some View {
-        Text("Steps View!")
+        NavigationView {
+            VStack {
+                Text("Steps View!")
+            }
+            .navigationTitle("Your Steps")
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 

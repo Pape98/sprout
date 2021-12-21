@@ -113,7 +113,7 @@
 		F0057387276F940C00EB487B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				F0057380276F828F00EB487B /* StepView.swift */,
+				F09B71E327724B260085C7AC /* StepView */,
 				F0057385276F93EB00EB487B /* MoodView */,
 			);
 			path = Screens;
@@ -143,6 +143,14 @@
 				F0CA2CE52760A1D300F42683 /* Helpers.swift */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		F09B71E327724B260085C7AC /* StepView */ = {
+			isa = PBXGroup;
+			children = (
+				F0057380276F828F00EB487B /* StepView.swift */,
+			);
+			path = StepView;
 			sourceTree = "<group>";
 		};
 		F0B32C93275AF77700C714A2 = {

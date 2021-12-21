@@ -27,7 +27,6 @@ class UserModel: ObservableObject {
     
     // To interact with firestore database
     let db: DatabaseService = DatabaseService.shared
-    
     let authenticationModel: AuthenticationModel = AuthenticationModel()
     
     // User's daily step counts from store
@@ -91,5 +90,5 @@ class UserModel: ObservableObject {
         db.updateMoodEntry(text: moodType,
                            date: date.getFormattedDate(format:"dd-MM-yy" ),
                            userId: currentUser.id)
-        }
+    }
 }

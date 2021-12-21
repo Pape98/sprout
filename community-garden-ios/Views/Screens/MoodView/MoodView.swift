@@ -10,39 +10,28 @@ import SwiftUI
 struct MoodView: View {
     
     @EnvironmentObject var userModel: UserModel
-    @EnvironmentObject var authModel:AuthenticationModel
+    // @EnvironmentObject var authModel:AuthenticationModel
     
     @State var showAddEntrySheet = false
     
     var body: some View {
         NavigationView {
             VStack {
-                Spacer()
                 Text("Mood Visualization")
-                Spacer()
-                Button("Sign Out", action: authModel.signOut)
-                Spacer()
             }
-            .toolbar {
-                
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Text("Your Mood")
-                        .font(.title)
-                        .bold()
-                }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    
-                    Button {
-                        showAddEntrySheet = true
-                    } label: {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .scaledToFit()
-                    }
-                    .sheet(isPresented: $showAddEntrySheet, content: {MoodViewAddEntrySheet(showAddEntrySheet: $showAddEntrySheet)})
-                }
+            .navigationTitle("Your Mood")
+
+        }
+        .navigationViewStyle(StackNavigationViewStyle())
+        .overlay(alignment: .bottomTrailing) {
+            Button {
+                showAddEntrySheet = true
+            } label: {
+                Image(systemName: "plus.circle.fill")
+                    .font(.system(size: 50))
             }
+            .padding(20)
+            .sheet(isPresented: $showAddEntrySheet, content: {MoodViewAddEntrySheet(showAddEntrySheet: $showAddEntrySheet)})
         }
     }
     

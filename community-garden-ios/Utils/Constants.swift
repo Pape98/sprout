@@ -26,5 +26,4 @@ struct Constants {
     
     static let clientID = "987260271190-lt53tt7akbciedliq2mdno33jpg08eb2.apps.googleusercontent.com"
     
-    
 }
