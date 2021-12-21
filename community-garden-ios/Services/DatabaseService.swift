@@ -12,7 +12,7 @@ class DatabaseService {
     
     // Collection Names
     enum Collection: String {
-        case users, steps
+        case users, steps, moods
     }
     
     // Single database instance shared
@@ -22,17 +22,22 @@ class DatabaseService {
     
     let db: Firestore
     let usersCollection: CollectionReference
+    let moodsCollection: CollectionReference
+    
     var doesUserExsist = false
     
-    // MARK: - Methods
     init() {
         
         // Get a reference to database
         db = Firestore.firestore()
         
-        // Get a reference
+        // Get collection references
         usersCollection = db.collection(Collection.users.rawValue)
+        moodsCollection = db.collection(Collection.moods.rawValue)
     }
+    
+    
+    // MARK: - Users
     
     func createNewUser(_ user: User) {
         
@@ -67,6 +72,8 @@ class DatabaseService {
         }
         
     }
+    
+    // MARK: - Healthkit Data
     
     func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any], completion: @escaping () -> Void) {
         
@@ -111,6 +118,19 @@ class DatabaseService {
             }
             
             completion(fetchedData)
+        }
+    }
+    
+    // MARK: - Mood
+    
+    func updateMoodEntry(text: String, date: String, userId: String) {
+        
+        let newMood: [String: Any] = ["text": text, "date": date, "userId": userId]
+        
+        moodsCollection.document().setData(newMood, merge: true){ error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            }
         }
     }
     

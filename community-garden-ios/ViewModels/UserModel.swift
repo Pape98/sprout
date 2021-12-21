@@ -45,6 +45,7 @@ class UserModel: ObservableObject {
             setUserData(userID: authUser.uid)
             currentUser.name = authUser.displayName!
             currentUser.email = authUser.email!
+            currentUser.id = authUser.uid
         }
         
         // Request authorization to access health store
@@ -87,6 +88,8 @@ class UserModel: ObservableObject {
     }
     
     func addMoodEntry(moodType: String, date: Date) {
-        print(moodType, date)
-    }
+        db.updateMoodEntry(text: moodType,
+                           date: date.getFormattedDate(format:"dd-MM-yy" ),
+                           userId: currentUser.id)
+        }
 }

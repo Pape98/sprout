@@ -10,12 +10,18 @@ import SwiftUI
 struct MoodView: View {
     
     @EnvironmentObject var userModel: UserModel
+    @EnvironmentObject var authModel:AuthenticationModel
+    
     @State var showAddEntrySheet = false
     
     var body: some View {
         NavigationView {
             VStack {
+                Spacer()
                 Text("Mood Visualization")
+                Spacer()
+                Button("Sign Out", action: authModel.signOut)
+                Spacer()
             }
             .toolbar {
                 

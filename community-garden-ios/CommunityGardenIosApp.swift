@@ -11,6 +11,8 @@ import Firebase
 @main
 struct CommunityGardenIosApp: App {
     
+    @StateObject var authModel: AuthenticationModel = AuthenticationModel()
+    
     init() {
         FirebaseApp.configure()
     }
@@ -18,7 +20,7 @@ struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
-                .environmentObject(AuthenticationModel())
+                .environmentObject(authModel)
         }
     }
 }
