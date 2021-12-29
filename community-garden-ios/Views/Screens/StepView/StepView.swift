@@ -10,26 +10,41 @@ import SwiftUI
 struct StepView: View {
     
     @EnvironmentObject var userModel: UserModel
-    var steps: [Step] = [Step(date: "22-12-1998", count: 25), Step(date: "15-08-2024", count: 41)]
+//    let steps: [Step] = [Step(date: "22-12-1998", count: 300), Step(date: "15-08-2024", count: 450)]
+    let stepsGoal = 2500.0
     
     var body: some View {
+        let steps = userModel.currentUserData.steps
+
         NavigationView {
             ZStack {
-//                List(steps) { steps in
-//                    Group {
-//                        Text()
-//                    }
-//                }
+                
+                Image("island-background")
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                
                 VStack {
-                    Spacer()
-                    Image("tree")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 500)
+                    
+                    if let latestStep = steps.first {
+                        let length = Double(500 * latestStep.count) / stepsGoal
+                        let displayLength = length > stepsGoal ? stepsGoal : length
+                        
+                        VStack {
+                            Image("tree")
+                                .resizable()
+                        }
+                        .frame(width:displayLength, height:displayLength)
+                    }
+                    
+                    if let latestStep = steps.first {
+                        Text(latestStep.date)
+                            .padding()
+                        Text("\(latestStep.count)/\(stepsGoal) steps")
+                            .padding()
+                    }
                 }
             }
             .navigationTitle("Your Steps")
-            .fullBackground(imageName: "island-background")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }

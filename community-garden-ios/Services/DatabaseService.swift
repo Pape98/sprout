@@ -87,7 +87,7 @@ class DatabaseService {
             .collection(Collection.steps.rawValue)
             .document(date)
             .setData(update)
-        
+
         completion()
     }
     
