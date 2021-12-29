@@ -101,7 +101,7 @@ class HealthStoreService {
                 dailySteps.append(stepObject)
             }
         }
-        
+                        
         // Dispatch to the main queue to update the UI.
         DispatchQueue.main.async {
             updateHandler(dailySteps)

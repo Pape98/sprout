@@ -48,10 +48,12 @@ class UserModel: ObservableObject {
         }
         
         // Request authorization to access health store
-        healthStore.requestAuthorization { success in
-            if success {
-                // Start listening to changes in step counts
-                self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
+        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" { // Do not run this in preview mode
+            healthStore.requestAuthorization { success in
+                if success {
+                    // Start listening to changes in step counts
+                    self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
+                }
             }
         }
     }
@@ -61,6 +63,7 @@ class UserModel: ObservableObject {
             DispatchQueue.main.async {
                 self.currentUser.steps = result
                 self.currentUserData.steps = result
+                print("HERE",result)
             }
         }
     }

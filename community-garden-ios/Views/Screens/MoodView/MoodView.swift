@@ -17,10 +17,10 @@ struct MoodView: View {
     var body: some View {
         NavigationView {
             VStack {
-                Text("Mood Visualization")
+             
+        
             }
             .navigationTitle("Your Mood")
-
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .overlay(alignment: .bottomTrailing) {

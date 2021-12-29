@@ -10,13 +10,26 @@ import SwiftUI
 struct StepView: View {
     
     @EnvironmentObject var userModel: UserModel
+    var steps: [Step] = [Step(date: "22-12-1998", count: 25), Step(date: "15-08-2024", count: 41)]
     
     var body: some View {
         NavigationView {
-            VStack {
-                Text("Steps View!")
+            ZStack {
+//                List(steps) { steps in
+//                    Group {
+//                        Text()
+//                    }
+//                }
+                VStack {
+                    Spacer()
+                    Image("tree")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(height: 500)
+                }
             }
             .navigationTitle("Your Steps")
+            .fullBackground(imageName: "island-background")
         }
         .navigationViewStyle(StackNavigationViewStyle())
     }
@@ -25,5 +38,6 @@ struct StepView: View {
 struct StepView_Previews: PreviewProvider {
     static var previews: some View {
         StepView()
+            .environmentObject(UserModel())
     }
 }

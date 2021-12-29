@@ -87,7 +87,7 @@ class DatabaseService {
             .collection(Collection.steps.rawValue)
             .document(date)
             .setData(update)
-        
+        
         completion()
     }
     
@@ -96,7 +96,7 @@ class DatabaseService {
         var fetchedData = [Step]()
         
         // Get a reference to the subcollection for data
-        let subCollection = usersCollection.document(userID).collection(collection.rawValue)
+        let subCollection = usersCollection.document(userID).collection(collection.rawValue).order(by: "date", descending: true)
         
         subCollection.getDocuments { snapshot, error in
             
@@ -116,7 +116,7 @@ class DatabaseService {
                 
                 fetchedData.append(item)
             }
-            
+                        
             completion(fetchedData)
         }
     }
