@@ -104,7 +104,7 @@ class UserModel: ObservableObject {
     }
     
     func addMoodEntry(moodType: String, date: Date) {
-        db.updateMoodEntry(text: moodType,
+        db.addMoodEntry(text: moodType,
                            date: date.getFormattedDate(format:"dd-MM-yy" ),
                            userId: currentUser.id) { () in
             

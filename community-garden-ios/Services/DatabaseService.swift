@@ -96,7 +96,10 @@ class DatabaseService {
         var fetchedData = [Step]()
         
         // Get a reference to the subcollection for data
-        let subCollection = usersCollection.document(userID).collection(collection.rawValue).order(by: "date", descending: true)
+        let subCollection = usersCollection
+            .document(userID)
+            .collection(collection.rawValue)
+            .order(by: "date", descending: true)
         
         subCollection.getDocuments { snapshot, error in
             
@@ -123,9 +126,12 @@ class DatabaseService {
     
     // MARK: - Mood
     
-    func updateMoodEntry(text: String, date: String, userId: String, completion: @escaping () -> Void) {
+    func addMoodEntry(text: String, date: String, userId: String, completion: @escaping () -> Void) {
         
-        let newMood: [String: Any] = ["text": text, "date": date, "userId": userId]
+        let newMood: [String: Any] = ["text": text,
+                                      "date": date,
+                                      "userId": userId,
+                                      "created_at": FieldValue.serverTimestamp()]
         
         moodsCollection.document().setData(newMood, merge: true){ error in
             if let error = error {
@@ -140,23 +146,29 @@ class DatabaseService {
         
         var currentUserMoods = [Mood]()
         
-        moodsCollection.whereField("userId", isEqualTo: userId).getDocuments { snapshot, error in
-            guard error == nil else {
-                print("[getUserData()]", error!)
-                return
-            }
-            
-            for doc in snapshot!.documents {
+        moodsCollection
+            .whereField("userId", isEqualTo: userId)
+            .order(by: "created_at", descending: true)
+            .getDocuments { snapshot, error in
                 
-                var mood = Mood()
-                mood.date = doc["date"] as? String ?? ""
-                mood.text = doc["text"] as? String ?? ""
-                mood.userId = doc["userId"] as? String ?? ""
+                guard error == nil else {
+                    print("[getUserData()]", error!)
+                    return
+                }
                 
-                currentUserMoods.append(mood)
-            }
-            
-            completion(currentUserMoods)
+                for doc in snapshot!.documents {
+                    
+                    var mood = Mood()
+                    mood.date = doc["date"] as? String ?? ""
+                    mood.text = doc["text"] as? String ?? ""
+                    mood.userId = doc["userId"] as? String ?? ""
+                    
+                    currentUserMoods.append(mood)
+                }
+                
+                completion(currentUserMoods)
+                
+                print("HERE", currentUserMoods)
         }
         
     }

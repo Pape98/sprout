@@ -21,7 +21,7 @@
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
 		F0964270275B52AC00F1CEC1 /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426F275B52AC00F1CEC1 /* UserModel.swift */; };
-		F09B71E8277269560085C7AC /* Flower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B71E7277269560085C7AC /* Flower.swift */; };
+		F09B71E8277269560085C7AC /* Leaf.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B71E7277269560085C7AC /* Leaf.swift */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
@@ -57,7 +57,7 @@
 		F096426B275B513100F1CEC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F096426F275B52AC00F1CEC1 /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
 		F0964272275C25C800F1CEC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F09B71E7277269560085C7AC /* Flower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flower.swift; sourceTree = "<group>"; };
+		F09B71E7277269560085C7AC /* Leaf.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Leaf.swift; sourceTree = "<group>"; };
 		F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
@@ -158,7 +158,7 @@
 		F09B71E4277269230085C7AC /* Shapes */ = {
 			isa = PBXGroup;
 			children = (
-				F09B71E7277269560085C7AC /* Flower.swift */,
+				F09B71E7277269560085C7AC /* Leaf.swift */,
 			);
 			path = Shapes;
 			sourceTree = "<group>";
@@ -387,7 +387,7 @@
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
-				F09B71E8277269560085C7AC /* Flower.swift in Sources */,
+				F09B71E8277269560085C7AC /* Leaf.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationModel.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 			);

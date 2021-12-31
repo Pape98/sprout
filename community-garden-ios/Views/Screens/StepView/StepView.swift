@@ -18,7 +18,7 @@ struct StepView: View {
 
         NavigationView {
             VStack {
-                Text("Steps View")
+                Text("Steps")
             }
             .navigationTitle("Your Steps")
         }

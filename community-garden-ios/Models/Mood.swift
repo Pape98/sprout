@@ -13,4 +13,5 @@ struct Mood: Identifiable {
     var text: String = ""
     var date: String = ""
     var userId: String = ""
+    var timestamp: String = ""
 }

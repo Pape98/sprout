@@ -13,16 +13,28 @@ struct MoodView: View {
     
     @State var showAddEntrySheet = false
     
+    let moods: [Mood] = [Mood(text:"meh", date:"12-22-1998"), Mood(text:"terrible", date:"11-14-1990") ]
+    
     var body: some View {
         NavigationView {
-            VStack {
-                List (userModel.currentUserData.moods, id: \.id) { mood in
-                    Group {
-                        Text(mood.date)
-                        Text(mood.text)
-                        Text(mood.userId)
-                    }
+            VStack (spacing: 0){
+                ScrollView {
+                    ForEach(userModel.currentUserData.moods) { mood in
+                            HStack {
+                                Text(mood.date)
+                                    .padding()
+                                Spacer()
+                                Text(mood.text)
+                                    .padding()
+                            }
+                            .frame(height:75)
+                            .font(.title3)
+                            .background(Constants.moodTypes[mood.text])
+                            .foregroundColor(Color.white)
+                        }
                 }
+                Spacer()
+                
             }
             .navigationTitle("Your Mood")
         }
@@ -44,5 +56,6 @@ struct MoodView: View {
 struct MoodView_Previews: PreviewProvider {
     static var previews: some View {
         MoodView()
+            .environmentObject(UserModel())
     }
 }
