@@ -8,8 +8,9 @@
 import Foundation
 
 struct Mood: Identifiable {
-    var id: String
-    var text: String
-    var date: String
-    var userId: String
+    
+    var id: String = UUID().uuidString
+    var text: String = ""
+    var date: String = ""
+    var userId: String = ""
 }

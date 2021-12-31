@@ -10,15 +10,19 @@ import SwiftUI
 struct MoodView: View {
     
     @EnvironmentObject var userModel: UserModel
-    // @EnvironmentObject var authModel:AuthenticationModel
     
     @State var showAddEntrySheet = false
     
     var body: some View {
         NavigationView {
             VStack {
-             
-        
+                List (userModel.currentUserData.moods, id: \.id) { mood in
+                    Group {
+                        Text(mood.date)
+                        Text(mood.text)
+                        Text(mood.userId)
+                    }
+                }
             }
             .navigationTitle("Your Mood")
         }

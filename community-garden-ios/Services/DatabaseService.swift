@@ -91,7 +91,7 @@ class DatabaseService {
         completion()
     }
     
-    func getUserData(userID: String, collection: Collection, completion: @escaping ([Step]) -> Void) {
+    func getUserSteps(userID: String, collection: Collection, completion: @escaping ([Step]) -> Void) {
         
         var fetchedData = [Step]()
         
@@ -123,7 +123,7 @@ class DatabaseService {
     
     // MARK: - Mood
     
-    func updateMoodEntry(text: String, date: String, userId: String) {
+    func updateMoodEntry(text: String, date: String, userId: String, completion: @escaping () -> Void) {
         
         let newMood: [String: Any] = ["text": text, "date": date, "userId": userId]
         
@@ -131,7 +131,37 @@ class DatabaseService {
             if let error = error {
                 print("Error writing document: \(error)")
             }
+            
+            completion()
         }
     }
     
+    func getMoodEntries(userId: String, completion: @escaping ([Mood]) -> Void) {
+        
+        var currentUserMoods = [Mood]()
+        
+        moodsCollection.whereField("userId", isEqualTo: userId).getDocuments { snapshot, error in
+            guard error == nil else {
+                print("[getUserData()]", error!)
+                return
+            }
+            
+            for doc in snapshot!.documents {
+                
+                var mood = Mood()
+                mood.date = doc["date"] as? String ?? ""
+                mood.text = doc["text"] as? String ?? ""
+                mood.userId = doc["userId"] as? String ?? ""
+                
+                currentUserMoods.append(mood)
+            }
+            
+            completion(currentUserMoods)
+        }
+        
+    }
+    
+    func getMoodEntries() {
+        
+    }
 }

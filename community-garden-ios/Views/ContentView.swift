@@ -13,15 +13,17 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            StepView()
-                .tabItem {
-                    Image(systemName: "bolt.horizontal")
-                    Text("Steps")
-                }
+            
             MoodView()
                 .tabItem {
                     Image(systemName: "hand.thumbsup")
                     Text("Mood")
+                }
+            
+            StepView()
+                .tabItem {
+                    Image(systemName: "bolt.horizontal")
+                    Text("Steps")
                 }
         }
         .environmentObject(userModel)

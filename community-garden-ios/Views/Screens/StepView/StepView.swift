@@ -17,32 +17,8 @@ struct StepView: View {
         let steps = userModel.currentUserData.steps
 
         NavigationView {
-            ZStack {
-                
-                Image("island-background")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                
-                VStack {
-                    
-                    if let latestStep = steps.first {
-                        let length = Double(500 * latestStep.count) / stepsGoal
-                        let displayLength = length > stepsGoal ? stepsGoal : length
-                        
-                        VStack {
-                            Image("tree")
-                                .resizable()
-                        }
-                        .frame(width:displayLength, height:displayLength)
-                    }
-                    
-                    if let latestStep = steps.first {
-                        Text(latestStep.date)
-                            .padding()
-                        Text("\(latestStep.count)/\(stepsGoal) steps")
-                            .padding()
-                    }
-                }
+            VStack {
+                Text("Steps View")
             }
             .navigationTitle("Your Steps")
         }

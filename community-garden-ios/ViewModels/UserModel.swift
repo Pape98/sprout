@@ -13,6 +13,7 @@ class UserModel: ObservableObject {
     // Struct to publish changes to UI
     struct CurrentUserData {
         var steps: [Step] = [Step]()
+        var moods: [Mood] = [Mood]()
     }
     
     // MARK: - Properties
@@ -41,10 +42,10 @@ class UserModel: ObservableObject {
         
         // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
         if let authUser = Auth.auth().currentUser {
-            setUserData(userID: authUser.uid)
             currentUser.name = authUser.displayName!
             currentUser.email = authUser.email!
             currentUser.id = authUser.uid
+            setCurrentUserData()
         }
         
         // Request authorization to access health store
@@ -58,12 +59,25 @@ class UserModel: ObservableObject {
         }
     }
     
-    func setUserData(userID: String) {
-        db.getUserData(userID: userID, collection: DatabaseService.Collection.steps) { result in
+    func setCurrentUserData() {
+        getCurrentUserSteps()
+        getCurrentUserMoodEntries()
+    }
+    
+    func getCurrentUserSteps() {
+        db.getUserSteps(userID: currentUser.id, collection: DatabaseService.Collection.steps) { result in
             DispatchQueue.main.async {
                 self.currentUser.steps = result
                 self.currentUserData.steps = result
-                print("HERE",result)
+            }
+        }
+    }
+    
+    func getCurrentUserMoodEntries() {
+        db.getMoodEntries(userId: currentUser.id) { result in
+            DispatchQueue.main.async {
+                self.currentUser.moods = result
+                self.currentUserData.moods = result
             }
         }
     }
@@ -85,13 +99,16 @@ class UserModel: ObservableObject {
                                  update: ["id": update.id!, "count": update.count, "date": update.date])
         { () in
             // Get new list
-            self.setUserData(userID: userID)
+            self.getCurrentUserSteps()
         }
     }
     
     func addMoodEntry(moodType: String, date: Date) {
         db.updateMoodEntry(text: moodType,
                            date: date.getFormattedDate(format:"dd-MM-yy" ),
-                           userId: currentUser.id)
+                           userId: currentUser.id) { () in
+            
+            self.getCurrentUserMoodEntries()
+        }
     }
 }
