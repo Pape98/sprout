@@ -16,13 +16,15 @@ extension Date {
     }
 }
 
-extension View {
-    func fullBackground(imageName: String) -> some View {
-        return self.background (
-            Image(imageName)
-                .resizable()
-                .aspectRatio(UIImage(named: imageName)!.size, contentMode: .fill)
-                .edgesIgnoringSafeArea(.top)
-        )
+extension String {
+    func convertToDateObject() -> Date? {
+        let dateFormatter = DateFormatter()
+        let dateObject = dateFormatter.date(from: self)
+        
+        if let dateObject = dateObject {
+            return dateObject
+        }
+        
+        return nil
     }
 }

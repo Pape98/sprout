@@ -75,6 +75,8 @@ class DatabaseService {
     
     // MARK: - Healthkit Data
     
+    // TODO: Save date as timestamp and not String
+    
     func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any], completion: @escaping () -> Void) {
         
         // Get document reference
@@ -126,12 +128,13 @@ class DatabaseService {
     
     // MARK: - Mood
     
-    func addMoodEntry(text: String, date: String, userId: String, completion: @escaping () -> Void) {
+    func addMoodEntry(text: String, date: Date, userId: String, completion: @escaping () -> Void) {
         
-        let newMood: [String: Any] = ["text": text,
+        
+        let newMood: [String: Any] = ["id": UUID().uuidString,
+                                      "text": text,
                                       "date": date,
-                                      "userId": userId,
-                                      "created_at": FieldValue.serverTimestamp()]
+                                      "userId": userId]
         
         moodsCollection.document().setData(newMood, merge: true){ error in
             if let error = error {
@@ -150,8 +153,8 @@ class DatabaseService {
         
         moodsCollection
             .whereField("userId", isEqualTo: userId)
-            .order(by: "created_at", descending: true)
-//            .order(by: "date", descending: true)
+//            .order(by: "created_at", descending: true)
+            .order(by: "date", descending: true)
             .getDocuments { snapshot, error in
                 
                 guard error == nil else {
@@ -162,10 +165,14 @@ class DatabaseService {
                 for doc in snapshot!.documents {
                     
                     var mood = Mood()
-                    mood.date = doc["date"] as? String ?? ""
+                    mood.id = doc["id"] as? String ?? ""
                     mood.text = doc["text"] as? String ?? ""
                     mood.userId = doc["userId"] as? String ?? ""
                     
+                    let date = doc["date"] as? Timestamp ?? nil
+                    mood.date = date?.dateValue()
+                    
+                    print(mood)
                     currentUserMoods.append(mood)
                 }
                 

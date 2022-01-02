@@ -13,7 +13,7 @@ struct MoodView: View {
     
     @State var showAddEntrySheet = false
     
-    let moods: [Mood] = [Mood(text:"meh", date:"12-22-1998"), Mood(text:"terrible", date:"11-14-1990") ]
+//    let moods: [Mood] = [Mood(text:"meh", date:"12-22-1998"), Mood(text:"terrible", date:"11-14-1990") ]
     
     var body: some View {
         NavigationView {
@@ -21,8 +21,12 @@ struct MoodView: View {
                 ScrollView {
                     ForEach(userModel.currentUserData.moods) { mood in
                             HStack {
-                                Text(mood.date)
-                                    .padding()
+                                if let date = mood.date {
+                                    VStack {
+                                        Text(date.getFormattedDate(format: "MMM dd, yyyy"))
+                                            .padding()
+                                    }
+                                }
                                 Spacer()
                                 Text(mood.text)
                                     .padding()

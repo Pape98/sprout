@@ -9,9 +9,8 @@ import Foundation
 
 struct Mood: Identifiable {
     
-    var id: String = UUID().uuidString
+    var id: String = ""
     var text: String = ""
-    var date: String = ""
+    var date: Date?
     var userId: String = ""
-    var timestamp: String = ""
 }
