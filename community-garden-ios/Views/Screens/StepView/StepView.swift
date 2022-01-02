@@ -10,15 +10,28 @@ import SwiftUI
 struct StepView: View {
     
     @EnvironmentObject var userModel: UserModel
-//    let steps: [Step] = [Step(date: "22-12-1998", count: 300), Step(date: "15-08-2024", count: 450)]
-    let stepsGoal = 2500.0
+    
+    var steps: [Step]?
+    
+    let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        let steps = userModel.currentUserData.steps
-
         NavigationView {
             VStack {
-                Text("Steps")
+                ScrollView {
+                    
+                    LazyVGrid (columns: columns, spacing: 20){
+                        if steps != nil {
+                            ForEach(steps!) { step in
+                                ProgressTriangle(step: step)
+                            }
+                        } else {
+                            ForEach(userModel.currentUserData.steps) { step in
+                                ProgressTriangle(step: step)
+                            }
+                        }
+                    }
+                }
             }
             .navigationTitle("Your Steps")
         }
@@ -27,8 +40,14 @@ struct StepView: View {
 }
 
 struct StepView_Previews: PreviewProvider {
+    
+    @State static var steps: [Step] = [Step(date: "22-12-1998", count: 894),
+                                       Step(date: "15-08-2024", count: 1500),
+                                       Step(date: "22-12-1998", count: 2060),
+                                       Step(date: "15-08-2024", count: 100)]
+    
     static var previews: some View {
-        StepView()
+        StepView(steps: steps)
             .environmentObject(UserModel())
     }
 }

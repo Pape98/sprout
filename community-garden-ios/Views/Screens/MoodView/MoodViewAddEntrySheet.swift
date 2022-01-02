@@ -49,6 +49,7 @@ struct MoodViewAddEntrySheet: View {
                 }
                 .padding()
                 
+                // TODO: Make sure user can only save if they've selected a mood
                 CustomButton(title: "Save") {
                     userModel.addMoodEntry(moodType: selectedMood, date: date)
                     showAddEntrySheet = false

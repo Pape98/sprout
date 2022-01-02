@@ -146,9 +146,12 @@ class DatabaseService {
         
         var currentUserMoods = [Mood]()
         
+        // TODO: Sort by both mood date and date created
+        
         moodsCollection
             .whereField("userId", isEqualTo: userId)
             .order(by: "created_at", descending: true)
+//            .order(by: "date", descending: true)
             .getDocuments { snapshot, error in
                 
                 guard error == nil else {
@@ -167,13 +170,7 @@ class DatabaseService {
                 }
                 
                 completion(currentUserMoods)
-                
-                print("HERE", currentUserMoods)
         }
-        
-    }
-    
-    func getMoodEntries() {
         
     }
 }
