@@ -8,7 +8,7 @@
 import Foundation
 
 class User: Identifiable {
-    
+
     // Profile Info
     var id: String = ""
     var name: String = ""
@@ -16,5 +16,6 @@ class User: Identifiable {
     
     // Tracked Data
     var steps: [Step] = [Step]()
+    var moods: [Mood] = [Mood]()
     
 }

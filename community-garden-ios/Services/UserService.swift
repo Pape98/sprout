@@ -14,7 +14,5 @@ class UserService {
     
     static var shared = UserService()
     
-    private init() {
-        
-    }
+    private init() {}
 }

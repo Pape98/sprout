@@ -12,7 +12,7 @@ class DatabaseService {
     
     // Collection Names
     enum Collection: String {
-        case users, steps
+        case users, steps, moods
     }
     
     // Single database instance shared
@@ -22,17 +22,22 @@ class DatabaseService {
     
     let db: Firestore
     let usersCollection: CollectionReference
+    let moodsCollection: CollectionReference
+    
     var doesUserExsist = false
     
-    // MARK: - Methods
     init() {
         
         // Get a reference to database
         db = Firestore.firestore()
         
-        // Get a reference
+        // Get collection references
         usersCollection = db.collection(Collection.users.rawValue)
+        moodsCollection = db.collection(Collection.moods.rawValue)
     }
+    
+    
+    // MARK: - Users
     
     func createNewUser(_ user: User) {
         
@@ -65,31 +70,38 @@ class DatabaseService {
             }
             completion()
         }
-
+        
     }
+    
+    // MARK: - Healthkit Data
+    
+    // TODO: Save date as timestamp and not String
     
     func updateUserTrackedData(userID: String, collection: Collection, update: [String: Any], completion: @escaping () -> Void) {
         
         // Get document reference
         let userRef = usersCollection.document(userID)
         
-        guard let date = update["date"] as? String else { return }
+        guard let date = update["date"] as? Date else { return }
         
         // Perform update operation
         userRef
             .collection(Collection.steps.rawValue)
-            .document(date)
+            .document(date.getFormattedDate(format: "MM-dd-YYYY"))
             .setData(update)
-        
+
         completion()
     }
     
-    func getUserData(userID: String, collection: Collection, completion: @escaping ([Step]) -> Void) {
+    func getUserSteps(userID: String, collection: Collection, completion: @escaping ([Step]) -> Void) {
         
         var fetchedData = [Step]()
         
         // Get a reference to the subcollection for data
-        let subCollection = usersCollection.document(userID).collection(collection.rawValue)
+        let subCollection = usersCollection
+            .document(userID)
+            .collection(collection.rawValue)
+            .order(by: "date", descending: true)
         
         subCollection.getDocuments { snapshot, error in
             
@@ -103,15 +115,71 @@ class DatabaseService {
                 // TODO: Generalize to accept other data
                 
                 let item = Step()
-                item.id = doc["id"] as? String ?? ""
-                item.date = doc["date"] as? String ?? ""
                 item.count = doc["count"] as? Int ?? 0
+                                
+                let date = doc["date"] as? Timestamp ?? nil
+                
+                if let dateValue = date {
+                    item.date = dateValue.dateValue()
+                }
                 
                 fetchedData.append(item)
             }
-            
+                        
             completion(fetchedData)
         }
     }
     
+    // MARK: - Mood
+    
+    func addMoodEntry(text: String, date: Date, userId: String, completion: @escaping () -> Void) {
+        
+        
+        let newMood: [String: Any] = ["id": UUID().uuidString,
+                                      "text": text,
+                                      "date": date,
+                                      "userId": userId]
+        
+        moodsCollection.document().setData(newMood, merge: true){ error in
+            if let error = error {
+                print("Error writing document: \(error)")
+            }
+            
+            completion()
+        }
+    }
+    
+    func getMoodEntries(userId: String, completion: @escaping ([Mood]) -> Void) {
+        
+        var currentUserMoods = [Mood]()
+        
+        // TODO: Sort by both mood date and date created
+        
+        moodsCollection
+            .whereField("userId", isEqualTo: userId)
+            .order(by: "date", descending: true)
+            .getDocuments { snapshot, error in
+                
+                guard error == nil else {
+                    print("[getUserData()]", error!)
+                    return
+                }
+                
+                for doc in snapshot!.documents {
+                    
+                    var mood = Mood()
+                    mood.id = doc["id"] as? String ?? ""
+                    mood.text = doc["text"] as? String ?? ""
+                    mood.userId = doc["userId"] as? String ?? ""
+                    
+                    let date = doc["date"] as? Timestamp ?? nil
+                    mood.date = date?.dateValue()
+                    
+                    currentUserMoods.append(mood)
+                }
+                
+                completion(currentUserMoods)
+        }
+        
+    }
 }

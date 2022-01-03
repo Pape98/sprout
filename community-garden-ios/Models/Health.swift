@@ -9,8 +9,9 @@ import Foundation
 
 class Data: Identifiable {
     
-    var id: String? = UUID().uuidString
-    var date: String = ""
+    var id: String = UUID().uuidString
+    var date: Date = Date.now
+    
 }
 
 class Step: Data, Equatable, Hashable, CustomStringConvertible {
@@ -18,14 +19,15 @@ class Step: Data, Equatable, Hashable, CustomStringConvertible {
     var count: Int = 0
     
     var description: String {
-        return "Step => date:\(super.date) count:\(count)"
+        let formattedDate = super.date.getFormattedDate(format: "MM-dd-YYYY")
+        return "Step => id: \(super.id) date:\(formattedDate as String?) count:\(count)"
     }
     
     override init() {
         super.init()
     }
     
-    init(date: String, count: Int){
+    init(date: Date, count: Int){
         super.init()
         self.count = count
         super.date = date

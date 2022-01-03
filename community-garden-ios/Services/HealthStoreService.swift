@@ -27,7 +27,11 @@ class HealthStoreService {
     // @escaping means closure argument can outlive scope of caller
     func requestAuthorization(completion: @escaping (Bool)  -> Void) {
         
-        let healthKitTypesToRead = Set([Constants.HKDataTypes.stepCount])
+        let healthKitTypesToRead = Set([
+            Constants.HKDataTypes.heartRate,
+            Constants.HKDataTypes.stepCount,
+            Constants.HKDataTypes.sleep
+        ])
         
         guard let healthStoreUnwrapped = self.healthStore else {
             return completion(false)
@@ -92,12 +96,12 @@ class HealthStoreService {
         statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
             if let sum = statistics.sumQuantity() {
                 let totalSteps = Int(sum.doubleValue(for: .count()))
-                let date = statistics.startDate.getFormattedDate(format: "MM-dd-YYYY")
+                let date = statistics.startDate
                 let stepObject = Step(date: date, count: totalSteps)
                 dailySteps.append(stepObject)
             }
         }
-        
+                        
         // Dispatch to the main queue to update the UI.
         DispatchQueue.main.async {
             updateHandler(dailySteps)

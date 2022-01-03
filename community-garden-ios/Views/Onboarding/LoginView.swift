@@ -32,20 +32,10 @@ struct LoginView: View {
             // Form
             Group {
                 
-                // Button
-                Button {
+                CustomButton(title: "Sign Up/ Login") {
                     authenticationModel.signIn()
-                } label: {
-                    ZStack {
-                        Rectangle()
-                            .foregroundColor(.blue)
-                            .frame(height:40)
-                            .cornerRadius(10)
-                        
-                        Text("Sign Up/ Login")
-                            .foregroundColor(.white)
-                    }
                 }
+                .padding()
                 
                 if let errorMessage = authenticationModel.errorMessage {
                     Text(errorMessage)

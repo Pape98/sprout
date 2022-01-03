@@ -6,17 +6,25 @@
 //
 
 import Foundation
-
-
-
-struct Helpers {
-    
-}
+import SwiftUI
 
 extension Date {
     func getFormattedDate(format: String) -> String {
         let dateFormat = DateFormatter()
         dateFormat.dateFormat = format
         return dateFormat.string(from: self)
+    }
+}
+
+extension String {
+    func convertToDateObject() -> Date? {
+        let dateFormatter = DateFormatter()
+        let dateObject = dateFormatter.date(from: self)
+        
+        if let dateObject = dateObject {
+            return dateObject
+        }
+        
+        return nil
     }
 }

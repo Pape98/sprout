@@ -9,21 +9,21 @@ import SwiftUI
 
 struct LaunchView: View {
     
-    @EnvironmentObject var authenticationModel: AuthenticationModel
+    @EnvironmentObject var authModel: AuthenticationModel
     
     var body: some View {
         
-        if authenticationModel.isLoggedIn == false {
+        if authModel.isLoggedIn == false {
             // Show login view
             LoginView()
                 .onAppear {
                     // Check if user is logged in or out
-                    authenticationModel.checkLogin()
+                    authModel.checkLogin()
                 }
             
         } else {
             // Show logged in view (home view)
-            HomeView()
+            ContentView()
         }
         
     }
