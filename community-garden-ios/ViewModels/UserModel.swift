@@ -96,7 +96,7 @@ class UserModel: ObservableObject {
         // Perform the update operation
         db.updateUserTrackedData(userID: userID,
                                  collection: DatabaseService.Collection.steps,
-                                 update: ["id": update.id!, "count": update.count, "date": update.date])
+                                 update: ["count": update.count, "date": update.date])
         { () in
             // Get new list
             self.getCurrentUserSteps()
@@ -105,8 +105,8 @@ class UserModel: ObservableObject {
     
     func addMoodEntry(moodType: String, date: Date) {
         db.addMoodEntry(text: moodType,
-                           date: date,
-                           userId: currentUser.id) { () in
+                        date: date,
+                        userId: currentUser.id) { () in
             
             self.getCurrentUserMoodEntries()
         }

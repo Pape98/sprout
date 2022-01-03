@@ -22,7 +22,7 @@ struct StepView: View {
                     
                     LazyVGrid (columns: columns, spacing: 20){
                         if steps != nil {
-                            ForEach(steps!) { step in
+                            ForEach(steps!, id: \.id) { step in
                                 ProgressTriangle(step: step)
                             }
                         } else {
@@ -41,10 +41,10 @@ struct StepView: View {
 
 struct StepView_Previews: PreviewProvider {
     
-    @State static var steps: [Step] = [Step(date: "22-12-1998", count: 894),
-                                       Step(date: "15-08-2024", count: 1500),
-                                       Step(date: "22-12-1998", count: 2060),
-                                       Step(date: "15-08-2024", count: 100)]
+    @State static var steps: [Step] = [Step(date: Date.now, count: 894),
+                                       Step(date: Date.now, count: 1500),
+                                       Step(date: Date.now, count: 2060),
+                                       Step(date: Date.now, count: 100)]
     
     static var previews: some View {
         StepView(steps: steps)

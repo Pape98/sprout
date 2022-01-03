@@ -96,7 +96,7 @@ class HealthStoreService {
         statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
             if let sum = statistics.sumQuantity() {
                 let totalSteps = Int(sum.doubleValue(for: .count()))
-                let date = statistics.startDate.getFormattedDate(format: "MM-dd-YYYY")
+                let date = statistics.startDate
                 let stepObject = Step(date: date, count: totalSteps)
                 dailySteps.append(stepObject)
             }

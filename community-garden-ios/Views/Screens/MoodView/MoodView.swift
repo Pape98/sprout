@@ -22,10 +22,8 @@ struct MoodView: View {
                     ForEach(userModel.currentUserData.moods) { mood in
                             HStack {
                                 if let date = mood.date {
-                                    VStack {
-                                        Text(date.getFormattedDate(format: "MMM dd, yyyy"))
-                                            .padding()
-                                    }
+                                    Text(date.getFormattedDate(format: "MMM dd, yyyy"))
+                                        .padding()
                                 }
                                 Spacer()
                                 Text(mood.text)

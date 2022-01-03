@@ -13,6 +13,7 @@ struct MoodViewAddEntrySheet: View {
     
     @State var date = Date()
     @State var selectedMood = ""
+    @State var errorMessage = ""
     
     @Binding var showAddEntrySheet: Bool
     
@@ -29,6 +30,11 @@ struct MoodViewAddEntrySheet: View {
                 .labelsHidden()
             
             Spacer(minLength: 30)
+            
+            if errorMessage != "" {
+                Text(errorMessage)
+                    .foregroundColor(Color.red)
+            }
             
             ScrollView {
                 LazyVGrid(columns: twoColumnGrid, spacing: 30) {
@@ -51,8 +57,13 @@ struct MoodViewAddEntrySheet: View {
                 
                 // TODO: Make sure user can only save if they've selected a mood
                 CustomButton(title: "Save") {
-                    userModel.addMoodEntry(moodType: selectedMood, date: date)
-                    showAddEntrySheet = false
+                    
+                    if selectedMood == "" {
+                        errorMessage = "You must select a mood first!"
+                    } else {
+                        userModel.addMoodEntry(moodType: selectedMood, date: date)
+                        showAddEntrySheet = false
+                    }
                 }
                 .padding()
             }

@@ -12,7 +12,7 @@ struct ProgressTriangle: View {
     var step: Step
     
     let goalDimension = 100.0
-    let goalSteps = 2500.0
+    let goalSteps = 4500.0
     
     var progressDimension: CGFloat {
         var progress = Double(step.count) * goalDimension / goalSteps
@@ -22,7 +22,7 @@ struct ProgressTriangle: View {
     
     var body: some View {
         VStack {
-            Text(step.date)
+            Text(step.date.getFormattedDate(format: "MM-dd-YYYY"))
                 .font(.title3)
                 .bold()
             
@@ -42,7 +42,7 @@ struct ProgressTriangle: View {
 
 struct ProgressTriangle_Previews: PreviewProvider {
     
-    @State static var step: Step = Step(date: "22-12-1998", count: 750)
+    @State static var step: Step = Step(date: Date.now, count: 750)
     
     static var previews: some View {
         ProgressTriangle(step:step)
