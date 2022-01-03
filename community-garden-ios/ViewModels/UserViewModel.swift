@@ -7,7 +7,6 @@
 
 import Foundation
 import FirebaseAuth
-import UserNotifications
 
 class UserViewModel: ObservableObject {
     
@@ -25,7 +24,7 @@ class UserViewModel: ObservableObject {
     var currentUser: User = UserService.shared.user
     
     // To obtain data from health happ
-    let healthStore: HealthStoreService = HealthStoreService()
+    var healthStore: HealthStoreService = HealthStoreService()
     
     // To interact with firestore database
     let db: DatabaseService = DatabaseService.shared
@@ -39,7 +38,7 @@ class UserViewModel: ObservableObject {
     // MARK: - Methods
     
     init() {
-        
+    
         // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
         if let authUser = Auth.auth().currentUser {
             currentUser.name = authUser.displayName!
@@ -47,6 +46,8 @@ class UserViewModel: ObservableObject {
             currentUser.id = authUser.uid
             setCurrentUserData()
         }
+        
+        healthStore.setUpAuthorization(updateDailySteps: updateDailySteps)
     }
     
     func setCurrentUserData() {
