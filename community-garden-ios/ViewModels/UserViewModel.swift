@@ -7,8 +7,9 @@
 
 import Foundation
 import FirebaseAuth
+import UserNotifications
 
-class UserModel: ObservableObject {
+class UserViewModel: ObservableObject {
     
     // Struct to publish changes to UI
     struct CurrentUserData {
@@ -28,7 +29,6 @@ class UserModel: ObservableObject {
     
     // To interact with firestore database
     let db: DatabaseService = DatabaseService.shared
-    let authenticationModel: AuthenticationModel = AuthenticationModel()
     
     // User's daily step counts from store
     var storeSteps:[Step] = [Step]()
@@ -46,16 +46,6 @@ class UserModel: ObservableObject {
             currentUser.email = authUser.email!
             currentUser.id = authUser.uid
             setCurrentUserData()
-        }
-        
-        // Request authorization to access health store
-        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" { // Do not run this in preview mode
-            healthStore.requestAuthorization { success in
-                if success {
-                    // Start listening to changes in step counts
-                    self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
-                }
-            }
         }
     }
     

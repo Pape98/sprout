@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoodView: View {
     
-    @EnvironmentObject var userModel: UserModel
+    @EnvironmentObject var userModel: UserViewModel
     
     @State var showAddEntrySheet = false
     
@@ -58,6 +58,6 @@ struct MoodView: View {
 struct MoodView_Previews: PreviewProvider {
     static var previews: some View {
         MoodView()
-            .environmentObject(UserModel())
+            .environmentObject(UserViewModel())
     }
 }

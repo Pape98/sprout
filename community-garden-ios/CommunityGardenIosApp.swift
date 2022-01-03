@@ -11,7 +11,7 @@ import Firebase
 @main
 struct CommunityGardenIosApp: App {
     
-    @StateObject var authModel: AuthenticationModel = AuthenticationModel()
+    @StateObject var authModel: AuthenticationViewModel = AuthenticationViewModel()
     
     init() {
         FirebaseApp.configure()

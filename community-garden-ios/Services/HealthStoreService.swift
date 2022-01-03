@@ -21,6 +21,17 @@ class HealthStoreService {
         // Check if health data is available in current phone
         if HKHealthStore.isHealthDataAvailable() {
             healthStore = HKHealthStore()
+            
+            // Request authorization to access health store if not asked yet
+            if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" { // Do not run this in preview mode
+                self.requestAuthorization { success in
+                    if success {
+                        // Start listening to changes in step counts
+                        self.startQuery(dataType: Constants.HKDataTypes.stepCount,
+                                                    updateHandler: self.updateDailySteps)
+                    }
+                }
+            }
         }
     }
     

@@ -10,7 +10,7 @@ import FirebaseAuth
 import GoogleSignIn
 import SwiftUI
 
-class AuthenticationModel: ObservableObject {
+class AuthenticationViewModel: ObservableObject {
     
     // MARK: - Properties
     
