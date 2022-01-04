@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LaunchView: View {
     
-    @EnvironmentObject var authModel: AuthenticationModel
+    @EnvironmentObject var authModel: AuthenticationViewModel
     
     var body: some View {
         
@@ -32,6 +32,6 @@ struct LaunchView: View {
 struct LaunchView_Previews: PreviewProvider {
     static var previews: some View {
         LaunchView()
-            .environmentObject(AuthenticationModel())
+            .environmentObject(AuthenticationViewModel())
     }
 }

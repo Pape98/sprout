@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoodViewAddEntrySheet: View {
     
-    @EnvironmentObject var userModel: UserModel
+    @EnvironmentObject var userModel: UserViewModel
     
     @State var date = Date()
     @State var selectedMood = ""

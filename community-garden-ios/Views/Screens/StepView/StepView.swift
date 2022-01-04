@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StepView: View {
     
-    @EnvironmentObject var userModel: UserModel
+    @EnvironmentObject var userModel: UserViewModel
     
     var steps: [Step]?
     
@@ -48,6 +48,6 @@ struct StepView_Previews: PreviewProvider {
     
     static var previews: some View {
         StepView(steps: steps)
-            .environmentObject(UserModel())
+            .environmentObject(UserViewModel())
     }
 }

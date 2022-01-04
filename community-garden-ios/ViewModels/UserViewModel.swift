@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseAuth
 
-class UserModel: ObservableObject {
+class UserViewModel: ObservableObject {
     
     // Struct to publish changes to UI
     struct CurrentUserData {
@@ -28,7 +28,6 @@ class UserModel: ObservableObject {
     
     // To interact with firestore database
     let db: DatabaseService = DatabaseService.shared
-    let authenticationModel: AuthenticationModel = AuthenticationModel()
     
     // User's daily step counts from store
     var storeSteps:[Step] = [Step]()
@@ -39,7 +38,7 @@ class UserModel: ObservableObject {
     // MARK: - Methods
     
     init() {
-        
+    
         // Check if user meta data has been fetched. If the user was already logged in from a previous session, we need to get their data in a separate call
         if let authUser = Auth.auth().currentUser {
             currentUser.name = authUser.displayName!
@@ -48,15 +47,7 @@ class UserModel: ObservableObject {
             setCurrentUserData()
         }
         
-        // Request authorization to access health store
-        if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" { // Do not run this in preview mode
-            healthStore.requestAuthorization { success in
-                if success {
-                    // Start listening to changes in step counts
-                    self.healthStore.startQuery(dataType: Constants.HKDataTypes.stepCount, updateHandler: self.updateDailySteps)
-                }
-            }
-        }
+        healthStore.setUpAuthorization(updateDailySteps: updateDailySteps)
     }
     
     func setCurrentUserData() {

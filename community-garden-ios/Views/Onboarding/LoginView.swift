@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @EnvironmentObject var authenticationModel: AuthenticationModel
+    @EnvironmentObject var authenticationModel: AuthenticationViewModel
     @State var email = ""
     @State var firstName = ""
     @State var lastName = ""
@@ -54,6 +54,6 @@ struct LoginView: View {
 struct LoginView_Previews: PreviewProvider {
     static var previews: some View {
         LoginView()
-            .environmentObject(AuthenticationModel())
+            .environmentObject(AuthenticationViewModel())
     }
 }
