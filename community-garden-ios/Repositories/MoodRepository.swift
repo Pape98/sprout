@@ -11,8 +11,6 @@ import FirebaseFirestore
 class MoodRepository {
     
     // MARK: - Properties
-    
-    let db: Firestore
     let moodsCollection: CollectionReference
     static let shared = MoodRepository() // Single repo instance shared
 
@@ -20,10 +18,6 @@ class MoodRepository {
     // MARK: - Methods
     
     init() {
-        
-        // Get a reference to database
-        db = Firestore.firestore()
-        
         // Get collection references
         moodsCollection = Collections.shared.getCollectionReference("moods")
     }

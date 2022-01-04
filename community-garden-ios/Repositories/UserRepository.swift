@@ -11,8 +11,6 @@ import FirebaseFirestore
 class UserRepository {
 
     // MARK: - Properties
-    
-    let db: Firestore
     let usersCollection: CollectionReference
     static let shared = UserRepository() // Single repo instance shared
     var doesUserExsist = false
@@ -20,10 +18,6 @@ class UserRepository {
     // MARK: - Methods
     
     init() {
-        
-        // Get a reference to database
-        db = Firestore.firestore()
-        
         // Get collection references
         usersCollection = Collections.shared.getCollectionReference("users")
     }

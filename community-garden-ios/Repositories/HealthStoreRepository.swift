@@ -12,14 +12,9 @@ class HealthStoreRepository {
     
     // MARK: Properties
     static let shared = HealthStoreRepository()
-    let db: Firestore
     
     // MARK: Methods
-    init() {
-        
-        // Get a reference to database
-        db = Firestore.firestore()
-    }
+    init() {}
     
     func updateUserTrackedData(userID: String, collectionName: String, update: [String: Any], completion: @escaping () -> Void) {
         

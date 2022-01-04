@@ -25,14 +25,17 @@ class HealthStoreViewModel: ObservableObject {
     // MARK: - Methods
     
     init() {
-        healthStore.setUpAuthorization(updateDailySteps: updateDailySteps)
-        self.getCurrentUserSteps()
+        // Get user steps from Firestore first then listen to healthstore
+        self.getCurrentUserSteps() {
+            self.healthStore.setUpAuthorization(updateDailySteps: self.updateDailySteps)
+        }
     }
     
-    func getCurrentUserSteps() {
+    func getCurrentUserSteps(completion: @escaping () -> Void) {
         healthStoreRepository.getData(userID: currentUser.id, collectionName: "steps", objectType: Step.self) { result in
             DispatchQueue.main.async {
                 self.steps = result
+                completion()
             }
         }
     }
@@ -43,6 +46,8 @@ class HealthStoreViewModel: ObservableObject {
         let storeStepsSet = Set(storeSteps.map({$0}))
         let loggedInUserStepsSet = Set(self.steps.map({$0}))
         let updatesSet = storeStepsSet.subtracting(loggedInUserStepsSet)
+        
+        print(loggedInUserStepsSet)
 
         guard let update = updatesSet.first,
               let userID = Auth.auth().currentUser?.uid
@@ -54,7 +59,7 @@ class HealthStoreViewModel: ObservableObject {
                                  update: ["count": update.count, "date": update.date])
         { () in
             // Get new list
-            self.getCurrentUserSteps()
+            self.getCurrentUserSteps(){}
         }
     }
 }
