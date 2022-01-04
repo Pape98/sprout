@@ -17,6 +17,7 @@
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
+		F04234A12784A0AC0063DA08 /* MoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A02784A0AC0063DA08 /* MoodViewModel.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -55,6 +56,7 @@
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F04234A02784A0AC0063DA08 /* MoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewModel.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 			children = (
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
+				F04234A02784A0AC0063DA08 /* MoodViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
+				F04234A12784A0AC0063DA08 /* MoodViewModel.swift in Sources */,
 				F005739027702A0800EB487B /* Mood.swift in Sources */,
 				F0057381276F828F00EB487B /* StepView.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,

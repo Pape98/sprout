@@ -34,7 +34,6 @@ class MoodRepository {
         
         do {
             try moodsCollection.document().setData(from: mood){ error in
-                print("HERE", error)
                 completion()
             }
         } catch {
@@ -58,15 +57,14 @@ class MoodRepository {
                 
                 for doc in snapshot!.documents {
                     
-                    var mood = Mood()
-                    mood.id = doc["id"] as? String ?? ""
-                    mood.text = doc["text"] as? String ?? ""
-                    mood.userId = doc["userId"] as? String ?? ""
-                    
-                    let date = doc["date"] as? Timestamp ?? nil
-                    mood.date = date?.dateValue()
-                    
-                    currentUserMoods.append(mood)
+                    do {
+                        let mood: Mood? = try doc.data(as: Mood.self)
+                        if let mood = mood {
+                            currentUserMoods.append(mood)
+                        }
+                    } catch {
+                        print("[getMoodEntries()]", error)
+                    }
                 }
                 
                 completion(currentUserMoods)

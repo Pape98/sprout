@@ -19,6 +19,7 @@ struct ContentView: View {
                 .tabItem {
                     Image(systemName: "hand.thumbsup")
                     Text("Mood")
+
                 }
             
             StepView()

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoodView: View {
     
-    @EnvironmentObject var userModel: UserViewModel
+    @ObservedObject var moodViewModel: MoodViewModel = MoodViewModel.shared
     
     @State var showAddEntrySheet = false
     
@@ -19,7 +19,7 @@ struct MoodView: View {
         NavigationView {
             VStack (spacing: 0){
                 ScrollView {
-                    ForEach(userModel.currentUserData.moods) { mood in
+                    ForEach(moodViewModel.moods) { mood in
                             HStack {
                                 if let date = mood.date {
                                     Text(date.getFormattedDate(format: "MMM dd, yyyy"))
