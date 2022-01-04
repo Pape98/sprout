@@ -37,12 +37,14 @@ class HealthStoreRepository {
         completion()
     }
     
-    func getUserSteps(userID: String, collectionName: String, completion: @escaping ([Step]) -> Void) {
+
+    
+    func getData<T: Decodable>(userID: String, collectionName: String, objectType: T.Type, completion: @escaping ([T]) -> Void) {
         
         // Get document reference
         let userRef = Collections.shared.getCollectionReference("users").document(userID)
         
-        var fetchedData = [Step]()
+        var fetchedData = [T]()
         
         // Get a reference to the subcollection for data
         let subCollection = userRef
@@ -59,18 +61,16 @@ class HealthStoreRepository {
             for doc in snapshot!.documents {
                 
                 // TODO: Generalize to accept other data
-
                 
-                let item = Step()
-                item.count = doc["count"] as? Int ?? 0
-                                
-                let date = doc["date"] as? Timestamp ?? nil
-                
-                if let dateValue = date {
-                    item.date = dateValue.dateValue()
+                do {
+                    let decodedObject: T? = try doc.data(as: T.self)
+                    if let object = decodedObject {
+                        fetchedData.append(object)
+                    }
+                    
+                } catch {
+                    print("[getUserSteps()]", error)
                 }
-                
-                fetchedData.append(item)
             }
                         
             completion(fetchedData)
