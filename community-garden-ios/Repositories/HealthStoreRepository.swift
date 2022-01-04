@@ -32,8 +32,6 @@ class HealthStoreRepository {
         completion()
     }
     
-
-    
     func getData<T: Decodable>(userID: String, collectionName: String, objectType: T.Type, completion: @escaping ([T]) -> Void) {
         
         // Get document reference
