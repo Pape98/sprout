@@ -5,6 +5,7 @@ target 'community-garden-ios' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   pod 'GoogleSignIn'
+#  pod 'FirebaseFirestoreSwift'
 end
 
 #target 'watchos' do

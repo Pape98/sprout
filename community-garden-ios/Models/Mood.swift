@@ -6,10 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Mood: Identifiable {
+struct Mood: Codable, Identifiable {
     
-    var id: String = ""
+    @DocumentID var id: String?
     var text: String = ""
     var date: Date?
     var userId: String = ""

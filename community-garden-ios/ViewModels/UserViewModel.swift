@@ -98,9 +98,13 @@ class UserViewModel: ObservableObject {
     }
     
     func addMoodEntry(moodType: String, date: Date) {
-        moodRepository.addMoodEntry(text: moodType,
-                        date: date,
-                        userId: currentUser.id) { () in
+        
+        let newMood = Mood(id: UUID().uuidString,
+                           text: moodType,
+                           date: date,
+                           userId: currentUser.id)
+        
+        moodRepository.addMood(newMood) { () in
             
             self.getCurrentUserMoodEntries()
         }

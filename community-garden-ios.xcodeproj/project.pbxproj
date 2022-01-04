@@ -16,6 +16,7 @@
 		F005739227702F9B00EB487B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* CustomButton.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
+		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -84,6 +85,7 @@
 			files = (
 				F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */,
 				F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */,
+				F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
 			);
@@ -289,6 +291,7 @@
 			packageProductDependencies = (
 				F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */,
 				F0ADEA22275ECCA80039B134 /* FirebaseAuth */,
+				F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */,
 			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
@@ -639,6 +642,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseFirestoreSwift-Beta";
+		};
 		F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

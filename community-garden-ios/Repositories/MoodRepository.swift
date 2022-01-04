@@ -30,20 +30,15 @@ class MoodRepository {
     
     // MARK: - Methods
     
-    func addMoodEntry(text: String, date: Date, userId: String, completion: @escaping () -> Void) {
+    func addMood(_ mood: Mood, completion: @escaping () -> Void) {
         
-        
-        let newMood: [String: Any] = ["id": UUID().uuidString,
-                                      "text": text,
-                                      "date": date,
-                                      "userId": userId]
-        
-        moodsCollection.document().setData(newMood, merge: true){ error in
-            if let error = error {
-                print("Error writing document: \(error)")
+        do {
+            try moodsCollection.document().setData(from: mood){ error in
+                print("HERE", error)
+                completion()
             }
-            
-            completion()
+        } catch {
+            print("Error writing document: \(error)")
         }
     }
     
