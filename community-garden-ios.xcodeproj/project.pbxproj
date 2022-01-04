@@ -35,6 +35,7 @@
 		F0C99E1B278120EA004514D4 /* ProgressTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1A278120E9004514D4 /* ProgressTriangle.swift */; };
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
+		F0C99E24278487A5004514D4 /* MoodRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E23278487A5004514D4 /* MoodRepository.swift */; };
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -72,6 +73,7 @@
 		F0C99E1A278120E9004514D4 /* ProgressTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTriangle.swift; sourceTree = "<group>"; };
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		F0C99E23278487A5004514D4 /* MoodRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodRepository.swift; sourceTree = "<group>"; };
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -261,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				F0C99E21278481A6004514D4 /* UserRepository.swift */,
+				F0C99E23278487A5004514D4 /* MoodRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -406,6 +409,7 @@
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
+				F0C99E24278487A5004514D4 /* MoodRepository.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
 				F09B71E8277269560085C7AC /* CustomShape.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,

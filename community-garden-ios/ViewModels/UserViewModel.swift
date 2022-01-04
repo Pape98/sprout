@@ -29,6 +29,7 @@ class UserViewModel: ObservableObject {
     // To interact with firestore database
     let db: DatabaseService = DatabaseService.shared
     let userRepository: UserRepository = UserRepository.shared
+    let moodRepository: MoodRepository = MoodRepository.shared
     
     // User's daily step counts from store
     var storeSteps:[Step] = [Step]()
@@ -66,7 +67,7 @@ class UserViewModel: ObservableObject {
     }
     
     func getCurrentUserMoodEntries() {
-        db.getMoodEntries(userId: currentUser.id) { result in
+        moodRepository.getMoodEntries(userId: currentUser.id) { result in
             DispatchQueue.main.async {
                 self.currentUser.moods = result
                 self.currentUserData.moods = result
@@ -96,7 +97,7 @@ class UserViewModel: ObservableObject {
     }
     
     func addMoodEntry(moodType: String, date: Date) {
-        db.addMoodEntry(text: moodType,
+        moodRepository.addMoodEntry(text: moodType,
                         date: date,
                         userId: currentUser.id) { () in
             

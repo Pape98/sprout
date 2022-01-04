@@ -9,12 +9,15 @@ import Foundation
 import FirebaseFirestore
 
 class UserRepository {
+
     // MARK: - Properties
     
     let db: Firestore
     let usersCollection: CollectionReference
     static let shared = UserRepository() // Single repo instance shared
     var doesUserExsist = false
+    
+    // MARK: - Methods
     
     init() {
         
