@@ -25,7 +25,7 @@ class UserRepository {
         db = Firestore.firestore()
         
         // Get collection references
-        usersCollection = db.collection(Constants.Collection.users.rawValue)
+        usersCollection = Collections.shared.getCollectionReference("users")
     }
     
     func createNewUser(_ user: User) {

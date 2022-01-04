@@ -28,7 +28,6 @@ class UserViewModel: ObservableObject {
     
     // To interact with firestore database
     let userRepository: UserRepository = UserRepository.shared
-    let moodRepository: MoodRepository = MoodRepository.shared
     let healthStoreRepository: HealthStoreRepository = HealthStoreRepository.shared
     
     // User's daily step counts from store
@@ -54,24 +53,14 @@ class UserViewModel: ObservableObject {
     
     func setCurrentUserData() {
         getCurrentUserSteps()
-        getCurrentUserMoodEntries()
     }
     
     func getCurrentUserSteps() {
         healthStoreRepository.getUserSteps(userID: currentUser.id,
-                                           collection: Constants.Collection.steps) { result in
+                                           collectionName: "steps") { result in
             DispatchQueue.main.async {
                 self.currentUser.steps = result
                 self.currentUserData.steps = result
-            }
-        }
-    }
-    
-    func getCurrentUserMoodEntries() {
-        moodRepository.getMoodEntries(userId: currentUser.id) { result in
-            DispatchQueue.main.async {
-                self.currentUser.moods = result
-                self.currentUserData.moods = result
             }
         }
     }
@@ -89,24 +78,11 @@ class UserViewModel: ObservableObject {
         
         // Perform the update operation
         healthStoreRepository.updateUserTrackedData(userID: userID,
-                                 collection: Constants.Collection.steps,
+                                 collectionName: "steps",
                                  update: ["count": update.count, "date": update.date])
         { () in
             // Get new list
             self.getCurrentUserSteps()
-        }
-    }
-    
-    func addMoodEntry(moodType: String, date: Date) {
-        
-        let newMood = Mood(id: UUID().uuidString,
-                           text: moodType,
-                           date: date,
-                           userId: currentUser.id)
-        
-        moodRepository.addMood(newMood) { () in
-            
-            self.getCurrentUserMoodEntries()
         }
     }
 }

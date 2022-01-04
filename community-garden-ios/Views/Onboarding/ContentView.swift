@@ -9,8 +9,9 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var userModel: UserViewModel = UserViewModel()
-    @EnvironmentObject var authModel: AuthenticationViewModel
+    @StateObject var userViewModel: UserViewModel = UserViewModel()
+    @StateObject var moodViewModel: MoodViewModel = MoodViewModel()
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
     
     var body: some View {
         TabView {
@@ -28,7 +29,7 @@ struct ContentView: View {
                     Text("Steps")
                 }
             
-            CustomButton(title: "Sign Out", action: authModel.signOut)
+            CustomButton(title: "Sign Out", action: authViewModel.signOut)
                 .frame(width:200)
                 .tabItem {
                     Image(systemName: "arrowshape.turn.up.right")
@@ -38,7 +39,8 @@ struct ContentView: View {
             
             
         }
-        .environmentObject(userModel)
+        .environmentObject(userViewModel)
+        .environmentObject(moodViewModel)
     }
 }
 

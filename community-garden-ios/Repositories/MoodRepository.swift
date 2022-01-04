@@ -25,7 +25,7 @@ class MoodRepository {
         db = Firestore.firestore()
         
         // Get collection references
-        moodsCollection = db.collection(Constants.Collection.moods.rawValue)
+        moodsCollection = Collections.shared.getCollectionReference("moods")
     }
     
     // MARK: - Methods

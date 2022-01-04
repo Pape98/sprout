@@ -12,7 +12,6 @@ class MoodViewModel: ObservableObject {
     
     // MARK: - Properties
     @Published var moods:[Mood] = [Mood]()
-    static let shared: MoodViewModel = MoodViewModel()
     let moodRepository: MoodRepository = MoodRepository.shared
     
     // To access and edit loggedInUser
@@ -26,12 +25,25 @@ class MoodViewModel: ObservableObject {
     
     func getCurrentUserMoodEntries() {
         moodRepository.getMoodEntries(userId: currentUser.id) { result in
-            print(result)
             DispatchQueue.main.async {
                 self.moods = result
             }
         }
     }
+    
+    func addMood(moodType: String, date: Date) {
+        
+        let newMood = Mood(id: UUID().uuidString,
+                           text: moodType,
+                           date: date,
+                           userId: currentUser.id)
+        
+        moodRepository.addMood(newMood) { () in
+            
+            self.getCurrentUserMoodEntries()
+        }
+    }
+
     
     
 }

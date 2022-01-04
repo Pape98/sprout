@@ -1,5 +1,5 @@
 //
-//  UserModel.swift
+//  AuthenticationViewModel.swift
 //  community-garden-ios
 //
 //  Created by Pape Sow Traore on 12/6/21.
