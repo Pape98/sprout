@@ -27,9 +27,9 @@ class UserViewModel: ObservableObject {
     let healthStore: HealthStoreService = HealthStoreService()
     
     // To interact with firestore database
-    let db: DatabaseService = DatabaseService.shared
     let userRepository: UserRepository = UserRepository.shared
     let moodRepository: MoodRepository = MoodRepository.shared
+    let healthStoreRepository: HealthStoreRepository = HealthStoreRepository.shared
     
     // User's daily step counts from store
     var storeSteps:[Step] = [Step]()
@@ -58,7 +58,8 @@ class UserViewModel: ObservableObject {
     }
     
     func getCurrentUserSteps() {
-        db.getUserSteps(userID: currentUser.id, collection: DatabaseService.Collection.steps) { result in
+        healthStoreRepository.getUserSteps(userID: currentUser.id,
+                                           collection: Constants.Collection.steps) { result in
             DispatchQueue.main.async {
                 self.currentUser.steps = result
                 self.currentUserData.steps = result
@@ -87,8 +88,8 @@ class UserViewModel: ObservableObject {
         else { return }
         
         // Perform the update operation
-        db.updateUserTrackedData(userID: userID,
-                                 collection: DatabaseService.Collection.steps,
+        healthStoreRepository.updateUserTrackedData(userID: userID,
+                                 collection: Constants.Collection.steps,
                                  update: ["count": update.count, "date": update.date])
         { () in
             // Get new list

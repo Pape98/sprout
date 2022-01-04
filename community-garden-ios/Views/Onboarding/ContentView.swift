@@ -28,6 +28,7 @@ struct ContentView: View {
                 }
             
             CustomButton(title: "Sign Out", action: authModel.signOut)
+                .frame(width:200)
                 .tabItem {
                     Image(systemName: "arrowshape.turn.up.right")
                     Text("Sign Out")
