@@ -24,7 +24,7 @@ class UserViewModel: ObservableObject {
     var currentUser: User = UserService.shared.user
     
     // To obtain data from health happ
-    var healthStore: HealthStoreService = HealthStoreService()
+    let healthStore: HealthStoreService = HealthStoreService()
     
     // To interact with firestore database
     let db: DatabaseService = DatabaseService.shared

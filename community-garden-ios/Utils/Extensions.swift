@@ -27,4 +27,16 @@ extension String {
         
         return nil
     }
+    
+    func convertToDateObject(format: String) -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        let dateObject = dateFormatter.date(from: self)
+        
+        if let dateObject = dateObject {
+            return dateObject
+        }
+        
+        return nil
+    }
 }

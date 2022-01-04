@@ -13,6 +13,9 @@ struct CommunityGardenIosApp: App {
     
     @StateObject var authModel: AuthenticationViewModel = AuthenticationViewModel()
     
+    // To send notifications to user
+    let notificationService: NotificationService = NotificationService()
+
     init() {
         FirebaseApp.configure()
     }
