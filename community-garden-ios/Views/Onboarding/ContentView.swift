@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @StateObject var userModel: UserViewModel = UserViewModel()
+    @EnvironmentObject var authModel: AuthenticationViewModel
     
     var body: some View {
         TabView {
@@ -25,6 +26,15 @@ struct ContentView: View {
                     Image(systemName: "bolt.horizontal")
                     Text("Steps")
                 }
+            
+            CustomButton(title: "Sign Out", action: authModel.signOut)
+                .tabItem {
+                    Image(systemName: "arrowshape.turn.up.right")
+                    Text("Sign Out")
+                }
+            
+            
+            
         }
         .environmentObject(userModel)
     }
@@ -33,5 +43,6 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(AuthenticationViewModel())
     }
 }

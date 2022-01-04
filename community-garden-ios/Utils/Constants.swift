@@ -11,6 +11,11 @@ import SwiftUI
 
 struct Constants {
     
+    // Collection Names
+    enum Collection: String {
+        case users, steps, moods
+    }
+    
     struct HKDataTypes {
         static let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
         static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!

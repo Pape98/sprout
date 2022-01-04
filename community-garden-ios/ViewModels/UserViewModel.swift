@@ -28,6 +28,7 @@ class UserViewModel: ObservableObject {
     
     // To interact with firestore database
     let db: DatabaseService = DatabaseService.shared
+    let userRepository: UserRepository = UserRepository.shared
     
     // User's daily step counts from store
     var storeSteps:[Step] = [Step]()
