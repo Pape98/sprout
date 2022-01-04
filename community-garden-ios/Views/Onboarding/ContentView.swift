@@ -11,6 +11,7 @@ struct ContentView: View {
     
     @StateObject var userViewModel: UserViewModel = UserViewModel()
     @StateObject var moodViewModel: MoodViewModel = MoodViewModel()
+    @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel()
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     
     var body: some View {
@@ -41,6 +42,7 @@ struct ContentView: View {
         }
         .environmentObject(userViewModel)
         .environmentObject(moodViewModel)
+        .environmentObject(healthStoreViewModel)
     }
 }
 

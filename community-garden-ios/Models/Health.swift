@@ -14,7 +14,7 @@ class Data: Identifiable {
     
 }
 
-class Step: Data, Equatable, Hashable, CustomStringConvertible {
+class Step: Data, Equatable, Hashable, CustomStringConvertible, Codable {
     
     var count: Int = 0
     
