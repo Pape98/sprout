@@ -9,7 +9,7 @@ import SwiftUI
 
 struct StepView: View {
     
-    @EnvironmentObject var userModel: UserViewModel
+    @EnvironmentObject var healthStoreViewModel: HealthStoreViewModel
     
     var steps: [Step]?
     
@@ -26,7 +26,7 @@ struct StepView: View {
                                 ProgressTriangle(step: step)
                             }
                         } else {
-                            ForEach(userModel.currentUserData.steps) { step in
+                            ForEach(healthStoreViewModel.steps) { step in
                                 ProgressTriangle(step: step)
                             }
                         }
@@ -48,6 +48,6 @@ struct StepView_Previews: PreviewProvider {
     
     static var previews: some View {
         StepView(steps: steps)
-            .environmentObject(UserViewModel())
+            .environmentObject(HealthStoreViewModel())
     }
 }

@@ -1,5 +1,5 @@
 //
-//  UserModel.swift
+//  AuthenticationViewModel.swift
 //  community-garden-ios
 //
 //  Created by Pape Sow Traore on 12/6/21.
@@ -23,8 +23,8 @@ class AuthenticationViewModel: ObservableObject {
     // Google Sign In configuration
     var configuration: GIDConfiguration?
     
-    // Database Instance
-    var db: DatabaseService = DatabaseService.shared
+    // Repository Instance
+    var userRepository: UserRepository = UserRepository.shared
     
     // MARK: - Methods
     
@@ -125,11 +125,11 @@ class AuthenticationViewModel: ObservableObject {
                     self.setLoggedInUserProfile()
                     
                     // Check user if already exists in database
-                    self.db.doesUserExist(userID: userID){
+                    self.userRepository.doesUserExist(userID: userID){
                         
                         // If user does not exist, create a new account
-                        if self.db.doesUserExsist == false {
-                            self.db.createNewUser(UserService.shared.user)
+                        if self.userRepository.doesUserExsist == false {
+                            self.userRepository.createNewUser(UserService.shared.user)
                         }
                     }
                     // Check login status again to update UI

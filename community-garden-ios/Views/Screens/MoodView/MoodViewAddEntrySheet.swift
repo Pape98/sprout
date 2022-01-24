@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MoodViewAddEntrySheet: View {
     
-    @EnvironmentObject var userModel: UserViewModel
+    @EnvironmentObject var moodViewModel: MoodViewModel
     
     @State var date = Date()
     @State var selectedMood = ""
@@ -61,7 +61,7 @@ struct MoodViewAddEntrySheet: View {
                     if selectedMood == "" {
                         errorMessage = "You must select a mood first!"
                     } else {
-                        userModel.addMoodEntry(moodType: selectedMood, date: date)
+                        moodViewModel.addMood(moodType: selectedMood, date: date)
                         showAddEntrySheet = false
                     }
                 }

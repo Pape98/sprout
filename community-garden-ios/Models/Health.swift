@@ -6,35 +6,26 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-class Data: Identifiable {
+class Step: Identifiable, Equatable, Hashable, CustomStringConvertible, Codable {
     
-    var id: String = UUID().uuidString
-    var date: Date = Date.now
-    
-}
-
-class Step: Data, Equatable, Hashable, CustomStringConvertible {
-    
+    @DocumentID var id: String? = UUID().uuidString
     var count: Int = 0
+    var date: Date
     
     var description: String {
-        let formattedDate = super.date.getFormattedDate(format: "MM-dd-YYYY")
-        return "Step => id: \(super.id) date:\(formattedDate as String?) count:\(count)"
-    }
-    
-    override init() {
-        super.init()
+        let formattedDate = date.getFormattedDate(format: "MM-dd-YYYY")
+        return "Step => id: \(id) date:\(formattedDate as String?) count:\(count)"
     }
     
     init(date: Date, count: Int){
-        super.init()
         self.count = count
-        super.date = date
+        self.date = date
     }
     
     func hash(into hasher: inout Hasher) {
-        hasher.combine(super.date)
+        hasher.combine(date)
         hasher.combine(count)
     }
     

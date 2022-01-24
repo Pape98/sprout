@@ -31,7 +31,7 @@ class HealthStoreService {
             self.requestAuthorization { success in
                 if success {
                     // Start listening to changes in step counts
-                    self.startQuery(dataType: Constants.HKDataTypes.stepCount,
+                    self.startQuery(dataType: HKDataTypes.stepCount,
                                                 updateHandler: updateDailySteps)
                 }
             }
@@ -42,9 +42,9 @@ class HealthStoreService {
     func requestAuthorization(completion: @escaping (Bool)  -> Void) {
         
         let healthKitTypesToRead = Set([
-            Constants.HKDataTypes.heartRate,
-            Constants.HKDataTypes.stepCount,
-            Constants.HKDataTypes.sleep
+            HKDataTypes.heartRate,
+            HKDataTypes.stepCount,
+            HKDataTypes.sleep
         ])
         
         guard let healthStoreUnwrapped = self.healthStore else {
