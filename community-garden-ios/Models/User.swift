@@ -16,6 +16,5 @@ class User: Identifiable {
     
     // Tracked Data
     var steps: [Step] = [Step]()
-    var moods: [Mood] = [Mood]()
     
 }

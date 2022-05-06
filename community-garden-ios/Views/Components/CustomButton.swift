@@ -10,6 +10,8 @@ import SwiftUI
 struct CustomButton: View {
     
     let title: String
+    let backgroundColor: Color
+    let fontColor: Color
     let action: () -> Void
     
     var body: some View {
@@ -18,9 +20,9 @@ struct CustomButton: View {
         } label: {
             Text(title)
                 .frame(minWidth: 0, maxWidth: .infinity)
-                .foregroundColor(.white)
+                .foregroundColor(fontColor)
                 .padding()
-                .background(.secondary)
+                .background(backgroundColor)
                 .cornerRadius(25)
                 .contentShape(Rectangle())
         }
@@ -29,8 +31,9 @@ struct CustomButton: View {
 
 struct CustomButton_Previews: PreviewProvider {
     static var previews: some View {
-        CustomButton(title: "Button Text") {
-            print("Custom Button")
+        CustomButton(title: "Button Text",
+                     backgroundColor: Color.gray,
+                     fontColor: Color.white) {
         }
     }
 }

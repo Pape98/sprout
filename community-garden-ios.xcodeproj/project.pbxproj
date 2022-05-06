@@ -7,17 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F005737F276F7F6600EB487B /* MoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005737E276F7F6600EB487B /* MoodView.swift */; };
 		F0057381276F828F00EB487B /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* StepView.swift */; };
 		F0057383276F839E00EB487B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057382276F839E00EB487B /* ContentView.swift */; };
-		F0057389276F946400EB487B /* MoodViewAddEntrySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057388276F946400EB487B /* MoodViewAddEntrySheet.swift */; };
-		F005738B277026A300EB487B /* MoodViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005738A277026A300EB487B /* MoodViewCard.swift */; };
-		F005739027702A0800EB487B /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005738F27702A0800EB487B /* Mood.swift */; };
 		F005739227702F9B00EB487B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* CustomButton.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
-		F04234A12784A0AC0063DA08 /* MoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A02784A0AC0063DA08 /* MoodViewModel.swift */; };
 		F04234A32784A7F80063DA08 /* HealthStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A22784A7F80063DA08 /* HealthStoreViewModel.swift */; };
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
@@ -38,7 +33,6 @@
 		F0C99E1B278120EA004514D4 /* ProgressTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1A278120E9004514D4 /* ProgressTriangle.swift */; };
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
-		F0C99E24278487A5004514D4 /* MoodRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E23278487A5004514D4 /* MoodRepository.swift */; };
 		F0C99E26278488FF004514D4 /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */; };
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
@@ -48,17 +42,12 @@
 		47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_community_garden_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E97010C2190A08C6A6A2D8F /* Pods-community-garden-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.release.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.release.xcconfig"; sourceTree = "<group>"; };
 		E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.debug.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		F005737E276F7F6600EB487B /* MoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodView.swift; sourceTree = "<group>"; };
 		F0057380276F828F00EB487B /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		F0057382276F839E00EB487B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		F0057388276F946400EB487B /* MoodViewAddEntrySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewAddEntrySheet.swift; sourceTree = "<group>"; };
-		F005738A277026A300EB487B /* MoodViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewCard.swift; sourceTree = "<group>"; };
-		F005738F27702A0800EB487B /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
 		F005739127702F9B00EB487B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		F04234A02784A0AC0063DA08 /* MoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewModel.swift; sourceTree = "<group>"; };
 		F04234A22784A7F80063DA08 /* HealthStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreViewModel.swift; sourceTree = "<group>"; };
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
@@ -68,7 +57,7 @@
 		F096426F275B52AC00F1CEC1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F0964272275C25C800F1CEC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F09B71E7277269560085C7AC /* CustomShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShape.swift; sourceTree = "<group>"; };
-		F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -79,7 +68,6 @@
 		F0C99E1A278120E9004514D4 /* ProgressTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTriangle.swift; sourceTree = "<group>"; };
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		F0C99E23278487A5004514D4 /* MoodRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodRepository.swift; sourceTree = "<group>"; };
 		F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -118,21 +106,10 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
-		F0057385276F93EB00EB487B /* MoodView */ = {
-			isa = PBXGroup;
-			children = (
-				F005737E276F7F6600EB487B /* MoodView.swift */,
-				F0057388276F946400EB487B /* MoodViewAddEntrySheet.swift */,
-				F005738A277026A300EB487B /* MoodViewCard.swift */,
-			);
-			path = MoodView;
-			sourceTree = "<group>";
-		};
 		F0057387276F940C00EB487B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
 				F09B71E327724B260085C7AC /* StepView */,
-				F0057385276F93EB00EB487B /* MoodView */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -240,7 +217,6 @@
 			children = (
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
-				F04234A02784A0AC0063DA08 /* MoodViewModel.swift */,
 				F04234A22784A7F80063DA08 /* HealthStoreViewModel.swift */,
 			);
 			path = ViewModels;
@@ -263,7 +239,6 @@
 			children = (
 				F0964269275B510300F1CEC1 /* Health.swift */,
 				F096426B275B513100F1CEC1 /* User.swift */,
-				F005738F27702A0800EB487B /* Mood.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,7 +248,6 @@
 			children = (
 				F04234A42784C6F40063DA08 /* Collections.swift */,
 				F0C99E21278481A6004514D4 /* UserRepository.swift */,
-				F0C99E23278487A5004514D4 /* MoodRepository.swift */,
 				F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */,
 			);
 			path = Repositories;
@@ -409,22 +383,16 @@
 				F0C99E26278488FF004514D4 /* HealthStoreRepository.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
-				F005738B277026A300EB487B /* MoodViewCard.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
-				F0057389276F946400EB487B /* MoodViewAddEntrySheet.swift in Sources */,
-				F005737F276F7F6600EB487B /* MoodView.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
-				F04234A12784A0AC0063DA08 /* MoodViewModel.swift in Sources */,
-				F005739027702A0800EB487B /* Mood.swift in Sources */,
 				F04234A32784A7F80063DA08 /* HealthStoreViewModel.swift in Sources */,
 				F0057381276F828F00EB487B /* StepView.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
-				F0C99E24278487A5004514D4 /* MoodRepository.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
 				F09B71E8277269560085C7AC /* CustomShape.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,

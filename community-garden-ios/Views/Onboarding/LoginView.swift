@@ -15,39 +15,108 @@ struct LoginView: View {
     @State var lastName = ""
     
     var body: some View {
-        VStack (spacing: 10) {
-            Spacer()
+        
+        ZStack {
             
-            // Logo
-            Image(systemName: "leaf")
-                .resizable()
-                .scaledToFit()
-                .frame(maxWidth: 100)
+            // Sun
             
-            // Title
-            Text("Community Garden")
-                .font(.title)
-                .padding()
-            
-            // Form
-            Group {
+            ZStack(alignment: .bottomTrailing) {
+                Image("flower-pot")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 300)
                 
-                CustomButton(title: "Sign Up/ Login") {
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
+            
+            
+            // Leaves background
+            
+            ZStack {
+                Image("leaves")
+                    .resizable()
+                    .scaleEffect()
+                    .frame(maxHeight: 500)
+           
+            }
+            
+            // Text and Button
+            
+            VStack {
+                Text("Log-in/ Sign-Up")
+                    .font(.title)
+                    .bold()
+                    .padding()
+                
+                // Login Button
+                
+                CustomButton(title: "Sign In with Google",
+                             backgroundColor: Color(red: 0.8667, green: 0.7176, blue: 0.4431),
+                             fontColor: Color.black
+                ) {
                     authenticationModel.signIn()
                 }
                 .padding()
+                .frame(maxWidth: 250)
+                
+                
+                // Error Message
                 
                 if let errorMessage = authenticationModel.errorMessage {
                     Text(errorMessage)
                         .foregroundColor(.red)
                 }
                 
+
             }
             
-            Spacer()
-        }
-        .padding(.horizontal, 40)
-        .textFieldStyle(RoundedBorderTextFieldStyle())
+            // Flower Pot
+            ZStack(alignment: .bottomTrailing) {
+                Image("sun")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxHeight: 200)
+                
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+       
+            
+        }.ignoresSafeArea()
+
+        //        VStack (spacing: 10) {
+//
+//
+//            // Logo
+//            Image("flower-pot-2")
+//                .resizable()
+//                .scaledToFit()
+//
+//
+//            // Title
+//            Text("Log-in/ Sign-Up")
+//                .font(.title)
+//                .padding()
+//
+//            // Form
+//            Group {
+//
+//                CustomButton(title: "Sign In with Google",
+//                             backgroundColor: Color(red: 0.8667, green: 0.7176, blue: 0.4431),
+//                             fontColor: Color.black
+//                ) {
+//                    authenticationModel.signIn()
+//                }
+//                .padding()
+//
+//                if let errorMessage = authenticationModel.errorMessage {
+//                    Text(errorMessage)
+//                        .foregroundColor(.red)
+//                }
+//
+//            }
+//
+//            Spacer()
+//        }
+//        .padding(.horizontal, 40)
+//        .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 
