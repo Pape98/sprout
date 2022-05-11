@@ -81,42 +81,6 @@ struct LoginView: View {
             
         }.ignoresSafeArea()
 
-        //        VStack (spacing: 10) {
-//
-//
-//            // Logo
-//            Image("flower-pot-2")
-//                .resizable()
-//                .scaledToFit()
-//
-//
-//            // Title
-//            Text("Log-in/ Sign-Up")
-//                .font(.title)
-//                .padding()
-//
-//            // Form
-//            Group {
-//
-//                CustomButton(title: "Sign In with Google",
-//                             backgroundColor: Color(red: 0.8667, green: 0.7176, blue: 0.4431),
-//                             fontColor: Color.black
-//                ) {
-//                    authenticationModel.signIn()
-//                }
-//                .padding()
-//
-//                if let errorMessage = authenticationModel.errorMessage {
-//                    Text(errorMessage)
-//                        .foregroundColor(.red)
-//                }
-//
-//            }
-//
-//            Spacer()
-//        }
-//        .padding(.horizontal, 40)
-//        .textFieldStyle(RoundedBorderTextFieldStyle())
     }
 }
 

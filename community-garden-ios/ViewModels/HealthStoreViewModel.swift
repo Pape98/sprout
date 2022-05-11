@@ -47,8 +47,6 @@ class HealthStoreViewModel: ObservableObject {
         let loggedInUserStepsSet = Set(self.steps.map({$0}))
         let updatesSet = storeStepsSet.subtracting(loggedInUserStepsSet)
         
-        print(loggedInUserStepsSet)
-
         guard let update = updatesSet.first,
               let userID = Auth.auth().currentUser?.uid
         else { return }

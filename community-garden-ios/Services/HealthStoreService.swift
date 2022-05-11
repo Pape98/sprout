@@ -15,6 +15,8 @@ class HealthStoreService {
     // Provides all functionalities related health data
     private var healthStore: HKHealthStore?
     
+    private let dataCollectionStartDate = (10,5,2022) // (day, month, year)
+    
     
     // MARK: - Methods
     
@@ -32,7 +34,7 @@ class HealthStoreService {
                 if success {
                     // Start listening to changes in step counts
                     self.startQuery(dataType: HKDataTypes.stepCount,
-                                                updateHandler: updateDailySteps)
+                                    updateHandler: updateDailySteps)
                 }
             }
         }
@@ -42,9 +44,9 @@ class HealthStoreService {
     func requestAuthorization(completion: @escaping (Bool)  -> Void) {
         
         let healthKitTypesToRead = Set([
-            HKDataTypes.heartRate,
+            //            HKDataTypes.heartRate,
+            //            HKDataTypes.sleep
             HKDataTypes.stepCount,
-            HKDataTypes.sleep
         ])
         
         guard let healthStoreUnwrapped = self.healthStore else {
@@ -101,8 +103,10 @@ class HealthStoreService {
         
         guard let startDate = (DateComponents(calendar:calendar,
                                               timeZone: calendar.timeZone,
-                                              year: 2021,
-                                              month:12)).date else { return }
+                                              year: dataCollectionStartDate.2,
+                                              month:dataCollectionStartDate.1,
+                                              day: dataCollectionStartDate.0)).date else { return }
+                
         
         // TODO: Generalize to accept other statistics and not just steps
         var dailySteps: [Step] = []
@@ -115,7 +119,7 @@ class HealthStoreService {
                 dailySteps.append(stepObject)
             }
         }
-                        
+        
         // Dispatch to the main queue to update the UI.
         DispatchQueue.main.async {
             updateHandler(dailySteps)

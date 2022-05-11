@@ -28,3 +28,5 @@ struct HKDataTypes {
     static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
     static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
 }
+
+

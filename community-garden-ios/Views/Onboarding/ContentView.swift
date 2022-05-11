@@ -22,6 +22,7 @@ struct ContentView: View {
                     Text("Steps")
                 }
             
+
             CustomButton(title: "Sign Out",
                          backgroundColor: Color.red,
                          fontColor: Color.white,
