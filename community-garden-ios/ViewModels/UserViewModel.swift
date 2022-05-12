@@ -13,19 +13,52 @@ class UserViewModel: ObservableObject {
     // MARK: - Properties
     
     // To access and edit loggedInUser
-    @Published var currentUser: User!
+    @Published var currentUser: User = UserService.shared.user
     
     static var shared = UserViewModel()
     
     let userRepository = UserRepository.shared
+    let RATIO_STEPS_DROPLET = 200
+    let MAX_NUM_STEPS = 10000
     
     // MARK: - Methods
     
-    init() {
+    func getUser() {
+        let user = UserService.shared.user
+        self.userRepository.fetchLoggedInUser(userID: user.id) { user in
+            self.currentUser = user
+            UserService.shared.user = user
+        }
+    }
     
-        /* Check if user meta data has been fetched.
-         If the user was already logged in from a previous session,
-         we need to get their data in a separate call */
+    func computeDroplets(){
         
+        let user = UserService.shared.user
+        
+        guard let steps = user.steps else { return }
+        
+        print(user)
+        
+        if let step = steps.first {
+            let count = step.count
+            // Making sure step count has a difference of at least 200 and total is less than 10,000
+            guard count - user.oldStepCount >= RATIO_STEPS_DROPLET && count < MAX_NUM_STEPS else { return }
+            let newNumberOfDroplets = Int((count - user.oldStepCount) / RATIO_STEPS_DROPLET) + user.numDroplets
+            
+            userRepository.updateUser(userID: user.id, updates: ["numDroplets": newNumberOfDroplets,
+                                                                 "oldStepCount": count - (count % 200) ]) {
+                
+                self.getUser()
+            }
+        }
+    }
+    
+    func decreaseNumDroplets(){
+        let newNumDroplets = currentUser.numDroplets - 1
+        print(currentUser)
+        userRepository.updateUser(userID: currentUser.id, updates: ["numDroplets": newNumDroplets]) {
+            self.getUser()
+        }
     }
 }
+

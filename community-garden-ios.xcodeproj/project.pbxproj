@@ -34,6 +34,7 @@
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
 		F0C99E26278488FF004514D4 /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */; };
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
+		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +69,7 @@
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,6 +160,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B32C9E275AF77700C714A2 /* community-garden-ios */,
+				F0FCDE7A282CD7F500FDA5BA /* Resources */,
 				F0B32C9D275AF77700C714A2 /* Products */,
 				F0964266275B3A8900F1CEC1 /* Frameworks */,
 				C18ED0BE3AAC051BD9EE1AA1 /* Pods */,
@@ -250,6 +253,14 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		F0FCDE7A282CD7F500FDA5BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -318,6 +329,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
 				F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */,

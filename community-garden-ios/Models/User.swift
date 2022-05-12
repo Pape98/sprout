@@ -7,16 +7,17 @@
 
 import Foundation
 
-class User: Identifiable, Codable, CustomStringConvertible {
+struct User: Identifiable, Codable, CustomStringConvertible {
 
     // Profile Info
     var id: String = ""
     var name: String = ""
     var email: String = ""
     var oldStepCount: Int = 0
+    var numDroplets: Int = 0
     
     var description: String {
-        return "User(\(id),\(name),\(email),\(oldStepCount))"
+        return "User(\(id),\(name),\(email),\(oldStepCount),\(numDroplets)"
     }
     
     // Tracked Data

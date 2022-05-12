@@ -23,27 +23,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     let SCALE_DURATION = 2.5
     
     var tree: SKSpriteNode!
-    var dropletsLabel: SKLabelNode!
-    var stepsLabel : SKLabelNode!
     var dropletSound: SKAudioNode!
     var gameTimer: Timer?
     
+    let userViewModel = UserViewModel.shared
     
     var treeScale = 0.5
     var clouds = ["cloud1", "cloud2"]
+    var dropletSoundEffect: SKAudioNode!
     
     
-    var dropletNums = 50 {
-        didSet {
-            dropletsLabel.text = "Droplets: \(dropletNums)"
-        }
-    }
+    
+    var dropletNums = UserService.shared.user.numDroplets
+    
     
     override func didMove(to view: SKView) {
         let background = SKSpriteNode(imageNamed: "background")
         let treeTexture = SKTexture(imageNamed: "tree1")
         tree = SKSpriteNode(texture: treeTexture)
         
+        // Background
         background.position = CGPoint(x: frame.midX, y: frame.midY)
         background.blendMode = .replace
         background.zPosition = -1
@@ -52,6 +51,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
         
+        
+        // Tree
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y:0)
         tree.name = NodeNames.tree.rawValue
@@ -64,15 +65,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tree.physicsBody?.isDynamic = false
         
         tree.setScale(0)
-        
-        placeLabels()
-        
+                
         let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
         tree.run(treeAction)
         addChild(tree)
         
-        
+        // Timer
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+        
+        // Sound Effect
+//        if let effectURL = Bundle.main.url(forResource: "dropletSoundEffect", withExtension: "mp3") {
+//            print(effectURL)
+//            dropletSoundEffect = SKAudioNode(url: effectURL)
+//            addChild(dropletSoundEffect)
+//        }
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -94,7 +100,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func releaseDroplet(position: CGPoint){
         
-        guard dropletNums > 0 else { return }
+        print(UserService.shared.user.numDroplets)
+        guard UserService.shared.user.numDroplets > 0 else { return }
         
         let droplet = SKSpriteNode(imageNamed: "droplet")
         droplet.position = position
@@ -106,26 +113,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         droplet.name = NodeNames.droplet.rawValue
         addChild(droplet)
         
-        
-        dropletNums -= 1
+        userViewModel.decreaseNumDroplets()
     }
     
-    func placeLabels() {
-        dropletsLabel = SKLabelNode(fontNamed: "Chalkduster")
-        dropletsLabel.text = "Droplets: \(dropletNums)"
-        dropletsLabel.horizontalAlignmentMode = .right
-        dropletsLabel.fontSize = 20
-        dropletsLabel.position = CGPoint(x: frame.maxX - 10, y: frame.maxY - 60)
-        addChild(dropletsLabel)
-        
-//        stepsLabel = SKLabelNode(fontNamed: "Chalkduster")
-//        stepsLabel.horizontalAlignmentMode = .left
-//        stepsLabel.fontSize = 20
-//        stepsLabel.fontColor = UIColor.black
-//        stepsLabel.position = CGPoint(x: frame.minX + 10, y: frame.maxY - 60)
-//        addChild(stepsLabel)
-        
-    }
     
     @objc func createCloud() {
         

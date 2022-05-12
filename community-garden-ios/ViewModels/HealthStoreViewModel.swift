@@ -13,9 +13,7 @@ class HealthStoreViewModel: ObservableObject {
     // MARK: - Properties
     @Published var steps: [Step] = [Step]()
     @Published var num: Int = 0
-    
-    var currentUser: User = UserService.shared.user
-    
+        
     func add(){
         print(self.steps)
     }
@@ -33,19 +31,20 @@ class HealthStoreViewModel: ObservableObject {
     
     // MARK: - Methods
     
-    func setupSteps() {
+    func setupSteps(completion: @escaping () -> Void) {
         // Get user steps from Firestore first then listen to healthstore
         self.getCurrentUserSteps() {
             self.healthStore.setUpAuthorization(updateDailySteps: self.updateDailySteps)
+            completion()
         }
         
     }
     
     func getCurrentUserSteps(completion: @escaping () -> Void) {
         healthStoreRepository.getData(userID: UserService.shared.user.id, collectionName: "steps", objectType: Step.self) { result in
+            UserService.shared.user.steps = result
             DispatchQueue.main.async {
                 self.steps = result
-                print(result)
                 completion()
             }
         }

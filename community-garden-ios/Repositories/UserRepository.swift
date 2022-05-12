@@ -81,17 +81,17 @@ class UserRepository {
         }
     }
     
-    func updateNumberOfDroplets(userID: String, stepCount: Int){
-        print(userID, stepCount)
+    func updateUser(userID: String, updates:[String: Any],completion: @escaping() -> Void){
         
         // Get document reference
         let userRef = usersCollection.document(userID)
         
-        userRef.updateData(["stepCount": stepCount]) { err in
+        userRef.updateData(updates) { err in
             if let err = err {
                 print("Error updating document: \(err)")
             } else {
                 print("Document successfully updated")
+                completion()
             }
             
         }

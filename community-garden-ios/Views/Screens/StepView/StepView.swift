@@ -22,8 +22,25 @@ struct StepView: View {
     }
     
     var body: some View {
-        Text("\(healthStoreViewModel.steps.count)").onTapGesture {
-            healthStoreViewModel.add()
+        ZStack{
+            SpriteView(scene: scene)
+                .edgesIgnoringSafeArea(.top)
+            VStack {
+                HStack {
+                    if let step = healthStoreViewModel.steps.first {
+                        Text("Steps: \(step.count)")
+                    }
+                    Spacer()
+                    
+                    if let user = userViewModel.currentUser {
+                        Text("Droplets: \(user.numDroplets)")
+                    }
+                }
+                .padding(20)
+                Spacer()
+            }
+            
+            
         }
         
     }
@@ -38,6 +55,6 @@ struct StepView_Previews: PreviewProvider {
     
     static var previews: some View {
         StepView()
-          
+        
     }
 }
