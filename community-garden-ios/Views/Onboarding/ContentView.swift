@@ -9,9 +9,11 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @StateObject var userViewModel: UserViewModel = UserViewModel()
-    @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel()
+    
     @EnvironmentObject var authViewModel: AuthenticationViewModel
+    @StateObject var userViewModel: UserViewModel = UserViewModel.shared
+    @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
+    
     
     var body: some View {
         TabView {
@@ -22,19 +24,16 @@ struct ContentView: View {
                     Text("Steps")
                 }
             
-
+            
             CustomButton(title: "Sign Out",
                          backgroundColor: Color.red,
                          fontColor: Color.white,
                          action: authViewModel.signOut)
-                .frame(width:200)
-                .tabItem {
-                    Image(systemName: "arrowshape.turn.up.right")
-                    Text("Sign Out")
-                }
-            
-            
-            
+            .frame(width:200)
+            .tabItem {
+                Image(systemName: "arrowshape.turn.up.right")
+                Text("Sign Out")
+            }
         }
         .environmentObject(userViewModel)
         .environmentObject(healthStoreViewModel)

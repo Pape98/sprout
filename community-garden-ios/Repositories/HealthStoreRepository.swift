@@ -54,7 +54,6 @@ class HealthStoreRepository {
             for doc in snapshot!.documents {
                 
                 // TODO: Generalize to accept other data
-                
                 do {
                     let decodedObject: T? = try doc.data(as: T.self)
                     if let object = decodedObject {

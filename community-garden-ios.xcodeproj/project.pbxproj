@@ -98,8 +98,8 @@
 		F0057384276F931000EB487B /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				F0057382276F839E00EB487B /* ContentView.swift */,
 				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
+				F0057382276F839E00EB487B /* ContentView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";

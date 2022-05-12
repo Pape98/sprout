@@ -8,7 +8,7 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-class Step: Identifiable, Equatable, Hashable, CustomStringConvertible, Codable {
+struct Step: Identifiable, Equatable, Hashable, CustomStringConvertible, Codable {
     
     @DocumentID var id: String? = UUID().uuidString
     var count: Int = 0
@@ -16,7 +16,7 @@ class Step: Identifiable, Equatable, Hashable, CustomStringConvertible, Codable 
     
     var description: String {
         let formattedDate = date.getFormattedDate(format: "MM-dd-YYYY")
-        return "Step => id: \(id) date:\(formattedDate as String?) count:\(count)"
+        return "Step => id: \(id!) date:\(formattedDate as String?) count:\(count)"
     }
     
     init(date: Date, count: Int){

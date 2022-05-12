@@ -13,8 +13,12 @@ class UserViewModel: ObservableObject {
     // MARK: - Properties
     
     // To access and edit loggedInUser
-    var currentUser: User = UserService.shared.user
-
+    @Published var currentUser: User!
+    
+    static var shared = UserViewModel()
+    
+    let userRepository = UserRepository.shared
+    
     // MARK: - Methods
     
     init() {
@@ -23,10 +27,5 @@ class UserViewModel: ObservableObject {
          If the user was already logged in from a previous session,
          we need to get their data in a separate call */
         
-        if let authUser = Auth.auth().currentUser {
-            currentUser.name = authUser.displayName!
-            currentUser.email = authUser.email!
-            currentUser.id = authUser.uid
-        }
     }
 }

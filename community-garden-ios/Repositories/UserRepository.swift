@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 class UserRepository {
-
+    
     // MARK: - Properties
     let usersCollection: CollectionReference
     static let shared = UserRepository() // Single repo instance shared
@@ -26,7 +26,9 @@ class UserRepository {
         
         let newUser: [String: Any] = ["id": user.id,
                                       "name": user.name,
-                                      "email": user.email]
+                                      "email": user.email,
+                                      "oldStepCount": 0,
+                                      "numDroplets": 0]
         
         usersCollection.document(user.id).setData(newUser){ err in
             if let err = err {
@@ -52,6 +54,46 @@ class UserRepository {
                 self.doesUserExsist = condition
             }
             completion()
+        }
+        
+    }
+    
+    func fetchLoggedInUser(userID: String, completion: @escaping (_ user: User) -> Void){
+        // Get document reference
+        let userRef = usersCollection.document(userID)
+        
+        // Check if user exists in database
+        userRef.getDocument { document, error in
+            
+            guard error == nil else {
+                print("[fetchLoggedInUser()]", error!)
+                return
+            }
+            
+            do {
+                let decodedUser: User = try document!.data(as: User.self)
+                completion(decodedUser)
+            } catch {
+                print("[fetchLoggedInUser()]", error)
+            }
+            
+            
+        }
+    }
+    
+    func updateNumberOfDroplets(userID: String, stepCount: Int){
+        print(userID, stepCount)
+        
+        // Get document reference
+        let userRef = usersCollection.document(userID)
+        
+        userRef.updateData(["stepCount": stepCount]) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+            }
+            
         }
         
     }

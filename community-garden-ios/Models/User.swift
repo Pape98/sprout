@@ -7,14 +7,19 @@
 
 import Foundation
 
-class User: Identifiable {
+class User: Identifiable, Codable, CustomStringConvertible {
 
     // Profile Info
     var id: String = ""
     var name: String = ""
     var email: String = ""
+    var oldStepCount: Int = 0
+    
+    var description: String {
+        return "User(\(id),\(name),\(email),\(oldStepCount))"
+    }
     
     // Tracked Data
-    var steps: [Step] = [Step]()
+    var steps: [Step]?
     
 }

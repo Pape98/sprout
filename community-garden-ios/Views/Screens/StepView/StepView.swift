@@ -11,7 +11,9 @@ import SpriteKit
 struct StepView: View {
     
     
+    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var healthStoreViewModel: HealthStoreViewModel
+    
     
     var scene: SKScene {
         let scene = GameScene()
@@ -19,25 +21,10 @@ struct StepView: View {
         return scene
     }
     
-    
-    
     var body: some View {
-        ZStack{
-            SpriteView(scene: scene)
-                .edgesIgnoringSafeArea(.top)
-            
-            if let step = healthStoreViewModel.steps.first {
-                VStack {
-                    HStack {
-                        Text("Steps: \(step.count)" )
-                        Spacer()
-                    }
-                    Spacer()
-                }
-            }
-            
+        Text("\(healthStoreViewModel.steps.count)").onTapGesture {
+            healthStoreViewModel.add()
         }
-        
         
     }
 }
@@ -50,9 +37,7 @@ struct StepView_Previews: PreviewProvider {
                                        Step(date: Date.now, count: 100)]
     
     static var previews: some View {
-        //        StepView(steps: steps)
-        //            .environmentObject(HealthStoreViewModel())
         StepView()
-        
+          
     }
 }

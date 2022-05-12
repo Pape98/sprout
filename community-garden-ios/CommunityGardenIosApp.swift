@@ -7,11 +7,10 @@
 
 import SwiftUI
 import Firebase
-
 @main
 struct CommunityGardenIosApp: App {
     
-    @StateObject var authModel: AuthenticationViewModel = AuthenticationViewModel()
+    @StateObject var authModel = AuthenticationViewModel.shared
     
     // To send notifications to user
     let notificationService: NotificationService = NotificationService()
@@ -22,8 +21,10 @@ struct CommunityGardenIosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LaunchView()
-                .environmentObject(authModel)
+            LaunchView().onAppear(){
+                authModel.checkLogin()
+            }
+            .environmentObject(authModel)
         }
     }
 }

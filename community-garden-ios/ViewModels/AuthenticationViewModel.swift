@@ -20,19 +20,22 @@ class AuthenticationViewModel: ObservableObject {
     // Error message to be displayed to user
     @Published var errorMessage: String?
     
+    static var shared = AuthenticationViewModel()
+    
     // Google Sign In configuration
     var configuration: GIDConfiguration?
     
     // Repository Instance
     var userRepository: UserRepository = UserRepository.shared
     
+    
     // MARK: - Methods
     
     init() {
-        
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
-        checkLogin()
+        setLoggedInUserProfile()
+        
     }
     
     func checkLogin() {
@@ -53,18 +56,15 @@ class AuthenticationViewModel: ObservableObject {
     // Set user information from Google
     func setLoggedInUserProfile(){
         checkLogin()
-        
-        if (isLoggedIn) {
+                
+        if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
-            let user = UserService.shared.user
-            user.id = firebaseUser!.uid
-            
-            if let displayName = firebaseUser!.displayName,
-               let email = firebaseUser!.email
-            {
-                user.email = email
-                user.name = displayName
+            userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
+                UserService.shared.user = result
+                HealthStoreViewModel.shared.setupSteps()
+                
             }
+            
         }
         
     }

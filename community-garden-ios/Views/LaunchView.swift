@@ -16,10 +16,6 @@ struct LaunchView: View {
         if authModel.isLoggedIn == false {
             // Show login view
             LoginView()
-                .onAppear {
-                    // Check if user is logged in or out
-                    authModel.checkLogin()
-                }
             
         } else {
             // Show logged in view (home view)
