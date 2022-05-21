@@ -13,11 +13,11 @@ struct User: Identifiable, Codable, CustomStringConvertible {
     var id: String = ""
     var name: String = ""
     var email: String = ""
-    var oldStepCount: Int = 0
+    var stepCount: Step?
     var numDroplets: Int = 0
     
     var description: String {
-        return "User(\(id),\(name),\(email),\(oldStepCount),\(numDroplets)"
+        return "User(\(id),\(name),\(email),\(stepCount),\(numDroplets)"
     }
     
     // Tracked Data

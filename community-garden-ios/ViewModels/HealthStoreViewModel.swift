@@ -53,6 +53,8 @@ class HealthStoreViewModel: ObservableObject {
     func updateDailySteps(storeSteps: [Step]) {
         
         // Find the update
+        print("HERE",storeSteps)
+        return;
         let storeStepsSet = Set(storeSteps.map({$0}))
         let loggedInUserStepsSet = Set(self.steps.map({$0}))
         let updatesSet = storeStepsSet.subtracting(loggedInUserStepsSet)
@@ -66,7 +68,7 @@ class HealthStoreViewModel: ObservableObject {
                                                     update: ["count": update.count, "date": update.date])
         { () in
             // Get new list
-            self.getCurrentUserSteps(){}
+//            self.getCurrentUserSteps(){}
         }
     }
 }

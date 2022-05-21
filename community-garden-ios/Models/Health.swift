@@ -16,7 +16,7 @@ struct Step: Identifiable, Equatable, Hashable, CustomStringConvertible, Codable
     
     var description: String {
         let formattedDate = date.getFormattedDate(format: "MM-dd-YYYY")
-        return "Step => id: \(id!) date:\(formattedDate as String?) count:\(count)"
+        return "Step(id: \(id!), date:\(formattedDate as String), count:\(count))"
     }
     
     init(date: Date, count: Int){

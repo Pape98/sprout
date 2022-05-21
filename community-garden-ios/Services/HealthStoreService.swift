@@ -15,7 +15,7 @@ class HealthStoreService {
     // Provides all functionalities related health data
     private var healthStore: HKHealthStore?
     
-    private let dataCollectionStartDate = (10,5,2022) // (day, month, year)
+    private let dataCollectionStartDate = Date() // (day, month, year)
     
     
     // MARK: - Methods
@@ -103,9 +103,9 @@ class HealthStoreService {
         
         guard let startDate = (DateComponents(calendar:calendar,
                                               timeZone: calendar.timeZone,
-                                              year: dataCollectionStartDate.2,
-                                              month:dataCollectionStartDate.1,
-                                              day: dataCollectionStartDate.0)).date else { return }
+                                              year: Int(today.year),
+                                              month:Int(today.month),
+                                              day: Int(today.day))).date else { return }
                 
         
         // TODO: Generalize to accept other statistics and not just steps

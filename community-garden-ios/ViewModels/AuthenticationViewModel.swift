@@ -33,7 +33,7 @@ class AuthenticationViewModel: ObservableObject {
     init() {
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
-        setLoggedInUserProfile()
+        //setLoggedInUserProfile()
         
     }
     
@@ -95,18 +95,7 @@ class AuthenticationViewModel: ObservableObject {
                       // let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
                 else { return }
-                
-                // TODO: Uncomment if only authorizing Dartmouth email
-                
-                // Check if user is using school email
-                //                if userEmail.contains("dartmouth.edu") == false {
-                //                    // Update UI from main thread
-                //                    DispatchQueue.main.async {
-                //                        self.errorMessage = "You must use your dartmouth email."
-                //                    }
-                //                    return
-                //                }
-                
+                                
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
                 
@@ -120,17 +109,17 @@ class AuthenticationViewModel: ObservableObject {
                         }
                         return
                     }
-                    
+                                        
                     guard let userID = Auth.auth().currentUser?.uid else { return }
-                    
-                    self.setLoggedInUserProfile()
-                    
+                                        
                     // Check user if already exists in database
                     self.userRepository.doesUserExist(userID: userID){
                         
+                        
                         // If user does not exist, create a new account
                         if self.userRepository.doesUserExsist == false {
-                            self.userRepository.createNewUser(UserService.shared.user)
+                        
+                            self.userRepository.createNewUser(user!)
                         }
                     }
                     // Check login status again to update UI

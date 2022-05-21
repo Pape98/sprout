@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import GoogleSignIn
 
 class UserRepository {
     
@@ -22,15 +23,17 @@ class UserRepository {
         usersCollection = Collections.shared.getCollectionReference("users")
     }
     
-    func createNewUser(_ user: User) {
+    func createNewUser(_ user: GIDGoogleUser) {
         
-        let newUser: [String: Any] = ["id": user.id,
-                                      "name": user.name,
-                                      "email": user.email,
-                                      "oldStepCount": 0,
+        let newUser: [String: Any] = ["id": user.userID!,
+                                      "name": user.profile!.name,
+                                      "email": user.profile!.email,
+                                      "stepCount": ["date": Date(), "count": 0],
                                       "numDroplets": 0]
         
-        usersCollection.document(user.id).setData(newUser){ err in
+        print(user, newUser)
+ 
+        usersCollection.document(user.userID!).setData(newUser){ err in
             if let err = err {
                 print("[createNewUser()]","Error writing document: \(err)")
             }
@@ -49,7 +52,7 @@ class UserRepository {
                 print("[doesUserExist()]", error!)
                 return
             }
-            
+                        
             if let condition = document?.exists {
                 self.doesUserExsist = condition
             }
@@ -60,6 +63,7 @@ class UserRepository {
     
     func fetchLoggedInUser(userID: String, completion: @escaping (_ user: User) -> Void){
         // Get document reference
+        
         let userRef = usersCollection.document(userID)
         
         // Check if user exists in database
