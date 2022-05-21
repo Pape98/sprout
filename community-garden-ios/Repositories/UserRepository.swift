@@ -30,9 +30,7 @@ class UserRepository {
                                       "email": user.profile!.email,
                                       "stepCount": ["date": Date(), "count": 0],
                                       "numDroplets": 0]
-        
-        print(user, newUser)
- 
+         
         usersCollection.document(userID).setData(newUser){ err in
             if let err = err {
                 print("[createNewUser()]","Error writing document: \(err)")
@@ -63,7 +61,6 @@ class UserRepository {
     
     func fetchLoggedInUser(userID: String, completion: @escaping (_ user: User) -> Void){
         // Get document reference
-        
         let userRef = usersCollection.document(userID)
         
         // Check if user exists in database
@@ -76,7 +73,6 @@ class UserRepository {
                   
             do {
                 let decodedUser: User = try document!.data(as: User.self)
-                print(decodedUser)
                 completion(decodedUser)
             } catch {
                 print("[fetchLoggedInUser()]", error)
@@ -86,7 +82,10 @@ class UserRepository {
         }
     }
     
-    func updateUser(userID: String, updates:[String: Any],completion: @escaping() -> Void){
+    
+    func updateUser(userID: String, updates:[String: Any], completion: @escaping() -> Void){
+        
+        print(updates)
         
         // Get document reference
         let userRef = usersCollection.document(userID)

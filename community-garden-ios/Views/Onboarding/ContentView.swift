@@ -12,7 +12,6 @@ struct ContentView: View {
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
-    @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
     
     
     var body: some View {
@@ -36,7 +35,6 @@ struct ContentView: View {
             }
         }
         .environmentObject(userViewModel)
-        .environmentObject(healthStoreViewModel)
     }
 }
 

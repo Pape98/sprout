@@ -60,7 +60,7 @@ class AuthenticationViewModel: ObservableObject {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
                 UserService.shared.user = result
-                HealthStoreViewModel.shared.setupSteps(){
+                UserViewModel.shared.setupSteps(){
                     UserViewModel.shared.getUser()
                     UserViewModel.shared.computeDroplets()
                 }

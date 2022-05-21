@@ -12,8 +12,6 @@ struct StepView: View {
     
     
     @EnvironmentObject var userViewModel: UserViewModel
-    @EnvironmentObject var healthStoreViewModel: HealthStoreViewModel
-    
     
     var scene: SKScene {
         let scene = GameScene()
@@ -27,8 +25,8 @@ struct StepView: View {
                 .edgesIgnoringSafeArea(.top)
             VStack {
                 HStack {
-                    if let step = healthStoreViewModel.steps.first {
-                        Text("Steps: \(step.count)")
+                    if let stepCount = userViewModel.currentUser.stepCount {
+                        Text("Steps: \(stepCount.count)")
                     }
                     Spacer()
                     

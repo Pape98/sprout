@@ -17,7 +17,7 @@ struct User: Identifiable, Codable, CustomStringConvertible {
     var numDroplets: Int = 0
     
     var description: String {
-        return "User(\(id),\(name),\(email),\(stepCount),\(numDroplets)"
+        return "User(\(id),\(name),\(email),\(stepCount!),\(numDroplets)"
     }
     
 }
