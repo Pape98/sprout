@@ -41,13 +41,13 @@ class HealthStoreViewModel: ObservableObject {
     }
     
     func getCurrentUserSteps(completion: @escaping () -> Void) {
-        healthStoreRepository.getData(userID: UserService.shared.user.id, collectionName: "steps", objectType: Step.self) { result in
-            UserService.shared.user.steps = result
-            DispatchQueue.main.async {
-                self.steps = result
-                completion()
-            }
-        }
+//        healthStoreRepository.getData(userID: UserService.shared.user.id, collectionName: "steps", objectType: Step.self) { result in
+//            UserService.shared.user.steps = result
+//            DispatchQueue.main.async {
+//                self.steps = result
+//                completion()
+//            }
+//        }
     }
     
     func updateDailySteps(storeSteps: [Step]) {

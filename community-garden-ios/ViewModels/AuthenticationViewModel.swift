@@ -33,7 +33,7 @@ class AuthenticationViewModel: ObservableObject {
     init() {
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
-        //setLoggedInUserProfile()
+        setLoggedInUserProfile()
         
     }
     
@@ -119,8 +119,10 @@ class AuthenticationViewModel: ObservableObject {
                         // If user does not exist, create a new account
                         if self.userRepository.doesUserExsist == false {
                         
-                            self.userRepository.createNewUser(user!)
+                            self.userRepository.createNewUser(userID, user!)
                         }
+                        
+                        self.setLoggedInUserProfile()
                     }
                     // Check login status again to update UI
                     DispatchQueue.main.async {

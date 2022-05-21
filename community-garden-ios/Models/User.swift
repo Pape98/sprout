@@ -20,7 +20,4 @@ struct User: Identifiable, Codable, CustomStringConvertible {
         return "User(\(id),\(name),\(email),\(stepCount),\(numDroplets)"
     }
     
-    // Tracked Data
-    var steps: [Step]?
-    
 }
