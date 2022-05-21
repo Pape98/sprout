@@ -35,27 +35,23 @@ class UserViewModel: ObservableObject {
     
     func computeDroplets(){
         
-//        let user = UserService.shared.user
-//        
-//        guard let steps = user.steps else { return }
-//        
-//        print(user)
-//        
-//        if let step = steps.first {
-//            let count = step.count
-//            
-//            guard user.stepCount != nil else { return }
-//            
-//            // Making sure step count has a difference of at least 200 and total is less than 10,000
-//            guard count - user.stepCount!.count >= RATIO_STEPS_DROPLET && count < MAX_NUM_STEPS else { return }
-//            let newNumberOfDroplets = Int((count - user.stepCount!.count) / RATIO_STEPS_DROPLET) + user.numDroplets
-//            
-//            userRepository.updateUser(userID: user.id, updates: ["numDroplets": newNumberOfDroplets,
-//                                                                 "oldStepCount": count - (count % 200) ]) {
-//                
-//                self.getUser()
-//            }
-//        }
+        let user = UserService.shared.user
+        
+        guard let stepCount = user.stepCount else { return }
+        
+        let currStepCount = stepCount.count
+        let oldStepCount = user.oldStepCount
+                
+        // Making sure step count has a difference of at least 200 and total is less than 10,000
+        let stepCountDifference = currStepCount - oldStepCount
+        guard stepCountDifference >= RATIO_STEPS_DROPLET && currStepCount < MAX_NUM_STEPS else { return }
+        let newNumberOfDroplets = Int(stepCountDifference / RATIO_STEPS_DROPLET) + user.numDroplets
+        
+        userRepository.updateUser(userID: user.id, updates: ["numDroplets": newNumberOfDroplets,
+                                                             "oldStepCount": currStepCount - (stepCountDifference % 200) ]) {
+            self.getUser()
+        }
+        
     }
     
     func decreaseNumDroplets(){
@@ -83,9 +79,8 @@ class UserViewModel: ObservableObject {
             // Perform the update operation
             self.userRepository.updateUser(userID: userID,updates: ["stepCount": ["count": storeStepCount.count, "date": storeStepCount.date]])
             { () in
-                self.userRepository.fetchLoggedInUser(userID: userID) { user in
-                    UserService.shared.user = user
-                }
+                self.getUser()
+                self.computeDroplets()
             }
         }
     }

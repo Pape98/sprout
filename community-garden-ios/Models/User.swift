@@ -13,6 +13,7 @@ struct User: Identifiable, Codable, CustomStringConvertible {
     var id: String = ""
     var name: String = ""
     var email: String = ""
+    var oldStepCount = 0
     var stepCount: Step?
     var numDroplets: Int = 0
     

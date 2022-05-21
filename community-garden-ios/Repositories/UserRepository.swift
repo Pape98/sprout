@@ -28,6 +28,7 @@ class UserRepository {
         let newUser: [String: Any] = ["id": userID, // Firebase ID
                                       "name": user.profile!.name,
                                       "email": user.profile!.email,
+                                      "oldStepCount": 0,
                                       "stepCount": ["date": Date(), "count": 0],
                                       "numDroplets": 0]
          

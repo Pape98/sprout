@@ -123,7 +123,6 @@ class HealthStoreService {
         // Dispatch to the main queue to update the UI.
         DispatchQueue.main.async {
             updateHandler(dailySteps)
-            UserViewModel.shared.computeDroplets()
         }
     }
     
