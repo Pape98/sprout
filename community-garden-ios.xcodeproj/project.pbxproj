@@ -120,6 +120,13 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		F038369F2839F7AE00D444E4 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -184,6 +191,7 @@
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0C99E202784810F004514D4 /* Repositories */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
+				F038369F2839F7AE00D444E4 /* Helpers */,
 				F0964271275C25AF00F1CEC1 /* Utils */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,

@@ -28,6 +28,8 @@ class AuthenticationViewModel: ObservableObject {
     // Repository Instance
     var userRepository: UserRepository = UserRepository.shared
     
+    let nc = NotificationCenter.default
+    
     // MARK: - Methods
     
     init() {
@@ -60,10 +62,7 @@ class AuthenticationViewModel: ObservableObject {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
                 UserService.shared.user = result
-                UserViewModel.shared.setupSteps(){
-                    UserViewModel.shared.getUser()
-                    UserViewModel.shared.computeDroplets()
-                }
+                NotificationCenter.default.post(name: Notification.Name("UserLoggedIn"), object: nil)
             }
             
         }

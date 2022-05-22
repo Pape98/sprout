@@ -22,8 +22,20 @@ class UserViewModel: ObservableObject {
     
     let RATIO_STEPS_DROPLET = 200
     let MAX_NUM_STEPS = 10000
+    let nc = NotificationCenter.default
     
     // MARK: - Methods
+    
+    init(){
+        nc.addObserver(self, selector: #selector(self.initialSetup), name: Notification.Name("UserLoggedIn"), object: nil)
+    }
+    
+    @objc
+    func initialSetup(){
+        setupStepsListener()
+        getUser()
+        computeDroplets()
+    }
     
     func getUser() {
         let user = UserService.shared.user
@@ -56,23 +68,34 @@ class UserViewModel: ObservableObject {
     
     func decreaseNumDroplets(){
         let newNumDroplets = currentUser.numDroplets - 1
-        print(currentUser)
         userRepository.updateUser(userID: currentUser.id, updates: ["numDroplets": newNumDroplets]) {
             self.getUser()
         }
     }
     
-    func setupSteps(completion: @escaping () -> Void) {
+    func resetOldStepCount(){
+        let updates = ["oldStepCount": 0]
+        userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
+            self.getUser()
+        }
+    }
+    
+    func setupStepsListener() {
         // Get user steps from Firestore first then listen to healthstore
         self.healthStore.setUpAuthorization(updateDailySteps: self.updateDailySteps)
-        completion()
     }
     
     func updateDailySteps(storeSteps: [Step]) {
         
         // Check if store step count is same as user saved step count
         let userStepCount = UserService.shared.user.stepCount
+        guard storeSteps.isEmpty == false else { return }
+        
         let storeStepCount = storeSteps[0]
+        
+        if userStepCount?.isSameDate(other: storeStepCount) == false {
+            resetOldStepCount()
+        }
         
         if userStepCount != storeStepCount {
             let userID = UserService.shared.user.id

@@ -32,4 +32,8 @@ struct Step: Identifiable, Equatable, Hashable, CustomStringConvertible, Codable
     static func == (lhs: Step, rhs: Step) -> Bool {
         return lhs.date == rhs.date && lhs.count == rhs.count
     }
+    
+    func isSameDate(other: Step) -> Bool{
+        return self.date == other.date
+    }
 }
