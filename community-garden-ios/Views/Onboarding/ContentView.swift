@@ -15,27 +15,39 @@ struct ContentView: View {
     
     
     var body: some View {
+        
         TabView {
+            Dashboard()
+                .tabItem {
+                    Image(systemName: "house")
+                    Text("Dashboard")
+                }
             
             StepView()
                 .tabItem {
-                    Image(systemName: "bolt.horizontal")
-                    Text("Steps")
+                    Image(systemName: "leaf")
+                    Text("My Garden")
+                }
+            
+            StepView()
+                .tabItem {
+                    Image(systemName: "person.3")
+                    Text("Friends")
                 }
             
             
-            CustomButton(title: "Sign Out",
-                         backgroundColor: Color.red,
-                         fontColor: Color.white,
-                         action: authViewModel.signOut)
-            .frame(width:200)
-            .tabItem {
-                Image(systemName: "arrowshape.turn.up.right")
-                Text("Sign Out")
-            }
-        }
-        .environmentObject(userViewModel)
+            //            CustomButton(title: "Sign Out",
+            //                         backgroundColor: Color.red,
+            //                         fontColor: Color.white,
+            //                         action: authViewModel.signOut)
+            //            .frame(width:200)
+            //            .tabItem {
+            //                Image(systemName: "arrowshape.turn.up.right")
+            //                Text("Sign Out")
+            //            }
+        }.environmentObject(userViewModel)
     }
+    
 }
 
 struct ContentView_Previews: PreviewProvider {

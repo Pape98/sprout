@@ -20,25 +20,28 @@ struct StepView: View {
     }
     
     var body: some View {
-        ZStack{
-            SpriteView(scene: scene)
-                .edgesIgnoringSafeArea(.top)
-            VStack {
-                HStack {
-                    if let stepCount = userViewModel.currentUser.stepCount {
-                        Text("Steps: \(stepCount.count)")
+        NavigationView {
+            ZStack{
+                SpriteView(scene: scene)
+                    .edgesIgnoringSafeArea(.top)
+                VStack {
+                    HStack {
+                        if let stepCount = userViewModel.currentUser.stepCount {
+                            Text("Steps: \(stepCount.count)")
+                        }
+                        Spacer()
+                        
+                        if let user = userViewModel.currentUser {
+                            Text("Droplets: \(user.numDroplets)")
+                        }
                     }
+                    .padding(20)
                     Spacer()
-                    
-                    if let user = userViewModel.currentUser {
-                        Text("Droplets: \(user.numDroplets)")
-                    }
                 }
-                .padding(20)
-                Spacer()
+                
+                
             }
-            
-            
+            .navigationBarTitle(Text("My Garden"))
         }
         
     }

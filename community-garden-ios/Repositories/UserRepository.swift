@@ -31,7 +31,7 @@ class UserRepository {
                                       "oldStepCount": 0,
                                       "stepCount": ["date": Date(), "count": 0],
                                       "numDroplets": 0]
-         
+        
         usersCollection.document(userID).setData(newUser){ err in
             if let err = err {
                 print("[createNewUser()]","Error writing document: \(err)")
@@ -51,7 +51,7 @@ class UserRepository {
                 print("[doesUserExist()]", error!)
                 return
             }
-                        
+            
             if let condition = document?.exists {
                 self.doesUserExsist = condition
             }
@@ -71,7 +71,7 @@ class UserRepository {
                 print("[fetchLoggedInUser()]", error!)
                 return
             }
-                  
+            
             do {
                 let decodedUser: User = try document!.data(as: User.self)
                 completion(decodedUser)
@@ -86,8 +86,6 @@ class UserRepository {
     
     func updateUser(userID: String, updates:[String: Any], completion: @escaping() -> Void){
         
-        print(updates)
-        
         // Get document reference
         let userRef = usersCollection.document(userID)
         
@@ -101,5 +99,18 @@ class UserRepository {
             
         }
         
+    }
+    
+    // Fetch all users except current user
+    func fetchAllUsers(userID: String, completion: @escaping() -> Void){
+        usersCollection.whereField("id", isNotEqualTo: userID).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    print("\(document.documentID) => \(document.data())")
+                }
+            }
+        }
     }
 }
