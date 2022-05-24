@@ -22,11 +22,11 @@ class FriendsViewModel: ObservableObject {
     // MARK: - Methods
     @objc
     func getFriends(){
-        let userID = UserService.shared.user.id
-        print("getfriends", userID)
-        userRepository.fetchAllUsers(userID: userID) { users in
-            print("friends",users)
-            self.friendsList = users
-        }
+//        let userID = UserService.shared.user.id
+//        print("getfriends", userID)
+//        userRepository.fetchAllUsers(userID: userID) { users in
+//            print("friends",users)
+//            self.friendsList = users
+//        }
     }
 }

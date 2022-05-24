@@ -25,7 +25,7 @@ class UserRepository {
     
     func createNewUser(_ user: User) {
         do {
-            try usersCollection.document(user.id).setData(from: user)
+            try usersCollection.document(user.id!).setData(from: user)
         } catch let err {
             print("[createNewUser()]","Error writing document: \(err)")
         }
@@ -56,6 +56,7 @@ class UserRepository {
         // Get document reference
         let userRef = usersCollection.document(userID)
         
+        
         // Check if user exists in database
         userRef.getDocument { document, error in
             
@@ -81,6 +82,10 @@ class UserRepository {
         // Get document reference
         let userRef = usersCollection.document(userID)
         
+        print("check",updates)
+        
+        return
+        
         userRef.updateData(updates) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -95,9 +100,7 @@ class UserRepository {
     
     // Fetch all users except current user
     func fetchAllUsers(userID: String, completion: @escaping (_ users: [User]) -> Void){
-        print("friends fetchALL 1")
         usersCollection.whereField("id", isNotEqualTo: userID).getDocuments { querySnapshot, error in
-            print("friends error", error)
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {

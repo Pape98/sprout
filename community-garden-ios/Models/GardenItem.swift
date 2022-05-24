@@ -6,13 +6,14 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
 enum GardenItemType: String {
     case tree1 = "tree1"
 }
 
 struct GardenItem: Identifiable, Codable {
-    var id: String = UUID().uuidString
+    @DocumentID var id: String? = UUID().uuidString
     var name: String
     var height: Int
 }
