@@ -12,40 +12,48 @@ struct ContentView: View {
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
+    @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     
     
     var body: some View {
         
         TabView {
-            Dashboard()
-                .tabItem {
-                    Image(systemName: "house")
-                    Text("Dashboard")
-                }
+            NavigationView {
+                Dashboard()
+                    .navigationBarTitle(Text("Dashboard"))
+                    .toolbar {
+                        Button("Sign out"){
+                            authViewModel.signOut()
+                        }
+                    }
+            }
+            .tabItem {
+                Image(systemName: "house")
+                Text("Dashboard")
+            }
             
-            StepView()
-                .tabItem {
-                    Image(systemName: "leaf")
-                    Text("My Garden")
-                }
+            NavigationView {
+                StepView()
+                    .navigationTitle("My Garden")
+            }
+            .tabItem {
+                Image(systemName: "leaf")
+                Text("My Garden")
+            }
             
-            StepView()
-                .tabItem {
-                    Image(systemName: "person.3")
-                    Text("Friends")
-                }
+            NavigationView {
+                FriendsList()
+                    .navigationTitle("Your Friends")
+            }
+            .tabItem {
+                Image(systemName: "person.3")
+                Text("Friends")
+            }
             
             
-            //            CustomButton(title: "Sign Out",
-            //                         backgroundColor: Color.red,
-            //                         fontColor: Color.white,
-            //                         action: authViewModel.signOut)
-            //            .frame(width:200)
-            //            .tabItem {
-            //                Image(systemName: "arrowshape.turn.up.right")
-            //                Text("Sign Out")
-            //            }
-        }.environmentObject(userViewModel)
+        }
+        .environmentObject(userViewModel)
+        .environmentObject(friendsViewModel)
     }
     
 }

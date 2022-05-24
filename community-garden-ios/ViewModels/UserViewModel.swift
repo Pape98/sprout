@@ -27,7 +27,7 @@ class UserViewModel: ObservableObject {
     // MARK: - Methods
     
     init(){
-        nc.addObserver(self, selector: #selector(self.initialSetup), name: Notification.Name("UserLoggedIn"), object: nil)
+        nc.addObserver(self, selector: #selector(self.initialSetup), name: Notification.Name(NotificationType.UserLoggedIn.rawValue), object: nil)
     }
     
     @objc

@@ -29,4 +29,8 @@ struct HKDataTypes {
     static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
 }
 
+enum NotificationType: String {
+    case UserLoggedIn = "UserLoggedIn"
+}
+
 

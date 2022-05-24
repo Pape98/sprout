@@ -34,33 +34,34 @@ struct Item: View {
 struct Dashboard: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
     
     let date = Date().getFormattedDate(format: "MMMM dd")
     
     var body: some View {
         
-        NavigationView {
-            VStack(){
-                Item(icon: "calendar", text: date, color: Color.green)
-                
-                if let stepCount = userViewModel.currentUser.stepCount {
-                    Item(icon: "figure.walk", text: "\(String(stepCount.count)) Steps", color: Color.yellow)
-                }
-                
-                if let user = userViewModel.currentUser {
-                    Item(icon: "drop", text: "\(String(user.numDroplets)) Droplets", color: Color.blue)
-                }
-                
-                Spacer()
+        VStack(){
+            Item(icon: "calendar", text: date, color: Color.green)
+            
+            if let stepCount = userViewModel.currentUser.stepCount {
+                Item(icon: "figure.walk", text: "\(String(stepCount.count)) Steps", color: Color.yellow)
             }
-            .navigationBarTitle(Text("Dashboard"))
+            
+            if let user = userViewModel.currentUser {
+                Item(icon: "drop", text: "\(String(user.numDroplets)) Droplets", color: Color.blue)
+            }
+            
+            Spacer()
         }
-        
     }
+    
 }
+
 
 struct Dashboard_Previews: PreviewProvider {
     static var previews: some View {
         Dashboard()
+            .environmentObject(UserViewModel())
+            .environmentObject(AuthenticationViewModel())
     }
 }

@@ -10,6 +10,9 @@
 		F0057381276F828F00EB487B /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* StepView.swift */; };
 		F0057383276F839E00EB487B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057382276F839E00EB487B /* ContentView.swift */; };
 		F005739227702F9B00EB487B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* CustomButton.swift */; };
+		F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F37283C4E1600A176D6 /* FriendsList.swift */; };
+		F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */; };
+		F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
@@ -45,6 +48,9 @@
 		F0057380276F828F00EB487B /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		F0057382276F839E00EB487B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F005739127702F9B00EB487B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F00A6F37283C4E1600A176D6 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
+		F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
+		F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItem.swift; sourceTree = "<group>"; };
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -110,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
+				F00A6F34283C4DDB00A176D6 /* Friends */,
 				F09B71E327724B260085C7AC /* StepView */,
 			);
 			path = Screens;
@@ -121,6 +128,14 @@
 				F005739127702F9B00EB487B /* CustomButton.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F00A6F34283C4DDB00A176D6 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				F00A6F37283C4E1600A176D6 /* FriendsList.swift */,
+			);
+			path = Friends;
 			sourceTree = "<group>";
 		};
 		F030B021283B2F4F0026F2E0 /* Dashboard */ = {
@@ -236,6 +251,7 @@
 			children = (
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
+				F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -256,6 +272,7 @@
 			children = (
 				F0964269275B510300F1CEC1 /* Health.swift */,
 				F096426B275B513100F1CEC1 /* User.swift */,
+				F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -403,6 +420,7 @@
 			files = (
 				F005739227702F9B00EB487B /* CustomButton.swift in Sources */,
 				F0057383276F839E00EB487B /* ContentView.swift in Sources */,
+				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
@@ -415,7 +433,9 @@
 				F0057381276F828F00EB487B /* StepView.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
+				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
+				F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */,
 				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,

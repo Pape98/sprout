@@ -30,6 +30,7 @@ class UserRepository {
                                       "email": user.profile!.email,
                                       "oldStepCount": 0,
                                       "stepCount": ["date": Date(), "count": 0],
+                                      "gardenItems": [],
                                       "numDroplets": 0]
         
         usersCollection.document(userID).setData(newUser){ err in
@@ -102,14 +103,25 @@ class UserRepository {
     }
     
     // Fetch all users except current user
-    func fetchAllUsers(userID: String, completion: @escaping() -> Void){
+    func fetchAllUsers(userID: String, completion: @escaping (_ users: [User]) -> Void){
+        print("friends fetchALL 1")
         usersCollection.whereField("id", isNotEqualTo: userID).getDocuments { querySnapshot, error in
+            print("friends error", error)
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
+                print("friends fetchALL 2")
+                var users:[User] = []
                 for document in querySnapshot!.documents {
-                    print("\(document.documentID) => \(document.data())")
+                    
+                    do {
+                        let decodedUser: User = try document.data(as: User.self)
+                        users.append(decodedUser)
+                    } catch {
+                        print("[fetchLoggedInUser()]", error)
+                    }
                 }
+                completion(users)
             }
         }
     }

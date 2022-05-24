@@ -62,7 +62,7 @@ class AuthenticationViewModel: ObservableObject {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
                 UserService.shared.user = result
-                NotificationCenter.default.post(name: Notification.Name("UserLoggedIn"), object: nil)
+                NotificationCenter.default.post(name: Notification.Name(NotificationType.UserLoggedIn.rawValue), object: nil)
             }
             
         }
