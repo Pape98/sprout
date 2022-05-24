@@ -57,7 +57,7 @@ class AuthenticationViewModel: ObservableObject {
     // Set user information from Google
     func setLoggedInUserProfile(){
         checkLogin()
-                
+        
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
@@ -94,7 +94,7 @@ class AuthenticationViewModel: ObservableObject {
                       // let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
                 else { return }
-                                
+                
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
                 
@@ -108,17 +108,27 @@ class AuthenticationViewModel: ObservableObject {
                         }
                         return
                     }
-                                        
+                    
                     guard let userID = Auth.auth().currentUser?.uid else { return }
-                                        
+                    
                     // Check user if already exists in database
                     self.userRepository.doesUserExist(userID: userID){
                         
                         
                         // If user does not exist, create a new account
                         if self.userRepository.doesUserExsist == false {
-                        
-                            self.userRepository.createNewUser(userID, user!)
+                            let user = user!
+                            
+                            let newUser = User(id: userID,
+                                               name: user.profile!.name,
+                                               email: user.profile!.email,
+                                               oldStepCount: 0,
+                                               stepCount: Step(date: Date(), count: 0),
+                                               numDroplets: 0
+//                                               gardenItems: [GardenItem(name: "tree1", height: 0)]
+                            )
+                            
+                            self.userRepository.createNewUser(newUser)
                         }
                         
                         self.setLoggedInUserProfile()

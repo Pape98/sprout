@@ -73,8 +73,9 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func resetOldStepCount(){
-        let updates = ["oldStepCount": 0]
+    // Resets step count and tree data
+    func resetUserData(){
+        let updates: [String: Any] = ["oldStepCount": 0, "gardenItems": [GardenItem(name:"tree1", height:0)]]
         userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
             self.getUser()
         }
@@ -94,7 +95,7 @@ class UserViewModel: ObservableObject {
         let storeStepCount = storeSteps[0]
         
         if userStepCount?.isSameDate(other: storeStepCount) == false {
-            resetOldStepCount()
+            resetUserData()
         }
         
         if userStepCount != storeStepCount {

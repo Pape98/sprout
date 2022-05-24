@@ -38,6 +38,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
+        
         let background = SKSpriteNode(imageNamed: "background")
         let treeTexture = SKTexture(imageNamed: "tree1")
         tree = SKSpriteNode(texture: treeTexture)

@@ -23,20 +23,11 @@ class UserRepository {
         usersCollection = Collections.shared.getCollectionReference("users")
     }
     
-    func createNewUser(_ userID: String, _ user: GIDGoogleUser) {
-        
-        let newUser: [String: Any] = ["id": userID, // Firebase ID
-                                      "name": user.profile!.name,
-                                      "email": user.profile!.email,
-                                      "oldStepCount": 0,
-                                      "stepCount": ["date": Date(), "count": 0],
-                                      "gardenItems": [],
-                                      "numDroplets": 0]
-        
-        usersCollection.document(userID).setData(newUser){ err in
-            if let err = err {
-                print("[createNewUser()]","Error writing document: \(err)")
-            }
+    func createNewUser(_ user: User) {
+        do {
+            try usersCollection.document(user.id).setData(from: user)
+        } catch let err {
+            print("[createNewUser()]","Error writing document: \(err)")
         }
     }
     

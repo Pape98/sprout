@@ -16,7 +16,8 @@ struct User: Identifiable, Codable, CustomStringConvertible {
     var oldStepCount = 0
     var stepCount: Step?
     var numDroplets: Int = 0
-    var gardenItems: [GardenItem] = []
+//    var gardenItems: [GardenItem] = []
+    
     
     var description: String {
         return "User(\(id),\(name),\(email),\(String(describing: stepCount?.count)),\(numDroplets)"
