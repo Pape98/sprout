@@ -39,6 +39,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
+        print("scene", userViewModel.currentUser.gardenItems)
+        
         let background = SKSpriteNode(imageNamed: "background")
         let treeTexture = SKTexture(imageNamed: "tree1")
         tree = SKSpriteNode(texture: treeTexture)
@@ -114,7 +116,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         droplet.name = NodeNames.droplet.rawValue
         addChild(droplet)
         
-        userViewModel.decreaseNumDroplets()
+        userViewModel.handleDropletRelease()
     }
     
     

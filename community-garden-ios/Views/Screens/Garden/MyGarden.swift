@@ -8,7 +8,7 @@
 import SwiftUI
 import SpriteKit
 
-struct StepView: View {
+struct MyGarden: View {
     
     
     @EnvironmentObject var userViewModel: UserViewModel
@@ -55,7 +55,7 @@ struct StepView_Previews: PreviewProvider {
                                        Step(date: Date.now, count: 100)]
     
     static var previews: some View {
-        StepView()
+        MyGarden()
         
     }
 }

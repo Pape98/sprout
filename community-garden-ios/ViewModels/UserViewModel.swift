@@ -30,8 +30,7 @@ class UserViewModel: ObservableObject {
         nc.addObserver(self, selector: #selector(self.initialSetup), name: Notification.Name(NotificationType.UserLoggedIn.rawValue), object: nil)
     }
     
-    @objc
-    func initialSetup(){
+    @objc func initialSetup(){
         setupStepsListener()
         getUser()
         computeDroplets()
@@ -39,7 +38,7 @@ class UserViewModel: ObservableObject {
     
     func getUser() {
         let user = UserService.shared.user
-        self.userRepository.fetchLoggedInUser(userID: user.id!) { user in
+        self.userRepository.fetchLoggedInUser(userID: user.id) { user in
             self.currentUser = user
             UserService.shared.user = user
         }
@@ -59,25 +58,24 @@ class UserViewModel: ObservableObject {
         guard stepCountDifference >= RATIO_STEPS_DROPLET && currStepCount < MAX_NUM_STEPS else { return }
         let newNumberOfDroplets = Int(stepCountDifference / RATIO_STEPS_DROPLET) + user.numDroplets
         
-        userRepository.updateUser(userID: user.id!, updates: ["numDroplets": newNumberOfDroplets,
+        userRepository.updateUser(userID: user.id, updates: ["numDroplets": newNumberOfDroplets,
                                                              "oldStepCount": currStepCount - (stepCountDifference % 200) ]) {
             self.getUser()
         }
         
     }
     
-    func decreaseNumDroplets(){
+    func handleDropletRelease(){
         let newNumDroplets = currentUser.numDroplets - 1
-        userRepository.updateUser(userID: currentUser.id!, updates: ["numDroplets": newNumDroplets]) {
+        userRepository.updateUser(userID: currentUser.id, updates: ["numDroplets": newNumDroplets]) {
             self.getUser()
         }
     }
     
     // Resets step count and tree data
     func resetUserData(){
-        print("resetUser")
-        let updates: [String: Any] = ["oldStepCount": 0]
-        userRepository.updateUser(userID: UserService.shared.user.id!, updates: updates) {
+        let updates: [String: Any] = ["oldStepCount": 0, "gardenItems": [["id": UUID().uuidString, "name": "tree1", "height": 0]]]
+        userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
             self.getUser()
         }
     }
@@ -92,16 +90,14 @@ class UserViewModel: ObservableObject {
         let userStepCount = UserService.shared.user.stepCount
         guard storeSteps.isEmpty == false else { return }
      
-        
         let storeStepCount = storeSteps[0]
-        
 
         if userStepCount?.isSameDate(other: storeStepCount) == false {
             resetUserData()
         }
         
         if userStepCount != storeStepCount {
-            let userID = UserService.shared.user.id!
+            let userID = UserService.shared.user.id
             // Perform the update operation
 
             self.userRepository.updateUser(userID: userID,

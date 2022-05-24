@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F0057381276F828F00EB487B /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* StepView.swift */; };
+		F0057381276F828F00EB487B /* MyGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* MyGarden.swift */; };
 		F0057383276F839E00EB487B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057382276F839E00EB487B /* ContentView.swift */; };
 		F005739227702F9B00EB487B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* CustomButton.swift */; };
 		F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F37283C4E1600A176D6 /* FriendsList.swift */; };
 		F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */; };
 		F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */; };
+		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
+		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
@@ -45,12 +47,14 @@
 		47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_community_garden_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E97010C2190A08C6A6A2D8F /* Pods-community-garden-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.release.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.release.xcconfig"; sourceTree = "<group>"; };
 		E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.debug.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		F0057380276F828F00EB487B /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
+		F0057380276F828F00EB487B /* MyGarden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarden.swift; sourceTree = "<group>"; };
 		F0057382276F839E00EB487B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F005739127702F9B00EB487B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		F00A6F37283C4E1600A176D6 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
 		F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItem.swift; sourceTree = "<group>"; };
+		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
+		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -117,7 +121,7 @@
 			children = (
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
 				F00A6F34283C4DDB00A176D6 /* Friends */,
-				F09B71E327724B260085C7AC /* StepView */,
+				F09B71E327724B260085C7AC /* Garden */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -149,6 +153,7 @@
 		F038369F2839F7AE00D444E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -179,12 +184,12 @@
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F09B71E327724B260085C7AC /* StepView */ = {
+		F09B71E327724B260085C7AC /* Garden */ = {
 			isa = PBXGroup;
 			children = (
-				F0057380276F828F00EB487B /* StepView.swift */,
+				F0057380276F828F00EB487B /* MyGarden.swift */,
 			);
-			path = StepView;
+			path = Garden;
 			sourceTree = "<group>";
 		};
 		F0B32C93275AF77700C714A2 = {
@@ -252,6 +257,7 @@
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
 				F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */,
+				F00A6F3D283C957800A176D6 /* GardenViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -424,13 +430,14 @@
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
+				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
-				F0057381276F828F00EB487B /* StepView.swift in Sources */,
+				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
@@ -439,6 +446,7 @@
 				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,
+				F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 				F065B17D2825C8B700F1E1ED /* GameScene.swift in Sources */,
 			);

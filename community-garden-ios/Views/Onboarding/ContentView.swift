@@ -33,7 +33,7 @@ struct ContentView: View {
             }
             
             NavigationView {
-                StepView()
+                MyGarden()
                     .navigationTitle("My Garden")
             }
             .tabItem {

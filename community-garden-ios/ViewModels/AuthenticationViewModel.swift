@@ -62,7 +62,7 @@ class AuthenticationViewModel: ObservableObject {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
                 UserService.shared.user = result
-                NotificationCenter.default.post(name: Notification.Name(NotificationType.UserLoggedIn.rawValue), object: nil)
+                NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
             }
             
         }
@@ -124,7 +124,8 @@ class AuthenticationViewModel: ObservableObject {
                                                email: user.profile!.email,
                                                oldStepCount: 0,
                                                stepCount: Step(date: Date(), count: 0),
-                                               numDroplets: 0
+                                               numDroplets: 0,
+                                               gardenItems: [GardenItem(name: "tree1", height: 0)]
                             )
                             
                             self.userRepository.createNewUser(newUser)

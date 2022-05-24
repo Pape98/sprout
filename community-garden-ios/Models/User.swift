@@ -6,21 +6,16 @@
 //
 
 import Foundation
-import FirebaseFirestoreSwift
 
-struct User: Identifiable, Codable, CustomStringConvertible {
+struct User: Identifiable, Codable {
 
     // Profile Info
-    @DocumentID var id: String? = ""
+    var id: String = ""
     var name: String = ""
     var email: String = ""
     var oldStepCount = 0
     var stepCount: Step?
     var numDroplets: Int = 0
-    
-    
-    var description: String {
-        return "User(\(id!),\(name),\(email),\(String(describing: stepCount?.count)),\(numDroplets)"
-    }
+    var gardenItems: [GardenItem] = []
     
 }
