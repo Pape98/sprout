@@ -24,8 +24,6 @@ class UserRepository {
     }
     
     func createNewUser(_ user: User) {
-        
-        print(user)
         do {
             try usersCollection.document(user.id).setData(from: user)
         } catch let err {

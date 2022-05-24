@@ -125,7 +125,7 @@ class AuthenticationViewModel: ObservableObject {
                                                oldStepCount: 0,
                                                stepCount: Step(date: Date(), count: 0),
                                                numDroplets: 0,
-                                               gardenItems: [GardenItem(name: "tree1", height: 0)]
+                                               gardenItems: [GardenItem(name: "tree1", height: 0.03)]
                             )
                             
                             self.userRepository.createNewUser(newUser)

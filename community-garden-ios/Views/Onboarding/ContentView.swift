@@ -9,11 +9,10 @@ import SwiftUI
 
 struct ContentView: View {
     
-    
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
-    
+    @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
     
     var body: some View {
         
@@ -54,6 +53,7 @@ struct ContentView: View {
         }
         .environmentObject(userViewModel)
         .environmentObject(friendsViewModel)
+        .environmentObject(gardenViewModel)
     }
     
 }

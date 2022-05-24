@@ -12,7 +12,12 @@ struct FriendView: View {
     var friend: User
     
     var body: some View {
-        Text(friend.name)
+        VStack{
+            Text(friend.name)
+            Text("Droplets: \(friend.numDroplets)")
+            Text("Steps: \(friend.stepCount!.count)")
+        }
+        
     }
 }
 

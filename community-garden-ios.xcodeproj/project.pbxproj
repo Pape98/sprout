@@ -153,7 +153,6 @@
 		F038369F2839F7AE00D444E4 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -178,6 +177,7 @@
 		F0964271275C25AF00F1CEC1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 				F0964272275C25C800F1CEC1 /* Constants.swift */,
 				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
 			);

@@ -7,6 +7,12 @@
 
 import Foundation
 
+
+enum NotificationType: String {
+    case UserLoggedIn = "UserLoggedIn"
+    case FetchUser = "FetchUser"
+}
+
 class NotificationSender {
     
     static func send(type: String){

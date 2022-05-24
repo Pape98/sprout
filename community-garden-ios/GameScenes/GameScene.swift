@@ -67,7 +67,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tree.physicsBody?.contactTestBitMask = CollisionTypes.droplet.rawValue
         tree.physicsBody?.isDynamic = false
         
-        tree.setScale(0)
+        let treeHeight = CGFloat(UserService.shared.user.gardenItems[0].height)
+        tree.setScale(treeHeight)
+        print(tree.xScale, tree.yScale)
                 
         let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
         tree.run(treeAction)
@@ -116,7 +118,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         droplet.name = NodeNames.droplet.rawValue
         addChild(droplet)
         
-        userViewModel.handleDropletRelease()
+        GardenViewModel.shared.handleDropletRelease()
     }
     
     

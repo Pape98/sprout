@@ -14,5 +14,5 @@ enum GardenItemType: String {
 struct GardenItem: Identifiable, Codable {
     var id: String = UUID().uuidString
     var name: String
-    var height: Int
+    var height: Double
 }

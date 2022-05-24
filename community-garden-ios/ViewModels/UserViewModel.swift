@@ -28,6 +28,7 @@ class UserViewModel: ObservableObject {
     
     init(){
         nc.addObserver(self, selector: #selector(self.initialSetup), name: Notification.Name(NotificationType.UserLoggedIn.rawValue), object: nil)
+        nc.addObserver(self, selector: #selector(self.getUser), name: Notification.Name(NotificationType.FetchUser.rawValue), object: nil)
     }
     
     @objc func initialSetup(){
@@ -36,7 +37,7 @@ class UserViewModel: ObservableObject {
         computeDroplets()
     }
     
-    func getUser() {
+    @objc func getUser() {
         let user = UserService.shared.user
         self.userRepository.fetchLoggedInUser(userID: user.id) { user in
             self.currentUser = user
@@ -64,17 +65,10 @@ class UserViewModel: ObservableObject {
         }
         
     }
-    
-    func handleDropletRelease(){
-        let newNumDroplets = currentUser.numDroplets - 1
-        userRepository.updateUser(userID: currentUser.id, updates: ["numDroplets": newNumDroplets]) {
-            self.getUser()
-        }
-    }
-    
+        
     // Resets step count and tree data
     func resetUserData(){
-        let updates: [String: Any] = ["oldStepCount": 0, "gardenItems": [["id": UUID().uuidString, "name": "tree1", "height": 0]]]
+        let updates: [String: Any] = ["oldStepCount": 0, "gardenItems": [["id": UUID().uuidString, "name": "tree1", "height": 0.03]]]
         userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
             self.getUser()
         }
