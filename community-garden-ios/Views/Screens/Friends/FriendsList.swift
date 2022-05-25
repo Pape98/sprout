@@ -6,19 +6,43 @@
 //
 
 import SwiftUI
+import SpriteKit
 
-struct FriendView: View {
+struct FriendGardenView: View {
     
     var friend: User
     
-    var body: some View {
-        VStack{
-            Text(friend.name)
-            Text("Droplets: \(friend.numDroplets)")
-            Text("Steps: \(friend.stepCount!.count)")
-        }
+    var scene: SKScene {
+        let scene = FriendGardenScene()
+        scene.friend = friend
+        scene.scaleMode = SKSceneScaleMode.resizeFill
+        return scene
         
     }
+    
+    var body: some View {
+        ZStack{
+            SpriteView(scene: scene)
+                .edgesIgnoringSafeArea(.top)
+            VStack {
+                HStack {
+                    
+                    if let stepCount = friend.stepCount{
+                        Text("Steps: \(stepCount.count)")
+
+                    }
+                    Spacer()
+                    
+                    Text("Droplets: \(friend.numDroplets)")
+                    
+                }
+                .padding(20)
+                Spacer()
+            }
+            
+        }
+    }
+    
 }
 
 struct FriendsList: View {
@@ -27,7 +51,7 @@ struct FriendsList: View {
     
     var body: some View {
         List(friendsViewModel.friendsList){ friend in
-            NavigationLink(destination: FriendView(friend: friend)) {
+            NavigationLink(destination: FriendGardenView(friend: friend)) {
                 Text(friend.name)
             }
         }

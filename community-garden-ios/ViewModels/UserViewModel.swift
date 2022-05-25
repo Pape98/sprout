@@ -56,7 +56,7 @@ class UserViewModel: ObservableObject {
                 
         // Making sure step count has a difference of at least 200 and total is less than 10,000
         let stepCountDifference = currStepCount - oldStepCount
-        guard stepCountDifference >= RATIO_STEPS_DROPLET && currStepCount < MAX_NUM_STEPS else { return }
+        guard stepCountDifference >= RATIO_STEPS_DROPLET && oldStepCount < MAX_NUM_STEPS else { return }
         let newNumberOfDroplets = Int(stepCountDifference / RATIO_STEPS_DROPLET) + user.numDroplets
         
         userRepository.updateUser(userID: user.id, updates: ["numDroplets": newNumberOfDroplets,

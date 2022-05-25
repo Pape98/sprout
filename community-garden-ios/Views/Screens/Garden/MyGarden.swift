@@ -14,7 +14,7 @@ struct MyGarden: View {
     @EnvironmentObject var userViewModel: UserViewModel
     
     var scene: SKScene {
-        let scene = GameScene()
+        let scene = MyGardenScene()
         scene.scaleMode = .resizeFill
         return scene
     }
@@ -39,10 +39,7 @@ struct MyGarden: View {
                 Spacer()
             }
             
-            
         }
-        
-        
         
     }
 }

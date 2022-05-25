@@ -23,7 +23,6 @@ class FriendsViewModel: ObservableObject {
     @objc func getFriends(){
         let userID = UserService.shared.user.id
         userRepository.fetchAllUsers(userID: userID) { users in
-            print("friends",users)
             self.friendsList = users
         }
     }

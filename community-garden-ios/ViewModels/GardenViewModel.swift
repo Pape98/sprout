@@ -17,8 +17,7 @@ class GardenViewModel: ObservableObject {
         let currentUser: User = UserService.shared.user
         let newNumDroplets = currentUser.numDroplets - 1
         let gardenItem = currentUser.gardenItems.first
-        
-        print(UserService.shared.user)
+    
         guard  gardenItem != nil else { return }
         
         let updates: [String: Any] = ["numDroplets": newNumDroplets,

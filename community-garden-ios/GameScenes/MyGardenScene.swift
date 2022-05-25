@@ -17,7 +17,7 @@ enum NodeNames: String {
     case droplet = "droplet"
 }
 
-class GameScene: SKScene, SKPhysicsContactDelegate {
+class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     let TREE_SCALE_FACTOR = 0.03
     let SCALE_DURATION = 2.5
@@ -28,7 +28,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     let userViewModel = UserViewModel.shared
     
-    var treeScale = 0.5
     var clouds = ["cloud1", "cloud2"]
     var dropletSoundEffect: SKAudioNode!
     
@@ -38,9 +37,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
-        
-        print("scene", userViewModel.currentUser.gardenItems)
-        
+                
         let background = SKSpriteNode(imageNamed: "background")
         let treeTexture = SKTexture(imageNamed: "tree1")
         tree = SKSpriteNode(texture: treeTexture)
@@ -68,10 +65,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         tree.physicsBody?.isDynamic = false
         
         let treeHeight = CGFloat(UserService.shared.user.gardenItems[0].height)
-        tree.setScale(treeHeight)
-        print(tree.xScale, tree.yScale)
-                
-        let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
+        tree.setScale(0)
+        let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
         tree.run(treeAction)
         addChild(tree)
         
@@ -162,8 +157,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func handleCollision(droplet: SKNode){
-        treeScale += TREE_SCALE_FACTOR
-        let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
+        let treeHeight = CGFloat(UserService.shared.user.gardenItems[0].height) + TREE_SCALE_FACTOR
+        let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
         tree.run(treeAction)
         droplet.removeFromParent()
     }
