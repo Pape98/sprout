@@ -18,6 +18,9 @@
 		F0149D56284EAD1400782D27 /* PickerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D55284EAD1400782D27 /* PickerCardView.swift */; };
 		F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D58284ECDC900782D27 /* ButtonStyling.swift */; };
 		F0149D5B284ED5ED00782D27 /* CircledItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5A284ED5ED00782D27 /* CircledItem.swift */; };
+		F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5E284F181600782D27 /* GardenInfoCard.swift */; };
+		F0149D61284F184000782D27 /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D60284F184000782D27 /* DashboardCard.swift */; };
+		F0149D63284F18B300782D27 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D62284F18B300782D27 /* IconButton.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
@@ -62,6 +65,9 @@
 		F0149D55284EAD1400782D27 /* PickerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCardView.swift; sourceTree = "<group>"; };
 		F0149D58284ECDC900782D27 /* ButtonStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyling.swift; sourceTree = "<group>"; };
 		F0149D5A284ED5ED00782D27 /* CircledItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledItem.swift; sourceTree = "<group>"; };
+		F0149D5E284F181600782D27 /* GardenInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoCard.swift; sourceTree = "<group>"; };
+		F0149D60284F184000782D27 /* DashboardCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCard.swift; sourceTree = "<group>"; };
+		F0149D62284F18B300782D27 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -173,6 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				F030B022283B2F660026F2E0 /* Dashboard.swift */,
+				F0149D5E284F181600782D27 /* GardenInfoCard.swift */,
+				F0149D60284F184000782D27 /* DashboardCard.swift */,
+				F0149D62284F18B300782D27 /* IconButton.swift */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -468,6 +477,7 @@
 				F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
+				F0149D63284F18B300782D27 /* IconButton.swift in Sources */,
 				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
@@ -476,9 +486,11 @@
 				F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */,
 				F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */,
 				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
+				F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,
 				F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */,
+				F0149D61284F184000782D27 /* DashboardCard.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 				F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */,
 			);
