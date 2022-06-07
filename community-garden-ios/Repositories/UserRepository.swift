@@ -100,7 +100,6 @@ class UserRepository {
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {
-                print("friends fetchALL 2")
                 var users:[User] = []
                 for document in querySnapshot!.documents {
                     

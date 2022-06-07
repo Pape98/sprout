@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Sun.svg",
+      "filename" : "inro-bg-1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "intro-bg-2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "intro-bg-3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

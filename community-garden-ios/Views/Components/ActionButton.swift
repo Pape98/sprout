@@ -1,5 +1,5 @@
 //
-//  CustomButton.swift
+//  ActionButton.swift
 //  community-garden-ios
 //
 //  Created by Pape Sow Traore on 12/19/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CustomButton: View {
+struct ActionButton: View {
     
     let title: String
     var backgroundColor: Color = Color.gray
@@ -19,19 +19,21 @@ struct CustomButton: View {
             action()
         } label: {
             Text(title)
+                .bold()
                 .frame(minWidth: 0, maxWidth: .infinity)
                 .foregroundColor(fontColor)
                 .padding()
                 .background(backgroundColor)
-                .cornerRadius(20)
+                .cornerRadius(100)
                 .contentShape(Rectangle())
+            
         }
     }
 }
 
-struct CustomButton_Previews: PreviewProvider {
+struct ActionButton_Previews: PreviewProvider {
     static var previews: some View {
-        CustomButton(title: "Button Text",
+        ActionButton(title: "Button Text",
                      action:  {})
         
     }

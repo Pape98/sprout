@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "image 2.svg",
+      "filename" : "Tree 06-1linden.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "Tree 06-1linden (1).png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "Tree 06-1linden (2).png",
       "idiom" : "universal",
       "scale" : "3x"
     }

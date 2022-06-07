@@ -57,4 +57,21 @@ extension String {
         
         return nil
     }
+    
+    func capitalizeFirstLetter() -> String {
+            return prefix(1).capitalized + dropFirst()
+        }
+
+        mutating func capitalizeFirstLetter() {
+            self = self.capitalizeFirstLetter()
+        }
+}
+
+extension Color {
+    static let pine = Color("pine")
+    static let greenVogue = Color("green-vogue")
+    static let seaGreen = Color("sea-green")
+    static let oliveGreen = Color("olive-green")
+    static let everglade = Color("everglade")
+    static let appleGreen = Color("apple-green")
 }

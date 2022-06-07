@@ -53,6 +53,7 @@ struct Dashboard: View {
             
             Spacer()
         }
+        .navigationBarHidden(true)
     }
     
 }

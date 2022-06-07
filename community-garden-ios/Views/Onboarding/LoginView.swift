@@ -16,71 +16,62 @@ struct LoginView: View {
     
     var body: some View {
         
-        ZStack {
-            
-            // Sun
-            
-            ZStack(alignment: .bottomTrailing) {
-                Image("flower-pot")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 300)
-                
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-            
-            
-            // Leaves background
-            
+        
+        GeometryReader { geometry in
             ZStack {
-                Image("leaves")
+                
+                // Background Image
+                Image("intro-bg")
                     .resizable()
-                    .scaleEffect()
-                    .frame(maxHeight: 500)
-           
-            }
-            
-            // Text and Button
-            
-            VStack {
-                Text("Log-in/ Sign-Up")
-                    .font(.title)
-                    .bold()
-                    .padding()
+                    .scaledToFill()
                 
-                // Login Button
+                // Content
                 
-                CustomButton(title: "Sign In with Google",
-                             backgroundColor: Color(red: 0.8667, green: 0.7176, blue: 0.4431),
-                             fontColor: Color.black
-                ) {
-                    authenticationModel.signIn()
+                VStack {
+                                   
+                    Spacer()
+                        .frame(height: geometry.size.height * 0.1)
+                    VStack(spacing: 50) {
+                        VStack {
+                            Image("sprout-logo")
+                                .resizable()
+                                .scaledToFit()
+                            
+                            Text("Track Together")
+                                .font(.title)
+                                .foregroundColor(.pine)
+                        }
+                        
+                        // Sign-In Button
+                        Button {
+                            authenticationModel.signIn()
+                        } label: {
+                            HStack {
+                                Text("Sign in with Google")
+                                    .font(.title2)
+                                    .foregroundColor(Color.white)
+                                Image("google-logo")
+                            }
+                        }
+                        .padding(20)
+                        .background(Color.greenVogue)
+                        .cornerRadius(10)
+                        
+                        // Error Message
+                        
+                        if let errorMessage = authenticationModel.errorMessage {
+                            Text(errorMessage)
+                                .foregroundColor(.red)
+                        }
+                    }
+                    .frame(width: geometry.size.width * 0.8)
+                    
+                    Spacer()
                 }
-                .padding()
-                .frame(maxWidth: 250)
                 
-                
-                // Error Message
-                
-                if let errorMessage = authenticationModel.errorMessage {
-                    Text(errorMessage)
-                        .foregroundColor(.red)
-                }
-                
-
-            }
-            
-            // Flower Pot
-            ZStack(alignment: .bottomTrailing) {
-                Image("sun")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 200)
-                
-            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-       
-            
-        }.ignoresSafeArea()
-
+            }.ignoresSafeArea()
+        }
+        
     }
 }
 

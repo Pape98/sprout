@@ -10,18 +10,25 @@ import SwiftUI
 struct LaunchView: View {
     
     @EnvironmentObject var authModel: AuthenticationViewModel
+    @StateObject var userViewModel: UserViewModel = UserViewModel.shared
+    @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
+    @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
     
     var body: some View {
         
-        if authModel.isLoggedIn == false {
-            // Show login view
-            LoginView()
-            
-        } else {
-            // Show logged in view (home view)
-            ContentView()
+        Group {
+            if authModel.isLoggedIn == false {
+                // Show login view
+                LoginView()
+                
+            } else {
+                // Show logged in view (home view)
+                TreePicker()
+            }
         }
-        
+        .environmentObject(userViewModel)
+        .environmentObject(friendsViewModel)
+        .environmentObject(gardenViewModel)
     }
 }
 
