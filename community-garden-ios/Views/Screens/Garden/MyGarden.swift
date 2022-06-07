@@ -20,27 +20,62 @@ struct MyGarden: View {
     }
     
     var body: some View {
+//
+//        GeometryReader { geometry in
+//
+//            // Statistics
+//            ZStack {
+//                VStack(alignment: .leading) {
+//                    Stats(image: "droplet-icon", value:5)
+//                    Stats(image: "step-icon", value: 1247)
+//                }
+//                .padding()
+//            }
+//            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
+//            .screenBackground("sky-bg")
+//
+//
+//            // Ground
+//            VStack {
+//                Image("ground")
+//                    .resizable()
+//                    .aspectRatio(contentMode: .fit)
+//            }.frame(height: geometry.size.height, alignment: .bottom)
+//
+//            // Scene View
+//            SpriteView(scene: scene, options: [.allowsTransparency])
+//                .edgesIgnoringSafeArea(.top)
+//        }
         
-        ZStack{
-            SpriteView(scene: scene)
-                .edgesIgnoringSafeArea(.top)
+        ZStack {
+            Image("sky-bg")
+                .ignoresSafeArea()
             VStack {
-                HStack {
-                    if let stepCount = userViewModel.currentUser.stepCount {
-                        Text("Steps: \(stepCount.count)")
-                    }
-                    Spacer()
-                    
-                    if let user = userViewModel.currentUser {
-                        Text("Droplets: \(user.numDroplets)")
-                    }
-                }
-                .padding(20)
-                Spacer()
+                Text("Pape Sow Traore")
             }
-            
         }
         
+    }
+}
+
+struct Stats: View {
+    
+    var image: String
+    var value: Int
+    var imageSize: CGFloat {
+        40.0
+    }
+    
+    var body: some View {
+        HStack{
+            Image(image)
+                .resizable()
+                .frame(maxWidth: imageSize, maxHeight: imageSize)
+            Text("\(value)")
+                .font(.title2)
+                .bold()
+                .foregroundColor(.seaGreen)
+        }
     }
 }
 

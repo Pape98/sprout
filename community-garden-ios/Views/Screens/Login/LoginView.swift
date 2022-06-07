@@ -16,40 +16,28 @@ struct LoginView: View {
     @State var lastName = ""
     
     var body: some View {
-        
-        
         GeometryReader { geometry in
-            
-            
-            // Content
-            
-            VStack {
+            ZStack {
+                Image("intro-bg")
+                    .resizable()
+                    .ignoresSafeArea()
                 
-                Spacer()
-                    .frame(height: geometry.size.height * 0.1)
-                VStack(spacing: 50) {
+                VStack {
+                    Image("sprout-logo")
+                        .resizable()
+                        .scaledToFit()
                     
-                    Group {
-                        VStack {
-                            Image("sprout-logo")
-                                .resizable()
-                                .scaledToFit()
-                            
-                            
-                            Text("Track Together")
-                                .font(.title)
-                                .foregroundColor(.pine)
-                        }
+                    
+                    Text("Track Together")
+                        .font(.title)
+                        .foregroundColor(.pine)
+                        .offset(y:-35)
+                    
+                    if (authenticationModel.isLoggedIn == false) {
+                        // Sign-In Button
+                        AuthButton()
                         
-                        if (authenticationModel.isLoggedIn == false) {
-                            // Sign-In Button
-                            AuthButton()
-                            
-                        }
                     }
-                    .offset(y: CGFloat(yOffset))
-                    .animation(.linear(duration: 2.0).delay(1.5), value: yOffset)
-                    
                     
                     // Error Message
                     if let errorMessage = authenticationModel.errorMessage {
@@ -58,17 +46,10 @@ struct LoginView: View {
                     }
                 }
                 .frame(width: geometry.size.width * 0.8)
-                
-                Spacer()
-            }.frame(width: geometry.size.width)
-            
+                .offset(y: geometry.size.height * -0.1)
+            }
         }
-        .screenBackground("intro-bg")
-        .ignoresSafeArea()
-        
     }
-    
-    
 }
 
 struct AuthButton: View {

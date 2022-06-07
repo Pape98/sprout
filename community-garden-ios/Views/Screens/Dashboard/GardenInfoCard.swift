@@ -50,7 +50,7 @@ struct GardenInfoCard: View {
                         .opacity(0.9)
                         .shadow(radius: 3)
                     
-                    Image("step-icon")
+                    Image("steps-trace")
                 }
             }
         }

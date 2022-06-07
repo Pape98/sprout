@@ -37,48 +37,37 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     
     override func didMove(to view: SKView) {
-                
-        let background = SKSpriteNode(imageNamed: "background")
-        let treeTexture = SKTexture(imageNamed: "tree1")
+        
+       // Background
+        self.backgroundColor = .clear
+        let treeTexture = SKTexture(imageNamed: "oak")
         tree = SKSpriteNode(texture: treeTexture)
-        
-        // Background
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        background.blendMode = .replace
-        background.zPosition = -1
-        addChild(background)
-        
+
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
-        
-        
+
+
         // Tree
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y:0)
         tree.name = NodeNames.tree.rawValue
+//
+//
+//        let physicsBodySize = CGSize(width: tree.size.width, height: tree.size.height * 2)
+//        tree.physicsBody = SKPhysicsBody(texture: treeTexture, size: physicsBodySize)
+//        tree.physicsBody?.categoryBitMask = CollisionTypes.tree.rawValue
+//        tree.physicsBody?.contactTestBitMask = CollisionTypes.droplet.rawValue
+//        tree.physicsBody?.isDynamic = false
+//
+//        let treeHeight = CGFloat(UserService.shared.user.gardenItems[0].height)
+//        tree.setScale(0)
+//        let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
+//        tree.run(treeAction)
+//        addChild(tree)
+//
+//        // Timer
+//        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
         
-        
-        let physicsBodySize = CGSize(width: tree.size.width, height: tree.size.height * 2)
-        tree.physicsBody = SKPhysicsBody(texture: treeTexture, size: physicsBodySize)
-        tree.physicsBody?.categoryBitMask = CollisionTypes.tree.rawValue
-        tree.physicsBody?.contactTestBitMask = CollisionTypes.droplet.rawValue
-        tree.physicsBody?.isDynamic = false
-        
-        let treeHeight = CGFloat(UserService.shared.user.gardenItems[0].height)
-        tree.setScale(0)
-        let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
-        tree.run(treeAction)
-        addChild(tree)
-        
-        // Timer
-        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
-        
-        // Sound Effect
-//        if let effectURL = Bundle.main.url(forResource: "dropletSoundEffect", withExtension: "mp3") {
-//            print(effectURL)
-//            dropletSoundEffect = SKAudioNode(url: effectURL)
-//            addChild(dropletSoundEffect)
-//        }
     }
     
     override func update(_ currentTime: TimeInterval) {
