@@ -13,16 +13,21 @@ struct LaunchView: View {
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
+    @State var yOffset = 0
     
     var body: some View {
         
         Group {
             if authModel.isLoggedIn == false {
                 // Show login view
-                LoginView()
+                LoginView(yOffset: $yOffset)
                 
             } else {
-                // Show logged in view (home view)
+                // Show dashboard or onboarding view
+                
+//                LoginView(yOffset: $yOffset).onAppear {
+//                    yOffset = 1000
+//                }
                 TreePicker()
             }
         }

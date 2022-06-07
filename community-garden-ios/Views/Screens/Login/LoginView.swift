@@ -10,6 +10,7 @@ import SwiftUI
 struct LoginView: View {
     
     @EnvironmentObject var authenticationModel: AuthenticationViewModel
+    @Binding var yOffset: Int
     @State var email = ""
     @State var firstName = ""
     @State var lastName = ""
@@ -28,37 +29,46 @@ struct LoginView: View {
                 // Content
                 
                 VStack {
-                                   
+                    
                     Spacer()
                         .frame(height: geometry.size.height * 0.1)
                     VStack(spacing: 50) {
-                        VStack {
-                            Image("sprout-logo")
-                                .resizable()
-                                .scaledToFit()
-                            
-                            Text("Track Together")
-                                .font(.title)
-                                .foregroundColor(.pine)
-                        }
                         
-                        // Sign-In Button
-                        Button {
-                            authenticationModel.signIn()
-                        } label: {
-                            HStack {
-                                Text("Sign in with Google")
-                                    .font(.title2)
-                                    .foregroundColor(Color.white)
-                                Image("google-logo")
+                        Group {
+                            VStack {
+                                Image("sprout-logo")
+                                    .resizable()
+                                    .scaledToFit()
+                                
+                                
+                                Text("Track Together")
+                                    .font(.title)
+                                    .foregroundColor(.pine)
+                            }
+                            
+                            if (authenticationModel.isLoggedIn == false) {
+                                // Sign-In Button
+                                
+                                Button {
+                                    authenticationModel.signIn()
+                                } label: {
+                                    HStack {
+                                        Text("Sign in with Google")
+                                            .font(.title2)
+                                            .foregroundColor(Color.white)
+                                        Image("google-logo")
+                                    }
+                                }
+                                .padding(20)
+                                .background(Color.greenVogue)
+                                .cornerRadius(10)
                             }
                         }
-                        .padding(20)
-                        .background(Color.greenVogue)
-                        .cornerRadius(10)
+                        .offset(y: CGFloat(yOffset))
+                        .animation(.linear(duration: 2.0).delay(1.5), value: yOffset)
+                    
                         
                         // Error Message
-                        
                         if let errorMessage = authenticationModel.errorMessage {
                             Text(errorMessage)
                                 .foregroundColor(.red)
@@ -76,8 +86,11 @@ struct LoginView: View {
 }
 
 struct LoginView_Previews: PreviewProvider {
+    @State static var yOffset = 0
+    
     static var previews: some View {
-        LoginView()
+        
+        LoginView(yOffset: $yOffset)
             .environmentObject(AuthenticationViewModel())
     }
 }

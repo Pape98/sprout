@@ -7,36 +7,13 @@
 
 import SwiftUI
 
-struct Item: View {
-    var icon: String
-    var text: String
-    var color: Color
-    
-    let width = UIScreen.main.bounds.width - 20
-    
-    var body: some View {
-        HStack{
-            Image(systemName: icon)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .padding(30)
-            Spacer()
-            Text(text)
-                .padding()
-                .font(.title)
-        }.frame(width: width, height: 120)
-            .background(color)
-            .cornerRadius(15)
-        
-    }
-}
-
 struct Dashboard: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     
     let date = Date().getFormattedDate(format: "MMMM dd")
+    let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         
@@ -56,38 +33,30 @@ struct Dashboard: View {
                     .bodyStyle()
                 
                 
-                // Card One
-                ZStack(alignment: .leading) {
-                    
-                    // Steps
-                    HStack {
-                        VStack(alignment: .leading) {
-                            Text("1247")
-                                .bold()
-                                .headerStyle()
-                            Text("Steps")
-                                .bold()
-                                .bodyStyle()
-                        }
-                        
-                        Spacer()
-                        
-                        // Buttons
-                        HStack {
-                            Image("droplet-icon")
-                            Image("garden-icon")
-                        }
-                        
-                    }
-                    .padding(25)
-                    .background {
-                        ZStack (alignment: .leading) {
-                            Rectangle()
-                                .fill(.white)
-                                .cornerRadius(10)
-                                .opacity(0.8)
+                // Card Row One
+                GardenInfoCard()
+                
+                // Card Row Two
+                
+                GeometryReader { geometry in
+                    ScrollView {
+                        LazyVGrid(columns: twoColumnGrid) {
                             
-                            Image("step-icon")
+                            DashboardCard(width: geometry.size.width / 2, icon: "calendar-icon"){
+                                VStack {
+                                    Text("23")
+                                        .headerStyle()
+                                    Text("May")
+                                        .bold()
+                                        .bodyStyle()
+                                }
+                            }
+                            
+                            DashboardCard(width: geometry.size.width / 2, icon: "temp-icon"){
+                                    Text("64°")
+                                        .headerStyle()
+                            }
+                            
                         }
                     }
                 }
@@ -106,20 +75,6 @@ struct Dashboard: View {
         .navigationBarHidden(true)
         
         
-        //        VStack(){
-        //            Item(icon: "calendar", text: date, color: Color.green)
-        //
-        //            if let stepCount = userViewModel.currentUser.stepCount {
-        //                Item(icon: "figure.walk", text: "\(String(stepCount.count)) Steps", color: Color.yellow)
-        //            }
-        //
-        //            if let user = userViewModel.currentUser {
-        //                Item(icon: "drop", text: "\(String(user.numDroplets)) Droplets", color: Color.blue)
-        //            }
-        //
-        //            Spacer()
-        //        }
-        //        .navigationBarHidden(true)
     }
     
 }
@@ -130,5 +85,89 @@ struct Dashboard_Previews: PreviewProvider {
         Dashboard()
             .environmentObject(UserViewModel())
             .environmentObject(AuthenticationViewModel())
+    }
+}
+
+struct IconButton: View {
+    var icon: String
+    var text: String
+    
+    var body: some View {
+        VStack() {
+            Image(icon)
+            Text(text)
+                .font(.system(size: 15))
+                .foregroundColor(.seaGreen)
+        }.frame(maxWidth: .infinity, alignment: .trailing)
+    }
+    
+}
+
+struct GardenInfoCard: View {
+    
+    var body: some View {
+        
+        ZStack(alignment: .leading) {
+            
+            // Steps
+            HStack {
+                VStack(alignment: .leading) {
+                    Text("1247")
+                        .bold()
+                        .headerStyle()
+                    Text("Steps")
+                        .bold()
+                        .bodyStyle()
+                }
+                
+                Spacer()
+                
+                // Buttons
+                HStack(spacing: 10) {
+                    IconButton(icon: "droplet-icon", text: "5 droplets")
+                    IconButton(icon: "garden-icon", text: "Your Garden")
+                    
+                }
+                
+            }
+            .padding(25)
+            .background {
+                ZStack (alignment: .leading) {
+                    Rectangle()
+                        .fill(.white)
+                        .cornerRadius(10)
+                        .opacity(0.9)
+                    
+                    Image("step-icon")
+                }
+            }
+        }
+    }
+}
+
+struct DashboardCard<Content: View>: View {
+    
+    var width: CGFloat
+    var icon: String
+    @ViewBuilder var content: Content
+    
+    var body: some View {
+        
+        content
+            .frame(width: width, height: 60)
+            .padding(.vertical, 20)
+            .background{
+                ZStack (alignment: .topLeading) {
+                    Rectangle()
+                        .fill(.white)
+                        .cornerRadius(10)
+                        .opacity(0.9)
+                    
+                    Image(icon)
+                        .padding(10)
+                }
+                
+                
+            }
     }
 }
