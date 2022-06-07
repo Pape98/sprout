@@ -23,6 +23,7 @@
 		F0149D63284F18B300782D27 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D62284F18B300782D27 /* IconButton.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
+		F01B635B284FB339004D079A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B635A284FB339004D079A /* Helpers.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
 		F038369E2839497600D444E4 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038369D2839497600D444E4 /* SQLiteService.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
@@ -71,6 +72,7 @@
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		F01B635A284FB339004D079A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F038369D2839497600D444E4 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
@@ -186,13 +188,6 @@
 			path = Dashboard;
 			sourceTree = "<group>";
 		};
-		F038369F2839F7AE00D444E4 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
-			sourceTree = "<group>";
-		};
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
@@ -217,6 +212,7 @@
 				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 				F0964272275C25C800F1CEC1 /* Constants.swift */,
 				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
+				F01B635A284FB339004D079A /* Helpers.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -259,7 +255,6 @@
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0C99E202784810F004514D4 /* Repositories */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
-				F038369F2839F7AE00D444E4 /* Helpers */,
 				F0964271275C25AF00F1CEC1 /* Utils */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
@@ -465,6 +460,7 @@
 				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
+				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
 				F0149D56284EAD1400782D27 /* PickerCardView.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
@@ -629,11 +625,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Sprout;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -642,7 +640,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "${TARGET_NAME}";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -663,11 +661,13 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Sprout;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -676,7 +676,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "${TARGET_NAME}";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

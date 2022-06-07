@@ -66,7 +66,7 @@ struct LoginView: View {
                         }
                         .offset(y: CGFloat(yOffset))
                         .animation(.linear(duration: 2.0).delay(1.5), value: yOffset)
-                    
+                        
                         
                         // Error Message
                         if let errorMessage = authenticationModel.errorMessage {

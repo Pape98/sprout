@@ -17,6 +17,7 @@ struct Dashboard: View {
     
     var body: some View {
         
+        
         ZStack {
             // Background Image
             Image("intro-bg")
@@ -25,21 +26,30 @@ struct Dashboard: View {
             
             // Content
             VStack {
-                CircledItem(optionName: "oak", color: .seaGreen)
-                    .padding(.top, 30)
-                Text("Hi, Thomas!")
-                    .headerStyle()
-                Text("Are you excited today?")
-                    .bodyStyle()
+                
+                if let user = userViewModel.currentUser {
+                    // Header
+                    VStack {
+                        CircledItem(optionName: "oak", color: .seaGreen)
+                            .padding(.top, 30)
+                        Text("Hi, \(getFirstName(user.name))!")
+                            .headerStyle()
+                        Text("Are you excited today?")
+                            .bodyStyle()
+                    }
+                    .padding(.bottom, 25)
+                }
                 
                 
-                // Card Row One
-                GardenInfoCard()
                 
-                // Card Row Two
-                
-                GeometryReader { geometry in
-                    ScrollView {
+                ScrollView {
+                    // Card Row One
+                    GardenInfoCard()
+                    
+                    // Card Row Two
+                    
+                    GeometryReader { geometry in
+                        
                         LazyVGrid(columns: twoColumnGrid) {
                             
                             DashboardCard(width: geometry.size.width / 2, icon: "calendar-icon"){
@@ -53,11 +63,12 @@ struct Dashboard: View {
                             }
                             
                             DashboardCard(width: geometry.size.width / 2, icon: "temp-icon"){
-                                    Text("64°")
-                                        .headerStyle()
+                                Text("64°")
+                                    .headerStyle()
                             }
                             
                         }
+                        
                     }
                 }
                 
@@ -73,11 +84,12 @@ struct Dashboard: View {
         }
         .ignoresSafeArea()
         .navigationBarHidden(true)
-        
-        
     }
     
+    
 }
+
+
 
 
 struct Dashboard_Previews: PreviewProvider {

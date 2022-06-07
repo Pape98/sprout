@@ -28,7 +28,9 @@ struct GardenInfoCard: View {
                 // Buttons
                 HStack(spacing: 10) {
                     IconButton(icon: "droplet-icon", text: "5 droplets")
-                    IconButton(icon: "garden-icon", text: "Your Garden")
+                    NavigationLink(destination: MyGarden()) {
+                        IconButton(icon: "garden-icon", text: "Your Garden")
+                    }
                     
                 }
                 
@@ -40,6 +42,7 @@ struct GardenInfoCard: View {
                         .fill(.white)
                         .cornerRadius(10)
                         .opacity(0.9)
+                        .shadow(radius: 3)
                     
                     Image("step-icon")
                 }
