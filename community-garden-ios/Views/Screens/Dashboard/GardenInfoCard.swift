@@ -8,19 +8,25 @@
 import SwiftUI
 
 struct GardenInfoCard: View {
+    
+    var user: User
+    
     var body: some View {
         
         ZStack(alignment: .leading) {
             
             // Steps
             HStack {
-                VStack(alignment: .leading) {
-                    Text("1247")
-                        .bold()
-                        .headerStyle()
-                    Text("Steps")
-                        .bold()
-                        .bodyStyle()
+                
+                if let stepCount = user.stepCount {
+                    VStack(alignment: .leading) {
+                        Text("\(stepCount.count)")
+                            .bold()
+                            .headerStyle()
+                        Text("Steps")
+                            .bold()
+                            .bodyStyle()
+                    }
                 }
                 
                 Spacer()
@@ -53,6 +59,8 @@ struct GardenInfoCard: View {
 
 struct GardenInfoCard_Previews: PreviewProvider {
     static var previews: some View {
-        GardenInfoCard()
+        let stepCount = Step(date: Date(), count: 25)
+        let user: User = User(id: "1", name: "Pape", email: "papisline2222@gmail.com", oldStepCount: 10, stepCount: stepCount, numDroplets: 15, gardenItems: [])
+        GardenInfoCard(user: user)
     }
 }

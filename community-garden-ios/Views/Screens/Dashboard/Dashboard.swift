@@ -16,78 +16,66 @@ struct Dashboard: View {
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        
-        
-        ZStack {
-            // Background Image
-            Image("intro-bg")
-                .resizable()
-                .scaledToFill()
+        // Content
+        VStack {
             
-            // Content
-            VStack {
-                
+            if let user = userViewModel.currentUser {
+                // Header
+                VStack {
+                    CircledItem(optionName: "oak", color: .seaGreen)
+                        .padding(.top, 30)
+                    Text("Hi, \(getFirstName(user.name))!")
+                        .headerStyle()
+                    Text("Are you excited today?")
+                        .bodyStyle()
+                }
+                .padding(.bottom, 25)
+            }
+            
+            ScrollView {
+                // Card Row One
                 if let user = userViewModel.currentUser {
-                    // Header
-                    VStack {
-                        CircledItem(optionName: "oak", color: .seaGreen)
-                            .padding(.top, 30)
-                        Text("Hi, \(getFirstName(user.name))!")
-                            .headerStyle()
-                        Text("Are you excited today?")
-                            .bodyStyle()
-                    }
-                    .padding(.bottom, 25)
+                    GardenInfoCard(user: user)
                 }
                 
-                
-                
-                ScrollView {
-                    // Card Row One
-                    GardenInfoCard()
+                // Card Row Two
+                GeometryReader { geometry in
                     
-                    // Card Row Two
-                    
-                    GeometryReader { geometry in
+                    LazyVGrid(columns: twoColumnGrid) {
                         
-                        LazyVGrid(columns: twoColumnGrid) {
-                            
-                            DashboardCard(width: geometry.size.width / 2, icon: "calendar-icon"){
-                                VStack {
-                                    Text("23")
-                                        .headerStyle()
-                                    Text("May")
-                                        .bold()
-                                        .bodyStyle()
-                                }
-                            }
-                            
-                            DashboardCard(width: geometry.size.width / 2, icon: "temp-icon"){
-                                Text("64°")
+                        DashboardCard(width: geometry.size.width / 2, icon: "calendar-icon"){
+                            VStack {
+                                Text("23")
                                     .headerStyle()
+                                Text("May")
+                                    .bold()
+                                    .bodyStyle()
                             }
-                            
                         }
                         
+                        DashboardCard(width: geometry.size.width / 2, icon: "temp-icon"){
+                            Text("64°")
+                                .headerStyle()
+                        }
                     }
-                }
-                
-                Spacer()
-                
-                Button("Sign Out"){
-                    authViewModel.signOut()
+                    
                 }
             }
-            .padding()
             
+            Spacer()
             
+            Button("Sign Out"){
+                authViewModel.signOut()
+            }
         }
-        .ignoresSafeArea()
+        .padding()
+        .screenBackground("intro-bg")
         .navigationBarHidden(true)
+        
     }
     
-    
 }
+
 
 
 

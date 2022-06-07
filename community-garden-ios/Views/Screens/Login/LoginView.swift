@@ -19,69 +19,76 @@ struct LoginView: View {
         
         
         GeometryReader { geometry in
-            ZStack {
+            
+            
+            // Content
+            
+            VStack {
                 
-                // Background Image
-                Image("intro-bg")
-                    .resizable()
-                    .scaledToFill()
-                
-                // Content
-                
-                VStack {
+                Spacer()
+                    .frame(height: geometry.size.height * 0.1)
+                VStack(spacing: 50) {
                     
-                    Spacer()
-                        .frame(height: geometry.size.height * 0.1)
-                    VStack(spacing: 50) {
-                        
-                        Group {
-                            VStack {
-                                Image("sprout-logo")
-                                    .resizable()
-                                    .scaledToFit()
-                                
-                                
-                                Text("Track Together")
-                                    .font(.title)
-                                    .foregroundColor(.pine)
-                            }
+                    Group {
+                        VStack {
+                            Image("sprout-logo")
+                                .resizable()
+                                .scaledToFit()
                             
-                            if (authenticationModel.isLoggedIn == false) {
-                                // Sign-In Button
-                                
-                                Button {
-                                    authenticationModel.signIn()
-                                } label: {
-                                    HStack {
-                                        Text("Sign in with Google")
-                                            .font(.title2)
-                                            .foregroundColor(Color.white)
-                                        Image("google-logo")
-                                    }
-                                }
-                                .padding(20)
-                                .background(Color.greenVogue)
-                                .cornerRadius(10)
-                            }
+                            
+                            Text("Track Together")
+                                .font(.title)
+                                .foregroundColor(.pine)
                         }
-                        .offset(y: CGFloat(yOffset))
-                        .animation(.linear(duration: 2.0).delay(1.5), value: yOffset)
                         
-                        
-                        // Error Message
-                        if let errorMessage = authenticationModel.errorMessage {
-                            Text(errorMessage)
-                                .foregroundColor(.red)
+                        if (authenticationModel.isLoggedIn == false) {
+                            // Sign-In Button
+                            AuthButton()
+                            
                         }
                     }
-                    .frame(width: geometry.size.width * 0.8)
+                    .offset(y: CGFloat(yOffset))
+                    .animation(.linear(duration: 2.0).delay(1.5), value: yOffset)
                     
-                    Spacer()
+                    
+                    // Error Message
+                    if let errorMessage = authenticationModel.errorMessage {
+                        Text(errorMessage)
+                            .foregroundColor(.red)
+                    }
                 }
+                .frame(width: geometry.size.width * 0.8)
                 
-            }.ignoresSafeArea()
+                Spacer()
+            }.frame(width: geometry.size.width)
+            
         }
+        .screenBackground("intro-bg")
+        .ignoresSafeArea()
         
+    }
+    
+    
+}
+
+struct AuthButton: View {
+    
+    @EnvironmentObject var authenticationModel: AuthenticationViewModel
+    
+    var body: some View {
+        Button {
+            authenticationModel.signIn()
+        } label: {
+            HStack {
+                Text("Sign in with Google")
+                    .font(.title2)
+                    .foregroundColor(Color.white)
+                Image("google-logo")
+            }
+        }
+        .padding(15)
+        .background(Color.greenVogue)
+        .cornerRadius(10)
     }
 }
 

@@ -88,3 +88,15 @@ extension Text {
             .opacity(0.66)
     }
 }
+
+extension View {
+    func screenBackground(_ image: String) -> some View {
+        self.background{
+            // Background Image
+            Image(image)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .ignoresSafeArea()
+        }
+    }
+}

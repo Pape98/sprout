@@ -15,60 +15,57 @@ struct TreePicker: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                // Background Image
-                Image("sky-bg")
-                    .resizable()
-                    .scaledToFill()
+            // Content
+            VStack(spacing: 20) {
                 
-                // Content
-                VStack(spacing: 20) {
-                    
-                    // Heading
-                    VStack {
-                        Text("Choose your tree!")
-                            .headerStyle()
-                        Text("This will be used to track your steps")
-                            .bodyStyle()
-                    }
-                    .padding(.vertical, 15)
-                    
-                    // Trees List
-                    ForEach(treeOptions, id: \.self){ tree in
-                        PickerCard(optionName: tree)
-                            .border(Color.appleGreen, width: selectedTree == tree ? 6 : 0)
-                            .cornerRadius(10)
-                            .onTapGesture {
-                                selectedTree = tree
-                            }
-                        
-                    }
-                    
-                    
-                    // Button
-                    NavigationLink(destination: Dashboard()) {
-                        Text("Next")
-                            .bold()
-                    }
-                    .disabled(selectedTree == "")
-                    .opacity(selectedTree == "" ? 0.5 : 1)
-                    .buttonStyle(ActionButtonStyle())
-                    .frame(maxWidth: 250)
-                    .padding(.top, 40)
-                    
-                    Spacer()
+                // Heading
+                VStack {
+                    Text("Choose your tree!")
+                        .headerStyle()
+                    Text("This will be used to track your steps")
+                        .bodyStyle()
+                }
+                .padding(.vertical, 15)
+                
+                // Trees List
+                ForEach(treeOptions, id: \.self){ tree in
+                    PickerCard(optionName: tree)
+                        .border(Color.appleGreen, width: selectedTree == tree ? 6 : 0)
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            selectedTree = tree
+                        }
                     
                 }
-                .padding(30)
+                
+                
+                // Button
+                NavigationLink(destination: Dashboard()) {
+                    Text("Next")
+                        .bold()
+                }
+                .disabled(selectedTree == "")
+                .opacity(selectedTree == "" ? 0.5 : 1)
+                .buttonStyle(ActionButtonStyle())
+                .frame(maxWidth: 250)
+                .padding(.top, 40)
+                
+                Spacer()
                 
             }
-            .ignoresSafeArea()
+            .padding(30)
+            .navigationBarHidden(true)
+            .screenBackground("sky-bg")
         }
     }
 }
 
 struct TreePicker_Previews: PreviewProvider {
     static var previews: some View {
-        TreePicker()
+        Group {
+            TreePicker()
+            TreePicker()
+                .previewDevice("iPhone 8 Plus")
+        }
     }
 }
