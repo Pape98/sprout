@@ -38,16 +38,23 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMove(to view: SKView) {
         
-       // Background
-        self.backgroundColor = .clear
-        let treeTexture = SKTexture(imageNamed: "oak")
-        tree = SKSpriteNode(texture: treeTexture)
-
+        // Game Scene
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
-
+        
+       // Background
+        self.backgroundColor = .clear
+        
+        // Ground
+        let ground = SKSpriteNode(imageNamed: "ground")
+        ground.anchorPoint = CGPoint(x: 0, y:0)
+        ground.position = CGPoint(x: 0, y:0)
+        ground.size = CGSize(width: frame.width, height: ground.size.height)
+        addChild(ground)
 
         // Tree
+        let treeTexture = SKTexture(imageNamed: "oak")
+        tree = SKSpriteNode(texture: treeTexture)
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y:0)
         tree.name = NodeNames.tree.rawValue

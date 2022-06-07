@@ -20,40 +20,27 @@ struct MyGarden: View {
     }
     
     var body: some View {
-//
-//        GeometryReader { geometry in
-//
-//            // Statistics
-//            ZStack {
-//                VStack(alignment: .leading) {
-//                    Stats(image: "droplet-icon", value:5)
-//                    Stats(image: "step-icon", value: 1247)
-//                }
-//                .padding()
-//            }
-//            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .topLeading)
-//            .screenBackground("sky-bg")
-//
-//
-//            // Ground
-//            VStack {
-//                Image("ground")
-//                    .resizable()
-//                    .aspectRatio(contentMode: .fit)
-//            }.frame(height: geometry.size.height, alignment: .bottom)
-//
-//            // Scene View
-//            SpriteView(scene: scene, options: [.allowsTransparency])
-//                .edgesIgnoringSafeArea(.top)
-//        }
         
-        ZStack {
+        ZStack(alignment: .topLeading) {
+            
+            // Background Image
             Image("sky-bg")
+                .resizable()
                 .ignoresSafeArea()
-            VStack {
-                Text("Pape Sow Traore")
+            
+            // Stats
+            VStack(alignment: .leading) {
+                Stats(image: "droplet-icon", value:5)
+                Stats(image: "step-icon", value: 1247)
             }
+            .padding()
+            
+            // Scene View
+            SpriteView(scene: scene, options: [.allowsTransparency])
+                .edgesIgnoringSafeArea(.top)
         }
+        
+        
         
     }
 }
