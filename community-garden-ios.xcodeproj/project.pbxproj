@@ -17,6 +17,7 @@
 		F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D53284E9E0D00782D27 /* TreePicker.swift */; };
 		F0149D56284EAD1400782D27 /* PickerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D55284EAD1400782D27 /* PickerCardView.swift */; };
 		F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D58284ECDC900782D27 /* ButtonStyling.swift */; };
+		F0149D5B284ED5ED00782D27 /* CircledItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5A284ED5ED00782D27 /* CircledItem.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
@@ -60,6 +61,7 @@
 		F0149D53284E9E0D00782D27 /* TreePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreePicker.swift; sourceTree = "<group>"; };
 		F0149D55284EAD1400782D27 /* PickerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCardView.swift; sourceTree = "<group>"; };
 		F0149D58284ECDC900782D27 /* ButtonStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyling.swift; sourceTree = "<group>"; };
+		F0149D5A284ED5ED00782D27 /* CircledItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledItem.swift; sourceTree = "<group>"; };
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -113,19 +115,11 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		F0057384276F931000EB487B /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
-				F0149D53284E9E0D00782D27 /* TreePicker.swift */,
-				F0149D52284E9DD600782D27 /* Components */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
 		F0057387276F940C00EB487B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F0149D5C284ED6A500782D27 /* Login */,
+				F0149D5D284ED6B000782D27 /* Onboarding */,
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
 				F00A6F34283C4DDB00A176D6 /* Friends */,
 				F09B71E327724B260085C7AC /* Garden */,
@@ -137,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				F005739127702F9B00EB487B /* ActionButton.swift */,
+				F0149D5A284ED5ED00782D27 /* CircledItem.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -149,20 +144,29 @@
 			path = Friends;
 			sourceTree = "<group>";
 		};
-		F0149D52284E9DD600782D27 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				F0149D55284EAD1400782D27 /* PickerCardView.swift */,
-			);
-			path = Components;
-			sourceTree = "<group>";
-		};
 		F0149D57284ECDA900782D27 /* Styling */ = {
 			isa = PBXGroup;
 			children = (
 				F0149D58284ECDC900782D27 /* ButtonStyling.swift */,
 			);
 			path = Styling;
+			sourceTree = "<group>";
+		};
+		F0149D5C284ED6A500782D27 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F0149D5D284ED6B000782D27 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F0149D55284EAD1400782D27 /* PickerCardView.swift */,
+				F0149D53284E9E0D00782D27 /* TreePicker.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 		F030B021283B2F4F0026F2E0 /* Dashboard */ = {
@@ -290,7 +294,6 @@
 			isa = PBXGroup;
 			children = (
 				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
-				F0057384276F931000EB487B /* Onboarding */,
 				F0057387276F940C00EB487B /* Screens */,
 				F0149D57284ECDA900782D27 /* Styling */,
 				F005738C2770293B00EB487B /* Components */,
@@ -459,6 +462,7 @@
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
+				F0149D5B284ED5ED00782D27 /* CircledItem.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */,

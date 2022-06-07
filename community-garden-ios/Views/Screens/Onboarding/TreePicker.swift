@@ -27,18 +27,15 @@ struct TreePicker: View {
                     // Heading
                     VStack {
                         Text("Choose your tree!")
-                            .font(.largeTitle)
-                            .foregroundColor(.seaGreen)
-                            .bold()
+                            .headerStyle()
                         Text("This will be used to track your steps")
-                            .foregroundColor(.seaGreen)
-                            .opacity(0.66)
+                            .bodyStyle()
                     }
                     .padding(.vertical, 15)
                     
                     // Trees List
                     ForEach(treeOptions, id: \.self){ tree in
-                        PickerCardView(optionName: tree)
+                        PickerCard(optionName: tree)
                             .border(Color.appleGreen, width: selectedTree == tree ? 6 : 0)
                             .cornerRadius(10)
                             .onTapGesture {

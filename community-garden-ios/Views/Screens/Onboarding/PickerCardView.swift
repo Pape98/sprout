@@ -7,30 +7,13 @@
 
 import SwiftUI
 
-struct PickerCardGraphic: View {
-    var optionName: String
-    
-    var body: some View {
-        
-        Circle()
-            .foregroundColor(.oliveGreen)
-            .frame(maxWidth: 75, maxHeight: 75)
-            .overlay(alignment: .bottom) {
-                Image(optionName)
-                    .resizable()
-                    .scaledToFit()
-            }
-        
-    }
-}
-
-struct PickerCardView: View {
+struct PickerCard: View {
     
     var optionName: String
     
     var body: some View {
         HStack (spacing: 20) {
-            PickerCardGraphic(optionName: optionName)
+            CircledItem(optionName: optionName, color: .oliveGreen)
             Text(optionName.capitalizeFirstLetter())
                 .font(.title2)
                 .bold()
@@ -46,6 +29,6 @@ struct PickerCardView: View {
 
 struct PickerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerCardView(optionName: "oak")
+        PickerCard(optionName: "oak")
     }
 }

@@ -75,3 +75,16 @@ extension Color {
     static let everglade = Color("everglade")
     static let appleGreen = Color("apple-green")
 }
+
+extension Text {
+    func headerStyle() -> some View {
+        self.font(.largeTitle)
+            .foregroundColor(.seaGreen)
+            .bold()
+    }
+    
+    func bodyStyle() -> some View {
+        self.foregroundColor(.seaGreen)
+            .opacity(0.66)
+    }
+}
