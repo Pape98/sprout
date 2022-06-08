@@ -12,13 +12,28 @@ struct CircledItem: View {
     var color: Color
     var body: some View {
         
-        Circle()
-            .foregroundColor(color)
+        //        Circle()
+        //            .foregroundColor(color)
+        //            .frame(maxWidth: 75, maxHeight: 75)
+        //            .overlay(alignment: .bottom) {
+        //                Image(optionName)
+        //                    .resizable()
+        //                    .scaledToFit()
+        //            }
+        
+        Image(optionName)
+            .resizable()
+            .scaledToFit()
             .frame(maxWidth: 75, maxHeight: 75)
-            .overlay(alignment: .bottom) {
-                Image(optionName)
-                    .resizable()
-                    .scaledToFit()
+            .background {
+                GeometryReader { geometry in
+                    HStack{
+                        Circle()
+                            .foregroundColor(color)
+                            .frame(width: geometry.size.width * 0.85, height: geometry.size.height * 0.85)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
+                }
             }
         
     }
