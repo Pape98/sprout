@@ -14,6 +14,7 @@ struct Dashboard: View {
     
     let date = Date().getFormattedDate(format: "MMMM dd")
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
+    let today = Date()
     
     let defaultTree = UserDefaultsService.shared.getString(key: SettingsKey.TREE)
     
@@ -58,9 +59,9 @@ struct Dashboard: View {
                             
                             DashboardCard(width: geometry.size.width / 2, icon: "calendar-icon"){
                                 VStack {
-                                    Text("23")
+                                    Text(today.getFormattedDate(format: "dd"))
                                         .headerStyle()
-                                    Text("May")
+                                    Text(today.getFormattedDate(format: "MMM"))
                                         .bold()
                                         .bodyStyle()
                                 }

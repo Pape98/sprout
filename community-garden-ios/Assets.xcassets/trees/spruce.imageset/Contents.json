@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "spruce-1x.png",
+      "filename" : "Tree 02-1.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "spruce-2x.png",
+      "filename" : "Tree 02-1 (1).png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "spruce-3x.png",
+      "filename" : "Tree 02-1 (2).png",
       "idiom" : "universal",
       "scale" : "3x"
     }

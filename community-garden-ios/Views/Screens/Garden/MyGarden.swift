@@ -32,12 +32,14 @@ struct MyGarden: View {
             VStack(alignment: .leading) {
                 Stats(image: "droplet-icon", value:5)
                 Stats(image: "step-icon", value: 1247)
+                Spacer()
             }
             .padding()
             
             // Scene View
             SpriteView(scene: scene, options: [.allowsTransparency])
                 .edgesIgnoringSafeArea(.top)
+            
         }
         
         

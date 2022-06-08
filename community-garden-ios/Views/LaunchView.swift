@@ -14,7 +14,7 @@ struct LaunchView: View {
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
     @State var yOffset = 0
-    @State var isNewUser = false
+    @State var isNewUser = true
     
     var body: some View {
         
