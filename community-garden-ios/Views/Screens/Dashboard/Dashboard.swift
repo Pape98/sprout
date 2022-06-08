@@ -15,6 +15,8 @@ struct Dashboard: View {
     let date = Date().getFormattedDate(format: "MMMM dd")
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
     
+    let defaultTree = UserDefaultsService.shared.getString(key: SettingsKey.TREE)
+    
     var body: some View {
         // Content
         ZStack {
@@ -28,8 +30,14 @@ struct Dashboard: View {
                 if let user = userViewModel.currentUser {
                     // Header
                     VStack {
-                        CircledItem(optionName: "oak", color: .seaGreen)
-                            .padding(.top, 30)
+                        if  (defaultTree != nil)  {
+                            CircledItem(optionName: defaultTree!, color: .seaGreen)
+                                .padding(.top, 30)
+                        } else {
+                            CircledItem(optionName: "oak", color: .seaGreen)
+                                .padding(.top, 30)
+                        }
+                        
                         Text("Hi, \(getFirstName(user.name))!")
                             .headerStyle()
                         Text("Are you excited today?")

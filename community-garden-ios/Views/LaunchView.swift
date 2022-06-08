@@ -14,21 +14,22 @@ struct LaunchView: View {
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
     @State var yOffset = 0
+    @State var isNewUser = false
     
     var body: some View {
         
-        Group {
+        NavigationView {
             if authModel.isLoggedIn == false {
                 // Show login view
                 LoginView(yOffset: $yOffset)
                 
             } else {
-                // Show dashboard or onboarding view
-                
-//                LoginView(yOffset: $yOffset).onAppear {
-//                    yOffset = 1000
-//                }
-                TreePicker()
+                // Show onboarding or dashboard view
+                if (isNewUser){
+                    TreePicker()
+                } else {
+                    Dashboard()
+                }
             }
         }
         .environmentObject(userViewModel)

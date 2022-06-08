@@ -14,47 +14,45 @@ struct TreePicker: View {
     let treeOptions = Constants.trees
     
     var body: some View {
-        NavigationView {
-            // Content
-            ZStack {
+        // Content
+        ZStack {
+            
+            Image("sky-cloud-bg")
+                .resizable()
+                .ignoresSafeArea()
+            
+            VStack(spacing: 20) {
                 
-                Image("sky-cloud-bg")
-                    .resizable()
-                    .ignoresSafeArea()
-                
-                VStack(spacing: 20) {
-                    
-                    // Heading
-                    VStack {
-                        Text("Choose your tree!")
-                            .headerStyle()
-                        Text("This will be used to track your steps")
-                            .bodyStyle()
-                    }
-                    .padding(.vertical, 15)
-                    
-                    // Trees List
-                    ForEach(treeOptions, id: \.self){ tree in
-                        PickerCard(optionName: tree)
-                            .border(Color.appleGreen, width: selectedTree == tree ? 6 : 0)
-                            .cornerRadius(10)
-                            .onTapGesture {
-                                selectedTree = tree
-                            }
-                        
-                    }
-                    
-                    // Button
-                    TreePickerNextButton(selectedTree: selectedTree)
-                    
-                    Spacer()
-                    
+                // Heading
+                VStack {
+                    Text("Choose your tree!")
+                        .headerStyle()
+                    Text("This will be used to track your steps")
+                        .bodyStyle()
                 }
-                .padding(30)
-           
+                .padding(.vertical, 15)
+                
+                // Trees List
+                ForEach(treeOptions, id: \.self){ tree in
+                    PickerCard(optionName: tree)
+                        .border(Color.appleGreen, width: selectedTree == tree ? 6 : 0)
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            selectedTree = tree
+                            UserDefaultsService.shared.save(value: selectedTree, key: SettingsKey.TREE)
+                        }
+                }
+                
+                // Button
+                TreePickerNextButton(selectedTree: selectedTree)
+                
+                Spacer()
+                
             }
-            .navigationBarHidden(true)
+            .padding(30)
+            
         }
+        .navigationBarHidden(true)
     }
 }
 
