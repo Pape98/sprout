@@ -6,9 +6,14 @@
 //
 
 import Foundation
+import CoreGraphics
 
 func getFirstName(_ name: String) -> String {
     let delimiter = " "
     let tokens = name.components(separatedBy: delimiter)
     return tokens[0]
+}
+
+func getRandomCGFloat(_ start: CGFloat, _ end: CGFloat) -> CGFloat{
+    return CGFloat.random(in: start...end+0.1)
 }

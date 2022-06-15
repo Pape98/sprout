@@ -37,9 +37,7 @@ struct MyGarden: View {
             .padding()
             
             // Scene View
-            SpriteView(scene: scene, options: [.allowsTransparency])
-                .edgesIgnoringSafeArea(.top)
-            
+            SpriteView(scene: scene, options: [.allowsTransparency])            
         }
         
         
