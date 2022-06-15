@@ -10,6 +10,12 @@ import HealthKit
 
 class HealthStoreService {
     
+    struct HKDataTypes {
+        static let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
+        static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+    }
+    
     // MARK: - Properties
     
     // Provides all functionalities related health data

@@ -1,5 +1,5 @@
 //
-//  CircledItem.swift
+//  CircledTree.swift
 //  community-garden-ios
 //
 //  Created by Pape Sow Traore on 6/6/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CircledItem: View {
+struct CircledTree: View {
     var optionName: String
     var color: Color
     var body: some View {
@@ -39,8 +39,8 @@ struct CircledItem: View {
     }
 }
 
-struct CircledItem_Previews: PreviewProvider {
+struct CircledTree_Previews: PreviewProvider {
     static var previews: some View {
-        CircledItem(optionName: "oak", color: .oliveGreen)
+        CircledTree(optionName: "oak", color: .oliveGreen)
     }
 }

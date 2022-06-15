@@ -9,6 +9,7 @@ import Foundation
 
 enum SettingsKey: String {
     case TREE = "tree"
+    case FLOWER = "flower"
 }
 
 class UserDefaultsService {

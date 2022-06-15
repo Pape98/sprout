@@ -13,7 +13,7 @@ struct PickerCard: View {
     
     var body: some View {
         HStack (spacing: 20) {
-            CircledItem(optionName: optionName, color: .oliveGreen)
+            CircledTree(optionName: optionName, color: .oliveGreen)
             Text(optionName.capitalizeFirstLetter())
                 .font(.title2)
                 .bold()

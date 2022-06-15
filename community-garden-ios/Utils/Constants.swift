@@ -10,25 +10,15 @@ import HealthKit
 import SwiftUI
 
 struct Constants {
-        
-    static let moodTypes = [
-        "happy": Color.green,
-        "meh": Color.blue,
-        "bad": Color.orange,
-        "terrible": Color.red,
-    ]
     
     static let clientID = "987260271190-lt53tt7akbciedliq2mdno33jpg08eb2.apps.googleusercontent.com"
+    
+    // Garden Items
     static let trees = ["spruce", "oak", "linden"]
+    static let flowers = ["lily", "tulip","poppy"]
     
 }
 
-
-struct HKDataTypes {
-    static let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
-    static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
-    static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
-}
 
 
 

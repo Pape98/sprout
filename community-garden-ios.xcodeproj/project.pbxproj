@@ -17,7 +17,7 @@
 		F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D53284E9E0D00782D27 /* TreePicker.swift */; };
 		F0149D56284EAD1400782D27 /* PickerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D55284EAD1400782D27 /* PickerCardView.swift */; };
 		F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D58284ECDC900782D27 /* ButtonStyling.swift */; };
-		F0149D5B284ED5ED00782D27 /* CircledItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5A284ED5ED00782D27 /* CircledItem.swift */; };
+		F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5A284ED5ED00782D27 /* CircledTree.swift */; };
 		F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5E284F181600782D27 /* GardenInfoCard.swift */; };
 		F0149D61284F184000782D27 /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D60284F184000782D27 /* DashboardCard.swift */; };
 		F0149D63284F18B300782D27 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D62284F18B300782D27 /* IconButton.swift */; };
@@ -31,6 +31,7 @@
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
 		F0842B54285A3DF0002C79BD /* Picker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* Picker.swift */; };
+		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -67,7 +68,7 @@
 		F0149D53284E9E0D00782D27 /* TreePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreePicker.swift; sourceTree = "<group>"; };
 		F0149D55284EAD1400782D27 /* PickerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCardView.swift; sourceTree = "<group>"; };
 		F0149D58284ECDC900782D27 /* ButtonStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyling.swift; sourceTree = "<group>"; };
-		F0149D5A284ED5ED00782D27 /* CircledItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledItem.swift; sourceTree = "<group>"; };
+		F0149D5A284ED5ED00782D27 /* CircledTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledTree.swift; sourceTree = "<group>"; };
 		F0149D5E284F181600782D27 /* GardenInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoCard.swift; sourceTree = "<group>"; };
 		F0149D60284F184000782D27 /* DashboardCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCard.swift; sourceTree = "<group>"; };
 		F0149D62284F18B300782D27 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
@@ -81,6 +82,7 @@
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* Picker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Picker.swift; sourceTree = "<group>"; };
+		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -143,7 +145,7 @@
 			isa = PBXGroup;
 			children = (
 				F005739127702F9B00EB487B /* ActionButton.swift */,
-				F0149D5A284ED5ED00782D27 /* CircledItem.swift */,
+				F0149D5A284ED5ED00782D27 /* CircledTree.swift */,
 				F0842B53285A3DF0002C79BD /* Picker.swift */,
 			);
 			path = Components;
@@ -176,8 +178,9 @@
 		F0149D5D284ED6B000782D27 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				F0149D55284EAD1400782D27 /* PickerCardView.swift */,
+				F0842B55285A4060002C79BD /* FlowerPicker.swift */,
 				F0149D53284E9E0D00782D27 /* TreePicker.swift */,
+				F0842B58285A418B002C79BD /* components */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -186,9 +189,7 @@
 			isa = PBXGroup;
 			children = (
 				F030B022283B2F660026F2E0 /* Dashboard.swift */,
-				F0149D5E284F181600782D27 /* GardenInfoCard.swift */,
-				F0149D60284F184000782D27 /* DashboardCard.swift */,
-				F0149D62284F18B300782D27 /* IconButton.swift */,
+				F0842B57285A4170002C79BD /* components */,
 			);
 			path = Dashboard;
 			sourceTree = "<group>";
@@ -200,6 +201,24 @@
 				F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */,
 			);
 			path = GameScenes;
+			sourceTree = "<group>";
+		};
+		F0842B57285A4170002C79BD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F0149D5E284F181600782D27 /* GardenInfoCard.swift */,
+				F0149D60284F184000782D27 /* DashboardCard.swift */,
+				F0149D62284F18B300782D27 /* IconButton.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		F0842B58285A418B002C79BD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F0149D55284EAD1400782D27 /* PickerCardView.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		F0964266275B3A8900F1CEC1 /* Frameworks */ = {
@@ -474,7 +493,8 @@
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
-				F0149D5B284ED5ED00782D27 /* CircledItem.swift in Sources */,
+				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
+				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */,
