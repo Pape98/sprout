@@ -8,20 +8,11 @@
 import SwiftUI
 
 struct CircledTree: View {
-    var optionName: String
+    var option: String
     var color: Color
     var body: some View {
-        
-        //        Circle()
-        //            .foregroundColor(color)
-        //            .frame(maxWidth: 75, maxHeight: 75)
-        //            .overlay(alignment: .bottom) {
-        //                Image(optionName)
-        //                    .resizable()
-        //                    .scaledToFit()
-        //            }
-        
-        Image(optionName)
+
+        Image(option)
             .resizable()
             .scaledToFit()
             .frame(maxWidth: 75, maxHeight: 75)
@@ -41,6 +32,6 @@ struct CircledTree: View {
 
 struct CircledTree_Previews: PreviewProvider {
     static var previews: some View {
-        CircledTree(optionName: "oak", color: .oliveGreen)
+        CircledTree(option: "oak", color: .oliveGreen)
     }
 }

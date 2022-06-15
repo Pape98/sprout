@@ -9,12 +9,12 @@ import SwiftUI
 
 struct PickerCard: View {
     
-    var optionName: String
+    var option: String
     
     var body: some View {
         HStack (spacing: 20) {
-            CircledTree(optionName: optionName, color: .oliveGreen)
-            Text(optionName.capitalizeFirstLetter())
+            CircledTree(option: option, color: .oliveGreen)
+            Text(option.capitalizeFirstLetter())
                 .font(.title2)
                 .bold()
                 .foregroundColor(.everglade)
@@ -29,6 +29,6 @@ struct PickerCard: View {
 
 struct PickerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerCard(optionName: "oak")
+        PickerCard(option: "oak")
     }
 }

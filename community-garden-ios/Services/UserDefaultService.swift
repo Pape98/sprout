@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SettingsKey: String {
+enum UserDefaultsKey: String {
     case TREE = "tree"
     case FLOWER = "flower"
 }
@@ -17,11 +17,11 @@ class UserDefaultsService {
     let defaults = UserDefaults.standard
     static let shared = UserDefaultsService()
     
-    func save<T>(value: T, key: SettingsKey){
+    func save<T>(value: T, key: UserDefaultsKey){
         defaults.set(value, forKey: key.rawValue)
     }
     
-    func getString(key: SettingsKey) -> String? {
+    func getString(key: UserDefaultsKey) -> String? {
         guard let value = defaults.string(forKey: key.rawValue) else { return nil }
         return value
     }

@@ -99,5 +99,16 @@ extension View {
                 .ignoresSafeArea()
         }
     }
+    
+    func userDefaultsKey(_ value: UserDefaultsKey) -> some View {
+        environment(\.userDefaultsKey, value)
+    }
+}
+
+extension EnvironmentValues {
+    var userDefaultsKey: UserDefaultsKey {
+        get { self[SettingsKey.self] }
+        set { self[SettingsKey.self] = newValue }
+    }
 }
 

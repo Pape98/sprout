@@ -12,8 +12,8 @@ struct FlowerPicker: View {
         Picker(header: "Choose your flower!",
                subheader: "This will be used to track your steps",
                options: Constants.flowers,
-               nextScreen: AnyView(Dashboard()),
-               settingsKey: SettingsKey.FLOWER)
+               nextScreen: AnyView(Dashboard())
+        ).userDefaultsKey(UserDefaultsKey.FLOWER)
     }
 }
 

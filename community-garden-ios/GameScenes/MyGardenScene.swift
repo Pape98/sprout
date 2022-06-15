@@ -27,7 +27,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     let SCALE_DURATION = 2.5
     
     // Defaults
-    let DEFAULT_TREE = UserDefaultsService.shared.getString(key: SettingsKey.TREE)
+    let DEFAULT_TREE = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE)
     
     var tree: SKSpriteNode!
     var dropletSound: SKAudioNode!
