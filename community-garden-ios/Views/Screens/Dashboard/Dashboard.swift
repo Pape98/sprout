@@ -32,10 +32,10 @@ struct Dashboard: View {
                     // Header
                     VStack {
                         if  (defaultTree != nil)  {
-                            CircledTree(option: defaultTree!, color: .seaGreen)
+                            CircledTree(option: defaultTree!, background: .seaGreen)
                                 .padding(.top, 30)
                         } else {
-                            CircledTree(option: "oak", color: .seaGreen)
+                            CircledTree(option: "oak", background: .seaGreen)
                                 .padding(.top, 30)
                         }
                         

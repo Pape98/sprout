@@ -9,11 +9,23 @@ import SwiftUI
 
 struct PickerCard: View {
     
+    enum CircleType {
+        case TREE
+        case FLOWER
+    }
+    
     var option: String
+    var circleType: CircleType
     
     var body: some View {
         HStack (spacing: 20) {
-            CircledTree(option: option, color: .oliveGreen)
+            
+            if(circleType == CircleType.TREE){
+                CircledTree(option: option, background: .oliveGreen)
+            } else {
+                CircledFlower(option: option, background: .oliveGreen)
+            }
+            
             Text(option.capitalizeFirstLetter())
                 .font(.title2)
                 .bold()
@@ -29,6 +41,6 @@ struct PickerCard: View {
 
 struct PickerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerCard(option: "oak")
+        PickerCard(option: "oak", circleType: PickerCard.CircleType.TREE)
     }
 }

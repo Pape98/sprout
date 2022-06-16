@@ -30,6 +30,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     let DEFAULT_TREE = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE)
     
     var tree: SKSpriteNode!
+    var ground: SKSpriteNode!
     var dropletSound: SKAudioNode!
     var gameTimer: Timer?
     
@@ -51,8 +52,9 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = .clear
         
         // Scene setup
-        let ground = setupGround()
+        ground = setupGround()
         let _ = setupTree(ground: ground)
+        setupPond()
         
         // Timer
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
@@ -102,11 +104,22 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         return tree
     }
     
+    func setupPond() {
+        let pondTexture = SKTexture(imageNamed: "pond")
+        let pond = SKSpriteNode(texture: pondTexture)
+        
+        pond.anchorPoint = CGPoint(x: 0, y: 0)
+        pond.position = CGPoint(x: 0, y: 0)
+        
+        addChild(pond)
+    }
+    
     func createGrass(position: CGPoint) {
         // Garden Grass
         let grass = SKSpriteNode(imageNamed: "grass")
         grass.anchorPoint = CGPoint(x: 0, y: 0)
-        grass.position = position
+                
+        grass.position = CGPoint(x: position.x, y: getRandomCGFloat(10, ground.size.height))
         grass.zPosition = 10
         grass.name = NodeNames.grass.rawValue
         grass.setScale(0)
@@ -125,14 +138,12 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        
+                
         releaseDroplet(position: location)
     }
-    
     
     func releaseDroplet(position: CGPoint){
         
@@ -155,7 +166,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     @objc func createCloud() {
         
         guard let selectedCloud = clouds.randomElement() else { return }
-        
         let cloud = SKSpriteNode(imageNamed: selectedCloud)
         
         cloud.setScale(0.75)
@@ -171,7 +181,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         cloud.run(actionRepeat)
         
         addChild(cloud)
-        
     }
     
     func didBegin(_ contact: SKPhysicsContact) {

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CircledTree: View {
     var option: String
-    var color: Color
+    var background: Color
     var body: some View {
 
         Image(option)
@@ -20,7 +20,7 @@ struct CircledTree: View {
                 GeometryReader { geometry in
                     HStack{
                         Circle()
-                            .foregroundColor(color)
+                            .foregroundColor(background)
                             .frame(width: geometry.size.width * 0.85, height: geometry.size.height * 0.85)
                     }
                     .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
@@ -32,6 +32,6 @@ struct CircledTree: View {
 
 struct CircledTree_Previews: PreviewProvider {
     static var previews: some View {
-        CircledTree(option: "oak", color: .oliveGreen)
+        CircledTree(option: "oak", background: .oliveGreen)
     }
 }

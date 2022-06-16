@@ -15,7 +15,7 @@
 		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
 		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
 		F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D53284E9E0D00782D27 /* TreePicker.swift */; };
-		F0149D56284EAD1400782D27 /* PickerCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D55284EAD1400782D27 /* PickerCardView.swift */; };
+		F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D55284EAD1400782D27 /* PickerCard.swift */; };
 		F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D58284ECDC900782D27 /* ButtonStyling.swift */; };
 		F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5A284ED5ED00782D27 /* CircledTree.swift */; };
 		F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5E284F181600782D27 /* GardenInfoCard.swift */; };
@@ -68,7 +68,7 @@
 		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
 		F0149D53284E9E0D00782D27 /* TreePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreePicker.swift; sourceTree = "<group>"; };
-		F0149D55284EAD1400782D27 /* PickerCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCardView.swift; sourceTree = "<group>"; };
+		F0149D55284EAD1400782D27 /* PickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCard.swift; sourceTree = "<group>"; };
 		F0149D58284ECDC900782D27 /* ButtonStyling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStyling.swift; sourceTree = "<group>"; };
 		F0149D5A284ED5ED00782D27 /* CircledTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledTree.swift; sourceTree = "<group>"; };
 		F0149D5E284F181600782D27 /* GardenInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoCard.swift; sourceTree = "<group>"; };
@@ -221,7 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				F0842B53285A3DF0002C79BD /* Picker.swift */,
-				F0149D55284EAD1400782D27 /* PickerCardView.swift */,
+				F0149D55284EAD1400782D27 /* PickerCard.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -495,7 +495,7 @@
 				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
 				F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
-				F0149D56284EAD1400782D27 /* PickerCardView.swift in Sources */,
+				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
@@ -667,6 +667,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -703,6 +704,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
