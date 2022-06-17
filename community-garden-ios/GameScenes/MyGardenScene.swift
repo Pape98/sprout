@@ -82,7 +82,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     func setupTree(ground: SKSpriteNode) -> SKSpriteNode{
         // Tree
-        let treeTexture = DEFAULT_TREE != nil ? SKTexture(imageNamed: DEFAULT_TREE!) : SKTexture(imageNamed: "oak")
+        let treeTexture = DEFAULT_TREE != nil ? SKTexture(imageNamed: DEFAULT_TREE!) : SKTexture(imageNamed: "linden")
         tree = SKSpriteNode(texture: treeTexture)
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y: ground.size.height / 2)
@@ -96,7 +96,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         tree.physicsBody?.isDynamic = false
         
         //let treeHeight = CGFloat(UserService.shared.user.gardenItems[0].height)
-        tree.setScale(0)
+        tree.setScale(1.20)
         let treeAction = SKAction.scale(to: 1.20, duration: SCALE_DURATION)
         tree.run(treeAction)
         addChild(tree)

@@ -24,9 +24,16 @@ struct MyGarden: View {
         ZStack(alignment: .topLeading) {
             
             // Background Image
-            Image("sky-bg")
+            Image("morning-bg")
                 .resizable()
                 .ignoresSafeArea()
+            
+            // Scene View
+            SpriteView(scene: scene, options: [.allowsTransparency])
+            
+            Rectangle()
+                .fill(Color.morning)
+                .blendMode(BlendMode.overlay)
             
             // Stats
             VStack(alignment: .leading) {
@@ -35,9 +42,7 @@ struct MyGarden: View {
                 Spacer()
             }
             .padding()
-            
-            // Scene View
-            SpriteView(scene: scene, options: [.allowsTransparency])            
+   
         }
     }
 }
