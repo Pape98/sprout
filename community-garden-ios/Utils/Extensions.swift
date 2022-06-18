@@ -74,6 +74,7 @@ extension Color {
     static let oliveGreen = Color("olive-green")
     static let everglade = Color("everglade")
     static let appleGreen = Color("apple-green")
+    static let chalice = Color("chalice")
     
     // Weather colors
     static let night = Color("night")

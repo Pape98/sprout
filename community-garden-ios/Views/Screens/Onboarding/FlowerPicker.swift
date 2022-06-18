@@ -10,13 +10,14 @@ import SwiftUI
 struct FlowerPicker: View {
     var body: some View {
         Picker(header: "Choose your flower!",
-               subheader: "This will be used to track your steps",
+               subheader: "Scroll to see all the flowers 😊",
                options: Constants.flowers,
                nextScreen: AnyView(Dashboard()),
                circleType: PickerCard.CircleType.FLOWER
         ).userDefaultsKey(UserDefaultsKey.FLOWER)
     }
 }
+
 
 
 struct FlowerPicker_Previews: PreviewProvider {

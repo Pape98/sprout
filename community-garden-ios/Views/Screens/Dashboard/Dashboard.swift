@@ -16,7 +16,7 @@ struct Dashboard: View {
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
     let today = Date()
     
-    let defaultTree = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE)
+    let defaultTree = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE) ?? "moss-spiky-maple"
     
     var body: some View {
         // Content
@@ -31,13 +31,10 @@ struct Dashboard: View {
                 if let user = userViewModel.currentUser {
                     // Header
                     VStack {
-                        if  (defaultTree != nil)  {
-                            CircledTree(option: defaultTree!, background: .seaGreen)
-                                .padding(.top, 30)
-                        } else {
-                            CircledTree(option: "moss-spiky-maple", background: .seaGreen)
-                                .padding(.top, 30)
-                        }
+                        
+                        CircledTree(option: "cosmos-\(defaultTree)", background: .seaGreen, size: 75)
+                            .padding(.top, 30)
+                        
                         
                         Text("Hi, \(getFirstName(user.name))!")
                             .headerStyle()

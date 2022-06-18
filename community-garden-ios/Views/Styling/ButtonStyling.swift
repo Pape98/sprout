@@ -9,12 +9,15 @@ import Foundation
 import SwiftUI
 
 struct ActionButtonStyle: ButtonStyle {
+    
+    var color: Color
+    
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
             .frame(minWidth: 0, maxWidth: .infinity)
             .foregroundColor(Color.white)
             .padding()
-            .background(Color.appleGreen)
+            .background(color)
             .cornerRadius(100)
             .contentShape(Rectangle())
         

@@ -22,21 +22,28 @@ struct PickerCard: View {
         HStack (spacing: 20) {
             
             if(circleType == CircleType.TREE){
-                CircledTree(option: "moss-\(option)", background: .oliveGreen)
+                CircledTree(
+                    option: "moss-\(option)",
+                    background: .oliveGreen,
+                    size: 75
+                )
             } else {
-                CircledFlower(option: option, background: .oliveGreen)
+                CircledFlower(option: option,
+                              background: .oliveGreen,
+                              size: 75
+                )
             }
             
             Text(formatItemName(option))
                 .font(.title2)
                 .bold()
                 .foregroundColor(.everglade)
+                .lineLimit(1)
             Spacer()
         }
         .padding(15)
         .background(Color.white)
         .cornerRadius(10)
-        .frame(height: 100)
     }
     
 }

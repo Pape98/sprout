@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ColorOptionsScroll: View {
     
-    let data = (1...100).map { "Item \($0)" }
+    @Binding var selectedColor: String
     
     let rows = [
         GridItem(.flexible()),
@@ -23,10 +23,13 @@ struct ColorOptionsScroll: View {
                         VStack {
                             Rectangle()
                                 .fill(Color(color))
-                                .frame(width:120, height:120)
+                                .frame(width:75, height:75)
                                 .cornerRadius(10)
                                 .padding()
-                            Text(color)
+                            Text(color.capitalizeFirstLetter())
+                        }
+                        .onTapGesture {
+                            selectedColor = color;
                         }
                     }
                 }
@@ -38,7 +41,9 @@ struct ColorOptionsScroll: View {
 }
 
 struct ColorOptionsScroll_Previews: PreviewProvider {
+    
+    @State static var selectedColor = "moss"
     static var previews: some View {
-        ColorOptionsScroll()
+        ColorOptionsScroll(selectedColor: $selectedColor)
     }
 }

@@ -36,6 +36,7 @@
 		F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B5B285A4F6B002C79BD /* Environments.swift */; };
 		F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */; };
 		F0842BB0285D4D06002C79BD /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BAF285D4D06002C79BD /* ColorPicker.swift */; };
+		F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB1285D5DCE002C79BD /* PickerButton.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -91,6 +92,7 @@
 		F0842B5B285A4F6B002C79BD /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
 		F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorOptionsScroll.swift; sourceTree = "<group>"; };
 		F0842BAF285D4D06002C79BD /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		F0842BB1285D5DCE002C79BD /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -224,10 +226,11 @@
 		F0842B58285A418B002C79BD /* components */ = {
 			isa = PBXGroup;
 			children = (
-				F0842B53285A3DF0002C79BD /* Picker.swift */,
-				F0149D55284EAD1400782D27 /* PickerCard.swift */,
 				F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */,
 				F0842BAF285D4D06002C79BD /* ColorPicker.swift */,
+				F0842B53285A3DF0002C79BD /* Picker.swift */,
+				F0149D55284EAD1400782D27 /* PickerCard.swift */,
+				F0842BB1285D5DCE002C79BD /* PickerButton.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
+				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
@@ -662,6 +666,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
@@ -686,6 +691,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -699,6 +705,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
@@ -723,6 +730,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios";
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

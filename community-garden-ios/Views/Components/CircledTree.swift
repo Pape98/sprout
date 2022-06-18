@@ -10,12 +10,14 @@ import SwiftUI
 struct CircledTree: View {
     var option: String
     var background: Color
+    var size: CGFloat
+    
     var body: some View {
 
         Image(option)
             .resizable()
             .scaledToFit()
-            .frame(maxWidth: 75, maxHeight: 75)
+            .frame(width: size, height: size)
             .background {
                 GeometryReader { geometry in
                     HStack{
@@ -26,12 +28,11 @@ struct CircledTree: View {
                     .frame(width: geometry.size.width, height: geometry.size.height, alignment: .bottom)
                 }
             }
-        
     }
 }
 
 struct CircledTree_Previews: PreviewProvider {
     static var previews: some View {
-        CircledTree(option: "moss-spiky-maple", background: .oliveGreen)
+        CircledTree(option: "moss-spiky-maple", background: .oliveGreen, size: 75)
     }
 }

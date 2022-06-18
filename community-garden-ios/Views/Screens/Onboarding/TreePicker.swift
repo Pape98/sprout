@@ -12,11 +12,21 @@ struct TreePicker: View {
         
     var body: some View {
         Picker(header: "Choose your tree!",
-               subheader: "This will be used to track your steps",
+               subheader: "Scroll to see all the trees 🌳 ",
                options: Constants.trees,
-               nextScreen: AnyView(FlowerPicker()),
+               nextScreen: AnyView(TreeColorPicker()),
                circleType: PickerCard.CircleType.TREE
         ).userDefaultsKey(UserDefaultsKey.TREE)
+    }
+}
+
+struct TreeColorPicker: View {
+    var body: some View {
+        ColorPicker(
+            header: "Choose a tree color!",
+            subheader: "Look at all these nice colors 🎨",
+            nextScreen: AnyView(FlowerPicker())
+        )
     }
 }
 
