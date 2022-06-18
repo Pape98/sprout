@@ -28,8 +28,6 @@ struct DashboardCard<Content: View>: View {
                     Image(icon)
                         .padding(10)
                 }
-                
-                
             }
     }
 }

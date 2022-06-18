@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "lavendar-sad-holly.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "lavendar-sad-holly-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "lavendar-sad-holly-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

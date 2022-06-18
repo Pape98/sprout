@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "lavendar-spiky-maple.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "lavendar-spiky-maple-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "lavendar-spiky-maple-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

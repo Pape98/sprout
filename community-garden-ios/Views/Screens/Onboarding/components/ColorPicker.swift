@@ -18,49 +18,52 @@ struct ColorPicker: View {
     @State var selectedColor = "moss"
     
     var body: some View {
-        ZStack(alignment: .top) {
-            Image("sky-cloud-bg")
-                .resizable()
-                .ignoresSafeArea()
-            
-            VStack {
+        GeometryReader { geometry in
+            ZStack(alignment: .top) {
+                Image("sky-cloud-bg")
+                    .resizable()
+                    .ignoresSafeArea()
                 
                 VStack {
-                    Text(header)
-                        .headerStyle()
-                    Text(subheader)
-                        .bodyStyle()
-                }.padding()
-                
-//                CircledTree(option: "\(selectedColor)-\(DEFAULT_TREE)",
-//                            background: .oliveGreen,
-//                            size: 180)
-//                .frame(height: 190)
-//                
-                Image("\(selectedColor)-\(DEFAULT_TREE)")
-                    .resizable()
-                    .scaledToFit()
-                    .frame(height: 210)
-                
-                Text("Pick a color 😊")
-                    .bodyStyle()
-                
-                ColorOptionsScroll(selectedColor: $selectedColor)
-                
-                Spacer()
-                
-                LazyVGrid(columns: columns, spacing: 20) {
-                    PickerButton(text: "Back",
-                                 selection: selectedColor)
                     
-                    PickerButton(text: "Next",
-                                 selection: selectedColor,
-                                 nextScreen: nextScreen)
+                    VStack {
+                        Text(header)
+                            .headerStyle()
+                        Text("\(formatItemName(DEFAULT_TREE)) 🎨")
+                            .bodyStyle()
+                    }.padding()
                     
+                    
+                    ZStack(alignment: .bottom) {
+                        Image("\(selectedColor)-\(DEFAULT_TREE)")
+                            .resizable()
+                            .scaledToFit()
+                            .zIndex(1)
+                            .offset(y: -15)
+                        
+                        Image("ground")
+                            .resizable()
+                            .frame(maxHeight: geometry.size.height * 0.1)
+                    }.frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.4)
+                        .padding(.vertical)
+                    
+                    
+                    ColorOptionsScroll(selectedColor: $selectedColor)
+                    
+                    Spacer()
+                    
+                    LazyVGrid(columns: columns, spacing: 20) {
+                        PickerButton(text: "Back",
+                                     selection: selectedColor)
+                        
+                        PickerButton(text: "Next",
+                                     selection: selectedColor,
+                                     nextScreen: nextScreen)
+                        
+                    }.padding()
                 }
-                .padding()
-            }
-        }.navigationBarHidden(true)
+            }.navigationBarHidden(true)
+        }
     }
 }
 

@@ -17,13 +17,13 @@ struct ColorOptionsScroll: View {
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            LazyVGrid(columns: rows, spacing: 20) {
+            LazyVGrid(columns: rows, spacing: 15) {
                 HStack {
                     ForEach(Constants.colors, id: \.self) { color in
                         VStack {
                             Rectangle()
                                 .fill(Color(color))
-                                .frame(width:75, height:75)
+                                .frame(width:65, height:65)
                                 .cornerRadius(10)
                                 .padding()
                             Text(color.capitalizeFirstLetter())
@@ -34,7 +34,6 @@ struct ColorOptionsScroll: View {
                     }
                 }
             }
-            .padding()
         }
         
     }

@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "hawks-whomping-medlar.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "hawks-whomping-medlar-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "hawks-whomping-medlar-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

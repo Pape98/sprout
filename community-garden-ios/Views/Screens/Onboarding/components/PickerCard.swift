@@ -16,34 +16,34 @@ struct PickerCard: View {
     
     var option: String
     var circleType: CircleType
+    let size: CGFloat = 150.0
     
     var body: some View {
         
-        HStack (spacing: 20) {
-            
-            if(circleType == CircleType.TREE){
-                CircledTree(
-                    option: "moss-\(option)",
-                    background: .oliveGreen,
-                    size: 75
-                )
-            } else {
-                CircledFlower(option: option,
-                              background: .oliveGreen,
-                              size: 75
-                )
+        GeometryReader { geometry in
+            VStack (spacing: 20) {
+                
+                if(circleType == CircleType.TREE){
+                    CircledTree(
+                        option: "moss-\(option)",
+                        background: .oliveGreen,
+                        size: geometry.size.width * 0.5
+                    )
+                } else {
+                    CircledFlower(option: option,
+                                  background: .oliveGreen,
+                                  size: 50
+                    )
+                }
+                
+                Text(formatItemName(option))
+                    .font(.system(size: geometry.size.width * 0.1))
+                    .foregroundColor(.everglade)
+                
             }
-            
-            Text(formatItemName(option))
-                .font(.title2)
-                .bold()
-                .foregroundColor(.everglade)
-                .lineLimit(1)
-            Spacer()
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background(Color.white)
         }
-        .padding(15)
-        .background(Color.white)
-        .cornerRadius(10)
     }
     
 }

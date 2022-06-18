@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "lavendar-royal-larch.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "lavendar-royal-larch-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "lavendar-royal-larch-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
