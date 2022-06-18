@@ -16,33 +16,50 @@ struct PickerCard: View {
     
     var option: String
     var circleType: CircleType
-    let size: CGFloat = 150.0
+    var isSelected: Bool
+    
+    let size: CGFloat = 50
+    
+    var selection: String {
+        if(circleType == CircleType.TREE){
+            return "moss-\(option)"
+        } else {
+            return option
+        }
+    }
+    
+    var background: Color {
+        isSelected ? .teaGreen : .white
+    }
+    
+    var opacity: CGFloat {
+        isSelected ? 0.9 : 0.6
+    }
     
     var body: some View {
         
         GeometryReader { geometry in
-            VStack (spacing: 20) {
+            
+            ZStack {
+                Rectangle()
+                    .fill(background)
+                    .opacity(opacity)
                 
-                if(circleType == CircleType.TREE){
-                    CircledTree(
-                        option: "moss-\(option)",
-                        background: .oliveGreen,
-                        size: geometry.size.width * 0.5
-                    )
-                } else {
-                    CircledFlower(option: option,
-                                  background: .oliveGreen,
-                                  size: 50
-                    )
+                VStack (spacing: 20) {
+                    
+                    Image(selection)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: geometry.size.width * 0.5, height: geometry.size.width * 0.5)
+                    
+                    Text(formatItemName(option))
+                        .font(.system(size: geometry.size.width * 0.1))
+                        .foregroundColor(.everglade)
+                        .bold()
+                    
                 }
-                
-                Text(formatItemName(option))
-                    .font(.system(size: geometry.size.width * 0.1))
-                    .foregroundColor(.everglade)
-                
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity)
-            .background(Color.white)
         }
     }
     
@@ -50,6 +67,8 @@ struct PickerCard: View {
 
 struct PickerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerCard(option: "spiky-maple", circleType: PickerCard.CircleType.TREE)
+        PickerCard(option: "spiky-maple",
+                   circleType: PickerCard.CircleType.TREE,
+                   isSelected: false)
     }
 }

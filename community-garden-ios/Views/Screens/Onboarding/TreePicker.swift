@@ -11,10 +11,9 @@ import SwiftUI
 struct TreePicker: View {
         
     var body: some View {
-        Picker(header: "Choose your tree!",
+        ItemPicker(header: "Choose your tree!",
                subheader: "Scroll to see all the trees 🌳 ",
                options: Constants.trees,
-               nextScreen: AnyView(TreeColorPicker()),
                circleType: PickerCard.CircleType.TREE
         ).userDefaultsKey(UserDefaultsKey.TREE)
     }
@@ -23,10 +22,8 @@ struct TreePicker: View {
 struct TreeColorPicker: View {
     var body: some View {
         ColorPicker(
-            header: "Choose a tree color!",
-            subheader: "Look at all these nice colors 🎨",
-            nextScreen: AnyView(FlowerPicker())
-        )
+            header: "Choose a color!",
+            subheader: "Look at all these nice colors 🎨")
     }
 }
 

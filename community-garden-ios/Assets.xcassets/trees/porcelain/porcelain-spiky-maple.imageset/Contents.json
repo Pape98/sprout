@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "porcelain-spiky-maple.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "porcelain-spiky-maple-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "porcelain-spiky-maple-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

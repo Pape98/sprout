@@ -16,7 +16,7 @@ struct Dashboard: View {
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
     let today = Date()
     
-    let defaultTree = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE) ?? "moss-spiky-maple"
+    let defaultTree = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE) ?? "spiky-maple"
     
     var body: some View {
         // Content

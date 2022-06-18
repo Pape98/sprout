@@ -11,18 +11,15 @@ struct ColorPicker: View {
     
     var header: String
     var subheader: String
-    var nextScreen: AnyView
     let DEFAULT_TREE = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE) ?? "spiky-maple"
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
     @State var selectedColor = "moss"
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
-                Image("sky-cloud-bg")
-                    .resizable()
-                    .ignoresSafeArea()
                 
                 VStack {
                     
@@ -52,17 +49,10 @@ struct ColorPicker: View {
                     
                     Spacer()
                     
-                    LazyVGrid(columns: columns, spacing: 20) {
-                        PickerButton(text: "Back",
-                                     selection: selectedColor)
-                        
-                        PickerButton(text: "Next",
-                                     selection: selectedColor,
-                                     nextScreen: nextScreen)
-                        
-                    }.padding()
+                    BackNextButtons()
+                        .environmentObject(onboardingRouter)
                 }
-            }.navigationBarHidden(true)
+            }
         }
     }
 }
@@ -72,8 +62,7 @@ struct ColorPicker_Previews: PreviewProvider {
     
     static var previews: some View {
         ColorPicker(header: "Choose tree color",
-                    subheader: "Look at all these nice colors 🎨",
-                    nextScreen: AnyView(Dashboard())
-        )
+                    subheader: "Look at all these nice colors 🎨")
+        .environmentObject(OnboardingRouter())
     }
 }

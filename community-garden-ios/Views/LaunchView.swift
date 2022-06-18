@@ -9,16 +9,22 @@ import SwiftUI
 
 struct LaunchView: View {
     
+    // View Models
     @EnvironmentObject var authModel: AuthenticationViewModel
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
+    
+    // Routers
+    @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
+    
+    // Others
     @State var yOffset = 0
     @State var isNewUser = true
     
     var body: some View {
         
-        NavigationView {
+        Group {
             if authModel.isLoggedIn == false {
                 // Show login view
                 LoginView(yOffset: $yOffset)
@@ -26,7 +32,7 @@ struct LaunchView: View {
             } else {
                 // Show onboarding or dashboard view
                 if (isNewUser){
-                    TreePicker()
+                    Onboarding()
                 } else {
                     Dashboard()
                 }
@@ -35,6 +41,7 @@ struct LaunchView: View {
         .environmentObject(userViewModel)
         .environmentObject(friendsViewModel)
         .environmentObject(gardenViewModel)
+        .environmentObject(onboardingRouter)
     }
 }
 

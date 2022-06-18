@@ -19,6 +19,17 @@ struct Constants {
     static let colors = ["moss","cosmos","sunglow","grenadier","hawks","tangerine","lavender","mint","raspberry","porcelain"]
 }
 
+enum DataOptions: String, CaseIterable {
+    case steps = "Steps"
+    case sleep = "Sleep"
+    
+    static var dalatList: [String] {
+        return DataOptions.allCases.map { $0.rawValue }
+      }
+    
+    static let icons = ["Steps": "figure.walk", "Sleep":"bed.double.circle"]
+}
+
 
 
 

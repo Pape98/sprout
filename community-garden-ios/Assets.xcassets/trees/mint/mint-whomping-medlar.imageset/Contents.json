@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "mint-whomping-medlar.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "mint-whomping-medlar-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "mint-whomping-medlar-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

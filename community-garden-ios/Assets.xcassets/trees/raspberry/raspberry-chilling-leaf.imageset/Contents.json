@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "raspberry-chilling-leaf.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "raspberry-chilling-leaf-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "raspberry-chilling-leaf-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

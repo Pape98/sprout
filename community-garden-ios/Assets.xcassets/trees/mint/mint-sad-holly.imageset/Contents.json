@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "mint-sad-holly.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "mint-sad-holly-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "mint-sad-holly-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

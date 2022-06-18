@@ -51,7 +51,7 @@ class HealthStoreService {
         
         let healthKitTypesToRead = Set([
             //            HKDataTypes.heartRate,
-            //            HKDataTypes.sleep
+            HKDataTypes.sleep,
             HKDataTypes.stepCount,
         ])
         
@@ -112,7 +112,7 @@ class HealthStoreService {
                                               year: Int(today.year),
                                               month:Int(today.month),
                                               day: Int(today.day))).date else { return }
-                
+        
         
         // TODO: Generalize to accept other statistics and not just steps
         var dailySteps: [Step] = []

@@ -75,6 +75,8 @@ extension Color {
     static let everglade = Color("everglade")
     static let appleGreen = Color("apple-green")
     static let chalice = Color("chalice")
+    static let teaGreen = Color("tea-green")
+    static let leaf = Color("leaf")
     
     // Weather colors
     static let night = Color("night")
@@ -130,5 +132,12 @@ extension EnvironmentValues {
         get { self[SettingsKey.self] }
         set { self[SettingsKey.self] = newValue }
     }
+}
+
+extension AnyTransition {
+    static var backslide: AnyTransition {
+        AnyTransition.asymmetric(
+            insertion: .move(edge: .trailing),
+            removal: .move(edge: .leading))}
 }
 

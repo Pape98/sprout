@@ -1,14 +1,17 @@
 {
   "images" : [
     {
+      "filename" : "porcelain-chilling-leaf.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "porcelain-chilling-leaf-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "porcelain-chilling-leaf-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
