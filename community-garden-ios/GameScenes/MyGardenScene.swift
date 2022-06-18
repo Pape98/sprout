@@ -82,7 +82,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     func setupTree(ground: SKSpriteNode) -> SKSpriteNode{
         // Tree
-        let treeTexture = DEFAULT_TREE != nil ? SKTexture(imageNamed: DEFAULT_TREE!) : SKTexture(imageNamed: "linden")
+        let treeTexture = DEFAULT_TREE != nil ? SKTexture(imageNamed: DEFAULT_TREE!) : SKTexture(imageNamed: "moss-spiky-maple")
         tree = SKSpriteNode(texture: treeTexture)
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y: ground.size.height / 2)

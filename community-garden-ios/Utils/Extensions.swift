@@ -79,6 +79,20 @@ extension Color {
     static let night = Color("night")
     static let evening = Color("evening")
     static let morning = Color("morning")
+    static let day = Color("day")
+    
+    // Color options
+    static let cosmos = Color("cosmos")
+    static let sunglow = Color("sunglow")
+    static let grenadier = Color("grenadier")
+    static let hawks = Color("hawks")
+    static let moss = Color("moss")
+    static let tangerine = Color("tangerine")
+    static let lavendar = Color("lavendar")
+    static let mint = Color("mint")
+    static let raspberry = Color("raspberry")
+    static let porcelain = Color("porcelain")
+    
 }
 
 extension Text {

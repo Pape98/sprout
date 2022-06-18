@@ -34,6 +34,8 @@
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
 		F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B59285A4A32002C79BD /* CircledFlower.swift */; };
 		F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B5B285A4F6B002C79BD /* Environments.swift */; };
+		F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */; };
+		F0842BB0285D4D06002C79BD /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BAF285D4D06002C79BD /* ColorPicker.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -87,6 +89,8 @@
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
 		F0842B59285A4A32002C79BD /* CircledFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledFlower.swift; sourceTree = "<group>"; };
 		F0842B5B285A4F6B002C79BD /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
+		F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorOptionsScroll.swift; sourceTree = "<group>"; };
+		F0842BAF285D4D06002C79BD /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -222,6 +226,8 @@
 			children = (
 				F0842B53285A3DF0002C79BD /* Picker.swift */,
 				F0149D55284EAD1400782D27 /* PickerCard.swift */,
+				F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */,
+				F0842BAF285D4D06002C79BD /* ColorPicker.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -504,6 +510,7 @@
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
+				F0842BB0285D4D06002C79BD /* ColorPicker.swift in Sources */,
 				F0149D59284ECDC900782D27 /* ButtonStyling.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
@@ -524,6 +531,7 @@
 				F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */,
 				F0149D61284F184000782D27 /* DashboardCard.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
+				F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */,
 				F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

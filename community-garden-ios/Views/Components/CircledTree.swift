@@ -32,6 +32,6 @@ struct CircledTree: View {
 
 struct CircledTree_Previews: PreviewProvider {
     static var previews: some View {
-        CircledTree(option: "oak", background: .oliveGreen)
+        CircledTree(option: "moss-spiky-maple", background: .oliveGreen)
     }
 }

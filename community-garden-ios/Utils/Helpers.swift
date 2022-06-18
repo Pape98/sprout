@@ -17,3 +17,9 @@ func getFirstName(_ name: String) -> String {
 func getRandomCGFloat(_ start: CGFloat, _ end: CGFloat) -> CGFloat{
     return CGFloat.random(in: start...end+0.1)
 }
+
+func formatItemName(_ name: String) -> String{
+    let tokens = name.components(separatedBy: "-")
+    let capitalizedTokens = tokens.map { $0.capitalized}
+    return capitalizedTokens.joined(separator: " ")
+}

@@ -24,16 +24,12 @@ struct MyGarden: View {
         ZStack(alignment: .topLeading) {
             
             // Background Image
-            Image("morning-bg")
+            Image("day-bg")
                 .resizable()
                 .ignoresSafeArea()
             
             // Scene View
             SpriteView(scene: scene, options: [.allowsTransparency])
-            
-            Rectangle()
-                .fill(Color.morning)
-                .blendMode(BlendMode.overlay)
             
             // Stats
             VStack(alignment: .leading) {
@@ -44,6 +40,11 @@ struct MyGarden: View {
             .padding()
    
         }
+//        .overlay {
+//            Rectangle()
+//                .fill(Color.evening)
+//                .blendMode(BlendMode.overlay)
+//        }
     }
 }
 

@@ -35,7 +35,7 @@ struct Dashboard: View {
                             CircledTree(option: defaultTree!, background: .seaGreen)
                                 .padding(.top, 30)
                         } else {
-                            CircledTree(option: "oak", background: .seaGreen)
+                            CircledTree(option: "moss-spiky-maple", background: .seaGreen)
                                 .padding(.top, 30)
                         }
                         

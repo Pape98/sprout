@@ -18,15 +18,16 @@ struct PickerCard: View {
     var circleType: CircleType
     
     var body: some View {
+        
         HStack (spacing: 20) {
             
             if(circleType == CircleType.TREE){
-                CircledTree(option: option, background: .oliveGreen)
+                CircledTree(option: "moss-\(option)", background: .oliveGreen)
             } else {
                 CircledFlower(option: option, background: .oliveGreen)
             }
             
-            Text(option.capitalizeFirstLetter())
+            Text(formatItemName(option))
                 .font(.title2)
                 .bold()
                 .foregroundColor(.everglade)
@@ -35,12 +36,13 @@ struct PickerCard: View {
         .padding(15)
         .background(Color.white)
         .cornerRadius(10)
+        .frame(height: 100)
     }
     
 }
 
 struct PickerCardView_Previews: PreviewProvider {
     static var previews: some View {
-        PickerCard(option: "oak", circleType: PickerCard.CircleType.TREE)
+        PickerCard(option: "spiky-maple", circleType: PickerCard.CircleType.TREE)
     }
 }
