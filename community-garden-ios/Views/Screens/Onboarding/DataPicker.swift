@@ -12,25 +12,23 @@ struct DataPicker: View {
     @State var selections: [String] = []
     @State var showingAlert = false
     @EnvironmentObject var onboardingRouter: OnboardingRouter
+    
+    let header = "I want to track ..."
+    let subheader = "Select two things from the Health App"
     let dataOptions = DataOptions.dalatList
     
     
     var body: some View {
         VStack {
-            Text("I want to track ...")
-                .headerStyle()
-            Text("Select two things from the Health App")
-                .bodyStyle()
+            PickerTitle(header: header, subheader: subheader)
             
             VStack(spacing: 15) {
                 ForEach(dataOptions, id:\.self){ title in
-                    
                     DataCard(data: title, isSelected: selections.contains(title))
                         .onTapGesture {
                             // Deselect Item
                             if selections.contains(title) {
                                 selections = selections.filter {$0 != title}
-                                
                                 // Select Item
                             } else {
                                 selections.append(title)
@@ -43,15 +41,18 @@ struct DataPicker: View {
             Spacer()
             
             PickerButton(text: "Next"){
-                onboardingRouter.setScreen(.chooseTree)
+                if selections.isEmpty {
+                    showingAlert = true
+                } else {
+                    onboardingRouter.setScreen(.chooseTree)
+                }
             }
-            .padding()
             .frame(maxWidth: 250)
             
             
-        }.alert("Already Selected", isPresented: $showingAlert){
+        }.alert("Must select at least 1 😊", isPresented: $showingAlert){
             Button("OK", role: .cancel){}
-        }
+        }.padding()
     }
 }
 
@@ -59,7 +60,7 @@ struct DataCard: View {
     
     var data: String
     var isSelected: Bool
-    var icon: String {
+    var metadata: [String] {
         DataOptions.icons[data]!
     }
     var background: Color {
@@ -67,7 +68,7 @@ struct DataCard: View {
     }
     
     var opacity: CGFloat {
-        isSelected ? 0.9 : 0.6
+        isSelected ? 0.8 : 0.6
     }
     
     var selectedColor: Color {
@@ -86,14 +87,17 @@ struct DataCard: View {
                         .bold()
                         .font(.title3)
                         .foregroundColor(.seaGreen)
-                    Text("Track your data")
+                    
+                    Text(metadata[1])
                         .bodyStyle()
+                    
+                    
                     
                 }.padding()
                 
                 Spacer()
                 
-                Image(systemName: icon)
+                Image(systemName: metadata[0])
                     .resizable()
                     .scaledToFit()
                     .padding()
@@ -101,7 +105,7 @@ struct DataCard: View {
                 
             }
         }
-        .frame(height: 80)
+        .frame(maxHeight: 90)
         .cornerRadius(10)
     }
 }

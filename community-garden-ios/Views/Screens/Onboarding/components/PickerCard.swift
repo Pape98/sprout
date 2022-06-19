@@ -32,9 +32,6 @@ struct PickerCard: View {
         isSelected ? .teaGreen : .white
     }
     
-    var opacity: CGFloat {
-        isSelected ? 0.9 : 0.6
-    }
     
     var body: some View {
         
@@ -43,7 +40,7 @@ struct PickerCard: View {
             ZStack {
                 Rectangle()
                     .fill(background)
-                    .opacity(opacity)
+                    .opacity(0.4)
                 
                 VStack (spacing: 20) {
                     

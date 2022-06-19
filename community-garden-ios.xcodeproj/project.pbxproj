@@ -41,6 +41,7 @@
 		F0842BB7285E2980002C79BD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB6285E2980002C79BD /* Onboarding.swift */; };
 		F0842BB9285E2A19002C79BD /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB8285E2A19002C79BD /* Screens.swift */; };
 		F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBA285E67F2002C79BD /* DataPicker.swift */; };
+		F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBC285EA252002C79BD /* PickerTitle.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -101,6 +102,7 @@
 		F0842BB6285E2980002C79BD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		F0842BB8285E2A19002C79BD /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		F0842BBA285E67F2002C79BD /* DataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
+		F0842BBC285EA252002C79BD /* PickerTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTitle.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 				F0842B53285A3DF0002C79BD /* ItemPicker.swift */,
 				F0149D55284EAD1400782D27 /* PickerCard.swift */,
 				F0842BB1285D5DCE002C79BD /* PickerButton.swift */,
+				F0842BBC285EA252002C79BD /* PickerTitle.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */,
 				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,

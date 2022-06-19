@@ -22,13 +22,7 @@ struct ColorPicker: View {
             ZStack(alignment: .top) {
                 
                 VStack {
-                    
-                    VStack {
-                        Text(header)
-                            .headerStyle()
-                        Text("\(formatItemName(DEFAULT_TREE)) 🎨")
-                            .bodyStyle()
-                    }.padding()
+                    PickerTitle(header: header, subheader: "\(formatItemName(DEFAULT_TREE)) 🎨")
                     
                     
                     ZStack(alignment: .bottom) {

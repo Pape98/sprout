@@ -9,14 +9,13 @@ import SwiftUI
 
 struct FlowerPicker: View {
     var body: some View {
-        ItemPicker(header: "Choose your flower!",
-               subheader: "Scroll to see all the flowers 😊",
+        ItemPicker(header: "Pick a flower!",
+               subheader: "Scroll to see all the flowers 🌸",
                options: Constants.flowers,
                circleType: PickerCard.CircleType.FLOWER
         ).userDefaultsKey(UserDefaultsKey.FLOWER)
     }
 }
-
 
 
 struct FlowerPicker_Previews: PreviewProvider {

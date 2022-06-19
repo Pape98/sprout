@@ -27,7 +27,8 @@ enum DataOptions: String, CaseIterable {
         return DataOptions.allCases.map { $0.rawValue }
       }
     
-    static let icons = ["Steps": "figure.walk", "Sleep":"bed.double.circle"]
+    static let icons = ["Steps":["figure.walk","🔥 Your daily number of steps"],
+                        "Sleep":["bed.double.circle","🛌🏽 Amount you are in bed asleep"]]
 }
 
 

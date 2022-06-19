@@ -95,7 +95,6 @@ extension Color {
     static let mint = Color("mint")
     static let raspberry = Color("raspberry")
     static let porcelain = Color("porcelain")
-    
 }
 
 extension Text {
