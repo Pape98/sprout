@@ -13,6 +13,8 @@ struct DataPicker: View {
     @State var showingAlert = false
     @EnvironmentObject var onboardingRouter: OnboardingRouter
     
+    let userDefaultsService: UserDefaultsService = UserDefaultsService.shared
+    
     let header = "I want to track ..."
     let subheader = "Select two things from the Health App"
     let dataOptions = DataOptions.dalatList
@@ -44,7 +46,11 @@ struct DataPicker: View {
                 if selections.isEmpty {
                     showingAlert = true
                 } else {
-                    onboardingRouter.setScreen(.chooseTree)
+                    // Save user wants to track
+                    print(dataOptions)
+                    userDefaultsService.save(value: selections, key: UserDefaultsKey.DATA)
+                    // Redirect to next screen
+                    onboardingRouter.setScreen(.mapData)
                 }
             }
             .frame(maxWidth: 250)
@@ -56,64 +62,10 @@ struct DataPicker: View {
     }
 }
 
-struct DataCard: View {
-    
-    var data: String
-    var isSelected: Bool
-    var metadata: [String] {
-        DataOptions.icons[data]!
-    }
-    var background: Color {
-        isSelected ? .teaGreen : .white
-    }
-    
-    var opacity: CGFloat {
-        isSelected ? 0.8 : 0.6
-    }
-    
-    var selectedColor: Color {
-        isSelected ? .white : .seaGreen
-    }
-    
-    var body: some View {
-        ZStack {
-            Rectangle()
-                .fill(background)
-                .opacity(opacity)
-            HStack {
-                
-                VStack(alignment: .leading, spacing:10) {
-                    Text(data)
-                        .bold()
-                        .font(.title3)
-                        .foregroundColor(.seaGreen)
-                    
-                    Text(metadata[1])
-                        .bodyStyle()
-                    
-                    
-                    
-                }.padding()
-                
-                Spacer()
-                
-                Image(systemName: metadata[0])
-                    .resizable()
-                    .scaledToFit()
-                    .padding()
-                    .foregroundColor(selectedColor)
-                
-            }
-        }
-        .frame(maxHeight: 90)
-        .cornerRadius(10)
-    }
-}
-
 struct DataPicker_Previews: PreviewProvider {
     static var previews: some View {
         DataPicker()
             .environmentObject(OnboardingRouter())
-            .background(Color.chalice)
+            .background(Color.white)
     }
 }

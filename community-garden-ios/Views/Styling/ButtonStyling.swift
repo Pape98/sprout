@@ -20,6 +20,7 @@ struct ActionButtonStyle: ButtonStyle {
             .background(color)
             .cornerRadius(100)
             .contentShape(Rectangle())
+            .font(.system(size: 20, weight: .bold, design: .default))
         
     }
 }

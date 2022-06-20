@@ -13,10 +13,10 @@ struct PickerTitle: View {
     var subheader: String? = "Subheader of main header"
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             Text(header)
                 .headerStyle()
-                .lineLimit(1)
+                .lineLimit(2)
             if let subheader = subheader {
                 Text(subheader)
                     .bodyStyle()

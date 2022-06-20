@@ -10,6 +10,7 @@ import Foundation
 enum UserDefaultsKey: String {
     case TREE = "tree"
     case FLOWER = "flower"
+    case DATA = "data"
 }
 
 class UserDefaultsService {
@@ -24,6 +25,11 @@ class UserDefaultsService {
     func getString(key: UserDefaultsKey) -> String? {
         guard let value = defaults.string(forKey: key.rawValue) else { return nil }
         return value
+    }
+    
+    func getArray(key: UserDefaultsKey) -> [String]? {
+        guard let array = defaults.stringArray(forKey: key.rawValue) else { return nil }
+        return array
     }
 }
 

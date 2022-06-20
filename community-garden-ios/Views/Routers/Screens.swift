@@ -9,6 +9,7 @@ import Foundation
 
 enum Screen {
     case chooseData
+    case mapData
     case chooseTree
     case chooseTreeColor
     case chooseFlower

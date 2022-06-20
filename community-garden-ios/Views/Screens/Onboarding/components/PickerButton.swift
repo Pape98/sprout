@@ -13,7 +13,7 @@ struct PickerButton: View {
     var action: (() -> Void)? = nil
     
     var buttonColor: Color {
-        text == "Next" ? .oliveGreen : .chalice
+        text == "Next" ? .appleGreen : .chalice
     }
     
     @EnvironmentObject var onboardingRouter: OnboardingRouter

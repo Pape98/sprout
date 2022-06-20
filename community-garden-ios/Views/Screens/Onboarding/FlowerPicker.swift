@@ -17,7 +17,6 @@ struct FlowerPicker: View {
     }
 }
 
-
 struct FlowerPicker_Previews: PreviewProvider {
     static var previews: some View {
         FlowerPicker()

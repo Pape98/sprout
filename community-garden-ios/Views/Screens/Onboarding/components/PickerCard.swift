@@ -28,8 +28,8 @@ struct PickerCard: View {
         }
     }
     
-    var background: Color {
-        isSelected ? .teaGreen : .white
+    var borderWidth: CGFloat {
+        isSelected ? 8 : 0
     }
     
     
@@ -38,9 +38,16 @@ struct PickerCard: View {
         GeometryReader { geometry in
             
             ZStack {
-                Rectangle()
-                    .fill(background)
-                    .opacity(0.4)
+                
+                
+                Group {
+                    RoundedRectangle(cornerRadius: 10)
+                        .inset(by: 1)
+                        .stroke(Color.appleGreen, lineWidth: borderWidth)
+                    
+                }.background(Color.white)
+                    .cornerRadius(10)
+                    .opacity(0.5)
                 
                 VStack (spacing: 20) {
                     

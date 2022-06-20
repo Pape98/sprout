@@ -11,7 +11,11 @@ struct ColorPicker: View {
     
     var header: String
     var subheader: String
-    let DEFAULT_TREE = UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+    
+    var DEFAULT_TREE: String {
+        UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+    }
+
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     @EnvironmentObject var onboardingRouter: OnboardingRouter

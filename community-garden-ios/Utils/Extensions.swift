@@ -124,6 +124,10 @@ extension View {
     func userDefaultsKey(_ value: UserDefaultsKey) -> some View {
         environment(\.userDefaultsKey, value)
     }
+    
+    func weatherOverlay() -> some View {
+        modifier(WeatherOverlay())
+    }
 }
 
 extension EnvironmentValues {

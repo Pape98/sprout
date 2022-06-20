@@ -13,13 +13,15 @@ class OnboardingRouter: ObservableObject {
     @Published var currentScreen: Screen = .chooseData
     @Published var transition: AnyTransition = .slide
     
-    let nextScreens : [Screen: Screen] = [.chooseData: .chooseTree,
+    let nextScreens : [Screen: Screen] = [.chooseData: .mapData,
+                                          .mapData: .chooseTree,
                                           .chooseTree: .chooseTreeColor,
                                           .chooseTreeColor: .chooseFlower,
                                           .chooseFlower: .chooseFlowerColor,
                                           .chooseFlowerColor: .chooseData]
     
-    let backScreens : [Screen: Screen] = [.chooseTree: .chooseData,
+    let backScreens : [Screen: Screen] = [.mapData: .chooseData,
+                                          .chooseTree: .mapData,
                                           .chooseTreeColor: .chooseTree,
                                           .chooseFlower: .chooseTreeColor,
                                           .chooseFlowerColor: .chooseFlower]
@@ -42,6 +44,4 @@ class OnboardingRouter: ObservableObject {
     func setTransition(_ newTransition: AnyTransition){
         transition = newTransition
     }
-    
-    
 }
