@@ -9,10 +9,13 @@ import SwiftUI
 
 
 struct TreePicker: View {
+    
+    @State var selection: String = "spiky-maple"
         
     var body: some View {
         ItemPicker(header: "Pick a tree!",
-               subheader: "Scroll to see all the trees 🌳 ",
+               subheader: "Scroll to see all the trees 🌳",
+               selection: $selection,
                options: Constants.trees,
                circleType: PickerCard.CircleType.TREE
         ).userDefaultsKey(UserDefaultsKey.TREE)

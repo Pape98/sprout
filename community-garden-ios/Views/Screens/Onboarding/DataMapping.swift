@@ -7,6 +7,23 @@
 
 import SwiftUI
 
+struct Custom: View {
+    
+    var p: Point
+    
+    var body: some View {
+        Circle()
+            .fill(.green)
+            .position(x: p.x, y: p.y)
+            .frame(width: 10, height: 10)
+    }
+}
+
+struct Point: Hashable {
+    var x: CGFloat
+    var y: CGFloat
+}
+
 struct DataMapping: View {
     
     let userDefaultsService: UserDefaultsService = UserDefaultsService.shared
@@ -15,19 +32,30 @@ struct DataMapping: View {
     var selectedData: [String] {
         UserDefaultsService.shared.getArray(key: UserDefaultsKey.DATA) ?? ["Steps"]
     }
-
+    
+    @State var points: [Point] = []
+    
     
     var body: some View {
+        
         VStack {
             PickerTitle(header: "I want to see...", subheader: "Decide what data represents what element")
-            List(selectedData, id: \.self) {
-                Text($0)
+            
+            
+            VStack {
+                
+                ForEach(selectedData, id: \.self){ data in
+                    Text(data)
+                }
             }
+            .padding()
+
             
             Spacer()
             BackNextButtons()
                 .environmentObject(onboardingRouter)
         }
+        
     }
 }
 

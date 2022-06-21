@@ -21,12 +21,15 @@ struct CircledFlower: View {
                 .resizable()
                 .scaledToFit()
                 .frame(width: size-15, height: size-15)
-        }.frame(width: size, height: size)
+                .padding(30)
+        }
+         .frame(width: size, height: size)
+         .padding()
     }
 }
 
 struct CircledFlower_Previews: PreviewProvider {
     static var previews: some View {
-        CircledFlower(option: "poppy", background: .oliveGreen, size: 200)
+        CircledFlower(option: "grenadier-abyss-sage", background: .oliveGreen, size: 200)
     }
 }

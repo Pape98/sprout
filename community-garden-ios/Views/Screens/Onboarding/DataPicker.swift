@@ -47,7 +47,6 @@ struct DataPicker: View {
                     showingAlert = true
                 } else {
                     // Save user wants to track
-                    print(dataOptions)
                     userDefaultsService.save(value: selections, key: UserDefaultsKey.DATA)
                     // Redirect to next screen
                     onboardingRouter.setScreen(.mapData)

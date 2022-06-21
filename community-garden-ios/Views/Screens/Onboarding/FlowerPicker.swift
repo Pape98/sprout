@@ -8,9 +8,13 @@
 import SwiftUI
 
 struct FlowerPicker: View {
+    
+    @State var selection = "abyss-sage"
+    
     var body: some View {
         ItemPicker(header: "Pick a flower!",
                subheader: "Scroll to see all the flowers 🌸",
+                   selection: $selection,
                options: Constants.flowers,
                circleType: PickerCard.CircleType.FLOWER
         ).userDefaultsKey(UserDefaultsKey.FLOWER)

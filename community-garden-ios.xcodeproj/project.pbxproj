@@ -32,6 +32,7 @@
 		F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B562860FB6100C68B35 /* Modifiers.swift */; };
 		F0475B59286100D700C68B35 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B58286100D600C68B35 /* DataMapping.swift */; };
 		F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B5A286101BA00C68B35 /* DataCard.swift */; };
+		F0475B61286228D000C68B35 /* LastSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B60286228CF00C68B35 /* LastSteps.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
@@ -96,6 +97,8 @@
 		F0475B562860FB6100C68B35 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		F0475B58286100D600C68B35 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
 		F0475B5A286101BA00C68B35 /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
+		F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catamaran-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		F0475B60286228CF00C68B35 /* LastSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSteps.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
@@ -207,9 +210,10 @@
 				F0842BB6285E2980002C79BD /* Onboarding.swift */,
 				F0842BBA285E67F2002C79BD /* DataPicker.swift */,
 				F0475B58286100D600C68B35 /* DataMapping.swift */,
-				F0842B55285A4060002C79BD /* FlowerPicker.swift */,
 				F0149D53284E9E0D00782D27 /* TreePicker.swift */,
+				F0842B55285A4060002C79BD /* FlowerPicker.swift */,
 				F0842B58285A418B002C79BD /* components */,
+				F0475B60286228CF00C68B35 /* LastSteps.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -221,6 +225,14 @@
 				F0842B57285A4170002C79BD /* components */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		F0475B5E28610E3400C68B35 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
@@ -326,6 +338,7 @@
 				F0C99E202784810F004514D4 /* Repositories */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
 				F0964271275C25AF00F1CEC1 /* Utils */,
+				F0475B5E28610E3400C68B35 /* Fonts */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
 				F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */,
@@ -555,6 +568,7 @@
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
+				F0475B61286228D000C68B35 /* LastSteps.swift in Sources */,
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
 				F0149D63284F18B300782D27 /* IconButton.swift in Sources */,
 				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
