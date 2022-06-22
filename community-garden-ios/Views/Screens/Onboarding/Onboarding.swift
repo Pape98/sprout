@@ -20,16 +20,18 @@ struct Onboarding: View {
             switch onboardingRouter.currentScreen {
             case .chooseData:
                 DataPicker().transition(onboardingRouter.transition)
-            case .mapData:
-                DataMapping().transition(onboardingRouter.transition)
             case .chooseTree:
                 TreePicker().transition(onboardingRouter.transition)
             case .chooseTreeColor:
                 TreeColorPicker().transition(onboardingRouter.transition)
             case .chooseFlower:
                 FlowerPicker().transition(onboardingRouter.transition)
-            default:
-                Text("Screen does not exist")
+            case .chooseFlowerColor:
+                FlowerColorPicker().transition(onboardingRouter.transition)
+            case .mapData:
+                DataMapping().transition(onboardingRouter.transition)
+            case .lastSteps:
+                LastSteps().transition(onboardingRouter.transition)
             }
         }
     }

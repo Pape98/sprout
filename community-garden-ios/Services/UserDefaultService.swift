@@ -7,11 +7,6 @@
 
 import Foundation
 
-enum UserDefaultsKey: String {
-    case TREE = "tree"
-    case FLOWER = "flower"
-    case DATA = "data"
-}
 
 class UserDefaultsService {
     
@@ -31,6 +26,14 @@ class UserDefaultsService {
         guard let array = defaults.stringArray(forKey: key.rawValue) else { return nil }
         return array
     }
+}
+
+enum UserDefaultsKey: String {
+    case TREE = "tree"
+    case TREE_COLOR = "tree-color"
+    case FLOWER = "flower"
+    case FLOWER_COLOR = "flower-color"
+    case DATA = "data"
 }
 
 

@@ -21,6 +21,19 @@ struct FlowerPicker: View {
     }
 }
 
+struct FlowerColorPicker: View {
+    
+    @State var selectedColor = "cosmos"
+    
+    var body: some View {
+        ColorPicker(
+            header: "Pick a color!",
+            subheader: "Look at all these nice colors 🎨",
+            selectedColor: $selectedColor)
+        .userDefaultsKey(UserDefaultsKey.FLOWER_COLOR)
+    }
+}
+
 struct FlowerPicker_Previews: PreviewProvider {
     static var previews: some View {
         FlowerPicker()

@@ -14,6 +14,7 @@ enum Screen {
     case chooseTreeColor
     case chooseFlower
     case chooseFlowerColor
+    case lastSteps
 }
 
 

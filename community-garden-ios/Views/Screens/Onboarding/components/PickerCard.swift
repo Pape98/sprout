@@ -24,7 +24,7 @@ struct PickerCard: View {
         if(circleType == CircleType.TREE){
             return "moss-\(option)"
         } else {
-            return "cosmos-\(option)"
+            return "petals/cosmos-\(option)"
         }
     }
     

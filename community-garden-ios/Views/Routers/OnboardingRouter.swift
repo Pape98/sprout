@@ -10,21 +10,23 @@ import SwiftUI
 
 class OnboardingRouter: ObservableObject {
     
-    @Published var currentScreen: Screen = .chooseFlower
+    @Published var currentScreen: Screen = .chooseData
     @Published var transition: AnyTransition = .slide
     
-    let nextScreens : [Screen: Screen] = [.chooseData: .mapData,
-                                          .mapData: .chooseTree,
+    let nextScreens : [Screen: Screen] = [.chooseData: .chooseTree,
                                           .chooseTree: .chooseTreeColor,
                                           .chooseTreeColor: .chooseFlower,
                                           .chooseFlower: .chooseFlowerColor,
-                                          .chooseFlowerColor: .chooseData]
+                                          .chooseFlowerColor: .mapData,
+                                          .mapData: .lastSteps,
+                                          .lastSteps: .lastSteps]
     
-    let backScreens : [Screen: Screen] = [.mapData: .chooseData,
-                                          .chooseTree: .mapData,
+    let backScreens : [Screen: Screen] = [.chooseTree: .chooseData,
                                           .chooseTreeColor: .chooseTree,
                                           .chooseFlower: .chooseTreeColor,
-                                          .chooseFlowerColor: .chooseFlower]
+                                          .chooseFlowerColor: .chooseFlower,
+                                          .mapData: .chooseFlowerColor,
+                                          .lastSteps: .mapData]
     
     
     static let shared = OnboardingRouter()

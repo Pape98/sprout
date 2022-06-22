@@ -209,11 +209,11 @@
 			children = (
 				F0842BB6285E2980002C79BD /* Onboarding.swift */,
 				F0842BBA285E67F2002C79BD /* DataPicker.swift */,
-				F0475B58286100D600C68B35 /* DataMapping.swift */,
 				F0149D53284E9E0D00782D27 /* TreePicker.swift */,
 				F0842B55285A4060002C79BD /* FlowerPicker.swift */,
-				F0842B58285A418B002C79BD /* components */,
+				F0475B58286100D600C68B35 /* DataMapping.swift */,
 				F0475B60286228CF00C68B35 /* LastSteps.swift */,
+				F0842B58285A418B002C79BD /* components */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";

@@ -9,36 +9,60 @@ import SwiftUI
 
 struct ColorPicker: View {
     
+    @Environment(\.userDefaultsKey) var userDefaultsKey
     var header: String
     var subheader: String
+    @Binding var selectedColor: String
+    
+    
+    let userDefaults = UserDefaultsService.shared
+    
     
     var DEFAULT_TREE: String {
-        UserDefaultsService.shared.getString(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+        userDefaults.getString(key: UserDefaultsKey.TREE) ?? "spiky-maple"
     }
-
+    
+    var DEFAULT_FLOWER: String {
+        userDefaults.getString(key: UserDefaultsKey.FLOWER) ?? "abyss-sage"
+    }
+    
+    var DEFAULT: String {
+        userDefaultsKey == UserDefaultsKey.TREE_COLOR ? DEFAULT_TREE : DEFAULT_FLOWER
+    }
+    
+    var imagePath: String {
+        if userDefaultsKey == UserDefaultsKey.FLOWER_COLOR {
+            return "flowers/\(selectedColor)-\(DEFAULT)"
+        } else {
+            return "\(selectedColor)-\(DEFAULT)"
+        }
+    }
+    
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     @EnvironmentObject var onboardingRouter: OnboardingRouter
-    @State var selectedColor = "moss"
     
     var body: some View {
         GeometryReader { geometry in
             ZStack(alignment: .top) {
                 
                 VStack {
-                    PickerTitle(header: header, subheader: "\(formatItemName(DEFAULT_TREE)) 🎨")
+                    PickerTitle(header: header, subheader: "\(formatItemName(DEFAULT)) 🎨")
                     
                     
                     ZStack(alignment: .bottom) {
-                        Image("\(selectedColor)-\(DEFAULT_TREE)")
+                        
+                        Image(imagePath)
                             .resizable()
                             .scaledToFit()
                             .zIndex(1)
-                            .offset(y: -15)
+                            .offset(y: -20)
+                            .frame(width: 200.0, height: 250)
+                        
                         
                         Image("ground")
                             .resizable()
-                            .frame(maxHeight: geometry.size.height * 0.1)
+                            .frame(maxHeight: geometry.size.height * 0.15)
                     }.frame(maxWidth: .infinity, maxHeight: geometry.size.height * 0.4)
                         .padding(.vertical)
                     
@@ -47,8 +71,11 @@ struct ColorPicker: View {
                     
                     Spacer()
                     
-                    BackNextButtons()
-                        .environmentObject(onboardingRouter)
+                    BackNextButtons(){
+                        // Save selected color
+                        userDefaults.save(value: selectedColor, key: userDefaultsKey)
+                    }
+                    .environmentObject(onboardingRouter)
                 }
             }
         }
@@ -57,10 +84,13 @@ struct ColorPicker: View {
 
 struct ColorPicker_Previews: PreviewProvider {
     
+    @State static var selectedColor = "moss"
     
     static var previews: some View {
         ColorPicker(header: "Choose tree color",
-                    subheader: "Look at all these nice colors 🎨")
+                    subheader: "Look at all these nice colors 🎨",
+                    selectedColor: $selectedColor)
+        .userDefaultsKey(UserDefaultsKey.TREE)
         .environmentObject(OnboardingRouter())
     }
 }

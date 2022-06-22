@@ -23,10 +23,15 @@ struct TreePicker: View {
 }
 
 struct TreeColorPicker: View {
+    
+    @State var selectedColor = "moss"
+    
     var body: some View {
         ColorPicker(
             header: "Pick a color!",
-            subheader: "Look at all these nice colors 🎨")
+            subheader: "Look at all these nice colors 🎨",
+            selectedColor: $selectedColor)
+        .userDefaultsKey(UserDefaultsKey.TREE_COLOR)
     }
 }
 

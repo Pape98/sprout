@@ -26,11 +26,23 @@ struct Point: Hashable {
 
 struct DataMapping: View {
     
-    let userDefaultsService: UserDefaultsService = UserDefaultsService.shared
+    let userDefaults: UserDefaultsService = UserDefaultsService.shared
     @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var selectedData: [String] {
-        UserDefaultsService.shared.getArray(key: UserDefaultsKey.DATA) ?? ["Steps"]
+        userDefaults.getArray(key: UserDefaultsKey.DATA) ?? ["Steps"]
+    }
+    var treeType: String {
+        userDefaults.getString(key:UserDefaultsKey.TREE) ?? "spiky-maple"
+    }
+    var treeColor: String {
+        userDefaults.getString(key:UserDefaultsKey.TREE_COLOR) ?? "moss"
+    }
+    var flowerType: String {
+        userDefaults.getString(key:UserDefaultsKey.FLOWER) ?? "joyful-clover"
+    }
+    var flowerColor: String {
+        userDefaults.getString(key:UserDefaultsKey.FLOWER_COLOR) ?? "cosmos"
     }
     
     @State var points: [Point] = []
@@ -41,14 +53,12 @@ struct DataMapping: View {
         VStack {
             PickerTitle(header: "I want to see...", subheader: "Decide what data represents what element")
             
-            
-            VStack {
-                
-                ForEach(selectedData, id: \.self){ data in
-                    Text(data)
-                }
+            VStack(spacing: 20){
+                Text(treeType)
+                Text(treeColor)
+                Text(flowerType)
+                Text(flowerColor)
             }
-            .padding()
 
             
             Spacer()

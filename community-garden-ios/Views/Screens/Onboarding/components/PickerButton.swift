@@ -43,6 +43,7 @@ struct PickerButton: View {
 struct BackNextButtons: View {
     
     @EnvironmentObject var onboardingRouter: OnboardingRouter
+    var action: (() -> Void)? = nil
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
 
@@ -53,6 +54,9 @@ struct BackNextButtons: View {
             }
             
             PickerButton(text:"Next"){
+                if let action = action {
+                    action()
+                }
                 onboardingRouter.navigateNext()
             }
             

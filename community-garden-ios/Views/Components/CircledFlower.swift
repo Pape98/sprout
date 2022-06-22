@@ -17,7 +17,7 @@ struct CircledFlower: View {
         ZStack {
             Circle()
                 .foregroundColor(background)
-            Image(option)
+            Image("petals/\(option)")
                 .resizable()
                 .scaledToFit()
                 .frame(width: size-15, height: size-15)

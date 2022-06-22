@@ -10,16 +10,27 @@ import SwiftUI
 struct ColorOptionsScroll: View {
     
     @Binding var selectedColor: String
+    @Environment(\.userDefaultsKey) var userDefaultsKey
     
     let rows = [
         GridItem(.flexible()),
     ]
     
+    var colorOptions: [String] {
+        var options = Constants.colors
+        // Do not show moss color for flowers
+        if(userDefaultsKey == UserDefaultsKey.FLOWER_COLOR){
+            options = options.filter{ $0 != "moss"}
+        }
+        return options
+    }
+    
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             LazyVGrid(columns: rows, spacing: 15) {
                 HStack {
-                    ForEach(Constants.colors, id: \.self) { color in
+                    ForEach(colorOptions, id: \.self) { color in
+                        
                         VStack {
                             Rectangle()
                                 .fill(Color(color))
