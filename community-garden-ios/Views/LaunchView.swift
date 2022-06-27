@@ -38,6 +38,7 @@ struct LaunchView: View {
                 }
             }
         }
+        .foregroundColor(.seaGreen)
         .environmentObject(userViewModel)
         .environmentObject(friendsViewModel)
         .environmentObject(gardenViewModel)

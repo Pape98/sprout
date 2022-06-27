@@ -45,17 +45,9 @@ struct DataCard: View {
                     Text(metadata[1])
                         .foregroundColor(.everglade)
                     
-                    
-                    
                 }.padding()
                 
                 Spacer()
-                
-                Image(systemName: metadata[0])
-                    .resizable()
-                    .scaledToFit()
-                    .padding()
-                    .foregroundColor(.seaGreen)
                 
             }
         }

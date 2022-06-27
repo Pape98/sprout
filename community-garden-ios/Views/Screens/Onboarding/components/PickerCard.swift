@@ -38,16 +38,14 @@ struct PickerCard: View {
         GeometryReader { geometry in
             
             ZStack {
-                
-                
                 Group {
                     RoundedRectangle(cornerRadius: 10)
                         .inset(by: 1)
                         .stroke(Color.appleGreen, lineWidth: borderWidth)
                     
                 }.background(Color.white)
-                    .cornerRadius(10)
-                    .opacity(0.5)
+                 .cornerRadius(10)
+                 .opacity(0.5)
                 
                 VStack (spacing: 20) {
                     

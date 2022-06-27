@@ -77,6 +77,8 @@ extension Color {
     static let chalice = Color("chalice")
     static let teaGreen = Color("tea-green")
     static let leaf = Color("leaf")
+    static let haze = Color("haze")
+    static let ceramic = Color("ceramic")
     
     // Weather colors
     static let night = Color("night")
@@ -127,6 +129,10 @@ extension View {
     
     func weatherOverlay() -> some View {
         modifier(WeatherOverlay())
+    }
+    
+    func segment() -> some View {
+        modifier(Segment())
     }
 }
 

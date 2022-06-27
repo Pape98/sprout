@@ -20,6 +20,7 @@ struct PickerTitle: View {
             if let subheader = subheader {
                 Text(subheader)
                     .bodyStyle()
+                    .multilineTextAlignment(.center)
             }
             
         }.padding()

@@ -34,3 +34,16 @@ struct WeatherOverlay: ViewModifier {
         }
     }
 }
+
+struct Segment: ViewModifier {
+    func body(content: Content) -> some View {
+        VStack {
+            content
+        }
+        .padding()
+        .background(.white)
+        .border(Color.ceramic, width: 3)
+        .cornerRadius(10)
+        .opacity(0.85)
+    }
+}

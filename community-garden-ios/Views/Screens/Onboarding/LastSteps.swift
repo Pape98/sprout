@@ -10,11 +10,31 @@ import SwiftUI
 struct LastSteps: View {
     
     var userDefaults = UserDefaultsService.shared
+    
+    @State private var gardenName: String = ""
+    @State private var reflectWeatherChanges = false
 
     
     var body: some View {
-        VStack(spacing: 25){
-            Text("Last Steps")
+        VStack(){
+            
+            PickerTitle(header: "Final Touches", subheader: "Your garden cannot wait for you🍊")
+            VStack (alignment: .leading) {
+              
+                VStack(alignment: .leading) {
+                    Text("Enter your garden's name:")
+                    TextField("", text: $gardenName )
+                        .textFieldStyle(OvalTextFieldStyle())
+                }.segment()
+                Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
+                    .tint(.appleGreen)
+                    .segment()
+            }
+            .padding()
+            
+            Spacer()
+            
+            BackNextButtons(){}
          
         }
     }

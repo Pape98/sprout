@@ -9,6 +9,7 @@ import SwiftUI
 
 struct DataPicker: View {
     
+    // MARK: Properties
     @State var selections: [String] = []
     @State var showingAlert = false
     @EnvironmentObject var onboardingRouter: OnboardingRouter
@@ -19,7 +20,7 @@ struct DataPicker: View {
     let subheader = "Select two things from the Health App"
     let dataOptions = DataOptions.dalatList
     
-    
+    // MARK: Views
     var body: some View {
         VStack {
             PickerTitle(header: header, subheader: subheader)
@@ -43,7 +44,7 @@ struct DataPicker: View {
             Spacer()
             
             PickerButton(text: "Next"){
-                if selections.isEmpty {
+                if selections.count < 2 {
                     showingAlert = true
                 } else {
                     // Save user wants to track
@@ -55,7 +56,7 @@ struct DataPicker: View {
             .frame(maxWidth: 250)
             
             
-        }.alert("Must select at least 1 😊", isPresented: $showingAlert){
+        }.alert("Must select at least 2 😊", isPresented: $showingAlert){
             Button("OK", role: .cancel){}
         }.padding()
     }

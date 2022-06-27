@@ -10,7 +10,7 @@ import SwiftUI
 
 class OnboardingRouter: ObservableObject {
     
-    @Published var currentScreen: Screen = .chooseData
+    @Published var currentScreen: Screen = .mapData
     @Published var transition: AnyTransition = .slide
     
     let nextScreens : [Screen: Screen] = [.chooseData: .chooseTree,

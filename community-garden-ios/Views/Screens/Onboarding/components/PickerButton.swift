@@ -13,7 +13,7 @@ struct PickerButton: View {
     var action: (() -> Void)? = nil
     
     var buttonColor: Color {
-        text == "Next" ? .appleGreen : .chalice
+        text == "Next" || text == "Done" ? .appleGreen : .chalice
     }
     
     @EnvironmentObject var onboardingRouter: OnboardingRouter
@@ -26,7 +26,7 @@ struct PickerButton: View {
     
     var body: some View {
         Button(text){
-            let transition: AnyTransition = text == "Next" ? .backslide : .slide
+            let transition: AnyTransition = text == "Next" || text == "Done" ? .backslide : .slide
             
             onboardingRouter.setTransition(transition)
             
