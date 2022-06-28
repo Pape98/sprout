@@ -43,7 +43,7 @@ struct Dashboard: View {
                     }.padding(.bottom, 25)
                 }
                 
-                ScrollView {
+                Group {
                     // Card Row One
                     if let user = userViewModel.currentUser {
                         GardenInfoCard(user: user)
