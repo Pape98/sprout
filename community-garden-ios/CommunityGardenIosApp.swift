@@ -14,7 +14,7 @@ struct CommunityGardenIosApp: App {
     
     // To send notifications to user
     let notificationService: NotificationService = NotificationService()
-
+    
     init() {
         FirebaseApp.configure()
     }

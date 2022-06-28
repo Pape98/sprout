@@ -49,14 +49,19 @@ struct Segment: ViewModifier {
 }
 
 struct Droppable: ViewModifier {
-    let condition: Bool
+    var condition: Bool
+    var action: ([NSItemProvider]) -> Void
     
     @ViewBuilder
     func body(content: Content) -> some View {
         if condition {
-            content
+            content.onDrop(of: [.url], isTargeted: .constant(false)) { providers in
+                action(providers)
+                return false
+            }
         } else {
             content
         }
     }
 }
+

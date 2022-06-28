@@ -134,6 +134,10 @@ extension View {
     func segment() -> some View {
         modifier(Segment())
     }
+    
+    func acceptDrop(condition: Bool, action: @escaping (_ providers: [NSItemProvider]) -> Void) -> some View {
+        modifier(Droppable(condition: condition, action: action))
+    }
 }
 
 extension EnvironmentValues {

@@ -99,35 +99,23 @@ struct DataMapping: View {
             }
             .frame(maxWidth: 150, maxHeight: 150, alignment: .top)
             
-            // Mapped Label
-            if mappedData[key.rawValue] != nil {
+            if mappedData[key.rawValue] == nil {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.oliveGreen)
-                        .opacity(0.8)
+                        .inset(by: 1)
+                        .stroke(style: StrokeStyle(lineWidth: 2.5, dash: [5]))
+                        .fill(Color.seaGreen)
                         .frame(width: 150, height: 40)
-                    Text(mappedData[key.rawValue]!)
-                        .foregroundColor(.white)
-                        .bold()
-                }
-                .padding(.top)
-                .onTapGesture {
-                    availableLabels.append(mappedData[key.rawValue]!)
-                    mappedData.removeValue(forKey: key.rawValue)
-                }
-            } else {
-                Group {
+                        .padding(.top)
+                    
                     RoundedRectangle(cornerRadius: 10)
                         .inset(by: 1)
-                        .stroke(style: StrokeStyle(lineWidth: 3,dash: [5]))
+                        .fill(Color.seaGreen)
                         .frame(width: 150, height: 40)
-                    
+                        .opacity(0.01)
+                        .padding(.top)
                 }
-                .cornerRadius(10)
-                .opacity(0.5)
-                .padding()
-                .onDrop(of: [.url], isTargeted: .constant(false)) { providers in
-                    
+                .acceptDrop(condition: true) { providers in
                     if let first = providers.first {
                         let _ = first.loadObject(ofClass: URL.self) { value, error in
                             guard let url = value else  { return }
@@ -143,8 +131,33 @@ struct DataMapping: View {
                             
                         }
                     }
-                    return false
+                    
                 }
+            } else {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(Color.oliveGreen)
+                        .opacity(0.8)
+                        .frame(width: 150, height: 40)
+                    
+                    HStack {
+                        Text(mappedData[key.rawValue]!)
+                            .foregroundColor(.white)
+                            .bold()
+                            .padding(.leading)
+                        Spacer()
+                        Image(systemName: "xmark.circle")
+                            .foregroundColor(.white)
+                            .padding(.trailing)
+                    }
+                    
+                   
+                }
+                .padding(.top)
+                .onTapGesture {
+                    availableLabels.append(mappedData[key.rawValue]!)
+                    mappedData.removeValue(forKey: key.rawValue)
+                }.frame(width: 150, height: 40)
             }
             
         }
@@ -155,12 +168,14 @@ struct DataMapping: View {
         LazyVGrid(columns: columns) {
             ForEach(availableLabels, id: \.self) { data in
                 ZStack {
-                    
-                    RoundedRectangle(cornerRadius: 10)
-                        .fill(Color.haze)
-                        .cornerRadius(10)
-                        .opacity(0.8)
-                        .frame(width: 150, height: 40)
+                    Group {
+                        RoundedRectangle(cornerRadius: 10)
+                            .inset(by: 1)
+                            .stroke(Color.seaGreen, lineWidth: 2.5)
+                            .frame(width: 150, height: 40)
+                        
+                    }.background(Color.haze)
+                    .cornerRadius(10)
                     
                     Text(data)
                         .foregroundColor(.seaGreen)
