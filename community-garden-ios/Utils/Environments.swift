@@ -11,3 +11,4 @@ import SwiftUI
 struct SettingsKey: EnvironmentKey {
     static let defaultValue: UserDefaultsKey = UserDefaultsKey.TREE
 }
+

@@ -8,16 +8,11 @@
 import SwiftUI
 
 // For goals setting
-let goalsSettings = [
-    "Steps": ["range": 0...30000.0, "step": 500, "unit": "Step(s)"],
-    "Sleep": ["range": 0...24.0, "step": 1, "unit": "Hour(s)"]
-]
-
 struct GoalsSetting: View {
     
     let userDefaults = UserDefaultsService.shared
     var selectedData: [String] {
-        userDefaults.getArray(key: UserDefaultsKey.DATA) ?? ["Steps","Sleep"]
+        userDefaults.get(key: UserDefaultsKey.DATA) ?? ["Steps","Sleep"]
     }
     
     var body: some View {
@@ -25,9 +20,9 @@ struct GoalsSetting: View {
             PickerTitle(header: "My goals are...", subheader: "Set your daily goals 🎯")
             
             VStack(spacing: 15) {
-//                ForEach(selectedData, id: \.self){ data in
-//                    GoalSlider(goalName: data)
-//                }
+                ForEach(selectedData, id: \.self){ data in
+                    GoalSlider(goalName: data)
+                }
             }.padding()
             
             Spacer()
@@ -41,24 +36,39 @@ struct GoalSlider: View {
     
     @State var value: Float = 0
     var goalName: String
-    
-    var settings: [String: Any] {
-        goalsSettings[goalName]!
+    var defaultKey: UserDefaultsKey {
+        GoalsSettings.defaultsKeys[goalName]!
     }
-    
+    let userDefaults = UserDefaultsService.shared
     
     var body: some View {
-        VStack {
-            Slider(value: $value,
-                   in: settings["range"] as! ClosedRange<Float>,
-                   step: settings["step"] as! Float.Stride)
-            Text("\(Int(value)) \(settings["unit"] as! String)")
-        }
+        VStack(spacing: 10) {
+            Text(GoalsSettings.titles[goalName]!)
+                .font(.title3)
+                .foregroundColor(.seaGreen)
+                .bold()
+            Slider(
+                value: $value,
+                in: GoalsSettings.ranges[goalName]!,
+                step: GoalsSettings.steps[goalName]!
+            )
+            .tint(.appleGreen)
+            .onChange(of: value) { newValue in
+                userDefaults.save(value: value, key: defaultKey)
+            }
+            
+            Text("\(Int(value)) \(GoalsSettings.labels[goalName]!)")
+                .bodyStyle()
+        }.padding()
+        .background(Color.white)
+        .opacity(0.8)
+        .cornerRadius(10)
     }
 }
 
 struct GoalsSetting_Previews: PreviewProvider {
     static var previews: some View {
         GoalsSetting()
+            .background(Color.hawks)
     }
 }

@@ -30,19 +30,19 @@ struct DataMapping: View {
     @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var selectedData: [String] {
-        userDefaults.getArray(key: UserDefaultsKey.DATA) ?? ["Steps","Sleep"]
+        userDefaults.get(key: UserDefaultsKey.DATA) ?? ["Steps","Sleep"]
     }
     var treeType: String {
-        userDefaults.getString(key:UserDefaultsKey.TREE) ?? "spiky-maple"
+        userDefaults.get(key:UserDefaultsKey.TREE) ?? "spiky-maple"
     }
     var treeColor: String {
-        userDefaults.getString(key:UserDefaultsKey.TREE_COLOR) ?? "moss"
+        userDefaults.get(key:UserDefaultsKey.TREE_COLOR) ?? "moss"
     }
     var flowerType: String {
-        userDefaults.getString(key:UserDefaultsKey.FLOWER) ?? "joyful-clover"
+        userDefaults.get(key:UserDefaultsKey.FLOWER) ?? "joyful-clover"
     }
     var flowerColor: String {
-        userDefaults.getString(key:UserDefaultsKey.FLOWER_COLOR) ?? "cosmos"
+        userDefaults.get(key:UserDefaultsKey.FLOWER_COLOR) ?? "cosmos"
     }
     
     let columns = [GridItem(.flexible(), alignment: .top), GridItem(.flexible(), alignment: .top)]
@@ -72,8 +72,14 @@ struct DataMapping: View {
             
             Spacer()
             
-            BackNextButtons()
-                .environmentObject(onboardingRouter)
+            BackNextButtons() {
+//                if mappedData.count != 2 {
+//                    showingAlert = true
+//                }
+                
+                userDefaults.save(value: mappedData, key: UserDefaultsKey.MAPPED_DATA)
+                
+            }.environmentObject(onboardingRouter)
         }
         .onAppear {
             self.availableLabels = selectedData

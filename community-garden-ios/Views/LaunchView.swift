@@ -14,13 +14,13 @@ struct LaunchView: View {
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
+    @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel.shared
     
     // Routers
     @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
     
-    // Others
+    // States
     @State var yOffset = 0
-    @State var isNewUser = true
     
     var body: some View {
         
@@ -31,7 +31,7 @@ struct LaunchView: View {
                 
             } else {
                 // Show onboarding or dashboard view
-                if (isNewUser){
+                if (onboardingViewModel.isNewUser == OnboardingStatus.NEW_USER){
                     Onboarding()
                 } else {
                     Dashboard()
@@ -42,6 +42,7 @@ struct LaunchView: View {
         .environmentObject(userViewModel)
         .environmentObject(friendsViewModel)
         .environmentObject(gardenViewModel)
+        .environmentObject(onboardingViewModel)
         .environmentObject(onboardingRouter)
     }
 }

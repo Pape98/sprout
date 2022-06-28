@@ -13,7 +13,7 @@ struct PickerButton: View {
     var action: (() -> Void)? = nil
     
     var buttonColor: Color {
-        text == "Next" || text == "Done" ? .appleGreen : .chalice
+        text == "Back" ? .chalice : .appleGreen
     }
     
     @EnvironmentObject var onboardingRouter: OnboardingRouter
@@ -46,7 +46,7 @@ struct BackNextButtons: View {
     var action: (() -> Void)? = nil
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
-
+    
     var body: some View {
         LazyVGrid(columns: columns, spacing: 20) {
             PickerButton(text: "Back"){
@@ -54,9 +54,11 @@ struct BackNextButtons: View {
             }
             
             PickerButton(text:"Next"){
+                
                 if let action = action {
                     action()
                 }
+                
                 onboardingRouter.navigateNext()
             }
             

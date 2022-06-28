@@ -44,7 +44,7 @@ struct Segment: ViewModifier {
         .background(.white)
         .border(Color.ceramic, width: 3)
         .cornerRadius(10)
-        .opacity(0.85)
+        .opacity(0.80)
     }
 }
 

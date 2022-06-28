@@ -44,7 +44,7 @@ struct DataPicker: View {
             Spacer()
             
             PickerButton(text: "Next"){
-                if selections.count < 2 {
+                if selections.count != 2 {
                     showingAlert = true
                 } else {
                     // Save user wants to track
@@ -56,7 +56,7 @@ struct DataPicker: View {
             .frame(maxWidth: 250)
             
             
-        }.alert("Must select at least 2 😊", isPresented: $showingAlert){
+        }.alert("Must select exactly 2 😊", isPresented: $showingAlert){
             Button("OK", role: .cancel){}
         }.padding()
     }

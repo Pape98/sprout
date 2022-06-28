@@ -11,6 +11,7 @@ import SwiftUI
 struct TreePicker: View {
     
     @State var selection: String = "spiky-maple"
+    let userDefaults = UserDefaultsService.shared
         
     var body: some View {
         ItemPicker(header: "Pick a tree!",
@@ -39,5 +40,6 @@ struct TreeColorPicker: View {
 struct TreePicker_Previews: PreviewProvider {
     static var previews: some View {
         TreePicker()
+            .environmentObject(OnboardingRouter())
     }
 }

@@ -9,10 +9,12 @@ import SwiftUI
 
 struct LastSteps: View {
     
+    @EnvironmentObject var onboardingViewModel: OnboardingViewModel
     var userDefaults = UserDefaultsService.shared
     
     @State private var gardenName: String = ""
     @State private var reflectWeatherChanges = false
+    @State private var showAlert = false
 
     
     var body: some View {
@@ -34,8 +36,23 @@ struct LastSteps: View {
             
             Spacer()
             
-            BackNextButtons(){}
+            PickerButton(text: "Complete") {
+                if(gardenName.count == 0){
+                    showAlert = true
+                    return
+                }
+                
+                // Update view model to take user to home screen
+                onboardingViewModel.isNewUser = OnboardingStatus.EXISITING_USER
+                // Save data in user default
+                userDefaults.save(value: OnboardingStatus.EXISITING_USER.rawValue, key: UserDefaultsKey.IS_NEW_USER)
+            }
+            .frame(maxWidth: 250)
+            .padding()
          
+        }
+        .alert("Garden name cannot be empty 😊", isPresented: $showAlert){
+            Button("OK", role: .cancel){}
         }
     }
 }

@@ -19,11 +19,11 @@ struct ColorPicker: View {
     
     
     var DEFAULT_TREE: String {
-        userDefaults.getString(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+        userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
     }
     
     var DEFAULT_FLOWER: String {
-        userDefaults.getString(key: UserDefaultsKey.FLOWER) ?? "abyss-sage"
+        userDefaults.get(key: UserDefaultsKey.FLOWER) ?? "abyss-sage"
     }
     
     var DEFAULT: String {
