@@ -35,7 +35,7 @@ struct LaunchView: View {
 //                if (true){
                     Onboarding()
                 } else {
-                    Dashboard()
+                    MainView()
                 }
             }
         }

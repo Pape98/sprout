@@ -24,7 +24,7 @@ struct Dashboard: View {
             
             Image("intro-bg")
                 .resizable()
-                .ignoresSafeArea()
+                .ignoresSafeArea(.container, edges: [.top])
             
             VStack {
                 

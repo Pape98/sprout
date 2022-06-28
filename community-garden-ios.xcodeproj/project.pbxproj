@@ -26,6 +26,7 @@
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
 		F01B635B284FB339004D079A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B635A284FB339004D079A /* Helpers.swift */; };
+		F024BFF6286BB37100850018 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024BFF5286BB37100850018 /* MainView.swift */; };
 		F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02682D02850F13A004747FD /* UserDefaultService.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
 		F038369E2839497600D444E4 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038369D2839497600D444E4 /* SQLiteService.swift */; };
@@ -94,6 +95,7 @@
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		F01B635A284FB339004D079A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		F024BFF5286BB37100850018 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F02682D02850F13A004747FD /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F038369D2839497600D444E4 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
@@ -167,9 +169,7 @@
 			children = (
 				F0149D5C284ED6A500782D27 /* Login */,
 				F0149D5D284ED6B000782D27 /* Onboarding */,
-				F030B021283B2F4F0026F2E0 /* Dashboard */,
-				F00A6F34283C4DDB00A176D6 /* Friends */,
-				F09B71E327724B260085C7AC /* Garden */,
+				F0132C6F286BB2DD00267B9D /* Main */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -190,6 +190,17 @@
 				F00A6F37283C4E1600A176D6 /* FriendsList.swift */,
 			);
 			path = Friends;
+			sourceTree = "<group>";
+		};
+		F0132C6F286BB2DD00267B9D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F024BFF5286BB37100850018 /* MainView.swift */,
+				F030B021283B2F4F0026F2E0 /* Dashboard */,
+				F00A6F34283C4DDB00A176D6 /* Friends */,
+				F09B71E327724B260085C7AC /* Garden */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 		F0149D57284ECDA900782D27 /* Styling */ = {
@@ -557,6 +568,7 @@
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
 				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
 				F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */,
+				F024BFF6286BB37100850018 /* MainView.swift in Sources */,
 				F0842BB7285E2980002C79BD /* Onboarding.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
 				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
