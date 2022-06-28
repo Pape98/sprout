@@ -7,15 +7,15 @@
 
 import Foundation
 
-class User: Identifiable {
+struct User: Identifiable, Codable {
 
     // Profile Info
     var id: String = ""
     var name: String = ""
     var email: String = ""
-    
-    // Tracked Data
-    var steps: [Step] = [Step]()
-    var moods: [Mood] = [Mood]()
+    var oldStepCount = 0
+    var stepCount: Step?
+    var numDroplets: Int = 0
+    var gardenItems: [GardenItem] = []
     
 }

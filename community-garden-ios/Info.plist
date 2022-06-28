@@ -13,5 +13,13 @@
 			</array>
 		</dict>
 	</array>
+	<key>INIntentsSupported</key>
+	<array>
+		<string>Intent</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Catamaran-VariableFont_wght.ttf</string>
+	</array>
 </dict>
 </plist>

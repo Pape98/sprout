@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "lavendar-serpent-sumac.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "lavendar-serpent-sumac-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "lavendar-serpent-sumac-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

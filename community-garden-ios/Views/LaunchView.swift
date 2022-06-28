@@ -9,23 +9,42 @@ import SwiftUI
 
 struct LaunchView: View {
     
+    // View Models
     @EnvironmentObject var authModel: AuthenticationViewModel
+    @StateObject var userViewModel: UserViewModel = UserViewModel.shared
+    @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
+    @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
+    @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel.shared
+    
+    // Routers
+    @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
+    
+    // States
+    @State var yOffset = 0
     
     var body: some View {
         
-        if authModel.isLoggedIn == false {
-            // Show login view
-            LoginView()
-                .onAppear {
-                    // Check if user is logged in or out
-                    authModel.checkLogin()
+        Group {
+            if authModel.isLoggedIn == false {
+                // Show login view
+                LoginView(yOffset: $yOffset)
+                
+            } else {
+                // Show onboarding or dashboard view
+                if (onboardingViewModel.isNewUser == OnboardingStatus.NEW_USER){
+//                if (true){
+                    Onboarding()
+                } else {
+                    MainView()
                 }
-            
-        } else {
-            // Show logged in view (home view)
-            ContentView()
+            }
         }
-        
+        .foregroundColor(.seaGreen)
+        .environmentObject(userViewModel)
+        .environmentObject(friendsViewModel)
+        .environmentObject(gardenViewModel)
+        .environmentObject(onboardingViewModel)
+        .environmentObject(onboardingRouter)
     }
 }
 

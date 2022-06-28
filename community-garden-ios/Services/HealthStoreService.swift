@@ -10,10 +10,18 @@ import HealthKit
 
 class HealthStoreService {
     
+    struct HKDataTypes {
+        static let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
+        static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+    }
+    
     // MARK: - Properties
     
     // Provides all functionalities related health data
     private var healthStore: HKHealthStore?
+    
+    private let dataCollectionStartDate = Date() // (day, month, year)
     
     
     // MARK: - Methods
@@ -32,7 +40,7 @@ class HealthStoreService {
                 if success {
                     // Start listening to changes in step counts
                     self.startQuery(dataType: HKDataTypes.stepCount,
-                                                updateHandler: updateDailySteps)
+                                    updateHandler: updateDailySteps)
                 }
             }
         }
@@ -42,9 +50,9 @@ class HealthStoreService {
     func requestAuthorization(completion: @escaping (Bool)  -> Void) {
         
         let healthKitTypesToRead = Set([
-            HKDataTypes.heartRate,
+            //            HKDataTypes.heartRate,
+            HKDataTypes.sleep,
             HKDataTypes.stepCount,
-            HKDataTypes.sleep
         ])
         
         guard let healthStoreUnwrapped = self.healthStore else {
@@ -101,8 +109,10 @@ class HealthStoreService {
         
         guard let startDate = (DateComponents(calendar:calendar,
                                               timeZone: calendar.timeZone,
-                                              year: 2021,
-                                              month:12)).date else { return }
+                                              year: Int(today.year),
+                                              month:Int(today.month),
+                                              day: Int(today.day))).date else { return }
+        
         
         // TODO: Generalize to accept other statistics and not just steps
         var dailySteps: [Step] = []
@@ -115,7 +125,7 @@ class HealthStoreService {
                 dailySteps.append(stepObject)
             }
         }
-                        
+        
         // Dispatch to the main queue to update the UI.
         DispatchQueue.main.async {
             updateHandler(dailySteps)

@@ -7,24 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F005737F276F7F6600EB487B /* MoodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005737E276F7F6600EB487B /* MoodView.swift */; };
-		F0057381276F828F00EB487B /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* StepView.swift */; };
-		F0057383276F839E00EB487B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057382276F839E00EB487B /* ContentView.swift */; };
-		F0057389276F946400EB487B /* MoodViewAddEntrySheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057388276F946400EB487B /* MoodViewAddEntrySheet.swift */; };
-		F005738B277026A300EB487B /* MoodViewCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005738A277026A300EB487B /* MoodViewCard.swift */; };
-		F005739027702A0800EB487B /* Mood.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005738F27702A0800EB487B /* Mood.swift */; };
-		F005739227702F9B00EB487B /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* CustomButton.swift */; };
+		F0057381276F828F00EB487B /* MyGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* MyGarden.swift */; };
+		F005739227702F9B00EB487B /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* ActionButton.swift */; };
+		F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F37283C4E1600A176D6 /* FriendsList.swift */; };
+		F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */; };
+		F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */; };
+		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
+		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
+		F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0132C68286A746900267B9D /* GoalsSetting.swift */; };
+		F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */; };
+		F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D53284E9E0D00782D27 /* TreePicker.swift */; };
+		F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D55284EAD1400782D27 /* PickerCard.swift */; };
+		F0149D59284ECDC900782D27 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D58284ECDC900782D27 /* Styling.swift */; };
+		F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5A284ED5ED00782D27 /* CircledTree.swift */; };
+		F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D5E284F181600782D27 /* GardenInfoCard.swift */; };
+		F0149D61284F184000782D27 /* DashboardCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D60284F184000782D27 /* DashboardCard.swift */; };
+		F0149D63284F18B300782D27 /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D62284F18B300782D27 /* IconButton.swift */; };
 		F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */; };
 		F0172737275F687A00FAEB12 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0172736275F687A00FAEB12 /* UserService.swift */; };
+		F01B635B284FB339004D079A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B635A284FB339004D079A /* Helpers.swift */; };
+		F024BFF6286BB37100850018 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024BFF5286BB37100850018 /* MainView.swift */; };
+		F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02682D02850F13A004747FD /* UserDefaultService.swift */; };
+		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
+		F038369E2839497600D444E4 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038369D2839497600D444E4 /* SQLiteService.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
-		F04234A12784A0AC0063DA08 /* MoodViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A02784A0AC0063DA08 /* MoodViewModel.swift */; };
-		F04234A32784A7F80063DA08 /* HealthStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A22784A7F80063DA08 /* HealthStoreViewModel.swift */; };
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
+		F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B562860FB6100C68B35 /* Modifiers.swift */; };
+		F0475B59286100D700C68B35 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B58286100D600C68B35 /* DataMapping.swift */; };
+		F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B5A286101BA00C68B35 /* DataCard.swift */; };
+		F0475B61286228D000C68B35 /* LastSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B60286228CF00C68B35 /* LastSteps.swift */; };
+		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
+		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
+		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
+		F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B59285A4A32002C79BD /* CircledFlower.swift */; };
+		F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B5B285A4F6B002C79BD /* Environments.swift */; };
+		F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */; };
+		F0842BB0285D4D06002C79BD /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BAF285D4D06002C79BD /* ColorPicker.swift */; };
+		F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB1285D5DCE002C79BD /* PickerButton.swift */; };
+		F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB4285E2957002C79BD /* OnboardingRouter.swift */; };
+		F0842BB7285E2980002C79BD /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB6285E2980002C79BD /* Onboarding.swift */; };
+		F0842BB9285E2A19002C79BD /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB8285E2A19002C79BD /* Screens.swift */; };
+		F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBA285E67F2002C79BD /* DataPicker.swift */; };
+		F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBC285EA252002C79BD /* PickerTitle.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
 		F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426F275B52AC00F1CEC1 /* UserViewModel.swift */; };
-		F09B71E8277269560085C7AC /* CustomShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09B71E7277269560085C7AC /* CustomShape.swift */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
@@ -35,12 +63,11 @@
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
 		F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStoreService.swift */; };
-		F0C99E1B278120EA004514D4 /* ProgressTriangle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1A278120E9004514D4 /* ProgressTriangle.swift */; };
+		F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */; };
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
-		F0C99E24278487A5004514D4 /* MoodRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E23278487A5004514D4 /* MoodRepository.swift */; };
-		F0C99E26278488FF004514D4 /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */; };
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
+		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,27 +75,56 @@
 		47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_community_garden_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7E97010C2190A08C6A6A2D8F /* Pods-community-garden-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.release.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.release.xcconfig"; sourceTree = "<group>"; };
 		E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.debug.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.debug.xcconfig"; sourceTree = "<group>"; };
-		F005737E276F7F6600EB487B /* MoodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodView.swift; sourceTree = "<group>"; };
-		F0057380276F828F00EB487B /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
-		F0057382276F839E00EB487B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		F0057388276F946400EB487B /* MoodViewAddEntrySheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewAddEntrySheet.swift; sourceTree = "<group>"; };
-		F005738A277026A300EB487B /* MoodViewCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewCard.swift; sourceTree = "<group>"; };
-		F005738F27702A0800EB487B /* Mood.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mood.swift; sourceTree = "<group>"; };
-		F005739127702F9B00EB487B /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		F0057380276F828F00EB487B /* MyGarden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarden.swift; sourceTree = "<group>"; };
+		F005739127702F9B00EB487B /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		F00A6F37283C4E1600A176D6 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
+		F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
+		F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItem.swift; sourceTree = "<group>"; };
+		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
+		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
+		F0132C68286A746900267B9D /* GoalsSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsSetting.swift; sourceTree = "<group>"; };
+		F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
+		F0149D53284E9E0D00782D27 /* TreePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreePicker.swift; sourceTree = "<group>"; };
+		F0149D55284EAD1400782D27 /* PickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCard.swift; sourceTree = "<group>"; };
+		F0149D58284ECDC900782D27 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
+		F0149D5A284ED5ED00782D27 /* CircledTree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledTree.swift; sourceTree = "<group>"; };
+		F0149D5E284F181600782D27 /* GardenInfoCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenInfoCard.swift; sourceTree = "<group>"; };
+		F0149D60284F184000782D27 /* DashboardCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCard.swift; sourceTree = "<group>"; };
+		F0149D62284F18B300782D27 /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		F0172731275F168D00FAEB12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0172736275F687A00FAEB12 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
-		F04234A02784A0AC0063DA08 /* MoodViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodViewModel.swift; sourceTree = "<group>"; };
-		F04234A22784A7F80063DA08 /* HealthStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreViewModel.swift; sourceTree = "<group>"; };
+		F01B635A284FB339004D079A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
+		F024BFF5286BB37100850018 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		F02682D02850F13A004747FD /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
+		F038369D2839497600D444E4 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
+		F0475B562860FB6100C68B35 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
+		F0475B58286100D600C68B35 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
+		F0475B5A286101BA00C68B35 /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
+		F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catamaran-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		F0475B60286228CF00C68B35 /* LastSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSteps.swift; sourceTree = "<group>"; };
+		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
+		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
+		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
+		F0842B59285A4A32002C79BD /* CircledFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledFlower.swift; sourceTree = "<group>"; };
+		F0842B5B285A4F6B002C79BD /* Environments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environments.swift; sourceTree = "<group>"; };
+		F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorOptionsScroll.swift; sourceTree = "<group>"; };
+		F0842BAF285D4D06002C79BD /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPicker.swift; sourceTree = "<group>"; };
+		F0842BB1285D5DCE002C79BD /* PickerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerButton.swift; sourceTree = "<group>"; };
+		F0842BB4285E2957002C79BD /* OnboardingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRouter.swift; sourceTree = "<group>"; };
+		F0842BB6285E2980002C79BD /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
+		F0842BB8285E2A19002C79BD /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
+		F0842BBA285E67F2002C79BD /* DataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
+		F0842BBC285EA252002C79BD /* PickerTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTitle.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
 		F096426B275B513100F1CEC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F096426F275B52AC00F1CEC1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F0964272275C25C800F1CEC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		F09B71E7277269560085C7AC /* CustomShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomShape.swift; sourceTree = "<group>"; };
-		F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,12 +132,11 @@
 		F0B32CA3275AF77900C714A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0B32CB3275B222500C714A2 /* HealthStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreService.swift; sourceTree = "<group>"; };
-		F0C99E1A278120E9004514D4 /* ProgressTriangle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressTriangle.swift; sourceTree = "<group>"; };
+		F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGardenScene.swift; sourceTree = "<group>"; };
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		F0C99E23278487A5004514D4 /* MoodRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodRepository.swift; sourceTree = "<group>"; };
-		F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,30 +164,12 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		F0057384276F931000EB487B /* Onboarding */ = {
-			isa = PBXGroup;
-			children = (
-				F0057382276F839E00EB487B /* ContentView.swift */,
-				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
-			);
-			path = Onboarding;
-			sourceTree = "<group>";
-		};
-		F0057385276F93EB00EB487B /* MoodView */ = {
-			isa = PBXGroup;
-			children = (
-				F005737E276F7F6600EB487B /* MoodView.swift */,
-				F0057388276F946400EB487B /* MoodViewAddEntrySheet.swift */,
-				F005738A277026A300EB487B /* MoodViewCard.swift */,
-			);
-			path = MoodView;
-			sourceTree = "<group>";
-		};
 		F0057387276F940C00EB487B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				F09B71E327724B260085C7AC /* StepView */,
-				F0057385276F93EB00EB487B /* MoodView */,
+				F0149D5C284ED6A500782D27 /* Login */,
+				F0149D5D284ED6B000782D27 /* Onboarding */,
+				F0132C6F286BB2DD00267B9D /* Main */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -140,9 +177,120 @@
 		F005738C2770293B00EB487B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				F005739127702F9B00EB487B /* CustomButton.swift */,
+				F005739127702F9B00EB487B /* ActionButton.swift */,
+				F0149D5A284ED5ED00782D27 /* CircledTree.swift */,
+				F0842B59285A4A32002C79BD /* CircledFlower.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F00A6F34283C4DDB00A176D6 /* Friends */ = {
+			isa = PBXGroup;
+			children = (
+				F00A6F37283C4E1600A176D6 /* FriendsList.swift */,
+			);
+			path = Friends;
+			sourceTree = "<group>";
+		};
+		F0132C6F286BB2DD00267B9D /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F024BFF5286BB37100850018 /* MainView.swift */,
+				F030B021283B2F4F0026F2E0 /* Dashboard */,
+				F00A6F34283C4DDB00A176D6 /* Friends */,
+				F09B71E327724B260085C7AC /* Garden */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		F0149D57284ECDA900782D27 /* Styling */ = {
+			isa = PBXGroup;
+			children = (
+				F0149D58284ECDC900782D27 /* Styling.swift */,
+			);
+			path = Styling;
+			sourceTree = "<group>";
+		};
+		F0149D5C284ED6A500782D27 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F0ADEA2A275ED13D0039B134 /* LoginView.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F0149D5D284ED6B000782D27 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				F0842BB6285E2980002C79BD /* Onboarding.swift */,
+				F0842BBA285E67F2002C79BD /* DataPicker.swift */,
+				F0132C68286A746900267B9D /* GoalsSetting.swift */,
+				F0149D53284E9E0D00782D27 /* TreePicker.swift */,
+				F0842B55285A4060002C79BD /* FlowerPicker.swift */,
+				F0475B58286100D600C68B35 /* DataMapping.swift */,
+				F0475B60286228CF00C68B35 /* LastSteps.swift */,
+				F0842B58285A418B002C79BD /* components */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
+		F030B021283B2F4F0026F2E0 /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				F030B022283B2F660026F2E0 /* Dashboard.swift */,
+				F0842B57285A4170002C79BD /* components */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		F0475B5E28610E3400C68B35 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
+			isa = PBXGroup;
+			children = (
+				F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */,
+				F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */,
+			);
+			path = GameScenes;
+			sourceTree = "<group>";
+		};
+		F0842B57285A4170002C79BD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F0149D5E284F181600782D27 /* GardenInfoCard.swift */,
+				F0149D60284F184000782D27 /* DashboardCard.swift */,
+				F0149D62284F18B300782D27 /* IconButton.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		F0842B58285A418B002C79BD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F0842BAD285D34C3002C79BD /* ColorOptionsScroll.swift */,
+				F0842BAF285D4D06002C79BD /* ColorPicker.swift */,
+				F0475B5A286101BA00C68B35 /* DataCard.swift */,
+				F0842B53285A3DF0002C79BD /* ItemPicker.swift */,
+				F0149D55284EAD1400782D27 /* PickerCard.swift */,
+				F0842BB1285D5DCE002C79BD /* PickerButton.swift */,
+				F0842BBC285EA252002C79BD /* PickerTitle.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		F0842BB3285E2920002C79BD /* Routers */ = {
+			isa = PBXGroup;
+			children = (
+				F0842BB4285E2957002C79BD /* OnboardingRouter.swift */,
+				F0842BB8285E2A19002C79BD /* Screens.swift */,
+			);
+			path = Routers;
 			sourceTree = "<group>";
 		};
 		F0964266275B3A8900F1CEC1 /* Frameworks */ = {
@@ -157,33 +305,29 @@
 		F0964271275C25AF00F1CEC1 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F0475B562860FB6100C68B35 /* Modifiers.swift */,
 				F0964272275C25C800F1CEC1 /* Constants.swift */,
+				F0842B5B285A4F6B002C79BD /* Environments.swift */,
 				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
+				F01B635A284FB339004D079A /* Helpers.swift */,
+				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
 		};
-		F09B71E327724B260085C7AC /* StepView */ = {
+		F09B71E327724B260085C7AC /* Garden */ = {
 			isa = PBXGroup;
 			children = (
-				F0057380276F828F00EB487B /* StepView.swift */,
-				F0C99E1A278120E9004514D4 /* ProgressTriangle.swift */,
+				F0057380276F828F00EB487B /* MyGarden.swift */,
 			);
-			path = StepView;
-			sourceTree = "<group>";
-		};
-		F09B71E4277269230085C7AC /* Shapes */ = {
-			isa = PBXGroup;
-			children = (
-				F09B71E7277269560085C7AC /* CustomShape.swift */,
-			);
-			path = Shapes;
+			path = Garden;
 			sourceTree = "<group>";
 		};
 		F0B32C93275AF77700C714A2 = {
 			isa = PBXGroup;
 			children = (
 				F0B32C9E275AF77700C714A2 /* community-garden-ios */,
+				F0FCDE7A282CD7F500FDA5BA /* Resources */,
 				F0B32C9D275AF77700C714A2 /* Products */,
 				F0964266275B3A8900F1CEC1 /* Frameworks */,
 				C18ED0BE3AAC051BD9EE1AA1 /* Pods */,
@@ -204,11 +348,13 @@
 				F0172731275F168D00FAEB12 /* Info.plist */,
 				F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */,
 				F0B32CB0275AFA9500C714A2 /* Views */,
+				F065B17B2825BEDA00F1E1ED /* GameScenes */,
 				F0B32CAF275AFA8900C714A2 /* ViewModels */,
 				F0B32CB1275AFA9E00C714A2 /* Models */,
 				F0C99E202784810F004514D4 /* Repositories */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
 				F0964271275C25AF00F1CEC1 /* Utils */,
+				F0475B5E28610E3400C68B35 /* Fonts */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
 				F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */,
@@ -231,6 +377,8 @@
 				F0B32CB3275B222500C714A2 /* HealthStoreService.swift */,
 				F0172736275F687A00FAEB12 /* UserService.swift */,
 				F0C99E1C2783B871004514D4 /* NotificationService.swift */,
+				F038369D2839497600D444E4 /* SQLiteService.swift */,
+				F02682D02850F13A004747FD /* UserDefaultService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -240,8 +388,9 @@
 			children = (
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
-				F04234A02784A0AC0063DA08 /* MoodViewModel.swift */,
-				F04234A22784A7F80063DA08 /* HealthStoreViewModel.swift */,
+				F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */,
+				F00A6F3D283C957800A176D6 /* GardenViewModel.swift */,
+				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -250,10 +399,10 @@
 			isa = PBXGroup;
 			children = (
 				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
-				F0057384276F931000EB487B /* Onboarding */,
+				F0842BB3285E2920002C79BD /* Routers */,
 				F0057387276F940C00EB487B /* Screens */,
+				F0149D57284ECDA900782D27 /* Styling */,
 				F005738C2770293B00EB487B /* Components */,
-				F09B71E4277269230085C7AC /* Shapes */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,7 +412,7 @@
 			children = (
 				F0964269275B510300F1CEC1 /* Health.swift */,
 				F096426B275B513100F1CEC1 /* User.swift */,
-				F005738F27702A0800EB487B /* Mood.swift */,
+				F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -273,10 +422,16 @@
 			children = (
 				F04234A42784C6F40063DA08 /* Collections.swift */,
 				F0C99E21278481A6004514D4 /* UserRepository.swift */,
-				F0C99E23278487A5004514D4 /* MoodRepository.swift */,
-				F0C99E25278488FF004514D4 /* HealthStoreRepository.swift */,
 			);
 			path = Repositories;
+			sourceTree = "<group>";
+		};
+		F0FCDE7A282CD7F500FDA5BA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -347,6 +502,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
 				F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */,
@@ -402,33 +558,59 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F005739227702F9B00EB487B /* CustomButton.swift in Sources */,
-				F0057383276F839E00EB487B /* ContentView.swift in Sources */,
-				F0C99E1B278120EA004514D4 /* ProgressTriangle.swift in Sources */,
+				F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */,
+				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
+				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
+				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
+				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
+				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
+				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
-				F0C99E26278488FF004514D4 /* HealthStoreRepository.swift in Sources */,
+				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
+				F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */,
+				F024BFF6286BB37100850018 /* MainView.swift in Sources */,
+				F0842BB7285E2980002C79BD /* Onboarding.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
+				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
+				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
+				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
-				F005738B277026A300EB487B /* MoodViewCard.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
-				F0057389276F946400EB487B /* MoodViewAddEntrySheet.swift in Sources */,
-				F005737F276F7F6600EB487B /* MoodView.swift in Sources */,
+				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
+				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
+				F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */,
+				F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */,
+				F0475B59286100D700C68B35 /* DataMapping.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
+				F0842BB0285D4D06002C79BD /* ColorPicker.swift in Sources */,
+				F0149D59284ECDC900782D27 /* Styling.swift in Sources */,
+				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
+				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
+				F0475B61286228D000C68B35 /* LastSteps.swift in Sources */,
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
-				F04234A12784A0AC0063DA08 /* MoodViewModel.swift in Sources */,
-				F005739027702A0800EB487B /* Mood.swift in Sources */,
-				F04234A32784A7F80063DA08 /* HealthStoreViewModel.swift in Sources */,
-				F0057381276F828F00EB487B /* StepView.swift in Sources */,
+				F0149D63284F18B300782D27 /* IconButton.swift in Sources */,
+				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
+				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
+				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,
+				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
-				F0C99E24278487A5004514D4 /* MoodRepository.swift in Sources */,
+				F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */,
+				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
+				F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */,
+				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
+				F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
-				F09B71E8277269560085C7AC /* CustomShape.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,
+				F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */,
+				F0149D61284F184000782D27 /* DashboardCard.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
+				F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */,
+				F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */,
+				F0842BB9285E2A19002C79BD /* Screens.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +740,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
@@ -565,11 +748,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Sprout;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -578,7 +764,8 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -592,6 +779,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
@@ -599,11 +787,14 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Sprout;
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -612,7 +803,8 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden-ios";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

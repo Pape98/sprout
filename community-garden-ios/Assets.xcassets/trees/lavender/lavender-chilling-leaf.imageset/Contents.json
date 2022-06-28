@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "lavendar-chilling-leaf.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "lavendar-chilling-leaf-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "lavendar-chilling-leaf-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

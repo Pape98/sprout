@@ -7,9 +7,10 @@
 
 import Foundation
 import FirebaseFirestore
+import GoogleSignIn
 
 class UserRepository {
-
+    
     // MARK: - Properties
     let usersCollection: CollectionReference
     static let shared = UserRepository() // Single repo instance shared
@@ -23,15 +24,10 @@ class UserRepository {
     }
     
     func createNewUser(_ user: User) {
-        
-        let newUser: [String: Any] = ["id": user.id,
-                                      "name": user.name,
-                                      "email": user.email]
-        
-        usersCollection.document(user.id).setData(newUser){ err in
-            if let err = err {
-                print("[createNewUser()]","Error writing document: \(err)")
-            }
+        do {
+            try usersCollection.document(user.id).setData(from: user)
+        } catch let err {
+            print("[createNewUser()]","Error writing document: \(err)")
         }
     }
     
@@ -54,5 +50,68 @@ class UserRepository {
             completion()
         }
         
+    }
+    
+    func fetchLoggedInUser(userID: String, completion: @escaping (_ user: User) -> Void){
+        // Get document reference
+        let userRef = usersCollection.document(userID)
+        
+        
+        // Check if user exists in database
+        userRef.getDocument { document, error in
+            
+            guard error == nil else {
+                print("[fetchLoggedInUser()]", error!)
+                return
+            }
+            
+            do {
+                let decodedUser: User = try document!.data(as: User.self)
+                completion(decodedUser)
+            } catch {
+                print("[fetchLoggedInUser()]", error)
+            }
+            
+            
+        }
+    }
+    
+    
+    func updateUser(userID: String, updates:[String: Any], completion: @escaping() -> Void){
+        
+        // Get document reference
+        let userRef = usersCollection.document(userID)
+                
+        userRef.updateData(updates) { err in
+            if let err = err {
+                print("Error updating document: \(err)")
+            } else {
+                print("Document successfully updated")
+                completion()
+            }
+            
+        }
+        
+    }
+    
+    // Fetch all users except current user
+    func fetchAllUsers(userID: String, completion: @escaping (_ users: [User]) -> Void){
+        usersCollection.whereField("id", isNotEqualTo: userID).getDocuments { querySnapshot, error in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                var users:[User] = []
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        let decodedUser: User = try document.data(as: User.self)
+                        users.append(decodedUser)
+                    } catch {
+                        print("[fetchLoggedInUser()]", error)
+                    }
+                }
+                completion(users)
+            }
+        }
     }
 }

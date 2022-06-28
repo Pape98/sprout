@@ -20,19 +20,23 @@ class AuthenticationViewModel: ObservableObject {
     // Error message to be displayed to user
     @Published var errorMessage: String?
     
+    static var shared = AuthenticationViewModel()
+    
     // Google Sign In configuration
     var configuration: GIDConfiguration?
     
     // Repository Instance
     var userRepository: UserRepository = UserRepository.shared
     
+    let nc = NotificationCenter.default
+    
     // MARK: - Methods
     
     init() {
-        
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
-        checkLogin()
+        setLoggedInUserProfile()
+        
     }
     
     func checkLogin() {
@@ -54,17 +58,13 @@ class AuthenticationViewModel: ObservableObject {
     func setLoggedInUserProfile(){
         checkLogin()
         
-        if (isLoggedIn) {
+        if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
-            let user = UserService.shared.user
-            user.id = firebaseUser!.uid
-            
-            if let displayName = firebaseUser!.displayName,
-               let email = firebaseUser!.email
-            {
-                user.email = email
-                user.name = displayName
+            userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
+                UserService.shared.user = result
+                NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
             }
+            
         }
         
     }
@@ -95,17 +95,6 @@ class AuthenticationViewModel: ObservableObject {
                       let idToken = authenticaton.idToken
                 else { return }
                 
-                // TODO: Uncomment if only authorizing Dartmouth email
-                
-                // Check if user is using school email
-                //                if userEmail.contains("dartmouth.edu") == false {
-                //                    // Update UI from main thread
-                //                    DispatchQueue.main.async {
-                //                        self.errorMessage = "You must use your dartmouth email."
-                //                    }
-                //                    return
-                //                }
-                
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
                 
@@ -122,15 +111,27 @@ class AuthenticationViewModel: ObservableObject {
                     
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
-                    self.setLoggedInUserProfile()
-                    
                     // Check user if already exists in database
                     self.userRepository.doesUserExist(userID: userID){
                         
+                        
                         // If user does not exist, create a new account
                         if self.userRepository.doesUserExsist == false {
-                            self.userRepository.createNewUser(UserService.shared.user)
+                            let user = user!
+                            
+                            let newUser = User(id: userID,
+                                               name: user.profile!.name,
+                                               email: user.profile!.email,
+                                               oldStepCount: 0,
+                                               stepCount: Step(date: Date(), count: 0),
+                                               numDroplets: 0,
+                                               gardenItems: [GardenItem(name: "tree1", height: 0.03)]
+                            )
+                            
+                            self.userRepository.createNewUser(newUser)
                         }
+                        
+                        self.setLoggedInUserProfile()
                     }
                     // Check login status again to update UI
                     DispatchQueue.main.async {

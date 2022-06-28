@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "sunglow-sneezy-cypress.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "sunglow-sneezy-cypress-1.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "sunglow-sneezy-cypress-2.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
