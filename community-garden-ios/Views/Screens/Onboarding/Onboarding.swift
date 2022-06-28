@@ -20,6 +20,8 @@ struct Onboarding: View {
             switch onboardingRouter.currentScreen {
             case .chooseData:
                 DataPicker().transition(onboardingRouter.transition)
+            case .setGoals:
+                GoalsSetting().transition(onboardingRouter.transition)
             case .chooseTree:
                 TreePicker().transition(onboardingRouter.transition)
             case .chooseTreeColor:

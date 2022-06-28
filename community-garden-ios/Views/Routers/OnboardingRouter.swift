@@ -13,7 +13,8 @@ class OnboardingRouter: ObservableObject {
     @Published var currentScreen: Screen = .mapData
     @Published var transition: AnyTransition = .slide
     
-    let nextScreens : [Screen: Screen] = [.chooseData: .chooseTree,
+    let nextScreens : [Screen: Screen] = [.chooseData: .setGoals,
+                                          .setGoals: .chooseTree,
                                           .chooseTree: .chooseTreeColor,
                                           .chooseTreeColor: .chooseFlower,
                                           .chooseFlower: .chooseFlowerColor,
@@ -21,7 +22,8 @@ class OnboardingRouter: ObservableObject {
                                           .mapData: .lastSteps,
                                           .lastSteps: .lastSteps]
     
-    let backScreens : [Screen: Screen] = [.chooseTree: .chooseData,
+    let backScreens : [Screen: Screen] = [.setGoals: .chooseData,
+                                          .chooseTree: .setGoals,
                                           .chooseTreeColor: .chooseTree,
                                           .chooseFlower: .chooseTreeColor,
                                           .chooseFlowerColor: .chooseFlower,

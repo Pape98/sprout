@@ -18,7 +18,7 @@ struct LastSteps: View {
     var body: some View {
         VStack(){
             
-            PickerTitle(header: "Final Touches", subheader: "Your garden cannot wait for you🍊")
+            PickerTitle(header: "Final touches", subheader: "Your garden cannot wait to grow with you🍊")
             VStack (alignment: .leading) {
               
                 VStack(alignment: .leading) {

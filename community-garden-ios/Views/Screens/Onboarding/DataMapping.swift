@@ -56,15 +56,13 @@ struct DataMapping: View {
     var body: some View {
         
         VStack {
-            PickerTitle(header: "I Want to See...", subheader: "To map data to elements in the scene, drag label to the image ")
+            PickerTitle(header: "I want to see...", subheader: "To map data to elements in the scene, drag label to the image 🔎  ")
             
             LazyVGrid(columns: columns, spacing: 20) {
                 MetaphorCard(name: "\(treeColor)-\(treeType)", key: MappingKeys.TREE)
                 MetaphorCard(name: "flowers/\(flowerColor)-\(flowerType)", key: MappingKeys.FLOWER)
             }.padding()
             
-            //            Divider()
-            //                .padding()
             
             Text("List of data")
                 .bold()
@@ -102,7 +100,6 @@ struct DataMapping: View {
             .frame(maxWidth: 150, maxHeight: 150, alignment: .top)
             
             // Mapped Label
-            
             if mappedData[key.rawValue] != nil {
                 ZStack {
                     RoundedRectangle(cornerRadius: 10)
@@ -118,26 +115,38 @@ struct DataMapping: View {
                     availableLabels.append(mappedData[key.rawValue]!)
                     mappedData.removeValue(forKey: key.rawValue)
                 }
-            }
-            
-        }
-        .onDrop(of: [.url], isTargeted: .constant(false)) { providers in
-            if let first = providers.first {
-                let _ = first.loadObject(ofClass: URL.self) { value, error in
-                    guard let url = value else  { return }
-                    
-                    // Check if card has already mapping
-                    if let oldLabel = mappedData[key.rawValue] {
-                        availableLabels.append(oldLabel)
-                        mappedData.removeValue(forKey: key.rawValue)
-                    }
-                    
-                    mappedData[key.rawValue] = url.absoluteString // "Tree":"Steps"
-                    availableLabels = availableLabels.filter { $0 != url.absoluteString}
+            } else {
+                Group {
+                    RoundedRectangle(cornerRadius: 10)
+                        .inset(by: 1)
+                        .stroke(style: StrokeStyle(lineWidth: 3,dash: [5]))
+                        .frame(width: 150, height: 40)
                     
                 }
+                .cornerRadius(10)
+                .opacity(0.5)
+                .padding()
+                .onDrop(of: [.url], isTargeted: .constant(false)) { providers in
+                    
+                    if let first = providers.first {
+                        let _ = first.loadObject(ofClass: URL.self) { value, error in
+                            guard let url = value else  { return }
+                            
+                            // Check if card has already mapping
+                            if let oldLabel = mappedData[key.rawValue] {
+                                availableLabels.append(oldLabel)
+                                mappedData.removeValue(forKey: key.rawValue)
+                            }
+                            
+                            mappedData[key.rawValue] = url.absoluteString // "Tree":"Steps"
+                            availableLabels = availableLabels.filter { $0 != url.absoluteString}
+                            
+                        }
+                    }
+                    return false
+                }
             }
-            return false
+            
         }
     }
     
@@ -155,7 +164,7 @@ struct DataMapping: View {
                     
                     Text(data)
                         .foregroundColor(.seaGreen)
-                 
+                    
                 }.onDrag {
                     return .init(contentsOf: URL(string: data))!
                 }

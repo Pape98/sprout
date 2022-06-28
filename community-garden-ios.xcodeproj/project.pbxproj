@@ -14,6 +14,7 @@
 		F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */; };
 		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
 		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
+		F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0132C68286A746900267B9D /* GoalsSetting.swift */; };
 		F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D53284E9E0D00782D27 /* TreePicker.swift */; };
 		F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D55284EAD1400782D27 /* PickerCard.swift */; };
 		F0149D59284ECDC900782D27 /* Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D58284ECDC900782D27 /* Styling.swift */; };
@@ -79,6 +80,7 @@
 		F00A6F3B283C6DDA00A176D6 /* GardenItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItem.swift; sourceTree = "<group>"; };
 		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
+		F0132C68286A746900267B9D /* GoalsSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsSetting.swift; sourceTree = "<group>"; };
 		F0149D53284E9E0D00782D27 /* TreePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreePicker.swift; sourceTree = "<group>"; };
 		F0149D55284EAD1400782D27 /* PickerCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerCard.swift; sourceTree = "<group>"; };
 		F0149D58284ECDC900782D27 /* Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styling.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 			children = (
 				F0842BB6285E2980002C79BD /* Onboarding.swift */,
 				F0842BBA285E67F2002C79BD /* DataPicker.swift */,
+				F0132C68286A746900267B9D /* GoalsSetting.swift */,
 				F0149D53284E9E0D00782D27 /* TreePicker.swift */,
 				F0842B55285A4060002C79BD /* FlowerPicker.swift */,
 				F0475B58286100D600C68B35 /* DataMapping.swift */,
@@ -560,6 +563,7 @@
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
+				F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */,
 				F0475B59286100D700C68B35 /* DataMapping.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,

@@ -47,3 +47,16 @@ struct Segment: ViewModifier {
         .opacity(0.85)
     }
 }
+
+struct Droppable: ViewModifier {
+    let condition: Bool
+    
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if condition {
+            content
+        } else {
+            content
+        }
+    }
+}

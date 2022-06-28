@@ -17,7 +17,6 @@ struct Constants {
     static let flowers = ["abyss-sage", "joyful-clover","savage-morel"]
     static let trees = ["spiky-maple", "whomping-medlar", "serpent-sumac","sad-holly","sneezy-cypress","tickle-beech","royal-larch","chilling-leaf"]
     static let colors = ["moss","cosmos","sunglow","grenadier","hawks","tangerine","lavender","mint","raspberry","porcelain"]
-
 }
 
 enum MappingKeys: String {
@@ -28,17 +27,13 @@ enum MappingKeys: String {
 enum DataOptions: String, CaseIterable {
     case steps = "Steps"
     case sleep = "Sleep"
-    case data1 = "Data1"
-    case data2 = "Data2"
     
     static var dalatList: [String] {
         return DataOptions.allCases.map { $0.rawValue }
       }
     
-    static let icons = ["Steps":["figure.walk","🔥 Your daily number of steps"],
-                        "Sleep":["bed.double.circle","🛌🏽 Amount you are in bed asleep"],
-                        "Data1": ["bed.double.circle","🛌🏽 Amount you are in bed asleep"],
-                        "Data2": ["bed.double.circle","🛌🏽 Amount you are in bed asleep"]]
+    static let icons = ["Steps":["figure.walk","🚶 Your daily number of steps"],
+                        "Sleep":["bed.double.circle","🛌🏽 Amount you are in bed asleep"]]
 }
 
 

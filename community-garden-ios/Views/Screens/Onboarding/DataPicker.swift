@@ -50,7 +50,7 @@ struct DataPicker: View {
                     // Save user wants to track
                     userDefaultsService.save(value: selections, key: UserDefaultsKey.DATA)
                     // Redirect to next screen
-                    onboardingRouter.setScreen(.chooseTree)
+                    onboardingRouter.setScreen(.setGoals)
                 }
             }
             .frame(maxWidth: 250)

@@ -9,11 +9,12 @@ import Foundation
 
 enum Screen {
     case chooseData
-    case mapData
+    case setGoals
     case chooseTree
     case chooseTreeColor
     case chooseFlower
     case chooseFlowerColor
+    case mapData
     case lastSteps
 }
 
