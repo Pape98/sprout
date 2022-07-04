@@ -23,3 +23,15 @@ func formatItemName(_ name: String) -> String{
     let capitalizedTokens = tokens.map { $0.capitalized}
     return capitalizedTokens.joined(separator: " ")
 }
+
+func splitString(str: String) -> String {
+    var res = ""
+    for char in str {
+        
+        if char.isUppercase && res.isEmpty == false {
+            res += " "
+        }
+        res += "\(char)"
+    }
+    return res
+}

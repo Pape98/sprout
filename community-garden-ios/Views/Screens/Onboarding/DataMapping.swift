@@ -73,9 +73,9 @@ struct DataMapping: View {
             Spacer()
             
             BackNextButtons() {
-//                if mappedData.count != 2 {
-//                    showingAlert = true
-//                }
+                //                if mappedData.count != 2 {
+                //                    showingAlert = true
+                //                }
                 
                 userDefaults.save(value: mappedData, key: UserDefaultsKey.MAPPED_DATA)
                 
@@ -111,20 +111,22 @@ struct DataMapping: View {
                         .inset(by: 1)
                         .stroke(style: StrokeStyle(lineWidth: 2.5, dash: [5]))
                         .fill(Color.seaGreen)
-                        .frame(width: 150, height: 40)
+                        .frame(width: 150, height: 60)
                         .padding(.top)
                     
                     RoundedRectangle(cornerRadius: 10)
                         .inset(by: 1)
                         .fill(Color.seaGreen)
-                        .frame(width: 150, height: 40)
+                        .frame(width: 150, height: 60)
                         .opacity(0.01)
                         .padding(.top)
                 }
                 .acceptDrop(condition: true) { providers in
                     if let first = providers.first {
                         let _ = first.loadObject(ofClass: URL.self) { value, error in
+                            if error != nil { return }
                             guard let url = value else  { return }
+                
                             
                             // Check if card has already mapping
                             if let oldLabel = mappedData[key.rawValue] {
@@ -132,8 +134,10 @@ struct DataMapping: View {
                                 mappedData.removeValue(forKey: key.rawValue)
                             }
                             
-                            mappedData[key.rawValue] = url.absoluteString // "Tree":"Steps"
-                            availableLabels = availableLabels.filter { $0 != url.absoluteString}
+                            let filteredString = splitString(str: url.absoluteString)
+                            
+                            mappedData[key.rawValue] = filteredString // "Tree":"Steps"
+                            availableLabels = availableLabels.filter { $0 != filteredString}
                             
                         }
                     }
@@ -144,7 +148,7 @@ struct DataMapping: View {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.oliveGreen)
                         .opacity(0.8)
-                        .frame(width: 150, height: 40)
+                        .frame(width: 150, height: 60)
                     
                     HStack {
                         Text(mappedData[key.rawValue]!)
@@ -157,13 +161,13 @@ struct DataMapping: View {
                             .padding(.trailing)
                     }
                     
-                   
+                    
                 }
                 .padding(.top)
                 .onTapGesture {
                     availableLabels.append(mappedData[key.rawValue]!)
                     mappedData.removeValue(forKey: key.rawValue)
-                }.frame(width: 150, height: 40)
+                }.frame(width: 150, height: 60)
             }
             
         }
@@ -173,21 +177,25 @@ struct DataMapping: View {
     func DataLabels() -> some View {
         LazyVGrid(columns: columns) {
             ForEach(availableLabels, id: \.self) { data in
+                
                 ZStack {
                     Group {
                         RoundedRectangle(cornerRadius: 10)
                             .inset(by: 1)
                             .stroke(Color.seaGreen, lineWidth: 2.5)
-                            .frame(width: 150, height: 40)
+                            .frame(width: 150, height: 60)
                         
                     }.background(Color.haze)
-                    .cornerRadius(10)
+                        .cornerRadius(10)
                     
                     Text(data)
                         .foregroundColor(.seaGreen)
+                        .multilineTextAlignment(.center)
                     
                 }.onDrag {
-                    return .init(contentsOf: URL(string: data))!
+                    let url = data.replacingOccurrences(of: " ", with: "")
+                    return .init(contentsOf: URL(string: url))!
+                    
                 }
             }
         }.padding()
