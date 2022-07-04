@@ -11,9 +11,10 @@ import HealthKit
 class HealthStoreService {
     
     struct HKDataTypes {
-        static let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
         static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
         static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
+        static let walkingRunningDistance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
+        static let exerciseMinute = HKObjectType.activitySummaryType()
     }
     
     // MARK: - Properties
@@ -50,7 +51,8 @@ class HealthStoreService {
     func requestAuthorization(completion: @escaping (Bool)  -> Void) {
         
         let healthKitTypesToRead = Set([
-            //            HKDataTypes.heartRate,
+            HKDataTypes.walkingRunningDistance,
+            HKDataTypes.exerciseMinute,
             HKDataTypes.sleep,
             HKDataTypes.stepCount,
         ])
