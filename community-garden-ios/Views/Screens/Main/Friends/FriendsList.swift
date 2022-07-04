@@ -29,7 +29,7 @@ struct FriendGardenView: View {
                     
                     if let stepCount = friend.stepCount{
                         Text("Steps: \(stepCount.count)")
-
+                        
                     }
                     Spacer()
                     
@@ -50,10 +50,15 @@ struct FriendsList: View {
     @EnvironmentObject var friendsViewModel: FriendsViewModel
     
     var body: some View {
-        List(friendsViewModel.friendsList){ friend in
-            NavigationLink(destination: FriendGardenView(friend: friend)) {
-                Text(friend.name)
-            }
+        ZStack {
+            
+            MainBackground()
+            
+//            List(friendsViewModel.friendsList){ friend in
+//                NavigationLink(destination: FriendGardenView(friend: friend)) {
+//                    Text(friend.name)
+//                }
+//            }
         }
     }
 }

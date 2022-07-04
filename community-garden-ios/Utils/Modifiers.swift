@@ -9,11 +9,14 @@ import Foundation
 import SwiftUI
 
 struct WeatherOverlay: ViewModifier {
+    
+    var weatherInfo = getWeatherInfo()
+    
     func body(content: Content) -> some View {
         
         ZStack(alignment: .topLeading) {
             // Background Image
-            Image("day-bg")
+            Image(weatherInfo["image"]!)
                 .resizable()
                 .ignoresSafeArea()
             // Scene View
@@ -29,7 +32,7 @@ struct WeatherOverlay: ViewModifier {
         }
         .overlay {
             Rectangle()
-                .fill(Color.day)
+                .fill(Color(weatherInfo["image"]!))
                 .blendMode(BlendMode.overlay)
         }
     }

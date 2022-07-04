@@ -67,6 +67,8 @@
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
+		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
+		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -136,6 +138,8 @@
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -180,6 +184,7 @@
 				F005739127702F9B00EB487B /* ActionButton.swift */,
 				F0149D5A284ED5ED00782D27 /* CircledTree.swift */,
 				F0842B59285A4A32002C79BD /* CircledFlower.swift */,
+				F0F5E93B2873ACA0002C30BC /* MainBackground.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -199,6 +204,7 @@
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
 				F00A6F34283C4DDB00A176D6 /* Friends */,
 				F09B71E327724B260085C7AC /* Garden */,
+				F0F5E93828739422002C30BC /* Settings */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -426,6 +432,14 @@
 			path = Repositories;
 			sourceTree = "<group>";
 		};
+		F0F5E93828739422002C30BC /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				F0F5E9392873945F002C30BC /* Settings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
 		F0FCDE7A282CD7F500FDA5BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -582,6 +596,7 @@
 				F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */,
 				F0475B59286100D700C68B35 /* DataMapping.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
+				F0F5E93A2873945F002C30BC /* Settings.swift in Sources */,
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F0842BB0285D4D06002C79BD /* ColorPicker.swift in Sources */,
 				F0149D59284ECDC900782D27 /* Styling.swift in Sources */,
@@ -594,6 +609,7 @@
 				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
+				F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */,
 				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
 				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,

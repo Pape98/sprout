@@ -10,23 +10,27 @@ import SwiftUI
 struct GardenInfoCard: View {
     
     var user: User
+    let today = Date()
+    
+    let userDefaults = UserDefaultsService.shared
+    
+    var gardenName: String {
+        userDefaults.get(key: UserDefaultsKey.GARDEN_NAME) ?? "Poudlard"
+    }
     
     var body: some View {
         
         ZStack(alignment: .leading) {
             
-            // Steps
             HStack {
                 
-                if let stepCount = user.stepCount {
-                    VStack(alignment: .leading) {
-                        Text("\(stepCount.count)")
-                            .bold()
-                            .headerStyle()
-                        Text("Steps")
-                            .bold()
-                            .bodyStyle()
-                    }
+                VStack {
+                    Text(today.getFormattedDate(format: "dd"))
+                        .bold()
+                        .headerStyle()
+                    Text(today.getFormattedDate(format: "MMMM"))
+                        .bold()
+                        .bodyStyle()
                 }
                 
                 Spacer()
@@ -35,7 +39,7 @@ struct GardenInfoCard: View {
                 HStack(spacing: 10) {
                     IconButton(icon: "droplet-icon", text: "5 droplets")
                     NavigationLink(destination: MyGarden()) {
-                        IconButton(icon: "garden-icon", text: "Your Garden")
+                        IconButton(icon: "garden-icon", text: gardenName)
                     }
                     
                 }

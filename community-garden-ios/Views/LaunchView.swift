@@ -31,8 +31,7 @@ struct LaunchView: View {
                 
             } else {
                 // Show onboarding or dashboard view
-                //                if (onboardingViewModel.isNewUser == OnboardingStatus.NEW_USER){
-                if (true){
+                if (onboardingViewModel.isNewUser == OnboardingStatus.NEW_USER){
                     Onboarding()
                 } else {
                     MainView()

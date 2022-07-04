@@ -25,9 +25,12 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     let TREE_SCALE_FACTOR = 0.03
     let SCALE_DURATION = 2.5
+    let userDefaults = UserDefaultsService.shared
     
     // Defaults
-    let DEFAULT_TREE: String? = UserDefaultsService.shared.get(key: UserDefaultsKey.TREE)!
+    var DEFAULT_TREE: String {
+        userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+    }
     
     var tree: SKSpriteNode!
     var ground: SKSpriteNode!
@@ -54,7 +57,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         // Scene setup
         ground = setupGround()
         let _ = setupTree(ground: ground)
-        setupPond()
         
         // Timer
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
@@ -82,7 +84,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     func setupTree(ground: SKSpriteNode) -> SKSpriteNode{
         // Tree
-        let treeTexture = DEFAULT_TREE != nil ? SKTexture(imageNamed: "sunglow-\(DEFAULT_TREE!)") : SKTexture(imageNamed: "cosmos-spiky-maple")
+        let treeTexture = SKTexture(imageNamed: "sunglow-\(DEFAULT_TREE)")
         tree = SKSpriteNode(texture: treeTexture)
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y: ground.size.height / 2)
@@ -102,16 +104,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         addChild(tree)
         
         return tree
-    }
-    
-    func setupPond() {
-        let pondTexture = SKTexture(imageNamed: "pond")
-        let pond = SKSpriteNode(texture: pondTexture)
-        
-        pond.anchorPoint = CGPoint(x: 0, y: 0)
-        pond.position = CGPoint(x: 0, y: 0)
-        
-        addChild(pond)
     }
     
     func createGrass(position: CGPoint) {

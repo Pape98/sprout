@@ -9,21 +9,23 @@ import SwiftUI
 
 struct MainView: View {
     var body: some View {
+        
         TabView {
             Dashboard()
                 .tabItem {
                     Label("Dashboard", systemImage: "house.fill")
-                        .padding()
                 }
             
             FriendsList()
                 .tabItem {
                     Label("Friends", systemImage: "person.3")
-                        .padding()
                 }
             
+            Settings()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
         }
-        .background(Color.white)
     }
 }
 

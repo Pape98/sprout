@@ -23,6 +23,7 @@ struct MyGarden: View {
         // Scene View
         SpriteView(scene: scene, options: [.allowsTransparency])
             .weatherOverlay()
+
     }
 }
     
