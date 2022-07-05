@@ -22,12 +22,14 @@ class HealthStoreService {
     
     // Provides all functionalities related health data
     private var healthStore: HKHealthStore?
-    
     private let dataCollectionStartDate = Date() // (day, month, year)
-    
+    private let SQLite = SQLiteService.shared
+    private let units = [
+        HKDataTypes.stepCount: HKUnit.count(),
+        HKDataTypes.walkingRunningDistance: HKUnit.mile()
+    ]
     
     // MARK: - Methods
-    
     init() {
         // Check if health data is available in current phone
         if HKHealthStore.isHealthDataAvailable() {
@@ -35,37 +37,23 @@ class HealthStoreService {
         }
     }
     
-    func walkingRunningDistance() {
-        print("New distance")
-    }
-    
-    func steps() {
-        print("New steps")
-    }
-    
-    func exercise(){
-        print("Exercise")
-    }
-    
-    func sleep() {
-        print("Sleep")
-    }
-    
     func setUpAuthorization() {
         // Request authorization to access health store if not asked yet
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" { // Do not run this in preview mode
             self.requestAuthorization { success in
                 if success {
-                    // Start listening to changes in step counts
+                    // Listen to changes in step counts
                     self.startQuantityQuery(dataType: HKDataTypes.stepCount,
-                                            updateHandler: self.steps)
-                    
-                    // Start listening to changes in walking+running distance
+                                            updateHandler: self.SQLite.saveStepCount)
+
+                    // Listen to changes in walking+running distance
                     self.startQuantityQuery(dataType: HKDataTypes.walkingRunningDistance,
-                                            updateHandler: self.walkingRunningDistance )
+                                            updateHandler: self.SQLite.saveWalkingRunningDistance)
                     
+                    // Listen to changes in workouts
                     self.startSampleQuery(sampleType: HKDataTypes.workouts, dataType: HKWorkout.self)
                     
+                    // Listen to changes in sleep
                     self.startSampleQuery(sampleType: HKDataTypes.sleep, dataType: HKCategorySample.self)
                 }
             }
@@ -94,71 +82,6 @@ class HealthStoreService {
                 return
             }
             completion(success)
-        }
-    }
-    
-    // Handles both initial and subsequendes data fetches from health store
-    func statsInitialUpdateHandler(query:HKStatisticsCollectionQuery,
-                                   statistics: HKStatisticsCollection?,
-                                   error:Error?,
-                                   updateHandler: @escaping () -> Void) -> Void {
-        
-        let calendar = Calendar.current
-        
-        if let error = error as? HKError {
-            switch (error.code) {
-            case .errorDatabaseInaccessible:
-                assertionFailure("*** [HK] HealthKit couldn't access the database because the device is locked ***")
-                return
-            case .errorInvalidArgument:
-                assertionFailure("*** [HK] The app passed an invalid argument to the HealthKit API ***")
-                return
-            case .errorAuthorizationDenied:
-                assertionFailure("*** [HK] The user hasn’t given the app permission to save data. ***")
-                return
-            case .errorAuthorizationNotDetermined:
-                assertionFailure("*** [HK] The app hasn’t yet asked the user for the authorization required to complete the task. ***" )
-                return
-            case .errorNoData:
-                assertionFailure("*** [HK] Data is unavailable for the requested query and predicate. ***")
-                return
-            default:
-                assertionFailure("*** [HK] Unexpected error occured with Healthkit API ***" )
-                return
-            }
-        }
-        
-        guard let statsCollection = statistics else {
-            assertionFailure("*** [HK] queried sample came back null ****")
-            return
-        }
-        
-        let today = Date()
-        
-        guard let startDate = (DateComponents(calendar:calendar,
-                                              timeZone: calendar.timeZone,
-                                              year: Int(today.year),
-                                              month:Int(today.month),
-                                              day: Int(today.day))).date else { return }
-        
-        statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
-            print(statistics.sumQuantity())
-        }
-        // TODO: Generalize to accept other statistics and not just steps
-        //        var dailySteps: [Step] = []
-        //
-        //        statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
-        //            if let sum = statistics.sumQuantity() {
-        //                let totalSteps = Int(sum.doubleValue(for: .count()))
-        //                let date = statistics.startDate
-        //                let stepObject = Step(date: date, count: totalSteps)
-        //                dailySteps.append(stepObject)
-        //            }
-        //        }
-        
-        // Dispatch to the main queue to update the UI.
-        DispatchQueue.main.async {
-            updateHandler()
         }
     }
     
@@ -193,13 +116,12 @@ class HealthStoreService {
                 guard result != nil else { return }
 
                 var duration = 0.0
-
+                
                 for item in result! {
                     let sample = item  as? T
                     guard sample != nil else { return }
                     duration += (sample!.endDate - sample!.startDate)/60
                 }
-                print(dataType, duration)
             }
 
             // Execute sample query
@@ -215,8 +137,8 @@ class HealthStoreService {
         }
         
     }
-    
-    func startQuantityQuery(dataType: HKQuantityType, updateHandler: @escaping () -> Void) -> Void {
+        
+    func startQuantityQuery(dataType: HKQuantityType, updateHandler: @escaping (Double) -> Void) -> Void {
         
         let calendar = Calendar.current
         // Create a 1-day interval.
@@ -249,13 +171,21 @@ class HealthStoreService {
         // The results handler for the query’s initial results.
         query.initialResultsHandler = {
             query, statistics, error in
-            self.statsInitialUpdateHandler(query: query, statistics: statistics, error: error, updateHandler: updateHandler)
+            self.statsInitialUpdateHandler(query: query,
+                                           statistics: statistics,
+                                           error: error,
+                                           unit: self.units[dataType]!,
+                                           updateHandler: updateHandler)
         }
         
         // The results handler for monitoring updates to the HealthKit store.
         query.statisticsUpdateHandler = {
             query, statistics, collection, error in
-            self.statsInitialUpdateHandler(query: query, statistics: collection, error: error, updateHandler: updateHandler)
+            self.statsInitialUpdateHandler(query: query,
+                                           statistics: collection,
+                                           error: error,
+                                           unit: self.units[dataType]!,
+                                           updateHandler: updateHandler)
         }
         
         // Execute query
@@ -263,6 +193,46 @@ class HealthStoreService {
             healthStore.execute(query)
         }
         
+    }
+    
+    // Handles both initial and subsequendes data fetches from health store
+    func statsInitialUpdateHandler(query:HKStatisticsCollectionQuery,
+                                   statistics: HKStatisticsCollection?,
+                                   error:Error?,
+                                   unit: HKUnit,
+                                   updateHandler: @escaping (Double) -> Void) -> Void {
+        
+        let calendar = Calendar.current
+        
+        if let error = error as? HKError {
+            print(error)
+            return
+        }
+        
+        guard let statsCollection = statistics else {
+            assertionFailure("*** [HK] queried sample came back null ****")
+            return
+        }
+        
+        let today = Date()
+        
+        guard let startDate = (DateComponents(calendar:calendar,
+                                              timeZone: calendar.timeZone,
+                                              year: Int(today.year),
+                                              month:Int(today.month),
+                                              day: Int(today.day))).date else { return }
+        
+        statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
+            if let sum = statistics.sumQuantity() {
+                let total = sum.doubleValue(for: unit)
+                updateHandler(total)
+            }
+        }
+        
+        // Dispatch to the main queue to update the UI.
+//        DispatchQueue.main.async {
+//            updateHandler(2.5)
+//        }
     }
     
 }
