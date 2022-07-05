@@ -32,6 +32,10 @@ extension Date {
         dateFormatter.dateFormat = "YYYY"
         return dateFormatter.string(from: self)
     }
+    
+    static func - (lhs: Date, rhs: Date) -> TimeInterval {
+        return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    }
 }
 
 extension String {

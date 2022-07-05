@@ -27,12 +27,19 @@ class UserViewModel: ObservableObject {
     // MARK: - Methods
     
     init(){
-        nc.addObserver(self, selector: #selector(self.initialSetup), name: Notification.Name(NotificationType.UserLoggedIn.rawValue), object: nil)
-        nc.addObserver(self, selector: #selector(self.getUser), name: Notification.Name(NotificationType.FetchUser.rawValue), object: nil)
+        nc.addObserver(self,
+                       selector: #selector(self.initialSetup),
+                       name: Notification.Name(NotificationType.UserLoggedIn.rawValue),
+                       object: nil)
+        
+        nc.addObserver(self,
+                       selector: #selector(self.getUser),
+                       name: Notification.Name(NotificationType.FetchUser.rawValue),
+                       object: nil)
     }
     
     @objc func initialSetup(){
-        setupStepsListener()
+        setupHealthkitDataListener()
         getUser()
         computeDroplets()
     }
@@ -74,9 +81,9 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func setupStepsListener() {
+    func setupHealthkitDataListener() {
         // Get user steps from Firestore first then listen to healthstore
-        self.healthStore.setUpAuthorization(updateDailySteps: self.updateDailySteps)
+        self.healthStore.setUpAuthorization()
     }
     
     func updateDailySteps(storeSteps: [Step]) {

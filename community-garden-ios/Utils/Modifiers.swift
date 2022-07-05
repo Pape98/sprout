@@ -30,10 +30,12 @@ struct WeatherOverlay: ViewModifier {
             }
             .padding()
         }
+        
         .overlay {
             Rectangle()
-                .fill(Color(weatherInfo["image"]!))
+                .fill(Color(weatherInfo["color"]!))
                 .blendMode(BlendMode.overlay)
+                .edgesIgnoringSafeArea([.top])
         }
     }
 }

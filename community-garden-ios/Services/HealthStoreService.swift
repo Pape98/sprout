@@ -14,7 +14,8 @@ class HealthStoreService {
         static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
         static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
         static let walkingRunningDistance = HKObjectType.quantityType(forIdentifier: .distanceWalkingRunning)!
-        static let exerciseMinute = HKObjectType.activitySummaryType()
+        static let exerciseTime = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!
+        static let workouts = HKObjectType.workoutType()
     }
     
     // MARK: - Properties
@@ -34,14 +35,36 @@ class HealthStoreService {
         }
     }
     
-    func setUpAuthorization(updateDailySteps: @escaping ([Step]) -> Void) {
+    func walkingRunningDistance() {
+        print("New distance")
+    }
+    
+    func steps() {
+        print("New steps")
+    }
+    
+    func exercise(){
+        print("Exercise")
+    }
+    
+    func sleep() {
+        print("Sleep")
+    }
+    
+    func setUpAuthorization() {
         // Request authorization to access health store if not asked yet
         if ProcessInfo.processInfo.environment["XCODE_RUNNING_FOR_PREVIEWS"] != "1" { // Do not run this in preview mode
             self.requestAuthorization { success in
                 if success {
                     // Start listening to changes in step counts
-                    self.startQuery(dataType: HKDataTypes.stepCount,
-                                    updateHandler: updateDailySteps)
+                    self.startQuantityQuery(dataType: HKDataTypes.stepCount,
+                                            updateHandler: self.steps)
+                    
+                    // Start listening to changes in walking+running distance
+                    self.startQuantityQuery(dataType: HKDataTypes.walkingRunningDistance,
+                                            updateHandler: self.walkingRunningDistance )
+                    
+                    self.startSampleQuery(sampleType: HKDataTypes.workouts, dataType: HKWorkout.self)
                 }
             }
         }
@@ -52,9 +75,10 @@ class HealthStoreService {
         
         let healthKitTypesToRead = Set([
             HKDataTypes.walkingRunningDistance,
-            HKDataTypes.exerciseMinute,
+            HKDataTypes.exerciseTime,
             HKDataTypes.sleep,
             HKDataTypes.stepCount,
+            HKDataTypes.workouts
         ])
         
         guard let healthStoreUnwrapped = self.healthStore else {
@@ -75,7 +99,7 @@ class HealthStoreService {
     func statsInitialUpdateHandler(query:HKStatisticsCollectionQuery,
                                    statistics: HKStatisticsCollection?,
                                    error:Error?,
-                                   updateHandler: @escaping (_ newValues:[Step]) -> Void) -> Void {
+                                   updateHandler: @escaping () -> Void) -> Void {
         
         let calendar = Calendar.current
         
@@ -115,26 +139,82 @@ class HealthStoreService {
                                               month:Int(today.month),
                                               day: Int(today.day))).date else { return }
         
-        
-        // TODO: Generalize to accept other statistics and not just steps
-        var dailySteps: [Step] = []
-        
         statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
-            if let sum = statistics.sumQuantity() {
-                let totalSteps = Int(sum.doubleValue(for: .count()))
-                let date = statistics.startDate
-                let stepObject = Step(date: date, count: totalSteps)
-                dailySteps.append(stepObject)
-            }
+            print(statistics.sumQuantity())
         }
+        // TODO: Generalize to accept other statistics and not just steps
+        //        var dailySteps: [Step] = []
+        //
+        //        statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
+        //            if let sum = statistics.sumQuantity() {
+        //                let totalSteps = Int(sum.doubleValue(for: .count()))
+        //                let date = statistics.startDate
+        //                let stepObject = Step(date: date, count: totalSteps)
+        //                dailySteps.append(stepObject)
+        //            }
+        //        }
         
         // Dispatch to the main queue to update the UI.
         DispatchQueue.main.async {
-            updateHandler(dailySteps)
+            updateHandler()
         }
     }
     
-    func startQuery(dataType: HKQuantityType, updateHandler: @escaping (_ newValues:[Step]) -> Void) -> Void {
+    func startSampleQuery<T: HKSample>(sampleType: HKSampleType, dataType: T.Type){
+        
+        // Query descriptor
+        let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
+        
+        // Query predicate
+        let components = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
+        let date = Calendar.current.date(from: components)
+        let predicate = NSPredicate(format: "startDate > %@", date! as NSDate)
+        
+        // Observer query
+        let observerQuery = HKObserverQuery(sampleType: sampleType, predicate: predicate) { query, completionHandler, error in
+
+            if let error = error {
+                // Properly handle the error.
+                print(error)
+                return
+            }
+
+            let sampleQuery = HKSampleQuery(sampleType: sampleType,
+                                            predicate: predicate,
+                                            limit: 500,
+                                            sortDescriptors: [sortDescriptor]) { query, result, error in
+                // Handle error
+                if let error = error {
+                    print(error)
+                    return
+                }
+                guard result != nil else { return }
+
+                var duration = 0.0
+
+                for item in result! {
+                    let sample = item  as? T
+                    guard sample != nil else { return }
+                    duration += (sample!.endDate - sample!.startDate)/60
+                }
+                print(duration)
+            }
+
+            // Execute sample query
+            if let healthStore = self.healthStore {
+                healthStore.execute(sampleQuery)
+            }
+
+        }
+
+        // Execute observer query
+        if let healthStore = self.healthStore {
+            healthStore.execute(observerQuery)
+        }
+        
+    }
+    
+    func startQuantityQuery(dataType: HKQuantityType, updateHandler: @escaping () -> Void) -> Void {
         
         let calendar = Calendar.current
         // Create a 1-day interval.
@@ -162,6 +242,7 @@ class HealthStoreService {
                                                 options: .cumulativeSum,
                                                 anchorDate: anchorDate,
                                                 intervalComponents: interval)
+        
         
         // The results handler for the query’s initial results.
         query.initialResultsHandler = {

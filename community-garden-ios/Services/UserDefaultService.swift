@@ -50,7 +50,7 @@ enum UserDefaultsKey: String {
     case DATA = "data"
     case STEPS_GOAL = "steps-goal"
     case SLEEP_GOAL = "sleep-goal"
-    case EXERCISE_GOAL = "exercise-goal"
+    case WORKOUT_GOAL = "workout-goal"
     case WALKING_RUNNING_GOAL = "walking-running-goal"
     case MAPPED_DATA = "mapped-data"
     case GARDEN_NAME = "garden-name"
