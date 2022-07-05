@@ -52,11 +52,10 @@ struct Dashboard: View {
                         }
                         
                         // Card Row Two
-                        GeometryReader { geometry in
                             
                             LazyVGrid(columns: twoColumnGrid) {
                                 
-                                DashboardCard(width: geometry.size.width / 2, icon: "calendar-icon"){
+                                DashboardCard(icon: "calendar-icon"){
                                     VStack {
                                         Text(today.getFormattedDate(format: "dd"))
                                             .headerStyle()
@@ -66,13 +65,13 @@ struct Dashboard: View {
                                     }
                                 }
                                 
-                                DashboardCard(width: geometry.size.width / 2, icon: "temp-icon"){
+                                DashboardCard(icon: "temp-icon"){
                                     Text("64°")
                                         .headerStyle()
                                 }
                             }
                             
-                        }
+                        
                     }
                     
                     Spacer()

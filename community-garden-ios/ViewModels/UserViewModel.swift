@@ -18,7 +18,7 @@ class UserViewModel: ObservableObject {
     static var shared = UserViewModel()
     
     let userRepository = UserRepository.shared
-    let healthStore: HealthStoreService = HealthStoreService()
+    let healthStoreRepo = HealthStoreRepository.shared
     
     let RATIO_STEPS_DROPLET = 200
     let MAX_NUM_STEPS = 10000
@@ -39,7 +39,6 @@ class UserViewModel: ObservableObject {
     }
     
     @objc func initialSetup(){
-        setupHealthkitDataListener()
         getUser()
         computeDroplets()
     }
@@ -78,35 +77,6 @@ class UserViewModel: ObservableObject {
         let updates: [String: Any] = ["oldStepCount": 0, "gardenItems": [["id": UUID().uuidString, "name": "tree1", "height": 0.03]]]
         userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
             self.getUser()
-        }
-    }
-    
-    func setupHealthkitDataListener() {
-        // Get user steps from Firestore first then listen to healthstore
-        self.healthStore.setUpAuthorization()
-    }
-    
-    func updateDailySteps(storeSteps: [Step]) {
-        // Check if store step count is same as user saved step count
-        let userStepCount = UserService.shared.user.stepCount
-        guard storeSteps.isEmpty == false else { return }
-     
-        let storeStepCount = storeSteps[0]
-
-        if userStepCount?.isSameDate(other: storeStepCount) == false {
-            resetUserData()
-        }
-        
-        if userStepCount != storeStepCount {
-            let userID = UserService.shared.user.id
-            // Perform the update operation
-
-            self.userRepository.updateUser(userID: userID,
-                                           updates: ["stepCount": ["count": storeStepCount.count, "date": storeStepCount.date]])
-            { () in
-                self.getUser()
-                self.computeDroplets()
-            }
         }
     }
 }

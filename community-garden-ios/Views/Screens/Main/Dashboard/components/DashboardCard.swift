@@ -9,14 +9,13 @@ import SwiftUI
 
 struct DashboardCard<Content: View>: View {
     
-    var width: CGFloat
     var icon: String
     @ViewBuilder var content: Content
     
     var body: some View {
         
         content
-            .frame(width: width, height: 60)
+            .frame(maxWidth: .infinity ,minHeight: 60, maxHeight: 60)
             .padding(.vertical, 20)
             .background{
                 ZStack (alignment: .topLeading) {
@@ -24,6 +23,7 @@ struct DashboardCard<Content: View>: View {
                         .fill(.white)
                         .cornerRadius(10)
                         .opacity(0.9)
+                        .frame(maxWidth: .infinity)
                     
                     Image(icon)
                         .padding(10)
@@ -34,7 +34,7 @@ struct DashboardCard<Content: View>: View {
 
 struct DashboardCard_Previews: PreviewProvider {
     static var previews: some View {
-        DashboardCard(width: 100, icon: "calendar-icon") {
+        DashboardCard(icon: "calendar-icon") {
             Text("Card")
                 .headerStyle()
         }

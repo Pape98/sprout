@@ -165,4 +165,13 @@ class SQLiteService {
         let date = Expression<String>("date")
         insertUpdate(table: sleep!, name: TableName.Sleep, values: date <- today, duration <- v)
     }
+    
+    func getTodayStepCount() {
+        let value = Expression<Double>("value")
+        let date = Expression<String>("date")
+        let res = stepCounts!.select(value)
+                             .filter(date == today)
+        
+        print(res)
+    }
 }
