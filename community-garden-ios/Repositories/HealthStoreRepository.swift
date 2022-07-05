@@ -10,7 +10,6 @@ import Foundation
 class HealthStoreRepository {
     
     let SQLiteDB = SQLiteService.shared
-    let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
     let healthStoreService: HealthStoreService = HealthStoreService()
     static let shared = HealthStoreRepository()
     
@@ -18,7 +17,23 @@ class HealthStoreRepository {
         healthStoreService.setUpAuthorization()
     }
     
-    func getTodayStepCount(){
-        SQLiteDB.getTodayStepCount()
+    func getStepCounts() -> [Step]{
+        return SQLiteDB.getStepCounts()
+    }
+    
+    func getStepCountByDate(date: String) -> Step? {
+        return SQLiteDB.getStepCountByDate(date: date)
+    }
+    
+    func getWalkingRunningDistanceByDate(date: String) -> WalkingRunningDistance? {
+        return SQLiteDB.getWalkingRunningDistanceByDate(date: date)
+    }
+    
+    func getWorkoutByDate(date: String) -> Workout? {
+        return SQLiteDB.getWorkoutByDate(date: date)
+    }
+    
+    func getSleepByDate(date: String) -> Sleep? {
+        return SQLiteDB.getSleepByDate(date: date)
     }
 }

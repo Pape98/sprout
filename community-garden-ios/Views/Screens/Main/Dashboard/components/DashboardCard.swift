@@ -15,7 +15,7 @@ struct DashboardCard<Content: View>: View {
     var body: some View {
         
         content
-            .frame(maxWidth: .infinity ,minHeight: 60, maxHeight: 60)
+            .frame(maxWidth: .infinity ,minHeight: 80, maxHeight: 80)
             .padding(.vertical, 20)
             .background{
                 ZStack (alignment: .topLeading) {
@@ -25,8 +25,9 @@ struct DashboardCard<Content: View>: View {
                         .opacity(0.9)
                         .frame(maxWidth: .infinity)
                     
-                    Image(icon)
+                    Image(systemName: icon)
                         .padding(10)
+                        .foregroundColor(.appleGreen)
                 }
             }
     }

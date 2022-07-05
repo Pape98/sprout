@@ -43,6 +43,7 @@ class SQLiteService {
         }
     }
     
+    // MARK: Database table initializations
     func initTables(){
         stepCounts = createStepCountTable()
         walkingRunningDistance = createWalkingRunningDistanceTable()
@@ -133,6 +134,9 @@ class SQLiteService {
         return sleepTable
     }
     
+    
+    // MARK: Saving data to tables
+    
     func insertUpdate<T: Codable>(table: Table, name: TableName, values: T){
         do {
             let conflictField = Expression<String>("date")
@@ -145,41 +149,118 @@ class SQLiteService {
     func saveStepCount(value v: Double){
         let object = Step(date: today, count: v)
         insertUpdate(table: stepCounts!, name: TableName.stepCounts, values: object)
+        NotificationSender.send(type: NotificationType.FetchStepCount.rawValue)
     }
     
     func saveWalkingRunningDistance(value v: Double){
         let object = WalkingRunningDistance(date: today, distance: v)
         insertUpdate(table: walkingRunningDistance!, name: TableName.walkingRunningDistance, values: object)
+        NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue)
     }
     
     func saveWorkouts(value v: Double){
         let object = Workout(date: today, duration: v)
         insertUpdate(table: workouts!, name: TableName.workouts, values: object)
+        NotificationSender.send(type: NotificationType.FetchWorkout.rawValue)
     }
     
     func saveSleep(value v: Double){
         let object = Sleep(date: today, duration: v)
         insertUpdate(table: sleep!, name: TableName.sleep, values: object)
+        NotificationSender.send(type: NotificationType.FetchSleep.rawValue)
     }
     
-    func getTodayStepCount() {
-        let value = Expression<Double>("value")
-        let date = Expression<String>("date")
-        var count = 0.0
+    // MARK: Data retrieval
+    func getStepCounts() -> [Step] {
         
         do {
-
-            let counts = stepCounts!
-                .select(value)
-                .where(date == today)
-                .limit(1)
             
-            let all = Array(try db!.prepare(counts))
-            print(all)
-
+            let counts = stepCounts!
+            let loadedCounts: [Step] = try db!.prepare(counts).map { row in
+                return try row.decode()
+            }
+            
+            return loadedCounts
+            
         } catch {
             print(error)
         }
+        return []
+    }
+    
+    func getStepCountByDate(date query: String) -> Step? {
         
+        do {
+            let date = Expression<String>("date")
+            let counts = stepCounts!.where(date == query).limit(1)
+            let loadedData: [Step] = try db!.prepare(counts).map { row in
+                return try row.decode()
+            }
+            
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    func getWalkingRunningDistanceByDate(date query: String) -> WalkingRunningDistance? {
+        
+        do {
+            let date = Expression<String>("date")
+            let distances = walkingRunningDistance!.where(date == query).limit(1)
+            let loadedData: [WalkingRunningDistance] = try db!.prepare(distances).map { row in
+                return try row.decode()
+            }
+                
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    func getWorkoutByDate(date query: String) -> Workout? {
+        
+        do {
+            let date = Expression<String>("date")
+            let durations = workouts!.where(date == query).limit(1)
+            let loadedData: [Workout] = try db!.prepare(durations).map { row in
+                return try row.decode()
+            }
+                
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
+    }
+    
+    func getSleepByDate(date query: String) -> Sleep? {
+        
+        do {
+            let date = Expression<String>("date")
+            let durations = sleep!.where(date == query).limit(1)
+            let loadedData: [Sleep] = try db!.prepare(durations).map { row in
+                return try row.decode()
+            }
+                
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
     }
 }

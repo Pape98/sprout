@@ -9,8 +9,12 @@ import Foundation
 
 
 enum NotificationType: String {
-    case UserLoggedIn = "UserLoggedIn"
-    case FetchUser = "FetchUser"
+    case UserLoggedIn
+    case FetchUser
+    case FetchStepCount
+    case FetchWalkingRunningDistance
+    case FetchWorkout
+    case FetchSleep
 }
 
 class NotificationSender {

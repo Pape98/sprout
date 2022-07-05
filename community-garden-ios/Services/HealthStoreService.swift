@@ -26,7 +26,9 @@ class HealthStoreService {
     private let SQLite = SQLiteService.shared
     private let units = [
         HKDataTypes.stepCount: HKUnit.count(),
-        HKDataTypes.walkingRunningDistance: HKUnit.mile()
+        HKDataTypes.walkingRunningDistance: HKUnit.mile(),
+        HKDataTypes.sleep: HKUnit.hour(),
+        HKDataTypes.workouts: HKUnit.minute()
     ]
     
     // MARK: - Methods
