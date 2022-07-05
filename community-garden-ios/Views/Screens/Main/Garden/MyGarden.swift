@@ -50,11 +50,6 @@ struct MyGarden: View {
     
     struct StepView_Previews: PreviewProvider {
         
-        @State static var steps: [Step] = [Step(date: Date.now, count: 894),
-                                           Step(date: Date.now, count: 1500),
-                                           Step(date: Date.now, count: 2060),
-                                           Step(date: Date.now, count: 100)]
-        
         static var previews: some View {
             MyGarden()
             

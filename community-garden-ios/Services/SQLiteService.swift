@@ -9,10 +9,10 @@ import Foundation
 import SQLite
 
 enum TableName: String {
-    case StepCounts
-    case WalkingRunningDistance
-    case Sleep
-    case Workouts
+    case stepCounts
+    case walkingRunningDistance
+    case sleep
+    case workouts
 }
 
 class SQLiteService {
@@ -27,7 +27,7 @@ class SQLiteService {
     var sleep: Table?
     var workouts: Table?
     let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
-        
+    
     init(){
         do {
             let path = NSSearchPathForDirectoriesInDomains(
@@ -52,17 +52,17 @@ class SQLiteService {
     
     
     func createStepCountTable() -> Table? {
-        let id = Expression<Int64>("id")
+        let id = Expression<String>("id")
         let date = Expression<String>("date")
-        let value = Expression<Double>("value")
-        let stepCountTable = Table(TableName.StepCounts.rawValue)
+        let count = Expression<Double>("count")
+        let stepCountTable = Table(TableName.stepCounts.rawValue)
         
         do {
             guard let connection = db else { return nil}
             try connection.run(stepCountTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
+                t.column(id, primaryKey: true)
                 t.column(date, unique: true)
-                t.column(value)
+                t.column(count)
             })
             
         } catch {
@@ -72,17 +72,17 @@ class SQLiteService {
     }
     
     func createWalkingRunningDistanceTable() -> Table? {
-        let id = Expression<Int64>("id")
+        let id = Expression<String>("id")
         let date = Expression<String>("date")
-        let value = Expression<Double>("value")
-        let walkingRunningDistanceTable = Table(TableName.WalkingRunningDistance.rawValue)
+        let distance = Expression<Double>("distance")
+        let walkingRunningDistanceTable = Table(TableName.walkingRunningDistance.rawValue)
         
         do {
             guard let connection = db else { return nil}
             try connection.run(walkingRunningDistanceTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
+                t.column(id, primaryKey: true)
                 t.column(date, unique: true)
-                t.column(value)
+                t.column(distance)
             })
             
         } catch {
@@ -92,15 +92,15 @@ class SQLiteService {
     }
     
     func createWorkoutsTable() -> Table? {
-        let id = Expression<Int64>("id")
+        let id = Expression<String>("id")
         let date = Expression<String>("date")
         let duration = Expression<Double>("duration")
-        let workoutsTable = Table(TableName.Workouts.rawValue)
+        let workoutsTable = Table(TableName.workouts.rawValue)
         
         do {
             guard let connection = db else { return nil}
             try connection.run(workoutsTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
+                t.column(id, primaryKey: true)
                 t.column(date, unique: true)
                 t.column(duration)
             })
@@ -113,15 +113,15 @@ class SQLiteService {
     }
     
     func createSleepTable() -> Table? {
-        let id = Expression<Int64>("id")
+        let id = Expression<String>("id")
         let date = Expression<String>("date")
         let duration = Expression<Double>("duration")
-        let sleepTable = Table(TableName.Sleep.rawValue)
+        let sleepTable = Table(TableName.sleep.rawValue)
         
         do {
             guard let connection = db else { return nil}
             try connection.run(sleepTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
+                t.column(id, primaryKey: true)
                 t.column(date, unique: true)
                 t.column(duration)
             })
@@ -129,11 +129,11 @@ class SQLiteService {
         } catch {
             print(error)
         }
-      
+        
         return sleepTable
     }
     
-    func insertUpdate(table: Table, name: TableName, values: Setter...){
+    func insertUpdate<T: Codable>(table: Table, name: TableName, values: T){
         do {
             let conflictField = Expression<String>("date")
             try db!.run(table.upsert(values, onConflictOf: conflictField))
@@ -143,35 +143,43 @@ class SQLiteService {
     }
     
     func saveStepCount(value v: Double){
-        let value = Expression<Double>("value")
-        let date = Expression<String>("date")
-        insertUpdate(table: stepCounts!, name: TableName.StepCounts, values: date <- today,value <- v)
+        let object = Step(date: today, count: v)
+        insertUpdate(table: stepCounts!, name: TableName.stepCounts, values: object)
     }
     
     func saveWalkingRunningDistance(value v: Double){
-        let value = Expression<Double>("value")
-        let date = Expression<String>("date")
-        insertUpdate(table: walkingRunningDistance!, name: TableName.WalkingRunningDistance, values: date <- today,value <- v)
+        let object = WalkingRunningDistance(date: today, distance: v)
+        insertUpdate(table: walkingRunningDistance!, name: TableName.walkingRunningDistance, values: object)
     }
     
     func saveWorkouts(value v: Double){
-        let duration = Expression<Double>("duration")
-        let date = Expression<String>("date")
-        insertUpdate(table: workouts!, name: TableName.Workouts, values: date <- today, duration <- v)
+        let object = Workout(date: today, duration: v)
+        insertUpdate(table: workouts!, name: TableName.workouts, values: object)
     }
     
     func saveSleep(value v: Double){
-        let duration = Expression<Double>("duration")
-        let date = Expression<String>("date")
-        insertUpdate(table: sleep!, name: TableName.Sleep, values: date <- today, duration <- v)
+        let object = Sleep(date: today, duration: v)
+        insertUpdate(table: sleep!, name: TableName.sleep, values: object)
     }
     
     func getTodayStepCount() {
         let value = Expression<Double>("value")
         let date = Expression<String>("date")
-        let res = stepCounts!.select(value)
-                             .filter(date == today)
+        var count = 0.0
         
-        print(res)
+        do {
+
+            let counts = stepCounts!
+                .select(value)
+                .where(date == today)
+                .limit(1)
+            
+            let all = Array(try db!.prepare(counts))
+            print(all)
+
+        } catch {
+            print(error)
+        }
+        
     }
 }

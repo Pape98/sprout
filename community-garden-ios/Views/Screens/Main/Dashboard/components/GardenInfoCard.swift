@@ -63,8 +63,8 @@ struct GardenInfoCard: View {
 
 struct GardenInfoCard_Previews: PreviewProvider {
     static var previews: some View {
-        let stepCount = Step(date: Date(), count: 25)
-        let user: User = User(id: "1", name: "Pape", email: "papisline2222@gmail.com", oldStepCount: 10, stepCount: stepCount, numDroplets: 15, gardenItems: [])
+
+        let user: User = User(id: "1", name: "Pape", email: "papisline2222@gmail.com", oldStepCount: 10, numDroplets: 15, gardenItems: [])
         GardenInfoCard(user: user)
     }
 }

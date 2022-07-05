@@ -27,13 +27,9 @@ struct FriendGardenView: View {
             VStack {
                 HStack {
                     
-                    if let stepCount = friend.stepCount{
-                        Text("Steps: \(stepCount.count)")
-                        
-                    }
+               
                     Spacer()
                     
-                    Text("Droplets: \(friend.numDroplets)")
                     
                 }
                 .padding(20)

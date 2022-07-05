@@ -15,7 +15,7 @@ struct LaunchView: View {
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
     @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel.shared
-    
+    @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
     // Routers
     @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
     
@@ -44,6 +44,7 @@ struct LaunchView: View {
         .environmentObject(gardenViewModel)
         .environmentObject(onboardingViewModel)
         .environmentObject(onboardingRouter)
+        .environmentObject(healthStoreViewModel)
     }
 }
 

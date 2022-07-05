@@ -64,6 +64,7 @@
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
 		F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStoreService.swift */; };
 		F0B6DAE52874B21000DD3F03 /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE42874B21000DD3F03 /* HealthStoreRepository.swift */; };
+		F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */; };
 		F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */; };
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
@@ -136,6 +137,7 @@
 		F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0B32CB3275B222500C714A2 /* HealthStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreService.swift; sourceTree = "<group>"; };
 		F0B6DAE42874B21000DD3F03 /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
+		F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreViewModel.swift; sourceTree = "<group>"; };
 		F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGardenScene.swift; sourceTree = "<group>"; };
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */,
 				F00A6F3D283C957800A176D6 /* GardenViewModel.swift */,
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
+				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -621,6 +624,7 @@
 				F00A6F3C283C6DDA00A176D6 /* GardenItem.swift in Sources */,
 				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
 				F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */,
+				F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */,
 				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
 				F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
