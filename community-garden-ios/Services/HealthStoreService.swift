@@ -51,10 +51,14 @@ class HealthStoreService {
                                             updateHandler: self.SQLite.saveWalkingRunningDistance)
                     
                     // Listen to changes in workouts
-                    self.startSampleQuery(sampleType: HKDataTypes.workouts, dataType: HKWorkout.self)
+                    self.startSampleQuery(sampleType: HKDataTypes.workouts,
+                                          dataType: HKWorkout.self,
+                                          updateHandler: self.SQLite.saveWorkouts)
                     
                     // Listen to changes in sleep
-                    self.startSampleQuery(sampleType: HKDataTypes.sleep, dataType: HKCategorySample.self)
+                    self.startSampleQuery(sampleType: HKDataTypes.sleep,
+                                          dataType: HKCategorySample.self,
+                                          updateHandler: self.SQLite.saveSleep)
                 }
             }
         }
@@ -85,7 +89,7 @@ class HealthStoreService {
         }
     }
     
-    func startSampleQuery<T: HKSample>(sampleType: HKSampleType, dataType: T.Type){
+    func startSampleQuery<T: HKSample>(sampleType: HKSampleType, dataType: T.Type, updateHandler: @escaping (Double) -> Void){
         
         // Query descriptor
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
@@ -122,6 +126,8 @@ class HealthStoreService {
                     guard sample != nil else { return }
                     duration += (sample!.endDate - sample!.startDate)/60
                 }
+                
+                updateHandler(duration)
             }
 
             // Execute sample query

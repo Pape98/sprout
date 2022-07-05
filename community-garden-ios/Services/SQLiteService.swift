@@ -9,7 +9,10 @@ import Foundation
 import SQLite
 
 enum TableName: String {
-    case DataSummary
+    case StepCounts
+    case WalkingRunningDistance
+    case Sleep
+    case Workouts
 }
 
 class SQLiteService {
@@ -17,10 +20,14 @@ class SQLiteService {
     // MARK: Properties
     var db: Connection?
     static let shared = SQLiteService()
-    var dataSummary: Table?
     
-    var onConflictFields: [String: Expressible] = [:]
-    
+    // Tables
+    var stepCounts: Table?
+    var walkingRunningDistance: Table?
+    var sleep: Table?
+    var workouts: Table?
+    let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+        
     init(){
         do {
             let path = NSSearchPathForDirectoriesInDomains(
@@ -37,35 +44,98 @@ class SQLiteService {
     }
     
     func initTables(){
-        dataSummary = createDataSummaryTable()
+        stepCounts = createStepCountTable()
+        walkingRunningDistance = createWalkingRunningDistanceTable()
+        sleep = createSleepTable()
+        workouts = createWorkoutsTable()
     }
     
     
-    func createDataSummaryTable() -> Table? {
+    func createStepCountTable() -> Table? {
         let id = Expression<Int64>("id")
-        let name = Expression<String>("name")
+        let date = Expression<String>("date")
         let value = Expression<Double>("value")
-        let dataSummaryTable = Table(TableName.DataSummary.rawValue)
+        let stepCountTable = Table(TableName.StepCounts.rawValue)
         
         do {
-            
             guard let connection = db else { return nil}
-            try connection.run(dataSummaryTable.create(ifNotExists: true) { t in
+            try connection.run(stepCountTable.create(ifNotExists: true) { t in
                 t.column(id, primaryKey: .autoincrement)
-                t.column(name, unique: true)
+                t.column(date, unique: true)
                 t.column(value)
             })
             
         } catch {
             print(error)
         }
-        onConflictFields[TableName.DataSummary.rawValue] = name
-        return dataSummaryTable
+        return stepCountTable
+    }
+    
+    func createWalkingRunningDistanceTable() -> Table? {
+        let id = Expression<Int64>("id")
+        let date = Expression<String>("date")
+        let value = Expression<Double>("value")
+        let walkingRunningDistanceTable = Table(TableName.WalkingRunningDistance.rawValue)
+        
+        do {
+            guard let connection = db else { return nil}
+            try connection.run(walkingRunningDistanceTable.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: .autoincrement)
+                t.column(date, unique: true)
+                t.column(value)
+            })
+            
+        } catch {
+            print(error)
+        }
+        return walkingRunningDistanceTable
+    }
+    
+    func createWorkoutsTable() -> Table? {
+        let id = Expression<Int64>("id")
+        let date = Expression<String>("date")
+        let duration = Expression<Double>("duration")
+        let workoutsTable = Table(TableName.Workouts.rawValue)
+        
+        do {
+            guard let connection = db else { return nil}
+            try connection.run(workoutsTable.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: .autoincrement)
+                t.column(date, unique: true)
+                t.column(duration)
+            })
+            
+        } catch {
+            print(error)
+        }
+        
+        return workoutsTable
+    }
+    
+    func createSleepTable() -> Table? {
+        let id = Expression<Int64>("id")
+        let date = Expression<String>("date")
+        let duration = Expression<Double>("duration")
+        let sleepTable = Table(TableName.Sleep.rawValue)
+        
+        do {
+            guard let connection = db else { return nil}
+            try connection.run(sleepTable.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: .autoincrement)
+                t.column(date, unique: true)
+                t.column(duration)
+            })
+            
+        } catch {
+            print(error)
+        }
+      
+        return sleepTable
     }
     
     func insertUpdate(table: Table, name: TableName, values: Setter...){
         do {
-            let conflictField = onConflictFields[name.rawValue]!
+            let conflictField = Expression<String>("date")
             try db!.run(table.upsert(values, onConflictOf: conflictField))
         } catch {
             print(error)
@@ -74,13 +144,25 @@ class SQLiteService {
     
     func saveStepCount(value v: Double){
         let value = Expression<Double>("value")
-        let name = Expression<String>("name")
-        insertUpdate(table: dataSummary!, name: TableName.DataSummary, values: name <- "stepCount",  value <- v)
+        let date = Expression<String>("date")
+        insertUpdate(table: stepCounts!, name: TableName.StepCounts, values: date <- today,value <- v)
     }
     
     func saveWalkingRunningDistance(value v: Double){
         let value = Expression<Double>("value")
-        let name = Expression<String>("name")
-        insertUpdate(table: dataSummary!, name: TableName.DataSummary, values: name <- "walkingRunningDistance",  value <- v)
+        let date = Expression<String>("date")
+        insertUpdate(table: walkingRunningDistance!, name: TableName.WalkingRunningDistance, values: date <- today,value <- v)
+    }
+    
+    func saveWorkouts(value v: Double){
+        let duration = Expression<Double>("duration")
+        let date = Expression<String>("date")
+        insertUpdate(table: workouts!, name: TableName.Workouts, values: date <- today, duration <- v)
+    }
+    
+    func saveSleep(value v: Double){
+        let duration = Expression<Double>("duration")
+        let date = Expression<String>("date")
+        insertUpdate(table: sleep!, name: TableName.Sleep, values: date <- today, duration <- v)
     }
 }
