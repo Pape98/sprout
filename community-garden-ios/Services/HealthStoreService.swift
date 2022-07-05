@@ -65,6 +65,8 @@ class HealthStoreService {
                                             updateHandler: self.walkingRunningDistance )
                     
                     self.startSampleQuery(sampleType: HKDataTypes.workouts, dataType: HKWorkout.self)
+                    
+                    self.startSampleQuery(sampleType: HKDataTypes.sleep, dataType: HKCategorySample.self)
                 }
             }
         }
@@ -197,7 +199,7 @@ class HealthStoreService {
                     guard sample != nil else { return }
                     duration += (sample!.endDate - sample!.startDate)/60
                 }
-                print(duration)
+                print(dataType, duration)
             }
 
             // Execute sample query
