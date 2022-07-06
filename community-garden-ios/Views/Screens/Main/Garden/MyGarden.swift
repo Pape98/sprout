@@ -52,6 +52,7 @@ struct MyGarden: View {
         
         static var previews: some View {
             MyGarden()
+                .background(Color.hawks)
             
         }
     }

@@ -13,6 +13,11 @@ enum TableName: String {
     case walkingRunningDistance
     case sleep
     case workouts
+    case statistics
+}
+
+enum Statistic: String {
+    case numDroplets
 }
 
 class SQLiteService {
@@ -26,6 +31,8 @@ class SQLiteService {
     var walkingRunningDistance: Table?
     var sleep: Table?
     var workouts: Table?
+    var statistics: Table?
+    // Others
     let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
     
     init(){
@@ -37,6 +44,7 @@ class SQLiteService {
             db = try Connection("\(path)/communityGarden.sqlite3")
             // 2. Initialize database tabes
             initTables()
+            resetTableValues()
             
         } catch {
             print(error)
@@ -49,8 +57,12 @@ class SQLiteService {
         walkingRunningDistance = createWalkingRunningDistanceTable()
         sleep = createSleepTable()
         workouts = createWorkoutsTable()
+        statistics = createStatisticsTable()
     }
     
+    func resetTableValues(){
+        resetStatistics()
+    }
     
     func createStepCountTable() -> Table? {
         let id = Expression<String>("id")
@@ -134,133 +146,85 @@ class SQLiteService {
         return sleepTable
     }
     
-    
-    // MARK: Saving data to tables
-    
-    func insertUpdate<T: Codable>(table: Table, name: TableName, values: T){
+    func createStatisticsTable() -> Table? {
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+        let value = Expression<Double>("value")
+        let statsTable = Table(TableName.statistics.rawValue)
+        
         do {
-            let conflictField = Expression<String>("date")
-            try db!.run(table.upsert(values, onConflictOf: conflictField))
+            guard let connection = db else { return nil }
+            try connection.run(statsTable.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(name, unique: true)
+                t.column(value)
+            })
+            
         } catch {
             print(error)
         }
+        return statsTable
     }
     
+    // MARK: Table values initialization
+    func resetStatistics(){
+        
+        // Check if fields already exist
+        if doesExist(table: statistics!, column: Expression<String>("name"), value: "numDroplets") == true {
+            return
+        }
+        let stat = Stat(name: "numDroplets", value: 0)
+        guard statistics != nil else { return }
+        insertUpdate(table: statistics!, name: TableName.statistics, values: stat, onClonflictOf: Expression<String>("name"))
+    }
+    
+    // MARK: Saving data to tables
     func saveStepCount(value v: Double){
         let object = Step(date: today, count: v)
-        insertUpdate(table: stepCounts!, name: TableName.stepCounts, values: object)
+        insertUpdate(table: stepCounts!, name: TableName.stepCounts, values: object, onClonflictOf: Expression<String>("date"))
         NotificationSender.send(type: NotificationType.FetchStepCount.rawValue)
     }
     
     func saveWalkingRunningDistance(value v: Double){
         let object = WalkingRunningDistance(date: today, distance: v)
-        insertUpdate(table: walkingRunningDistance!, name: TableName.walkingRunningDistance, values: object)
+        insertUpdate(table: walkingRunningDistance!, name: TableName.walkingRunningDistance, values: object, onClonflictOf: Expression<String>("date"))
         NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue)
     }
     
     func saveWorkouts(value v: Double){
         let object = Workout(date: today, duration: v)
-        insertUpdate(table: workouts!, name: TableName.workouts, values: object)
+        insertUpdate(table: workouts!, name: TableName.workouts, values: object, onClonflictOf: Expression<String>("date"))
         NotificationSender.send(type: NotificationType.FetchWorkout.rawValue)
     }
     
     func saveSleep(value v: Double){
         let object = Sleep(date: today, duration: v)
-        insertUpdate(table: sleep!, name: TableName.sleep, values: object)
+        insertUpdate(table: sleep!, name: TableName.sleep, values: object, onClonflictOf: Expression<String>("date"))
         NotificationSender.send(type: NotificationType.FetchSleep.rawValue)
     }
     
-    // MARK: Data retrieval
-    func getStepCounts() -> [Step] {
-        
+    // MARK: Utitlies
+    func insertUpdate<T: Codable>(table: Table, name: TableName, values: T, onClonflictOf: Expression<String>){
         do {
-            
-            let counts = stepCounts!
-            let loadedCounts: [Step] = try db!.prepare(counts).map { row in
-                return try row.decode()
-            }
-            
-            return loadedCounts
-            
+            try db!.run(table.upsert(values, onConflictOf: onClonflictOf))
         } catch {
             print(error)
         }
-        return []
     }
     
-    func getStepCountByDate(date query: String) -> Step? {
-        
+    func doesExist(table:Table?, column: Expression<String>, value: String) -> Bool {
         do {
-            let date = Expression<String>("date")
-            let counts = stepCounts!.where(date == query).limit(1)
-            let loadedData: [Step] = try db!.prepare(counts).map { row in
+            let table = table!
+            let tableValues: [Step] = try db!.prepare(table).map { row in
                 return try row.decode()
             }
             
-            if loadedData.count > 0 {
-                return loadedData[0]
-            }
+            if tableValues.isEmpty {
+                return false }
             
         } catch {
             print(error)
         }
-        return nil
-    }
-    
-    func getWalkingRunningDistanceByDate(date query: String) -> WalkingRunningDistance? {
-        
-        do {
-            let date = Expression<String>("date")
-            let distances = walkingRunningDistance!.where(date == query).limit(1)
-            let loadedData: [WalkingRunningDistance] = try db!.prepare(distances).map { row in
-                return try row.decode()
-            }
-                
-            if loadedData.count > 0 {
-                return loadedData[0]
-            }
-            
-        } catch {
-            print(error)
-        }
-        return nil
-    }
-    
-    func getWorkoutByDate(date query: String) -> Workout? {
-        
-        do {
-            let date = Expression<String>("date")
-            let durations = workouts!.where(date == query).limit(1)
-            let loadedData: [Workout] = try db!.prepare(durations).map { row in
-                return try row.decode()
-            }
-                
-            if loadedData.count > 0 {
-                return loadedData[0]
-            }
-            
-        } catch {
-            print(error)
-        }
-        return nil
-    }
-    
-    func getSleepByDate(date query: String) -> Sleep? {
-        
-        do {
-            let date = Expression<String>("date")
-            let durations = sleep!.where(date == query).limit(1)
-            let loadedData: [Sleep] = try db!.prepare(durations).map { row in
-                return try row.decode()
-            }
-                
-            if loadedData.count > 0 {
-                return loadedData[0]
-            }
-            
-        } catch {
-            print(error)
-        }
-        return nil
+        return true
     }
 }

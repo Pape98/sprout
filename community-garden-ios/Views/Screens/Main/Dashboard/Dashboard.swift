@@ -18,8 +18,10 @@ struct Dashboard: View {
     let today = Date()
     let userDefaults = UserDefaultsService.shared
     
-    var defaultTree: String {
-        userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+    var TREE: String {
+        let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "cosmos"
+        let tree = userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+        return "\(color)-\(tree)"
     }
     
     var body: some View {
@@ -36,13 +38,11 @@ struct Dashboard: View {
                             // Header
                             VStack {
                                 
-                                CircledTree(option: "cosmos-\(defaultTree)", background: .seaGreen, size: 75)
+                                CircledTree(option: TREE, background: .seaGreen, size: 75)
                                     .padding(.top, 15)
                                 
                                 Text("Hi, \(getFirstName(user.name))!")
                                     .headerStyle()
-                                Text("Are you excited today?")
-                                    .bodyStyle()
                             }.padding(.bottom, 10)
                         }
                         
@@ -90,7 +90,7 @@ struct Dashboard: View {
                     }
                 }
                 .navigationBarHidden(true)
-                .padding()
+                .padding(.horizontal, 25)
                 
             }
         }
@@ -116,6 +116,7 @@ struct Dashboard_Previews: PreviewProvider {
         Dashboard()
             .environmentObject(UserViewModel())
             .environmentObject(AuthenticationViewModel())
+            .environmentObject(HealthStoreViewModel())
     }
 }
 

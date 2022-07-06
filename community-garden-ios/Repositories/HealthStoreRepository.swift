@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SQLite
 
 class HealthStoreRepository {
     
@@ -17,23 +18,90 @@ class HealthStoreRepository {
         healthStoreService.setUpAuthorization()
     }
     
-    func getStepCounts() -> [Step]{
-        return SQLiteDB.getStepCounts()
+    
+    func getStepCounts() -> [Step] {
+        do {
+            let counts = SQLiteDB.stepCounts!
+            let loadedCounts: [Step] = try SQLiteDB.db!.prepare(counts).map { row in
+                return try row.decode()
+            }
+            return loadedCounts
+            
+        } catch {
+            print(error)
+        }
+        return []
     }
     
-    func getStepCountByDate(date: String) -> Step? {
-        return SQLiteDB.getStepCountByDate(date: date)
+    func getStepCountByDate(date query: String) -> Step? {
+        do {
+            let date = Expression<String>("date")
+            let counts = SQLiteDB.stepCounts!.where(date == query).limit(1)
+            let loadedData: [Step] = try SQLiteDB.db!.prepare(counts).map { row in
+                return try row.decode()
+            }
+            
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
     }
     
-    func getWalkingRunningDistanceByDate(date: String) -> WalkingRunningDistance? {
-        return SQLiteDB.getWalkingRunningDistanceByDate(date: date)
+    func getWalkingRunningDistanceByDate(date query: String) -> WalkingRunningDistance? {
+        do {
+            let date = Expression<String>("date")
+            let distances = SQLiteDB.walkingRunningDistance!.where(date == query).limit(1)
+            let loadedData: [WalkingRunningDistance] = try SQLiteDB.db!.prepare(distances).map { row in
+                return try row.decode()
+            }
+            
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
     }
     
-    func getWorkoutByDate(date: String) -> Workout? {
-        return SQLiteDB.getWorkoutByDate(date: date)
+    func getWorkoutByDate(date query: String) -> Workout? {
+        do {
+            let date = Expression<String>("date")
+            let durations = SQLiteDB.workouts!.where(date == query).limit(1)
+            let loadedData: [Workout] = try SQLiteDB.db!.prepare(durations).map { row in
+                return try row.decode()
+            }
+            
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
     }
     
-    func getSleepByDate(date: String) -> Sleep? {
-        return SQLiteDB.getSleepByDate(date: date)
+    func getSleepByDate(date query: String) -> Sleep? {
+        do {
+            let date = Expression<String>("date")
+            let durations = SQLiteDB.sleep!.where(date == query).limit(1)
+            let loadedData: [Sleep] = try SQLiteDB.db!.prepare(durations).map { row in
+                return try row.decode()
+            }
+            
+            if loadedData.count > 0 {
+                return loadedData[0]
+            }
+            
+        } catch {
+            print(error)
+        }
+        return nil
     }
 }
