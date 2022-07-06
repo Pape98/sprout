@@ -47,7 +47,7 @@ class HealthStoreService {
                     // Listen to changes in step counts
                     self.startQuantityQuery(dataType: HKDataTypes.stepCount,
                                             updateHandler: self.SQLite.saveStepCount)
-
+                    
                     // Listen to changes in walking+running distance
                     self.startQuantityQuery(dataType: HKDataTypes.walkingRunningDistance,
                                             updateHandler: self.SQLite.saveWalkingRunningDistance)
@@ -103,13 +103,13 @@ class HealthStoreService {
         
         // Observer query
         let observerQuery = HKObserverQuery(sampleType: sampleType, predicate: predicate) { query, completionHandler, error in
-
+            
             if let error = error {
                 // Properly handle the error.
                 print(error)
                 return
             }
-
+            
             let sampleQuery = HKSampleQuery(sampleType: sampleType,
                                             predicate: predicate,
                                             limit: 500,
@@ -120,7 +120,7 @@ class HealthStoreService {
                     return
                 }
                 guard result != nil else { return }
-
+                
                 var duration = 0.0
                 
                 for item in result! {
@@ -131,21 +131,21 @@ class HealthStoreService {
                 
                 updateHandler(duration)
             }
-
+            
             // Execute sample query
             if let healthStore = self.healthStore {
                 healthStore.execute(sampleQuery)
             }
-
+            
         }
-
+        
         // Execute observer query
         if let healthStore = self.healthStore {
             healthStore.execute(observerQuery)
         }
         
     }
-        
+    
     func startQuantityQuery(dataType: HKQuantityType, updateHandler: @escaping (Double) -> Void) -> Void {
         
         let calendar = Calendar.current
@@ -236,11 +236,6 @@ class HealthStoreService {
                 updateHandler(total)
             }
         }
-        
-        // Dispatch to the main queue to update the UI.
-//        DispatchQueue.main.async {
-//            updateHandler(2.5)
-//        }
     }
     
 }

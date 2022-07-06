@@ -10,5 +10,6 @@ import Foundation
 struct Stat: Identifiable, Codable {
     var id: String? = UUID().uuidString
     var name: String
-    var value: Double
+    var value: Double = 0
 }
+

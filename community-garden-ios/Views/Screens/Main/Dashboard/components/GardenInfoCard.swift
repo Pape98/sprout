@@ -9,6 +9,7 @@ import SwiftUI
 
 struct GardenInfoCard: View {
     
+    @EnvironmentObject var userViewModel: UserViewModel
     var user: User
     let today = Date()
     
@@ -37,7 +38,10 @@ struct GardenInfoCard: View {
                 
                 // Buttons
                 HStack(spacing: 10) {
-                    IconButton(icon: "droplet-icon", text: "5 droplets")
+                    if let numDroplets = userViewModel.numDroplets {
+                        IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) droplets")
+                    }
+             
                     NavigationLink(destination: MyGarden()) {
                         IconButton(icon: "garden-icon", text: gardenName)
                     }

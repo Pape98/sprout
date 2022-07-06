@@ -12,34 +12,31 @@ class UserViewModel: ObservableObject {
     
     // MARK: - Properties
     
-    // To access and edit loggedInUser
     @Published var currentUser: User = UserService.shared.user
+    @Published var numDroplets: Stat?
     
     static var shared = UserViewModel()
     
     let userRepository = UserRepository.shared
+    let statsRepository = StatsRepository.shared
     
-    let RATIO_STEPS_DROPLET = 200
-    let MAX_NUM_STEPS = 10000
     let nc = NotificationCenter.default
+    var updateNumDropletsCallback: [NotificationType: () -> Void] { [
+        .FetchStepCount: statsRepository.updateStepsNumDroplets,
+        .FetchWalkingRunningDistance: statsRepository.updateWalkingRunningNumDroplets,
+        .FetchWorkout: statsRepository.updateWorkoutsNumDroplets,
+        .FetchSleep: statsRepository.updateSleepNumDroplets
+    ]}
     
     // MARK: - Methods
     
     init(){
-        nc.addObserver(self,
-                       selector: #selector(self.initialSetup),
-                       name: Notification.Name(NotificationType.UserLoggedIn.rawValue),
-                       object: nil)
-        
-        nc.addObserver(self,
-                       selector: #selector(self.getUser),
-                       name: Notification.Name(NotificationType.FetchUser.rawValue),
-                       object: nil)
+//        setupObservers()
+        getNumDroplets()
     }
     
     @objc func initialSetup(){
         getUser()
-        computeDroplets()
     }
     
     @objc func getUser() {
@@ -50,33 +47,49 @@ class UserViewModel: ObservableObject {
         }
     }
     
-    func computeDroplets(){
-        
-//        let user = UserService.shared.user
-//        
-//        guard let stepCount = user.stepCount else { return }
-//        
-//        let currStepCount = stepCount.count
-//        let oldStepCount = user.oldStepCount
-//                
-//        // Making sure step count has a difference of at least 200 and total is less than 10,000
-//        let stepCountDifference = currStepCount - oldStepCount
-//        guard stepCountDifference >= RATIO_STEPS_DROPLET && oldStepCount < MAX_NUM_STEPS else { return }
-//        let newNumberOfDroplets = Int(stepCountDifference / RATIO_STEPS_DROPLET) + user.numDroplets
-//        
-//        userRepository.updateUser(userID: user.id, updates: ["numDroplets": newNumberOfDroplets,
-//                                                             "oldStepCount": currStepCount - (stepCountDifference % 200) ]) {
-//            self.getUser()
-//        }
-        
-    }
-        
-    // Resets step count and tree data
-    func resetUserData(){
-        let updates: [String: Any] = ["oldStepCount": 0, "gardenItems": [["id": UUID().uuidString, "name": "tree1", "height": 0.03]]]
-        userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
-            self.getUser()
+    @objc func updateNumDroplets(_ notification: Notification){
+        let notiticationType = NotificationType(rawValue: notification.name.rawValue)
+        if let type = notiticationType {
+            let updateCallback = updateNumDropletsCallback[type]
+            updateCallback!()
         }
+    }
+    
+    func getNumDroplets(){
+        DispatchQueue.main.async {
+            self.numDroplets = self.statsRepository.getNumDroplets()
+        }
+    }
+    
+    func setupObservers(){
+        nc.addObserver(self,
+                       selector: #selector(self.initialSetup),
+                       name: Notification.Name(NotificationType.UserLoggedIn.rawValue),
+                       object: nil)
+        
+        nc.addObserver(self,
+                       selector: #selector(self.getUser),
+                       name: Notification.Name(NotificationType.FetchUser.rawValue),
+                       object: nil)
+        
+        nc.addObserver(self,
+                       selector: #selector(self.updateNumDroplets(_:)),
+                       name: Notification.Name(NotificationType.FetchStepCount.rawValue),
+                       object: nil)
+        
+        nc.addObserver(self,
+                       selector: #selector(self.updateNumDroplets),
+                       name: Notification.Name(NotificationType.FetchWalkingRunningDistance.rawValue),
+                       object: nil)
+        nc.addObserver(self,
+                       selector: #selector(self.updateNumDroplets),
+                       name: Notification.Name(NotificationType.FetchWorkout.rawValue),
+                       object: nil)
+        
+        nc.addObserver(self,
+                       selector: #selector(self.updateNumDroplets),
+                       name: Notification.Name(NotificationType.FetchSleep.rawValue),
+                       object: nil)
     }
 }
 

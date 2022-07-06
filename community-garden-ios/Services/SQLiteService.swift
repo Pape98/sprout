@@ -64,6 +64,27 @@ class SQLiteService {
         resetStatistics()
     }
     
+//    func createProgressTable(){
+//        let id = Expression<String>("id")
+//        let name = Expression<String>("name")
+//        let newValue = Expression<Double>("new")
+//        let oldValue = Expression<Double>("oldValue")
+//        let stepCountTable = Table(TableName.stepCounts.rawValue)
+//
+//        do {
+//            guard let connection = db else { return nil}
+//            try connection.run(stepCountTable.create(ifNotExists: true) { t in
+//                t.column(id, primaryKey: true)
+//                t.column(date, unique: true)
+//                t.column(count)
+//            })
+//
+//        } catch {
+//            print(error)
+//        }
+//        return stepCountTable
+//    }
+    
     func createStepCountTable() -> Table? {
         let id = Expression<String>("id")
         let date = Expression<String>("date")
@@ -173,7 +194,7 @@ class SQLiteService {
         if doesExist(table: statistics!, column: Expression<String>("name"), value: "numDroplets") == true {
             return
         }
-        let stat = Stat(name: "numDroplets", value: 0)
+        let stat = Stat(name: "numDroplets")
         guard statistics != nil else { return }
         insertUpdate(table: statistics!, name: TableName.statistics, values: stat, onClonflictOf: Expression<String>("name"))
     }
@@ -200,6 +221,7 @@ class SQLiteService {
     func saveSleep(value v: Double){
         let object = Sleep(date: today, duration: v)
         insertUpdate(table: sleep!, name: TableName.sleep, values: object, onClonflictOf: Expression<String>("date"))
+        print("updating sleep sqlite")
         NotificationSender.send(type: NotificationType.FetchSleep.rawValue)
     }
     
