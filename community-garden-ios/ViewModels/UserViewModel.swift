@@ -21,17 +21,11 @@ class UserViewModel: ObservableObject {
     let statsRepository = StatsRepository.shared
     
     let nc = NotificationCenter.default
-    var updateNumDropletsCallback: [NotificationType: () -> Void] { [
-        .FetchStepCount: statsRepository.updateStepsNumDroplets,
-        .FetchWalkingRunningDistance: statsRepository.updateWalkingRunningNumDroplets,
-        .FetchWorkout: statsRepository.updateWorkoutsNumDroplets,
-        .FetchSleep: statsRepository.updateSleepNumDroplets
-    ]}
     
     // MARK: - Methods
     
     init(){
-//        setupObservers()
+        setupObservers()
         getNumDroplets()
     }
     
@@ -49,10 +43,23 @@ class UserViewModel: ObservableObject {
     
     @objc func updateNumDroplets(_ notification: Notification){
         let notiticationType = NotificationType(rawValue: notification.name.rawValue)
-        if let type = notiticationType {
-            let updateCallback = updateNumDropletsCallback[type]
-            updateCallback!()
-        }
+        let userInfo = notification.userInfo as? [String: Double] ?? [:]
+        let value = userInfo["message"]!
+    
+            switch notiticationType {
+            case .FetchStepCount:
+                statsRepository.updateStepsNumDroplets(value: value)
+            case .FetchWalkingRunningDistance:
+                statsRepository.updateWalkingRunningNumDroplets(value: value)
+            case .FetchWorkout:
+                statsRepository.updateWorkoutsNumDroplets(value: value)
+            case .FetchSleep:
+                statsRepository.updateSleepNumDroplets(value: value)
+            default:
+                print("Error in updateNumDroplets")
+            }
+        
+        getNumDroplets()
     }
     
     func getNumDroplets(){

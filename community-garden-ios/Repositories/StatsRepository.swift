@@ -11,72 +11,80 @@ import SQLite
 class StatsRepository {
     static let shared = StatsRepository()
     let SQLiteDB = SQLiteService.shared
+    let progressRepo = ProgressRepository()
     let userDefaults = UserDefaultsService.shared
     
-    // User goals
-    var stepsGoal: Float {
-        userDefaults.get(key: UserDefaultsKey.STEPS_GOAL)
+    var progressTable: Table {
+        SQLiteDB.progress!
+    }
+    
+    var statsTable: Table {
+        SQLiteDB.statistics!
+    }
+    
+    var nameColumn: Expression<String> {
+        Expression<String>("name")
+    }
+    
+    // Thresholds
+    var STEPS_THRESHOLD: Double {
+        Double(userDefaults.get(key: UserDefaultsKey.STEPS_GOAL) * 0.01)
     }
     
     init(){
-        SQLiteDB.resetStatistics()
+        SQLiteDB.resetTableValues()
     }
+    
+    // MARK: Droplet methods
     
     func getNumDroplets() -> Stat? {
-        do {
-            let name = Expression<String>("name")
-            let counts = SQLiteDB.statistics!.where(name == "numDroplets").limit(1)
-            let loadedData: [Stat] = try SQLiteDB.db!.prepare(counts).map { row in
-                return try row.decode()
-            }
-            
-            if loadedData.count > 0 {
-                return loadedData[0]
-            }
-            
-        } catch {
-            print(error)
+        return getStatistic("numDroplets")
+    }
+    
+    func updateNumDroplets(value: Double){
+        let numDropletsStat = getStatistic("numDroplets")
+    
+        if var numDroplets = numDropletsStat {
+            numDroplets.value = numDroplets.value + value
+            SQLiteDB.updateColumn(table: statsTable, column: nameColumn, query: "numDroplets", update: numDroplets)
         }
-        return nil
     }
     
-    func updateSleepNumDroplets(){
-        print("updating droplets sleep")
-    }
-    
-    func updateStepsNumDroplets(){
-        let stepStat = getStatistic("name")
-        print(stepStat)
-    }
-    
-    func updateWorkoutsNumDroplets(){
-        print("updating droplets workourts")
-    }
-    
-    func updateWalkingRunningNumDroplets(){
-        print("updating droplets walkingRunning")
-    }
-    
-    func getStatistic(_ name: String) -> Stat? {
-        do {
-            let name = Expression<String>("name")
-            let data = SQLiteDB.stepCounts!.where(name == name).limit(1)
-            let loadedData: [Stat] = try SQLiteDB.db!.prepare(data).map { row in
-                return try row.decode()
-            }
-            
-            if loadedData.count > 0 {
-                return loadedData[0]
-            }
-            
-        } catch {
-            print(error)
-        }
-        return nil
-    }
-    
-    // Updates old and new
-    func updateStatistic(_ name: String){
+    // MARK: Update methods
+    func updateStepsNumDroplets(value: Double){
+        var progress: Progress = progressRepo.getStepProgress()
         
+        // If there is a 1% difference, add droplets
+        let progressDifference = value - progress.old
+        if  progressDifference >= STEPS_THRESHOLD  {
+            progress.old = value
+            let dropletAddition = progressDifference / STEPS_THRESHOLD
+            updateNumDroplets(value: dropletAddition)
+        }
+        progress.new = value
+        
+        SQLiteDB.insertUpdate(table: progressTable, name: TableName.progress, values: progress, onClonflictOf: nameColumn)
+    }
+    
+    func updateWorkoutsNumDroplets(value: Double){
+//        print("updating droplets workourts")
+    }
+    
+    func updateWalkingRunningNumDroplets(value: Double){
+//        print("updating droplets walkingRunning")
+    }
+    
+    func updateSleepNumDroplets(value: Double){
+//        print("updating droplets walkingRunning")
+    }
+    
+    // MARK: Utility Methods
+    func getStatistic(_ name: String) -> Stat? {
+        let date = Expression<String>("name")
+        let loadedData = SQLiteDB.getRowsByColumn(table: SQLiteDB.statistics, column: date, value: name, type: Stat.self)
+        if loadedData.count > 0 {
+            return loadedData[0]
+        }
+        return nil
     }
 }

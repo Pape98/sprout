@@ -14,6 +14,7 @@ enum TableName: String {
     case sleep
     case workouts
     case statistics
+    case progress
 }
 
 enum Statistic: String {
@@ -32,6 +33,8 @@ class SQLiteService {
     var sleep: Table?
     var workouts: Table?
     var statistics: Table?
+    var progress: Table?
+    
     // Others
     let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
     
@@ -58,32 +61,35 @@ class SQLiteService {
         sleep = createSleepTable()
         workouts = createWorkoutsTable()
         statistics = createStatisticsTable()
+        progress = createProgressTable()
     }
     
     func resetTableValues(){
         resetStatistics()
+        resetProgress()
     }
     
-//    func createProgressTable(){
-//        let id = Expression<String>("id")
-//        let name = Expression<String>("name")
-//        let newValue = Expression<Double>("new")
-//        let oldValue = Expression<Double>("oldValue")
-//        let stepCountTable = Table(TableName.stepCounts.rawValue)
-//
-//        do {
-//            guard let connection = db else { return nil}
-//            try connection.run(stepCountTable.create(ifNotExists: true) { t in
-//                t.column(id, primaryKey: true)
-//                t.column(date, unique: true)
-//                t.column(count)
-//            })
-//
-//        } catch {
-//            print(error)
-//        }
-//        return stepCountTable
-//    }
+    func createProgressTable() -> Table? {
+        let id = Expression<String>("id")
+        let name = Expression<String>("name")
+        let new = Expression<Double>("new")
+        let old = Expression<Double>("old")
+        let progressTable = Table(TableName.progress.rawValue)
+
+        do {
+            guard let connection = db else { return nil }
+            try connection.run(progressTable.create(ifNotExists: true) { t in
+                t.column(id, primaryKey: true)
+                t.column(name, unique: true)
+                t.column(new)
+                t.column(old)
+            })
+
+        } catch {
+            print(error)
+        }
+        return progressTable
+    }
     
     func createStepCountTable() -> Table? {
         let id = Expression<String>("id")
@@ -100,7 +106,7 @@ class SQLiteService {
             })
             
         } catch {
-            print(error)
+            print("createStepCountTable()", error)
         }
         return stepCountTable
     }
@@ -120,7 +126,7 @@ class SQLiteService {
             })
             
         } catch {
-            print(error)
+            print("createWalkingRunningDistanceTable()",error)
         }
         return walkingRunningDistanceTable
     }
@@ -140,7 +146,7 @@ class SQLiteService {
             })
             
         } catch {
-            print(error)
+            print("createWorkoutsTable()",error)
         }
         
         return workoutsTable
@@ -161,7 +167,7 @@ class SQLiteService {
             })
             
         } catch {
-            print(error)
+            print("createSleepTable()",error)
         }
         
         return sleepTable
@@ -182,7 +188,7 @@ class SQLiteService {
             })
             
         } catch {
-            print(error)
+            print("createStatisticsTable()",error)
         }
         return statsTable
     }
@@ -199,30 +205,46 @@ class SQLiteService {
         insertUpdate(table: statistics!, name: TableName.statistics, values: stat, onClonflictOf: Expression<String>("name"))
     }
     
+    func resetProgress(){
+        // Check if fields already exist
+        if doesExist(table: progress!, column: Expression<String>("name"), value: "steps") == true {
+            return
+        }
+        
+        let steps = Progress(name: "steps")
+        let sleep = Progress(name:"sleep")
+        let walkingRunning = Progress(name:"walkingRunning")
+        let workouts = Progress(name:"workouts")
+        
+        insertUpdate(table: progress!, name: TableName.progress, values: steps, onClonflictOf: Expression<String>("name"))
+        insertUpdate(table: progress!, name: TableName.progress, values: sleep, onClonflictOf: Expression<String>("name"))
+        insertUpdate(table: progress!, name: TableName.progress, values: walkingRunning, onClonflictOf: Expression<String>("name"))
+        insertUpdate(table: progress!, name: TableName.progress, values: workouts, onClonflictOf: Expression<String>("name"))
+    }
+    
     // MARK: Saving data to tables
     func saveStepCount(value v: Double){
         let object = Step(date: today, count: v)
         insertUpdate(table: stepCounts!, name: TableName.stepCounts, values: object, onClonflictOf: Expression<String>("date"))
-        NotificationSender.send(type: NotificationType.FetchStepCount.rawValue)
+        NotificationSender.send(type: NotificationType.FetchStepCount.rawValue, message: v)
     }
     
     func saveWalkingRunningDistance(value v: Double){
         let object = WalkingRunningDistance(date: today, distance: v)
         insertUpdate(table: walkingRunningDistance!, name: TableName.walkingRunningDistance, values: object, onClonflictOf: Expression<String>("date"))
-        NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue)
+        NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue, message: v)
     }
     
     func saveWorkouts(value v: Double){
         let object = Workout(date: today, duration: v)
         insertUpdate(table: workouts!, name: TableName.workouts, values: object, onClonflictOf: Expression<String>("date"))
-        NotificationSender.send(type: NotificationType.FetchWorkout.rawValue)
+        NotificationSender.send(type: NotificationType.FetchWorkout.rawValue, message: v)
     }
     
     func saveSleep(value v: Double){
         let object = Sleep(date: today, duration: v)
         insertUpdate(table: sleep!, name: TableName.sleep, values: object, onClonflictOf: Expression<String>("date"))
-        print("updating sleep sqlite")
-        NotificationSender.send(type: NotificationType.FetchSleep.rawValue)
+        NotificationSender.send(type: NotificationType.FetchSleep.rawValue, message: v)
     }
     
     // MARK: Utitlies
@@ -230,23 +252,48 @@ class SQLiteService {
         do {
             try db!.run(table.upsert(values, onConflictOf: onClonflictOf))
         } catch {
-            print(error)
+            print("insertUpdate()",error)
         }
     }
     
     func doesExist(table:Table?, column: Expression<String>, value: String) -> Bool {
         do {
-            let table = table!
-            let tableValues: [Step] = try db!.prepare(table).map { row in
+            let query = table!.where(column == value)
+            let data = try db!.prepare(query).map { row in
+                row
+            }
+            
+            if data.count == 0 {
+                return false
+            }
+            
+        } catch {
+            print("doesExist()",error)
+        }
+        return true
+    }
+    
+    func getRowsByColumn<T: Codable>(table: Table?, column: Expression<String>, value: String, type: T.Type) -> [T]{
+        do {
+            let query = table!.where(column == value)
+            let loadedData: [T] = try db!.prepare(query).map { row in
                 return try row.decode()
             }
             
-            if tableValues.isEmpty {
-                return false }
+            return loadedData
             
         } catch {
             print(error)
         }
-        return true
+        return []
+    }
+    
+    func updateColumn(table: Table?, column: Expression<String>, query: String, update: Codable){
+        let query = table!.where(column == query)
+        do {
+            try db!.run(query.update(update))
+        } catch {
+            print("updateColumn",error)
+        }
     }
 }

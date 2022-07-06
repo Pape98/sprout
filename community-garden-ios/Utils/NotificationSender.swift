@@ -22,4 +22,8 @@ class NotificationSender {
     static func send(type: String){
         NotificationCenter.default.post(name: Notification.Name(type), object: nil)
     }
+    
+    static func send(type: String, message msg: Double){
+        NotificationCenter.default.post(name: Notification.Name(type), object: nil, userInfo: ["message" : msg])
+    }
 }
