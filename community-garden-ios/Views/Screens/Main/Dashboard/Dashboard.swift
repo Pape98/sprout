@@ -29,7 +29,7 @@ struct Dashboard: View {
             ZStack {
                 
                 MainBackground()
-                ScrollView {
+                ScrollView(showsIndicators: false) {
                     
                     VStack {
                         

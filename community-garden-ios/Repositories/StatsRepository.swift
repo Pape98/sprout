@@ -70,12 +70,12 @@ class StatsRepository {
     // MARK: Update methods
     func stepsChangeCallback(value: Double){
         // Check if user is tracking data
-        guard mapping![DataOptions.steps.rawValue] != nil else { return }
+        guard let mapping = mapping else { return }
+        guard mapping[DataOptions.steps.rawValue] != nil else { return }
         
         // Update progress
         let threshold = Double(userDefaults.get(key: UserDefaultsKey.STEPS_GOAL) * 0.01)
         let progress: Progress = progressRepo.getStepProgress()
-        print(threshold, progress)
         updateProgress(data: DataOptions.steps, value: value, progress: progress, threshold: threshold)
     }
     
@@ -84,11 +84,11 @@ class StatsRepository {
     
     func walkingRunningChangeCallback(value: Double){
         // Check if user is tracking data
-        guard mapping![DataOptions.steps.rawValue] != nil else { return }
+        guard let mapping = mapping else { return }
+        guard mapping[DataOptions.steps.rawValue] != nil else { return }
         // Update progress
         let threshold = Double(userDefaults.get(key: UserDefaultsKey.WALKING_RUNNING_GOAL) * 0.1)
         let progress: Progress = progressRepo.getWalkingRunningProgress()
-        print(threshold, progress)
         updateProgress(data: DataOptions.walkingRunningDistance, value: value, progress: progress, threshold: threshold)
     }
     

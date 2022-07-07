@@ -24,6 +24,11 @@ enum MappingKeys: String {
     case FLOWER = "Flower"
 }
 
+enum GardenElement: String {
+    case droplet
+    case seed
+}
+
 enum DataOptions: String, CaseIterable {
     case steps = "Steps"
 //    case exerciseMinute = "Exercise Minute"

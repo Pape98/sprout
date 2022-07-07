@@ -29,6 +29,14 @@ class ProgressRepository {
         return getProgress(DataOptions.walkingRunningDistance)
     }
     
+    func getWorkoutsProgress() -> Progress {
+        return getProgress(DataOptions.workouts)
+    }
+    
+    func getSleepProgress() -> Progress {
+        return getProgress(DataOptions.sleep)
+    }
+    
     func getProgress(_ data: DataOptions) -> Progress {
         return SQLiteDB.getRowsByColumn(table: progressTable, column: column, value: data.rawValue, type: type)[0]
     }
