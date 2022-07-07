@@ -46,6 +46,8 @@ struct LastSteps: View {
                 onboardingViewModel.isNewUser = OnboardingStatus.EXISITING_USER
                 // Save data in user default
                 userDefaults.save(value: OnboardingStatus.EXISITING_USER.rawValue, key: UserDefaultsKey.IS_NEW_USER)
+                userDefaults.save(value: gardenName, key: UserDefaultsKey.GARDEN_NAME)
+                userDefaults.save(value: reflectWeatherChanges, key: UserDefaultsKey.REFLECT_WEATHER_CHANGES)
             }
             .frame(maxWidth: 250)
             .padding()

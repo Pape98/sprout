@@ -10,13 +10,13 @@ import Foundation
 struct Stat: Identifiable, Codable {
     var id: String = UUID().uuidString
     var name: String
-    var value: Double = 0
+    var value: Double = 0.0
 }
 
 struct Progress: Identifiable, Codable {
     var id: String = UUID().uuidString
     var name: String
-    var new: Double = 0
-    var old: Double = 0
+    var new: Double = 0.0
+    var old: Double = 0.0
 }
 

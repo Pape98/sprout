@@ -38,7 +38,7 @@ enum DataOptions: String, CaseIterable {
     static let icons = ["Steps":["figure.walk","🦶🏻Daily number of steps."],
                         "Sleep":["bed.double.circle","🛌🏽 Amount of time in bed."],
                         "Walking+running Distance":["bed.double.circle","🚶 Distance you walk or run."],
-                        "Workouts Time": ["bed.double.circle","🚴‍♀️ The number of workout minutes"]
+                        "Workout Time": ["bed.double.circle","🚴‍♀️ The number of workout minutes"]
     ]
 }
 

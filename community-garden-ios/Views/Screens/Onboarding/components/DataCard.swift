@@ -11,10 +11,10 @@ struct DataCard: View {
     
     var data: String
     var isSelected: Bool
-    var metadata: [String] {
-        DataOptions.icons[data]!
+    var metadata: [String]? {
+        DataOptions.icons[data]
     }
-
+    
     var opacity: CGFloat {
         isSelected ? 1 : 0.5
     }
@@ -31,9 +31,9 @@ struct DataCard: View {
                     .stroke(Color.appleGreen, lineWidth: borderWith)
                 
             }.background(Color.white)
-            .cornerRadius(10)
-            .opacity(0.5)
-
+                .cornerRadius(10)
+                .opacity(0.5)
+            
             HStack {
                 
                 VStack(alignment: .leading, spacing:10) {
@@ -41,9 +41,10 @@ struct DataCard: View {
                         .bold()
                         .font(.title3)
                         .foregroundColor(.seaGreen)
-                    
-                    Text(metadata[1])
-                        .foregroundColor(.everglade)
+                    if let metadata = metadata {
+                        Text(metadata[1])
+                            .foregroundColor(.everglade)
+                    }
                     
                 }.padding()
                 

@@ -55,27 +55,38 @@ struct Dashboard: View {
                         
                         LazyVGrid(columns: twoColumnGrid) {
                             
-                            if let step = healthStoreViewModel.todayStepCount {
-                                DashboardCard(icon: "figure.walk"){
+                            
+                            DashboardCard(icon: "figure.walk"){
+                                if let step = healthStoreViewModel.todayStepCount {
                                     CardInfo(value: "\(Int(step.count))", label: "Step(s)")
+                                } else {
+                                    CardInfo(value: "0", label: "Step(s)")
                                 }
                             }
                             
-                            if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
-                                DashboardCard(icon: "figure.walk"){
+                            
+                            DashboardCard(icon: "figure.walk"){
+                                if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
                                     CardInfo(value: "\(Int(walkingRunning.distance))", label: "Mile(s)")
+                                } else {
+                                    CardInfo(value: "0", label: "Mile(s)")
                                 }
                             }
                             
-                            if let workout = healthStoreViewModel.todayWorkout {
-                                DashboardCard(icon: "clock"){
+                            DashboardCard(icon: "clock"){
+                                if let workout = healthStoreViewModel.todayWorkout {
                                     CardInfo(value: "\(Int(workout.duration))", label: "Workout Minute(s)")
+                                } else {
+                                    CardInfo(value: "0", label: "Workout Minute(s)")
                                 }
                             }
                             
-                            if let sleep = healthStoreViewModel.todaySleep {
-                                DashboardCard(icon: "bed.double"){
+                            
+                            DashboardCard(icon: "bed.double"){
+                                if let sleep = healthStoreViewModel.todaySleep {
                                     CardInfo(value: "\(Int(sleep.duration/60))", label: "Sleep Hour(s)")
+                                } else {
+                                    CardInfo(value: "0", label: "Sleep Hour(s)")
                                 }
                             }
                             

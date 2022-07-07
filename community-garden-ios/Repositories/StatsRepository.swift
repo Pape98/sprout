@@ -38,14 +38,15 @@ class StatsRepository {
     // MARK: Droplet methods
     
     func getNumDroplets() -> Stat? {
-        return getStatistic("numDroplets")
+        let numDroplets = getStatistic("numDroplets")
+        return numDroplets
     }
     
     func updateNumDroplets(value: Double){
         let numDropletsStat = getStatistic("numDroplets")
     
         if var numDroplets = numDropletsStat {
-            numDroplets.value = numDroplets.value + value
+            numDroplets.value = Double(Int(numDroplets.value) + Int(value))
             SQLiteDB.updateColumn(table: statsTable, column: nameColumn, query: "numDroplets", update: numDroplets)
         }
     }
@@ -56,13 +57,14 @@ class StatsRepository {
         
         // If there is a 1% difference, add droplets
         let progressDifference = value - progress.old
-        if  progressDifference >= STEPS_THRESHOLD  {
-            progress.old = value
+        if  progressDifference >= STEPS_THRESHOLD && STEPS_THRESHOLD > 0 {
+            progress.old = value - (value.truncatingRemainder(dividingBy: STEPS_THRESHOLD))
             let dropletAddition = progressDifference / STEPS_THRESHOLD
             updateNumDroplets(value: dropletAddition)
         }
         progress.new = value
-        
+
+
         SQLiteDB.insertUpdate(table: progressTable, name: TableName.progress, values: progress, onClonflictOf: nameColumn)
     }
     

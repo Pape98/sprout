@@ -64,11 +64,6 @@ class SQLiteService {
         progress = createProgressTable()
     }
     
-    func resetTableValues(){
-        resetStatistics()
-        resetProgress()
-    }
-    
     func createProgressTable() -> Table? {
         let id = Expression<String>("id")
         let name = Expression<String>("name")
@@ -194,6 +189,13 @@ class SQLiteService {
     }
     
     // MARK: Table values initialization
+    
+    
+    func resetTableValues(){
+        resetStatistics()
+        resetProgress()
+    }
+    
     func resetStatistics(){
         
         // Check if fields already exist
@@ -201,6 +203,7 @@ class SQLiteService {
             return
         }
         let stat = Stat(name: "numDroplets")
+        print("=============",stat)
         guard statistics != nil else { return }
         insertUpdate(table: statistics!, name: TableName.statistics, values: stat, onClonflictOf: Expression<String>("name"))
     }
