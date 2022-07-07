@@ -198,7 +198,7 @@ class SQLiteService {
         
         guard statistics != nil else { return }
         
-        for name in Constants.statistics {
+        for name in Statistics.list {
             // Check if fields already exist
             if doesExist(table: statistics!, column: Expression<String>("name"), value: name) == true {
                 continue
@@ -212,7 +212,7 @@ class SQLiteService {
         
         guard progress != nil else { return }
         
-        for name in Constants.progress {
+        for name in DataOptions.dalatList {
             // Check if fields already exist
             if doesExist(table: progress!, column: Expression<String>("name"), value: name) == true {
                 continue

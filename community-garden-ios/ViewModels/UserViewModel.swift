@@ -14,6 +14,7 @@ class UserViewModel: ObservableObject {
     
     @Published var currentUser: User = UserService.shared.user
     @Published var numDroplets: Stat?
+    @Published var numSeeds: Stat?
     
     static var shared = UserViewModel()
     
@@ -27,6 +28,7 @@ class UserViewModel: ObservableObject {
     init(){
         setupObservers()
         getNumDroplets()
+        getNumSeeds()
     }
     
     @objc func initialSetup(){
@@ -48,23 +50,30 @@ class UserViewModel: ObservableObject {
     
             switch notiticationType {
             case .FetchStepCount:
-                statsRepository.updateStepsNumDroplets(value: value)
+                statsRepository.stepsChangeCallback(value: value)
             case .FetchWalkingRunningDistance:
-                statsRepository.updateWalkingRunningNumDroplets(value: value)
+                statsRepository.walkingRunningChangeCallback(value: value)
             case .FetchWorkout:
-                statsRepository.updateWorkoutsNumDroplets(value: value)
+                statsRepository.workoutsChangeCallback(value: value)
             case .FetchSleep:
-                statsRepository.updateSleepNumDroplets(value: value)
+                statsRepository.sleepChangeCallback(value: value)
             default:
                 print("Error in updateNumDroplets")
             }
         
         getNumDroplets()
+        getNumSeeds()
     }
     
     func getNumDroplets(){
         DispatchQueue.main.async {
             self.numDroplets = self.statsRepository.getNumDroplets()
+        }
+    }
+    
+    func getNumSeeds(){
+        DispatchQueue.main.async {
+            self.numSeeds = self.statsRepository.getNumSeeds()
         }
     }
     

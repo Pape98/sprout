@@ -14,6 +14,7 @@ struct IconButton: View {
     var body: some View {
         VStack {
             Image(icon)
+              
             Text(text)
                 .font(.system(size: 15))
                 .foregroundColor(.seaGreen)
@@ -23,6 +24,13 @@ struct IconButton: View {
 
 struct IconButton_Previews: PreviewProvider {
     static var previews: some View {
-        IconButton(icon:"garden-icon", text:"Your Garden")
+        HStack(spacing: 0) {
+            IconButton(icon:"garden-icon", text:"Your Garden")
+          
+            IconButton(icon:"seed-icon", text:"Your Garden")
+      
+            IconButton(icon:"droplet-icon", text:"Your Garden")
+      
+        }
     }
 }

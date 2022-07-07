@@ -22,7 +22,15 @@ class ProgressRepository {
     let type = Progress.self
     
     func getStepProgress() -> Progress {
-        return SQLiteDB.getRowsByColumn(table: progressTable, column: column, value: "steps", type: type)[0]
+        return getProgress(DataOptions.steps)
+    }
+    
+    func getWalkingRunningProgress() -> Progress {
+        return getProgress(DataOptions.walkingRunningDistance)
+    }
+    
+    func getProgress(_ data: DataOptions) -> Progress {
+        return SQLiteDB.getRowsByColumn(table: progressTable, column: column, value: data.rawValue, type: type)[0]
     }
     
 }

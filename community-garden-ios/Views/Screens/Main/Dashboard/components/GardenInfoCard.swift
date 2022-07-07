@@ -10,7 +10,7 @@ import SwiftUI
 struct GardenInfoCard: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
-    var user: User
+    var user: User?
     let today = Date()
     
     let userDefaults = UserDefaultsService.shared
@@ -19,20 +19,16 @@ struct GardenInfoCard: View {
         userDefaults.get(key: UserDefaultsKey.GARDEN_NAME) ?? "Poudlard"
     }
     
+    //    var body: some View {
+    //        Text("ddd")
+    //    }
+    
     var body: some View {
         
         ZStack(alignment: .leading) {
             
             HStack {
                 
-                //                VStack {
-                //                    Text(today.getFormattedDate(format: "dd"))
-                //                        .bold()
-                //                        .headerStyle()
-                //                    Text(today.getFormattedDate(format: "MMMM"))
-                //                        .bold()
-                //                        .bodyStyle()
-                //                }
                 
                 
                 // Buttons
@@ -40,8 +36,8 @@ struct GardenInfoCard: View {
                     IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) droplets")
                 }
                 
-                if let numDroplets = userViewModel.numDroplets {
-                    IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) seeds")
+                if let numSeeds = userViewModel.numSeeds {
+                    IconButton(icon: "seed-icon", text: "\(Int(numSeeds.value)) seeds")
                 }
                 
                 NavigationLink(destination: MyGarden()) {
@@ -70,6 +66,6 @@ struct GardenInfoCard_Previews: PreviewProvider {
         
         let user: User = User(id: "1", name: "Pape", email: "papisline2222@gmail.com")
         GardenInfoCard(user: user)
-            .environmentObject(UserViewModel()  )
+            .environmentObject(UserViewModel())
     }
 }

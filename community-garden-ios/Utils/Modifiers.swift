@@ -25,12 +25,15 @@ struct WeatherOverlay: ViewModifier {
             content
             
             // Stats
-            VStack(alignment: .leading) {
+            HStack {
                 if let numDroplets = userViewModel.numDroplets {
                     Stats(image: "droplet-icon", value: Int(numDroplets.value))
                 }
-//                Stats(image: "step-icon", value: 1247)
                 Spacer()
+                
+                if let numSeeds = userViewModel.numSeeds {
+                    Stats(image: "seed-icon", value: Int(numSeeds.value))
+                }
             }
             .padding()
         }

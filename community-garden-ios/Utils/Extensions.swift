@@ -158,3 +158,10 @@ extension AnyTransition {
             removal: .move(edge: .leading))}
 }
 
+extension Dictionary where Value: Hashable {
+
+    func swapKeyValues() -> [Value : Key] {
+        return Dictionary<Value, Key>(uniqueKeysWithValues: lazy.map { ($0.value, $0.key) })
+    }
+}
+

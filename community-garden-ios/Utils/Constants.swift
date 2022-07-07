@@ -17,10 +17,6 @@ struct Constants {
     static let flowers = ["abyss-sage", "joyful-clover","savage-morel"]
     static let trees = ["spiky-maple", "whomping-medlar", "serpent-sumac","sad-holly","sneezy-cypress","tickle-beech","royal-larch","chilling-leaf"]
     static let colors = ["moss","cosmos","sunglow","grenadier","hawks","tangerine","lavender","mint","raspberry","porcelain"]
-    
-    // Statistics & Progress
-    static let statistics = ["numDroplets", "numSeeds"]
-    static let progress = ["steps","sleep","walkingRunning", "workouts"]
 }
 
 enum MappingKeys: String {
@@ -44,6 +40,15 @@ enum DataOptions: String, CaseIterable {
                         "Walking+running Distance":["bed.double.circle","🚶 Distance you walk or run."],
                         "Workout Time": ["bed.double.circle","🚴‍♀️ The number of workout minutes"]
     ]
+}
+
+enum Statistics: String, CaseIterable {
+    case numDroplets = "numDroplets"
+    case numSeeds = "numSeeds"
+    
+    static var list:[String] {
+        Statistics.allCases.map { $0.rawValue}
+    }
 }
 
 struct GoalsSettings {

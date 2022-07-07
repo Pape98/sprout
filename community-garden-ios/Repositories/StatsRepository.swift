@@ -14,6 +14,7 @@ class StatsRepository {
     let progressRepo = ProgressRepository()
     let userDefaults = UserDefaultsService.shared
     
+    // SQLite Service variables
     var progressTable: Table {
         SQLiteDB.progress!
     }
@@ -25,59 +26,73 @@ class StatsRepository {
     var nameColumn: Expression<String> {
         Expression<String>("name")
     }
+
     
-    // Thresholds
-    var STEPS_THRESHOLD: Double {
-        Double(userDefaults.get(key: UserDefaultsKey.STEPS_GOAL) * 0.01)
+    // Default Settings
+    var mapping: [String: String]? {
+        let mappedData:[String: Any]? = userDefaults.get(key: UserDefaultsKey.MAPPED_DATA) // ["Tree": "Steps"]
+        if let convertedData = mappedData as? [String: String] {
+            let swappedData = convertedData.swapKeyValues() // ["Steps":"Tree"]
+            return swappedData
+        }
+        return nil
+    }
+    var statUpdateCallbacks: [String: ((Double) -> Void)] {
+        [
+            "Flower": updateNumSeeds,
+            "Tree": updateNumDroplets
+        ]
     }
     
     init(){
         SQLiteDB.resetTableValues()
     }
     
-    // MARK: Droplet methods
+    // MARK: Droplet & Seed methods
     
     func getNumDroplets() -> Stat? {
-        let numDroplets = getStatistic("numDroplets")
-        return numDroplets
+        return getStatistic(Statistics.numDroplets.rawValue)
     }
     
-    func updateNumDroplets(value: Double){
-        let numDropletsStat = getStatistic("numDroplets")
-    
-        if var numDroplets = numDropletsStat {
-            numDroplets.value = Double(Int(numDroplets.value) + Int(value))
-            SQLiteDB.updateColumn(table: statsTable, column: nameColumn, query: "numDroplets", update: numDroplets)
-        }
+    func getNumSeeds() -> Stat? {
+        return getStatistic(Statistics.numSeeds.rawValue)
     }
+    
+    func updateNumDroplets(_ value: Double){
+        updateStatistic(name: Statistics.numDroplets, value: value)
+    }
+    
+    func updateNumSeeds(_ value: Double){
+        updateStatistic(name: Statistics.numSeeds, value: value)
+    }
+    
     
     // MARK: Update methods
-    func updateStepsNumDroplets(value: Double){
-        var progress: Progress = progressRepo.getStepProgress()
+    func stepsChangeCallback(value: Double){
+        // Check if user is tracking data
+        guard mapping![DataOptions.steps.rawValue] != nil else { return }
         
-        // If there is a 1% difference, add droplets
-        let progressDifference = value - progress.old
-        if  progressDifference >= STEPS_THRESHOLD && STEPS_THRESHOLD > 0 {
-            progress.old = value - (value.truncatingRemainder(dividingBy: STEPS_THRESHOLD))
-            let dropletAddition = progressDifference / STEPS_THRESHOLD
-            updateNumDroplets(value: dropletAddition)
-        }
-        progress.new = value
-
-
-        SQLiteDB.insertUpdate(table: progressTable, name: TableName.progress, values: progress, onClonflictOf: nameColumn)
+        // Update progress
+        let threshold = Double(userDefaults.get(key: UserDefaultsKey.STEPS_GOAL) * 0.01)
+        let progress: Progress = progressRepo.getStepProgress()
+        print(threshold, progress)
+        updateProgress(data: DataOptions.steps, value: value, progress: progress, threshold: threshold)
     }
     
-    func updateWorkoutsNumDroplets(value: Double){
-//        print("updating droplets workourts")
+    func workoutsChangeCallback(value: Double){
     }
     
-    func updateWalkingRunningNumDroplets(value: Double){
-//        print("updating droplets walkingRunning")
+    func walkingRunningChangeCallback(value: Double){
+        // Check if user is tracking data
+        guard mapping![DataOptions.steps.rawValue] != nil else { return }
+        // Update progress
+        let threshold = Double(userDefaults.get(key: UserDefaultsKey.WALKING_RUNNING_GOAL) * 0.1)
+        let progress: Progress = progressRepo.getWalkingRunningProgress()
+        print(threshold, progress)
+        updateProgress(data: DataOptions.walkingRunningDistance, value: value, progress: progress, threshold: threshold)
     }
     
-    func updateSleepNumDroplets(value: Double){
-//        print("updating droplets walkingRunning")
+    func sleepChangeCallback(value: Double){
     }
     
     // MARK: Utility Methods
@@ -88,5 +103,37 @@ class StatsRepository {
             return loadedData[0]
         }
         return nil
+    }
+    
+    func updateStatistic(name: Statistics, value: Double) {
+        let stat = getStatistic(name.rawValue)
+        if var stat = stat {
+            stat.value = Double(Int(stat.value) + Int(value))
+            SQLiteDB.updateColumn(table: statsTable, column: nameColumn, query: name.rawValue, update: stat)
+        }
+    }
+    
+    func getStatUpdateCallback(data: DataOptions) -> (_: Double) -> Void {
+        if mapping![data.rawValue] == "Flower" {
+            return updateNumDroplets
+        } else {
+            return updateNumSeeds
+        }
+    }
+    
+    func updateProgress(data: DataOptions, value: Double, progress: Progress, threshold: Double){
+        var progress = progress
+        let progressDifference = value - progress.old
+        
+        if  progressDifference >= threshold && threshold > 0 {
+            progress.old = value - (value.truncatingRemainder(dividingBy: threshold))
+            let statAddition = progressDifference / threshold
+            print(statAddition)
+            guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mapping![data.rawValue]!] else { return }
+            updateCallback(statAddition)
+        }
+        progress.new = value
+        
+        SQLiteDB.insertUpdate(table: progressTable, name: TableName.progress, values: progress, onClonflictOf: nameColumn)
     }
 }
