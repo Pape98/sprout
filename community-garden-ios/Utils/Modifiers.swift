@@ -10,6 +10,8 @@ import SwiftUI
 
 struct WeatherOverlay: ViewModifier {
     
+    @EnvironmentObject var userViewModel: UserViewModel
+    
     var weatherInfo = getWeatherInfo()
     
     func body(content: Content) -> some View {
@@ -24,8 +26,10 @@ struct WeatherOverlay: ViewModifier {
             
             // Stats
             VStack(alignment: .leading) {
-                Stats(image: "droplet-icon", value:5)
-                Stats(image: "step-icon", value: 1247)
+                if let numDroplets = userViewModel.numDroplets {
+                    Stats(image: "droplet-icon", value: Int(numDroplets.value))
+                }
+//                Stats(image: "step-icon", value: 1247)
                 Spacer()
             }
             .padding()

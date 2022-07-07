@@ -121,10 +121,7 @@ class AuthenticationViewModel: ObservableObject {
                             
                             let newUser = User(id: userID,
                                                name: user.profile!.name,
-                                               email: user.profile!.email,
-                                               oldStepCount: 0,
-                                               numDroplets: 0,
-                                               gardenItems: [GardenItem(name: "tree1", height: 0.03)]
+                                               email: user.profile!.email
                             )
                             
                             self.userRepository.createNewUser(newUser)

@@ -55,7 +55,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     // ViewModels
     let userViewModel = UserViewModel.shared
     
-    var dropletNums = UserService.shared.user.numDroplets
+    var dropletNums = 5
     
     override func didMove(to view: SKView) {
         

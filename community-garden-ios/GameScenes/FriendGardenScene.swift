@@ -29,7 +29,7 @@ class FriendGardenScene: SKScene {
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y:0)
         tree.name = NodeNames.tree.rawValue
-        let treeHeight = CGFloat(friend!.gardenItems[0].height)
+        let treeHeight = 1.0
         tree.setScale(0)
         let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
         tree.run(treeAction)

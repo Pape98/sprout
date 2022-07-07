@@ -17,6 +17,10 @@ struct Constants {
     static let flowers = ["abyss-sage", "joyful-clover","savage-morel"]
     static let trees = ["spiky-maple", "whomping-medlar", "serpent-sumac","sad-holly","sneezy-cypress","tickle-beech","royal-larch","chilling-leaf"]
     static let colors = ["moss","cosmos","sunglow","grenadier","hawks","tangerine","lavender","mint","raspberry","porcelain"]
+    
+    // Statistics & Progress
+    static let statistics = ["numDroplets", "numSeeds"]
+    static let progress = ["steps","sleep","walkingRunning", "workouts"]
 }
 
 enum MappingKeys: String {

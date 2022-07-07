@@ -17,7 +17,6 @@ struct Dashboard: View {
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
     let today = Date()
     let userDefaults = UserDefaultsService.shared
-    
     var TREE: String {
         let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "cosmos"
         let tree = userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
@@ -41,8 +40,17 @@ struct Dashboard: View {
                                 CircledTree(option: TREE, background: .seaGreen, size: 75)
                                     .padding(.top, 15)
                                 
-                                Text("Hi, \(getFirstName(user.name))!")
-                                    .headerStyle()
+                                VStack(spacing: 10) {
+                                    Text("Hi, \(getFirstName(user.name))!")
+                                        .headerStyle()
+                                    
+                                    
+                                    Text(date)
+                                        .bold()
+                                        .bodyStyle()
+                                }
+                                
+                                
                             }.padding(.bottom, 10)
                         }
                         

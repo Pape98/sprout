@@ -25,29 +25,29 @@ struct GardenInfoCard: View {
             
             HStack {
                 
-                VStack {
-                    Text(today.getFormattedDate(format: "dd"))
-                        .bold()
-                        .headerStyle()
-                    Text(today.getFormattedDate(format: "MMMM"))
-                        .bold()
-                        .bodyStyle()
-                }
+                //                VStack {
+                //                    Text(today.getFormattedDate(format: "dd"))
+                //                        .bold()
+                //                        .headerStyle()
+                //                    Text(today.getFormattedDate(format: "MMMM"))
+                //                        .bold()
+                //                        .bodyStyle()
+                //                }
                 
-                Spacer()
                 
                 // Buttons
-                HStack(spacing: 10) {
-                    if let numDroplets = userViewModel.numDroplets {
-                        IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) droplets")
-                    }
-             
-                    NavigationLink(destination: MyGarden()) {
-                        IconButton(icon: "garden-icon", text: gardenName)
-                    }
-                    
+                if let numDroplets = userViewModel.numDroplets {
+                    IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) droplets")
                 }
                 
+                if let numDroplets = userViewModel.numDroplets {
+                    IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) seeds")
+                }
+                
+                NavigationLink(destination: MyGarden()) {
+                    IconButton(icon: "garden-icon", text: gardenName)
+                        .shadow(color: .chalice, radius: 4, x: -2, y: 1)
+                }
             }
             .padding(25)
             .background {
@@ -67,8 +67,9 @@ struct GardenInfoCard: View {
 
 struct GardenInfoCard_Previews: PreviewProvider {
     static var previews: some View {
-
-        let user: User = User(id: "1", name: "Pape", email: "papisline2222@gmail.com", oldStepCount: 10, numDroplets: 15, gardenItems: [])
+        
+        let user: User = User(id: "1", name: "Pape", email: "papisline2222@gmail.com")
         GardenInfoCard(user: user)
+            .environmentObject(UserViewModel()  )
     }
 }

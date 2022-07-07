@@ -12,12 +12,12 @@ struct IconButton: View {
     var text: String
     
     var body: some View {
-        VStack() {
+        VStack {
             Image(icon)
             Text(text)
                 .font(.system(size: 15))
                 .foregroundColor(.seaGreen)
-        }.frame(maxWidth: .infinity, alignment: .trailing)
+        }.frame(maxWidth: .infinity, alignment: .center)
     }
 }
 

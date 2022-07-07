@@ -70,7 +70,7 @@ class SQLiteService {
         let new = Expression<Double>("new")
         let old = Expression<Double>("old")
         let progressTable = Table(TableName.progress.rawValue)
-
+        
         do {
             guard let connection = db else { return nil }
             try connection.run(progressTable.create(ifNotExists: true) { t in
@@ -79,7 +79,7 @@ class SQLiteService {
                 t.column(new)
                 t.column(old)
             })
-
+            
         } catch {
             print(error)
         }
@@ -189,40 +189,38 @@ class SQLiteService {
     }
     
     // MARK: Table values initialization
-    
-    
     func resetTableValues(){
         resetStatistics()
         resetProgress()
     }
     
-    func resetStatistics(){
+    func resetStatistics(forceReset: Bool = false){
         
-        // Check if fields already exist
-        if doesExist(table: statistics!, column: Expression<String>("name"), value: "numDroplets") == true {
-            return
-        }
-        let stat = Stat(name: "numDroplets")
-        print("=============",stat)
         guard statistics != nil else { return }
-        insertUpdate(table: statistics!, name: TableName.statistics, values: stat, onClonflictOf: Expression<String>("name"))
+        
+        for name in Constants.statistics {
+            // Check if fields already exist
+            if doesExist(table: statistics!, column: Expression<String>("name"), value: name) == true {
+                continue
+            }
+            let stat = Stat(name: name)
+            insertUpdate(table: statistics!, name: TableName.statistics, values: stat, onClonflictOf: Expression<String>("name"))
+        }
     }
     
-    func resetProgress(){
-        // Check if fields already exist
-        if doesExist(table: progress!, column: Expression<String>("name"), value: "steps") == true {
-            return
+    func resetProgress(forceReset: Bool = false){
+        
+        guard progress != nil else { return }
+        
+        for name in Constants.progress {
+            // Check if fields already exist
+            if doesExist(table: progress!, column: Expression<String>("name"), value: name) == true {
+                continue
+            }
+            
+            let progressObject = Progress(name: name)
+            insertUpdate(table: progress!, name: TableName.progress, values: progressObject, onClonflictOf: Expression<String>("name"))
         }
-        
-        let steps = Progress(name: "steps")
-        let sleep = Progress(name:"sleep")
-        let walkingRunning = Progress(name:"walkingRunning")
-        let workouts = Progress(name:"workouts")
-        
-        insertUpdate(table: progress!, name: TableName.progress, values: steps, onClonflictOf: Expression<String>("name"))
-        insertUpdate(table: progress!, name: TableName.progress, values: sleep, onClonflictOf: Expression<String>("name"))
-        insertUpdate(table: progress!, name: TableName.progress, values: walkingRunning, onClonflictOf: Expression<String>("name"))
-        insertUpdate(table: progress!, name: TableName.progress, values: workouts, onClonflictOf: Expression<String>("name"))
     }
     
     // MARK: Saving data to tables

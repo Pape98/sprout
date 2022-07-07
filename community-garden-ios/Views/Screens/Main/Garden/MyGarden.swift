@@ -10,8 +10,12 @@ import SpriteKit
 
 struct MyGarden: View {
     
-    
+    let userDefaults = UserDefaultsService.shared
     @EnvironmentObject var userViewModel: UserViewModel
+    
+    var gardenName: String {
+        userDefaults.get(key: UserDefaultsKey.GARDEN_NAME) ?? "Your Garden"
+    }
     
     var scene: SKScene {
         let scene = MyGardenScene()
@@ -23,6 +27,7 @@ struct MyGarden: View {
         // Scene View
         SpriteView(scene: scene, options: [.allowsTransparency])
             .weatherOverlay()
+            .navigationBarTitle(gardenName, displayMode: .inline)
 
     }
 }
