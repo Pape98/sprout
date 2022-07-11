@@ -214,7 +214,7 @@ class SQLiteService {
         
         for name in DataOptions.dalatList {
             // Check if fields already exist
-            if doesExist(table: progress!, column: Expression<String>("name"), value: name) == true {
+            if doesExist(table: progress!, column: Expression<String>("name"), value: name) == true && forceReset == false {
                 continue
             }
             
