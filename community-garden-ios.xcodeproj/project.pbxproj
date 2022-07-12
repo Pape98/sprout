@@ -32,6 +32,7 @@
 		F038369E2839497600D444E4 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038369D2839497600D444E4 /* SQLiteService.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
+		F043F25C287CF1BB008F211C /* HealthStoreRepository2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25B287CF1BB008F211C /* HealthStoreRepository2.swift */; };
 		F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B562860FB6100C68B35 /* Modifiers.swift */; };
 		F0475B59286100D700C68B35 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B58286100D600C68B35 /* DataMapping.swift */; };
 		F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B5A286101BA00C68B35 /* DataCard.swift */; };
@@ -107,6 +108,7 @@
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F038369D2839497600D444E4 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
+		F043F25B287CF1BB008F211C /* HealthStoreRepository2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository2.swift; sourceTree = "<group>"; };
 		F0475B562860FB6100C68B35 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		F0475B58286100D600C68B35 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
 		F0475B5A286101BA00C68B35 /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
@@ -443,6 +445,7 @@
 				F0B6DAE42874B21000DD3F03 /* HealthStoreRepository.swift */,
 				F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */,
 				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
+				F043F25B287CF1BB008F211C /* HealthStoreRepository2.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -592,6 +595,7 @@
 				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
 				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreRepository.swift in Sources */,
+				F043F25C287CF1BB008F211C /* HealthStoreRepository2.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,

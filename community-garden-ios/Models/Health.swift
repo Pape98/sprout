@@ -9,8 +9,7 @@ import Foundation
 import FirebaseFirestoreSwift
 
 
-struct Step: Identifiable, Codable {
-    var id: String? = UUID().uuidString
+struct Step: Codable {
     var date: String
     var count: Double
 }

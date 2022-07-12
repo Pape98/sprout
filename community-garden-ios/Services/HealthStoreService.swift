@@ -22,6 +22,7 @@ class HealthStoreService {
     
     // Provides all functionalities related health data
     private var healthStore: HKHealthStore?
+    private var healthStoreRepo = HealthStoreRepository2.shared
     private let dataCollectionStartDate = Date() // (day, month, year)
     private let SQLite = SQLiteService.shared
     private let units = [
@@ -46,7 +47,7 @@ class HealthStoreService {
                 if success {
                     // Listen to changes in step counts
                     self.startQuantityQuery(dataType: HKDataTypes.stepCount,
-                                            updateHandler: self.SQLite.saveStepCount)
+                                            updateHandler: self.healthStoreRepo.saveStepCount)
                     
                     // Listen to changes in walking+running distance
                     self.startQuantityQuery(dataType: HKDataTypes.walkingRunningDistance,

@@ -13,6 +13,7 @@ class HealthStoreViewModel: ObservableObject {
     
     static let shared = HealthStoreViewModel()
     let healthStoreRepo = HealthStoreRepository.shared
+    let healthStoreRepo2 = HealthStoreRepository2.shared
     let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
     var stepCounts: [Step] = []
     
@@ -57,7 +58,9 @@ class HealthStoreViewModel: ObservableObject {
     
     @objc func getTodayStepCount() {
         DispatchQueue.main.async {
-            self.todayStepCount = self.healthStoreRepo.getStepCountByDate(date: self.today)
+            self.healthStoreRepo2.getStepCountByDate(date: self.today) { result in
+                self.todayStepCount = result
+            }
         }
     }
     
