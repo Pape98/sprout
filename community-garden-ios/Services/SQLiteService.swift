@@ -56,10 +56,10 @@ class SQLiteService {
     
     // MARK: Database table initializations
     func initTables(){
-        stepCounts = createStepCountTable()
-        walkingRunningDistance = createWalkingRunningDistanceTable()
-        sleep = createSleepTable()
-        workouts = createWorkoutsTable()
+//        stepCounts = createStepCountTable()
+//        walkingRunningDistance = createWalkingRunningDistanceTable()
+//        sleep = createSleepTable()
+//        workouts = createWorkoutsTable()
         statistics = createStatisticsTable()
         progress = createProgressTable()
     }
@@ -86,88 +86,6 @@ class SQLiteService {
         return progressTable
     }
     
-    func createStepCountTable() -> Table? {
-        let id = Expression<String>("id")
-        let date = Expression<String>("date")
-        let count = Expression<Double>("count")
-        let stepCountTable = Table(TableName.stepCounts.rawValue)
-        
-        do {
-            guard let connection = db else { return nil}
-            try connection.run(stepCountTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: true)
-                t.column(date, unique: true)
-                t.column(count)
-            })
-            
-        } catch {
-            print("createStepCountTable()", error)
-        }
-        return stepCountTable
-    }
-    
-    func createWalkingRunningDistanceTable() -> Table? {
-        let id = Expression<String>("id")
-        let date = Expression<String>("date")
-        let distance = Expression<Double>("distance")
-        let walkingRunningDistanceTable = Table(TableName.walkingRunningDistance.rawValue)
-        
-        do {
-            guard let connection = db else { return nil}
-            try connection.run(walkingRunningDistanceTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: true)
-                t.column(date, unique: true)
-                t.column(distance)
-            })
-            
-        } catch {
-            print("createWalkingRunningDistanceTable()",error)
-        }
-        return walkingRunningDistanceTable
-    }
-    
-    func createWorkoutsTable() -> Table? {
-        let id = Expression<String>("id")
-        let date = Expression<String>("date")
-        let duration = Expression<Double>("duration")
-        let workoutsTable = Table(TableName.workouts.rawValue)
-        
-        do {
-            guard let connection = db else { return nil}
-            try connection.run(workoutsTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: true)
-                t.column(date, unique: true)
-                t.column(duration)
-            })
-            
-        } catch {
-            print("createWorkoutsTable()",error)
-        }
-        
-        return workoutsTable
-    }
-    
-    func createSleepTable() -> Table? {
-        let id = Expression<String>("id")
-        let date = Expression<String>("date")
-        let duration = Expression<Double>("duration")
-        let sleepTable = Table(TableName.sleep.rawValue)
-        
-        do {
-            guard let connection = db else { return nil}
-            try connection.run(sleepTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: true)
-                t.column(date, unique: true)
-                t.column(duration)
-            })
-            
-        } catch {
-            print("createSleepTable()",error)
-        }
-        
-        return sleepTable
-    }
-    
     func createStatisticsTable() -> Table? {
         let id = Expression<String>("id")
         let name = Expression<String>("name")
@@ -187,6 +105,89 @@ class SQLiteService {
         }
         return statsTable
     }
+    
+//    func createStepCountTable() -> Table? {
+//        let id = Expression<String>("id")
+//        let date = Expression<String>("date")
+//        let count = Expression<Double>("count")
+//        let stepCountTable = Table(TableName.stepCounts.rawValue)
+//
+//        do {
+//            guard let connection = db else { return nil}
+//            try connection.run(stepCountTable.create(ifNotExists: true) { t in
+//                t.column(id, primaryKey: true)
+//                t.column(date, unique: true)
+//                t.column(count)
+//            })
+//
+//        } catch {
+//            print("createStepCountTable()", error)
+//        }
+//        return stepCountTable
+//    }
+    
+//    func createWalkingRunningDistanceTable() -> Table? {
+//        let id = Expression<String>("id")
+//        let date = Expression<String>("date")
+//        let distance = Expression<Double>("distance")
+//        let walkingRunningDistanceTable = Table(TableName.walkingRunningDistance.rawValue)
+//
+//        do {
+//            guard let connection = db else { return nil}
+//            try connection.run(walkingRunningDistanceTable.create(ifNotExists: true) { t in
+//                t.column(id, primaryKey: true)
+//                t.column(date, unique: true)
+//                t.column(distance)
+//            })
+//
+//        } catch {
+//            print("createWalkingRunningDistanceTable()",error)
+//        }
+//        return walkingRunningDistanceTable
+//    }
+    
+//    func createWorkoutsTable() -> Table? {
+//        let id = Expression<String>("id")
+//        let date = Expression<String>("date")
+//        let duration = Expression<Double>("duration")
+//        let workoutsTable = Table(TableName.workouts.rawValue)
+//
+//        do {
+//            guard let connection = db else { return nil}
+//            try connection.run(workoutsTable.create(ifNotExists: true) { t in
+//                t.column(id, primaryKey: true)
+//                t.column(date, unique: true)
+//                t.column(duration)
+//            })
+//
+//        } catch {
+//            print("createWorkoutsTable()",error)
+//        }
+//
+//        return workoutsTable
+//    }
+    
+//    func createSleepTable() -> Table? {
+//        let id = Expression<String>("id")
+//        let date = Expression<String>("date")
+//        let duration = Expression<Double>("duration")
+//        let sleepTable = Table(TableName.sleep.rawValue)
+//
+//        do {
+//            guard let connection = db else { return nil}
+//            try connection.run(sleepTable.create(ifNotExists: true) { t in
+//                t.column(id, primaryKey: true)
+//                t.column(date, unique: true)
+//                t.column(duration)
+//            })
+//
+//        } catch {
+//            print("createSleepTable()",error)
+//        }
+//
+//        return sleepTable
+//    }
+    
     
     // MARK: Table values initialization
     func resetTableValues(){
@@ -224,29 +225,29 @@ class SQLiteService {
     }
     
     // MARK: Saving data to tables
-    func saveStepCount(value v: Double){
-        let object = Step(date: today, count: v)
-        insertUpdate(table: stepCounts!, name: TableName.stepCounts, values: object, onClonflictOf: Expression<String>("date"))
-        NotificationSender.send(type: NotificationType.FetchStepCount.rawValue, message: v)
-    }
-    
-    func saveWalkingRunningDistance(value v: Double){
-        let object = WalkingRunningDistance(date: today, distance: v)
-        insertUpdate(table: walkingRunningDistance!, name: TableName.walkingRunningDistance, values: object, onClonflictOf: Expression<String>("date"))
-        NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue, message: v)
-    }
-    
-    func saveWorkouts(value v: Double){
-        let object = Workout(date: today, duration: v)
-        insertUpdate(table: workouts!, name: TableName.workouts, values: object, onClonflictOf: Expression<String>("date"))
-        NotificationSender.send(type: NotificationType.FetchWorkout.rawValue, message: v)
-    }
-    
-    func saveSleep(value v: Double){
-        let object = Sleep(date: today, duration: v)
-        insertUpdate(table: sleep!, name: TableName.sleep, values: object, onClonflictOf: Expression<String>("date"))
-        NotificationSender.send(type: NotificationType.FetchSleep.rawValue, message: v)
-    }
+//    func saveStepCount(value v: Double){
+//        let object = Step(date: today, count: v)
+//        insertUpdate(table: stepCounts!, name: TableName.stepCounts, values: object, onClonflictOf: Expression<String>("date"))
+//        NotificationSender.send(type: NotificationType.FetchStepCount.rawValue, message: v)
+//    }
+//
+//    func saveWalkingRunningDistance(value v: Double){
+//        let object = WalkingRunningDistance(date: today, distance: v)
+//        insertUpdate(table: walkingRunningDistance!, name: TableName.walkingRunningDistance, values: object, onClonflictOf: Expression<String>("date"))
+//        NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue, message: v)
+//    }
+//
+//    func saveWorkouts(value v: Double){
+//        let object = Workout(date: today, duration: v)
+//        insertUpdate(table: workouts!, name: TableName.workouts, values: object, onClonflictOf: Expression<String>("date"))
+//        NotificationSender.send(type: NotificationType.FetchWorkout.rawValue, message: v)
+//    }
+//
+//    func saveSleep(value v: Double){
+//        let object = Sleep(date: today, duration: v)
+//        insertUpdate(table: sleep!, name: TableName.sleep, values: object, onClonflictOf: Expression<String>("date"))
+//        NotificationSender.send(type: NotificationType.FetchSleep.rawValue, message: v)
+//    }
     
     // MARK: Utitlies
     func insertUpdate<T: Codable>(table: Table, name: TableName, values: T, onClonflictOf: Expression<String>){

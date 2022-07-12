@@ -22,7 +22,6 @@ class HealthStoreService {
     
     // Provides all functionalities related health data
     private var healthStore: HKHealthStore?
-    private var healthStoreRepo = HealthStoreRepository2.shared
     private let dataCollectionStartDate = Date() // (day, month, year)
     private let SQLite = SQLiteService.shared
     private let units = [
@@ -31,6 +30,10 @@ class HealthStoreService {
         HKDataTypes.sleep: HKUnit.hour(),
         HKDataTypes.workouts: HKUnit.minute()
     ]
+    
+    private var healthStoreRepo: HealthStoreRepository {
+        HealthStoreRepository.shared
+    }
     
     // MARK: - Methods
     init() {
@@ -51,17 +54,17 @@ class HealthStoreService {
                     
                     // Listen to changes in walking+running distance
                     self.startQuantityQuery(dataType: HKDataTypes.walkingRunningDistance,
-                                            updateHandler: self.SQLite.saveWalkingRunningDistance)
+                                            updateHandler: self.healthStoreRepo.saveWalkingRunningDistance)
                     
                     // Listen to changes in workouts
                     self.startSampleQuery(sampleType: HKDataTypes.workouts,
                                           dataType: HKWorkout.self,
-                                          updateHandler: self.SQLite.saveWorkouts)
+                                          updateHandler: self.healthStoreRepo.saveWorkouts)
                     
                     // Listen to changes in sleep
                     self.startSampleQuery(sampleType: HKDataTypes.sleep,
                                           dataType: HKCategorySample.self,
-                                          updateHandler: self.SQLite.saveSleep)
+                                          updateHandler: self.healthStoreRepo.saveSleep)
                 }
             }
         }

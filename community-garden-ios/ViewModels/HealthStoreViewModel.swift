@@ -13,7 +13,6 @@ class HealthStoreViewModel: ObservableObject {
     
     static let shared = HealthStoreViewModel()
     let healthStoreRepo = HealthStoreRepository.shared
-    let healthStoreRepo2 = HealthStoreRepository2.shared
     let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
     var stepCounts: [Step] = []
     
@@ -58,7 +57,7 @@ class HealthStoreViewModel: ObservableObject {
     
     @objc func getTodayStepCount() {
         DispatchQueue.main.async {
-            self.healthStoreRepo2.getStepCountByDate(date: self.today) { result in
+            self.healthStoreRepo.getStepCountByDate(date: self.today) { result in
                 self.todayStepCount = result
             }
         }
@@ -66,19 +65,25 @@ class HealthStoreViewModel: ObservableObject {
     
     @objc func getTodayWalkingRunningDistance() {
         DispatchQueue.main.async {
-            self.todayWalkingRunningDistance = self.healthStoreRepo.getWalkingRunningDistanceByDate(date: self.today)
+            self.healthStoreRepo.getWalkingRunningDistanceByDate(date: self.today) { result in
+                self.todayWalkingRunningDistance = result
+            }
         }
     }
     
     @objc func getTodayWorkout() {
         DispatchQueue.main.async {
-            self.todayWorkout = self.healthStoreRepo.getWorkoutByDate(date: self.today)
+            self.healthStoreRepo.getWorkoutByDate(date: self.today) { result in
+                self.todayWorkout = result
+            }
         }
     }
     
     @objc func getTodaySleep() {
         DispatchQueue.main.async {
-            self.todaySleep = self.healthStoreRepo.getSleepByDate(date: self.today)
+            self.healthStoreRepo.getSleepByDate(date: self.today) { result in
+                self.todaySleep = result
+            }
         }
     }
 }

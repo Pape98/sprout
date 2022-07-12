@@ -32,7 +32,8 @@
 		F038369E2839497600D444E4 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038369D2839497600D444E4 /* SQLiteService.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
-		F043F25C287CF1BB008F211C /* HealthStoreRepository2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25B287CF1BB008F211C /* HealthStoreRepository2.swift */; };
+		F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */; };
+		F043F25E287CFDC6008F211C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25D287CFDC6008F211C /* Protocols.swift */; };
 		F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B562860FB6100C68B35 /* Modifiers.swift */; };
 		F0475B59286100D700C68B35 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B58286100D600C68B35 /* DataMapping.swift */; };
 		F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B5A286101BA00C68B35 /* DataCard.swift */; };
@@ -64,7 +65,7 @@
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
 		F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStoreService.swift */; };
-		F0B6DAE52874B21000DD3F03 /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE42874B21000DD3F03 /* HealthStoreRepository.swift */; };
+		F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */; };
 		F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */; };
 		F0B6DAEC2875C30100DD3F03 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAEB2875C30100DD3F03 /* Statistics.swift */; };
 		F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */; };
@@ -108,7 +109,8 @@
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F038369D2839497600D444E4 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
-		F043F25B287CF1BB008F211C /* HealthStoreRepository2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository2.swift; sourceTree = "<group>"; };
+		F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
+		F043F25D287CFDC6008F211C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F0475B562860FB6100C68B35 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		F0475B58286100D600C68B35 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
 		F0475B5A286101BA00C68B35 /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
@@ -141,7 +143,7 @@
 		F0B32CA3275AF77900C714A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F0B32CB3275B222500C714A2 /* HealthStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreService.swift; sourceTree = "<group>"; };
-		F0B6DAE42874B21000DD3F03 /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
+		F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreSQLRepository.swift; sourceTree = "<group>"; };
 		F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreViewModel.swift; sourceTree = "<group>"; };
 		F0B6DAEB2875C30100DD3F03 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRepository.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
 				F01B635A284FB339004D079A /* Helpers.swift */,
 				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
+				F043F25D287CFDC6008F211C /* Protocols.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -442,10 +445,10 @@
 			children = (
 				F04234A42784C6F40063DA08 /* Collections.swift */,
 				F0C99E21278481A6004514D4 /* UserRepository.swift */,
-				F0B6DAE42874B21000DD3F03 /* HealthStoreRepository.swift */,
+				F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */,
 				F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */,
 				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
-				F043F25B287CF1BB008F211C /* HealthStoreRepository2.swift */,
+				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -594,8 +597,8 @@
 				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
 				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
 				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
-				F0B6DAE52874B21000DD3F03 /* HealthStoreRepository.swift in Sources */,
-				F043F25C287CF1BB008F211C /* HealthStoreRepository2.swift in Sources */,
+				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
+				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
@@ -649,6 +652,7 @@
 				F0149D61284F184000782D27 /* DashboardCard.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 				F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */,
+				F043F25E287CFDC6008F211C /* Protocols.swift in Sources */,
 				F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */,
 				F0842BB9285E2A19002C79BD /* Screens.swift in Sources */,
 			);

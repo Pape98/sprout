@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 class Collections {
     
-    let collectionNames = ["users", "steps"]
+    let collectionNames = ["users", "steps", "workouts", "walkingRunning", "sleep"]
     var collectionReferences: Dictionary<String, CollectionReference> = [:]
     static let shared = Collections()
     

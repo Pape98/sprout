@@ -12,7 +12,7 @@ import GoogleSignIn
 class UserRepository {
     
     // MARK: - Properties
-    let usersCollection: CollectionReference
+    let usersCollection: CollectionReference?
     static let shared = UserRepository() // Single repo instance shared
     var doesUserExsist = false
     
@@ -24,6 +24,10 @@ class UserRepository {
     }
     
     func createNewUser(_ user: User) {
+        guard let usersCollection = usersCollection else {
+            return
+        }
+
         do {
             try usersCollection.document(user.id).setData(from: user)
         } catch let err {
@@ -32,7 +36,9 @@ class UserRepository {
     }
     
     func doesUserExist(userID: String, completion: @escaping () -> Void) {
-        
+        guard let usersCollection = usersCollection else {
+            return
+        }
         // Get document reference
         let userRef = usersCollection.document(userID)
         
@@ -53,6 +59,9 @@ class UserRepository {
     }
     
     func fetchLoggedInUser(userID: String, completion: @escaping (_ user: User) -> Void){
+        guard let usersCollection = usersCollection else {
+            return
+        }
         // Get document reference
         let userRef = usersCollection.document(userID)
         
@@ -78,7 +87,9 @@ class UserRepository {
     
     
     func updateUser(userID: String, updates:[String: Any], completion: @escaping() -> Void){
-        
+        guard let usersCollection = usersCollection else {
+            return
+        }
         // Get document reference
         let userRef = usersCollection.document(userID)
                 
@@ -96,6 +107,9 @@ class UserRepository {
     
     // Fetch all users except current user
     func fetchAllUsers(userID: String, completion: @escaping (_ users: [User]) -> Void){
+        guard let usersCollection = usersCollection else {
+            return
+        }
         usersCollection.whereField("id", isNotEqualTo: userID).getDocuments { querySnapshot, error in
             if let error = error {
                 print("Error getting documents: \(error)")
