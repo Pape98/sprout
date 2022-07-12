@@ -15,6 +15,7 @@ class NotificationService {
     init() {
         // Request authorization to send local notifications (for reminder purposes)
         center = UNUserNotificationCenter.current()
+        center.
         
         // Ask for permission
         center.requestAuthorization(options: [.alert, .sound]) { isGranted, error in

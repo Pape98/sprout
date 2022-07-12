@@ -16,6 +16,7 @@ struct CommunityGardenIosApp: App {
     let notificationService: NotificationService = NotificationService()
     
     init() {
+        UIApplication.shared.registerForRemoteNotifications()
         FirebaseApp.configure()
     }
     
