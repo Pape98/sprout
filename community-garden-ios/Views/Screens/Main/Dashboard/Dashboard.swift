@@ -116,7 +116,6 @@ struct Dashboard: View {
         
     }
     
-    
     @ViewBuilder
     func CardInfo(value: String, label: String = "") -> some View {
         VStack {

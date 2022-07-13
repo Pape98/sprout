@@ -14,6 +14,8 @@ struct MyGarden: View {
     @State private var showPickDropElementAlert = false
     
     @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var gardenViewModel: GardenViewModel
+
     let userDefaults = UserDefaultsService.shared
     
     var gardenName: String {
@@ -86,6 +88,7 @@ struct StepView_Previews: PreviewProvider {
         MyGarden()
             .background(Color.hawks)
             .environmentObject(UserViewModel())
+            .environmentObject(GardenViewModel())
         
     }
 }

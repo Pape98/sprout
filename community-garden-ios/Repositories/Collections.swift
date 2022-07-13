@@ -13,7 +13,7 @@ class Collections {
     
     let db: Firestore
     
-    let subCollections = ["steps", "workouts", "walkingRunning", "sleep"]
+    let subCollections = ["steps", "workouts", "walkingRunning", "sleep", "gardenItems"]
     let topLevelCollections = ["users"]
     let nc = NotificationCenter.default
     
@@ -24,7 +24,7 @@ class Collections {
     
     init() {
         db = Firestore.firestore()
-        
+        setupCollections()
         nc.addObserver(self,
                        selector: #selector(setupCollections),
                        name: Notification.Name(NotificationType.UserLoggedIn.rawValue),

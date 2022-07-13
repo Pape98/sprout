@@ -34,6 +34,8 @@
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
 		F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */; };
 		F043F25E287CFDC6008F211C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25D287CFDC6008F211C /* Protocols.swift */; };
+		F043F260287EEBA7008F211C /* GardenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25F287EEBA7008F211C /* GardenRepository.swift */; };
+		F043F262287EEDD1008F211C /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F261287EEDD1008F211C /* AppViewModel.swift */; };
 		F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B562860FB6100C68B35 /* Modifiers.swift */; };
 		F0475B59286100D700C68B35 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B58286100D600C68B35 /* DataMapping.swift */; };
 		F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B5A286101BA00C68B35 /* DataCard.swift */; };
@@ -111,6 +113,8 @@
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
 		F043F25D287CFDC6008F211C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		F043F25F287EEBA7008F211C /* GardenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenRepository.swift; sourceTree = "<group>"; };
+		F043F261287EEDD1008F211C /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
 		F0475B562860FB6100C68B35 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		F0475B58286100D600C68B35 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
 		F0475B5A286101BA00C68B35 /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
@@ -407,6 +411,7 @@
 		F0B32CAF275AFA8900C714A2 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				F043F261287EEDD1008F211C /* AppViewModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
 				F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */,
@@ -449,6 +454,7 @@
 				F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */,
 				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
 				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
+				F043F25F287EEBA7008F211C /* GardenRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -619,6 +625,7 @@
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
 				F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */,
 				F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */,
+				F043F262287EEDD1008F211C /* AppViewModel.swift in Sources */,
 				F0475B59286100D700C68B35 /* DataMapping.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0F5E93A2873945F002C30BC /* Settings.swift in Sources */,
@@ -635,6 +642,7 @@
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */,
+				F043F260287EEBA7008F211C /* GardenRepository.swift in Sources */,
 				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
 				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,

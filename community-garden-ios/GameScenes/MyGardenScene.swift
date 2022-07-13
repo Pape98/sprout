@@ -27,6 +27,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     let SCALE_DURATION = 2.0
     let userDefaults = UserDefaultsService.shared
     
+    let gardenViewModel: GardenViewModel = GardenViewModel.shared
+    
     // Defaults
     var TREE: String {
         let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "cosmos"
@@ -55,7 +57,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     // ViewModels
     let userViewModel = UserViewModel.shared
     
-    var dropletNums = 5	
+    var dropletNums = 5
     
     override func didMove(to view: SKView) {
         
@@ -69,10 +71,15 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         // Scene setup
         ground = setupGround()
         let _ = setupTree(ground: ground)
+        addExistingItems()
         
         // Timer
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
         
+    }
+    
+    func addExistingItems(){
+        addAllFlowers()
     }
     
     func setupGround() -> SKSpriteNode {
@@ -118,7 +125,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         return tree
     }
     
-    func createFlower(position: CGPoint) {
+    func createNewFlower(position: CGPoint) {
         // Garden Flower
         let flower = SKSpriteNode(imageNamed: "flowers/\(FLOWER)")
         
@@ -128,11 +135,41 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         flower.name = NodeNames.flower.rawValue
         flower.colorBlendFactor = getRandomCGFloat(0, 0.2)
         flower.setScale(0)
-        
-        let flowerAction = SKAction.scale(to: getRandomCGFloat(0.075, 0.1), duration: SCALE_DURATION)
+        let scale = getRandomCGFloat(0.075, 0.1)
+        let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
         
         addChild(flower)
+        
+        // Adding flower to firestore
+        let x = flower.position.x / frame.maxX
+        let y = flower.position.y / frame.maxY
+        
+        let flowerItem = GardenItem(type: GardenItemType.flower,
+                                    name: FLOWER, x: x, y: y, scale: scale)
+        
+        gardenViewModel.addFlower(flowerItem)
+        
+    }
+    
+    func addAllFlowers(){
+        for item in gardenViewModel.items {
+            if item.type == GardenItemType.flower {
+                addExistingFlower(flower: item)
+            }
+        }
+    }
+    
+    func addExistingFlower(flower: GardenItem){
+        let node = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
+        node.anchorPoint = CGPoint(x: 0, y: 0)
+        node.position = CGPoint(x: flower.x * frame.width, y: flower.y * frame.height)
+        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
+        node.setScale(0)
+        
+        let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
+        node.run(nodeAction)
+        addChild(node)
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -159,8 +196,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         droplet.name = NodeNames.droplet.rawValue
         addChild(droplet)
-        
-        //GardenViewModel.shared.handleDropletRelease()
     }
     
     
@@ -224,7 +259,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     func handleFlowerDropletContact(position: CGPoint, droplet: SKNode){
         // Create fower if tree is at max height
         if tree.size.height >= growthBreakpoint {
-            createFlower(position: position)
+            createNewFlower(position: position)
         }
         droplet.removeFromParent()
     }

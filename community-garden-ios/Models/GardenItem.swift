@@ -7,12 +7,16 @@
 
 import Foundation
 
-enum GardenItemType: String {
-    case tree1 = "tree1"
+enum GardenItemType: String, Codable {
+    case tree
+    case flower
 }
 
 struct GardenItem: Identifiable, Codable {
-    var id: String = UUID().uuidString
+    var id: String { UUID().uuidString }
+    var type: GardenItemType
     var name: String
-    var height: Double
+    var x: Double = 0 // Proportion
+    var y: Double = 0 // Proportion
+    var scale: Double = 1
 }

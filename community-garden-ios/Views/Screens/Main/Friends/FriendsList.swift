@@ -8,6 +8,27 @@
 import SwiftUI
 import SpriteKit
 
+
+struct FriendsList: View {
+    
+    @EnvironmentObject var friendsViewModel: FriendsViewModel
+    
+    var body: some View {
+        NavigationView {
+            ZStack {
+                
+                MainBackground()
+                
+    //            List(friendsViewModel.friendsList){ friend in
+    //                NavigationLink(destination: FriendGardenView(friend: friend)) {
+    //                    Text(friend.name)
+    //                }
+    //            }
+            }
+        }
+    }
+}
+
 struct FriendGardenView: View {
     
     var friend: User
@@ -26,11 +47,7 @@ struct FriendGardenView: View {
                 .edgesIgnoringSafeArea(.top)
             VStack {
                 HStack {
-                    
-               
                     Spacer()
-                    
-                    
                 }
                 .padding(20)
                 Spacer()
@@ -40,25 +57,6 @@ struct FriendGardenView: View {
     }
     
 }
-
-struct FriendsList: View {
-    
-    @EnvironmentObject var friendsViewModel: FriendsViewModel
-    
-    var body: some View {
-        ZStack {
-            
-            MainBackground()
-            
-//            List(friendsViewModel.friendsList){ friend in
-//                NavigationLink(destination: FriendGardenView(friend: friend)) {
-//                    Text(friend.name)
-//                }
-//            }
-        }
-    }
-}
-
 
 struct FriendsList_Previews: PreviewProvider {
     static var previews: some View {
