@@ -32,7 +32,8 @@ class Collections {
     }
     
     @objc func setupCollections(){
-        let userID = Auth.auth().currentUser!.uid
+        guard let user = Auth.auth().currentUser else { return }
+        let userID = user.uid
                 
         for name in topLevelCollections {
             toplevelCollectionsMap[name] = db.collection(name)

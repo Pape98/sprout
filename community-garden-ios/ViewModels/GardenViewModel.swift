@@ -16,6 +16,7 @@ class GardenViewModel: ObservableObject {
     @Published var items: [GardenItem] = []
     var flowers: [GardenItem] = []
     var dropItem = GardenElement.droplet
+    var tree: GardenItem?
     
     var userDefaultTree: String {
         let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "moss"
@@ -37,6 +38,10 @@ class GardenViewModel: ObservableObject {
         gardenRepo.getItems { result in
             DispatchQueue.main.async {
                 self.items = result
+                // Get single tree
+                if let i = result.firstIndex(where: { $0.type == GardenItemType.tree }) {
+                    self.tree = result[i]
+                }
             }
         }
     }
@@ -50,6 +55,11 @@ class GardenViewModel: ObservableObject {
         flowers.append(flower)
     }
     
+    func saveItems(){
+        saveFlowers()
+        saveTreeScale()
+    }
+    
     func saveFlowers(){
         for flower in flowers {
             gardenRepo.addItem(item: flower)
@@ -58,7 +68,9 @@ class GardenViewModel: ObservableObject {
         flowers = []
     }
     
-    func getTree(){
-        
+    func saveTreeScale(){
+        if let item = tree {
+            gardenRepo.udpateGardenItem(docName: "tree", updates: item)
+        }
     }
 }

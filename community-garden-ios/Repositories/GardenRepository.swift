@@ -44,6 +44,13 @@ class GardenRepository {
         }
     }
     
+    func udpateGardenItem(docName: String, updates: GardenItem){
+        let collection = collections.getCollectionReference("gardenItems")
+        guard let collection = collection else { return }
+        let docRef = collection.document(docName)
+        saveData(docRef: docRef, data: updates)
+    }
+    
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){
         do {

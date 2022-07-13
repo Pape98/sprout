@@ -52,7 +52,7 @@ struct MyGarden: View {
                 gardenViewModel.getItems()
             }
             .onDisappear {
-                gardenViewModel.saveFlowers()
+                gardenViewModel.saveItems()
             }
             .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
                 Button("\(GardenElement.droplet.rawValue)💧"){

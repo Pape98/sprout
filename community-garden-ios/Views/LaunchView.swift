@@ -35,6 +35,9 @@ struct LaunchView: View {
             }
         }
         .foregroundColor(.seaGreen)
+        .onAppear {
+            authModel.checkLogin()
+        }
         .environmentObject(onboardingViewModel)
         .environmentObject(onboardingRouter)
     }

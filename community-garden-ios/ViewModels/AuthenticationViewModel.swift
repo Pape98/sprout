@@ -36,7 +36,6 @@ class AuthenticationViewModel: ObservableObject {
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
         setLoggedInUserProfile()
-        
     }
     
     func checkLogin() {
@@ -57,7 +56,7 @@ class AuthenticationViewModel: ObservableObject {
     // Set user information from Google
     func setLoggedInUserProfile(){
         checkLogin()
-                
+        
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
@@ -112,8 +111,6 @@ class AuthenticationViewModel: ObservableObject {
                         return
                     }
                     
-                    print("exist", self.userRepository.doesUserExsist )
-                    
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
                     // Check user if already exists in database
@@ -128,7 +125,7 @@ class AuthenticationViewModel: ObservableObject {
                                                name: user.profile!.name,
                                                email: user.profile!.email
                             )
-                                                        
+                            
                             self.userRepository.createNewUser(newUser)
                         }
                         

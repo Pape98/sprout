@@ -106,12 +106,12 @@ extension Color {
 extension Text {
     func headerStyle() -> some View {
         self.font(.largeTitle)
-            .foregroundColor(.seaGreen)
+            .foregroundColor(.black)
             .bold()
     }
     
     func bodyStyle() -> some View {
-        self.foregroundColor(.seaGreen)
+        self.foregroundColor(.black)
             .opacity(0.66)
     }
 }

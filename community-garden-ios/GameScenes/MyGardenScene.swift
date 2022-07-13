@@ -76,6 +76,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // Timer
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+        
     }
     
     
@@ -99,7 +100,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // MARK: Tree methods
-    func addTree(_ treeObject: GardenItem) {
+    func addTree() {
+        guard let treeObject = gardenViewModel.tree else { return }
         // Tree
         let treeTexture = SKTexture(imageNamed: treeObject.name)
         tree = SKSpriteNode(texture: treeTexture)
@@ -115,7 +117,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         tree.physicsBody?.isDynamic = false
         
         tree.setScale(0)
-        
+        print("in scene", treeObject.scale)
         let treeAction = SKAction.scale(to: treeObject.scale, duration: SCALE_DURATION)
         tree.run(treeAction)
         addChild(tree)
@@ -154,10 +156,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     func addExisitingItems(){
         for item in gardenViewModel.items {
             switch item.type {
-            case GardenItemType.flower:
+            case .flower:
                 addExistingFlower(item)
-            case GardenItemType.tree:
-                addTree(item)
+            case .tree:
+                addTree()
             }
         }
     }
@@ -260,9 +262,12 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     func handleTreeDropletContact(droplet: SKNode){
         // Only increase height if less than max height
         if tree.size.height < growthBreakpoint && gardenViewModel.dropItem == GardenElement.droplet {
-            let treeHeight = tree.xScale + TREE_SCALE_FACTOR
-            let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
+            let treeScale = tree.xScale + TREE_SCALE_FACTOR
+            let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
             tree.run(treeAction)
+            
+            // Update tree object's scale
+            gardenViewModel.tree?.scale = treeScale
         }
         droplet.removeFromParent()
     }

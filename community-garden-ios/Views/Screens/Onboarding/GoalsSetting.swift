@@ -45,7 +45,6 @@ struct GoalSlider: View {
         VStack(spacing: 10) {
             Text(GoalsSettings.titles[goalName]!)
                 .font(.title3)
-                .foregroundColor(.seaGreen)
                 .bold()
             Slider(
                 value: $value,

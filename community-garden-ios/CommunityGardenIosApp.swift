@@ -22,9 +22,7 @@ struct CommunityGardenIosApp: App {
     
     var body: some Scene {
         WindowGroup {
-            LaunchView().onAppear(){
-                authViewModel.checkLogin()
-            }
+            LaunchView()
             .environmentObject(authViewModel)
             .environmentObject(appViewModel)
         }
