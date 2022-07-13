@@ -10,7 +10,6 @@ import SpriteKit
 
 struct MyGarden: View {
     
-    @State private var dropElement = GardenElement.droplet
     @State private var showPickDropElementAlert = false
     
     @EnvironmentObject var userViewModel: UserViewModel
@@ -41,7 +40,7 @@ struct MyGarden: View {
                             showPickDropElementAlert = true
                         }
                         
-                        Image(dropElement.rawValue)
+                        Image(gardenViewModel.dropItem.rawValue)
                             .resizable()
                             .scaledToFit()
                             .frame(width: 30, height: 30)
@@ -49,12 +48,18 @@ struct MyGarden: View {
                     }
                 }
             }
+            .onAppear {
+                gardenViewModel.getItems()
+            }
+            .onDisappear {
+                gardenViewModel.saveFlowers()
+            }
             .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
                 Button("\(GardenElement.droplet.rawValue)💧"){
-                    dropElement = GardenElement.droplet
+                    gardenViewModel.dropItem = GardenElement.droplet
                 }
                 Button("\(GardenElement.seed.rawValue)🌱"){
-                    dropElement = GardenElement.seed
+                    gardenViewModel.dropItem = GardenElement.seed
                 }
             }
         

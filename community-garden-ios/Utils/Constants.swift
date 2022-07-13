@@ -27,6 +27,9 @@ enum MappingKeys: String {
 enum GardenElement: String {
     case droplet
     case seed
+    case animal
+    case tree
+    case flower
 }
 
 enum DataOptions: String, CaseIterable {

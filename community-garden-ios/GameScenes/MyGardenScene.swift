@@ -9,16 +9,16 @@ import SpriteKit
 
 enum CollisionTypes: UInt32 {
     case tree = 1
-    case droplet = 2
-    case ground = 4
-    case flower = 8
+    case ground = 2
+    case dropItem = 4
 }
 
 enum NodeNames: String {
-    case tree = "tree"
-    case droplet = "droplet"
-    case ground = "ground"
-    case flower = "flower"
+    case tree
+    case droplet
+    case ground
+    case flower
+    case seed
 }
 
 class MyGardenScene: SKScene, SKPhysicsContactDelegate {
@@ -26,8 +26,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     let TREE_SCALE_FACTOR = 0.25
     let SCALE_DURATION = 2.0
     let userDefaults = UserDefaultsService.shared
-    
-    let gardenViewModel: GardenViewModel = GardenViewModel.shared
     
     // Defaults
     var TREE: String {
@@ -42,8 +40,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         return "\(color)-\(flower)"
     }
     
+    // SKNode
     var tree: SKSpriteNode!
     var ground: SKSpriteNode!
+    
+    
     var dropletSound: SKAudioNode!
     var gameTimer: Timer?
     
@@ -56,8 +57,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     // ViewModels
     let userViewModel = UserViewModel.shared
+    let gardenViewModel: GardenViewModel = GardenViewModel.shared
     
-    var dropletNums = 5
     
     override func didMove(to view: SKView) {
         
@@ -70,17 +71,13 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // Scene setup
         ground = setupGround()
-        let _ = setupTree(ground: ground)
-        addExistingItems()
+        
+        addExisitingItems()
         
         // Timer
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
-        
     }
     
-    func addExistingItems(){
-        addAllFlowers()
-    }
     
     func setupGround() -> SKSpriteNode {
         let groundTexture = SKTexture(imageNamed: "ground")
@@ -94,44 +91,45 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let groundPhysicsBodySize = CGSize(width: ground.size.width * 2, height: ground.size.height)
         ground.physicsBody = SKPhysicsBody(texture: groundTexture, size: groundPhysicsBodySize)
         ground.physicsBody?.categoryBitMask = CollisionTypes.ground.rawValue
-        ground.physicsBody?.contactTestBitMask = CollisionTypes.droplet.rawValue
+        ground.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
         ground.physicsBody?.isDynamic = false
         
         addChild(ground)
         return ground
     }
     
-    func setupTree(ground: SKSpriteNode) -> SKSpriteNode{
+    // MARK: Tree methods
+    func addTree(_ treeObject: GardenItem) {
         // Tree
-        let treeTexture = SKTexture(imageNamed: TREE)
+        let treeTexture = SKTexture(imageNamed: treeObject.name)
         tree = SKSpriteNode(texture: treeTexture)
         tree.anchorPoint = CGPoint(x:0.5, y: 0)
         tree.position = CGPoint(x: frame.midX, y: ground.size.height / 2)
         tree.name = NodeNames.tree.rawValue
+        tree.zPosition = 5
         
         let physicsBodySize = CGSize(width: tree.size.width, height: tree.size.height * 1.5)
         tree.physicsBody = SKPhysicsBody(texture: treeTexture, size: physicsBodySize)
         tree.physicsBody?.categoryBitMask = CollisionTypes.tree.rawValue
-        tree.physicsBody?.contactTestBitMask = CollisionTypes.droplet.rawValue
+        tree.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
         tree.physicsBody?.isDynamic = false
         
         tree.setScale(0)
         
-        //        let treeHeight = CGFloat(UserService.shared.user.gardenItems[0].height)
-        let treeAction = SKAction.scale(to: 1, duration: SCALE_DURATION)
+        let treeAction = SKAction.scale(to: treeObject.scale, duration: SCALE_DURATION)
         tree.run(treeAction)
         addChild(tree)
-        
-        return tree
     }
     
+    
+    // MARK: Flower methods
     func createNewFlower(position: CGPoint) {
         // Garden Flower
         let flower = SKSpriteNode(imageNamed: "flowers/\(FLOWER)")
         
         flower.anchorPoint = CGPoint(x: 0, y: 0)
         flower.position = CGPoint(x: position.x, y: getRandomCGFloat(5, ground.size.height * 0.7))
-        flower.zPosition = 10
+
         flower.name = NodeNames.flower.rawValue
         flower.colorBlendFactor = getRandomCGFloat(0, 0.2)
         flower.setScale(0)
@@ -146,21 +144,25 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let y = flower.position.y / frame.maxY
         
         let flowerItem = GardenItem(type: GardenItemType.flower,
-                                    name: FLOWER, x: x, y: y, scale: scale)
+                                    name: FLOWER, x: x, y: y,
+                                    scale: scale)
         
         gardenViewModel.addFlower(flowerItem)
         
     }
     
-    func addAllFlowers(){
+    func addExisitingItems(){
         for item in gardenViewModel.items {
-            if item.type == GardenItemType.flower {
-                addExistingFlower(flower: item)
+            switch item.type {
+            case GardenItemType.flower:
+                addExistingFlower(item)
+            case GardenItemType.tree:
+                addTree(item)
             }
         }
     }
     
-    func addExistingFlower(flower: GardenItem){
+    func addExistingFlower(_ flower: GardenItem){
         let node = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
         node.anchorPoint = CGPoint(x: 0, y: 0)
         node.position = CGPoint(x: flower.x * frame.width, y: flower.y * frame.height)
@@ -172,6 +174,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         addChild(node)
     }
     
+    // MARK: SKScene methods
     override func update(_ currentTime: TimeInterval) {
         for node in children {
             if node.position.x > frame.maxX {
@@ -183,18 +186,51 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        releaseDroplet(position: location)
+        releaseDropItem(position: location)
     }
     
-    func releaseDroplet(position: CGPoint){
-        let droplet = SKSpriteNode(imageNamed: "droplet")
+    func didBegin(_ contact: SKPhysicsContact) {
+        
+        guard let nodeA = contact.bodyA.node else { return }
+        guard let nodeB = contact.bodyB.node else { return }
+        
+        
+        // Contact droplet + tree
+        if nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.tree.rawValue {
+            handleTreeDropletContact(droplet: nodeA)
+        } else if nodeB.name == NodeNames.droplet.rawValue && nodeA.name == NodeNames.tree.rawValue{
+            handleTreeDropletContact(droplet: nodeB)
+            
+        // Contact seed + ground
+        } else if(nodeA.name == NodeNames.seed.rawValue && nodeB.name == NodeNames.ground.rawValue){
+            handleFlowerSeedContact(position: contact.contactPoint, seed: nodeA)
+        } else if(nodeA.name == NodeNames.ground.rawValue && nodeB.name == NodeNames.seed.rawValue){
+            handleFlowerSeedContact(position: contact.contactPoint, seed: nodeB)
+        }
+        
+        // Others
+        else if nodeB.name == NodeNames.droplet.rawValue  || nodeB.name == NodeNames.seed.rawValue {
+            nodeB.removeFromParent()
+        } else if nodeA.name == NodeNames.droplet.rawValue || nodeB.name == NodeNames.seed.rawValue {
+            nodeA.removeFromParent()
+        }
+    }
+    
+    
+    // MARK: Garden item creation methods
+    func releaseDropItem(position: CGPoint){
+        let name = gardenViewModel.dropItem
+        let droplet = SKSpriteNode(imageNamed: name.rawValue)
         droplet.position = position
         droplet.setScale(0.55)
         droplet.physicsBody = SKPhysicsBody(circleOfRadius: droplet.size.width / 2)
-        droplet.physicsBody?.categoryBitMask = CollisionTypes.droplet.rawValue
-        droplet.physicsBody?.contactTestBitMask = CollisionTypes.tree.rawValue
+        droplet.physicsBody?.categoryBitMask = CollisionTypes.dropItem.rawValue
         
-        droplet.name = NodeNames.droplet.rawValue
+        if gardenViewModel.dropItem == GardenElement.droplet {
+            droplet.physicsBody?.contactTestBitMask = CollisionTypes.tree.rawValue
+        }
+        
+        droplet.name =  gardenViewModel.dropItem == GardenElement.droplet ? NodeNames.droplet.rawValue : NodeNames.seed.rawValue
         addChild(droplet)
     }
     
@@ -219,36 +255,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         addChild(cloud)
     }
     
-    func didBegin(_ contact: SKPhysicsContact) {
-        
-        guard let nodeA = contact.bodyA.node else { return }
-        guard let nodeB = contact.bodyB.node else { return }
-        
-        
-        // Contact droplet + tree
-        if nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.tree.rawValue {
-            handleTreeDropletContact(droplet: nodeA)
-        } else if nodeB.name == NodeNames.droplet.rawValue && nodeA.name == NodeNames.tree.rawValue{
-            handleTreeDropletContact(droplet: nodeB)
-            
-            // Contact droplet + ground
-        } else if(nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.ground.rawValue){
-            handleFlowerDropletContact(position: contact.contactPoint, droplet: nodeA)
-        } else if(nodeA.name == NodeNames.ground.rawValue && nodeB.name == NodeNames.droplet.rawValue){
-            handleFlowerDropletContact(position: contact.contactPoint, droplet: nodeB)
-        }
-        
-        // Others
-        else if nodeB.name == NodeNames.droplet.rawValue {
-            nodeB.removeFromParent()
-        } else if nodeA.name == NodeNames.droplet.rawValue {
-            nodeA.removeFromParent()
-        }
-    }
     
+    // MARK: Utility methods
     func handleTreeDropletContact(droplet: SKNode){
         // Only increase height if less than max height
-        if tree.size.height < growthBreakpoint {
+        if tree.size.height < growthBreakpoint && gardenViewModel.dropItem == GardenElement.droplet {
             let treeHeight = tree.xScale + TREE_SCALE_FACTOR
             let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
             tree.run(treeAction)
@@ -256,11 +267,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         droplet.removeFromParent()
     }
     
-    func handleFlowerDropletContact(position: CGPoint, droplet: SKNode){
-        // Create fower if tree is at max height
-        if tree.size.height >= growthBreakpoint {
+    func handleFlowerSeedContact(position: CGPoint, seed: SKNode){
+        if gardenViewModel.dropItem == GardenElement.seed {
             createNewFlower(position: position)
         }
-        droplet.removeFromParent()
+        seed.removeFromParent()
     }
+    
 }

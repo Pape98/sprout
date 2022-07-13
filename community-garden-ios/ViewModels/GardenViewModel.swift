@@ -12,7 +12,10 @@ class GardenViewModel: ObservableObject {
     static var shared: GardenViewModel = GardenViewModel()
     let gardenRepo = GardenRepository.shared
     let userDefaults = UserDefaultsService.shared
+    
     @Published var items: [GardenItem] = []
+    var flowers: [GardenItem] = []
+    var dropItem = GardenElement.droplet
     
     var userDefaultTree: String {
         let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "moss"
@@ -44,11 +47,18 @@ class GardenViewModel: ObservableObject {
     }
     
     func addFlower(_ flower: GardenItem){
-        gardenRepo.addItem(item: flower)
-        DispatchQueue.main.async {
-            self.items.append(flower)
-        }
+        flowers.append(flower)
     }
     
+    func saveFlowers(){
+        for flower in flowers {
+            gardenRepo.addItem(item: flower)
+            items.append(flower)
+        }
+        flowers = []
+    }
     
+    func getTree(){
+        
+    }
 }

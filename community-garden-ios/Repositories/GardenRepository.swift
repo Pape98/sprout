@@ -44,7 +44,6 @@ class GardenRepository {
         }
     }
     
-    
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){
         do {
@@ -55,6 +54,9 @@ class GardenRepository {
     }
     
     func docName(item: GardenItem) -> String {
+        if item.type == GardenItemType.tree {
+            return "tree"
+        }
         return "\(item.type)-\(item.id)"
     }
 }
