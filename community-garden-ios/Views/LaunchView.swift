@@ -11,10 +11,6 @@ struct LaunchView: View {
     
     // View Models
     @EnvironmentObject var authModel: AuthenticationViewModel
-    @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
-    @StateObject var userViewModel: UserViewModel = UserViewModel.shared
-    @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
-    @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
     @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel.shared
     // Routers
     @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
@@ -39,12 +35,8 @@ struct LaunchView: View {
             }
         }
         .foregroundColor(.seaGreen)
-        .environmentObject(userViewModel)
-        .environmentObject(friendsViewModel)
-        .environmentObject(gardenViewModel)
         .environmentObject(onboardingViewModel)
         .environmentObject(onboardingRouter)
-        .environmentObject(healthStoreViewModel)
     }
 }
 

@@ -57,14 +57,17 @@ class AuthenticationViewModel: ObservableObject {
     // Set user information from Google
     func setLoggedInUserProfile(){
         checkLogin()
-        
+                
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
                 UserService.shared.user = result
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
             }
-            
+            // Check login status again to update UI
+            DispatchQueue.main.async {
+                self.checkLogin()
+            }
         }
         
     }
@@ -109,29 +112,27 @@ class AuthenticationViewModel: ObservableObject {
                         return
                     }
                     
+                    print("exist", self.userRepository.doesUserExsist )
+                    
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
                     // Check user if already exists in database
                     self.userRepository.doesUserExist(userID: userID){
                         
-                        
                         // If user does not exist, create a new account
                         if self.userRepository.doesUserExsist == false {
+                            
                             let user = user!
                             
                             let newUser = User(id: userID,
                                                name: user.profile!.name,
                                                email: user.profile!.email
                             )
-                            
+                                                        
                             self.userRepository.createNewUser(newUser)
                         }
                         
                         self.setLoggedInUserProfile()
-                    }
-                    // Check login status again to update UI
-                    DispatchQueue.main.async {
-                        self.checkLogin()
                     }
                 }
             }

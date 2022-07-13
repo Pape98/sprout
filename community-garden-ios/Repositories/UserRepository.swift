@@ -12,6 +12,7 @@ import GoogleSignIn
 class UserRepository {
     
     // MARK: - Properties
+    let collections = Collections.shared
     let usersCollection: CollectionReference?
     static let shared = UserRepository() // Single repo instance shared
     var doesUserExsist = false
@@ -20,7 +21,7 @@ class UserRepository {
     
     init() {
         // Get collection references
-        usersCollection = Collections.shared.getCollectionReference("users")
+        usersCollection = collections.db.collection("users")
     }
     
     func createNewUser(_ user: User) {
