@@ -61,6 +61,5 @@ class ProgressRepository {
     
     @objc func resetProgress(){
         SQLiteDB.resetProgress(forceReset: true)
-        print("out")
     }
 }

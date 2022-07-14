@@ -32,6 +32,8 @@ class GardenViewModel: ObservableObject {
     
     init(){
         getItems()
+//        deleteFlowers()
+//        resetTree()
     }
     
     func getItems() -> Void {
@@ -72,5 +74,15 @@ class GardenViewModel: ObservableObject {
         if let item = tree {
             gardenRepo.udpateGardenItem(docName: "tree", updates: item)
         }
+    }
+    
+    func resetTree(){
+        let tree = GardenItem(type: GardenItemType.tree, name: userDefaultTree, scale: 0.2)
+        gardenRepo.udpateGardenItem(docName: "tree", updates: tree)
+    }
+    
+    func deleteFlowers(){
+        gardenRepo.resetFlowers()
+        flowers = []
     }
 }

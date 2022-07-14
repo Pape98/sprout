@@ -13,7 +13,7 @@ struct MainView: View {
     @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
-    @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
+    @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared    
     
     var body: some View {
         
@@ -45,7 +45,6 @@ struct MainView_Previews: PreviewProvider {
         MainView()
             .environmentObject(UserViewModel())
             .environmentObject(HealthStoreViewModel())
-            .environmentObject(GardenViewModel())
             .environmentObject(FriendsViewModel())
     }
 }

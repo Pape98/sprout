@@ -11,6 +11,7 @@ import FirebaseFirestore
 class GardenRepository {
     static let shared = GardenRepository()
     let collections = Collections.shared
+    let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
     
     
     func addItem(item: GardenItem){
@@ -23,7 +24,8 @@ class GardenRepository {
     func getItems(completion: @escaping ([GardenItem]) -> Void){
         let collection = collections.getCollectionReference("gardenItems")
         guard let collection = collection else { return }
-        collection.getDocuments { querySnapshot, error in
+        let query = collection.whereField("date", isEqualTo: today)
+        query.getDocuments { querySnapshot, error in
             
             if error != nil {
                 print("getItems: Error writing to Firestore: \(error!)")
@@ -51,6 +53,22 @@ class GardenRepository {
         saveData(docRef: docRef, data: updates)
     }
     
+    func resetFlowers(){
+        let collection = collections.getCollectionReference("gardenItems")
+        guard let collection = collection else { return }
+        let query = collection.whereField("type", isEqualTo: "flower")
+        query.getDocuments { querySnapshot, error in
+            if error != nil {
+                print("getItems: Error writing to Firestore: \(error!)")
+                return
+            }
+            for doc in querySnapshot!.documents {
+                doc.reference.delete()
+            }
+        }
+        
+    }
+    
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){
         do {
@@ -66,4 +84,5 @@ class GardenRepository {
         }
         return "\(item.type)-\(item.id)"
     }
+    
 }

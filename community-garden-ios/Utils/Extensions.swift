@@ -131,8 +131,8 @@ extension View {
         environment(\.userDefaultsKey, value)
     }
     
-    func weatherOverlay() -> some View {
-        modifier(WeatherOverlay())
+    func weatherOverlay(showStats: Bool = true, opacity: Double = 1) -> some View {
+        modifier(WeatherOverlay(showStats: showStats, opacity: opacity))
     }
     
     func segment() -> some View {

@@ -32,12 +32,13 @@ struct MyGarden: View {
         SpriteView(scene: scene, options: [.allowsTransparency])
             .ignoresSafeArea(.container, edges:[.top])
             .weatherOverlay()
-            .navigationBarTitle(gardenName, displayMode: .inline)
+            .navigationBarTitle(gardenName, displayMode: NavigationBarItem.TitleDisplayMode.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {
                         Button("Pick"){
                             showPickDropElementAlert = true
+                            gardenViewModel.saveItems()
                         }
                         
                         Image(gardenViewModel.dropItem.rawValue)

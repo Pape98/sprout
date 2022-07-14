@@ -19,43 +19,18 @@ struct FriendsList: View {
                 
                 MainBackground()
                 
-    //            List(friendsViewModel.friendsList){ friend in
-    //                NavigationLink(destination: FriendGardenView(friend: friend)) {
-    //                    Text(friend.name)
-    //                }
-    //            }
-            }
-        }
-    }
-}
-
-struct FriendGardenView: View {
-    
-    var friend: User
-    
-    var scene: SKScene {
-        let scene = FriendGardenScene()
-        scene.friend = friend
-        scene.scaleMode = SKSceneScaleMode.resizeFill
-        return scene
-        
-    }
-    
-    var body: some View {
-        ZStack{
-            SpriteView(scene: scene)
-                .edgesIgnoringSafeArea(.top)
-            VStack {
-                HStack {
-                    Spacer()
+                ScrollView {
+                    VStack {
+                        ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
+                            Garden()
+                        }
+                    }
                 }
-                .padding(20)
-                Spacer()
             }
-            
+            .navigationBarTitle("My Friends", displayMode: .inline)
         }
+        .navigationViewStyle(.stack)
     }
-    
 }
 
 struct FriendsList_Previews: PreviewProvider {

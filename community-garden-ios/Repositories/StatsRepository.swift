@@ -80,6 +80,7 @@ class StatsRepository {
     }
     
     func workoutsChangeCallback(value: Double){
+        // TODO: Finish implementation
     }
     
     func walkingRunningChangeCallback(value: Double){
@@ -93,6 +94,7 @@ class StatsRepository {
     }
     
     func sleepChangeCallback(value: Double){
+        // TODO: Finish implementation
     }
     
     // MARK: Utility Methods

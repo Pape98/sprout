@@ -10,31 +10,24 @@ import SpriteKit
 
 class FriendGardenScene: SKScene {
     
-    var friend: User?
     var tree: SKSpriteNode!
-    let SCALE_DURATION = 2.5
+    var ground: SKSpriteNode!
+    var gameTimer: Timer?
     
     override func didMove(to view: SKView) {
         
         // Background
-        let background = SKSpriteNode(imageNamed: "background")
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        background.blendMode = .replace
-        background.zPosition = -1
-        addChild(background)
+        self.backgroundColor = .clear
+        
+        // Ground
+        ground = SceneHelper.setupGround(scene: self)
         
         // Tree
-        let treeTexture = SKTexture(imageNamed: "tree1")
-        tree = SKSpriteNode(texture: treeTexture)
-        tree.anchorPoint = CGPoint(x:0.5, y: 0)
-        tree.position = CGPoint(x: frame.midX, y:0)
-        tree.name = NodeNames.tree.rawValue
-        let treeHeight = 1.0
-        tree.setScale(0)
-        let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
-        tree.run(treeAction)
-        addChild(tree)
+        let tree = GardenItem(type: GardenItemType.tree, name: "cosmos-serpent-sumac", scale: 0.6)
+        SceneHelper.addTree(tree: tree, ground: ground, scene: self)
         
+        // Timer
+        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(SceneHelper.createCloud(scene: self)), userInfo: nil, repeats: true)
     }
     
 }

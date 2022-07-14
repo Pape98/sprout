@@ -28,9 +28,9 @@ class UserRepository {
         guard let usersCollection = usersCollection else {
             return
         }
-
+        
         do {
-            try usersCollection.document(user.id).setData(from: user)
+            try usersCollection.document(user.name).setData(from: user)
         } catch let err {
             print("[createNewUser()]","Error writing document: \(err)")
         }
@@ -93,7 +93,7 @@ class UserRepository {
         }
         // Get document reference
         let userRef = usersCollection.document(userID)
-                
+        
         userRef.updateData(updates) { err in
             if let err = err {
                 print("Error updating document: \(err)")

@@ -11,8 +11,10 @@ import SwiftUI
 struct WeatherOverlay: ViewModifier {
     
     @EnvironmentObject var userViewModel: UserViewModel
+    var showStats: Bool
+    var opacity: Double
     
-    var weatherInfo = getWeatherInfo()
+    let weatherInfo = getWeatherInfo()
     
     func body(content: Content) -> some View {
         
@@ -21,22 +23,24 @@ struct WeatherOverlay: ViewModifier {
             Image(weatherInfo["image"]!)
                 .resizable()
                 .ignoresSafeArea()
+                .opacity(opacity)
             // Scene View
             content
             
-            // Stats
-            VStack(spacing: 10) {
-                if let numDroplets = userViewModel.numDroplets {
-                    Stats(image: "droplet-icon", value: Int(numDroplets.value))
+            if showStats {
+                // Stats
+                VStack(spacing: 10) {
+                    if let numDroplets = userViewModel.numDroplets {
+                        Stats(image: "droplet-icon", value: Int(numDroplets.value))
+                    }
+                    
+                    if let numSeeds = userViewModel.numSeeds {
+                        Stats(image: "seed-icon", value: Int(numSeeds.value))
+                    }
                 }
-                
-                if let numSeeds = userViewModel.numSeeds {
-                    Stats(image: "seed-icon", value: Int(numSeeds.value))
-                }
+                .padding()
             }
-            .padding()
         }
-        
         .overlay {
             Rectangle()
                 .fill(Color(weatherInfo["color"]!))
