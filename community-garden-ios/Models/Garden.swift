@@ -7,6 +7,13 @@
 
 import Foundation
 
+
+struct UserGarden: Identifiable {
+    var id: ObjectIdentifier
+    var user: User
+    var items: [GardenItem]
+}
+
 enum GardenItemType: String, Codable {
     case tree
     case flower

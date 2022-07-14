@@ -76,7 +76,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         addExisitingItems()
         
         // Timer
-        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(SceneHelper.createCloud(scene: self)), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
         
     }
     
@@ -177,6 +177,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         droplet.name =  gardenViewModel.dropItem == GardenElement.droplet ? NodeNames.droplet.rawValue : NodeNames.seed.rawValue
         addChild(droplet)
+    }
+    
+    @objc func createCloud(){
+        SceneHelper.createCloud(scene: self)
     }
     
     // MARK: Utility methods

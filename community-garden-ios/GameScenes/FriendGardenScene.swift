@@ -27,7 +27,11 @@ class FriendGardenScene: SKScene {
         SceneHelper.addTree(tree: tree, ground: ground, scene: self)
         
         // Timer
-        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(SceneHelper.createCloud(scene: self)), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+    }
+    
+    @objc func createCloud(){
+        SceneHelper.createCloud(scene: self)
     }
     
 }

@@ -111,7 +111,9 @@ class UserRepository {
         guard let usersCollection = usersCollection else {
             return
         }
-        usersCollection.whereField("id", isNotEqualTo: userID).getDocuments { querySnapshot, error in
+        let query = usersCollection.whereField("id", isNotEqualTo: userID)
+        
+        query.getDocuments { querySnapshot, error in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {

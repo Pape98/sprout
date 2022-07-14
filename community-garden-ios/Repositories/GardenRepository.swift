@@ -21,8 +21,8 @@ class GardenRepository {
         saveData(docRef: docRef, data: item)
     }
     
-    func getItems(completion: @escaping ([GardenItem]) -> Void){
-        let collection = collections.getCollectionReference("gardenItems")
+    func getItems(userID: String = "" , completion: @escaping ([GardenItem]) -> Void){
+        let collection = userID == "" ? collections.getCollectionReference("gardenItems") : collections.db.collection(userID)
         guard let collection = collection else { return }
         let query = collection.whereField("date", isEqualTo: today)
         query.getDocuments { querySnapshot, error in
@@ -68,6 +68,7 @@ class GardenRepository {
         }
         
     }
+    
     
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){

@@ -42,12 +42,13 @@ struct LastSteps: View {
                     return
                 }
                 
-                // Update view model to take user to home screen
-                onboardingViewModel.isNewUser = OnboardingStatus.EXISITING_USER
                 // Save data in user default
                 userDefaults.save(value: OnboardingStatus.EXISITING_USER.rawValue, key: UserDefaultsKey.IS_NEW_USER)
                 userDefaults.save(value: gardenName, key: UserDefaultsKey.GARDEN_NAME)
                 userDefaults.save(value: reflectWeatherChanges, key: UserDefaultsKey.REFLECT_WEATHER_CHANGES)
+                
+                // Update view model to take user to home screen
+                onboardingViewModel.isNewUser = OnboardingStatus.EXISITING_USER
             }
             .frame(maxWidth: 250)
             .padding()
