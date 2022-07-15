@@ -26,5 +26,12 @@ class FriendGardenScene: SKScene {
         let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: "cosmos-serpent-sumac", scale: 0.6)
         SceneHelper.addTree(tree: tree, ground: ground, scene: self)
         
+        // Timer
+        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
     }
+    
+    @objc func createCloud(){
+        SceneHelper.createCloud(scene: self, scale: 0.4)
+    }
+    
 }

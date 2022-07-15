@@ -69,11 +69,11 @@ class SceneHelper {
     }
     
     
-    @objc static func createCloud(scene: SKScene) {
+    @objc static func createCloud(scene: SKScene, scale: Double = 0.75) {
         guard let selectedCloud = clouds.randomElement() else { return }
         let cloud = SKSpriteNode(imageNamed: selectedCloud)
         
-        cloud.setScale(0.75)
+        cloud.setScale(scale)
         cloud.anchorPoint = CGPoint(x: 0, y: 0.5)
         let randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.midY+20,scene.frame.maxY))
         

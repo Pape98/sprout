@@ -65,7 +65,6 @@ class GardenRepository {
         }
     }
     
-    
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){
         do {

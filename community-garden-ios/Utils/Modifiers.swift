@@ -29,7 +29,7 @@ struct WeatherOverlay: ViewModifier {
             
             if showStats {
                 // Stats
-                VStack(spacing: 10) {
+                VStack(alignment: .leading, spacing: 10) {
                     if let numDroplets = userViewModel.numDroplets {
                         Stats(image: "droplet-icon", value: Int(numDroplets.value))
                     }
