@@ -21,10 +21,7 @@ class GardenRepository {
         saveData(docRef: docRef, data: item)
     }
     
-    func getItems(userID: String = "" , completion: @escaping ([GardenItem]) -> Void){
-        let collection = userID == "" ? collections.getCollectionReference("gardenItems") : collections.db.collection(userID)
-        guard let collection = collection else { return }
-        let query = collection.whereField("date", isEqualTo: today)
+    func getItems(query: Query , completion: @escaping ([GardenItem]) -> Void){
         query.getDocuments { querySnapshot, error in
             
             if error != nil {
@@ -66,7 +63,6 @@ class GardenRepository {
                 doc.reference.delete()
             }
         }
-        
     }
     
     
@@ -80,10 +76,8 @@ class GardenRepository {
     }
     
     func docName(item: GardenItem) -> String {
-        if item.type == GardenItemType.tree {
-            return "tree"
-        }
-        return "\(item.type)-\(item.id)"
+        let name = "\(item.type.rawValue)-\(UserService.user.id)-\(today)"
+        return name
     }
     
 }

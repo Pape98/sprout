@@ -12,7 +12,7 @@ class UserViewModel: ObservableObject {
     
     // MARK: - Properties
     
-    @Published var currentUser: User = UserService.shared.user
+    @Published var currentUser: User = UserService.user
     @Published var numDroplets: Stat?
     @Published var numSeeds: Stat?
     
@@ -36,10 +36,10 @@ class UserViewModel: ObservableObject {
     }
     
     @objc func getUser() {
-        let user = UserService.shared.user
+        let user = UserService.user
         self.userRepository.fetchLoggedInUser(userID: user.id) { user in
             self.currentUser = user
-            UserService.shared.user = user
+            UserService.user = user
         }
     }
     

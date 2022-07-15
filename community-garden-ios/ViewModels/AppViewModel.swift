@@ -22,7 +22,7 @@ class AppViewModel: ObservableObject {
     @objc func setUserProfile(){
         let currentUser = Auth.auth().currentUser!
         let user = User(id: currentUser.uid, name: currentUser.displayName ?? "", email: currentUser.email ?? "")
-        UserService.shared.user = user
+        UserService.user = user
     }
     
     

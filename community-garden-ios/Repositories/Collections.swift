@@ -13,14 +13,16 @@ class Collections {
     
     let db: Firestore
     
-    let subCollections = ["steps", "workouts", "walkingRunning", "sleep", "gardenItems"]
-    let topLevelCollections = ["users"]
+    let subCollections: [String] = []
+    let topLevelCollections = ["users","gardenItems","steps", "workouts", "walkingRunning", "sleep"]
     let nc = NotificationCenter.default
     
     var subCollectionsMap: Dictionary<String, CollectionReference> = [:]
     var toplevelCollectionsMap :Dictionary<String, CollectionReference> = [:]
     
     static let shared = Collections()
+    static let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+
     
     init() {
         db = Firestore.firestore()

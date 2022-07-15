@@ -35,6 +35,7 @@ class AuthenticationViewModel: ObservableObject {
     init() {
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
+        checkLogin()
         setLoggedInUserProfile()
     }
     
@@ -60,7 +61,7 @@ class AuthenticationViewModel: ObservableObject {
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
-                UserService.shared.user = result
+                UserService.user = result
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
             }
             // Check login status again to update UI

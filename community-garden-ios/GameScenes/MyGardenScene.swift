@@ -101,7 +101,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let x = flower.position.x / frame.maxX
         let y = flower.position.y / frame.maxY
         
-        let flowerItem = GardenItem(type: GardenItemType.flower,
+        let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
                                     name: FLOWER, x: x, y: y,
                                     scale: scale)
         
@@ -129,6 +129,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("here")
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         releaseDropItem(position: location)

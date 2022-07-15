@@ -12,6 +12,7 @@ class GardenViewModel: ObservableObject {
     static var shared: GardenViewModel = GardenViewModel()
     let gardenRepo = GardenRepository.shared
     let userDefaults = UserDefaultsService.shared
+    let collections = Collections.shared
     
     @Published var items: [GardenItem] = []
     var flowers: [GardenItem] = []
@@ -37,7 +38,12 @@ class GardenViewModel: ObservableObject {
     }
     
     func getItems() -> Void {
-        gardenRepo.getItems { result in
+        let collection = collections.getCollectionReference("gardenItems")
+        guard let collection = collection else { return }
+        let query = collection.whereField("date", isEqualTo: Collections.today)
+                              .whereField("userID", isEqualTo: UserService.user.id)
+        
+        gardenRepo.getItems(query: query) { result in
             DispatchQueue.main.async {
                 self.items = result
                 // Get single tree
@@ -49,7 +55,7 @@ class GardenViewModel: ObservableObject {
     }
     
     func addTree(){
-        let tree = GardenItem(type: GardenItemType.tree, name: userDefaultTree)
+        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: userDefaultTree)
         gardenRepo.addItem(item: tree)
     }
     
@@ -77,7 +83,7 @@ class GardenViewModel: ObservableObject {
     }
     
     func resetTree(){
-        let tree = GardenItem(type: GardenItemType.tree, name: userDefaultTree, scale: 0.2)
+        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: userDefaultTree, scale: 0.2)
         gardenRepo.udpateGardenItem(docName: "tree", updates: tree)
     }
     

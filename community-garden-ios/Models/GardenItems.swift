@@ -21,6 +21,7 @@ enum GardenItemType: String, Codable {
 
 struct GardenItem: Identifiable, Codable {
     var id: String { UUID().uuidString }
+    var userID: String
     var type: GardenItemType
     var name: String
     var x: Double = 0 // Proportion

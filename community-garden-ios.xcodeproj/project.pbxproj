@@ -11,7 +11,7 @@
 		F005739227702F9B00EB487B /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* ActionButton.swift */; };
 		F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F37283C4E1600A176D6 /* FriendsList.swift */; };
 		F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */; };
-		F00A6F3C283C6DDA00A176D6 /* Garden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* Garden.swift */; };
+		F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */; };
 		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
 		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
 		F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0132C68286A746900267B9D /* GoalsSetting.swift */; };
@@ -92,7 +92,7 @@
 		F005739127702F9B00EB487B /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		F00A6F37283C4E1600A176D6 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
 		F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
-		F00A6F3B283C6DDA00A176D6 /* Garden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garden.swift; sourceTree = "<group>"; };
+		F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItems.swift; sourceTree = "<group>"; };
 		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
 		F0132C68286A746900267B9D /* GoalsSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsSetting.swift; sourceTree = "<group>"; };
@@ -419,11 +419,11 @@
 			children = (
 				F043F261287EEDD1008F211C /* AppViewModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
-				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
 				F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */,
+				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
 				F00A6F3D283C957800A176D6 /* GardenViewModel.swift */,
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
-				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
+				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -445,7 +445,7 @@
 			children = (
 				F0964269275B510300F1CEC1 /* Health.swift */,
 				F096426B275B513100F1CEC1 /* User.swift */,
-				F00A6F3B283C6DDA00A176D6 /* Garden.swift */,
+				F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */,
 				F0B6DAEB2875C30100DD3F03 /* Statistics.swift */,
 			);
 			path = Models;
@@ -655,7 +655,7 @@
 				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
-				F00A6F3C283C6DDA00A176D6 /* Garden.swift in Sources */,
+				F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */,
 				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
 				F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */,
 				F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */,

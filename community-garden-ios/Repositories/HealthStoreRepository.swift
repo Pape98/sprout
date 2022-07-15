@@ -11,16 +11,21 @@ import FirebaseAuth
 
 class HealthStoreRepository {
     
+    enum Data: String {
+        case sleep
+        case steps
+        case workouts
+        case walkingRunning
+    }
+    
     // MARK: - Properties
     static let shared = HealthStoreRepository()
     let collections = Collections.shared
     let healthStoreService: HealthStoreService = HealthStoreService()
     let userID: String?
     let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
-    let STEPS_COLLECTION = "steps"
     
     // MARK: - Methods
-    
     init() {
         userID = Auth.auth().currentUser?.uid
         healthStoreService.setUpAuthorization()
@@ -28,65 +33,70 @@ class HealthStoreRepository {
     
     // MARK: Saving data
     func saveStepCount(value v: Double){
-        let object = Step(date: today, count: v)
-        let collection = collections.getCollectionReference("steps")
+        let object = Step(date: today, count: v, userID: userID!)
+        let collection = collections.getCollectionReference(Data.steps.rawValue)
         guard let collection = collection else { return }
-        let docRef = collection.document(today)
+        let docRef = collection.document(getDocName())
         saveData(docRef: docRef, data: object, notification: NotificationType.FetchStepCount, message: v)
     }
     
     func saveWalkingRunningDistance(value v: Double){
-        let object = WalkingRunningDistance(date: today, distance: v)
-        let collection = collections.getCollectionReference("walkingRunning")
+        let object = WalkingRunningDistance(date: today, distance: v, userID: userID!)
+        let collection = collections.getCollectionReference(Data.walkingRunning.rawValue)
         guard let collection = collection else { return }
-        let docRef = collection.document(today)
+        let docRef = collection.document(getDocName())
         saveData(docRef: docRef, data: object, notification: NotificationType.FetchWalkingRunningDistance, message: v)
     }
     
     func saveWorkouts(value v: Double){
-        let object = Workout(date: today, duration: v)
-        let collection = collections.getCollectionReference("workouts")
+        let object = Workout(date: today, duration: v, userID: userID!)
+        let collection = collections.getCollectionReference(Data.workouts.rawValue)
         guard let collection = collection else { return }
-        let docRef = collection.document(today)
+        let docRef = collection.document(getDocName())
         saveData(docRef: docRef, data: object, notification: NotificationType.FetchWorkout, message: v)
     }
     
     func saveSleep(value v: Double){
-        let object = Sleep(date: today, duration: v)
-        let collection = collections.getCollectionReference("sleep")
+        let object = Sleep(date: today, duration: v, userID: userID!)
+        let collection = collections.getCollectionReference(Data.sleep.rawValue)
         guard let collection = collection else { return }
-        let docRef = collection.document(today)
+        let docRef = collection.document(getDocName())
         saveData(docRef: docRef, data: object, notification: NotificationType.FetchSleep, message: v)
     }
     
     
     // MARK: Retrieving data
     func getStepCountByDate(date: String, completion: @escaping (Step) -> Void) {
-        getDataByDate(collectionName: "steps", date: date, type: Step.self) { result in
+        getDataByDate(collectionName: Data.steps, date: date, type: Step.self) { result in
             completion(result)
         }
     }
     
     func getWalkingRunningDistanceByDate(date: String, completion: @escaping (WalkingRunningDistance) -> Void) {
-        getDataByDate(collectionName: "walkingRunning", date: date, type: WalkingRunningDistance.self) { result in
+        getDataByDate(collectionName: Data.walkingRunning, date: date, type: WalkingRunningDistance.self) { result in
             completion(result)
         }
     }
     
     func getWorkoutByDate(date: String, completion: @escaping (Workout) -> Void) {
-        getDataByDate(collectionName: "workouts", date: date, type: Workout.self) { result in
+        getDataByDate(collectionName: Data.workouts, date: date, type: Workout.self) { result in
             completion(result)
         }
     }
     
     func getSleepByDate(date: String, completion: @escaping (Sleep) -> Void) {
-        getDataByDate(collectionName: "sleep", date: date, type: Sleep.self) { result in
+        getDataByDate(collectionName: Data.sleep, date: date, type: Sleep.self) { result in
             completion(result)
         }
     }
     
     
     // MARK: Utility Methods
+    
+    func getDocName() -> String {
+        return "\(userID!)-\(today)"
+    }
+    
     func saveData<T: Encodable>(docRef: DocumentReference, data: T, notification: NotificationType, message: Double){
         do {
             try docRef.setData(from: data)
@@ -96,16 +106,16 @@ class HealthStoreRepository {
         }
     }
     
-    func getDataByDate<T: Decodable>(collectionName name: String, date: String, type: T.Type, completion: @escaping (T) -> Void) {
-        let collection = collections.getCollectionReference(name)
+    func getDataByDate<T: Decodable>(collectionName name: Data, date: String, type: T.Type, completion: @escaping (T) -> Void) {
+        let collection = collections.getCollectionReference(name.rawValue)
         guard let collection = collection else { return }
-        let docRef = collection.document(date)
+        let docRef = collection.document("\(userID!)-\(date)")
         docRef.getDocument(as: type) { result in
             switch result {
             case .success(let data):
                 completion(data)
             case .failure(let error):
-                print("Error writing \(name) to Firestore: \(error)")
+                print("Error getting \(name) to Firestore: \(error)")
             }
         }
     }

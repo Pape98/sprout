@@ -21,7 +21,7 @@ class FriendsViewModel: ObservableObject {
     
     // MARK: - Methods
     @objc func getFriends(){
-        let userID = UserService.shared.user.id
+        let userID = UserService.user.id
         userRepository.fetchAllUsers(userID: userID) { users in
             self.friendsList = users
         }
