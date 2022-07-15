@@ -18,37 +18,62 @@ class FriendsViewModel: ObservableObject {
     let gardenRepository = GardenRepository.shared
     let userRepo = UserRepository.shared
     let collections = Collections.shared
+    
+    var users: [User] = []
+    var items: [GardenItem] = []
+    
     let nc = NotificationCenter.default
     
     // MARK: Methods
     init(){
-        getFriendsGarden()
+        fetchAllUsers()
+        fetchAllCurrentItems()
     }
-        
-    func getFriendsGarden(){
+    
+    func fetchAllUsers(){
         let userID = getUserID()
         guard let userID = userID else { return }
+        userRepo.fetchAllUsers(userID: userID) { users in
+            self.users = users
+        }
+    }
+    
+    func fetchAllCurrentItems(){
         
         DispatchQueue.main.async {
             self.friendsGardens = []
         }
-
-        userRepo.fetchAllUsers(userID: userID) { users in
-            for user in users {
-                let collection = self.collections.getCollectionReference(CollectionName.gardenItems.rawValue)
-                guard let collection = collection else { return }
-                let query = collection.whereField("userID", isEqualTo: user.id)
-                                      .whereField("date", isEqualTo: Date.today)
-                
-                
-                self.gardenRepository.getUserItems(query: query) { items in
-                    let userGarden = UserGarden(user: user, items: items)
-                    
-                    DispatchQueue.main.async {
-                        self.friendsGardens.append(userGarden)
-                    }
-                }
-            }
+        
+        let collection = self.collections.getCollectionReference(CollectionName.gardenItems.rawValue)
+        guard let collection = collection else { return }
+        let query = collection.whereField("date", isEqualTo: Date.today)
+        
+        self.gardenRepository.getUserItems(query: query) { items in
+            self.items = items
+            self.createFriendsGardens()
+        }
+    }
+    
+    func createFriendsGardens(){
+        var dict: [String: [GardenItem]] = [:]
+        var gardens: [UserGarden] = []
+        
+        for user in users {
+            dict[user.id] = []
+        }
+    
+        for item in items {
+            guard dict[item.userID] != nil else { continue }
+            dict[item.userID]!.append(item)
+        }
+        
+        for user in users {
+            let garden = UserGarden(user: user, items: dict[user.id]!)
+            gardens.append(garden)
+        }
+        
+        DispatchQueue.main.async {
+            self.friendsGardens = gardens
         }
     }
 }

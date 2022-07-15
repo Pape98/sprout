@@ -61,6 +61,7 @@ class SceneHelper {
         node.anchorPoint = CGPoint(x: 0, y: 0)
         node.position = CGPoint(x: flower.x * scene.frame.width, y: flower.y * scene.frame.height)
         node.colorBlendFactor = getRandomCGFloat(0, 0.2)
+        node.zPosition = 10
         node.setScale(0)
         
         let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)

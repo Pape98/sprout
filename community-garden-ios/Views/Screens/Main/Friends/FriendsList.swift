@@ -29,7 +29,7 @@ struct FriendsList: View {
             }
             .navigationBarTitle("My Friends", displayMode: .inline)
             .onAppear {
-                friendsViewModel.getFriendsGarden()
+                friendsViewModel.fetchAllCurrentItems()
             }
         }
         .navigationViewStyle(.stack)

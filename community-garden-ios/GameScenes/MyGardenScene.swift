@@ -91,6 +91,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         flower.name = NodeNames.flower.rawValue
         flower.colorBlendFactor = getRandomCGFloat(0, 0.2)
         flower.setScale(0)
+        flower.zPosition = 10
+        
         let scale = getRandomCGFloat(0.075, 0.1)
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
