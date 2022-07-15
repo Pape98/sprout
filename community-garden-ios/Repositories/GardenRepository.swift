@@ -11,21 +11,22 @@ import FirebaseFirestore
 class GardenRepository {
     static let shared = GardenRepository()
     let collections = Collections.shared
-    let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    let today = Date.today
+    let userRepo = UserRepository.shared
     
     
     func addItem(item: GardenItem){
-        let collection = collections.getCollectionReference("gardenItems")
+        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(UUID().uuidString)
         saveData(docRef: docRef, data: item)
     }
     
-    func getItems(query: Query , completion: @escaping ([GardenItem]) -> Void){
+    func getUserItems(query: Query , completion: @escaping ([GardenItem]) -> Void){
         query.getDocuments { querySnapshot, error in
             
             if error != nil {
-                print("getItems: Error writing to Firestore: \(error!)")
+                print("getUserItems: Error writing to Firestore: \(error!)")
                 return
             }
             
@@ -36,7 +37,7 @@ class GardenRepository {
                     items.append(try doc.data(as: GardenItem.self))
                 }
             } catch {
-                print("getItems: Error writing to Firestore: \(error)")
+                print("getUserItems: Error writing to Firestore: \(error)")
             }
             
             completion(items)
@@ -44,7 +45,7 @@ class GardenRepository {
     }
     
     func udpateGardenItem(docName: String, updates: GardenItem){
-        let collection = collections.getCollectionReference("gardenItems")
+        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(docName)
         saveData(docRef: docRef, data: updates)

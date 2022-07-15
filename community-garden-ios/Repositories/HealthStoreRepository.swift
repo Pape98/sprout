@@ -23,7 +23,7 @@ class HealthStoreRepository {
     let collections = Collections.shared
     let healthStoreService: HealthStoreService = HealthStoreService()
     let userID: String?
-    let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    let today = Date.today
     
     // MARK: - Methods
     init() {

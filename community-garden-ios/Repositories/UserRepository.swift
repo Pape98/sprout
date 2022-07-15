@@ -21,7 +21,7 @@ class UserRepository {
     
     init() {
         // Get collection references
-        usersCollection = collections.db.collection("users")
+        usersCollection = collections.db.collection(CollectionName.users.rawValue)
     }
     
     func createNewUser(_ user: User) {
@@ -30,7 +30,7 @@ class UserRepository {
         }
         
         do {
-            try usersCollection.document(user.name).setData(from: user)
+            try usersCollection.document(user.id).setData(from: user)
         } catch let err {
             print("[createNewUser()]","Error writing document: \(err)")
         }
@@ -71,7 +71,7 @@ class UserRepository {
         userRef.getDocument { document, error in
             
             guard error == nil else {
-                print("[fetchLoggedInUser()]", error!)
+                print("[fetchLoggedInUser() ref]", error!)
                 return
             }
             
@@ -79,7 +79,7 @@ class UserRepository {
                 let decodedUser: User = try document!.data(as: User.self)
                 completion(decodedUser)
             } catch {
-                print("[fetchLoggedInUser()]", error)
+                print("[fetchLoggedInUser() decoding]", error)
             }
             
             

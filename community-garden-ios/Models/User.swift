@@ -8,10 +8,14 @@
 import Foundation
 
 struct User: Identifiable, Codable {
-
-    // Profile Info
     var id: String = ""
     var name: String = ""
     var email: String = ""
     var group: Int = 0
+}
+
+struct UserGarden: Identifiable {
+    var id: String { UUID().uuidString }
+    var user: User
+    var items: [GardenItem]
 }

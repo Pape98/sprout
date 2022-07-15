@@ -13,7 +13,7 @@ class HealthStoreViewModel: ObservableObject {
     
     static let shared = HealthStoreViewModel()
     let healthStoreRepo = HealthStoreRepository.shared
-    let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    let today = Date.today
     var stepCounts: [Step] = []
     
     @Published var todayStepCount: Step?

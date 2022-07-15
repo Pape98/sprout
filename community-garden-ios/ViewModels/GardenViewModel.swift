@@ -33,23 +33,22 @@ class GardenViewModel: ObservableObject {
     }
     
     init(){
-        getItems()
+        getUserItems()
 //        deleteFlowers()
 //        resetTree()
     }
     
-    func getItems() -> Void {
+    func getUserItems() -> Void {
         let collection = collections.getCollectionReference("gardenItems")
         
         guard let collection = collection else { return }
         guard let userID = getUserID() else { return }
         
-        let query = collection.whereField("date", isEqualTo: Collections.today)
+        let query = collection.whereField("date", isEqualTo: Date.today)
                               .whereField("userID", isEqualTo: userID)
               
-        gardenRepo.getItems(query: query) { result in
+        gardenRepo.getUserItems(query: query) { result in
             DispatchQueue.main.async {
-                print(result)
                 self.items = result
                 // Get single tree
                 if let i = result.firstIndex(where: { $0.type == GardenItemType.tree }) {

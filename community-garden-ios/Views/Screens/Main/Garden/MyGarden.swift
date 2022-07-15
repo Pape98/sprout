@@ -50,7 +50,7 @@ struct MyGarden: View {
                 }
             }
             .onAppear {
-                gardenViewModel.getItems()
+                gardenViewModel.getUserItems()
             }
             .onDisappear {
                 gardenViewModel.saveItems()

@@ -36,7 +36,7 @@ class SQLiteService {
     var progress: Table?
     
     // Others
-    let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    let today = Date.today
     
     init(){
         do {

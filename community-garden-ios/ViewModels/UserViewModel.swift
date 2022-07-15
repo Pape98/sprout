@@ -36,8 +36,12 @@ class UserViewModel: ObservableObject {
     }
     
     @objc func getUser() {
-        let user = UserService.user
-        self.userRepository.fetchLoggedInUser(userID: user.id) { user in
+        let userID = getUserID()
+        guard let userID = userID else {
+            return
+        }
+
+        self.userRepository.fetchLoggedInUser(userID: userID) { user in
             self.currentUser = user
             UserService.user = user
         }

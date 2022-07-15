@@ -21,13 +21,16 @@ struct FriendsList: View {
                 
                 ScrollView {
                     VStack {
-                        ForEach(/*@START_MENU_TOKEN@*/0 ..< 5/*@END_MENU_TOKEN@*/) { item in
-                            Garden()
+                        ForEach(friendsViewModel.friendsGardens){ garden in
+                            Garden(garden: garden)
                         }
                     }
                 }
             }
             .navigationBarTitle("My Friends", displayMode: .inline)
+            .onAppear {
+                friendsViewModel.getFriendsGarden()
+            }
         }
         .navigationViewStyle(.stack)
     }

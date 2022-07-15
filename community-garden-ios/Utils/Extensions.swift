@@ -33,6 +33,10 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
+    static var today: String {
+        Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    }
+    
     static func - (lhs: Date, rhs: Date) -> TimeInterval {
         return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
     }

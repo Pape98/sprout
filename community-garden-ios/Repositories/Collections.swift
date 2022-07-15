@@ -21,8 +21,7 @@ class Collections {
     var toplevelCollectionsMap :Dictionary<String, CollectionReference> = [:]
     
     static let shared = Collections()
-    static let today = Date.now.getFormattedDate(format: "MM-dd-yyyy")
-
+    static let today = Date.today
     
     init() {
         db = Firestore.firestore()
@@ -37,12 +36,12 @@ class Collections {
         guard let user = Auth.auth().currentUser else { return }
         let userID = user.uid
                 
-        for name in topLevelCollections {
-            toplevelCollectionsMap[name] = db.collection(name)
+        for name in CollectionName.topLevelCollections {
+            toplevelCollectionsMap[name.rawValue] = db.collection(name.rawValue)
         }
         
-        for name in subCollections {
-            subCollectionsMap[name] = db.collection("users").document(userID).collection(name)
+        for name in CollectionName.subCollections {
+            subCollectionsMap[name.rawValue] = db.collection(CollectionName.users.rawValue).document(userID).collection(name.rawValue)
         }
     }
     
@@ -53,5 +52,22 @@ class Collections {
             return subCollectionsMap[collectionName]!
         }
         return nil
+    }
+}
+
+enum CollectionName: String, CaseIterable {
+    case users
+    case gardenItems
+    case steps
+    case workouts
+    case walkingRunning
+    case sleep
+    
+    static var topLevelCollections: [CollectionName] {
+        [users, gardenItems, steps, workouts, walkingRunning, sleep]
+    }
+    
+    static var subCollections: [CollectionName] {
+        []
     }
 }
