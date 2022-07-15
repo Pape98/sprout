@@ -17,7 +17,7 @@ class GardenRepository {
     func addItem(item: GardenItem){
         let collection = collections.getCollectionReference("gardenItems")
         guard let collection = collection else { return }
-        let docRef = collection.document(docName(item: item))
+        let docRef = collection.document(UUID().uuidString)
         saveData(docRef: docRef, data: item)
     }
     
@@ -76,7 +76,7 @@ class GardenRepository {
     }
     
     func docName(item: GardenItem) -> String {
-        let name = "\(item.type.rawValue)-\(UserService.user.id)-\(today)"
+        let name = "\(item.type.rawValue)-\(getUserID()!)-\(today)"
         return name
     }
     

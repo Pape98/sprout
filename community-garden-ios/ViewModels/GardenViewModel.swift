@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 
 class GardenViewModel: ObservableObject {
     
@@ -39,12 +40,16 @@ class GardenViewModel: ObservableObject {
     
     func getItems() -> Void {
         let collection = collections.getCollectionReference("gardenItems")
-        guard let collection = collection else { return }
-        let query = collection.whereField("date", isEqualTo: Collections.today)
-                              .whereField("userID", isEqualTo: UserService.user.id)
         
+        guard let collection = collection else { return }
+        guard let userID = getUserID() else { return }
+        
+        let query = collection.whereField("date", isEqualTo: Collections.today)
+                              .whereField("userID", isEqualTo: userID)
+              
         gardenRepo.getItems(query: query) { result in
             DispatchQueue.main.async {
+                print(result)
                 self.items = result
                 // Get single tree
                 if let i = result.firstIndex(where: { $0.type == GardenItemType.tree }) {

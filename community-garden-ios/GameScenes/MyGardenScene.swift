@@ -129,7 +129,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("here")
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         releaseDropItem(position: location)
