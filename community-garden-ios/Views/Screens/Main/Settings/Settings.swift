@@ -8,13 +8,31 @@
 import SwiftUI
 
 struct Settings: View {
+    
+    @State private var reflectWeatherChanges = false
+    
     var body: some View {
-        ZStack {
-            
-            MainBackground()
-            
-            Text("Settings")
+        NavigationView {
+            List {
+                
+                Section("Garden"){
+                    Text("Change Garden Name")
+                    Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
+                        .tint(.appleGreen)
+                }
+                
+                Section("Types & Colors"){
+                    SettingButton(label: "Tree Type", image: "moss-tickle-beech")
+                    SettingButton(label: "Flower Type", image: "flowers/grenadier-joyful-clover")
+                    SettingButton(label: "Tree Color", image: "sunglow-spiky-maple")
+                    SettingButton(label: "Flower color", image: "petals/tangerine-savage-morel")
+                }
+            }
+            .navigationTitle("Settings")
+            .navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(.stack)
+        .foregroundColor(.black)
     }
 }
 
