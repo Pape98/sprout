@@ -22,7 +22,19 @@ struct FriendsList: View {
                 ScrollView {
                     VStack {
                         ForEach(friendsViewModel.friendsGardens){ garden in
-                            Garden(garden: garden)
+                            NavigationLink {
+                                FriendGarden(garden: garden)
+                            } label: {
+                                Garden(garden: garden, isAnimated: false)
+                                    .background {
+                                        RoundedRectangle(cornerRadius: 25)
+                                            .fill(Color.white)
+                                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
+                                    }
+                                    .cornerRadius(25)
+                                    .frame(height: 300)
+                                    .padding()
+                            }
                         }
                     }
                 }

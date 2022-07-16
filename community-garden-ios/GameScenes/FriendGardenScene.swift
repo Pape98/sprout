@@ -14,6 +14,7 @@ class FriendGardenScene: SKScene {
     var ground: SKSpriteNode!
     var gameTimer: Timer?
     var garden: UserGarden?
+    var isAnimated: Bool = false
     
     override func didMove(to view: SKView) {
         
@@ -25,7 +26,7 @@ class FriendGardenScene: SKScene {
         
         // Tree
         let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: "cosmos-serpent-sumac", scale: 0.75)
-        SceneHelper.addTree(tree: tree, ground: ground, scene: self)
+        SceneHelper.addTree(tree: tree, ground: ground, scene: self, isAnimated: isAnimated)
         
         // Flowers
         addExisitingItems()
@@ -45,9 +46,9 @@ class FriendGardenScene: SKScene {
         for item in garden.items {
             switch item.type {
             case .flower:
-                SceneHelper.addExistingFlower(flower: item, scene: self)
+                SceneHelper.addExistingFlower(flower: item, scene: self, isAnimated: isAnimated)
             case .tree:
-                SceneHelper.addTree(tree: item, ground: ground, scene: self)
+                SceneHelper.addTree(tree: item, ground: ground, scene: self, isAnimated: isAnimated)
             }
         }
     }

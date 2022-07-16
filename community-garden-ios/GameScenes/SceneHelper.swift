@@ -35,7 +35,7 @@ class SceneHelper {
         return ground
     }
     
-    static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene) {
+    static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) {
         // Tree
         let treeTexture = SKTexture(imageNamed: tree.name)
         let treeNode = SKSpriteNode(texture: treeTexture)
@@ -49,23 +49,32 @@ class SceneHelper {
         treeNode.physicsBody?.categoryBitMask = CollisionTypes.tree.rawValue
         treeNode.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
         treeNode.physicsBody?.isDynamic = false
+        treeNode.setScale(tree.scale)
         
-        treeNode.setScale(0)
-        let treeAction = SKAction.scale(to: tree.scale, duration: SCALE_DURATION)
-        treeNode.run(treeAction)
+        if isAnimated {
+            treeNode.setScale(0)
+            let treeAction = SKAction.scale(to: tree.scale, duration: SCALE_DURATION)
+            treeNode.run(treeAction)
+        }
+        
         scene.addChild(treeNode)
     }
     
-    static func addExistingFlower(flower: GardenItem, scene: SKScene){
+    static func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){
         let node = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
         node.anchorPoint = CGPoint(x: 0, y: 0)
         node.position = CGPoint(x: flower.x * scene.frame.width, y: flower.y * scene.frame.height)
         node.colorBlendFactor = getRandomCGFloat(0, 0.2)
         node.zPosition = 10
-        node.setScale(0)
+        node.setScale(flower.scale)
         
-        let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
-        node.run(nodeAction)
+        // Animation
+        if isAnimated {
+            node.setScale(0)
+            let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
+            node.run(nodeAction)
+        }
+        
         scene.addChild(node)
     }
     

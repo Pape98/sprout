@@ -40,10 +40,6 @@ class FriendsViewModel: ObservableObject {
     
     func fetchAllCurrentItems(){
         
-        DispatchQueue.main.async {
-            self.friendsGardens = []
-        }
-        
         let collection = self.collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
         let query = collection.whereField("date", isEqualTo: Date.today)

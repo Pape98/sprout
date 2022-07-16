@@ -12,17 +12,19 @@ struct Garden: View {
     
     @EnvironmentObject var friendsViewModel: FriendsViewModel
     var garden: UserGarden
+    var isAnimated: Bool = true
     let weatherInfo = getWeatherInfo()
     
     var scene: SKScene {
         let scene = FriendGardenScene()
         scene.scaleMode = .resizeFill
         scene.garden = garden
+        scene.isAnimated = isAnimated
         return scene
     }
     
     var body: some View {
-        ZStack(alignment: .topLeading) {
+        ZStack(alignment: .topTrailing) {
             SpriteView(scene: scene, options: [.allowsTransparency])
                 .weatherOverlay(showStats: false, opacity: 0.8)
 
@@ -30,8 +32,6 @@ struct Garden: View {
                 .bodyStyle()
                 .padding()
         }
-        .frame(height: 300)
-        .padding()
     }
 }
 
@@ -42,6 +42,7 @@ struct Garden_Previews: PreviewProvider {
     
     static var previews: some View {
         Garden(garden: garden)
+            .frame(width: 300, height: 300)
             .environmentObject(UserViewModel())
             .environmentObject(FriendsViewModel())
     }
