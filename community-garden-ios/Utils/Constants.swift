@@ -96,6 +96,12 @@ struct GoalsSettings {
     ]
 }
 
+enum SettingsMode: String {
+    case treeType
+    case flowerType
+    case treeColor
+    case flowerColor
+}
 
 
 

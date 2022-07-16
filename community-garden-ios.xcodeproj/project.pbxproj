@@ -80,6 +80,7 @@
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
 		F0D66E30288340090095AEDE /* FriendGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E2F288340090095AEDE /* FriendGarden.swift */; };
 		F0D66E3328834EDC0095AEDE /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3228834EDC0095AEDE /* SettingButton.swift */; };
+		F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3428836AD50095AEDE /* SettingPicker.swift */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
 		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
@@ -164,6 +165,7 @@
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F0D66E2F288340090095AEDE /* FriendGarden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGarden.swift; sourceTree = "<group>"; };
 		F0D66E3228834EDC0095AEDE /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
+		F0D66E3428836AD50095AEDE /* SettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPicker.swift; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
@@ -341,9 +343,8 @@
 			children = (
 				F0475B562860FB6100C68B35 /* Modifiers.swift */,
 				F0964272275C25C800F1CEC1 /* Constants.swift */,
-				F0842B5B285A4F6B002C79BD /* Environments.swift */,
-				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
 				F01B635A284FB339004D079A /* Helpers.swift */,
+				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
 				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 				F043F25D287CFDC6008F211C /* Protocols.swift */,
 			);
@@ -448,6 +449,7 @@
 		F0B32CB1275AFA9E00C714A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F0842B5B285A4F6B002C79BD /* Environments.swift */,
 				F0964269275B510300F1CEC1 /* Health.swift */,
 				F096426B275B513100F1CEC1 /* User.swift */,
 				F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */,
@@ -474,6 +476,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D66E3228834EDC0095AEDE /* SettingButton.swift */,
+				F0D66E3428836AD50095AEDE /* SettingPicker.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -628,6 +631,7 @@
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
+				F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */,
 				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,

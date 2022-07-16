@@ -18,6 +18,12 @@ struct MainView: View {
     var body: some View {
         
         TabView {
+            
+//            Settings()
+//                .tabItem {
+//                    Label("Settings", systemImage: "gearshape")
+//                }
+//
             Dashboard()
                 .tabItem {
                     Label("Dashboard", systemImage: "house.fill")

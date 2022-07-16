@@ -11,11 +11,15 @@ struct SettingButton: View {
     
     var label: String
     var image: String
+    var prefix: String = ""
+    var data: [String]
+    var mode: SettingsMode
+    
     
     var body: some View {
         
         NavigationLink {
-            Text(label)
+            SettingPicker(title: label, prefix: prefix, data: data, mode: mode)
         } label: {
             HStack{
                 Image(image)
@@ -31,7 +35,9 @@ struct SettingButton: View {
 }
 
 struct SettingButton_Previews: PreviewProvider {
+    static var trees = Constants.trees
+
     static var previews: some View {
-        SettingButton(label: "Change tree color", image: "moss-tickle-beech")
+        SettingButton(label: "Change tree", image: "moss-tickle-beech", data: trees, mode: SettingsMode.treeType)
     }
 }

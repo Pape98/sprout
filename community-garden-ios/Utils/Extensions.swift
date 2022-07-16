@@ -105,6 +105,7 @@ extension Color {
     static let mint = Color("mint")
     static let raspberry = Color("raspberry")
     static let porcelain = Color("porcelain")
+    
 }
 
 extension Text {
@@ -135,6 +136,14 @@ extension View {
         environment(\.userDefaultsKey, value)
     }
     
+    func dataString(_ value: String) -> some View {
+        environment(\.dataString, value)
+    }
+    
+    func dataList(_ value: [Any]) -> some View {
+        environment(\.dataList, value)
+    }
+    
     func weatherOverlay(showStats: Bool = true, opacity: Double = 1) -> some View {
         modifier(WeatherOverlay(showStats: showStats, opacity: opacity))
     }
@@ -146,12 +155,23 @@ extension View {
     func acceptDrop(condition: Bool, action: @escaping (_ providers: [NSItemProvider]) -> Void) -> some View {
         modifier(Droppable(condition: condition, action: action))
     }
+    
 }
 
 extension EnvironmentValues {
     var userDefaultsKey: UserDefaultsKey {
         get { self[SettingsKey.self] }
         set { self[SettingsKey.self] = newValue }
+    }
+    
+    var dataString: String {
+        get { self[DataString.self] }
+        set { self[DataString.self] = newValue }
+    }
+    
+    var dataList: [Any] {
+        get { self[DataList.self] }
+        set { self[DataList.self] = newValue }
     }
 }
 
