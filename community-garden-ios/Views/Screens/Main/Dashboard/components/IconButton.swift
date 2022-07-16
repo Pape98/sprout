@@ -18,6 +18,7 @@ struct IconButton: View {
             Text(text)
                 .font(.system(size: 15))
                 .foregroundColor(.seaGreen)
+                .lineLimit(1)
         }.frame(maxWidth: .infinity, alignment: .center)
     }
 }

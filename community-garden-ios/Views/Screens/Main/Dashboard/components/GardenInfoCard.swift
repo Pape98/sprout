@@ -19,10 +19,6 @@ struct GardenInfoCard: View {
         userDefaults.get(key: UserDefaultsKey.GARDEN_NAME) ?? "Poudlard"
     }
     
-    //    var body: some View {
-    //        Text("ddd")
-    //    }
-    
     var body: some View {
         
         ZStack(alignment: .leading) {

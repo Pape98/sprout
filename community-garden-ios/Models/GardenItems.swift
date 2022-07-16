@@ -21,4 +21,5 @@ struct GardenItem: Identifiable, Codable {
     var y: Double = 0 // Proportion
     var scale: Double = 1
     var date = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    var documentName: String?
 }

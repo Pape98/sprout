@@ -24,10 +24,6 @@ class FriendGardenScene: SKScene {
         // Ground
         ground = SceneHelper.setupGround(scene: self)
         
-        // Tree
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: "cosmos-serpent-sumac", scale: 0.75)
-        SceneHelper.addTree(tree: tree, ground: ground, scene: self, isAnimated: isAnimated)
-        
         // Flowers
         addExisitingItems()
         
@@ -48,7 +44,7 @@ class FriendGardenScene: SKScene {
             case .flower:
                 SceneHelper.addExistingFlower(flower: item, scene: self, isAnimated: isAnimated)
             case .tree:
-                SceneHelper.addTree(tree: item, ground: ground, scene: self, isAnimated: isAnimated)
+                let _ = SceneHelper.addTree(tree: item, ground: ground, scene: self, isAnimated: isAnimated)
             }
         }
     }

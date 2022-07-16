@@ -16,9 +16,12 @@ class GardenRepository {
     
     
     func addItem(item: GardenItem){
+        var item = item
         let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
-        let docRef = collection.document(UUID().uuidString)
+        let documentName = UUID().uuidString
+        let docRef = collection.document(documentName)
+        item.documentName = documentName
         saveData(docRef: docRef, data: item)
     }
     

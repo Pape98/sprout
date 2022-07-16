@@ -35,7 +35,7 @@ class SceneHelper {
         return ground
     }
     
-    static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) {
+    static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> SKSpriteNode {
         // Tree
         let treeTexture = SKTexture(imageNamed: tree.name)
         let treeNode = SKSpriteNode(texture: treeTexture)
@@ -58,6 +58,8 @@ class SceneHelper {
         }
         
         scene.addChild(treeNode)
+        
+        return treeNode
     }
     
     static func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){

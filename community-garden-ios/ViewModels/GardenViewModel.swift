@@ -50,10 +50,14 @@ class GardenViewModel: ObservableObject {
         gardenRepo.getUserItems(query: query) { result in
             DispatchQueue.main.async {
                 self.items = result
-                // Get single tree
+                // Check if tree already exists
                 if let i = result.firstIndex(where: { $0.type == GardenItemType.tree }) {
                     self.tree = result[i]
+                } else {
+                    self.addTree()
                 }
+                
+                
             }
         }
     }
@@ -61,6 +65,7 @@ class GardenViewModel: ObservableObject {
     func addTree(){
         let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: userDefaultTree)
         gardenRepo.addItem(item: tree)
+        self.items.append(tree)
     }
     
     func addFlower(_ flower: GardenItem){
@@ -82,7 +87,7 @@ class GardenViewModel: ObservableObject {
     
     func saveTreeScale(){
         if let item = tree {
-            gardenRepo.udpateGardenItem(docName: "tree", updates: item)
+            gardenRepo.udpateGardenItem(docName: item.documentName!, updates: item)
         }
     }
     

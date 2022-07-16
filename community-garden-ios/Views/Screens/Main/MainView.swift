@@ -25,7 +25,7 @@ struct MainView: View {
             
             FriendsList()
                 .tabItem {
-                    Label("Friends", systemImage: "person.3")
+                    Label("My Friends", systemImage: "person.3")
                 }
             
             Settings()

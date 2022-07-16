@@ -116,7 +116,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             case .flower:
                 SceneHelper.addExistingFlower(flower: item, scene: self)
             case .tree:
-                SceneHelper.addTree(tree: item, ground: ground, scene: self)
+                tree = SceneHelper.addTree(tree: item, ground: ground, scene: self)
             }
         }
     }
