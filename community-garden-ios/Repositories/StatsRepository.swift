@@ -30,11 +30,11 @@ class StatsRepository {
     
     // Default Settings
     var mapping: [String: String]? {
-        let mappedData:[String: Any]? = userDefaults.get(key: UserDefaultsKey.MAPPED_DATA) // ["Tree": "Steps"]
-        if let convertedData = mappedData as? [String: String] {
-            let swappedData = convertedData.swapKeyValues() // ["Steps":"Tree"]
-            return swappedData
-        }
+//        let mappedData:[String: Any]? = userDefaults.get(key: UserDefaultsKey.MAPPED_DATA) // ["Tree": "Steps"]
+//        if let convertedData = mappedData as? [String: String] {
+//            let swappedData = convertedData.swapKeyValues() // ["Steps":"Tree"]
+//            return swappedData
+//        }
         return nil
     }
     var statUpdateCallbacks: [String: ((Double) -> Void)] {

@@ -10,7 +10,11 @@ import SwiftUI
 
 struct Settings: View {
     
+    @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
+    
     @State private var reflectWeatherChanges = false
+    @State var settings = UserService.user.settings!
+
     var treeTypes = Constants.trees
     var flowerTypes = Constants.flowers
     var treeColors = Constants.colors
@@ -24,6 +28,10 @@ struct Settings: View {
                     Text("Change Garden Name")
                     Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
                         .tint(.appleGreen)
+                        .onChange(of: reflectWeatherChanges) { newValue in
+                            settings.reflectWeatherChanges = newValue
+                            settingsViewModel.updateSettings(settingKey: FirestoreKey.REFLECT_WEATHER_CHANGES, value: newValue)
+                        }
                 }
                 
                 Section("Types & Colors"){
@@ -53,9 +61,15 @@ struct Settings: View {
             }
             .navigationTitle("Settings")
             .navigationBarTitleDisplayMode(.inline)
+            .onAppear {
+                if let settings = UserService.user.settings {
+                    reflectWeatherChanges = settings.reflectWeatherChanges
+                }
+            }
         }
         .navigationViewStyle(.stack)
         .foregroundColor(.black)
+        .environmentObject(SettingsViewModel())
     }
 }
 
@@ -63,5 +77,7 @@ struct Settings: View {
 struct Settings_Previews: PreviewProvider {
     static var previews: some View {
         Settings()
+            .environmentObject(UserViewModel())
+            .environmentObject(SettingsViewModel())
     }
 }

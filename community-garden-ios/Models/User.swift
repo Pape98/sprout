@@ -12,7 +12,7 @@ struct User: Identifiable, Codable {
     var name: String = ""
     var email: String = ""
     var group: Int = 0
-    var hasBeenOnboarded = false
+    var hasBeenOnboarded: Bool? = false
     var settings: UserSettings?
 }
 
@@ -33,9 +33,9 @@ struct UserSettings: Codable {
     var gardenName = ""
     var reflectWeatherChanges = true
     
-    var sleepGoal: Int?
-    var stepsGoal: Int?
-    var walkingRunningGoal: Int?
-    var workoutsGoal: Int?
+    var sleepGoal: Int? = 0
+    var stepsGoal: Int? = 0
+    var walkingRunningGoal: Int? = 0
+    var workoutsGoal: Int? = 0
     
 }

@@ -18,6 +18,9 @@ struct CommunityGardenIosApp: App {
     
     init() {
         FirebaseApp.configure()
+        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
+            print(defaults)
+        }
     }
     
     var body: some Scene {

@@ -34,7 +34,7 @@ struct LaunchView: View {
                 
             } else {
                 // Show onboarding or dashboard view
-                if authModel.userOnboarded ||  userDefaultsIsNewUser == false {
+                if authModel.userOnboarded {
                     MainView()
                 } else {
                     Onboarding()

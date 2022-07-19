@@ -19,6 +19,10 @@ struct Constants {
     static let colors = ["moss","cosmos","sunglow","grenadier","hawks","tangerine","lavender","mint","raspberry","porcelain"]
 }
 
+struct JSON {
+    static let encoder = JSONEncoder()
+}
+
 enum MappingKeys: String {
     case TREE = "Tree"
     case FLOWER = "Flower"

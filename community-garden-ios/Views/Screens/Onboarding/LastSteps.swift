@@ -51,7 +51,6 @@ struct LastSteps: View {
                 
                 onboardingViewModel.saveSettings(values: onboardingRouter.settings)
                 onboardingViewModel.updateOnboardedStatus()
-                userDefaults.save(value: false, key: UserDefaultsKey.IS_NEW_USER)
                 authViewModel.userOnboarded = true
             }
             .frame(maxWidth: 250)
