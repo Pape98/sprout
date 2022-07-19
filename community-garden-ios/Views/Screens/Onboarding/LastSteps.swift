@@ -11,6 +11,10 @@ struct LastSteps: View {
     
     @EnvironmentObject var onboardingViewModel: OnboardingViewModel
     @EnvironmentObject var onboardingRouter: OnboardingRouter
+    @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
+    
+    var userDefaults = UserDefaultsService.shared
     
     @State private var gardenName: String = ""
     @State private var reflectWeatherChanges = false
@@ -42,18 +46,13 @@ struct LastSteps: View {
                     return
                 }
                 
-                // Save data in user default
-//                userDefaults.save(value: OnboardingStatus.EXISITING_USER.rawValue, key: UserDefaultsKey.IS_NEW_USER)
-                
                 onboardingRouter.saveSetting(key: FirestoreKey.GARDEN_NAME, value: gardenName)
                 onboardingRouter.saveSetting(key: FirestoreKey.REFLECT_WEATHER_CHANGES, value: reflectWeatherChanges)
-
                 
-                
-                // Update view model to take user to home screen
-//                onboardingViewModel.isNewUser = OnboardingStatus.EXISITING_USER
-                
-                print(onboardingRouter.settings)
+                onboardingViewModel.saveSettings(values: onboardingRouter.settings)
+                onboardingViewModel.updateOnboardedStatus()
+                userDefaults.save(value: false, key: UserDefaultsKey.IS_NEW_USER)
+                authViewModel.userOnboarded = true
             }
             .frame(maxWidth: 250)
             .padding()

@@ -16,6 +16,7 @@ class AuthenticationViewModel: ObservableObject {
     
     // Login status of current usrer
     @Published var isLoggedIn = false
+    @Published var userOnboarded = false
     
     // Error message to be displayed to user
     @Published var errorMessage: String?
@@ -42,6 +43,18 @@ class AuthenticationViewModel: ObservableObject {
     func checkLogin() {
         // Check if there's a current user to determine logged in status
         isLoggedIn = Auth.auth().currentUser != nil ? true : false
+        
+        if isLoggedIn {
+            updateNewUserStatus()
+        }
+        
+    }
+    
+    func updateNewUserStatus(){
+        let userID = getUserID()!
+        userRepository.fetchLoggedInUser(userID: userID) { user in
+            self.userOnboarded = user.hasBeenOnboarded
+        }
     }
     
     func signOut() {
@@ -115,10 +128,10 @@ class AuthenticationViewModel: ObservableObject {
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
                     // Check user if already exists in database
-                    self.userRepository.doesUserExist(userID: userID){
+                    self.userRepository.doesUserExist(userID: userID){ result in
                         
                         // If user does not exist, create a new account
-                        if self.userRepository.doesUserExsist == false {
+                        if result == false {
                             
                             let user = user!
                             

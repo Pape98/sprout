@@ -42,8 +42,9 @@ class UserViewModel: ObservableObject {
         }
 
         self.userRepository.fetchLoggedInUser(userID: userID) { user in
-            self.currentUser = user
-            UserService.user = user
+            DispatchQueue.main.async {
+                self.currentUser = user
+            }
         }
     }
     

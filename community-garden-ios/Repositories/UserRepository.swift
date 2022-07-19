@@ -15,7 +15,6 @@ class UserRepository {
     let collections = Collections.shared
     let usersCollection: CollectionReference?
     static let shared = UserRepository() // Single repo instance shared
-    var doesUserExsist = false
     
     // MARK: - Methods
     
@@ -36,7 +35,7 @@ class UserRepository {
         }
     }
     
-    func doesUserExist(userID: String, completion: @escaping () -> Void) {
+    func doesUserExist(userID: String, completion: @escaping (_ userExists: Bool?) -> Void) {
         guard let usersCollection = usersCollection else {
             return
         }
@@ -50,11 +49,7 @@ class UserRepository {
                 print("[doesUserExist()]", error!)
                 return
             }
-            
-            if let condition = document?.exists {
-                self.doesUserExsist = condition
-            }
-            completion()
+            completion(document?.exists)
         }
         
     }
@@ -77,6 +72,7 @@ class UserRepository {
             
             do {
                 let decodedUser: User = try document!.data(as: User.self)
+                UserService.user = decodedUser
                 completion(decodedUser)
             } catch {
                 print("[fetchLoggedInUser() decoding]", error)

@@ -12,30 +12,35 @@ struct LaunchView: View {
     // View Models
     @EnvironmentObject var authModel: AuthenticationViewModel
     @StateObject var onboardingViewModel: OnboardingViewModel = OnboardingViewModel.shared
+    @StateObject var userViewModel: UserViewModel = UserViewModel.shared
+
     // Routers
     @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
     
     // States
     @State var yOffset = 0
     
+    var userDefaults = UserDefaultsService.shared
+    var userDefaultsIsNewUser: Bool {
+        userDefaults.get(key: UserDefaultsKey.IS_NEW_USER)
+    }
+    
     var body: some View {
         
-        Group {
+        ZStack {
             if authModel.isLoggedIn == false {
                 // Show login view
                 LoginView(yOffset: $yOffset)
                 
             } else {
                 // Show onboarding or dashboard view
-//                if (onboardingViewModel.isNewUser == OnboardingStatus.NEW_USER){
-                if true {
-                    Onboarding()
-                } else {
+                if authModel.userOnboarded ||  userDefaultsIsNewUser == false {
                     MainView()
+                } else {
+                    Onboarding()
                 }
             }
         }
-        .foregroundColor(.seaGreen)
         .onAppear {
             authModel.checkLogin()
         }
