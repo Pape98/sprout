@@ -19,7 +19,7 @@ struct TreePicker: View {
                selection: $selection,
                options: Constants.trees,
                circleType: PickerCard.CircleType.TREE
-        ).userDefaultsKey(UserDefaultsKey.TREE)
+        ).dataString(FirestoreKey.TREE.rawValue)
     }
 }
 
@@ -32,7 +32,7 @@ struct TreeColorPicker: View {
             header: "Pick a color!",
             subheader: "Look at all these nice colors 🎨",
             selectedColor: $selectedColor)
-        .userDefaultsKey(UserDefaultsKey.TREE_COLOR)
+        .dataString(FirestoreKey.TREE_COLOR.rawValue)
     }
 }
 

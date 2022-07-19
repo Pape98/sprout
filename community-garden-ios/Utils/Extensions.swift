@@ -132,10 +132,6 @@ extension View {
         }
     }
     
-    func userDefaultsKey(_ value: UserDefaultsKey) -> some View {
-        environment(\.userDefaultsKey, value)
-    }
-    
     func dataString(_ value: String) -> some View {
         environment(\.dataString, value)
     }
@@ -159,10 +155,6 @@ extension View {
 }
 
 extension EnvironmentValues {
-    var userDefaultsKey: UserDefaultsKey {
-        get { self[SettingsKey.self] }
-        set { self[SettingsKey.self] = newValue }
-    }
     
     var dataString: String {
         get { self[DataString.self] }

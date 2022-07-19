@@ -89,10 +89,10 @@ struct GoalsSettings {
     ]
     
     static let defaultsKeys = [
-        "Steps": UserDefaultsKey.STEPS_GOAL,
-        "Sleep": UserDefaultsKey.SLEEP_GOAL,
-        "Workout Time": UserDefaultsKey.WORKOUT_GOAL,
-        "Walking+running Distance": UserDefaultsKey.WALKING_RUNNING_GOAL
+        "Steps": FirestoreKey.STEPS_GOAL,
+        "Sleep": FirestoreKey.SLEEP_GOAL,
+        "Workout Time": FirestoreKey.WORKOUT_GOAL,
+        "Walking+running Distance": FirestoreKey.WALKING_RUNNING_GOAL
     ]
 }
 
@@ -102,6 +102,7 @@ enum SettingsMode: String {
     case treeColor
     case flowerColor
 }
+
 
 
 

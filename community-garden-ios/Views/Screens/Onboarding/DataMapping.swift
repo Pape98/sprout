@@ -26,23 +26,22 @@ struct Point: Hashable {
 
 struct DataMapping: View {
     
-    let userDefaults: UserDefaultsService = UserDefaultsService.shared
     @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var selectedData: [String] {
-        userDefaults.get(key: UserDefaultsKey.DATA) ?? ["Steps","Sleep"]
+        onboardingRouter.getSetting(key: FirestoreKey.DATA) as? [String] ?? ["Steps","Sleep"]
     }
     var treeType: String {
-        userDefaults.get(key:UserDefaultsKey.TREE) ?? "spiky-maple"
+        onboardingRouter.getSetting(key: FirestoreKey.TREE) as? String  ?? "spiky-maple"
     }
     var treeColor: String {
-        userDefaults.get(key:UserDefaultsKey.TREE_COLOR) ?? "moss"
+        onboardingRouter.getSetting(key: FirestoreKey.TREE_COLOR) as? String ?? "moss"
     }
     var flowerType: String {
-        userDefaults.get(key:UserDefaultsKey.FLOWER) ?? "joyful-clover"
+        onboardingRouter.getSetting(key: FirestoreKey.FLOWER) as? String ?? "joyful-clover"
     }
     var flowerColor: String {
-        userDefaults.get(key:UserDefaultsKey.FLOWER_COLOR) ?? "cosmos"
+        onboardingRouter.getSetting(key: FirestoreKey.FLOWER_COLOR) as? String ?? "cosmos"
     }
     
     let columns = [GridItem(.flexible(), alignment: .top), GridItem(.flexible(), alignment: .top)]
@@ -77,7 +76,7 @@ struct DataMapping: View {
                 //                    showingAlert = true
                 //                }
                 
-                userDefaults.save(value: mappedData, key: UserDefaultsKey.MAPPED_DATA)
+                onboardingRouter.saveSetting(key: FirestoreKey.MAPPED_DATA, value: mappedData)
                 
             }.environmentObject(onboardingRouter)
         }

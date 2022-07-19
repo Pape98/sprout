@@ -8,10 +8,6 @@
 import Foundation
 import SwiftUI
 
-struct SettingsKey: EnvironmentKey {
-    static let defaultValue: UserDefaultsKey = UserDefaultsKey.TREE
-}
-
 struct DataString: EnvironmentKey {
     static let defaultValue: String = ""
 }

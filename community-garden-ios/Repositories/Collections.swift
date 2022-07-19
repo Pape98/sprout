@@ -71,3 +71,20 @@ enum CollectionName: String, CaseIterable {
         []
     }
 }
+
+enum FirestoreKey: String {
+    // Onboarding
+    case TREE = "tree"
+    case TREE_COLOR = "tree-color"
+    case FLOWER = "flower"
+    case FLOWER_COLOR = "flower-color"
+    case DATA = "data"
+    case STEPS_GOAL = "steps-goal"
+    case SLEEP_GOAL = "sleep-goal"
+    case WORKOUT_GOAL = "workout-goal"
+    case WALKING_RUNNING_GOAL = "walking-running-goal"
+    case MAPPED_DATA = "mapped-data"
+    case GARDEN_NAME = "garden-name"
+    case REFLECT_WEATHER_CHANGES = "reflect-weather-changes"
+    case IS_NEW_USER = "is-new-user"
+}

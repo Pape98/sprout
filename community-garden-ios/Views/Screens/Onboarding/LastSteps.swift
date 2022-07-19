@@ -10,7 +10,7 @@ import SwiftUI
 struct LastSteps: View {
     
     @EnvironmentObject var onboardingViewModel: OnboardingViewModel
-    var userDefaults = UserDefaultsService.shared
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     @State private var gardenName: String = ""
     @State private var reflectWeatherChanges = false
@@ -43,12 +43,17 @@ struct LastSteps: View {
                 }
                 
                 // Save data in user default
-                userDefaults.save(value: OnboardingStatus.EXISITING_USER.rawValue, key: UserDefaultsKey.IS_NEW_USER)
-                userDefaults.save(value: gardenName, key: UserDefaultsKey.GARDEN_NAME)
-                userDefaults.save(value: reflectWeatherChanges, key: UserDefaultsKey.REFLECT_WEATHER_CHANGES)
+//                userDefaults.save(value: OnboardingStatus.EXISITING_USER.rawValue, key: UserDefaultsKey.IS_NEW_USER)
+                
+                onboardingRouter.saveSetting(key: FirestoreKey.GARDEN_NAME, value: gardenName)
+                onboardingRouter.saveSetting(key: FirestoreKey.REFLECT_WEATHER_CHANGES, value: reflectWeatherChanges)
+
+                
                 
                 // Update view model to take user to home screen
-                onboardingViewModel.isNewUser = OnboardingStatus.EXISITING_USER
+//                onboardingViewModel.isNewUser = OnboardingStatus.EXISITING_USER
+                
+                print(onboardingRouter.settings)
             }
             .frame(maxWidth: 250)
             .padding()

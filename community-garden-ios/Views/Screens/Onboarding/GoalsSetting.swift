@@ -11,8 +11,11 @@ import SwiftUI
 struct GoalsSetting: View {
     
     let userDefaults = UserDefaultsService.shared
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
+
+    
     var selectedData: [String] {
-        userDefaults.get(key: UserDefaultsKey.DATA) ?? ["Steps","Sleep"]
+        (onboardingRouter.settings[FirestoreKey.DATA.rawValue] as! [String])
     }
     
     var body: some View {
@@ -36,10 +39,11 @@ struct GoalSlider: View {
     
     @State var value: Float = 0
     var goalName: String
-    var defaultKey: UserDefaultsKey {
+    var defaultKey: FirestoreKey {
         GoalsSettings.defaultsKeys[goalName]!
     }
-    let userDefaults = UserDefaultsService.shared
+    
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var body: some View {
         VStack(spacing: 10) {
@@ -53,7 +57,7 @@ struct GoalSlider: View {
             )
             .tint(.appleGreen)
             .onChange(of: value) { newValue in
-                userDefaults.save(value: value, key: defaultKey)
+                onboardingRouter.saveSetting(key: defaultKey, value: value)
             }
             
             Text("\(Int(value)) \(GoalsSettings.labels[goalName]!)")
