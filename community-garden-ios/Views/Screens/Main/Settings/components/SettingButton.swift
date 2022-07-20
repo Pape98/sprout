@@ -14,12 +14,16 @@ struct SettingButton: View {
     var prefix: String = ""
     var data: [String]
     var mode: SettingsMode
-    
+    var settingKey: FirestoreKey
     
     var body: some View {
         
         NavigationLink {
-            SettingPicker(title: label, prefix: prefix, data: data, mode: mode)
+            SettingPicker(title: label,
+                          prefix: prefix,
+                          data: data,
+                          mode: mode,
+                          settingKey: settingKey)
         } label: {
             HStack{
                 Image(image)
@@ -36,8 +40,8 @@ struct SettingButton: View {
 
 struct SettingButton_Previews: PreviewProvider {
     static var trees = Constants.trees
-
+    
     static var previews: some View {
-        SettingButton(label: "Change tree", image: "moss-tickle-beech", data: trees, mode: SettingsMode.treeType)
+        SettingButton(label: "Change tree", image: "moss-tickle-beech", data: trees, mode: SettingsMode.treeType, settingKey: FirestoreKey.TREE)
     }
 }

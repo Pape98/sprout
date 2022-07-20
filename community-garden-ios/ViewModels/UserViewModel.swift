@@ -45,7 +45,6 @@ class UserViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.currentUser = user
                 UserService.user = user
-                print(user)
             }
         }
     }

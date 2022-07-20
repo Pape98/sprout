@@ -25,7 +25,13 @@ struct Settings: View {
             List {
                 
                 Section("Garden"){
-                    Text("Change Garden Name")
+                    
+                    NavigationLink {
+                        NameChanging()
+                    } label : {
+                        Text("Garden Name")
+                    }
+                    
                     Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
                         .tint(.appleGreen)
                         .onChange(of: reflectWeatherChanges) { newValue in
@@ -39,24 +45,29 @@ struct Settings: View {
                                   image: "moss-tickle-beech",
                                   prefix: "moss",
                                   data: treeTypes,
-                                  mode: SettingsMode.treeType)
+                                  mode: SettingsMode.treeType,
+                                  settingKey: FirestoreKey.TREE)
+            
                     
                     SettingButton(label: "Flower Type",
                                   image: "flowers/grenadier-joyful-clover",
                                   prefix: "flowers/cosmos",
                                   data: flowerTypes,
-                                  mode: SettingsMode.flowerType)
+                                  mode: SettingsMode.flowerType,
+                                  settingKey: FirestoreKey.FLOWER)
                         
                     
                     SettingButton(label: "Tree Color",
                                   image: "sunglow-spiky-maple",
                                   data: treeColors,
-                                  mode: SettingsMode.treeColor)
+                                  mode: SettingsMode.treeColor,
+                                  settingKey: FirestoreKey.TREE_COLOR)
                     
                     SettingButton(label: "Flower color",
                                   image: "petals/tangerine-savage-morel",
                                   data: flowerColors,
-                                  mode: SettingsMode.flowerColor)
+                                  mode: SettingsMode.flowerColor,
+                                  settingKey: FirestoreKey.FLOWER_COLOR)
                 }
             }
             .navigationTitle("Settings")

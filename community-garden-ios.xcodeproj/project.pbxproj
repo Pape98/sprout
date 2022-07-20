@@ -30,6 +30,7 @@
 		F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02682D02850F13A004747FD /* UserDefaultService.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
 		F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C372887500E00251FD0 /* SettingsViewModel.swift */; };
+		F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C392887A9A400251FD0 /* NameChanging.swift */; };
 		F038369E2839497600D444E4 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038369D2839497600D444E4 /* SQLiteService.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
@@ -116,6 +117,7 @@
 		F02682D02850F13A004747FD /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F0337C372887500E00251FD0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
+		F0337C392887A9A400251FD0 /* NameChanging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameChanging.swift; sourceTree = "<group>"; };
 		F038369D2839497600D444E4 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
@@ -480,6 +482,7 @@
 			children = (
 				F0D66E3228834EDC0095AEDE /* SettingButton.swift */,
 				F0D66E3428836AD50095AEDE /* SettingPicker.swift */,
+				F0337C392887A9A400251FD0 /* NameChanging.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -663,6 +666,7 @@
 				F0149D59284ECDC900782D27 /* Styling.swift in Sources */,
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
+				F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */,
 				F0D66E30288340090095AEDE /* FriendGarden.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0475B61286228D000C68B35 /* LastSteps.swift in Sources */,

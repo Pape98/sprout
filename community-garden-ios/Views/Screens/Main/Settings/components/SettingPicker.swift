@@ -9,12 +9,15 @@ import SwiftUI
 
 struct SettingPicker: View {
     
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
+    
     @State var selection = "spiky-maple"
     @State var showAlert = false
     var title: String
     var prefix: String = ""
     var data: [String]
     var mode: SettingsMode
+    var settingKey: FirestoreKey
     
     var body: some View {
         VStack {
@@ -68,7 +71,10 @@ struct SettingPicker: View {
         }
         .onTapGesture {
             selection = label
+            settingsViewModel.updateSettings(settingKey: settingKey, value: selection)
+            
             showAlert = true
+            
         }
     }
 }
@@ -78,6 +84,6 @@ struct SettingPicker_Previews: PreviewProvider {
     static var trees = Constants.trees
     static var colors = Constants.colors
     static var previews: some View {
-        SettingPicker(title: "Tree Type", prefix: "moss", data: colors, mode: SettingsMode.treeType)
+        SettingPicker(title: "Tree Type", prefix: "moss", data: colors, mode: SettingsMode.treeType, settingKey: FirestoreKey.TREE)
     }
 }
