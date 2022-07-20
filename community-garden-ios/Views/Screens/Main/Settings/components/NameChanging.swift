@@ -8,20 +8,31 @@
 import SwiftUI
 
 struct NameChanging: View {
-    
-    @State var gardenName: String = ""
-    
+
+    @Environment(\.presentationMode) var mode: Binding<PresentationMode>
+    @State var gardenName: String
+    @EnvironmentObject var settingsViewModel: SettingsViewModel
+
+    init(garden: String){
+        _gardenName = State(initialValue: garden)
+        
+    }
+        
     var body: some View {
-        Form {
-            Section( "Garden Name") {
-                TextField("", text: $gardenName)
+        ZStack {
+            MainBackground()
+            Form {
+                Section( "Garden Name") {
+                    TextField("", text: $gardenName)
+                }
             }
         }
         .navigationTitle("Names")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Done") {
-                    print(gardenName)
+                    self.settingsViewModel.updateSettings(settingKey: FirestoreKey.GARDEN_NAME, value: gardenName)
+                    self.mode.wrappedValue.dismiss()
                 }
                 
             }
@@ -31,6 +42,6 @@ struct NameChanging: View {
 
 struct NameChanging_Previews: PreviewProvider {
     static var previews: some View {
-        NameChanging()
+        NameChanging(garden: "Wonderland")
     }
 }

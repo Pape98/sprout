@@ -29,7 +29,7 @@ struct SettingButton: View {
                 Image(image)
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 35, height: 35)
+                    .frame(width: 40, height: 40)
                 
                 Text(label)
                 Spacer()

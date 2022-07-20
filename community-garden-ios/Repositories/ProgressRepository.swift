@@ -27,7 +27,9 @@ class ProgressRepository {
     
     // MARK: Get Progress Methods
     func getStepProgress() -> Progress {
-        return getProgress(DataOptions.steps)
+        let progress = getProgress(DataOptions.steps)
+        print("Here", progress)
+        return progress
     }
     
     func getWalkingRunningProgress() -> Progress {

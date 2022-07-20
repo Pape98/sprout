@@ -7,14 +7,11 @@
 
 import SwiftUI
 
-
 struct Settings: View {
     
     @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
     
     @State private var reflectWeatherChanges = false
-    @State var settings = UserService.user.settings!
-
     var treeTypes = Constants.trees
     var flowerTypes = Constants.flowers
     var treeColors = Constants.colors
@@ -22,59 +19,72 @@ struct Settings: View {
     
     var body: some View {
         NavigationView {
-            List {
-                
-                Section("Garden"){
+            ZStack {
+                MainBackground()
+                List {
                     
-                    NavigationLink {
-                        NameChanging()
-                    } label : {
-                        Text("Garden Name")
+                    Section("Garden"){
+                        
+                        NavigationLink {
+                            if let settings = settingsViewModel.settings {
+                                NameChanging(garden: settings.gardenName)
+                            }
+                        } label : {
+                            Text("Garden Name")
+                        }
+                        
+                        Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
+                            .tint(.appleGreen)
+                            .onChange(of: reflectWeatherChanges) { newValue in
+                                
+                                guard settingsViewModel.settings != nil else { return }
+                                settingsViewModel.settings!.reflectWeatherChanges = newValue
+                                settingsViewModel.updateSettings(settingKey: FirestoreKey.REFLECT_WEATHER_CHANGES, value: newValue)
+                            }
                     }
                     
-                    Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
-                        .tint(.appleGreen)
-                        .onChange(of: reflectWeatherChanges) { newValue in
-                            settings.reflectWeatherChanges = newValue
-                            settingsViewModel.updateSettings(settingKey: FirestoreKey.REFLECT_WEATHER_CHANGES, value: newValue)
+                    Section("Types & Colors"){
+                        if let settings = settingsViewModel.settings {
+                            SettingButton(label: "Tree Type",
+                                          image: "moss-\(addDash(settings.tree))",
+                                          prefix: "moss",
+                                          data: treeTypes,
+                                          mode: SettingsMode.treeType,
+                                          settingKey: FirestoreKey.TREE)
+                            
+                            
+                            SettingButton(label: "Flower Type",
+                                          image: "flowers/cosmos-\(addDash(settings.flower))",
+                                          prefix: "flowers/cosmos",
+                                          data: flowerTypes,
+                                          mode: SettingsMode.flowerType,
+                                          settingKey: FirestoreKey.FLOWER)
+                            
+                            
+                            SettingButton(label: "Tree Color",
+                                          image: addDash("\(settings.treeColor)-\(settings.tree)"),
+                                          data: treeColors,
+                                          mode: SettingsMode.treeColor,
+                                          settingKey: FirestoreKey.TREE_COLOR)
+                            
+                            SettingButton(label: "Flower color",
+                                          image: "petals/" + addDash("\(settings.flowerColor)-\(settings.flower)"),
+                                          data: flowerColors,
+                                          mode: SettingsMode.flowerColor,
+                                          settingKey: FirestoreKey.FLOWER_COLOR)
                         }
-                }
-                
-                Section("Types & Colors"){
-                    SettingButton(label: "Tree Type",
-                                  image: "moss-tickle-beech",
-                                  prefix: "moss",
-                                  data: treeTypes,
-                                  mode: SettingsMode.treeType,
-                                  settingKey: FirestoreKey.TREE)
-            
-                    
-                    SettingButton(label: "Flower Type",
-                                  image: "flowers/grenadier-joyful-clover",
-                                  prefix: "flowers/cosmos",
-                                  data: flowerTypes,
-                                  mode: SettingsMode.flowerType,
-                                  settingKey: FirestoreKey.FLOWER)
                         
-                    
-                    SettingButton(label: "Tree Color",
-                                  image: "sunglow-spiky-maple",
-                                  data: treeColors,
-                                  mode: SettingsMode.treeColor,
-                                  settingKey: FirestoreKey.TREE_COLOR)
-                    
-                    SettingButton(label: "Flower color",
-                                  image: "petals/tangerine-savage-morel",
-                                  data: flowerColors,
-                                  mode: SettingsMode.flowerColor,
-                                  settingKey: FirestoreKey.FLOWER_COLOR)
+                    }
                 }
-            }
-            .navigationTitle("Settings")
-            .navigationBarTitleDisplayMode(.inline)
-            .onAppear {
-                if let settings = UserService.user.settings {
-                    reflectWeatherChanges = settings.reflectWeatherChanges
+                .listRowBackground(Color.red)
+                .navigationTitle("Settings")
+                .navigationBarTitleDisplayMode(.inline)
+                .onAppear {
+                    if let settings = UserService.user.settings {
+                        reflectWeatherChanges = settings.reflectWeatherChanges
+                    }
+                    
+                    settingsViewModel.fetchSettings()
                 }
             }
         }

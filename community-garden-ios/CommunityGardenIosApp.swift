@@ -21,6 +21,12 @@ struct CommunityGardenIosApp: App {
         if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
             print(defaults)
         }
+        
+        defaultStyling()
+    }
+    
+    func defaultStyling(){
+        UITableView.appearance().backgroundColor = .clear
     }
     
     var body: some Scene {

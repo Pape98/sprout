@@ -11,7 +11,7 @@ struct SettingPicker: View {
     
     @EnvironmentObject var settingsViewModel: SettingsViewModel
     
-    @State var selection = "spiky-maple"
+    @State var selection = ""
     @State var showAlert = false
     var title: String
     var prefix: String = ""
@@ -20,16 +20,21 @@ struct SettingPicker: View {
     var settingKey: FirestoreKey
     
     var body: some View {
-        VStack {
-            List {
-                ForEach(data, id: \.self){ item in
-                    Row(label: formatItemName(item).lowercased(), image: "\(prefix)-\(item)")
+        ZStack {
+            MainBackground()
+            VStack {
+                List {
+                    if let settings = settingsViewModel.settings {
+                        ForEach(data, id: \.self){ item in
+                            Row(label: formatItemName(item).lowercased(), image: "\(prefix)-\(item)", settings: settings)
+                        }
+                    }
                 }
-            }
-            .alert(isPresented: $showAlert){
-                Alert(title: Text(title),
-                      message: Text("\(title) has been updated to \(selection) 😊"),
-                      dismissButton: .default(Text("Got it!")))
+                .alert(isPresented: $showAlert){
+                    Alert(title: Text(title),
+                          message: Text("\(title) has been updated to \(selection) 😊"),
+                          dismissButton: .default(Text("Got it!")))
+                }
             }
         }
         .navigationTitle(title)
@@ -39,14 +44,17 @@ struct SettingPicker: View {
     
     
     @ViewBuilder
-    func Row(label: String, image: String) -> some View {
+    func Row(label: String, image: String, settings: UserSettings) -> some View {
+        
         
         var imageName: String {
             switch mode {
             case SettingsMode.flowerColor:
-                return "petals/\(label)-abyss-sage"
+                let flowerName = addDash(settings.flower)
+                return "petals/\(label)-\(flowerName)"
             case .treeColor:
-                return "\(label)-spiky-maple"
+                let treeName = addDash(settings.tree)
+                return "\(label)-\(treeName)"
             default:
                 return image
             }
@@ -72,7 +80,6 @@ struct SettingPicker: View {
         .onTapGesture {
             selection = label
             settingsViewModel.updateSettings(settingKey: settingKey, value: selection)
-            
             showAlert = true
             
         }

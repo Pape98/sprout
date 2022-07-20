@@ -58,3 +58,7 @@ func getWeatherInfo() -> [String: String]{
 func getUserID() -> String? {
     return Auth.auth().currentUser?.uid
 }
+
+func addDash(_ s: String) -> String {
+    return s.replacingOccurrences(of: " ", with: "-")
+}

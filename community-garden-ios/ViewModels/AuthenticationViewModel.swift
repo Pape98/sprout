@@ -53,7 +53,9 @@ class AuthenticationViewModel: ObservableObject {
     func updateNewUserStatus(){
         let userID = getUserID()!
         userRepository.fetchLoggedInUser(userID: userID) { user in
-            self.userOnboarded = user.hasBeenOnboarded!
+            if let result = user.hasBeenOnboarded {
+                self.userOnboarded = result
+            }
         }
     }
     

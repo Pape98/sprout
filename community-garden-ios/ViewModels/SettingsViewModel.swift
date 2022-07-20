@@ -8,6 +8,8 @@
 import Foundation
 
 class SettingsViewModel: ObservableObject {
+    
+    @Published var settings = UserService.user.settings
     static let shared = SettingsViewModel()
     let userRepository = UserRepository()
     
@@ -15,8 +17,17 @@ class SettingsViewModel: ObservableObject {
         let userID = getUserID()
         guard let userID = userID else { return }
         let key = "settings.\(settingKey.rawValue)"
-        userRepository.updateUser(userID: userID, updates: [key: value]){
-            NotificationSender.send(type: NotificationType.FetchUser.rawValue)
+        userRepository.updateUser(userID: userID, updates: [key: value]){}
+    }
+    
+    func fetchSettings(){
+        let userID = getUserID()
+        guard let userID = userID else { return }
+        userRepository.fetchLoggedInUser(userID: userID) { user in
+            DispatchQueue.main.async {
+                self.settings = user.settings
+                UserService.user = user
+            }
         }
     }
 }
