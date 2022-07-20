@@ -12,17 +12,26 @@ struct IconButton: View {
     var text: String
     
     var body: some View {
-        VStack() {
+        VStack {
             Image(icon)
+              
             Text(text)
                 .font(.system(size: 15))
                 .foregroundColor(.seaGreen)
-        }.frame(maxWidth: .infinity, alignment: .trailing)
+                .lineLimit(1)
+        }.frame(maxWidth: .infinity, alignment: .center)
     }
 }
 
 struct IconButton_Previews: PreviewProvider {
     static var previews: some View {
-        IconButton(icon:"garden-icon", text:"Your Garden")
+        HStack(spacing: 0) {
+            IconButton(icon:"garden-icon", text:"Your Garden")
+          
+            IconButton(icon:"seed-icon", text:"Your Garden")
+      
+            IconButton(icon:"droplet-icon", text:"Your Garden")
+      
+        }
     }
 }

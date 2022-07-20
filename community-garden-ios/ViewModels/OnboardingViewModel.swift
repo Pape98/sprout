@@ -10,17 +10,22 @@ import Foundation
 class OnboardingViewModel: ObservableObject {
     
     static let shared = OnboardingViewModel()
-    @Published var isNewUser: OnboardingStatus = OnboardingStatus.NEW_USER
+    let userRepository = UserRepository.shared
     
-    init(){
-        let isNewUserString: String? = UserDefaultsService.shared.get(key: UserDefaultsKey.IS_NEW_USER)
-        if let isNewUserString = isNewUserString {
-            isNewUser = OnboardingStatus(rawValue: isNewUserString)!
+    func saveSettings(values: [String: Any]){
+        let userID = getUserID()
+        if let userID = userID {
+            userRepository.updateUser(userID: userID, updates: ["settings": values]) {
+            }
         }
     }
-}
+    
+    func updateOnboardedStatus(){
+        let userID = getUserID()
+        if let userID = userID {
+            userRepository.updateUser(userID: userID, updates: ["hasBeenOnboarded": true]) {
+            }
+        }
+    }
 
-enum OnboardingStatus: String {
-    case NEW_USER
-    case EXISITING_USER
 }

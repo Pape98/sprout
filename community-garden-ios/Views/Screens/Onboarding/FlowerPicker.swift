@@ -17,7 +17,7 @@ struct FlowerPicker: View {
                    selection: $selection,
                options: Constants.flowers,
                circleType: PickerCard.CircleType.FLOWER
-        ).userDefaultsKey(UserDefaultsKey.FLOWER)
+        ).dataString(FirestoreKey.FLOWER.rawValue)
     }
 }
 
@@ -30,7 +30,7 @@ struct FlowerColorPicker: View {
             header: "Pick a color!",
             subheader: "Look at all these nice colors 🎨",
             selectedColor: $selectedColor)
-        .userDefaultsKey(UserDefaultsKey.FLOWER_COLOR)
+        .dataString(FirestoreKey.FLOWER_COLOR.rawValue)
     }
 }
 

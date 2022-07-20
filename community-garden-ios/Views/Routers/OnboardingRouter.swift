@@ -12,6 +12,7 @@ class OnboardingRouter: ObservableObject {
     
     @Published var currentScreen: Screen = .chooseData
     @Published var transition: AnyTransition = .slide
+    var settings: [String: Any] = [:]
     
     let nextScreens : [Screen: Screen] = [.chooseData: .setGoals,
                                           .setGoals: .chooseTree,
@@ -32,6 +33,14 @@ class OnboardingRouter: ObservableObject {
     
     
     static let shared = OnboardingRouter()
+    
+    func saveSetting(key: FirestoreKey, value: Any){
+        settings[key.rawValue] = value
+    }
+    
+    func getSetting(key: FirestoreKey) -> Any? {
+        return settings[key.rawValue]
+    }
     
     func setScreen(_ newScreen: Screen){
         currentScreen = newScreen

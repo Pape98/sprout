@@ -7,24 +7,33 @@
 
 import SwiftUI
 import Firebase
+
 @main
 struct CommunityGardenIosApp: App {
     
-    @StateObject var authModel = AuthenticationViewModel.shared
-    
+    @StateObject var authViewModel = AuthenticationViewModel.shared
+    @StateObject var appViewModel = AppViewModel.shared
     // To send notifications to user
     let notificationService: NotificationService = NotificationService()
     
     init() {
         FirebaseApp.configure()
+        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
+            print(defaults)
+        }
+        
+        defaultStyling()
+    }
+    
+    func defaultStyling(){
+        UITableView.appearance().backgroundColor = .clear
     }
     
     var body: some Scene {
         WindowGroup {
-            LaunchView().onAppear(){
-                authModel.checkLogin()
-            }
-            .environmentObject(authModel)
+            LaunchView()
+            .environmentObject(authViewModel)
+            .environmentObject(appViewModel)
         }
     }
 }

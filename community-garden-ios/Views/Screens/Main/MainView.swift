@@ -8,22 +8,38 @@
 import SwiftUI
 
 struct MainView: View {
+    
+    // MARK: View Models
+    @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
+    @StateObject var userViewModel: UserViewModel = UserViewModel.shared
+    @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
+    @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
+    
+    let userDefaults = UserDefaultsService.shared
+    
     var body: some View {
+        
         TabView {
+
             Dashboard()
                 .tabItem {
                     Label("Dashboard", systemImage: "house.fill")
-                        .padding()
                 }
             
             FriendsList()
                 .tabItem {
-                    Label("Friends", systemImage: "person.3")
-                        .padding()
+                    Label("My Friends", systemImage: "person.3")
                 }
             
+            Settings()
+                .tabItem {
+                    Label("Settings", systemImage: "gearshape")
+                }
         }
-        .background(Color.white)
+        .environmentObject(userViewModel)
+        .environmentObject(friendsViewModel)
+        .environmentObject(healthStoreViewModel)
+        .environmentObject(gardenViewModel)
     }
 }
 
@@ -31,5 +47,7 @@ struct MainView_Previews: PreviewProvider {
     static var previews: some View {
         MainView()
             .environmentObject(UserViewModel())
+            .environmentObject(HealthStoreViewModel())
+            .environmentObject(FriendsViewModel())
     }
 }

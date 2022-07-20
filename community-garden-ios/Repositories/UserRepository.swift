@@ -12,18 +12,22 @@ import GoogleSignIn
 class UserRepository {
     
     // MARK: - Properties
-    let usersCollection: CollectionReference
+    let collections = Collections.shared
+    let usersCollection: CollectionReference?
     static let shared = UserRepository() // Single repo instance shared
-    var doesUserExsist = false
     
     // MARK: - Methods
     
     init() {
         // Get collection references
-        usersCollection = Collections.shared.getCollectionReference("users")
+        usersCollection = collections.db.collection(CollectionName.users.rawValue)
     }
     
     func createNewUser(_ user: User) {
+        guard let usersCollection = usersCollection else {
+            return
+        }
+        
         do {
             try usersCollection.document(user.id).setData(from: user)
         } catch let err {
@@ -31,8 +35,10 @@ class UserRepository {
         }
     }
     
-    func doesUserExist(userID: String, completion: @escaping () -> Void) {
-        
+    func doesUserExist(userID: String, completion: @escaping (_ userExists: Bool?) -> Void) {
+        guard let usersCollection = usersCollection else {
+            return
+        }
         // Get document reference
         let userRef = usersCollection.document(userID)
         
@@ -43,16 +49,15 @@ class UserRepository {
                 print("[doesUserExist()]", error!)
                 return
             }
-            
-            if let condition = document?.exists {
-                self.doesUserExsist = condition
-            }
-            completion()
+            completion(document?.exists)
         }
         
     }
     
     func fetchLoggedInUser(userID: String, completion: @escaping (_ user: User) -> Void){
+        guard let usersCollection = usersCollection else {
+            return
+        }
         // Get document reference
         let userRef = usersCollection.document(userID)
         
@@ -61,15 +66,16 @@ class UserRepository {
         userRef.getDocument { document, error in
             
             guard error == nil else {
-                print("[fetchLoggedInUser()]", error!)
+                print("[fetchLoggedInUser() ref]", error!)
                 return
             }
             
             do {
                 let decodedUser: User = try document!.data(as: User.self)
+                UserService.user = decodedUser
                 completion(decodedUser)
             } catch {
-                print("[fetchLoggedInUser()]", error)
+                print("[fetchLoggedInUser() decoding]", error)
             }
             
             
@@ -78,10 +84,12 @@ class UserRepository {
     
     
     func updateUser(userID: String, updates:[String: Any], completion: @escaping() -> Void){
-        
+        guard let usersCollection = usersCollection else {
+            return
+        }
         // Get document reference
         let userRef = usersCollection.document(userID)
-                
+        
         userRef.updateData(updates) { err in
             if let err = err {
                 print("Error updating document: \(err)")
@@ -96,7 +104,12 @@ class UserRepository {
     
     // Fetch all users except current user
     func fetchAllUsers(userID: String, completion: @escaping (_ users: [User]) -> Void){
-        usersCollection.whereField("id", isNotEqualTo: userID).getDocuments { querySnapshot, error in
+        guard let usersCollection = usersCollection else {
+            return
+        }
+        let query = usersCollection.whereField("id", isNotEqualTo: userID)
+        
+        query.getDocuments { querySnapshot, error in
             if let error = error {
                 print("Error getting documents: \(error)")
             } else {

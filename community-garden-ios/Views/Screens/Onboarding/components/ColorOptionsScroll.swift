@@ -10,7 +10,7 @@ import SwiftUI
 struct ColorOptionsScroll: View {
     
     @Binding var selectedColor: String
-    @Environment(\.userDefaultsKey) var userDefaultsKey
+    @Environment(\.dataString) var settingKey
     
     let rows = [
         GridItem(.flexible()),
@@ -19,7 +19,7 @@ struct ColorOptionsScroll: View {
     var colorOptions: [String] {
         var options = Constants.colors
         // Do not show moss color for flowers
-        if(userDefaultsKey == UserDefaultsKey.FLOWER_COLOR){
+        if(settingKey == FirestoreKey.FLOWER_COLOR.rawValue){
             options = options.filter{ $0 != "moss"}
         }
         return options

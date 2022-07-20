@@ -16,6 +16,7 @@ class AuthenticationViewModel: ObservableObject {
     
     // Login status of current usrer
     @Published var isLoggedIn = false
+    @Published var userOnboarded = false
     
     // Error message to be displayed to user
     @Published var errorMessage: String?
@@ -35,13 +36,27 @@ class AuthenticationViewModel: ObservableObject {
     init() {
         // Create Google Sign In configuration object.
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
+        checkLogin()
         setLoggedInUserProfile()
-        
     }
     
     func checkLogin() {
         // Check if there's a current user to determine logged in status
         isLoggedIn = Auth.auth().currentUser != nil ? true : false
+        
+        if isLoggedIn {
+            updateNewUserStatus()
+        }
+        
+    }
+    
+    func updateNewUserStatus(){
+        let userID = getUserID()!
+        userRepository.fetchLoggedInUser(userID: userID) { user in
+            if let result = user.hasBeenOnboarded {
+                self.userOnboarded = result
+            }
+        }
     }
     
     func signOut() {
@@ -61,10 +76,13 @@ class AuthenticationViewModel: ObservableObject {
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
-                UserService.shared.user = result
+                UserService.user = result
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
             }
-            
+            // Check login status again to update UI
+            DispatchQueue.main.async {
+                self.checkLogin()
+            }
         }
         
     }
@@ -112,30 +130,22 @@ class AuthenticationViewModel: ObservableObject {
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
                     // Check user if already exists in database
-                    self.userRepository.doesUserExist(userID: userID){
-                        
+                    self.userRepository.doesUserExist(userID: userID){ result in
                         
                         // If user does not exist, create a new account
-                        if self.userRepository.doesUserExsist == false {
+                        if result == false {
+                            
                             let user = user!
                             
                             let newUser = User(id: userID,
                                                name: user.profile!.name,
-                                               email: user.profile!.email,
-                                               oldStepCount: 0,
-                                               stepCount: Step(date: Date(), count: 0),
-                                               numDroplets: 0,
-                                               gardenItems: [GardenItem(name: "tree1", height: 0.03)]
+                                               email: user.profile!.email
                             )
                             
                             self.userRepository.createNewUser(newUser)
                         }
                         
                         self.setLoggedInUserProfile()
-                    }
-                    // Check login status again to update UI
-                    DispatchQueue.main.async {
-                        self.checkLogin()
                     }
                 }
             }

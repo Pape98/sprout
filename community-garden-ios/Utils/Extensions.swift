@@ -32,6 +32,14 @@ extension Date {
         dateFormatter.dateFormat = "YYYY"
         return dateFormatter.string(from: self)
     }
+    
+    static var today: String {
+        Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    }
+    
+    static func - (lhs: Date, rhs: Date) -> TimeInterval {
+        return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    }
 }
 
 extension String {
@@ -97,17 +105,18 @@ extension Color {
     static let mint = Color("mint")
     static let raspberry = Color("raspberry")
     static let porcelain = Color("porcelain")
+    
 }
 
 extension Text {
     func headerStyle() -> some View {
         self.font(.largeTitle)
-            .foregroundColor(.seaGreen)
+            .foregroundColor(.black)
             .bold()
     }
     
     func bodyStyle() -> some View {
-        self.foregroundColor(.seaGreen)
+        self.foregroundColor(.black)
             .opacity(0.66)
     }
 }
@@ -123,12 +132,16 @@ extension View {
         }
     }
     
-    func userDefaultsKey(_ value: UserDefaultsKey) -> some View {
-        environment(\.userDefaultsKey, value)
+    func dataString(_ value: String) -> some View {
+        environment(\.dataString, value)
     }
     
-    func weatherOverlay() -> some View {
-        modifier(WeatherOverlay())
+    func dataList(_ value: [Any]) -> some View {
+        environment(\.dataList, value)
+    }
+    
+    func weatherOverlay(showStats: Bool = true, opacity: Double = 1) -> some View {
+        modifier(WeatherOverlay(showStats: showStats, opacity: opacity))
     }
     
     func segment() -> some View {
@@ -138,12 +151,19 @@ extension View {
     func acceptDrop(condition: Bool, action: @escaping (_ providers: [NSItemProvider]) -> Void) -> some View {
         modifier(Droppable(condition: condition, action: action))
     }
+    
 }
 
 extension EnvironmentValues {
-    var userDefaultsKey: UserDefaultsKey {
-        get { self[SettingsKey.self] }
-        set { self[SettingsKey.self] = newValue }
+    
+    var dataString: String {
+        get { self[DataString.self] }
+        set { self[DataString.self] = newValue }
+    }
+    
+    var dataList: [Any] {
+        get { self[DataList.self] }
+        set { self[DataList.self] = newValue }
     }
 }
 

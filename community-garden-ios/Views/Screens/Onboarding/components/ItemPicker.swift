@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ItemPicker: View {
     
-    @Environment(\.userDefaultsKey) var userDefaultsKey
+    @Environment(\.dataString) var settingKey
     @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     
@@ -19,7 +19,6 @@ struct ItemPicker: View {
     var options: [String]
     var circleType: PickerCard.CircleType
     
-    let userDefaults = UserDefaultsService.shared
     let rows = [
         GridItem(.flexible()),
     ]
@@ -49,7 +48,11 @@ struct ItemPicker: View {
                                         .cornerRadius(10)
                                         .onTapGesture {
                                             selection = option
-                                            userDefaults.save(value: selection, key: userDefaultsKey)
+                                            let key = FirestoreKey(rawValue: settingKey)
+                                            if let key = key {
+                                                onboardingRouter.saveSetting(key: key, value: selection)
+                                            }
+                                            
                                         }
                                 }
                             }
@@ -69,7 +72,10 @@ struct ItemPicker: View {
                 
             }
             .onAppear {
-                userDefaults.save(value: selection, key: userDefaultsKey)
+                let key = FirestoreKey(rawValue: settingKey)
+                if let key = key {
+                    onboardingRouter.saveSetting(key: key, value: selection)
+                }
             }
         }
     }

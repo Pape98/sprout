@@ -9,28 +9,43 @@ import Foundation
 import SwiftUI
 
 struct WeatherOverlay: ViewModifier {
+    
+    @EnvironmentObject var userViewModel: UserViewModel
+    var showStats: Bool
+    var opacity: Double
+    
+    let weatherInfo = getWeatherInfo()
+    
     func body(content: Content) -> some View {
         
         ZStack(alignment: .topLeading) {
             // Background Image
-            Image("day-bg")
+            Image(weatherInfo["image"]!)
                 .resizable()
                 .ignoresSafeArea()
+                .opacity(opacity)
             // Scene View
             content
             
-            // Stats
-            VStack(alignment: .leading) {
-                Stats(image: "droplet-icon", value:5)
-                Stats(image: "step-icon", value: 1247)
-                Spacer()
+            if showStats {
+                // Stats
+                VStack(alignment: .leading, spacing: 10) {
+                    if let numDroplets = userViewModel.numDroplets {
+                        Stats(image: "droplet-icon", value: Int(numDroplets.value))
+                    }
+                    
+                    if let numSeeds = userViewModel.numSeeds {
+                        Stats(image: "seed-icon", value: Int(numSeeds.value))
+                    }
+                }
+                .padding()
             }
-            .padding()
         }
         .overlay {
             Rectangle()
-                .fill(Color.day)
+                .fill(Color(weatherInfo["color"]!))
                 .blendMode(BlendMode.overlay)
+                .edgesIgnoringSafeArea([.top])
         }
     }
 }

@@ -10,31 +10,43 @@ import SpriteKit
 
 class FriendGardenScene: SKScene {
     
-    var friend: User?
     var tree: SKSpriteNode!
-    let SCALE_DURATION = 2.5
+    var ground: SKSpriteNode!
+    var gameTimer: Timer?
+    var garden: UserGarden?
+    var isAnimated: Bool = false
     
     override func didMove(to view: SKView) {
         
         // Background
-        let background = SKSpriteNode(imageNamed: "background")
-        background.position = CGPoint(x: frame.midX, y: frame.midY)
-        background.blendMode = .replace
-        background.zPosition = -1
-        addChild(background)
+        self.backgroundColor = .clear
         
-        // Tree
-        let treeTexture = SKTexture(imageNamed: "tree1")
-        tree = SKSpriteNode(texture: treeTexture)
-        tree.anchorPoint = CGPoint(x:0.5, y: 0)
-        tree.position = CGPoint(x: frame.midX, y:0)
-        tree.name = NodeNames.tree.rawValue
-        let treeHeight = CGFloat(friend!.gardenItems[0].height)
-        tree.setScale(0)
-        let treeAction = SKAction.scale(to: treeHeight, duration: SCALE_DURATION)
-        tree.run(treeAction)
-        addChild(tree)
+        // Ground
+        ground = SceneHelper.setupGround(scene: self)
         
+        // Flowers
+        addExisitingItems()
+        
+        // Timer
+        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+    }
+    
+    
+    @objc func createCloud(){
+        SceneHelper.createCloud(scene: self, scale: 0.4)
+    }
+    
+    func addExisitingItems(){
+        guard let garden = garden else {return }
+
+        for item in garden.items {
+            switch item.type {
+            case .flower:
+                SceneHelper.addExistingFlower(flower: item, scene: self, isAnimated: isAnimated)
+            case .tree:
+                let _ = SceneHelper.addTree(tree: item, ground: ground, scene: self, isAnimated: isAnimated)
+            }
+        }
     }
     
 }

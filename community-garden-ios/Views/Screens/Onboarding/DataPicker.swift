@@ -13,9 +13,7 @@ struct DataPicker: View {
     @State var selections: [String] = []
     @State var showingAlert = false
     @EnvironmentObject var onboardingRouter: OnboardingRouter
-    
-    let userDefaultsService: UserDefaultsService = UserDefaultsService.shared
-    
+        
     let header = "I want to track ..."
     let subheader = "Select two things from the Health App"
     let dataOptions = DataOptions.dalatList
@@ -48,7 +46,7 @@ struct DataPicker: View {
                     showingAlert = true
                 } else {
                     // Save user wants to track
-                    userDefaultsService.save(value: selections, key: UserDefaultsKey.DATA)
+                    onboardingRouter.saveSetting(key: FirestoreKey.DATA, value: selections)
                     // Redirect to next screen
                     onboardingRouter.setScreen(.setGoals)
                 }

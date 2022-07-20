@@ -9,7 +9,9 @@ import SwiftUI
 
 struct ColorPicker: View {
     
-    @Environment(\.userDefaultsKey) var userDefaultsKey
+    @Environment(\.dataString) var settingKey
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
+    
     var header: String
     var subheader: String
     @Binding var selectedColor: String
@@ -19,19 +21,19 @@ struct ColorPicker: View {
     
     
     var DEFAULT_TREE: String {
-        userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
+        onboardingRouter.getSetting(key: FirestoreKey.TREE) as! String
     }
     
     var DEFAULT_FLOWER: String {
-        userDefaults.get(key: UserDefaultsKey.FLOWER) ?? "abyss-sage"
+        onboardingRouter.getSetting(key: FirestoreKey.FLOWER) as! String
     }
     
     var DEFAULT: String {
-        userDefaultsKey == UserDefaultsKey.TREE_COLOR ? DEFAULT_TREE : DEFAULT_FLOWER
+        settingKey == FirestoreKey.TREE_COLOR.rawValue ? DEFAULT_TREE : DEFAULT_FLOWER
     }
     
     var imagePath: String {
-        if userDefaultsKey == UserDefaultsKey.FLOWER_COLOR {
+        if settingKey == FirestoreKey.FLOWER_COLOR.rawValue {
             return "flowers/\(selectedColor)-\(DEFAULT)"
         } else {
             return "\(selectedColor)-\(DEFAULT)"
@@ -40,7 +42,6 @@ struct ColorPicker: View {
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
-    @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var body: some View {
         GeometryReader { geometry in
@@ -73,7 +74,10 @@ struct ColorPicker: View {
                     
                     BackNextButtons(){
                         // Save selected color
-                        userDefaults.save(value: selectedColor, key: userDefaultsKey)
+                        let key = FirestoreKey(rawValue: settingKey)
+                        if let key = key {
+                            onboardingRouter.saveSetting(key: key, value: selectedColor)
+                        }
                     }
                     .environmentObject(onboardingRouter)
                 }
@@ -90,7 +94,7 @@ struct ColorPicker_Previews: PreviewProvider {
         ColorPicker(header: "Choose tree color",
                     subheader: "Look at all these nice colors 🎨",
                     selectedColor: $selectedColor)
-        .userDefaultsKey(UserDefaultsKey.TREE)
+        .dataString(FirestoreKey.TREE.rawValue)
         .environmentObject(OnboardingRouter())
     }
 }

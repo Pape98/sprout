@@ -26,23 +26,22 @@ struct Point: Hashable {
 
 struct DataMapping: View {
     
-    let userDefaults: UserDefaultsService = UserDefaultsService.shared
     @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var selectedData: [String] {
-        userDefaults.get(key: UserDefaultsKey.DATA) ?? ["Steps","Sleep"]
+        onboardingRouter.getSetting(key: FirestoreKey.DATA) as? [String] ?? ["Steps","Sleep"]
     }
     var treeType: String {
-        userDefaults.get(key:UserDefaultsKey.TREE) ?? "spiky-maple"
+        onboardingRouter.getSetting(key: FirestoreKey.TREE) as? String  ?? "spiky-maple"
     }
     var treeColor: String {
-        userDefaults.get(key:UserDefaultsKey.TREE_COLOR) ?? "moss"
+        onboardingRouter.getSetting(key: FirestoreKey.TREE_COLOR) as? String ?? "moss"
     }
     var flowerType: String {
-        userDefaults.get(key:UserDefaultsKey.FLOWER) ?? "joyful-clover"
+        onboardingRouter.getSetting(key: FirestoreKey.FLOWER) as? String ?? "joyful-clover"
     }
     var flowerColor: String {
-        userDefaults.get(key:UserDefaultsKey.FLOWER_COLOR) ?? "cosmos"
+        onboardingRouter.getSetting(key: FirestoreKey.FLOWER_COLOR) as? String ?? "cosmos"
     }
     
     let columns = [GridItem(.flexible(), alignment: .top), GridItem(.flexible(), alignment: .top)]
@@ -73,11 +72,11 @@ struct DataMapping: View {
             Spacer()
             
             BackNextButtons() {
-//                if mappedData.count != 2 {
-//                    showingAlert = true
-//                }
+                //                if mappedData.count != 2 {
+                //                    showingAlert = true
+                //                }
                 
-                userDefaults.save(value: mappedData, key: UserDefaultsKey.MAPPED_DATA)
+                onboardingRouter.saveSetting(key: FirestoreKey.MAPPED_DATA, value: mappedData)
                 
             }.environmentObject(onboardingRouter)
         }
@@ -111,20 +110,22 @@ struct DataMapping: View {
                         .inset(by: 1)
                         .stroke(style: StrokeStyle(lineWidth: 2.5, dash: [5]))
                         .fill(Color.seaGreen)
-                        .frame(width: 150, height: 40)
+                        .frame(width: 150, height: 60)
                         .padding(.top)
                     
                     RoundedRectangle(cornerRadius: 10)
                         .inset(by: 1)
                         .fill(Color.seaGreen)
-                        .frame(width: 150, height: 40)
+                        .frame(width: 150, height: 60)
                         .opacity(0.01)
                         .padding(.top)
                 }
                 .acceptDrop(condition: true) { providers in
                     if let first = providers.first {
                         let _ = first.loadObject(ofClass: URL.self) { value, error in
+                            if error != nil { return }
                             guard let url = value else  { return }
+                
                             
                             // Check if card has already mapping
                             if let oldLabel = mappedData[key.rawValue] {
@@ -132,8 +133,10 @@ struct DataMapping: View {
                                 mappedData.removeValue(forKey: key.rawValue)
                             }
                             
-                            mappedData[key.rawValue] = url.absoluteString // "Tree":"Steps"
-                            availableLabels = availableLabels.filter { $0 != url.absoluteString}
+                            let filteredString = splitString(str: url.absoluteString)
+                            
+                            mappedData[key.rawValue] = filteredString // "Tree":"Steps"
+                            availableLabels = availableLabels.filter { $0 != filteredString}
                             
                         }
                     }
@@ -144,7 +147,7 @@ struct DataMapping: View {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.oliveGreen)
                         .opacity(0.8)
-                        .frame(width: 150, height: 40)
+                        .frame(width: 150, height: 60)
                     
                     HStack {
                         Text(mappedData[key.rawValue]!)
@@ -157,13 +160,13 @@ struct DataMapping: View {
                             .padding(.trailing)
                     }
                     
-                   
+                    
                 }
                 .padding(.top)
                 .onTapGesture {
                     availableLabels.append(mappedData[key.rawValue]!)
                     mappedData.removeValue(forKey: key.rawValue)
-                }.frame(width: 150, height: 40)
+                }.frame(width: 150, height: 60)
             }
             
         }
@@ -173,21 +176,25 @@ struct DataMapping: View {
     func DataLabels() -> some View {
         LazyVGrid(columns: columns) {
             ForEach(availableLabels, id: \.self) { data in
+                
                 ZStack {
                     Group {
                         RoundedRectangle(cornerRadius: 10)
                             .inset(by: 1)
                             .stroke(Color.seaGreen, lineWidth: 2.5)
-                            .frame(width: 150, height: 40)
+                            .frame(width: 150, height: 60)
                         
                     }.background(Color.haze)
-                    .cornerRadius(10)
+                        .cornerRadius(10)
                     
                     Text(data)
                         .foregroundColor(.seaGreen)
+                        .multilineTextAlignment(.center)
                     
                 }.onDrag {
-                    return .init(contentsOf: URL(string: data))!
+                    let url = data.replacingOccurrences(of: " ", with: "")
+                    return .init(contentsOf: URL(string: url))!
+                    
                 }
             }
         }.padding()
