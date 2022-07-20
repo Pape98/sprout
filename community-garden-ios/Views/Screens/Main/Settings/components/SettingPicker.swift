@@ -10,7 +10,8 @@ import SwiftUI
 struct SettingPicker: View {
     
     @EnvironmentObject var settingsViewModel: SettingsViewModel
-    
+    @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+
     @State var selection = ""
     @State var showAlert = false
     var title: String
@@ -81,6 +82,7 @@ struct SettingPicker: View {
             selection = label
             settingsViewModel.updateSettings(settingKey: settingKey, value: selection)
             showAlert = true
+            self.presentationMode.wrappedValue.dismiss()
             
         }
     }
