@@ -10,8 +10,8 @@ import SwiftUI
 struct DataPicker: View {
     
     // MARK: Properties
-    @State var selections: [String] = []
-    @State var showingAlert = false
+    @State private var selections: [String] = []
+    @State private var showingAlert = false
     @EnvironmentObject var onboardingRouter: OnboardingRouter
         
     let header = "I want to track ..."

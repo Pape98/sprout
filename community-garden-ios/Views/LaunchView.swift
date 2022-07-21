@@ -18,7 +18,7 @@ struct LaunchView: View {
     @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
     
     // States
-    @State var yOffset = 0
+    @State private var yOffset = 0
     
     var userDefaults = UserDefaultsService.shared
     var userDefaultsIsNewUser: Bool {

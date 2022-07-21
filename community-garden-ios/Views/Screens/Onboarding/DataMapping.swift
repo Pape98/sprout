@@ -47,9 +47,9 @@ struct DataMapping: View {
     let columns = [GridItem(.flexible(), alignment: .top), GridItem(.flexible(), alignment: .top)]
     
     
-    @State var mappedData: [String: String] = [:]
-    @State var availableLabels: [String] = []
-    @State var showingAlert = false
+    @State private var mappedData: [String: String] = [:]
+    @State private var availableLabels: [String] = []
+    @State private var showingAlert = false
     
     
     var body: some View {

@@ -10,9 +10,10 @@ import SwiftUI
 struct MainBackground: View {
     
     var weatherInfo = getWeatherInfo()
+    var image: String = "intro-bg"
     
     var body: some View {
-        Image("intro-bg")
+        Image(image)
             .resizable()
             .ignoresSafeArea(.container, edges: [.top])
             .overlay {

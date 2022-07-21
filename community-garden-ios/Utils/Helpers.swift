@@ -19,6 +19,10 @@ func getRandomCGFloat(_ start: CGFloat, _ end: CGFloat) -> CGFloat{
     return CGFloat.random(in: start...end+0.1)
 }
 
+func getRandomNumber(_ start: Int, _ end: Int) -> Int {
+    return Int.random(in: start...end+1)
+}
+
 func formatItemName(_ name: String) -> String{
     let tokens = name.components(separatedBy: "-")
     let capitalizedTokens = tokens.map { $0.capitalized}

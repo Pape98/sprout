@@ -13,7 +13,7 @@ class Collections {
     
     let db: Firestore
     
-    let subCollections: [String] = []
+    let subCollections: [String] = ["messages"]
     let topLevelCollections = ["users","gardenItems","steps", "workouts", "walkingRunning", "sleep"]
     let nc = NotificationCenter.default
     

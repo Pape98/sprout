@@ -10,7 +10,7 @@ import SwiftUI
 struct NameChanging: View {
 
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
-    @State var gardenName: String
+    @State private var gardenName: String
     @EnvironmentObject var settingsViewModel: SettingsViewModel
 
     init(garden: String){
