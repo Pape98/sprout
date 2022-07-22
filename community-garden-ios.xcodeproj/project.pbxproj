@@ -49,6 +49,7 @@
 		F04AD4C7288AE22B00BC17AB /* FriendListBasicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */; };
 		F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */; };
 		F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */; };
+		F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* Messages.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
@@ -144,6 +145,7 @@
 		F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListBasicCard.swift; sourceTree = "<group>"; };
 		F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
+		F04AD4CE288B22DD00BC17AB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
@@ -219,7 +221,7 @@
 		F0057387276F940C00EB487B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				F04AD4CA288B1EB200BC17AB /* Other */,
+				F04AD4CA288B1EB200BC17AB /* Launch */,
 				F0149D5C284ED6A500782D27 /* Login */,
 				F0149D5D284ED6B000782D27 /* Onboarding */,
 				F0132C6F286BB2DD00267B9D /* Main */,
@@ -255,6 +257,7 @@
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
 				F00A6F34283C4DDB00A176D6 /* Friends */,
 				F09B71E327724B260085C7AC /* Garden */,
+				F04AD4CD288B22C300BC17AB /* Messages */,
 				F0F5E93828739422002C30BC /* Settings */,
 			);
 			path = Main;
@@ -316,12 +319,21 @@
 			path = components;
 			sourceTree = "<group>";
 		};
-		F04AD4CA288B1EB200BC17AB /* Other */ = {
+		F04AD4CA288B1EB200BC17AB /* Launch */ = {
 			isa = PBXGroup;
 			children = (
+				F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */,
 				F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */,
 			);
-			path = Other;
+			path = Launch;
+			sourceTree = "<group>";
+		};
+		F04AD4CD288B22C300BC17AB /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				F04AD4CE288B22DD00BC17AB /* Messages.swift */,
+			);
+			path = Messages;
 			sourceTree = "<group>";
 		};
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
@@ -479,7 +491,6 @@
 			isa = PBXGroup;
 			children = (
 				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
-				F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */,
 				F0842BB3285E2920002C79BD /* Routers */,
 				F0057387276F940C00EB487B /* Screens */,
 				F0149D57284ECDA900782D27 /* Styling */,
@@ -717,6 +728,7 @@
 				F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */,
 				F0842BB0285D4D06002C79BD /* ColorPicker.swift in Sources */,
 				F0149D59284ECDC900782D27 /* Styling.swift in Sources */,
+				F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */,
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
 				F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */,

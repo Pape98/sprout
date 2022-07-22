@@ -27,9 +27,15 @@ struct MainView: View {
                     Label("Dashboard", systemImage: "house.fill")
                 }
             
+            Messages()
+                .badge(2)
+                .tabItem {
+                    Label("Messages", systemImage: "message")
+                }
+            
             FriendsList()
                 .tabItem {
-                    Label("My Friends", systemImage: "person.3")
+                    Label("Friends", systemImage: "person.3")
                 }
             
             Settings()
@@ -37,6 +43,7 @@ struct MainView: View {
                     Label("Settings", systemImage: "gearshape")
                 }
         }
+        .accentColor(.appleGreen)
         .environmentObject(userViewModel)
         .environmentObject(friendsViewModel)
         .environmentObject(healthStoreViewModel)

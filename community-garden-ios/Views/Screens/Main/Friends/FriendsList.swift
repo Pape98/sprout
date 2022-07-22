@@ -45,7 +45,7 @@ struct FriendsList: View {
                         
                     }
                 }
-                .navigationBarTitle("My Friends", displayMode: .inline)
+                .navigationBarTitle("Friends", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Picker("View Mode", selection: $viewMode) {

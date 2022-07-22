@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Settings: View {
     
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
     @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
     
     @State private var reflectWeatherChanges = false
@@ -75,8 +76,8 @@ struct Settings: View {
                         
                     }
                 }
-                .opacity(0.9)
-                .offset(y: -25)
+                .opacity(0.95)
+                .offset(y: -15)
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
@@ -86,6 +87,13 @@ struct Settings: View {
                     
                     settingsViewModel.fetchSettings()
                 }
+                
+            }
+            .toolbar {
+                Button("Logout"){
+                    authViewModel.signOut()
+                }
+                .foregroundColor(.red)
             }
         }
         .navigationViewStyle(.stack)

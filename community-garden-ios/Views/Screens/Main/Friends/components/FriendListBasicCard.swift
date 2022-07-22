@@ -21,6 +21,7 @@ struct FriendListBasicCard: View {
         HStack(alignment: .center) {
             CircledTree(option: tree, background: .appleGreen, size: 70)
             Text(user.name)
+                .foregroundColor(.black)
             
             Spacer()
             

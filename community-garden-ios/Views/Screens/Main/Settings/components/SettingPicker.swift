@@ -31,7 +31,7 @@ struct SettingPicker: View {
                         }
                     }
                 }
-                .opacity(0.8)
+                .opacity(0.95)
             }
         }
         .navigationTitle(title)

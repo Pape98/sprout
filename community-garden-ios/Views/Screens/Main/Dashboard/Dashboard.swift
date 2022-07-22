@@ -108,11 +108,7 @@ struct Dashboard: View {
                         }
                         
                         Spacer()
-                        
-                        Button("Sign Out"){
-                            authViewModel.signOut()
-                        }.padding()
-                        
+
                     }
                 }
                 .navigationBarHidden(true)

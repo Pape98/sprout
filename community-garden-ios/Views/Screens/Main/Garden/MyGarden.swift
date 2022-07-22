@@ -37,6 +37,7 @@ struct MyGarden: View {
                             showPickDropElementAlert = true
                             gardenViewModel.saveItems()
                         }
+                        .foregroundColor(.black)
                         
                         Image(gardenViewModel.dropItem.rawValue)
                             .resizable()
