@@ -31,10 +31,14 @@ struct LaunchView: View {
                 
             } else {
                 // Show onboarding or dashboard view
-                if authModel.userOnboarded {
-                    MainView()
+                if let userOnboarded = authModel.userOnboarded {
+                    if userOnboarded {
+                        MainView()
+                    } else {
+                        Onboarding()
+                    }
                 } else {
-                    Onboarding()
+                    LaunchScreen()
                 }
             }
         }

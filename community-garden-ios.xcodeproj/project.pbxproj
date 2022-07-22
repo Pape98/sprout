@@ -47,6 +47,8 @@
 		F04AD4BD288A397A00BC17AB /* CustomMessageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */; };
 		F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */; };
 		F04AD4C7288AE22B00BC17AB /* FriendListBasicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */; };
+		F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */; };
+		F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
@@ -140,6 +142,8 @@
 		F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageSheet.swift; sourceTree = "<group>"; };
 		F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListBasicCard.swift; sourceTree = "<group>"; };
+		F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
@@ -215,6 +219,7 @@
 		F0057387276F940C00EB487B /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F04AD4CA288B1EB200BC17AB /* Other */,
 				F0149D5C284ED6A500782D27 /* Login */,
 				F0149D5D284ED6B000782D27 /* Onboarding */,
 				F0132C6F286BB2DD00267B9D /* Main */,
@@ -309,6 +314,14 @@
 				F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */,
 			);
 			path = components;
+			sourceTree = "<group>";
+		};
+		F04AD4CA288B1EB200BC17AB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
@@ -466,6 +479,7 @@
 			isa = PBXGroup;
 			children = (
 				F0ADEA2C275ED1740039B134 /* LaunchView.swift */,
+				F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */,
 				F0842BB3285E2920002C79BD /* Routers */,
 				F0057387276F940C00EB487B /* Screens */,
 				F0149D57284ECDA900782D27 /* Styling */,
@@ -609,6 +623,7 @@
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
+				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
 				F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -688,6 +703,7 @@
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04AD4C7288AE22B00BC17AB /* FriendListBasicCard.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
+				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
@@ -867,6 +883,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -881,7 +898,7 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -896,7 +913,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -906,6 +923,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
@@ -920,7 +938,7 @@
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -935,7 +953,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
