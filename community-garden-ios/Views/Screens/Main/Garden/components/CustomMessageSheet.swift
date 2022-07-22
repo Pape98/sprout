@@ -13,6 +13,8 @@ struct CustomMessageSheet: View {
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @Environment(\.presentationMode) var presentationMode
     
+    
+    var selectedMessage: Binding<MessageOption>
     @State private var selectedColor: String = "grenadier"
     @State private var text = "Type your message here 😊"
     
@@ -69,6 +71,7 @@ struct CustomMessageSheet: View {
                 .toolbar {
                     Button("Add"){
                         messagesViewModel.addOption(text: text, color: selectedColor)
+                        selectedMessage.wrappedValue = MessageOption(text: text, color: selectedColor)
                         presentationMode.wrappedValue.dismiss()
                     }
                 }
@@ -78,9 +81,9 @@ struct CustomMessageSheet: View {
 }
 
 struct CustomMessageSheet_Previews: PreviewProvider {
-    
-    @State static var text: String = "Type your message here 😊"
+    @State static var selectedMessage = MessageOption(text: "Pape is the best", color: "cosmos")
+
     static var previews: some View {
-        CustomMessageSheet()
+        CustomMessageSheet(selectedMessage: $selectedMessage)
     }
 }

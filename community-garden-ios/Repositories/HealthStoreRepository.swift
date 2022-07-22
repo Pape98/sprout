@@ -115,7 +115,7 @@ class HealthStoreRepository {
             case .success(let data):
                 completion(data)
             case .failure(let error):
-                print("Error getting \(name) to Firestore: \(error)")
+                print("Error getting \(name) from Firestore: \(error)")
             }
         }
     }

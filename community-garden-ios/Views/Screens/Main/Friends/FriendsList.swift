@@ -8,43 +8,81 @@
 import SwiftUI
 import SpriteKit
 
+enum FriendsListViewMode {
+    case basic
+    case scene
+}
 
 struct FriendsList: View {
     
     @EnvironmentObject var friendsViewModel: FriendsViewModel
+    @State var viewMode: FriendsListViewMode = .basic
     
     var body: some View {
-        NavigationView {
-            ZStack {
-                
-                MainBackground()
-                
-                ScrollView {
-                    VStack {
-                        ForEach(friendsViewModel.friendsGardens){ garden in
-                            NavigationLink {
-                                FriendGarden(garden: garden)
-                            } label: {
-                                Garden(garden: garden, isAnimated: false)
-                                    .background {
-                                        RoundedRectangle(cornerRadius: 25)
-                                            .fill(Color.white)
-                                            .shadow(color: .gray, radius: 2, x: 0, y: 2)
+        GeometryReader { geometry in
+            NavigationView {
+                ZStack {
+                    
+                    MainBackground()
+                    
+                    ScrollView {
+                        
+                        VStack(spacing: 15) {
+                            ForEach(friendsViewModel.friendsGardens){ garden in
+                                NavigationLink {
+                                    FriendGarden(garden: garden)
+                                } label: {
+                                    if viewMode == .scene {
+                                        SceneCard(garden: garden)
+                                    } else {
+                                        FriendListBasicCard(user: garden.user)
                                     }
-                                    .cornerRadius(25)
-                                    .frame(height: 300)
-                                    .padding()
+                                    
+                                }
                             }
+                        }
+                        .padding()
+                        
+                    }
+                }
+                .navigationBarTitle("My Friends", displayMode: .inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Picker("View Mode", selection: $viewMode) {
+                            
+                            
+                            Image(systemName: "rectangle.grid.1x2")
+                                .foregroundColor(Color.appleGreen)
+                                .tag(FriendsListViewMode.basic)
+                            
+                            
+                            Image(systemName: "camera.macro.circle")
+                                .foregroundColor(Color.appleGreen)
+                                .tag(FriendsListViewMode.scene)
                         }
                     }
                 }
+                .onAppear {
+                    friendsViewModel.fetchAllCurrentItems()
+                }
             }
-            .navigationBarTitle("My Friends", displayMode: .inline)
-            .onAppear {
-                friendsViewModel.fetchAllCurrentItems()
-            }
+            .navigationViewStyle(.stack)
         }
-        .navigationViewStyle(.stack)
+    }
+    
+    @ViewBuilder
+    func SceneCard(garden: UserGarden) -> some View {
+        
+        Garden(garden: garden, isAnimated: false)
+            .background {
+                RoundedRectangle(cornerRadius: 25)
+                    .fill(Color.white)
+                    .shadow(color: .gray, radius: 2, x: 0, y: 2)
+            }
+            .cornerRadius(25)
+            .frame(height: 300)
+            .padding()
+        
     }
 }
 

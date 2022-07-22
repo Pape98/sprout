@@ -46,6 +46,7 @@
 		F0475B61286228D000C68B35 /* LastSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B60286228CF00C68B35 /* LastSteps.swift */; };
 		F04AD4BD288A397A00BC17AB /* CustomMessageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */; };
 		F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */; };
+		F04AD4C7288AE22B00BC17AB /* FriendListBasicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
@@ -138,6 +139,7 @@
 		F0475B60286228CF00C68B35 /* LastSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSteps.swift; sourceTree = "<group>"; };
 		F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageSheet.swift; sourceTree = "<group>"; };
 		F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
+		F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListBasicCard.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 			isa = PBXGroup;
 			children = (
 				F00A6F37283C4E1600A176D6 /* FriendsList.swift */,
+				F04AD4C5288AE20500BC17AB /* components */,
 			);
 			path = Friends;
 			sourceTree = "<group>";
@@ -298,6 +301,14 @@
 				F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F04AD4C5288AE20500BC17AB /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
@@ -675,6 +686,7 @@
 				F0D66E3728886E4D0095AEDE /* Message.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
+				F04AD4C7288AE22B00BC17AB /* FriendListBasicCard.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,

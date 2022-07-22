@@ -16,7 +16,7 @@ struct Message: Identifiable, Codable {
     var isPrivate = false
 }
 
-struct MessageOption: Identifiable, Hashable {
+struct MessageOption: Codable, Identifiable, Hashable {
     var id: String = UUID().uuidString
     var text: String
     var color: String

@@ -11,9 +11,9 @@ struct SettingPicker: View {
     
     @EnvironmentObject var settingsViewModel: SettingsViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
+    
     @State private var selection = ""
-
+    
     var title: String
     var prefix: String = ""
     var data: [String]
@@ -31,6 +31,7 @@ struct SettingPicker: View {
                         }
                     }
                 }
+                .opacity(0.8)
             }
         }
         .navigationTitle(title)

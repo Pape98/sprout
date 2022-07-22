@@ -21,9 +21,6 @@ struct LaunchView: View {
     @State private var yOffset = 0
     
     var userDefaults = UserDefaultsService.shared
-    var userDefaultsIsNewUser: Bool {
-        userDefaults.get(key: UserDefaultsKey.IS_NEW_USER)
-    }
     
     var body: some View {
         

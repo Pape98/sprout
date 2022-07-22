@@ -46,16 +46,16 @@ func getWeatherInfo() -> [String: String]{
     let date = Date()
     let dateComponents = Calendar.current.dateComponents([.hour], from: date)
     let hour = dateComponents.hour!
-//    
-//    if hour >= 0 && hour <= 5 { // night
-//        return ["image": "night-bg", "color": "night"]
-//    } else if hour >= 6 && hour <= 9 { // morning
-//        return ["image": "morning-bg", "color": "morning"]
-//    } else if hour >= 10 && hour <= 20 { // day
-//        return ["image": "day-bg", "color": "day"]
-//    } else { // evening
-//        return ["image": "evening-bg", "color": "evening"]
-//    }
+    //
+    //    if hour >= 0 && hour <= 5 { // night
+    //        return ["image": "night-bg", "color": "night"]
+    //    } else if hour >= 6 && hour <= 9 { // morning
+    //        return ["image": "morning-bg", "color": "morning"]
+    //    } else if hour >= 10 && hour <= 20 { // day
+    //        return ["image": "day-bg", "color": "day"]
+    //    } else { // evening
+    //        return ["image": "evening-bg", "color": "evening"]
+    //    }
     
     return ["image": "day-bg", "color": "day"]
 }
@@ -66,4 +66,47 @@ func getUserID() -> String? {
 
 func addDash(_ s: String) -> String {
     return s.replacingOccurrences(of: " ", with: "-")
+}
+
+func dataEncoder<T: Encodable>(data: T) -> Data? {
+    do {
+        // Create JSON Encoder
+        let encoder = JSONEncoder()
+        
+        // Encode Data
+        let data = try encoder.encode(data)
+        
+        return data
+        
+    } catch {
+        print("Unable to Encode Note (\(error))")
+    }
+    
+    return nil
+}
+
+func dataArrayDecoder<T: Decodable>(data: Data, type: T.Type) -> [T] {
+    do {
+        // Create JSON Decoder
+        let decoder = JSONDecoder()
+        
+        // Decode Data
+        let decodedData = try decoder.decode([T].self, from: data)
+        
+        return decodedData
+        
+    } catch {
+        print("Unable to Decode Note (\(error))")
+    }
+    
+    return []
+}
+
+func getSampleUserGarden() -> UserGarden {
+    let settings = UserSettings(tree: "spiky-maple", treeColor: "cosmos")
+    let user = User(id: "pape", name: "Pape Sow", email: "", group: 0, settings: settings)
+    let gardenItems: [GardenItem] = []
+    let garden = UserGarden(user: user, items: gardenItems)
+    
+    return garden
 }

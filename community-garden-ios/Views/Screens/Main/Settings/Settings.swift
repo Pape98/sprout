@@ -22,7 +22,6 @@ struct Settings: View {
             ZStack {
                 MainBackground()
                 List {
-                    
                     Section("Garden"){
                         
                         NavigationLink {
@@ -76,7 +75,8 @@ struct Settings: View {
                         
                     }
                 }
-                .listRowBackground(Color.red)
+                .opacity(0.9)
+                .offset(y: -25)
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
@@ -100,5 +100,6 @@ struct Settings_Previews: PreviewProvider {
         Settings()
             .environmentObject(UserViewModel())
             .environmentObject(SettingsViewModel())
+            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

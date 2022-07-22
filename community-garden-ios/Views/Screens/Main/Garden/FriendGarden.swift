@@ -39,9 +39,7 @@ struct FriendGarden: View {
 }
 
 struct FriendGarden_Previews: PreviewProvider {
-    static let user = User(id: "pape", name: "Pape Sow", email: "", group: 0)
-    static let gardenItems: [GardenItem] = []
-    static let garden = UserGarden(user: user, items: gardenItems)
+    static let garden = getSampleUserGarden()
     static var previews: some View {
         FriendGarden(garden: garden)
     }

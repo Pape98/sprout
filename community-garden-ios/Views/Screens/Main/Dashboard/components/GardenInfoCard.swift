@@ -15,10 +15,6 @@ struct GardenInfoCard: View {
     
     let userDefaults = UserDefaultsService.shared
     
-    var gardenName: String {
-        userDefaults.get(key: UserDefaultsKey.GARDEN_NAME) ?? "Poudlard"
-    }
-    
     var body: some View {
         
         ZStack(alignment: .leading) {

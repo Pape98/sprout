@@ -11,7 +11,7 @@ struct MainBackground: View {
     
     var weatherInfo = getWeatherInfo()
     var image: String = "intro-bg"
-    var edges: Edge.Set = []
+    var edges: Edge.Set = [.top]
     
     var body: some View {
         Image(image)

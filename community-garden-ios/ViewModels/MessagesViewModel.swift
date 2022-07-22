@@ -10,27 +10,56 @@ import Foundation
 class MessagesViewModel: ObservableObject {
     
     static let shared = MessagesViewModel()
+    let userDefaults = UserDefaultsService.shared
     var messageToDelete = ""
     
     @Published var options = [
-        MessageOption(text: "Proud of you!", color: "cosmos"),
-        MessageOption(text: "You are the best!", color: "sunglow"),
-        MessageOption(text: "You are amazing!", color: "lavender"),
-        MessageOption(text: "Have a wonderful day!", color: "tangerine"),
+        MessageOption(text: "Proud of you!", color: "cosmos", isDefault: true),
+        MessageOption(text: "You are the best!", color: "sunglow", isDefault: true),
+        MessageOption(text: "You are amazing!", color: "lavender", isDefault: true),
+        MessageOption(text: "Have a wonderful day!", color: "tangerine", isDefault: true),
         
     ]
     
+    @Published var customUptions: [MessageOption] = []
+    
+    
+    init(){
+        initializeCustomOptions()
+    }
+    
+    func initializeCustomOptions(){
+        let userDefaultsOptions: Data? = userDefaults.get(key: UserDefaultsKey.MESSAGE_OPTIONS)
+        if let userDefaultsOptions = userDefaultsOptions {
+            let decodedOptions = dataArrayDecoder(data: userDefaultsOptions, type: MessageOption.self)
+            DispatchQueue.main.async {
+                self.customUptions = decodedOptions
+            }
+        }
+    }
+    
     func addOption(text: String, color: String){
-        let option = MessageOption(text: text, color: color, isDefault: false)
-        DispatchQueue.main.async {
-            self.options.append(option)
+        let newOption = MessageOption(text: text, color: color, isDefault: false)
+        var userOptions = self.customUptions
+        userOptions.append(newOption)
+        if let encodedOptions: Data = dataEncoder(data: userOptions) {
+            userDefaults.save(value: encodedOptions, key: UserDefaultsKey.MESSAGE_OPTIONS)
+            initializeCustomOptions()
         }
     }
     
     func deleteOption(){
-        DispatchQueue.main.async {
-            self.options = self.options.filter { $0.text != self.messageToDelete }
+        let userDefaultsOptions: Data? = userDefaults.get(key: UserDefaultsKey.MESSAGE_OPTIONS)
+        if let userDefaultsOptions = userDefaultsOptions {
+            
+            var decodedOptions = dataArrayDecoder(data: userDefaultsOptions, type: MessageOption.self)
+            decodedOptions = decodedOptions.filter { $0.text != self.messageToDelete }
             self.messageToDelete = ""
+            
+            if let encodedOptions: Data = dataEncoder(data: decodedOptions) {
+                userDefaults.save(value: encodedOptions, key: UserDefaultsKey.MESSAGE_OPTIONS)
+                initializeCustomOptions()
+            }
         }
     }
 }

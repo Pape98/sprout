@@ -16,10 +16,7 @@ struct MyGarden: View {
     @EnvironmentObject var gardenViewModel: GardenViewModel
 
     let userDefaults = UserDefaultsService.shared
-    
-    var gardenName: String {
-        userDefaults.get(key: UserDefaultsKey.GARDEN_NAME) ?? "Your Garden"
-    }
+
     
     var scene: SKScene {
         let scene = MyGardenScene()
