@@ -23,7 +23,7 @@ struct FriendGarden: View {
     var body: some View {
         Garden(garden: garden)
             .sheet(isPresented: $isShowingSheet, content: {
-                MessageOptions(user: user)
+                MessageOptions(user: garden.user)
             })
             .navigationTitle(gardenName)
             .toolbar {
@@ -31,17 +31,8 @@ struct FriendGarden: View {
                     Button {
                         isShowingSheet = true
                     } label: {
-                        HStack(spacing: 10) {
-                            Image(systemName: "paperplane.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 15, height: 15)
-                            
-                            Text("Message")
-                        }
-                        
+                        Image(systemName: "paperplane")
                     }
-                    
                 }
             }
     }

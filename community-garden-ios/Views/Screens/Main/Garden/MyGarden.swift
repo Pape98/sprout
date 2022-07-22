@@ -32,7 +32,7 @@ struct MyGarden: View {
         SpriteView(scene: scene, options: [.allowsTransparency])
             .ignoresSafeArea(.container, edges:[.top])
             .weatherOverlay()
-            .navigationBarTitle(gardenName, displayMode: NavigationBarItem.TitleDisplayMode.inline)
+            .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     HStack {

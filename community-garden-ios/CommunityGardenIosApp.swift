@@ -32,8 +32,9 @@ struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
-            .environmentObject(authViewModel)
-            .environmentObject(appViewModel)
+                .background(Color.porcelain)
+                .environmentObject(authViewModel)
+                .environmentObject(appViewModel)
         }
     }
 }

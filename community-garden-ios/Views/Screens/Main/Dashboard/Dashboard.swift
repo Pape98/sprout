@@ -23,12 +23,14 @@ struct Dashboard: View {
         return "\(color)-\(tree)"
     }
     
+    let user = UserService.user
+    
     var body: some View {
         // Content
         NavigationView {
             ZStack {
                 
-                MainBackground()
+                MainBackground(edges: [.top])
                 ScrollView(showsIndicators: false) {
                     
                     VStack {
@@ -37,8 +39,14 @@ struct Dashboard: View {
                             // Header
                             VStack {
                                 
-                                CircledTree(option: TREE, background: .seaGreen, size: 75)
-                                    .padding(.top, 15)
+                                if let settings = user.settings {
+                                    CircledTree(option: "\(settings.treeColor)-\(addDash(settings.tree))",
+                                                background: .appleGreen,
+                                                size: 75)
+                                } else {
+                                    CircledTree(option: TREE, background: .seaGreen, size: 75)
+                                        .padding(.top, 15)
+                                }
                                 
                                 VStack(spacing: 10) {
                                     Text("Hi, \(getFirstName(user.name))!")
@@ -55,9 +63,8 @@ struct Dashboard: View {
                         }
                         
                         // Card Row One
-                        if let user = userViewModel.currentUser {
-                            GardenInfoCard(user: user)
-                        }
+                            GardenInfoCard()
+                        
                         
                         // Card Row Two
                         

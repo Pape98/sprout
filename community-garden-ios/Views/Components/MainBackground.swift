@@ -11,11 +11,12 @@ struct MainBackground: View {
     
     var weatherInfo = getWeatherInfo()
     var image: String = "intro-bg"
+    var edges: Edge.Set = []
     
     var body: some View {
         Image(image)
             .resizable()
-            .ignoresSafeArea(.container, edges: [.top])
+            .ignoresSafeArea(.container, edges: edges)
             .overlay {
                 Rectangle()
                     .fill(Color.day)

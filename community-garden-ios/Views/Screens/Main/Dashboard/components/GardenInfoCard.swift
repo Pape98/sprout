@@ -10,7 +10,7 @@ import SwiftUI
 struct GardenInfoCard: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
-    var user: User?
+    
     let today = Date()
     
     let userDefaults = UserDefaultsService.shared
@@ -25,8 +25,6 @@ struct GardenInfoCard: View {
             
             HStack {
                 
-                
-                
                 // Buttons
                 if let numDroplets = userViewModel.numDroplets {
                     IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) droplets")
@@ -36,9 +34,11 @@ struct GardenInfoCard: View {
                     IconButton(icon: "seed-icon", text: "\(Int(numSeeds.value)) seeds")
                 }
                 
-                NavigationLink(destination: MyGarden()) {
-                    IconButton(icon: "garden-icon", text: gardenName)
-                        .shadow(color: .chalice, radius: 4, x: -2, y: 1)
+                if let settings = userViewModel.currentUser.settings {
+                    NavigationLink(destination: MyGarden()) {
+                        IconButton(icon: "garden-icon", text: settings.gardenName)
+                            .shadow(color: .chalice, radius: 4, x: -2, y: 1)
+                    }
                 }
             }
             .padding(25)
@@ -60,8 +60,7 @@ struct GardenInfoCard: View {
 struct GardenInfoCard_Previews: PreviewProvider {
     static var previews: some View {
         
-        let user: User = User(id: "1", name: "Pape", email: "papisline2222@gmail.com")
-        GardenInfoCard(user: user)
+        GardenInfoCard()
             .environmentObject(UserViewModel())
     }
 }

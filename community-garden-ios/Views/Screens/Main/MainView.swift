@@ -14,6 +14,7 @@ struct MainView: View {
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
+    @StateObject var messagesViewModel: MessagesViewModel = MessagesViewModel.shared
     
     let userDefaults = UserDefaultsService.shared
     
@@ -40,6 +41,7 @@ struct MainView: View {
         .environmentObject(friendsViewModel)
         .environmentObject(healthStoreViewModel)
         .environmentObject(gardenViewModel)
+        .environmentObject(messagesViewModel)
     }
 }
 

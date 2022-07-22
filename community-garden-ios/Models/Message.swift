@@ -15,3 +15,10 @@ struct Message: Identifiable, Codable {
     var message: String
     var isPrivate = false
 }
+
+struct MessageOption: Identifiable, Hashable {
+    var id: String = UUID().uuidString
+    var text: String
+    var color: String
+    var isDefault: Bool = false
+}

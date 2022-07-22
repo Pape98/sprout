@@ -90,14 +90,4 @@ class GardenViewModel: ObservableObject {
             gardenRepo.udpateGardenItem(docName: item.documentName!, updates: item)
         }
     }
-    
-    func resetTree(){
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: userDefaultTree, scale: 0.2)
-        gardenRepo.udpateGardenItem(docName: "tree", updates: tree)
-    }
-    
-    func deleteFlowers(){
-        gardenRepo.resetFlowers()
-        flowers = []
-    }
 }

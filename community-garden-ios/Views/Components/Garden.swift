@@ -24,7 +24,7 @@ struct Garden: View {
     }
     
     var body: some View {
-        ZStack(alignment: .topTrailing) {
+        ZStack(alignment: .bottom) {
             SpriteView(scene: scene, options: [.allowsTransparency])
                 .weatherOverlay(showStats: false, opacity: 0.8)
 

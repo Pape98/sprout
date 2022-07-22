@@ -54,6 +54,12 @@ class GardenRepository {
         saveData(docRef: docRef, data: updates)
     }
     
+    func updateGardenItem(query: Query, updates: [String: Any]){
+        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
+        guard let collection = collection else { return }
+        // TODO: Finish update
+    }
+    
     func resetFlowers(){
         let collection = collections.getCollectionReference("gardenItems")
         guard let collection = collection else { return }

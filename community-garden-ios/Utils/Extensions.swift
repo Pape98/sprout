@@ -101,7 +101,7 @@ extension Color {
     static let hawks = Color("hawks")
     static let moss = Color("moss")
     static let tangerine = Color("tangerine")
-    static let lavendar = Color("lavendar")
+    static let lavender = Color("lavender")
     static let mint = Color("mint")
     static let raspberry = Color("raspberry")
     static let porcelain = Color("porcelain")
