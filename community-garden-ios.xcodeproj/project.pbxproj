@@ -68,6 +68,8 @@
 		F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F08C8C5E28AC1B0800DDDFB8 /* Lottie */; };
 		F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */; };
 		F08C8C6328AC206D00DDDFB8 /* lego.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C6228AC206D00DDDFB8 /* lego.json */; };
+		F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */; };
+		F08C8C7128AC29D800DDDFB8 /* droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -168,6 +170,8 @@
 		F08C8C5A28AC1A7D00DDDFB8 /* bird_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird_1.json; sourceTree = "<group>"; };
 		F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F08C8C6228AC206D00DDDFB8 /* lego.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lego.json; sourceTree = "<group>"; };
+		F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = droplet.mp3; path = ../../../../../Downloads/droplet.mp3; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -400,6 +404,24 @@
 			path = Lottie;
 			sourceTree = "<group>";
 		};
+		F08C8C6428AC258800DDDFB8 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				F08C8C6528AC259500DDDFB8 /* Sounds */,
+				F0475B5E28610E3400C68B35 /* Fonts */,
+				F08C8C5828AC1A6500DDDFB8 /* Lottie */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		F08C8C6528AC259500DDDFB8 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */,
+			);
+			path = Sounds;
+			sourceTree = "<group>";
+		};
 		F0964266275B3A8900F1CEC1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +440,7 @@
 				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
 				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 				F043F25D287CFDC6008F211C /* Protocols.swift */,
+				F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -463,8 +486,7 @@
 				F0C99E202784810F004514D4 /* Repositories */,
 				F0B32CAD275AFA7A00C714A2 /* Services */,
 				F0964271275C25AF00F1CEC1 /* Utils */,
-				F0475B5E28610E3400C68B35 /* Fonts */,
-				F08C8C5828AC1A6500DDDFB8 /* Lottie */,
+				F08C8C6428AC258800DDDFB8 /* Assets */,
 				F0B32CA3275AF77900C714A2 /* Assets.xcassets */,
 				F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */,
 				F0ADEA1A275CDED20039B134 /* GoogleService-Info.plist */,
@@ -661,6 +683,7 @@
 				F08C8C5B28AC1A7D00DDDFB8 /* turtle_1.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
+				F08C8C7128AC29D800DDDFB8 /* droplet.mp3 in Resources */,
 				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
 				F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */,
 			);
@@ -744,6 +767,7 @@
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
+				F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
 				F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */,

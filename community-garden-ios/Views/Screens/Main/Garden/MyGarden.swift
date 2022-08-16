@@ -67,8 +67,8 @@ struct MyGarden: View {
             
             // MARK: Lottie View
             
-            LottieView(filename: "lego")
-                .frame(width: 200, height: 200)
+//            LottieView(filename: "lego")
+//                .frame(width: 200, height: 200)
         }
         
     }
