@@ -1049,6 +1049,8 @@
 			dependencies = (
 			);
 			name = AppAuth;
+			packageProductDependencies = (
+			);
 			productName = AppAuth;
 			productReference = 3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */;
 			productType = "com.apple.product-type.framework";

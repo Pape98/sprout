@@ -25,42 +25,51 @@ struct MyGarden: View {
     }
     
     var body: some View {
-        // Scene View
-        SpriteView(scene: scene, options: [.allowsTransparency])
-            .ignoresSafeArea(.container, edges:[.top])
-            .weatherOverlay()
-            .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack {
-                        Button("Pick"){
-                            showPickDropElementAlert = true
-                            gardenViewModel.saveItems()
+        ZStack {
+            
+            // MARK: SpriteKit view
+            
+            SpriteView(scene: scene, options: [.allowsTransparency])
+                .ignoresSafeArea(.container, edges:[.top])
+                .weatherOverlay()
+                .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        HStack {
+                            Button("Pick"){
+                                showPickDropElementAlert = true
+                                gardenViewModel.saveItems()
+                            }
+                            .foregroundColor(.black)
+                            
+                            Image(gardenViewModel.dropItem.rawValue)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
                         }
-                        .foregroundColor(.black)
-                        
-                        Image(gardenViewModel.dropItem.rawValue)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                        
                     }
                 }
-            }
-            .onAppear {
-                gardenViewModel.getUserItems()
-            }
-            .onDisappear {
-                gardenViewModel.saveItems()
-            }
-            .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
-                Button("\(GardenElement.droplet.rawValue)💧"){
-                    gardenViewModel.dropItem = GardenElement.droplet
+                .onAppear {
+                    gardenViewModel.getUserItems()
                 }
-                Button("\(GardenElement.seed.rawValue)🌱"){
-                    gardenViewModel.dropItem = GardenElement.seed
+                .onDisappear {
+                    gardenViewModel.saveItems()
                 }
+                .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
+                    Button("\(GardenElement.droplet.rawValue)💧"){
+                        gardenViewModel.dropItem = GardenElement.droplet
+                    }
+                    Button("\(GardenElement.seed.rawValue)🌱"){
+                        gardenViewModel.dropItem = GardenElement.seed
+                    }
             }
+            
+            // MARK: Lottie View
+            
+            LottieView(filename: "lego")
+                .frame(width: 200, height: 200)
+        }
         
     }
 }
