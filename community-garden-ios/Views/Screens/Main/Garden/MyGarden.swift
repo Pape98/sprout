@@ -25,7 +25,7 @@ struct MyGarden: View {
     }
     
     var body: some View {
-        ZStack {
+        ZStack() {
             
             // MARK: SpriteKit view
             
@@ -67,8 +67,17 @@ struct MyGarden: View {
             
             // MARK: Lottie View
             
-//            LottieView(filename: "lego")
-//                .frame(width: 200, height: 200)
+            VStack {
+                
+                LottieView(filename: "bird_2")
+                    .frame(height: 250)
+                    .offset(y: 30)
+                
+                Spacer()
+                LottieView(filename: "turtle_2")
+                    .frame(height: 150)
+            }
+        
         }
         
     }

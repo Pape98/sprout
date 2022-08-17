@@ -11,7 +11,7 @@ class AudioPlayer {
     
     static var soundEffect: AVAudioPlayer?
     
-    static func playSound(filename: String){
+    static func playCustomSound(filename: String){
         let path = Bundle.main.path(forResource: filename, ofType:nil)!
         let url = URL(fileURLWithPath: path)
         
@@ -22,6 +22,10 @@ class AudioPlayer {
             // couldn't load file :(
             print("Could load \(filename) sound effect")
         }
+    }
+    
+    static func playSystemSound(soundID: UInt32){
+        AudioServicesPlaySystemSound(soundID)
     }
     
 }

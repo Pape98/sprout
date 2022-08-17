@@ -63,13 +63,13 @@
 		F0842BB9285E2A19002C79BD /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB8285E2A19002C79BD /* Screens.swift */; };
 		F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBA285E67F2002C79BD /* DataPicker.swift */; };
 		F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBC285EA252002C79BD /* PickerTitle.swift */; };
-		F08C8C5B28AC1A7D00DDDFB8 /* turtle_1.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C5928AC1A7D00DDDFB8 /* turtle_1.json */; };
-		F08C8C5C28AC1A7D00DDDFB8 /* bird_1.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C5A28AC1A7D00DDDFB8 /* bird_1.json */; };
 		F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F08C8C5E28AC1B0800DDDFB8 /* Lottie */; };
 		F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */; };
-		F08C8C6328AC206D00DDDFB8 /* lego.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C6228AC206D00DDDFB8 /* lego.json */; };
 		F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */; };
 		F08C8C7128AC29D800DDDFB8 /* droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */; };
+		F08C8C7328AC37AA00DDDFB8 /* turtle_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */; };
+		F08C8C7528AC37B000DDDFB8 /* bird_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7428AC37B000DDDFB8 /* bird_2.json */; };
+		F08C8C7728AD420200DDDFB8 /* turtle_3.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7628AD420200DDDFB8 /* turtle_3.json */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -166,12 +166,12 @@
 		F0842BB8285E2A19002C79BD /* Screens.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Screens.swift; sourceTree = "<group>"; };
 		F0842BBA285E67F2002C79BD /* DataPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataPicker.swift; sourceTree = "<group>"; };
 		F0842BBC285EA252002C79BD /* PickerTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTitle.swift; sourceTree = "<group>"; };
-		F08C8C5928AC1A7D00DDDFB8 /* turtle_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_1.json; sourceTree = "<group>"; };
-		F08C8C5A28AC1A7D00DDDFB8 /* bird_1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird_1.json; sourceTree = "<group>"; };
 		F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
-		F08C8C6228AC206D00DDDFB8 /* lego.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = lego.json; sourceTree = "<group>"; };
 		F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = droplet.mp3; path = ../../../../../Downloads/droplet.mp3; sourceTree = "<group>"; };
+		F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_2.json; sourceTree = "<group>"; };
+		F08C8C7428AC37B000DDDFB8 /* bird_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird_2.json; sourceTree = "<group>"; };
+		F08C8C7628AD420200DDDFB8 /* turtle_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_3.json; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -397,9 +397,9 @@
 		F08C8C5828AC1A6500DDDFB8 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				F08C8C6228AC206D00DDDFB8 /* lego.json */,
-				F08C8C5A28AC1A7D00DDDFB8 /* bird_1.json */,
-				F08C8C5928AC1A7D00DDDFB8 /* turtle_1.json */,
+				F08C8C7428AC37B000DDDFB8 /* bird_2.json */,
+				F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */,
+				F08C8C7628AD420200DDDFB8 /* turtle_3.json */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -677,14 +677,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F08C8C6328AC206D00DDDFB8 /* lego.json in Resources */,
-				F08C8C5C28AC1A7D00DDDFB8 /* bird_1.json in Resources */,
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
-				F08C8C5B28AC1A7D00DDDFB8 /* turtle_1.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
+				F08C8C7728AD420200DDDFB8 /* turtle_3.json in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
 				F08C8C7128AC29D800DDDFB8 /* droplet.mp3 in Resources */,
 				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
+				F08C8C7528AC37B000DDDFB8 /* bird_2.json in Resources */,
+				F08C8C7328AC37AA00DDDFB8 /* turtle_2.json in Resources */,
 				F0ADEA1B275CDED20039B134 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

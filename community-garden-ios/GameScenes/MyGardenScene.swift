@@ -212,7 +212,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         switch(node.name) {
         case NodeNames.droplet.rawValue:
-            AudioPlayer.playSound(filename: "droplet.mp3")
+            AudioPlayer.playCustomSound(filename: "droplet.mp3")
         case NodeNames.seed.rawValue:
             print("Playing seed")
         case .none:

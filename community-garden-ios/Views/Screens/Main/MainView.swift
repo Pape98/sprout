@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct MainView: View {
     
@@ -21,7 +22,7 @@ struct MainView: View {
     var body: some View {
         
         TabView {
-
+            
             Dashboard()
                 .tabItem {
                     Label("Dashboard", systemImage: "house.fill")
@@ -36,6 +37,10 @@ struct MainView: View {
             FriendsList()
                 .tabItem {
                     Label("Friends", systemImage: "person.3")
+                        .onTapGesture {
+                            AudioPlayer.playSystemSound(soundID: 1057)
+                            print("tap")
+                        }
                 }
             
             Settings()

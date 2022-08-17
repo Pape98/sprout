@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct MessageOptions: View {
     
@@ -118,6 +119,9 @@ struct MessageOptions: View {
                         } label: {
                             Image(systemName: "paperplane")
                                 .foregroundColor(.seaGreen)
+                                .onTapGesture {
+                                    AudioPlayer.playSystemSound(soundID: 1016)
+                                }
                         }
                     }
                 }
