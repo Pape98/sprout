@@ -13,6 +13,7 @@ class MessagesViewModel: ObservableObject {
     let userDefaults = UserDefaultsService.shared
     let messagesRepository = MessagesRepository.shared
     var messageToDelete = ""
+    let collections = Collections.shared
     
     @Published var options = [
         MessageOption(text: "Proud of you!", color: "cosmos", isDefault: true),
@@ -23,10 +24,12 @@ class MessagesViewModel: ObservableObject {
     ]
     
     @Published var customUptions: [MessageOption] = []
+    @Published var userMessages: [Message] = []
     
     
     init(){
         initializeCustomOptions()
+        getUserMessages()
     }
     
     func initializeCustomOptions(){
@@ -73,5 +76,21 @@ class MessagesViewModel: ObservableObject {
                                  text: text, isPrivate: isPrivate, date: Date.now)
         
         messagesRepository.sendMessage(newMessage)
+    }
+    
+    func getUserMessages(){
+        let userID = getUserID()
+        let collection = collections.getCollectionReference(CollectionName.messages.rawValue)
+                
+        guard let collection = collection, let userID = userID else { return }
+        let query = collection
+            .whereField("receiverID", isEqualTo: userID)
+        
+        messagesRepository.getMessages(query: query) { messages in
+            DispatchQueue.main.async {
+                print(messages)
+                self.userMessages = messages
+            }
+        }
     }
 }

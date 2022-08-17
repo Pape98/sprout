@@ -13,7 +13,6 @@ class MessagesRepository {
     let collections = Collections.shared
     
     func sendMessage(_ message: Message){
-        print(message)
         let collection = collections.getCollectionReference(CollectionName.messages.rawValue)
         
         guard let collection = collection else { return }
@@ -24,5 +23,27 @@ class MessagesRepository {
             print("Error sending message to Firestore: \(error)")
         }
 
+    }
+    
+    func getMessages(query: Query, completion: @escaping ([Message]) -> Void){
+        query.getDocuments { querySnapshot, error in
+            
+            if error != nil {
+                print("getMessages: Error reading from Firestore: \(error!)")
+                return
+            }
+            
+            var messages: [Message] = []
+            
+            do {
+                for doc in querySnapshot!.documents {
+                    messages.append(try doc.data(as: Message.self))
+                }
+            } catch {
+                print("getUserItems: Error reading from: \(error)")
+            }
+            
+            completion(messages)
+        }
     }
 }
