@@ -56,7 +56,7 @@ class GardenRepository {
     
     func updateGardenItem(query: Query, updates: [String: Any]){
         let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
-        guard let collection = collection else { return }
+        guard let _ = collection else { return }
         // TODO: Finish update
     }
     

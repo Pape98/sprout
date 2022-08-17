@@ -97,7 +97,7 @@
 		F0D66E3328834EDC0095AEDE /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3228834EDC0095AEDE /* SettingButton.swift */; };
 		F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3428836AD50095AEDE /* SettingPicker.swift */; };
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
-		F0D66E39288872160095AEDE /* MessageRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessageRepository.swift */; };
+		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
 		F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* MessageOptions.swift */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
 		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
@@ -199,7 +199,7 @@
 		F0D66E3228834EDC0095AEDE /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		F0D66E3428836AD50095AEDE /* SettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPicker.swift; sourceTree = "<group>"; };
 		F0D66E3628886E4D0095AEDE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		F0D66E38288872160095AEDE /* MessageRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRepository.swift; sourceTree = "<group>"; };
+		F0D66E38288872160095AEDE /* MessagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRepository.swift; sourceTree = "<group>"; };
 		F0D66E3B288894B00095AEDE /* MessageOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageOptions.swift; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
@@ -566,7 +566,7 @@
 				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
 				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
 				F043F25F287EEBA7008F211C /* GardenRepository.swift */,
-				F0D66E38288872160095AEDE /* MessageRepository.swift */,
+				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -795,7 +795,7 @@
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
 				F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */,
-				F0D66E39288872160095AEDE /* MessageRepository.swift in Sources */,
+				F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */,
 				F043F260287EEBA7008F211C /* GardenRepository.swift in Sources */,
 				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
 				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,

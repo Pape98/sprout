@@ -10,10 +10,12 @@ import Foundation
 struct Message: Identifiable, Codable {
     var id: String = UUID().uuidString
     var senderID: String
-    var sendderName: String
+    var senderName: String
     var receiverID: String
-    var message: String
+    var receiverName: String
+    var text: String
     var isPrivate = false
+    var date: Date
 }
 
 struct MessageOption: Codable, Identifiable, Hashable {

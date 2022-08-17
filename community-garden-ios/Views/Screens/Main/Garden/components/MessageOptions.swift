@@ -121,6 +121,10 @@ struct MessageOptions: View {
                                 .foregroundColor(.seaGreen)
                                 .onTapGesture {
                                     AudioPlayer.playSystemSound(soundID: 1016)
+                                    
+                                    messagesViewModel.sendMessage(receiver: user,
+                                                                  text: selectedMessage.text,
+                                                                  isPrivate: isMessagePrivate)
                                 }
                         }
                     }

@@ -11,6 +11,7 @@ class MessagesViewModel: ObservableObject {
     
     static let shared = MessagesViewModel()
     let userDefaults = UserDefaultsService.shared
+    let messagesRepository = MessagesRepository.shared
     var messageToDelete = ""
     
     @Published var options = [
@@ -61,5 +62,16 @@ class MessagesViewModel: ObservableObject {
                 initializeCustomOptions()
             }
         }
+    }
+    
+    // MARK: Methods for sending and receiving messages
+    
+    func sendMessage(receiver: User, text: String, isPrivate: Bool){
+        let sender = UserService.user
+        let newMessage = Message(senderID: sender.id, senderName: sender.name,
+                                 receiverID: receiver.id, receiverName: receiver.name,
+                                 text: text, isPrivate: isPrivate, date: Date.now)
+        
+        messagesRepository.sendMessage(newMessage)
     }
 }
