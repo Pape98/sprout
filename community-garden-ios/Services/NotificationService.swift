@@ -17,14 +17,15 @@ class NotificationService {
         center = UNUserNotificationCenter.current()
         
         // Ask for permission
-        center.requestAuthorization(options: [.alert, .sound]) { isGranted, error in
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { isGranted, error in
             guard error == nil else {
                 print("requestAuthorizations()", error!)
                 return
             }
         }
         
-        setupHowAreYouNotification()
+        //setupHowAreYouNotification()
+        
     }
     
     func setupHowAreYouNotification() {

@@ -70,6 +70,7 @@
 		F08C8C7328AC37AA00DDDFB8 /* turtle_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */; };
 		F08C8C7528AC37B000DDDFB8 /* bird_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7428AC37B000DDDFB8 /* bird_2.json */; };
 		F08C8C7728AD420200DDDFB8 /* turtle_3.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7628AD420200DDDFB8 /* turtle_3.json */; };
+		F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
@@ -99,6 +100,8 @@
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
 		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
 		F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* MessageOptions.swift */; };
+		F0F0C86A28AED64A0047D9EA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86928AED64A0047D9EA /* FirebaseMessaging */; };
+		F0F0C86C28AF333B0047D9EA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
 		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
@@ -172,6 +175,7 @@
 		F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_2.json; sourceTree = "<group>"; };
 		F08C8C7428AC37B000DDDFB8 /* bird_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird_2.json; sourceTree = "<group>"; };
 		F08C8C7628AD420200DDDFB8 /* turtle_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_3.json; sourceTree = "<group>"; };
+		F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		F0964269275B510300F1CEC1 /* Health.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Health.swift; sourceTree = "<group>"; };
@@ -213,6 +217,8 @@
 			files = (
 				F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */,
 				F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */,
+				F0F0C86A28AED64A0047D9EA /* FirebaseMessaging in Frameworks */,
+				F0F0C86C28AF333B0047D9EA /* FirebaseFunctions in Frameworks */,
 				F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
@@ -478,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				F0172731275F168D00FAEB12 /* Info.plist */,
+				F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */,
 				F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */,
 				F0B32CB0275AFA9500C714A2 /* Views */,
 				F0B32CAF275AFA8900C714A2 /* ViewModels */,
@@ -630,6 +637,8 @@
 				F0ADEA22275ECCA80039B134 /* FirebaseAuth */,
 				F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */,
 				F08C8C5E28AC1B0800DDDFB8 /* Lottie */,
+				F0F0C86928AED64A0047D9EA /* FirebaseMessaging */,
+				F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */,
 			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
@@ -742,6 +751,7 @@
 				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
 				F043F26428807473008F211C /* Garden.swift in Sources */,
 				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
+				F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */,
 				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
@@ -953,7 +963,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
-				DEVELOPMENT_TEAM = X4FT5J38AS;
+				DEVELOPMENT_TEAM = JQ28K6Y7JE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
@@ -994,7 +1004,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
-				DEVELOPMENT_TEAM = X4FT5J38AS;
+				DEVELOPMENT_TEAM = JQ28K6Y7JE;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
@@ -1085,6 +1095,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		F0F0C86928AED64A0047D9EA /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
