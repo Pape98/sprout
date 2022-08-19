@@ -11,16 +11,20 @@ import FirebaseMessaging
 import FirebaseFunctions
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
-
+    
+    var userRepository: UserRepository
+    
+    override init() {
+        self.userRepository = UserRepository.shared
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-        Messaging.messaging().delegate = self
         
-        setupLocalEmulator()
+        Messaging.messaging().delegate = self
         
         UITableView.appearance().backgroundColor = .clear
         UIApplication.shared.registerForRemoteNotifications()
-                        
+                    
         return true
     }
     
@@ -33,27 +37,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        Messaging.messaging().token { token, error in
-            if let error = error {
-              print("Error fetching FCM registration token: \(error)")
-            } else if let token = token {
-              print("FCM registration token: \(token)")
-            }
+        if let userID = getUserID(), let token = fcmToken {
+            print(token)
+            userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
         }
         
     }
-    
-    func setupLocalEmulator(){
-        
-        // Local firestore
-        let settings = Firestore.firestore().settings
-        settings.host = "localhost:8080"
-        settings.isPersistenceEnabled = false
-        settings.isSSLEnabled = false
-        Firestore.firestore().settings = settings
-        
-        // Cloud Functions
-        Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
-    }
-
 }

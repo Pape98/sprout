@@ -13,6 +13,7 @@ struct Message: Identifiable, Codable {
     var senderName: String
     var receiverID: String
     var receiverName: String
+    var receiverFcmToken: String
     var text: String
     var isPrivate = false
     var date: Date

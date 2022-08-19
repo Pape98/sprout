@@ -73,6 +73,7 @@ class MessagesViewModel: ObservableObject {
         let sender = UserService.user
         let newMessage = Message(senderID: sender.id, senderName: sender.name,
                                  receiverID: receiver.id, receiverName: receiver.name,
+                                 receiverFcmToken: receiver.fcmToken,
                                  text: text, isPrivate: isPrivate, date: Date.now)
         
         messagesRepository.sendMessage(newMessage)
@@ -88,7 +89,6 @@ class MessagesViewModel: ObservableObject {
         
         messagesRepository.getMessages(query: query) { messages in
             DispatchQueue.main.async {
-                print(messages)
                 self.userMessages = messages
             }
         }

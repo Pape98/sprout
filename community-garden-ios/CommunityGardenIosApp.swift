@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Firebase
+import FirebaseFunctions
 
 @main
 struct CommunityGardenIosApp: App {
@@ -19,12 +20,27 @@ struct CommunityGardenIosApp: App {
     let notificationService: NotificationService = NotificationService()
     
     init() {
-//        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
-//            print(defaults)
-//        }
+        //        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
+        //            print(defaults)
+        //        }
+        FirebaseApp.configure()
+        //setupLocalEmulator()
         
     }
-
+    
+    func setupLocalEmulator(){
+        
+        // Local firestore
+        let settings = Firestore.firestore().settings
+        settings.host = "localhost:8080"
+        settings.isPersistenceEnabled = false
+        settings.isSSLEnabled = false
+        Firestore.firestore().settings = settings
+        
+        // Cloud Functions
+        Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
+    }
+    
     var body: some Scene {
         WindowGroup {
             LaunchView()
