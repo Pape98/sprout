@@ -37,8 +37,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        print(fcmToken)
         if let userID = getUserID(), let token = fcmToken {
-            print(token)
             userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
         }
         
