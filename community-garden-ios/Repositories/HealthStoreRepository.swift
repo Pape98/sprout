@@ -90,6 +90,30 @@ class HealthStoreRepository {
         }
     }
     
+    func getAllStepCount(completion: @escaping ([Step]) -> Void){
+        getData(collectionName: Data.steps, type: Step.self) { result in
+            completion(result)
+        }
+    }
+    
+    func getAllSleep(completion: @escaping ([Sleep]) -> Void){
+        getData(collectionName: Data.sleep, type: Sleep.self) { result in
+            completion(result)
+        }
+    }
+    
+    func getAllWorkouts(completion: @escaping ([Workout]) -> Void){
+        getData(collectionName: Data.workouts, type: Workout.self) { result in
+            completion(result)
+        }
+    }
+    
+    func getAllWalkingRunning(completion: @escaping ([WalkingRunningDistance]) -> Void){
+        getData(collectionName: Data.walkingRunning, type: WalkingRunningDistance.self) { result in
+            completion(result)
+        }
+    }
+    
     
     // MARK: Utility Methods
     
@@ -111,11 +135,36 @@ class HealthStoreRepository {
         guard let collection = collection else { return }
         let docRef = collection.document("\(userID!)-\(date)")
         docRef.getDocument(as: type) { result in
+    
             switch result {
             case .success(let data):
                 completion(data)
             case .failure(let error):
                 print("Error getting \(name) from Firestore: \(error)")
+            }
+        }
+    }
+    
+    func getData<T: Codable>(collectionName name: Data, type: T.Type, completion: @escaping ([T]) -> Void) {
+        let collection = collections.getCollectionReference(name.rawValue)
+        guard let collection = collection else { return }
+        
+        let docRef = collection.whereField("userID", isEqualTo: userID!).order(by: "date", descending: true)
+        var res :  [T] = []
+        
+        docRef.getDocuments() {(snapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+            } else {
+                do {
+                    for doc in snapshot!.documents {
+                        res.append(try doc.data(as: type))
+                    }
+                } catch {
+                    print("getData: Error reading from Firestore: \(error)")
+                }
+                
+                completion(res)
             }
         }
     }

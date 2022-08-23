@@ -120,7 +120,7 @@ struct MessageOptions: View {
                             Image(systemName: "paperplane")
                                 .foregroundColor(.seaGreen)
                                 .onTapGesture {
-                                    AudioPlayer.playSystemSound(soundID: 1016)
+                                    AudioPlayer.playSystemSound(soundID: 1004)
                                     
                                     messagesViewModel.sendMessage(receiver: user,
                                                                   text: selectedMessage.text,
@@ -154,7 +154,6 @@ struct MessageOptions: View {
                 }
                 .onLongPressGesture {
                     if message.isDefault == false {
-                        print(message)
                         showDeleteAlert = true
                         messagesViewModel.messageToDelete = message.text
                     } else {

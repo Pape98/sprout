@@ -7,9 +7,29 @@
 
 import SwiftUI
 
+enum ViewMessageType {
+    case received
+    case sent
+}
+
 struct Messages: View {
     
     @EnvironmentObject var messagesViewModel: MessagesViewModel
+    @State var selectedMessageType: ViewMessageType = .received
+    @State var date = ""
+    
+    var messages: [Message] {
+        if selectedMessageType == .received {
+            return messagesViewModel.receivedMessages
+        } else {
+            return messagesViewModel.sentMessages
+        }
+    }
+    
+    init(){
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
+    }
     
     var body: some View {
         
@@ -17,21 +37,48 @@ struct Messages: View {
             ZStack {
                 MainBackground()
                 
-                // List of messages
+                // Message type selection
                 
-                List(messagesViewModel.userMessages) { message in
-                    VStack {
-                        Text("From: \(message.senderName)")
-                        Text("Text: \(message.text)")
+                VStack {
+                    VStack{
+                        Picker("", selection: $selectedMessageType){
+                            Text("Received").tag(ViewMessageType.received)
+                            Text("Sent").tag(ViewMessageType.sent)
+                        }
+                        
                     }
+                    .pickerStyle(.segmented)
+                    .padding()
+                    
+                    ScrollView {
+                        
+                        VStack{
+                            ForEach(messages){ message in
+                                MessageCard(message: message, messageType: selectedMessageType)
+                            }
+                        }
+                        .padding()
+                    }
+                    
+                    Spacer()
                 }
                 
             }
-            .navigationTitle("Messages")
-            .navigationBarTitleDisplayMode(.inline)
+            .navigationBarTitle("Messages", displayMode: .inline)
+            .toolbar {
+                Button("Refresh"){
+                    messagesViewModel.getUserMessages()
+                }
+                .foregroundColor(.black)
+            }
         }
         .navigationViewStyle(.stack)
     }
+    
+    func formatDate(_ date: Date) -> String {
+        return date.getFormattedDate(format: "MMM d, yyyy")
+    }
+
 }
 
 struct Messages_Previews: PreviewProvider {

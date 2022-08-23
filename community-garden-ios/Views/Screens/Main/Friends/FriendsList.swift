@@ -48,18 +48,22 @@ struct FriendsList: View {
                 .navigationBarTitle("Friends", displayMode: .inline)
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
-                        Picker("View Mode", selection: $viewMode) {
-                            
-                            
-                            Image(systemName: "rectangle.grid.1x2")
-                                .foregroundColor(Color.appleGreen)
-                                .tag(FriendsListViewMode.basic)
-                            
-                            
-                            Image(systemName: "camera.macro.circle")
-                                .foregroundColor(Color.appleGreen)
-                                .tag(FriendsListViewMode.scene)
+                        
+                        VStack {
+                            if viewMode == .basic {
+                                Image(systemName: "rectangle.grid.1x2")
+                                    .foregroundColor(Color.appleGreen)
+                                    .tag(FriendsListViewMode.basic)
+                            } else {
+                                Image(systemName: "camera.macro.circle")
+                                    .foregroundColor(Color.appleGreen)
+                                    .tag(FriendsListViewMode.scene)
+                            }
                         }
+                        .onTapGesture {
+                            viewMode = viewMode == .basic ? .scene : .basic
+                        }
+                        
                     }
                 }
                 .onAppear {

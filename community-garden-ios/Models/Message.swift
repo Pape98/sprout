@@ -17,6 +17,7 @@ struct Message: Identifiable, Codable {
     var text: String
     var isPrivate = false
     var date: Date
+    var senderFlower: String
 }
 
 struct MessageOption: Codable, Identifiable, Hashable {

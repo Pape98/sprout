@@ -10,7 +10,7 @@ import Firebase
 import FirebaseMessaging
 import FirebaseFunctions
 
-class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
     var userRepository: UserRepository
     
@@ -21,12 +21,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Messaging.messaging().delegate = self
+        UNUserNotificationCenter.current().delegate = self
         
         UITableView.appearance().backgroundColor = .clear
         UIApplication.shared.registerForRemoteNotifications()
-                    
+        
         return true
     }
+    
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data){
         Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
@@ -36,11 +38,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         print("ERROR: \(error)")
     }
     
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        MessagesViewModel.shared.getUserMessages()
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
+    
+    
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print(fcmToken)
         if let userID = getUserID(), let token = fcmToken {
-            userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
+            userRepository.doesUserExist(userID: userID) { userExists in
+                guard let userExists = userExists else { return }
+                if userExists {
+                    self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
+                }
+            }
         }
+    }
+    
+    // MARK: Notification Delegate Methods
+    
+    // This function will be called when the app receive notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        MessagesViewModel.shared.getUserMessages()
+        // show the notification alert (banner), and with sound
+        completionHandler([.banner,.sound])
+    }
+    
+    // This function will be called right after user tap on the notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
+        MessagesViewModel.shared.getUserMessages()
+        // tell the app that we have finished processing the user’s action / response
+        completionHandler()
     }
 }

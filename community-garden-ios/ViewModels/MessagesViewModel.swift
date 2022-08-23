@@ -24,7 +24,9 @@ class MessagesViewModel: ObservableObject {
     ]
     
     @Published var customUptions: [MessageOption] = []
-    @Published var userMessages: [Message] = []
+    
+    @Published var receivedMessages: [Message] = []
+    @Published var sentMessages: [Message] = []
     
     
     init(){
@@ -71,10 +73,13 @@ class MessagesViewModel: ObservableObject {
     
     func sendMessage(receiver: User, text: String, isPrivate: Bool){
         let sender = UserService.user
+        guard sender.settings != nil else { return }
         let newMessage = Message(senderID: sender.id, senderName: sender.name,
                                  receiverID: receiver.id, receiverName: receiver.name,
                                  receiverFcmToken: receiver.fcmToken,
-                                 text: text, isPrivate: isPrivate, date: Date.now)
+                                 text: text, isPrivate: isPrivate, date: Date.now,
+                                 senderFlower: "\(sender.settings!.flowerColor)-\(addDash(sender.settings!.flower))"
+        )
         
         messagesRepository.sendMessage(newMessage)
     }
@@ -82,15 +87,25 @@ class MessagesViewModel: ObservableObject {
     func getUserMessages(){
         let userID = getUserID()
         let collection = collections.getCollectionReference(CollectionName.messages.rawValue)
-                
-        guard let collection = collection, let userID = userID else { return }
-        let query = collection
-            .whereField("receiverID", isEqualTo: userID)
         
-        messagesRepository.getMessages(query: query) { messages in
-            DispatchQueue.main.async {
-                self.userMessages = messages
+        guard let collection = collection, let userID = userID else { return }
+        
+        let receivedMessagesQuery = collection
+            .whereField("receiverID", isEqualTo: userID)
+            .order(by: "date", descending: true)
+        
+        let sentMessagesQuery = collection
+            .whereField("senderID", isEqualTo: userID)
+            .order(by: "date", descending: true)
+        
+        messagesRepository.getMessages(query: receivedMessagesQuery) { receivedMessages in
+            self.messagesRepository.getMessages(query: sentMessagesQuery) { sentMessages in
+                DispatchQueue.main.async {
+                    self.receivedMessages = receivedMessages
+                    self.sentMessages = sentMessages
+                }
             }
         }
+        
     }
 }

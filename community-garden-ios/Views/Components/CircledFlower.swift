@@ -11,7 +11,6 @@ struct CircledFlower: View {
     
     var option: String
     var background: Color
-    var size: CGFloat
     
     var body: some View {
         ZStack {
@@ -20,16 +19,14 @@ struct CircledFlower: View {
             Image("petals/\(option)")
                 .resizable()
                 .scaledToFit()
-                .frame(width: size-15, height: size-15)
-                .padding(30)
+                .padding(7)
+             
         }
-         .frame(width: size, height: size)
-         .padding()
     }
 }
 
 struct CircledFlower_Previews: PreviewProvider {
     static var previews: some View {
-        CircledFlower(option: "grenadier-abyss-sage", background: .oliveGreen, size: 200)
+        CircledFlower(option: "grenadier-abyss-sage", background: .oliveGreen)
     }
 }
