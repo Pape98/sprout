@@ -50,13 +50,13 @@ struct MainView: View {
                     playSound()
                 }
             
-            History()
-                .tabItem {
-                    Label("History", systemImage: "target")
-                }
-                .onAppear {
-                    playSound()
-                }
+//            History()
+//                .tabItem {
+//                    Label("History", systemImage: "target")
+//                }
+//                .onAppear {
+//                    playSound()
+//                }
             
             Settings()
                 .tabItem {
@@ -75,7 +75,7 @@ struct MainView: View {
         .environmentObject(historyViewModel)
     }
     func playSound(){
-        //AudioPlayer.playCustomSound(filename: "click1.mp3")
+        AudioPlayer.playCustomSound(filename: "click2.mp3")
     }
 }
 

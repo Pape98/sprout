@@ -34,6 +34,7 @@
 		F038369E2839497600D444E4 /* SQLiteService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F038369D2839497600D444E4 /* SQLiteService.swift */; };
 		F04085FA28B5562F002EDECD /* click2.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F04085F828B5562F002EDECD /* click2.mp3 */; };
 		F04085FB28B5562F002EDECD /* click1.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F04085F928B5562F002EDECD /* click1.mp3 */; };
+		F04085FE28B862AD002EDECD /* DataStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04085FD28B862AD002EDECD /* DataStatus.swift */; };
 		F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F042349E278491910063DA08 /* FirebaseFirestoreSwift-Beta */; };
 		F04234A52784C6F50063DA08 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04234A42784C6F40063DA08 /* Collections.swift */; };
 		F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */; };
@@ -145,6 +146,7 @@
 		F038369D2839497600D444E4 /* SQLiteService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLiteService.swift; sourceTree = "<group>"; };
 		F04085F828B5562F002EDECD /* click2.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click2.mp3; sourceTree = "<group>"; };
 		F04085F928B5562F002EDECD /* click1.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = click1.mp3; sourceTree = "<group>"; };
+		F04085FD28B862AD002EDECD /* DataStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataStatus.swift; sourceTree = "<group>"; };
 		F04234A42784C6F40063DA08 /* Collections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreRepository.swift; sourceTree = "<group>"; };
 		F043F25D287CFDC6008F211C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
@@ -334,6 +336,14 @@
 				F0842B57285A4170002C79BD /* components */,
 			);
 			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		F04085FC28B8628C002EDECD /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F04085FD28B862AD002EDECD /* DataStatus.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		F0475B5E28610E3400C68B35 /* Fonts */ = {
@@ -624,6 +634,7 @@
 			isa = PBXGroup;
 			children = (
 				F0F0C87928B53CFE0047D9EA /* History.swift */,
+				F04085FC28B8628C002EDECD /* components */,
 			);
 			path = History;
 			sourceTree = "<group>";
@@ -845,6 +856,7 @@
 				F043F260287EEBA7008F211C /* GardenRepository.swift in Sources */,
 				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
 				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,
+				F04085FE28B862AD002EDECD /* DataStatus.swift in Sources */,
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,
 				F04AD4BD288A397A00BC17AB /* CustomMessageSheet.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,

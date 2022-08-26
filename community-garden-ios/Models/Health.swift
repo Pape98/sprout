@@ -8,30 +8,52 @@
 import Foundation
 import FirebaseFirestoreSwift
 
-struct Step: Identifiable, Codable {
+protocol HealthData: Codable {
+    var id: String { get } 
+    var statusCount: Double { get }
+    var date: String { get set }
+}
+
+struct Step: HealthData {
     var id: String { UUID().uuidString }
     var date: String
     var count: Double
     var userID: String
+    
+    var statusCount: Double {
+        count
+    }
 }
 
-struct Sleep: Identifiable, Codable {
+struct Sleep: HealthData, Identifiable {
     var id: String { UUID().uuidString }
     var date: String
     var duration: Double
     var userID: String
+    
+    var statusCount: Double {
+        duration
+    }
 }
 
-struct Workout: Identifiable, Codable {
+struct Workout: HealthData, Identifiable {
     var id: String { UUID().uuidString }
     var date: String
     var duration: Double
     var userID: String
+    
+    var statusCount: Double {
+        duration
+    }
 }
 
-struct WalkingRunningDistance: Identifiable, Codable {
+struct WalkingRunningDistance: HealthData, Identifiable {
     var id: String { UUID().uuidString }
     var date: String
     var distance: Double
     var userID: String
+    
+    var statusCount: Double {
+        distance
+    }
 }

@@ -8,13 +8,25 @@
 import Foundation
 
 class HistoryViewModel: ObservableObject {
+    
+    enum Data: String, CaseIterable {
+        case sleep, steps, workouts, walkingRunning
+        
+        static var dalatList: [String] {
+            return Data.allCases.map { $0.rawValue }
+        }
+    }
+    
     static let shared  = HistoryViewModel()
     let healthstoreRepo: HealthStoreRepository = HealthStoreRepository.shared
     
-    @Published var steps: [Step] = []
-    @Published var sleep: [Sleep] = []
-    @Published var workouts: [Workout] = []
-    @Published var walkingRunning: [WalkingRunningDistance] = []
+    var steps: [Step] = []
+    var sleep: [Sleep] = []
+    var workouts: [Workout] = []
+    var walkingRunning: [WalkingRunningDistance] = []
+    
+            
+    var dataMapping: [String: [HealthData]] = [:]
     
     init(){
         getAllStepCounts()
@@ -25,25 +37,25 @@ class HistoryViewModel: ObservableObject {
     
     func getAllStepCounts(){
         healthstoreRepo.getAllStepCount { steps in
-            self.steps = steps
+            self.dataMapping["steps"] = steps
         }
     }
     
     func getAllSleep(){
         healthstoreRepo.getAllSleep { sleep in
-            self.sleep = sleep
+            self.dataMapping["sleep"]  = sleep
         }
     }
     
     func getAllWorkouts(){
         healthstoreRepo.getAllWorkouts { workouts in
-            self.workouts = workouts
+            self.dataMapping["workouts"]  = workouts
         }
     }
     
     func getAllWalkingRunning(){
         healthstoreRepo.getAllWalkingRunning { distances in
-            self.walkingRunning = distances
+            self.dataMapping["walkingRunning"]  = distances
         }
     }
     
