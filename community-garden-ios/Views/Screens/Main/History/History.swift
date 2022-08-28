@@ -11,8 +11,6 @@ import SwiftUI
 
 struct History: View {
     
-    
-    
     @EnvironmentObject var historyViewModel: HistoryViewModel
     @State var selectedData: String = HistoryViewModel.Data.steps.rawValue
     
@@ -37,18 +35,16 @@ struct History: View {
                         }
                     }
                     
-                    ScrollView{
-                        LazyVGrid(columns: gridItemLayout) {
-                            if let dataList = historyViewModel.dataMapping[selectedData] {
-                                ForEach(dataList, id: \.id){ item in
-                                    DataStatus(data: item)
-                                }
-                            }
-                        }
-                        .padding()
-                    }
-                    
-                    
+//                    ScrollView{
+//                        LazyVGrid(columns: gridItemLayout) {
+//                            if let dataList = historyViewModel.dataMapping[selectedData] {
+//                                ForEach(dataList, id: \.id){ item in
+//                                    DataStatus(data: item)
+//                                }
+//                            }
+//                        }
+//                        .padding()
+//                    }
                     
                 }
                 

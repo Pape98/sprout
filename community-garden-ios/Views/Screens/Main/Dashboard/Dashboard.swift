@@ -15,6 +15,8 @@ struct Dashboard: View {
     
     let date = Date().getFormattedDate(format: "MMMM dd")
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
+    let rowOneGrid = [GridItem(.flexible()),GridItem(.fixed(125))]
+    
     let today = Date()
     let userDefaults = UserDefaultsService.shared
     var TREE: String {
@@ -63,7 +65,42 @@ struct Dashboard: View {
                         }
                         
                         // Card Row One
+                        
+                        
+                        LazyVGrid(columns: rowOneGrid){
+                            
+                            
                             GardenInfoCard()
+                            
+                            
+                            NavigationLink(destination: MyGarden()) {
+                                ZStack {
+                                    
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.appleGreen)
+                                        .opacity(0.7)
+                                        .shadow(radius: 2)
+                                    
+                                    VStack(spacing:10) {
+                                        Image("garden-icon")
+                                        
+                                        
+                                        Text("View Garden")
+                                            .font(.system(size: 15))
+                                            .foregroundColor(Color.white)
+                                            .bold()
+                                        
+                                    }
+                                }
+                                .frame(height: 141)
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+                        }
                         
                         
                         // Card Row Two
@@ -108,7 +145,7 @@ struct Dashboard: View {
                         }
                         
                         Spacer()
-
+                        
                     }
                 }
                 .navigationBarHidden(true)

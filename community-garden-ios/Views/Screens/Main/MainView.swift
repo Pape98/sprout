@@ -50,13 +50,13 @@ struct MainView: View {
                     playSound()
                 }
             
-//            History()
-//                .tabItem {
-//                    Label("History", systemImage: "target")
-//                }
-//                .onAppear {
-//                    playSound()
-//                }
+            History()
+                .tabItem {
+                    Label("History", systemImage: "target")
+                }
+                .onAppear {
+                    playSound()
+                }
             
             Settings()
                 .tabItem {
