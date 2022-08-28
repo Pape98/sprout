@@ -67,12 +67,12 @@ extension String {
     }
     
     func capitalizeFirstLetter() -> String {
-            return prefix(1).capitalized + dropFirst()
-        }
-
-        mutating func capitalizeFirstLetter() {
-            self = self.capitalizeFirstLetter()
-        }
+        return prefix(1).capitalized + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizeFirstLetter()
+    }
 }
 
 extension Color {
@@ -174,3 +174,10 @@ extension AnyTransition {
             removal: .move(edge: .leading))}
 }
 
+extension Double {
+    
+    func truncate(to places: Int) -> Double {
+        return Double(Int((pow(10, Double(places)) * self).rounded())) / pow(10, Double(places))
+    }
+    
+}

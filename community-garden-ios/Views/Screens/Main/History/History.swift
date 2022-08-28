@@ -14,7 +14,7 @@ struct History: View {
     @EnvironmentObject var historyViewModel: HistoryViewModel
     @State var selectedData: String = HistoryViewModel.Data.steps.rawValue
     
-    var gridItemLayout = [GridItem(.adaptive(minimum: 55, maximum: 55))]
+    var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 4)
     
     var body: some View {
         NavigationView {
@@ -35,16 +35,17 @@ struct History: View {
                         }
                     }
                     
-//                    ScrollView{
-//                        LazyVGrid(columns: gridItemLayout) {
-//                            if let dataList = historyViewModel.dataMapping[selectedData] {
-//                                ForEach(dataList, id: \.id){ item in
-//                                    DataStatus(data: item)
-//                                }
-//                            }
-//                        }
-//                        .padding()
-//                    }
+                    ScrollView {
+                        VStack {
+                            if let dataList = historyViewModel.dataMapping[selectedData] {
+                                ForEach(dataList, id: \.id){ item in
+                                    DataStatus(data: item)
+                                }
+                            }
+                        }
+                        .padding()
+                    }
+                    .clipped()
                     
                 }
                 

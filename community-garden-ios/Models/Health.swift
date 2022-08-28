@@ -10,7 +10,7 @@ import FirebaseFirestoreSwift
 
 protocol HealthData: Codable {
     var id: String { get } 
-    var statusCount: Double { get }
+    var textDisplay: String { get }
     var date: String { get set }
 }
 
@@ -20,9 +20,7 @@ struct Step: HealthData {
     var count: Double
     var userID: String
     
-    var statusCount: Double {
-        count
-    }
+    var textDisplay: String { "\(Int(count)) Step(s)" }
 }
 
 struct Sleep: HealthData, Identifiable {
@@ -31,9 +29,7 @@ struct Sleep: HealthData, Identifiable {
     var duration: Double
     var userID: String
     
-    var statusCount: Double {
-        duration
-    }
+    var textDisplay: String { "\(Int(duration)/60) Hour(s)" }
 }
 
 struct Workout: HealthData, Identifiable {
@@ -42,9 +38,7 @@ struct Workout: HealthData, Identifiable {
     var duration: Double
     var userID: String
     
-    var statusCount: Double {
-        duration
-    }
+    var textDisplay: String { "\(Int(duration)) Minute(s)" }
 }
 
 struct WalkingRunningDistance: HealthData, Identifiable {
@@ -53,7 +47,5 @@ struct WalkingRunningDistance: HealthData, Identifiable {
     var distance: Double
     var userID: String
     
-    var statusCount: Double {
-        distance
-    }
+    var textDisplay: String { "\(distance.truncate(to: 2)) Mile(s)" }
 }
