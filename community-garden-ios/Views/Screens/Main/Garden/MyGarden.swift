@@ -9,9 +9,7 @@ import SwiftUI
 import SpriteKit
 
 struct MyGarden: View {
-    
-    @State private var showPickDropElementAlert = false
-    
+        
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
 
@@ -37,8 +35,8 @@ struct MyGarden: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
                             Button("Pick"){
-                                showPickDropElementAlert = true
-                                gardenViewModel.saveItems()
+                           
+//                                gardenViewModel.saveItems()
                             }
                             .foregroundColor(.black)
                             
@@ -56,22 +54,22 @@ struct MyGarden: View {
                 .onDisappear {
                     gardenViewModel.saveItems()
                 }
-                .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
-                    Button("\(GardenElement.droplet.rawValue)💧"){
-                        gardenViewModel.dropItem = GardenElement.droplet
-                    }
-                    Button("\(GardenElement.seed.rawValue)🌱"){
-                        gardenViewModel.dropItem = GardenElement.seed
-                    }
-            }
+//                .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
+//                    Button("\(GardenElement.droplet.rawValue)💧"){
+//                        gardenViewModel.dropItem = GardenElement.droplet
+//                    }
+//                    Button("\(GardenElement.seed.rawValue)🌱"){
+//                        gardenViewModel.dropItem = GardenElement.seed
+//                    }
+//                }
             
             // MARK: Lottie View
             
             VStack {
                 
-                LottieView(filename: "bird_2")
-                    .frame(height: 250)
-                    .offset(y: 30)
+//                LottieView(filename: "bird_2")
+//                    .frame(height: 250)
+//                    .offset(y: 30)
                 
                 Spacer()
                 LottieView(filename: "turtle_2")
@@ -79,6 +77,10 @@ struct MyGarden: View {
             }
         
         }
+        
+    }
+    
+    func toggleDropItem(){
         
     }
 }

@@ -82,7 +82,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Flower methods
     func createNewFlower(position: CGPoint) {
         // Garden Flower
-        let flower = SKSpriteNode(imageNamed: "flowers/\(FLOWER)")
+        let settings = UserService.user.settings
+        guard let settings = settings else { return }
+        
+        let flowerName = "\(settings.flowerColor)-\(addDash(settings.flower))"
+        let flower = SKSpriteNode(imageNamed: "flowers/\(flowerName)")
         
         flower.anchorPoint = CGPoint(x: 0, y: 0)
         flower.position = CGPoint(x: position.x, y: getRandomCGFloat(5, ground.size.height * 0.7))
@@ -103,10 +107,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let y = flower.position.y / frame.maxY
         
         let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
-                                    name: FLOWER, x: x, y: y,
+                                    name: flowerName, x: x, y: y,
                                     scale: scale)
         
         gardenViewModel.addFlower(flowerItem)
+        
     }
     
     func addExisitingItems(){

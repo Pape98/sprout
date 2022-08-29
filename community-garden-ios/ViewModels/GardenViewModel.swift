@@ -20,12 +20,6 @@ class GardenViewModel: ObservableObject {
     var dropItem = GardenElement.droplet
     var tree: GardenItem?
     
-    var userDefaultTree: String {
-        let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "moss"
-        let tree = userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
-        return "\(color)-\(tree)"
-    }
-    
     var userDefaultFlower: String {
         let color = userDefaults.get(key: UserDefaultsKey.FLOWER_COLOR) ?? ""
         let tree = userDefaults.get(key: UserDefaultsKey.FLOWER_COLOR) ?? "abyss-sage"
@@ -63,7 +57,10 @@ class GardenViewModel: ObservableObject {
     }
     
     func addTree(){
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: userDefaultTree)
+        let settings = UserService.user.settings
+        guard settings != nil else { return }
+        let treeName = "\(settings!.treeColor)-\(addDash(settings!.tree))"
+        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName)
         gardenRepo.addItem(item: tree)
         self.items.append(tree)
     }
