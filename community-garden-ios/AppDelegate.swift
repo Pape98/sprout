@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UNUserNotificationCenter.current().delegate = self
         
         UITableView.appearance().backgroundColor = .clear
+        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UIApplication.shared.registerForRemoteNotifications()
         
         return true

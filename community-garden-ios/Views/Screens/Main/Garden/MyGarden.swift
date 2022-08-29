@@ -9,12 +9,11 @@ import SwiftUI
 import SpriteKit
 
 struct MyGarden: View {
-        
+    
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
-
+    
     let userDefaults = UserDefaultsService.shared
-
     
     var scene: SKScene {
         let scene = MyGardenScene()
@@ -34,9 +33,9 @@ struct MyGarden: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         HStack {
-                            Button("Pick"){
-                           
-//                                gardenViewModel.saveItems()
+                            Button("Switch"){
+                                toggleDropItem()
+                                //                                gardenViewModel.saveItems()
                             }
                             .foregroundColor(.black)
                             
@@ -54,34 +53,37 @@ struct MyGarden: View {
                 .onDisappear {
                     gardenViewModel.saveItems()
                 }
-//                .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
-//                    Button("\(GardenElement.droplet.rawValue)💧"){
-//                        gardenViewModel.dropItem = GardenElement.droplet
-//                    }
-//                    Button("\(GardenElement.seed.rawValue)🌱"){
-//                        gardenViewModel.dropItem = GardenElement.seed
-//                    }
-//                }
+            //                .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
+            //                    Button("\(GardenElement.droplet.rawValue)💧"){
+            //                        gardenViewModel.dropItem = GardenElement.droplet
+            //                    }
+            //                    Button("\(GardenElement.seed.rawValue)🌱"){
+            //                        gardenViewModel.dropItem = GardenElement.seed
+            //                    }
+            //                }
             
             // MARK: Lottie View
             
             VStack {
                 
-//                LottieView(filename: "bird_2")
-//                    .frame(height: 250)
-//                    .offset(y: 30)
+                //                LottieView(filename: "bird_2")
+                //                    .frame(height: 250)
+                //                    .offset(y: 30)
                 
                 Spacer()
                 LottieView(filename: "turtle_2")
                     .frame(height: 150)
             }
-        
+            
         }
         
     }
     
     func toggleDropItem(){
+        gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
+        GardenElement.seed : GardenElement.droplet
         
+        print(gardenViewModel.dropItem)
     }
 }
 

@@ -21,6 +21,7 @@ struct MainBackground: View {
                 Rectangle()
                     .fill(Color.day)
                     .blendMode(BlendMode.overlay)
+                    .ignoresSafeArea()
             }
     }
 }

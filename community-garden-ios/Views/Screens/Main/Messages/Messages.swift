@@ -26,11 +26,6 @@ struct Messages: View {
         }
     }
     
-    init(){
-        UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-    }
-    
     var body: some View {
         
         NavigationView {
@@ -40,12 +35,10 @@ struct Messages: View {
                 // Message type selection
                 
                 VStack {
-                    VStack{
-                        Picker("", selection: $selectedMessageType){
-                            Text("Received").tag(ViewMessageType.received)
-                            Text("Sent").tag(ViewMessageType.sent)
-                        }
-                        
+                    
+                    Picker("", selection: $selectedMessageType){
+                        Text("Received").tag(ViewMessageType.received)
+                        Text("Sent").tag(ViewMessageType.sent)
                     }
                     .pickerStyle(.segmented)
                     .padding()
@@ -66,10 +59,12 @@ struct Messages: View {
             }
             .navigationBarTitle("Messages", displayMode: .inline)
             .toolbar {
-                Button("Refresh"){
-                    messagesViewModel.getUserMessages()
+                ToolbarItem(placement: .navigationBarLeading){
+                    Button("Refresh"){
+                        messagesViewModel.getUserMessages()
+                    }
+                    .foregroundColor(.black)
                 }
-                .foregroundColor(.black)
             }
         }
         .navigationViewStyle(.stack)
@@ -78,7 +73,7 @@ struct Messages: View {
     func formatDate(_ date: Date) -> String {
         return date.getFormattedDate(format: "MMM d, yyyy")
     }
-
+    
 }
 
 struct Messages_Previews: PreviewProvider {

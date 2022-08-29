@@ -13,10 +13,15 @@ enum FriendsListViewMode {
     case scene
 }
 
+enum FriendViewType {
+    case friends, community
+}
+
 struct FriendsList: View {
     
     @EnvironmentObject var friendsViewModel: FriendsViewModel
     @State var viewMode: FriendsListViewMode = .basic
+    @State var selectedGroup = FriendViewType.friends
     
     var body: some View {
         GeometryReader { geometry in
@@ -25,28 +30,45 @@ struct FriendsList: View {
                     
                     MainBackground()
                     
-                    ScrollView {
-                        
-                        VStack(spacing: 15) {
-                            ForEach(friendsViewModel.friendsGardens){ garden in
-                                NavigationLink {
-                                    FriendGarden(garden: garden)
-                                } label: {
-                                    if viewMode == .scene {
-                                        SceneCard(garden: garden)
-                                    } else {
-                                        FriendListBasicCard(user: garden.user)
-                                    }
-                                    
-                                }
-                            }
+                    VStack {
+                        Picker("", selection: $selectedGroup){
+                            Text("Friends").tag(FriendViewType.friends)
+                            Text("Community").tag(FriendViewType.community)
                         }
+                        .pickerStyle(.segmented)
                         .padding()
                         
+                        ScrollView {
+                            
+                            VStack(spacing: 15) {
+                                ForEach(friendsViewModel.friendsGardens){ garden in
+                                    NavigationLink {
+                                        FriendGarden(garden: garden)
+                                    } label: {
+                                        if viewMode == .scene {
+                                            SceneCard(garden: garden)
+                                        } else {
+                                            FriendListBasicCard(user: garden.user)
+                                        }
+                                        
+                                    }
+                                }
+                            }
+                            .padding()
+                            
+                        }
                     }
                 }
                 .navigationBarTitle("Friends", displayMode: .inline)
                 .toolbar {
+                    
+                    ToolbarItem(placement: .navigationBarLeading){
+                        Button("Refresh"){
+                            friendsViewModel.fetchAllUsers()
+                        }
+                        .foregroundColor(Color.black)
+                    }
+                    
                     ToolbarItem(placement: .navigationBarTrailing) {
                         
                         VStack {

@@ -16,8 +16,8 @@ class GardenViewModel: ObservableObject {
     let collections = Collections.shared
     
     @Published var items: [GardenItem] = []
+    @Published var dropItem = GardenElement.droplet
     var flowers: [GardenItem] = []
-    var dropItem = GardenElement.droplet
     var tree: GardenItem?
     
     var userDefaultFlower: String {
@@ -28,8 +28,6 @@ class GardenViewModel: ObservableObject {
     
     init(){
         getUserItems()
-//        deleteFlowers()
-//        resetTree()
     }
     
     func getUserItems() -> Void {
@@ -50,8 +48,6 @@ class GardenViewModel: ObservableObject {
                 } else {
                     self.addTree()
                 }
-                
-                
             }
         }
     }
