@@ -28,6 +28,7 @@
 		F01B635B284FB339004D079A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B635A284FB339004D079A /* Helpers.swift */; };
 		F024BFF6286BB37100850018 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024BFF5286BB37100850018 /* MainView.swift */; };
 		F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02682D02850F13A004747FD /* UserDefaultService.swift */; };
+		F026A3C728BFF645000983AE /* SproutAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F026A3C628BFF645000983AE /* SproutAnalytics.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
 		F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C372887500E00251FD0 /* SettingsViewModel.swift */; };
 		F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C392887A9A400251FD0 /* NameChanging.swift */; };
@@ -66,6 +67,7 @@
 		F0842BB9285E2A19002C79BD /* Screens.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BB8285E2A19002C79BD /* Screens.swift */; };
 		F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBA285E67F2002C79BD /* DataPicker.swift */; };
 		F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842BBC285EA252002C79BD /* PickerTitle.swift */; };
+		F085A8B328C51EB100A08BE4 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */; };
 		F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F08C8C5E28AC1B0800DDDFB8 /* Lottie */; };
 		F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */; };
 		F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */; };
@@ -140,6 +142,7 @@
 		F01B635A284FB339004D079A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F024BFF5286BB37100850018 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F02682D02850F13A004747FD /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		F026A3C628BFF645000983AE /* SproutAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SproutAnalytics.swift; sourceTree = "<group>"; };
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F0337C372887500E00251FD0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F0337C392887A9A400251FD0 /* NameChanging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameChanging.swift; sourceTree = "<group>"; };
@@ -235,6 +238,7 @@
 				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
 				F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */,
+				F085A8B328C51EB100A08BE4 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,6 +476,7 @@
 				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 				F043F25D287CFDC6008F211C /* Protocols.swift */,
 				F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */,
+				F026A3C628BFF645000983AE /* SproutAnalytics.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -681,6 +686,7 @@
 				F08C8C5E28AC1B0800DDDFB8 /* Lottie */,
 				F0F0C86928AED64A0047D9EA /* FirebaseMessaging */,
 				F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */,
+				F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */,
 			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
@@ -829,6 +835,7 @@
 				F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */,
 				F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */,
 				F043F262287EEDD1008F211C /* AppViewModel.swift in Sources */,
+				F026A3C728BFF645000983AE /* SproutAnalytics.swift in Sources */,
 				F0475B59286100D700C68B35 /* DataMapping.swift in Sources */,
 				F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */,
 				F0F5E93A2873945F002C30BC /* Settings.swift in Sources */,
@@ -1128,6 +1135,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
 		};
 		F08C8C5E28AC1B0800DDDFB8 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
