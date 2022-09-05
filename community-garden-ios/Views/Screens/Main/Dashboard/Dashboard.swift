@@ -94,12 +94,6 @@ struct Dashboard: View {
                                 }
                                 .frame(height: 141)
                             }
-                            
-                            
-                            
-                            
-                            
-                            
                         }
                         
                         

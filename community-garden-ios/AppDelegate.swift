@@ -46,7 +46,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
-    
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let userID = getUserID(), let token = fcmToken {
             userRepository.doesUserExist(userID: userID) { userExists in

@@ -19,12 +19,14 @@ struct CommunityGardenIosApp: App {
     // To send notifications to user
     let notificationService: NotificationService = NotificationService()
     
+    
     init() {
         //        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
         //            print(defaults)
         //        }
         FirebaseApp.configure()
 //        setupLocalEmulator()
+        
         
     }
     
@@ -44,6 +46,9 @@ struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
+                .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
+                    SproutAnalytics.shared.appLaunch()
+                })
                 .background(Color.porcelain)
                 .environmentObject(authViewModel)
                 .environmentObject(appViewModel)

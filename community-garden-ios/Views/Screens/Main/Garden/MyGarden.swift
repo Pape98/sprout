@@ -49,18 +49,11 @@ struct MyGarden: View {
                 }
                 .onAppear {
                     gardenViewModel.getUserItems()
+                    SproutAnalytics.shared.viewOwnGarden()
                 }
                 .onDisappear {
                     gardenViewModel.saveItems()
                 }
-            //                .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
-            //                    Button("\(GardenElement.droplet.rawValue)💧"){
-            //                        gardenViewModel.dropItem = GardenElement.droplet
-            //                    }
-            //                    Button("\(GardenElement.seed.rawValue)🌱"){
-            //                        gardenViewModel.dropItem = GardenElement.seed
-            //                    }
-            //                }
             
             // MARK: Lottie View
             

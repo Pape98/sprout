@@ -28,12 +28,6 @@ struct GardenInfoCard: View {
                     IconButton(icon: "seed-icon", text: "\(Int(numSeeds.value)) seeds")
                 }
                 
-//                if let settings = userViewModel.currentUser.settings {
-//                    NavigationLink(destination: MyGarden()) {
-//                        IconButton(icon: "garden-icon", text: settings.gardenName)
-//                            .shadow(color: .chalice, radius: 4, x: -2, y: 1)
-//                    }
-//                }
             }
             .padding(25)
             .background {

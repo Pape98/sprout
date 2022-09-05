@@ -19,7 +19,9 @@ class SettingsViewModel: ObservableObject {
         let userID = getUserID()
         guard let userID = userID else { return }
         let key = "settings.\(settingKey.rawValue)"
-        userRepository.updateUser(userID: userID, updates: [key: value]){}
+        userRepository.updateUser(userID: userID, updates: [key: value]){
+            SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
+        }
         
         if settingKey == FirestoreKey.TREE {
             updateTodaysTree(field: "settings.tree", update: value as! String)
