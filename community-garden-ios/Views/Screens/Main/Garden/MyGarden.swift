@@ -10,16 +10,10 @@ import SpriteKit
 
 struct MyGarden: View {
     
-    @State private var showPickDropElementAlert = false
-    
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
-
-    let userDefaults = UserDefaultsService.shared
     
-    var gardenName: String {
-        userDefaults.get(key: UserDefaultsKey.GARDEN_NAME) ?? "Your Garden"
-    }
+    let userDefaults = UserDefaultsService.shared
     
     var scene: SKScene {
         let scene = MyGardenScene()
@@ -28,42 +22,61 @@ struct MyGarden: View {
     }
     
     var body: some View {
-        // Scene View
-        SpriteView(scene: scene, options: [.allowsTransparency])
-            .ignoresSafeArea(.container, edges:[.top])
-            .weatherOverlay()
-            .navigationBarTitle(gardenName, displayMode: NavigationBarItem.TitleDisplayMode.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    HStack {
-                        Button("Pick"){
-                            showPickDropElementAlert = true
-                            gardenViewModel.saveItems()
+        ZStack() {
+            
+            // MARK: SpriteKit view
+            
+            SpriteView(scene: scene, options: [.allowsTransparency])
+                .ignoresSafeArea(.container, edges:[.top])
+                .weatherOverlay()
+                .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        HStack {
+                            Button("Switch"){
+                                toggleDropItem()
+                                //                                gardenViewModel.saveItems()
+                            }
+                            .foregroundColor(.black)
+                            
+                            Image(gardenViewModel.dropItem.rawValue)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
                         }
-                        
-                        Image(gardenViewModel.dropItem.rawValue)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                        
                     }
                 }
-            }
-            .onAppear {
-                gardenViewModel.getUserItems()
-            }
-            .onDisappear {
-                gardenViewModel.saveItems()
-            }
-            .alert("I want to drop a ...", isPresented: $showPickDropElementAlert) {
-                Button("\(GardenElement.droplet.rawValue)💧"){
-                    gardenViewModel.dropItem = GardenElement.droplet
+                .onAppear {
+                    gardenViewModel.getUserItems()
+                    SproutAnalytics.shared.viewOwnGarden()
                 }
-                Button("\(GardenElement.seed.rawValue)🌱"){
-                    gardenViewModel.dropItem = GardenElement.seed
+                .onDisappear {
+                    gardenViewModel.saveItems()
                 }
+            
+            // MARK: Lottie View
+            
+            VStack {
+                
+                //                LottieView(filename: "bird_2")
+                //                    .frame(height: 250)
+                //                    .offset(y: 30)
+                
+                Spacer()
+                LottieView(filename: "turtle_2")
+                    .frame(height: 150)
             }
+            
+        }
         
+    }
+    
+    func toggleDropItem(){
+        gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
+        GardenElement.seed : GardenElement.droplet
+        
+        print(gardenViewModel.dropItem)
     }
 }
 

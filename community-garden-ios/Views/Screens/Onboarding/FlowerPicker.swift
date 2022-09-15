@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FlowerPicker: View {
     
-    @State var selection = "abyss-sage"
+    @State private var selection = "abyss-sage"
     
     var body: some View {
         ItemPicker(header: "Pick a flower!",
@@ -23,7 +23,7 @@ struct FlowerPicker: View {
 
 struct FlowerColorPicker: View {
     
-    @State var selectedColor = "cosmos"
+    @State private var selectedColor = "cosmos"
     
     var body: some View {
         ColorPicker(

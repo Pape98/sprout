@@ -49,6 +49,12 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    @objc func getUserNewUpdates(){
+        DispatchQueue.main.async {
+            self.currentUser = UserService.user
+        }
+    }
+    
     @objc func updateNumDroplets(_ notification: Notification){
         let notiticationType = NotificationType(rawValue: notification.name.rawValue)
         let userInfo = notification.userInfo as? [String: Double] ?? [:]
@@ -92,6 +98,11 @@ class UserViewModel: ObservableObject {
         nc.addObserver(self,
                        selector: #selector(self.getUser),
                        name: Notification.Name(NotificationType.FetchUser.rawValue),
+                       object: nil)
+        
+        nc.addObserver(self,
+                       selector: #selector(self.getUserNewUpdates),
+                       name: Notification.Name(NotificationType.UpdateUserService.rawValue),
                        object: nil)
         
         nc.addObserver(self,

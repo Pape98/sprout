@@ -11,9 +11,9 @@ struct LoginView: View {
     
     @EnvironmentObject var authenticationModel: AuthenticationViewModel
     @Binding var yOffset: Int
-    @State var email = ""
-    @State var firstName = ""
-    @State var lastName = ""
+    @State private var email = ""
+    @State private var firstName = ""
+    @State private var lastName = ""
     
     var body: some View {
         GeometryReader { geometry in

@@ -16,15 +16,9 @@ class GardenViewModel: ObservableObject {
     let collections = Collections.shared
     
     @Published var items: [GardenItem] = []
+    @Published var dropItem = GardenElement.droplet
     var flowers: [GardenItem] = []
-    var dropItem = GardenElement.droplet
     var tree: GardenItem?
-    
-    var userDefaultTree: String {
-        let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "moss"
-        let tree = userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
-        return "\(color)-\(tree)"
-    }
     
     var userDefaultFlower: String {
         let color = userDefaults.get(key: UserDefaultsKey.FLOWER_COLOR) ?? ""
@@ -34,8 +28,6 @@ class GardenViewModel: ObservableObject {
     
     init(){
         getUserItems()
-//        deleteFlowers()
-//        resetTree()
     }
     
     func getUserItems() -> Void {
@@ -56,14 +48,15 @@ class GardenViewModel: ObservableObject {
                 } else {
                     self.addTree()
                 }
-                
-                
             }
         }
     }
     
     func addTree(){
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: userDefaultTree)
+        let settings = UserService.user.settings
+        guard settings != nil else { return }
+        let treeName = "\(settings!.treeColor)-\(addDash(settings!.tree))"
+        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName)
         gardenRepo.addItem(item: tree)
         self.items.append(tree)
     }
@@ -91,13 +84,4 @@ class GardenViewModel: ObservableObject {
         }
     }
     
-    func resetTree(){
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: userDefaultTree, scale: 0.2)
-        gardenRepo.udpateGardenItem(docName: "tree", updates: tree)
-    }
-    
-    func deleteFlowers(){
-        gardenRepo.resetFlowers()
-        flowers = []
-    }
 }

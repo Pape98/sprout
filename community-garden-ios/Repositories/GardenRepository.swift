@@ -29,7 +29,7 @@ class GardenRepository {
         query.getDocuments { querySnapshot, error in
             
             if error != nil {
-                print("getUserItems: Error writing to Firestore: \(error!)")
+                print("getUserItems: Error reading from Firestore: \(error!)")
                 return
             }
             
@@ -40,7 +40,7 @@ class GardenRepository {
                     items.append(try doc.data(as: GardenItem.self))
                 }
             } catch {
-                print("getUserItems: Error writing to Firestore: \(error)")
+                print("getUserItems: Error reading from Firestore: \(error)")
             }
             
             completion(items)
@@ -52,6 +52,12 @@ class GardenRepository {
         guard let collection = collection else { return }
         let docRef = collection.document(docName)
         saveData(docRef: docRef, data: updates)
+    }
+    
+    func updateGardenItem(query: Query, updates: [String: Any]){
+        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
+        guard let _ = collection else { return }
+        // TODO: Finish update
     }
     
     func resetFlowers(){

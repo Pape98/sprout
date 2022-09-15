@@ -18,12 +18,9 @@ struct LaunchView: View {
     @StateObject var onboardingRouter: OnboardingRouter = OnboardingRouter.shared
     
     // States
-    @State var yOffset = 0
+    @State private var yOffset = 0
     
     var userDefaults = UserDefaultsService.shared
-    var userDefaultsIsNewUser: Bool {
-        userDefaults.get(key: UserDefaultsKey.IS_NEW_USER)
-    }
     
     var body: some View {
         
@@ -34,10 +31,14 @@ struct LaunchView: View {
                 
             } else {
                 // Show onboarding or dashboard view
-                if authModel.userOnboarded {
-                    MainView()
+                if let userOnboarded = authModel.userOnboarded {
+                    if userOnboarded {
+                        MainView()
+                    } else {
+                        Onboarding()
+                    }
                 } else {
-                    Onboarding()
+                    LaunchScreen()
                 }
             }
         }

@@ -39,6 +39,10 @@ class UserDefaultsService {
     func get(key: UserDefaultsKey) -> Bool {
         return defaults.bool(forKey: key.rawValue)
     }
+    
+    func get(key: UserDefaultsKey) -> Data? {
+        return defaults.data(forKey: key.rawValue)
+    }
 }
 
 enum UserDefaultsKey: String {
@@ -55,7 +59,8 @@ enum UserDefaultsKey: String {
     case MAPPED_DATA = "mapped-data"
     case GARDEN_NAME = "garden-name"
     case REFLECT_WEATHER_CHANGES = "reflect-weather-changes"
-    case IS_NEW_USER = "is-new-user"
+    case MESSAGE_OPTIONS = "messageOptions"
+    
 }
 
 

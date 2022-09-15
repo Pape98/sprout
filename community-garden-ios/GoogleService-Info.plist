@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>987260271190-lt53tt7akbciedliq2mdno33jpg08eb2.apps.googleusercontent.com</string>
+	<string>987260271190-otoku775m4j151vkeotcch58egjo5sja.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.987260271190-lt53tt7akbciedliq2mdno33jpg08eb2</string>
+	<string>com.googleusercontent.apps.987260271190-otoku775m4j151vkeotcch58egjo5sja</string>
 	<key>API_KEY</key>
 	<string>AIzaSyAYuf0xUwEL6bpovmuQix8NqapS-0tZPK4</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +13,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>empower.lab.community-garden-ios</string>
+	<string>empower.lab.community-garden</string>
 	<key>PROJECT_ID</key>
 	<string>community-garden-8d4b5</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:987260271190:ios:66874bd98806c229a399f7</string>
+	<string>1:987260271190:ios:b8fb7dafe004f6c9a399f7</string>
+	<key>DATABASE_URL</key>
+	<string>https://community-garden-8d4b5-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

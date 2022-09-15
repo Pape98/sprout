@@ -10,7 +10,7 @@ import SwiftUI
 
 struct TreePicker: View {
     
-    @State var selection: String = "spiky-maple"
+    @State private var selection: String = "spiky-maple"
     let userDefaults = UserDefaultsService.shared
         
     var body: some View {
@@ -25,7 +25,7 @@ struct TreePicker: View {
 
 struct TreeColorPicker: View {
     
-    @State var selectedColor = "moss"
+    @State private var selectedColor = "moss"
     
     var body: some View {
         ColorPicker(

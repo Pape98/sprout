@@ -15,6 +15,7 @@ enum NotificationType: String {
     case FetchWalkingRunningDistance
     case FetchWorkout
     case FetchSleep
+    case UpdateUserService
 }
 
 class NotificationSender {

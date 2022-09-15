@@ -16,7 +16,7 @@ class AuthenticationViewModel: ObservableObject {
     
     // Login status of current usrer
     @Published var isLoggedIn = false
-    @Published var userOnboarded = false
+    @Published var userOnboarded: Bool?
     
     // Error message to be displayed to user
     @Published var errorMessage: String?

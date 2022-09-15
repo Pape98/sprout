@@ -6,6 +6,7 @@
 //
 
 import SpriteKit
+import AVFoundation
 
 enum CollisionTypes: UInt32 {
     case tree = 1
@@ -27,6 +28,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     let SCALE_DURATION = 2.0
     let userDefaults = UserDefaultsService.shared
     
+    
     // Defaults
     var TREE: String {
         let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "cosmos"
@@ -44,8 +46,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     var tree: SKSpriteNode!
     var ground: SKSpriteNode!
     
-    
-    var dropletSound: SKAudioNode!
     var gameTimer: Timer?
     
     let clouds = ["cloud1", "cloud2"]
@@ -53,7 +53,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     var growthBreakpoint: CGFloat {
         frame.midY * 0.8
     }
-    var dropletSoundEffect: SKAudioNode!
     
     // ViewModels
     let userViewModel = UserViewModel.shared
@@ -83,11 +82,15 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Flower methods
     func createNewFlower(position: CGPoint) {
         // Garden Flower
-        let flower = SKSpriteNode(imageNamed: "flowers/\(FLOWER)")
+        let settings = UserService.user.settings
+        guard let settings = settings else { return }
+        
+        let flowerName = "\(settings.flowerColor)-\(addDash(settings.flower))"
+        let flower = SKSpriteNode(imageNamed: "flowers/\(flowerName)")
         
         flower.anchorPoint = CGPoint(x: 0, y: 0)
         flower.position = CGPoint(x: position.x, y: getRandomCGFloat(5, ground.size.height * 0.7))
-
+        
         flower.name = NodeNames.flower.rawValue
         flower.colorBlendFactor = getRandomCGFloat(0, 0.2)
         flower.setScale(0)
@@ -104,10 +107,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let y = flower.position.y / frame.maxY
         
         let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
-                                    name: FLOWER, x: x, y: y,
+                                    name: flowerName, x: x, y: y,
                                     scale: scale)
         
         gardenViewModel.addFlower(flowerItem)
+        
     }
     
     func addExisitingItems(){
@@ -141,6 +145,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         guard let nodeA = contact.bodyA.node else { return }
         guard let nodeB = contact.bodyB.node else { return }
         
+        soundEffectHandler(nodeA)
+        soundEffectHandler(nodeB)
         
         // Contact droplet + tree
         if nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.tree.rawValue {
@@ -148,7 +154,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         } else if nodeB.name == NodeNames.droplet.rawValue && nodeA.name == NodeNames.tree.rawValue{
             handleTreeDropletContact(droplet: nodeB)
             
-        // Contact seed + ground
+            // Contact seed + ground
         } else if(nodeA.name == NodeNames.seed.rawValue && nodeB.name == NodeNames.ground.rawValue){
             handleFlowerSeedContact(position: contact.contactPoint, seed: nodeA)
         } else if(nodeA.name == NodeNames.ground.rawValue && nodeB.name == NodeNames.seed.rawValue){
@@ -196,6 +202,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             // Update tree object's scale
             gardenViewModel.tree?.scale = treeScale
         }
+        
         droplet.removeFromParent()
     }
     
@@ -204,6 +211,19 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             createNewFlower(position: position)
         }
         seed.removeFromParent()
+    }
+    
+    func soundEffectHandler(_ node:SKNode){
+        
+        switch(node.name) {
+        case NodeNames.droplet.rawValue:
+            AudioPlayer.playCustomSound(filename: "droplet.mp3")
+        case NodeNames.seed.rawValue:
+            print("Playing seed")
+        case .none:
+            print("Cannot play audio")
+        case .some(_): break
+        }
     }
     
 }

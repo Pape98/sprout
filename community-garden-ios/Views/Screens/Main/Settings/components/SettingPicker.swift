@@ -11,9 +11,9 @@ struct SettingPicker: View {
     
     @EnvironmentObject var settingsViewModel: SettingsViewModel
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
-
-    @State var selection = ""
-    @State var showAlert = false
+    
+    @State private var selection = ""
+    
     var title: String
     var prefix: String = ""
     var data: [String]
@@ -31,11 +31,7 @@ struct SettingPicker: View {
                         }
                     }
                 }
-                .alert(isPresented: $showAlert){
-                    Alert(title: Text(title),
-                          message: Text("\(title) has been updated to \(selection) 😊"),
-                          dismissButton: .default(Text("Got it!")))
-                }
+                .opacity(0.95)
             }
         }
         .navigationTitle(title)
@@ -80,8 +76,8 @@ struct SettingPicker: View {
         }
         .onTapGesture {
             selection = label
+            print(label)
             settingsViewModel.updateSettings(settingKey: settingKey, value: selection)
-            showAlert = true
             self.presentationMode.wrappedValue.dismiss()
             
         }

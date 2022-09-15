@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Settings: View {
     
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
     @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
     
     @State private var reflectWeatherChanges = false
@@ -22,7 +23,6 @@ struct Settings: View {
             ZStack {
                 MainBackground()
                 List {
-                    
                     Section("Garden"){
                         
                         NavigationLink {
@@ -76,7 +76,8 @@ struct Settings: View {
                         
                     }
                 }
-                .listRowBackground(Color.red)
+                .opacity(0.95)
+                .offset(y: -15)
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
@@ -86,6 +87,13 @@ struct Settings: View {
                     
                     settingsViewModel.fetchSettings()
                 }
+                
+            }
+            .toolbar {
+                Button("Logout"){
+                    authViewModel.signOut()
+                }
+                .foregroundColor(.red)
             }
         }
         .navigationViewStyle(.stack)
@@ -100,5 +108,6 @@ struct Settings_Previews: PreviewProvider {
         Settings()
             .environmentObject(UserViewModel())
             .environmentObject(SettingsViewModel())
+            .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

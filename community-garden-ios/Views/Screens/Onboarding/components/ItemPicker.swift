@@ -97,9 +97,9 @@ struct SelectionImage: View {
             )
         } else {
             CircledFlower(option: "\(colorPrefix)-\(selection)",
-                          background: .oliveGreen,
-                          size: 130
+                          background: .oliveGreen
             )
+            .frame(width: 200)
         }
     }
 }
