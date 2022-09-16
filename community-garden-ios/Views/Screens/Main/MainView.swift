@@ -55,6 +55,7 @@ struct MainView: View {
                     Label("History", systemImage: "target")
                 }
                 .onAppear {
+                    SproutAnalytics.shared.viewHistory()
                     playSound()
                 }
             
