@@ -110,3 +110,8 @@ func getSampleUserGarden() -> UserGarden {
     
     return garden
 }
+
+func isUserTrackingData(_ data: DataOptions) -> Bool {
+    guard let settings = UserService.user.settings else {  return false }
+    return settings.data.contains(data.rawValue)
+}

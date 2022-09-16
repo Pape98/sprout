@@ -75,7 +75,18 @@ class StatsRepository {
     }
     
     func workoutsChangeCallback(value: Double){
-        // TODO: Finish implementation
+        guard let settings = UserService.user.settings else {  return }
+        
+        print(settings.data)
+        
+        // Check if user is tracking data
+        if !settings.data.contains(DataOptions.workouts.rawValue) { return }
+                                
+        // Update progress
+        let workoutsGoal = settings.workoutsGoal
+        let threshold =  Double(workoutsGoal!) * 0.1
+        let progress: Progress = progressRepo.getWorkoutsProgress()
+        updateProgress(data: DataOptions.workouts, value: value, progress: progress, threshold: threshold)
     }
     
     func walkingRunningChangeCallback(value: Double){
@@ -92,7 +103,16 @@ class StatsRepository {
     }
     
     func sleepChangeCallback(value: Double){
-        // TODO: Finish implementation
+        guard let settings = UserService.user.settings else {  return }
+        
+        // Check if user is tracking data
+        if !settings.data.contains(DataOptions.sleep.rawValue) { return }
+                                
+        // Update progress
+        let sleepGoal = settings.sleepGoal
+        let threshold =  Double(sleepGoal!) * 0.01
+        let progress: Progress = progressRepo.getSleepProgress()
+        updateProgress(data: DataOptions.sleep, value: value, progress: progress, threshold: threshold)
     }
     
     // MARK: Utility Methods
@@ -113,14 +133,6 @@ class StatsRepository {
         }
     }
     
-//    func getStatUpdateCallback(data: DataOptions) -> (_: Double) -> Void {
-//        if mapping![data.rawValue] == "Flower" {
-//            return updateNumDroplets
-//        } else {
-//            return updateNumSeeds
-//        }
-//    }
-    
     func updateProgress(data: DataOptions, value: Double, progress: Progress, threshold: Double){
         var progress = progress
         let progressDifference = value - progress.old
@@ -139,4 +151,5 @@ class StatsRepository {
         
         SQLiteDB.insertUpdate(table: progressTable, name: TableName.progress, values: progress, onClonflictOf: nameColumn)
     }
+    
 }
