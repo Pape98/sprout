@@ -25,6 +25,7 @@ struct UserGarden: Identifiable {
 
 struct UserSettings: Codable {
     var data: [String] = []
+    var mappedData: [String: String] = [:]
 
     var flower: String = ""
     var flowerColor: String = ""

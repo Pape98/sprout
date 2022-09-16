@@ -181,3 +181,15 @@ extension Double {
     }
     
 }
+
+extension Dictionary where Value : Hashable {
+
+    func swapKeyValues() -> [Value : Key] {
+        assert(Set(self.values).count == self.keys.count, "Values must be unique")
+        var newDict = [Value : Key]()
+        for (key, value) in self {
+            newDict[value] = key
+        }
+        return newDict
+    }
+}

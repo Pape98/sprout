@@ -22,13 +22,12 @@ class ProgressRepository {
     let type = Progress.self
     
     init(){
-        scheduleProgressReset()
+        // scheduleProgressReset()
     }
     
     // MARK: Get Progress Methods
     func getStepProgress() -> Progress {
         let progress = getProgress(DataOptions.steps)
-        print("Here", progress)
         return progress
     }
     

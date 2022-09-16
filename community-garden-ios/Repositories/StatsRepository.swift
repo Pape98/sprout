@@ -29,14 +29,6 @@ class StatsRepository {
 
     
     // Default Settings
-    var mapping: [String: String]? {
-//        let mappedData:[String: Any]? = userDefaults.get(key: UserDefaultsKey.MAPPED_DATA) // ["Tree": "Steps"]
-//        if let convertedData = mappedData as? [String: String] {
-//            let swappedData = convertedData.swapKeyValues() // ["Steps":"Tree"]
-//            return swappedData
-//        }
-        return nil
-    }
     var statUpdateCallbacks: [String: ((Double) -> Void)] {
         [
             "Flower": updateNumSeeds,
@@ -69,12 +61,15 @@ class StatsRepository {
     
     // MARK: Update methods
     func stepsChangeCallback(value: Double){
-        // Check if user is tracking data
-        guard let mapping = mapping else { return }
-        guard mapping[DataOptions.steps.rawValue] != nil else { return }
         
+        guard let settings = UserService.user.settings else {  return }
+        
+        // Check if user is tracking data
+        if !settings.data.contains(DataOptions.steps.rawValue) { return }
+                        
         // Update progress
-        let threshold = Double(userDefaults.get(key: UserDefaultsKey.STEPS_GOAL) * 0.01)
+        let stepGoal = settings.stepsGoal
+        let threshold =  Double(stepGoal!) * 0.01
         let progress: Progress = progressRepo.getStepProgress()
         updateProgress(data: DataOptions.steps, value: value, progress: progress, threshold: threshold)
     }
@@ -127,11 +122,14 @@ class StatsRepository {
         var progress = progress
         let progressDifference = value - progress.old
         
+        // Get callback function
+        let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
+        let mappedElement = mappedData[data.rawValue]! // "Tree"
+        
         if  progressDifference >= threshold && threshold > 0 {
             progress.old = value - (value.truncatingRemainder(dividingBy: threshold))
             let statAddition = progressDifference / threshold
-            print(statAddition)
-            guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mapping![data.rawValue]!] else { return }
+            guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mappedElement] else { return }
             updateCallback(statAddition)
         }
         progress.new = value
