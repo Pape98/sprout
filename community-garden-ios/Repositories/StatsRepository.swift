@@ -79,11 +79,14 @@ class StatsRepository {
     }
     
     func walkingRunningChangeCallback(value: Double){
+        guard let settings = UserService.user.settings else {  return }
+        
         // Check if user is tracking data
-        guard let mapping = mapping else { return }
-        guard mapping[DataOptions.steps.rawValue] != nil else { return }
+        if !settings.data.contains(DataOptions.walkingRunningDistance.rawValue) { return }
+        
         // Update progress
-        let threshold = Double(userDefaults.get(key: UserDefaultsKey.WALKING_RUNNING_GOAL) * 0.1)
+        let walkingRunningGoal = settings.walkingRunningGoal!
+        let threshold = Double(walkingRunningGoal) * 0.1
         let progress: Progress = progressRepo.getWalkingRunningProgress()
         updateProgress(data: DataOptions.walkingRunningDistance, value: value, progress: progress, threshold: threshold)
     }
@@ -110,13 +113,13 @@ class StatsRepository {
         }
     }
     
-    func getStatUpdateCallback(data: DataOptions) -> (_: Double) -> Void {
-        if mapping![data.rawValue] == "Flower" {
-            return updateNumDroplets
-        } else {
-            return updateNumSeeds
-        }
-    }
+//    func getStatUpdateCallback(data: DataOptions) -> (_: Double) -> Void {
+//        if mapping![data.rawValue] == "Flower" {
+//            return updateNumDroplets
+//        } else {
+//            return updateNumSeeds
+//        }
+//    }
     
     func updateProgress(data: DataOptions, value: Double, progress: Progress, threshold: Double){
         var progress = progress
