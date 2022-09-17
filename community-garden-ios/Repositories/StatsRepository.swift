@@ -76,9 +76,7 @@ class StatsRepository {
     
     func workoutsChangeCallback(value: Double){
         guard let settings = UserService.user.settings else {  return }
-        
-        print(settings.data)
-        
+                
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.workouts.rawValue) { return }
                                 

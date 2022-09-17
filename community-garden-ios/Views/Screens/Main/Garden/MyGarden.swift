@@ -35,7 +35,6 @@ struct MyGarden: View {
                         HStack {
                             Button("Switch"){
                                 toggleDropItem()
-                                //                                gardenViewModel.saveItems()
                             }
                             .foregroundColor(.black)
                             
@@ -75,8 +74,6 @@ struct MyGarden: View {
     func toggleDropItem(){
         gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
         GardenElement.seed : GardenElement.droplet
-        
-        print(gardenViewModel.dropItem)
     }
 }
 

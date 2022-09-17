@@ -137,7 +137,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        releaseDropItem(position: location)
+                
+        if gardenViewModel.hasEnoughDropItem() {
+            releaseDropItem(position: location)
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -173,18 +176,25 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Garden item creation methods
     func releaseDropItem(position: CGPoint){
         let name = gardenViewModel.dropItem
-        let droplet = SKSpriteNode(imageNamed: name.rawValue)
-        droplet.position = position
-        droplet.setScale(0.55)
-        droplet.physicsBody = SKPhysicsBody(circleOfRadius: droplet.size.width / 2)
-        droplet.physicsBody?.categoryBitMask = CollisionTypes.dropItem.rawValue
+        let dropItem = SKSpriteNode(imageNamed: name.rawValue)
+        dropItem.position = position
+        dropItem.setScale(0.55)
+        dropItem.physicsBody = SKPhysicsBody(circleOfRadius: dropItem.size.width / 2)
+        dropItem.physicsBody?.categoryBitMask = CollisionTypes.dropItem.rawValue
         
         if gardenViewModel.dropItem == GardenElement.droplet {
-            droplet.physicsBody?.contactTestBitMask = CollisionTypes.tree.rawValue
+            dropItem.physicsBody?.contactTestBitMask = CollisionTypes.tree.rawValue
         }
         
-        droplet.name =  gardenViewModel.dropItem == GardenElement.droplet ? NodeNames.droplet.rawValue : NodeNames.seed.rawValue
-        addChild(droplet)
+        dropItem.name =  gardenViewModel.dropItem == GardenElement.droplet ? NodeNames.droplet.rawValue : NodeNames.seed.rawValue
+        addChild(dropItem)
+        
+        // Update current drop item count
+        if dropItem.name == GardenElement.droplet.rawValue {
+            gardenViewModel.decreaseNumDroplets()
+        } else {
+            gardenViewModel.decreaseNumSeeds()
+        }
     }
     
     @objc func createCloud(){
