@@ -29,6 +29,11 @@ class UserViewModel: ObservableObject {
         setupObservers()
         getNumDroplets()
         getNumSeeds()
+        
+        nc.addObserver(self,
+                       selector: #selector(self.getUser),
+                       name: Notification.Name(NotificationType.UpdateUserService.rawValue),
+                       object: nil)
     }
     
     @objc func initialSetup(){

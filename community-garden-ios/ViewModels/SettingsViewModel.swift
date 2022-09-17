@@ -11,24 +11,26 @@ class SettingsViewModel: ObservableObject {
     
     @Published var settings = UserService.user.settings
     static let shared = SettingsViewModel()
+    let appViewModel = AppViewModel.shared
     let userRepository = UserRepository()
     let gardenItemRepository = GardenRepository()
     let collections = Collections.shared
+    let nc = NotificationCenter.default
     
     func updateSettings(settingKey: FirestoreKey, value: Any){
         let userID = getUserID()
         guard let userID = userID else { return }
         let key = "settings.\(settingKey.rawValue)"
+                
         userRepository.updateUser(userID: userID, updates: [key: value]){
             SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
+            
+            if settingKey == FirestoreKey.TREE {
+                self.updateTodaysTree(field: "settings.tree", update: value as! String)
+            } else if settingKey == FirestoreKey.TREE_COLOR {
+                self.updateTodaysTree(field: "settings.treeColor", update: value as! String)
+            }
         }
-        
-        if settingKey == FirestoreKey.TREE {
-            updateTodaysTree(field: "settings.tree", update: value as! String)
-        } else if settingKey == FirestoreKey.TREE_COLOR {
-            updateTodaysTree(field: "settings.treeColor", update: value as! String)
-        }
-        
     }
     
     func updateTodaysTree(field: String, update: String){

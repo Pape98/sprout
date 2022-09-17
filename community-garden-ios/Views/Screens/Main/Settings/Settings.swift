@@ -10,6 +10,7 @@ import SwiftUI
 struct Settings: View {
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
     @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
     
     @State private var reflectWeatherChanges = false
@@ -33,14 +34,15 @@ struct Settings: View {
                             Text("Garden Name")
                         }
                         
-                        Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
-                            .tint(.appleGreen)
-                            .onChange(of: reflectWeatherChanges) { newValue in
-                                
-                                guard settingsViewModel.settings != nil else { return }
-                                settingsViewModel.settings!.reflectWeatherChanges = newValue
-                                settingsViewModel.updateSettings(settingKey: FirestoreKey.REFLECT_WEATHER_CHANGES, value: newValue)
-                            }
+//                        Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
+//                            .tint(.appleGreen)
+//                            .onChange(of: reflectWeatherChanges) { newValue in
+//                                
+//                                guard settingsViewModel.settings != nil else { return }
+//                                settingsViewModel.settings!.reflectWeatherChanges = newValue
+//                                settingsViewModel.updateSettings(settingKey: FirestoreKey.REFLECT_WEATHER_CHANGES, value: newValue)
+//                                
+//                            }
                     }
                     
                     Section("Types & Colors"){
