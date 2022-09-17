@@ -8,6 +8,22 @@
 import Foundation
 import SpriteKit
 
+enum CollisionTypes: UInt32 {
+    case tree = 1
+    case ground = 2
+    case dropItem = 4
+    case pond = 8
+}
+
+enum NodeNames: String {
+    case tree
+    case droplet
+    case ground
+    case flower
+    case seed
+    case pond
+}
+
 class SceneHelper {
     
     // MARK: Properties
@@ -35,6 +51,23 @@ class SceneHelper {
         return ground
     }
     
+    static func setupPond(scene: SKScene){
+        let pondTexture = SKTexture(imageNamed: "pond")
+        let pond = SKSpriteNode(texture: pondTexture)
+        
+        pond.anchorPoint = CGPoint(x: 0, y:0)
+        pond.position = CGPoint(x: -20, y:0)
+        pond.name = NodeNames.pond.rawValue
+        
+        let pondPhysicsBodySize = CGSize(width: pond.size.width * 2, height: pond.size.height * 2)
+        pond.physicsBody = SKPhysicsBody(texture: pondTexture, size: pondPhysicsBodySize)
+        pond.physicsBody?.categoryBitMask = CollisionTypes.pond.rawValue
+        pond.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
+        pond.physicsBody?.isDynamic = false
+        
+        scene.addChild(pond)
+    }
+    
     static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> SKSpriteNode {
         // Tree
         let treeTexture = SKTexture(imageNamed: tree.name)
@@ -59,7 +92,20 @@ class SceneHelper {
         
         scene.addChild(treeNode)
         
+        // Grass
+        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
+        addGrass(scene: scene, location: grassLocation)
+        
         return treeNode
+    }
+    
+    static func addGrass(scene: SKScene, location: CGPoint){
+        let grassNode = SKSpriteNode(imageNamed: "grass")
+        grassNode.position = location
+        grassNode.setScale(0.85)
+        grassNode.zPosition = 6
+        
+        scene.addChild(grassNode)
     }
     
     static func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){

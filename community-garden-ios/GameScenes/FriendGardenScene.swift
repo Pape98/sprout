@@ -23,6 +23,7 @@ class FriendGardenScene: SKScene {
         
         // Ground
         ground = SceneHelper.setupGround(scene: self)
+        SceneHelper.setupPond(scene: self)
         
         // Flowers
         addExisitingItems()

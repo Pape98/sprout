@@ -57,10 +57,9 @@ struct MyGarden: View {
             // MARK: Lottie View
             
             VStack {
-                
-                //                LottieView(filename: "bird_2")
-                //                    .frame(height: 250)
-                //                    .offset(y: 30)
+//                
+//                LottieView(filename: "bird_2")
+//                    .offset(y: 30)
                 
                 Spacer()
                 LottieView(filename: "turtle_2")

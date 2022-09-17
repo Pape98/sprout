@@ -8,20 +8,6 @@
 import SpriteKit
 import AVFoundation
 
-enum CollisionTypes: UInt32 {
-    case tree = 1
-    case ground = 2
-    case dropItem = 4
-}
-
-enum NodeNames: String {
-    case tree
-    case droplet
-    case ground
-    case flower
-    case seed
-}
-
 class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     let TREE_SCALE_FACTOR = 0.25
@@ -71,6 +57,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // Scene setup
         ground = SceneHelper.setupGround(scene: self)
+        
+        SceneHelper.setupPond(scene: self)
         
         addExisitingItems()
         
@@ -151,23 +139,25 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         soundEffectHandler(nodeA)
         soundEffectHandler(nodeB)
         
+        
         // Contact droplet + tree
         if nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.tree.rawValue {
             handleTreeDropletContact(droplet: nodeA)
         } else if nodeB.name == NodeNames.droplet.rawValue && nodeA.name == NodeNames.tree.rawValue{
             handleTreeDropletContact(droplet: nodeB)
-            
-            // Contact seed + ground
+
+        // Contact seed + ground
         } else if(nodeA.name == NodeNames.seed.rawValue && nodeB.name == NodeNames.ground.rawValue){
             handleFlowerSeedContact(position: contact.contactPoint, seed: nodeA)
         } else if(nodeA.name == NodeNames.ground.rawValue && nodeB.name == NodeNames.seed.rawValue){
             handleFlowerSeedContact(position: contact.contactPoint, seed: nodeB)
         }
         
+
         // Others
-        else if nodeB.name == NodeNames.droplet.rawValue  || nodeB.name == NodeNames.seed.rawValue {
+        if nodeB.name == NodeNames.droplet.rawValue  || nodeB.name == NodeNames.seed.rawValue {
             nodeB.removeFromParent()
-        } else if nodeA.name == NodeNames.droplet.rawValue || nodeB.name == NodeNames.seed.rawValue {
+        } else if nodeA.name == NodeNames.droplet.rawValue || nodeA.name == NodeNames.seed.rawValue {
             nodeA.removeFromParent()
         }
     }

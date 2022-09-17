@@ -23,6 +23,10 @@ struct FriendsList: View {
     @State var viewMode: FriendsListViewMode = .basic
     @State var selectedGroup = FriendViewType.friends
     
+    var gardens: [UserGarden] {
+        return friendsViewModel.friendsGardens
+    }
+    
     var body: some View {
         GeometryReader { geometry in
             NavigationView {
@@ -31,17 +35,17 @@ struct FriendsList: View {
                     MainBackground()
                     
                     VStack {
-                        Picker("", selection: $selectedGroup){
-                            Text("Friends").tag(FriendViewType.friends)
-                            Text("Community").tag(FriendViewType.community)
-                        }
-                        .pickerStyle(.segmented)
-                        .padding()
+//                        Picker("", selection: $selectedGroup){
+//                            Text("Friends").tag(FriendViewType.friends)
+//                            Text("Community").tag(FriendViewType.community)
+//                        }
+//                        .pickerStyle(.segmented)
+//                        .padding()
                         
                         ScrollView {
                             
                             VStack(spacing: 15) {
-                                ForEach(friendsViewModel.friendsGardens){ garden in
+                                ForEach(gardens){ garden in
                                     NavigationLink {
                                         FriendGarden(garden: garden)
                                     } label: {

@@ -37,7 +37,7 @@ struct FriendGarden: View {
             }
             .onAppear {
                 SproutAnalytics.shared.viewFriendGarden(friendData: ["ownerName": garden.user.name,
-                                                              "ownerID": garden.user.id])
+                                                                     "ownerID": garden.user.id])
             }
     }
 }
