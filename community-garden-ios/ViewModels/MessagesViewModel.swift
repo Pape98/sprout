@@ -25,6 +25,7 @@ class MessagesViewModel: ObservableObject {
     
     @Published var customUptions: [MessageOption] = []
     
+    // Messages
     @Published var receivedMessages: [Message] = []
     @Published var sentMessages: [Message] = []
     

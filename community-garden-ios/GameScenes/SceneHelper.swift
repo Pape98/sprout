@@ -68,6 +68,27 @@ class SceneHelper {
         scene.addChild(pond)
     }
     
+    // For community view
+    static func addTree(tree: GardenItem, scene: SKScene, position: CGPoint){
+        // Tree
+        let treeNode = SKSpriteNode(imageNamed: tree.name)
+        treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
+        treeNode.position = position
+        treeNode.name = NodeNames.tree.rawValue
+        treeNode.zPosition = 5
+        
+        // Shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
+        shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
+        shadowNode.setScale(tree.scale * 0.6)
+        
+        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
+        addGrass(scene: scene, location: grassLocation)
+        
+        scene.addChild(shadowNode)
+        scene.addChild(treeNode)
+    }
+    
     static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> SKSpriteNode {
         // Tree
         let treeTexture = SKTexture(imageNamed: tree.name)
@@ -95,6 +116,13 @@ class SceneHelper {
         // Grass
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
         addGrass(scene: scene, location: grassLocation)
+        
+        // Shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
+        shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
+        shadowNode.setScale(tree.scale)
+        
+        scene.addChild(shadowNode)
         
         return treeNode
     }
@@ -144,7 +172,7 @@ class SceneHelper {
         
         cloud.position = randomPosition
         cloud.alpha = 0.5
-        cloud.zPosition = -1
+        cloud.zPosition = 20
         cloud.run(actionRepeat)
         
         scene.addChild(cloud)

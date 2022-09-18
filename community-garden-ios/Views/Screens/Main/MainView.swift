@@ -13,10 +13,10 @@ struct MainView: View {
     // MARK: View Models
     @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
-    @StateObject var friendsViewModel: FriendsViewModel = FriendsViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
     @StateObject var messagesViewModel: MessagesViewModel = MessagesViewModel.shared
     @StateObject var historyViewModel: HistoryViewModel = HistoryViewModel.shared
+    @StateObject var communityViewModel: CommunityViewModel = CommunityViewModel.shared
     
     let userDefaults = UserDefaultsService.shared
     let soundID:UInt32 = 1306
@@ -24,6 +24,14 @@ struct MainView: View {
     var body: some View {
         
         TabView {
+            
+            Community()
+                .tabItem {
+                    Label("Community", systemImage: "globe")
+                }
+                .onAppear {
+                    playSound()
+                }
             
             Dashboard()
                 .tabItem {
@@ -42,13 +50,13 @@ struct MainView: View {
                     playSound()
                 }
             
-            Community()
-                .tabItem {
-                    Label("Community", systemImage: "globe")
-                }
-                .onAppear {
-                    playSound()
-                }
+//            Community()
+//                .tabItem {
+//                    Label("Community", systemImage: "globe")
+//                }
+//                .onAppear {
+//                    playSound()
+//                }
             
             History()
                 .tabItem {
@@ -69,11 +77,11 @@ struct MainView: View {
         }
         .accentColor(.appleGreen)
         .environmentObject(userViewModel)
-        .environmentObject(friendsViewModel)
         .environmentObject(healthStoreViewModel)
         .environmentObject(gardenViewModel)
         .environmentObject(messagesViewModel)
         .environmentObject(historyViewModel)
+        .environmentObject(communityViewModel)
     }
     func playSound(){
         AudioPlayer.playCustomSound(filename: "click2.mp3")
@@ -85,7 +93,7 @@ struct MainView_Previews: PreviewProvider {
         MainView()
             .environmentObject(UserViewModel())
             .environmentObject(HealthStoreViewModel())
-            .environmentObject(FriendsViewModel())
             .environmentObject(HistoryViewModel())
+            .environmentObject(CommunityViewModel())
     }
 }

@@ -58,6 +58,7 @@
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
 		F07657F528D6870E00C72F2C /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F428D6870E00C72F2C /* Community.swift */; };
 		F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */; };
+		F07657F928D749B700C72F2C /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F828D749B700C72F2C /* CommunityViewModel.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
 		F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B59285A4A32002C79BD /* CircledFlower.swift */; };
@@ -175,6 +176,7 @@
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F07657F428D6870E00C72F2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenScene.swift; sourceTree = "<group>"; };
+		F07657F828D749B700C72F2C /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
 		F0842B59285A4A32002C79BD /* CircledFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledFlower.swift; sourceTree = "<group>"; };
@@ -583,6 +585,7 @@
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
 				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
+				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -842,6 +845,7 @@
 				F043F266288076EC008F211C /* SceneHelper.swift in Sources */,
 				F0842BB7285E2980002C79BD /* Onboarding.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
+				F07657F928D749B700C72F2C /* CommunityViewModel.swift in Sources */,
 				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
 				F0D66E3728886E4D0095AEDE /* Message.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,

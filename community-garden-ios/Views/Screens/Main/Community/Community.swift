@@ -10,6 +10,8 @@ import SpriteKit
 
 struct Community: View {
     
+    @EnvironmentObject var communityViewModel: CommunityViewModel
+    
     var weatherInfo: [String: String] = getWeatherInfo()
     
     var scene: SKScene {
@@ -19,27 +21,27 @@ struct Community: View {
     }
     
     var body: some View {
-        NavigationView {
-            ZStack(alignment: .bottomTrailing) {
-                // Background image
-                Image("community-grass-bg")
-                    .resizable()
-                    .ignoresSafeArea(.container, edges: [.top])
-                    .overlay {
-                        Rectangle()
-                            .fill(Color(weatherInfo["color"]!))
-                            .blendMode(BlendMode.overlay)
-                            .ignoresSafeArea()
-                    }
-                
-                SpriteView(scene: scene, options: [.allowsTransparency])
-            }
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading){
+        
+        ZStack(alignment: .bottomTrailing) {
+            // Background image
+            Image("community-grass-bg")
+                .resizable()
+                .ignoresSafeArea(.container, edges: [.top])
+                .overlay {
+                    Rectangle()
+                        .fill(Color(weatherInfo["color"]!))
+                        .blendMode(BlendMode.overlay)
+                        .ignoresSafeArea()
                 }
+            
+            SpriteView(scene: scene, options: [.allowsTransparency])
+                .ignoresSafeArea(.container, edges: [.top])
+        }
+        .toolbar {
+            ToolbarItem(placement: .navigationBarLeading){
             }
         }
-        .navigationViewStyle(.stack)
+        
     }
     
     @ViewBuilder
@@ -49,7 +51,7 @@ struct Community: View {
                 .fill(Color.seaGreen)
                 .opacity(0.5)
                 .shadow(color: .black, radius: 1, x: 0, y: 4)
-
+            
             Text("Refresh")
                 .foregroundColor(.white)
         }
