@@ -14,7 +14,7 @@ class CommunityViewModel: ObservableObject {
     let userRepository = UserRepository.shared
     let collections = Collections.shared
     
-    @Published var group: [String: User] = [:]
+    @Published var members: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     
     init(){
@@ -34,7 +34,15 @@ class CommunityViewModel: ObservableObject {
                               .whereField("id", isNotEqualTo: userID)
         
         userRepository.fetchAllUsers(query: query) { users in
-            print(users)
+            var temp: [String: User] = [:]
+            
+            for user in users {
+                temp[user.id] = user
+            }
+            
+            DispatchQueue.main.async {
+                self.members = temp
+            }
         }
     }
     

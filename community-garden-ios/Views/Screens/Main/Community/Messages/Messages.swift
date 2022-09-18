@@ -71,15 +71,6 @@ struct Messages: View {
                     }
                     .foregroundColor(.black)
                 }
-                
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button {
-                        isShowingSheet = true
-                    } label: {
-                        Image(systemName: "paperplane")
-                            .foregroundColor(.black)
-                    }
-                }
             }
         }
         .navigationViewStyle(.stack)

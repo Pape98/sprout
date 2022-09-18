@@ -24,6 +24,8 @@ class MessagesViewModel: ObservableObject {
     ]
     
     @Published var customUptions: [MessageOption] = []
+    @Published var showMessageOptionsSheet = false
+    var selectedUser: User? = nil
     
     // Messages
     @Published var receivedMessages: [Message] = []
@@ -71,7 +73,6 @@ class MessagesViewModel: ObservableObject {
     }
     
     // MARK: Methods for sending and receiving messages
-    
     func sendMessage(receiver: User, text: String, isPrivate: Bool){
         let sender = UserService.user
         guard sender.settings != nil else { return }

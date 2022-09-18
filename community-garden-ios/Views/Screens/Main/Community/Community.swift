@@ -11,6 +11,7 @@ import SpriteKit
 struct Community: View {
     
     @EnvironmentObject var communityViewModel: CommunityViewModel
+    @EnvironmentObject var messagesViewModel: MessagesViewModel
     
     var weatherInfo: [String: String] = getWeatherInfo()
     @State var showMessageSheet = false
@@ -51,6 +52,11 @@ struct Community: View {
         }
         .sheet(isPresented: $showMessageSheet) {
             Messages()
+        }
+        .sheet(isPresented: $messagesViewModel.showMessageOptionsSheet) {
+            if let user = messagesViewModel.selectedUser {
+                MessageOptions(user: user)
+            }
         }
     }
     

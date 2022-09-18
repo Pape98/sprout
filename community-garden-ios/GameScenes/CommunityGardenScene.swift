@@ -20,6 +20,7 @@ class CommunityGardenScene: SKScene {
     
     // ViewModels
     @ObservedObject var communityViewModel = CommunityViewModel.shared
+    @ObservedObject var messagesViewModel = MessagesViewModel.shared
     
     override func didMove(to view: SKView) {
         
@@ -49,11 +50,14 @@ class CommunityGardenScene: SKScene {
             let location = touch.location(in: self)
             let touchedNode = self.nodes(at: location)
             for node in touchedNode {
-                print(node.name)
+
+                guard let name = node.name else { return }
+                guard let user = communityViewModel.members[name] else { return }
+                
+                messagesViewModel.showMessageOptionsSheet = true
+                messagesViewModel.selectedUser = user
             }
         }
-        
-        
     }
     
     
