@@ -55,6 +55,8 @@
 		F07657F528D6870E00C72F2C /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F428D6870E00C72F2C /* Community.swift */; };
 		F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */; };
 		F07657F928D749B700C72F2C /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F828D749B700C72F2C /* CommunityViewModel.swift */; };
+		F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */; };
+		F07657FE28D7D81200C72F2C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657FD28D7D81200C72F2C /* Group.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
 		F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B59285A4A32002C79BD /* CircledFlower.swift */; };
@@ -167,6 +169,8 @@
 		F07657F428D6870E00C72F2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenScene.swift; sourceTree = "<group>"; };
 		F07657F828D749B700C72F2C /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
+		F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
+		F07657FD28D7D81200C72F2C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
 		F0842B59285A4A32002C79BD /* CircledFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledFlower.swift; sourceTree = "<group>"; };
@@ -577,6 +581,7 @@
 				F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */,
 				F0B6DAEB2875C30100DD3F03 /* Statistics.swift */,
 				F0D66E3628886E4D0095AEDE /* Message.swift */,
+				F07657FD28D7D81200C72F2C /* Group.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -592,6 +597,7 @@
 				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
 				F043F25F287EEBA7008F211C /* GardenRepository.swift */,
 				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
+				F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -793,6 +799,7 @@
 				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,
+				F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */,
 				F07657F528D6870E00C72F2C /* Community.swift in Sources */,
 				F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */,
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
@@ -836,6 +843,7 @@
 				F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */,
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
+				F07657FE28D7D81200C72F2C /* Group.swift in Sources */,
 				F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0475B61286228D000C68B35 /* LastSteps.swift in Sources */,

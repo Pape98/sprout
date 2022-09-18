@@ -44,7 +44,7 @@ struct Community: View {
                     showMessageSheet = true
                 }
                 Button(image: "clock.arrow.circlepath"){
-                    //communityViewModel.fetchTrees()
+                    communityViewModel.fetchTrees()
                 }
             }
             .padding()
@@ -66,7 +66,7 @@ struct Community: View {
             ZStack{
                 Circle()
                     .fill(Color.white)
-                    .opacity(0.6)
+                    .opacity(0.7)
                 
                 Image(systemName: image)
                     .foregroundColor(.white)

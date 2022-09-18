@@ -25,7 +25,7 @@ struct CommunityGardenIosApp: App {
         //            print(defaults)
         //        }
         FirebaseApp.configure()
-//        setupLocalEmulator()
+        setupLocalEmulator()
         
         
     }

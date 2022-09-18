@@ -12,12 +12,15 @@ class CommunityViewModel: ObservableObject {
     
     let gardenRepository = GardenRepository.shared
     let userRepository = UserRepository.shared
+    let groupRepository = GroupRepository.shared
+    
     let collections = Collections.shared
     
     @Published var members: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     
     init(){
+        createGroups()
         fetchTrees()
         fetchGroupMembers()
     }
@@ -58,6 +61,12 @@ class CommunityViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.trees = trees
             }
+        }
+    }
+    
+    func createGroups(){
+        for groupId in 0...3 {
+            groupRepository.createGroup(groupNumber: groupId)
         }
     }
 }
