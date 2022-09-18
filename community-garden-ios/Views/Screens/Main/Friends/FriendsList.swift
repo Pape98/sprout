@@ -89,7 +89,6 @@ struct FriendsList: View {
                         .onTapGesture {
                             viewMode = viewMode == .basic ? .scene : .basic
                         }
-                        
                     }
                 }
                 .onAppear {

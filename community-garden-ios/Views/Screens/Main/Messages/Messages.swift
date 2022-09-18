@@ -16,6 +16,7 @@ struct Messages: View {
     
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @State var selectedMessageType: ViewMessageType = .received
+    @State private var isShowingSheet = false
     @State var date = ""
     
     var messages: [Message] {
@@ -57,6 +58,11 @@ struct Messages: View {
                 }
                 
             }
+            .sheet(isPresented: $isShowingSheet, content: {
+                //                MessageOptions(user: garden.user)
+                
+                Text("Pape")
+            })
             .navigationBarTitle("Messages", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
@@ -64,6 +70,15 @@ struct Messages: View {
                         messagesViewModel.getUserMessages()
                     }
                     .foregroundColor(.black)
+                }
+                
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        isShowingSheet = true
+                    } label: {
+                        Image(systemName: "paperplane")
+                            .foregroundColor(.black)
+                    }
                 }
             }
         }

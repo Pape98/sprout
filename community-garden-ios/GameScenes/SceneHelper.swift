@@ -127,13 +127,17 @@ class SceneHelper {
     }
     
     
-    @objc static func createCloud(scene: SKScene, scale: Double = 0.75) {
+    @objc static func createCloud(scene: SKScene, scale: Double = 0.75, isCommunityView: Bool = false) {
         guard let selectedCloud = clouds.randomElement() else { return }
         let cloud = SKSpriteNode(imageNamed: selectedCloud)
         
         cloud.setScale(scale)
         cloud.anchorPoint = CGPoint(x: 0, y: 0.5)
-        let randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.midY+20,scene.frame.maxY))
+        var randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.midY+20,scene.frame.maxY))
+        
+        if isCommunityView {
+            randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(0,scene.frame.size.height))
+        }
         
         let moveCloudAction = SKAction.moveTo(x: scene.frame.maxX, duration: 10.0)
         let actionRepeat = SKAction.repeatForever(moveCloudAction)

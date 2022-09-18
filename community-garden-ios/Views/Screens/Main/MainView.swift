@@ -42,9 +42,9 @@ struct MainView: View {
                     playSound()
                 }
             
-            FriendsList()
+            Community()
                 .tabItem {
-                    Label("Friends", systemImage: "person.3")
+                    Label("Community", systemImage: "globe")
                 }
                 .onAppear {
                     playSound()

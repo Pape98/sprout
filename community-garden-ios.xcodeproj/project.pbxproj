@@ -56,6 +56,8 @@
 		F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F059833D28D4D88100542D64 /* FirebaseRemoteConfig */; };
 		F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
+		F07657F528D6870E00C72F2C /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F428D6870E00C72F2C /* Community.swift */; };
+		F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
 		F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B59285A4A32002C79BD /* CircledFlower.swift */; };
@@ -171,6 +173,8 @@
 		F04AD4CE288B22DD00BC17AB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
+		F07657F428D6870E00C72F2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
+		F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenScene.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
 		F0842B59285A4A32002C79BD /* CircledFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledFlower.swift; sourceTree = "<group>"; };
@@ -299,6 +303,7 @@
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
 				F0F0C87828B53CCF0047D9EA /* History */,
 				F00A6F34283C4DDB00A176D6 /* Friends */,
+				F07657F328D686EE00C72F2C /* Community */,
 				F09B71E327724B260085C7AC /* Garden */,
 				F04AD4CD288B22C300BC17AB /* Messages */,
 				F0F5E93828739422002C30BC /* Settings */,
@@ -394,8 +399,17 @@
 				F043F265288076EC008F211C /* SceneHelper.swift */,
 				F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */,
 				F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */,
+				F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */,
 			);
 			path = GameScenes;
+			sourceTree = "<group>";
+		};
+		F07657F328D686EE00C72F2C /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				F07657F428D6870E00C72F2C /* Community.swift */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 		F0842B57285A4170002C79BD /* components */ = {
@@ -811,6 +825,7 @@
 				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,
+				F07657F528D6870E00C72F2C /* Community.swift in Sources */,
 				F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */,
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
@@ -819,6 +834,7 @@
 				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
+				F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */,
 				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
 				F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */,
 				F0B6DAF02876181D00DD3F03 /* ProgressRepository.swift in Sources */,
