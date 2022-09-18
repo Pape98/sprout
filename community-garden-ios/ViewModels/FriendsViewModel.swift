@@ -31,11 +31,11 @@ class FriendsViewModel: ObservableObject {
     }
     
     func fetchAllUsers(){
-        let userID = getUserID()
-        guard let userID = userID else { return }
-        userRepo.fetchAllUsers(userID: userID) { users in
-            self.users = users
-        }
+//        let userID = getUserID()
+//        guard let userID = userID else { return }
+//        userRepo.fetchAllUsers(userID: userID) { users in
+//            self.users = users
+//        }
     }
     
     func fetchAllCurrentItems(){

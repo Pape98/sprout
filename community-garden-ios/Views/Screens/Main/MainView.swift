@@ -41,15 +41,6 @@ struct MainView: View {
                     playSound()
                 }
             
-            Messages()
-                .badge(2)
-                .tabItem {
-                    Label("Messages", systemImage: "message")
-                }
-                .onAppear {
-                    playSound()
-                }
-            
 //            Community()
 //                .tabItem {
 //                    Label("Community", systemImage: "globe")

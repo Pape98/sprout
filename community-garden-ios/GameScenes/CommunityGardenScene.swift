@@ -44,6 +44,18 @@ class CommunityGardenScene: SKScene {
         }
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            let touchedNode = self.nodes(at: location)
+            for node in touchedNode {
+                print(node.name)
+            }
+        }
+        
+        
+    }
+    
     
     @objc func createCloud(){
         SceneHelper.createCloud(scene: self, scale: 0.45, isCommunityView: true)
@@ -81,14 +93,14 @@ class CommunityGardenScene: SKScene {
     }
     
     func initializeValidPositions() -> [String: CGPoint]{
-
+        
         let riverTop = river!.position.y + river!.size.height
         let fenceBottom = fence!.position.y
         
-        let topLeft = CGPoint(x: getRandomCGFloat(10, frame.midX-50), y: getRandomCGFloat(riverTop, riverTop + 50))
-        let topRight = CGPoint(x: getRandomCGFloat(frame.midX + 10, frame.maxX-50), y: getRandomCGFloat(riverTop, riverTop + 50))
-
-        let bottomLeft = CGPoint(x: getRandomCGFloat(10, frame.midX-50), y: getRandomCGFloat(0, fenceBottom - 100))
+        let topLeft = CGPoint(x: getRandomCGFloat(40, frame.midX-50), y: getRandomCGFloat(riverTop, riverTop + 20))
+        let topRight = CGPoint(x: getRandomCGFloat(frame.midX + 10, frame.maxX-70), y: getRandomCGFloat(riverTop, riverTop + 20))
+        
+        let bottomLeft = CGPoint(x: getRandomCGFloat(40, frame.midX-50), y: getRandomCGFloat(0, fenceBottom - 100))
         let bottomRight = CGPoint(x: getRandomCGFloat(frame.midX + 10, frame.maxX-50), y: getRandomCGFloat(0,fenceBottom - 100))
         
         return ["topLeft": topLeft,"topRight": topRight,"bottomLeft" : bottomLeft ,"bottomRight":bottomRight]

@@ -11,12 +11,31 @@ class CommunityViewModel: ObservableObject {
     static let shared = CommunityViewModel()
     
     let gardenRepository = GardenRepository.shared
+    let userRepository = UserRepository.shared
     let collections = Collections.shared
     
+    @Published var group: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     
     init(){
         fetchTrees()
+        fetchGroupMembers()
+    }
+    
+    func fetchGroupMembers(){
+        let userGroup = UserService.user.group
+        let userID = getUserID()
+        guard let userID = userID else { return }
+        
+        let collection = self.collections.getCollectionReference(CollectionName.users.rawValue)
+        guard let collection = collection else { return }
+        
+        let query = collection.whereField("group", isEqualTo: userGroup)
+                              .whereField("id", isNotEqualTo: userID)
+        
+        userRepository.fetchAllUsers(query: query) { users in
+            print(users)
+        }
     }
     
     func fetchTrees(){

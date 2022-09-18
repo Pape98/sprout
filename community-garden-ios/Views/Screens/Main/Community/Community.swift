@@ -13,6 +13,7 @@ struct Community: View {
     @EnvironmentObject var communityViewModel: CommunityViewModel
     
     var weatherInfo: [String: String] = getWeatherInfo()
+    @State var showMessageSheet = false
     
     var scene: SKScene {
         let scene = CommunityGardenScene()
@@ -22,7 +23,7 @@ struct Community: View {
     
     var body: some View {
         
-        ZStack(alignment: .bottomTrailing) {
+        ZStack(alignment: .topTrailing) {
             // Background image
             Image("community-grass-bg")
                 .resizable()
@@ -36,26 +37,40 @@ struct Community: View {
             
             SpriteView(scene: scene, options: [.allowsTransparency])
                 .ignoresSafeArea(.container, edges: [.top])
-        }
-        .toolbar {
-            ToolbarItem(placement: .navigationBarLeading){
+            
+            VStack(spacing: 15) {
+                Button(image: "paperplane"){
+                    showMessageSheet = true
+                }
+                Button(image: "clock.arrow.circlepath"){
+                    //communityViewModel.fetchTrees()
+                }
             }
+            .padding()
+            
         }
-        
+        .sheet(isPresented: $showMessageSheet) {
+            Messages()
+        }
     }
     
     @ViewBuilder
-    func RefreshButton() -> some View {
-        ZStack{
-            Circle()
-                .fill(Color.seaGreen)
-                .opacity(0.5)
-                .shadow(color: .black, radius: 1, x: 0, y: 4)
-            
-            Text("Refresh")
-                .foregroundColor(.white)
+    func Button(image: String,_ callback: @escaping () -> Void) -> some View {
+        VStack {
+            ZStack{
+                Circle()
+                    .fill(Color.white)
+                    .opacity(0.6)
+                
+                Image(systemName: image)
+                    .foregroundColor(.white)
+            }
+            .frame(width: 40, height: 40)
         }
-        .frame(width:80, height: 80)
+        
+        .onTapGesture {
+            callback()
+        }
     }
 }
 

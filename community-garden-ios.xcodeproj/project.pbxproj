@@ -307,7 +307,6 @@
 				F00A6F34283C4DDB00A176D6 /* Friends */,
 				F07657F328D686EE00C72F2C /* Community */,
 				F09B71E327724B260085C7AC /* Garden */,
-				F04AD4CD288B22C300BC17AB /* Messages */,
 				F0F5E93828739422002C30BC /* Settings */,
 			);
 			path = Main;
@@ -410,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				F07657F428D6870E00C72F2C /* Community.swift */,
+				F04AD4CD288B22C300BC17AB /* Messages */,
 			);
 			path = Community;
 			sourceTree = "<group>";

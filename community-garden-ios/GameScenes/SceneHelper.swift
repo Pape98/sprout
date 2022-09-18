@@ -74,16 +74,20 @@ class SceneHelper {
         let treeNode = SKSpriteNode(imageNamed: tree.name)
         treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
         treeNode.position = position
-        treeNode.name = NodeNames.tree.rawValue
+        treeNode.name = tree.userID
         treeNode.zPosition = 5
+        
+        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
+        addGrass(scene: scene, location: grassLocation)
+        
+        treeNode.setScale(0)
+        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
+        treeNode.run(treeAction)
         
         // Shadow
         let shadowNode = SKSpriteNode(imageNamed: "shadow")
         shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
-        shadowNode.setScale(tree.scale * 0.6)
-        
-        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
-        addGrass(scene: scene, location: grassLocation)
+        shadowNode.setScale(tree.scale * 0.5)
         
         scene.addChild(shadowNode)
         scene.addChild(treeNode)
