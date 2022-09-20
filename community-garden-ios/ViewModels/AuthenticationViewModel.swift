@@ -38,6 +38,7 @@ class AuthenticationViewModel: ObservableObject {
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
         checkLogin()
         setLoggedInUserProfile()
+//        signOut()
     }
     
     func checkLogin() {

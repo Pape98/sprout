@@ -45,6 +45,7 @@ struct Community: View {
                 }
                 Button(image: "clock.arrow.circlepath"){
                     communityViewModel.fetchTrees()
+                    communityViewModel.fetchGroup()
                 }
             }
             .padding()

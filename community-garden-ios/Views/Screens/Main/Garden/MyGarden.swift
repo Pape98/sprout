@@ -47,16 +47,18 @@ struct MyGarden: View {
                     }
                 }
                 .onAppear {
-                    gardenViewModel.getUserItems()
                     SproutAnalytics.shared.viewOwnGarden()
+                }
+                .onDisappear {
+                    gardenViewModel.getUserItems()
                 }
             
             // MARK: Lottie View
             
             VStack {
-//                
-//                LottieView(filename: "bird_2")
-//                    .offset(y: 30)
+                //
+                //                LottieView(filename: "bird_2")
+                //                    .offset(y: 30)
                 
                 Spacer()
                 LottieView(filename: "turtle_2")

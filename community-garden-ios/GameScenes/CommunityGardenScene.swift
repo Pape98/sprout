@@ -12,7 +12,9 @@ import SwiftUI
 class CommunityGardenScene: SKScene {
     var gameTimer: Timer?
     var havePlacedTrees = false
+    var havePlacedFlowers = false
     var validPositions: [String: CGPoint] = [:]
+    var flowers: [GardenItem] = []
     
     // Nodes
     var river : SKSpriteNode?
@@ -31,17 +33,22 @@ class CommunityGardenScene: SKScene {
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
         
         
-        
         // Setting up scene elements
         river = setupRiver()
         fence = setupFence(location: CGPoint(x: 0, y: river!.position.y - 100), anchor: CGPoint(x: 0, y: 0))
         validPositions = initializeValidPositions()
+        setupFlowers()
     }
     
     override func update(_ currentTime: TimeInterval) {
         if(!communityViewModel.trees.isEmpty && !havePlacedTrees){
             setupTrees()
             havePlacedTrees = true
+        }
+        
+        if(communityViewModel.group != nil && !havePlacedFlowers){
+            setupFlowers()
+            havePlacedFlowers = true
         }
     }
     
@@ -50,7 +57,7 @@ class CommunityGardenScene: SKScene {
             let location = touch.location(in: self)
             let touchedNode = self.nodes(at: location)
             for node in touchedNode {
-
+                
                 guard let name = node.name else { return }
                 guard let user = communityViewModel.members[name] else { return }
                 
@@ -109,4 +116,54 @@ class CommunityGardenScene: SKScene {
         
         return ["topLeft": topLeft,"topRight": topRight,"bottomLeft" : bottomLeft ,"bottomRight":bottomRight]
     }
+    
+    func setupFlowers(){
+        guard let group = communityViewModel.group else { return }
+        
+        let mapping = [
+            0: "abyss-sage",
+            1: "savage-morel",
+            2: "joyful-clover"
+        ]
+        
+        let flowers = group.flowers
+        
+        validPositions = initializeValidPositions()
+        let positionKeys = Array(validPositions.keys)
+        var positionIndex : Int = 0
+        
+        for color in flowers.keys {
+            if let flowersArr = flowers[color] {
+                for i in 0...flowersArr.count-1 {
+                    let numFlower = flowersArr[i]
+                    if numFlower > 0 {
+                        for _ in 1...numFlower {
+                            let flower = color + "-" + mapping[i]!
+                            addFlower(flower, position: validPositions[positionKeys[positionIndex]]!)
+                            positionIndex += 1
+                                                        
+                            if positionIndex >= positionKeys.count {
+                                validPositions = initializeValidPositions()
+                                positionIndex = 0
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
+    // For communityView
+    func addFlower(_ flowerName: String, position: CGPoint){
+        let node = SKSpriteNode(imageNamed: "flowers/\(flowerName)")
+        node.anchorPoint = CGPoint(x: 0, y: 0)
+        node.position = position
+        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
+//        node.zPosition = 10
+        node.setScale(0.1)
+        
+        addChild(node)
+    }
+    
+    
 }

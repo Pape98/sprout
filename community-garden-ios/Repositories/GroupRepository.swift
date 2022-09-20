@@ -30,8 +30,8 @@ class GroupRepository {
         }
     }
     
-    func fetchGroup(groupNumber: Int , completion: @escaping(_: GardenGroup) -> Void) -> GardenGroup? {
-        guard let groupsCollection = groupsCollection else { return nil }
+    func fetchGroup(groupNumber: Int , completion: @escaping(_: GardenGroup) -> Void){
+        guard let groupsCollection = groupsCollection else { return }
         // Get document reference
         let groupRef = groupsCollection.document(String(groupNumber))
         
@@ -49,7 +49,5 @@ class GroupRepository {
                 print("[fetchGroup() decoding]", error)
             }
         }
-        
-        return nil
     }
 }
