@@ -202,6 +202,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             
             // Update tree object's scale
             gardenViewModel.tree?.scale = treeScale
+            gardenViewModel.saveTreeScale()
         }
         
         droplet.removeFromParent()

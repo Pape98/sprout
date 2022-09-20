@@ -63,20 +63,11 @@ class GardenViewModel: ObservableObject {
     }
     
     func addFlower(_ flower: GardenItem){
-        flowers.append(flower)
+        gardenRepo.addItem(item: flower)
     }
     
     func saveItems(){
-        saveFlowers()
         saveTreeScale()
-    }
-    
-    func saveFlowers(){
-        for flower in flowers {
-            gardenRepo.addItem(item: flower)
-            items.append(flower)
-        }
-        flowers = []
     }
     
     func saveTreeScale(){

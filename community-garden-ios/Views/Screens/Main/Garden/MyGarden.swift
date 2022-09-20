@@ -50,9 +50,6 @@ struct MyGarden: View {
                     gardenViewModel.getUserItems()
                     SproutAnalytics.shared.viewOwnGarden()
                 }
-                .onDisappear {
-                    gardenViewModel.saveItems()
-                }
             
             // MARK: Lottie View
             
