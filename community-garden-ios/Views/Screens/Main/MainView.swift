@@ -24,15 +24,6 @@ struct MainView: View {
     var body: some View {
         
         TabView {
-            
-            Community()
-                .tabItem {
-                    Label("Community", systemImage: "globe")
-                }
-                .onAppear {
-                    playSound()
-                }
-            
             Dashboard()
                 .tabItem {
                     Label("Dashboard", systemImage: "house.fill")
@@ -41,13 +32,13 @@ struct MainView: View {
                     playSound()
                 }
             
-//            Community()
-//                .tabItem {
-//                    Label("Community", systemImage: "globe")
-//                }
-//                .onAppear {
-//                    playSound()
-//                }
+            Community()
+                .tabItem {
+                    Label("Community", systemImage: "globe")
+                }
+                .onAppear {
+                    playSound()
+                }
             
             History()
                 .tabItem {

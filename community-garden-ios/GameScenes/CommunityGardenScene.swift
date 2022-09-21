@@ -11,18 +11,17 @@ import SwiftUI
 
 class CommunityGardenScene: SKScene {
     var gameTimer: Timer?
-    var havePlacedTrees = false
     var havePlacedFlowers = false
     var validPositions: [String: CGPoint] = [:]
-    var flowers: [GardenItem] = []
-    
+        
     // Nodes
     var river : SKSpriteNode?
     var fence: SKSpriteNode?
-    
+            
     // ViewModels
-    @ObservedObject var communityViewModel = CommunityViewModel.shared
-    @ObservedObject var messagesViewModel = MessagesViewModel.shared
+    let communityViewModel = CommunityViewModel.shared
+    let messagesViewModel = MessagesViewModel.shared
+    
     
     override func didMove(to view: SKView) {
         
@@ -37,20 +36,12 @@ class CommunityGardenScene: SKScene {
         river = setupRiver()
         fence = setupFence(location: CGPoint(x: 0, y: river!.position.y - 100), anchor: CGPoint(x: 0, y: 0))
         validPositions = initializeValidPositions()
+        
+        setupTrees()
         setupFlowers()
     }
     
-    override func update(_ currentTime: TimeInterval) {
-        if(!communityViewModel.trees.isEmpty && !havePlacedTrees){
-            setupTrees()
-            havePlacedTrees = true
-        }
-        
-        if(communityViewModel.group != nil && !havePlacedFlowers){
-            setupFlowers()
-            havePlacedFlowers = true
-        }
-    }
+    override func update(_ currentTime: TimeInterval) {}
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
@@ -119,7 +110,7 @@ class CommunityGardenScene: SKScene {
     
     func setupFlowers(){
         guard let group = communityViewModel.group else { return }
-        
+                
         let mapping = [
             0: "abyss-sage",
             1: "savage-morel",

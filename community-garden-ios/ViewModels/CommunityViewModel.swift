@@ -19,7 +19,7 @@ class CommunityViewModel: ObservableObject {
     @Published var members: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     @Published var group: GardenGroup? = nil
-    
+        
     init(){
 //        createGroups()
         fetchTrees()
@@ -32,7 +32,6 @@ class CommunityViewModel: ObservableObject {
         groupRepository.fetchGroup(groupNumber: groupNumber) { group in
             DispatchQueue.main.async {
                 self.group = group
-                print(group.flowers["grenadier"])
             }
         }
     }

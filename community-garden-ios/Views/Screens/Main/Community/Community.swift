@@ -36,20 +36,26 @@ struct Community: View {
                         .ignoresSafeArea()
                 }
             
-            SpriteView(scene: scene, options: [.allowsTransparency])
-                .ignoresSafeArea(.container, edges: [.top])
+            if communityViewModel.group != nil {
+                SpriteView(scene: scene, options: [.allowsTransparency])
+                    .ignoresSafeArea(.container, edges: [.top])
+            }
             
             VStack(spacing: 15) {
                 Button(image: "paperplane"){
                     showMessageSheet = true
                 }
-                Button(image: "clock.arrow.circlepath"){
-                    communityViewModel.fetchTrees()
-                    communityViewModel.fetchGroup()
-                }
+//                Button(image: "clock.arrow.circlepath"){
+//                    communityViewModel.fetchTrees()
+//                    communityViewModel.fetchGroup()
+//                }
             }
             .padding()
             
+        }
+        .onAppear{
+            communityViewModel.fetchTrees()
+            communityViewModel.fetchGroup()
         }
         .sheet(isPresented: $showMessageSheet) {
             Messages()
@@ -59,6 +65,7 @@ struct Community: View {
                 MessageOptions(user: user)
             }
         }
+        
     }
     
     @ViewBuilder
