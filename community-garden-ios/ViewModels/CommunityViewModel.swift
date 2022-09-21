@@ -29,6 +29,7 @@ class CommunityViewModel: ObservableObject {
     
     func fetchGroup(){
         let groupNumber = UserService.user.group
+        
         groupRepository.fetchGroup(groupNumber: groupNumber) { group in
             DispatchQueue.main.async {
                 self.group = group
