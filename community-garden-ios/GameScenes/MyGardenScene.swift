@@ -84,7 +84,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         flower.setScale(0)
         flower.zPosition = 10
         
-        let scale = getRandomCGFloat(0.075, 0.1)
+        let scale = getRandomCGFloat(0.05,0.07)
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
         
@@ -96,7 +96,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
                                     name: flowerName, x: x, y: y,
-                                    scale: scale,
+                                    scale: scale,
                                     group: UserService.user.group)
         
         gardenViewModel.addFlower(flowerItem)
@@ -219,7 +219,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         switch(node.name) {
         case NodeNames.droplet.rawValue:
-            AudioPlayer.playCustomSound(filename: "droplet.mp3")
+            AudioPlayer.playCustomSound(filename: "water_droplet.mp3")
         case NodeNames.seed.rawValue:
             print("Playing seed")
         case .none:

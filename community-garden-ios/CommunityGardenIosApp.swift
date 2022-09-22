@@ -19,6 +19,16 @@ struct CommunityGardenIosApp: App {
     // To send notifications to user
     let notificationService: NotificationService = NotificationService()
     
+    var fontColor: Color {
+        let weather = getWeatherInfo()
+        
+        if weather["color"]! == "evening"{
+            return Color.white
+        }
+        
+        return Color.black
+    }
+    
     
     init() {
         //        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
@@ -26,8 +36,6 @@ struct CommunityGardenIosApp: App {
         //        }
         FirebaseApp.configure()
 //        setupLocalEmulator()
-        
-        
     }
     
     func setupLocalEmulator(){
@@ -46,6 +54,7 @@ struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
+                .foregroundColor(fontColor)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
                     SproutAnalytics.shared.appLaunch()
                 })

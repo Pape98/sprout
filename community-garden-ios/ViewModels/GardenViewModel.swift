@@ -103,6 +103,7 @@ class GardenViewModel: ObservableObject {
     
     func hasEnoughDropItem () -> Bool {
         // FIXME: Remove line
+        return true
         if dropItem == GardenElement.droplet {
             return hasEnoughDroplets()
         } else {

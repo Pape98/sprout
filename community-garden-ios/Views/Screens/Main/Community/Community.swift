@@ -45,10 +45,6 @@ struct Community: View {
                 Button(image: "paperplane"){
                     showMessageSheet = true
                 }
-//                Button(image: "clock.arrow.circlepath"){
-//                    communityViewModel.fetchTrees()
-//                    communityViewModel.fetchGroup()
-//                }
             }
             .padding()
             
