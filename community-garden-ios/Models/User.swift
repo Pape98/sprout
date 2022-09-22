@@ -15,7 +15,7 @@ struct User: Identifiable, Codable {
     var hasBeenOnboarded: Bool? = false
     var settings: UserSettings?
     var fcmToken: String = ""
-    var lastReset: String?
+    var lastReset: String = ""
 }
 
 struct UserGarden: Identifiable {

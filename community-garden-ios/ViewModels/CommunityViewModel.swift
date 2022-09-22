@@ -21,7 +21,7 @@ class CommunityViewModel: ObservableObject {
     @Published var group: GardenGroup? = nil
         
     init(){
-        createGroups()
+//        createGroups()
         fetchTrees()
         fetchGroupMembers()
         fetchGroup()

@@ -63,6 +63,8 @@ class StatsRepository {
         
         guard let settings = UserService.user.settings else {  return }
         
+        print(settings.data.contains(DataOptions.steps.rawValue))
+        
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.steps.rawValue) { return }
                         
@@ -78,6 +80,9 @@ class StatsRepository {
                 
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.workouts.rawValue) { return }
+        
+        
+        print(value)
                                 
         // Update progress
         let workoutsGoal = settings.workoutsGoal
@@ -101,7 +106,6 @@ class StatsRepository {
     
     func sleepChangeCallback(value: Double){
         guard let settings = UserService.user.settings else {  return }
-        
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.sleep.rawValue) { return }
                                 
@@ -135,7 +139,7 @@ class StatsRepository {
         let progressDifference = value - progress.old
         
         print(progress, progressDifference)
-        
+                
         // Get callback function
         let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
         let mappedElement = mappedData[data.rawValue]! // "Tree"
@@ -150,5 +154,4 @@ class StatsRepository {
         
         SQLiteDB.insertUpdate(table: progressTable, name: TableName.progress, values: progress, onClonflictOf: nameColumn)
     }
-    
 }

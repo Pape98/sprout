@@ -97,8 +97,8 @@ class UserViewModel: ObservableObject {
     }
     
     func handleResets(){
-        let lastResetDate = UserService.user.lastReset ?? ""
-                
+        let lastResetDate = UserService.user.lastReset
+        
         if lastResetDate != Date.today {
             SQLiteService.shared.resetTableValues(forceReset: true)
             userRepository.updateUser(userID: UserService.user.id, updates: ["lastReset" : Date.today]) {

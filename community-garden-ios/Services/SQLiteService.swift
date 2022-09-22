@@ -113,10 +113,9 @@ class SQLiteService {
         
         guard statistics != nil else { return }
         
-        
         for name in Statistics.list {
             // Check if fields already exist
-            if doesExist(table: statistics!, column: Expression<String>("name"), value: name) == true { continue }
+            if doesExist(table: statistics!, column: Expression<String>("name"), value: name) == true && forceReset == false { continue }
             let stat = Stat(name: name)
             insertUpdate(table: statistics!, name: TableName.statistics, values: stat, onClonflictOf: Expression<String>("name"))
         }
