@@ -73,7 +73,7 @@ class AuthenticationViewModel: ObservableObject {
     // Set user information from Google
     func setLoggedInUserProfile(){
         checkLogin()
-        
+
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
@@ -113,6 +113,8 @@ class AuthenticationViewModel: ObservableObject {
                       // let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
                 else { return }
+                
+                print("here", authenticaton)
                 
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)

@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import GoogleSignIn
+import FirebaseAuth
 
 class UserRepository {
     
@@ -76,8 +77,10 @@ class UserRepository {
                 completion(decodedUser)
             } catch {
                 print("[fetchLoggedInUser() decoding]", error)
+                
+                // FIXME: Remove later in production
+                AuthenticationViewModel.shared.signOut()
             }
-            
             
         }
     }

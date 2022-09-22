@@ -42,6 +42,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        print("didReceiveRemoteNotification")
         MessagesViewModel.shared.getUserMessages()
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -64,6 +65,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         MessagesViewModel.shared.getUserMessages()
         // show the notification alert (banner), and with sound
         completionHandler([.banner,.sound])
+        
+        print("userNotificationCenter 1")
     }
     
     // This function will be called right after user tap on the notification

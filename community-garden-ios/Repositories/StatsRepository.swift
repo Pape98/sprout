@@ -36,9 +36,7 @@ class StatsRepository {
         ]
     }
     
-    init(){
-        SQLiteDB.resetTableValues()
-    }
+    init(){}
     
     // MARK: Droplet & Seed methods
     
@@ -60,6 +58,7 @@ class StatsRepository {
     
     
     // MARK: Update methods
+    
     func stepsChangeCallback(value: Double){
         
         guard let settings = UserService.user.settings else {  return }
@@ -134,6 +133,8 @@ class StatsRepository {
     func updateProgress(data: DataOptions, value: Double, progress: Progress, threshold: Double){
         var progress = progress
         let progressDifference = value - progress.old
+        
+        print(progress, progressDifference)
         
         // Get callback function
         let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
