@@ -73,6 +73,13 @@ extension String {
     mutating func capitalizeFirstLetter() {
         self = self.capitalizeFirstLetter()
     }
+    
+    func convertToDictionary() -> [String: Any]? {
+           if let data = data(using: .utf8) {
+               return try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+           }
+           return nil
+       }
 }
 
 extension Color {

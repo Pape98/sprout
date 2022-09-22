@@ -32,13 +32,15 @@ struct MainView: View {
                     playSound()
                 }
             
-            Community()
-                .tabItem {
-                    Label("Community", systemImage: "globe")
-                }
-                .onAppear {
-                    playSound()
-                }
+            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+                Community()
+                    .tabItem {
+                        Label("Community", systemImage: "globe")
+                    }
+                    .onAppear {
+                        playSound()
+                    }
+            }
             
             History()
                 .tabItem {
@@ -49,13 +51,15 @@ struct MainView: View {
                     playSound()
                 }
             
-            Settings()
-                .tabItem {
-                    Label("Settings", systemImage: "gearshape")
-                }
-                .onAppear {
-                    playSound()
-                }
+            if RemoteConfiguration.shared.canCustomize(group: UserService.user.group){
+                Settings()
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape")
+                    }
+                    .onAppear {
+                        playSound()
+                    }
+            }
         }
         .accentColor(.appleGreen)
         .environmentObject(userViewModel)

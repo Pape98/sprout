@@ -96,7 +96,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
                                     name: flowerName, x: x, y: y,
-                                    scale: scale,
+                                    scale: scale,
                                     group: UserService.user.group)
         
         gardenViewModel.addFlower(flowerItem)

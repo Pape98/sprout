@@ -13,6 +13,7 @@ import FirebaseFunctions
 struct CommunityGardenIosApp: App {
     
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
+    @Environment(\.scenePhase) var scenePhase
     
     @StateObject private var authViewModel = AuthenticationViewModel.shared
     @StateObject private var appViewModel = AppViewModel.shared
@@ -35,7 +36,8 @@ struct CommunityGardenIosApp: App {
         //            print(defaults)
         //        }
         FirebaseApp.configure()
-//        setupLocalEmulator()
+        RemoteConfiguration.shared.fetchRemoteConfig()
+        //        setupLocalEmulator()
     }
     
     func setupLocalEmulator(){
@@ -61,6 +63,13 @@ struct CommunityGardenIosApp: App {
                 .background(Color.porcelain)
                 .environmentObject(authViewModel)
                 .environmentObject(appViewModel)
+                .onChange(of: scenePhase) { newPhase in
+                    
+                    if newPhase == .active {
+                        RemoteConfiguration.shared.fetchRemoteConfig()
+                    }
+                    
+                }
         }
     }
 }

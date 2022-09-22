@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UIApplication.shared.registerForRemoteNotifications()
-        
+                
         return true
     }
     
@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        print("didReceiveRemoteNotification")
         MessagesViewModel.shared.getUserMessages()
         completionHandler(UIBackgroundFetchResult.newData)
     }

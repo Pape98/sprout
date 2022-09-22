@@ -25,21 +25,39 @@ class RemoteConfiguration {
     func setupConfigDefaults(){
         
         let defaultValues = [
-            RemoteConfigKeys.maxNumDroplets.rawValue: 50 as NSObject,
-            RemoteConfigKeys.maNumxSeeds.rawValue: 20 as NSObject
+            "group0" : ["isSocial": true, "canCustomize": true] as NSObject,
         ]
         
         config.setDefaults(defaultValues)
     }
     
     func fetchRemoteConfig() {
-        config.fetch(withExpirationDuration: 0) { status, error in
+        
+        config.fetchAndActivate { status, error in
             guard error == nil else {
                 print("Uh-oh. Got an error fetching remote values: \(String(describing: error))")
                 return
             }
-            self.config.activate()
         }
+    }
+    
+    func getGroupConfig(_ group: String) -> NSDictionary? {
+        let json = config.configValue(forKey: group).jsonValue
+        guard let json  = json else { return nil }
+        let dict = json as! NSDictionary
+        return dict
+    }
+    
+    func isSocialConfig(group: Int) -> Bool {
+        let dict = getGroupConfig("group\(group)")
+        guard let dict = dict else { return false }
+        return dict["isSocial"]! as! Bool
+    }
+    
+    func canCustomize(group: Int) -> Bool {
+        let dict = getGroupConfig("group\(group)")
+        guard let dict = dict else { return false }
+        return dict["canCustomize"]! as! Bool
     }
 }
 

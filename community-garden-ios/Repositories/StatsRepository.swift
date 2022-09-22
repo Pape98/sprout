@@ -137,9 +137,7 @@ class StatsRepository {
     func updateProgress(data: DataOptions, value: Double, progress: Progress, threshold: Double){
         var progress = progress
         let progressDifference = value - progress.old
-        
-        print(progress, progressDifference)
-                
+                        
         // Get callback function
         let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
         let mappedElement = mappedData[data.rawValue]! // "Tree"
