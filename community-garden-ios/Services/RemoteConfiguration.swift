@@ -24,8 +24,19 @@ class RemoteConfiguration {
     
     func setupConfigDefaults(){
         
+        let percentages = [
+            "Steps": 0.01,
+            "Sleep": 0.1,
+            "Walking+running Distance": 0.1,
+            "Workout Time": 0.01
+        ]
+        
         let defaultValues = [
             "group0" : ["isSocial": true, "canCustomize": true] as NSObject,
+            "group1" : ["isSocial": true, "canCustomize": false] as NSObject,
+            "group2" : ["isSocial": false,"canCustomize": true] as NSObject,
+            "group3" : ["isSocial": true, "canCustomize": true] as NSObject,
+            "percentages": percentages as NSObject
         ]
         
         config.setDefaults(defaultValues)
@@ -58,6 +69,13 @@ class RemoteConfiguration {
         let dict = getGroupConfig("group\(group)")
         guard let dict = dict else { return false }
         return dict["canCustomize"]! as! Bool
+    }
+    
+    func getPercentages() -> NSDictionary? {
+        let json = config.configValue(forKey: "percentages").jsonValue
+        guard let json  = json else { return nil }
+        let dict = json as! NSDictionary
+        return dict
     }
 }
 

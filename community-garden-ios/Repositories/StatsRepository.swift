@@ -70,7 +70,7 @@ class StatsRepository {
         let stepGoal = settings.stepsGoal
         guard let stepGoal = stepGoal else { return}
 
-        let threshold =  Double(stepGoal) * 0.01
+        let threshold =  Double(stepGoal) * getPercentage(key: DataOptions.steps)
         let progress: Progress = progressRepo.getStepProgress()
         updateProgress(data: DataOptions.steps, value: value, progress: progress, threshold: threshold)
     }
@@ -85,7 +85,7 @@ class StatsRepository {
         let workoutsGoal = settings.workoutsGoal
         guard let workoutsGoal = workoutsGoal else { return}
 
-        let threshold =  Double(workoutsGoal) * 0.1
+        let threshold =  Double(workoutsGoal) * getPercentage(key: DataOptions.workouts)
         let progress: Progress = progressRepo.getWorkoutsProgress()
         updateProgress(data: DataOptions.workouts, value: value, progress: progress, threshold: threshold)
     }
@@ -99,7 +99,7 @@ class StatsRepository {
         // Update progress
         let walkingRunningGoal = settings.walkingRunningGoal
         guard let walkingRunningGoal = walkingRunningGoal else { return}
-        let threshold = Double(walkingRunningGoal) * 0.1
+        let threshold = Double(walkingRunningGoal) * getPercentage(key: DataOptions.walkingRunningDistance)
         let progress: Progress = progressRepo.getWalkingRunningProgress()
         updateProgress(data: DataOptions.walkingRunningDistance, value: value, progress: progress, threshold: threshold)
     }
@@ -111,8 +111,8 @@ class StatsRepository {
         
         // Update progress
         let sleepGoal = settings.sleepGoal
-        guard let sleepGoal = sleepGoal else { return}
-        let threshold =  Double(sleepGoal) * 0.01
+        guard let sleepGoal = sleepGoal else { return }
+        let threshold =  Double(sleepGoal) * getPercentage(key: DataOptions.sleep)
         let progress: Progress = progressRepo.getSleepProgress()
         updateProgress(data: DataOptions.sleep, value: value, progress: progress, threshold: threshold)
     }
@@ -152,5 +152,11 @@ class StatsRepository {
         progress.new = value
         
         SQLiteDB.insertUpdate(table: progressTable, name: TableName.progress, values: progress, onClonflictOf: nameColumn)
+    }
+    
+    func getPercentage(key: DataOptions) -> Double {
+        let percentages = RemoteConfiguration.shared.getPercentages()
+        guard let percentages = percentages else { return 0 }
+        return percentages[key.rawValue]! as! Double
     }
 }

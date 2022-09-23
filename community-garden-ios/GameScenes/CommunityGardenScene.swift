@@ -150,8 +150,8 @@ class CommunityGardenScene: SKScene {
         node.anchorPoint = CGPoint(x: 0, y: 0)
         node.position = position
         node.colorBlendFactor = getRandomCGFloat(0, 0.2)
-//        node.zPosition = 10
-        node.setScale(0.1)
+        node.zPosition = 7
+        node.setScale(0.075)
         
         addChild(node)
     }

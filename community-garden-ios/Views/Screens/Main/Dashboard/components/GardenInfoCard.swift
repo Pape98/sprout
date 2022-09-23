@@ -25,7 +25,7 @@ struct GardenInfoCard: View {
                 }
                 
                 if let numSeeds = userViewModel.numSeeds {
-                    IconButton(icon: "seed-icon", text: "\(Int(numSeeds.value)) seeds")
+                    IconButton(icon: "seed-icon", text: "\(Int(numSeeds.value)) beans")
                 }
                 
             }
