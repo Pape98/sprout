@@ -15,22 +15,22 @@ class GardenViewModel: ObservableObject {
     let statsRepo = StatsRepository.shared
     let userDefaults = UserDefaultsService.shared
     let collections = Collections.shared
+    let nc = NotificationCenter.default
     
     @Published var items: [GardenItem] = []
     @Published var dropItem = GardenElement.droplet
     var flowers: [GardenItem] = []
     var tree: GardenItem?
     
-    var userDefaultFlower: String {
-        let color = userDefaults.get(key: UserDefaultsKey.FLOWER_COLOR) ?? ""
-        let tree = userDefaults.get(key: UserDefaultsKey.FLOWER_COLOR) ?? "abyss-sage"
-        return "\(color)-\(tree)"
-    }
-    
     init(){
         getUserItems()
+        nc.addObserver(self,
+                       selector: #selector(self.getUserItems),
+                       name: Notification.Name(NotificationType.GetUserItems.rawValue),
+                       object: nil)
     }
     
+    @objc
     func getUserItems() -> Void {
         let collection = collections.getCollectionReference("gardenItems")
         
@@ -59,20 +59,19 @@ class GardenViewModel: ObservableObject {
         let treeName = "\(settings!.treeColor)-\(addDash(settings!.tree))"
         let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName, group: UserService.user.group)
         gardenRepo.addItem(item: tree)
-        self.items.append(tree)
+        DispatchQueue.main.async {
+            self.tree = tree
+            self.items.append(tree)
+        }
     }
     
     func addFlower(_ flower: GardenItem){
         gardenRepo.addItem(item: flower)
     }
     
-    func saveItems(){
-        saveTreeScale()
-    }
-    
     func saveTreeScale(){
         if let item = tree {
-            gardenRepo.udpateGardenItem(docName: item.documentName!, updates: item)
+            gardenRepo.udpateGardenItem(docName: item.documentName!, updates: item){}
         }
     }
     

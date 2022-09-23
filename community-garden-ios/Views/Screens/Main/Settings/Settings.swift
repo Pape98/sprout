@@ -33,16 +33,6 @@ struct Settings: View {
                         } label : {
                             Text("Garden Name")
                         }
-                        
-//                        Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
-//                            .tint(.appleGreen)
-//                            .onChange(of: reflectWeatherChanges) { newValue in
-//                                
-//                                guard settingsViewModel.settings != nil else { return }
-//                                settingsViewModel.settings!.reflectWeatherChanges = newValue
-//                                settingsViewModel.updateSettings(settingKey: FirestoreKey.REFLECT_WEATHER_CHANGES, value: newValue)
-//                                
-//                            }
                     }
                     
                     Section("Types & Colors"){

@@ -25,26 +25,29 @@ class SettingsViewModel: ObservableObject {
         userRepository.updateUser(userID: userID, updates: [key: value]){
             SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
             
+            let settings = UserService.user.settings!
+            var tree = ""
+            
             if settingKey == FirestoreKey.TREE {
-                self.updateTodaysTree(field: "settings.tree", update: value as! String)
+                tree = "\(settings.treeColor)-\(addDash(value as! String))"
+                self.updateTodaysTree(update: tree)
             } else if settingKey == FirestoreKey.TREE_COLOR {
-                self.updateTodaysTree(field: "settings.treeColor", update: value as! String)
+                tree = "\(value as! String)-\(addDash(settings.tree))"
+                self.updateTodaysTree(update: tree)
             }
         }
     }
     
-    func updateTodaysTree(field: String, update: String){
+    func updateTodaysTree(update: String){
         let userID = getUserID()
         let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
-        
-        guard let collection = collection, let userID = userID else { return }
-        let query = collection
-            .whereField("date", isEqualTo: Date.today)
-            .whereField("type", isEqualTo: "tree")
-            .whereField("userID", isEqualTo: userID)
-        
-        gardenItemRepository.updateGardenItem(query: query, updates: [field : update])
-        
+                
+        guard let collection = collection, let userID = userID, var tree = GardenViewModel.shared.tree else { return }
+        tree.name = update
+        gardenItemRepository.udpateGardenItem(docName: tree.documentName!, updates: tree){
+            NotificationSender.send(type: NotificationType.GetUserItems.rawValue)
+            NotificationSender.send(type: NotificationType.FetchCommunityTrees.rawValue)
+        }
     }
     
     func fetchSettings(){

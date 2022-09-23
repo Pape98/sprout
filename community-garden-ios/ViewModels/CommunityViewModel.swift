@@ -15,16 +15,21 @@ class CommunityViewModel: ObservableObject {
     let groupRepository = GroupRepository.shared
     
     let collections = Collections.shared
+    let nc = NotificationCenter.default
     
     @Published var members: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     @Published var group: GardenGroup? = nil
         
     init(){
-//        createGroups()
         fetchTrees()
         fetchGroupMembers()
         fetchGroup()
+        
+        nc.addObserver(self,
+                       selector: #selector(self.fetchTrees),
+                       name: Notification.Name(NotificationType.FetchCommunityTrees.rawValue),
+                       object: nil)
     }
     
     func fetchGroup(){
@@ -61,6 +66,7 @@ class CommunityViewModel: ObservableObject {
         }
     }
     
+    @objc
     func fetchTrees(){
         let userGroup = UserService.user.group
         let collection = self.collections.getCollectionReference(CollectionName.gardenItems.rawValue)
@@ -73,12 +79,6 @@ class CommunityViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.trees = trees
             }
-        }
-    }
-    
-    func createGroups(){
-        for groupId in 0...3 {
-            groupRepository.createGroup(groupNumber: groupId)
         }
     }
 }

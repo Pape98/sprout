@@ -26,7 +26,7 @@ class StatsRepository {
     var nameColumn: Expression<String> {
         Expression<String>("name")
     }
-
+    
     
     // Default Settings
     var statUpdateCallbacks: [String: ((Double) -> Void)] {
@@ -62,31 +62,30 @@ class StatsRepository {
     func stepsChangeCallback(value: Double){
         
         guard let settings = UserService.user.settings else {  return }
-        
-        print(settings.data.contains(DataOptions.steps.rawValue))
-        
+                
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.steps.rawValue) { return }
-                        
+        
         // Update progress
         let stepGoal = settings.stepsGoal
-        let threshold =  Double(stepGoal!) * 0.01
+        guard let stepGoal = stepGoal else { return}
+
+        let threshold =  Double(stepGoal) * 0.01
         let progress: Progress = progressRepo.getStepProgress()
         updateProgress(data: DataOptions.steps, value: value, progress: progress, threshold: threshold)
     }
     
     func workoutsChangeCallback(value: Double){
         guard let settings = UserService.user.settings else {  return }
-                
+        
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.workouts.rawValue) { return }
-        
-        
-        print(value)
-                                
+                
         // Update progress
         let workoutsGoal = settings.workoutsGoal
-        let threshold =  Double(workoutsGoal!) * 0.1
+        guard let workoutsGoal = workoutsGoal else { return}
+
+        let threshold =  Double(workoutsGoal) * 0.1
         let progress: Progress = progressRepo.getWorkoutsProgress()
         updateProgress(data: DataOptions.workouts, value: value, progress: progress, threshold: threshold)
     }
@@ -98,7 +97,8 @@ class StatsRepository {
         if !settings.data.contains(DataOptions.walkingRunningDistance.rawValue) { return }
         
         // Update progress
-        let walkingRunningGoal = settings.walkingRunningGoal!
+        let walkingRunningGoal = settings.walkingRunningGoal
+        guard let walkingRunningGoal = walkingRunningGoal else { return}
         let threshold = Double(walkingRunningGoal) * 0.1
         let progress: Progress = progressRepo.getWalkingRunningProgress()
         updateProgress(data: DataOptions.walkingRunningDistance, value: value, progress: progress, threshold: threshold)
@@ -108,10 +108,11 @@ class StatsRepository {
         guard let settings = UserService.user.settings else {  return }
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.sleep.rawValue) { return }
-                                
+        
         // Update progress
         let sleepGoal = settings.sleepGoal
-        let threshold =  Double(sleepGoal!) * 0.01
+        guard let sleepGoal = sleepGoal else { return}
+        let threshold =  Double(sleepGoal) * 0.01
         let progress: Progress = progressRepo.getSleepProgress()
         updateProgress(data: DataOptions.sleep, value: value, progress: progress, threshold: threshold)
     }
@@ -137,7 +138,7 @@ class StatsRepository {
     func updateProgress(data: DataOptions, value: Double, progress: Progress, threshold: Double){
         var progress = progress
         let progressDifference = value - progress.old
-                        
+        
         // Get callback function
         let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
         let mappedElement = mappedData[data.rawValue]! // "Tree"

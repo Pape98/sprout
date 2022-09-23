@@ -11,11 +11,13 @@ class OnboardingViewModel: ObservableObject {
     
     static let shared = OnboardingViewModel()
     let userRepository = UserRepository.shared
-    
+
     func saveSettings(values: [String: Any]){
         let userID = getUserID()
         if let userID = userID {
             userRepository.updateUser(userID: userID, updates: ["settings": values]) {
+                NotificationSender.send(type: NotificationType.FetchUser.rawValue)
+                NotificationSender.send(type: NotificationType.GetUserItems.rawValue)
             }
         }
     }
