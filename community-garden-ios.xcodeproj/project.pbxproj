@@ -104,7 +104,6 @@
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
 		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
 		F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* MessageOptions.swift */; };
-		F0E9BF0228DBB49B007FBC04 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0E9BF0128DBB49B007FBC04 /* SwiftDate */; };
 		F0E9BF0428DDFF15007FBC04 /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0328DDFF15007FBC04 /* water_droplet.mp3 */; };
 		F0F0C86A28AED64A0047D9EA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86928AED64A0047D9EA /* FirebaseMessaging */; };
 		F0F0C86C28AF333B0047D9EA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */; };
@@ -239,7 +238,6 @@
 				F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
-				F0E9BF0228DBB49B007FBC04 /* SwiftDate in Frameworks */,
 				F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */,
 				F085A8B328C51EB100A08BE4 /* FirebaseAnalytics in Frameworks */,
 				F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */,
@@ -684,7 +682,6 @@
 				F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */,
 				F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */,
 				F059833D28D4D88100542D64 /* FirebaseRemoteConfig */,
-				F0E9BF0128DBB49B007FBC04 /* SwiftDate */,
 			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
@@ -717,7 +714,6 @@
 			packageReferences = (
 				F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F08C8C5D28AC1B0700DDDFB8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = F0B32C9D275AF77700C714A2 /* Products */;
 			projectDirPath = "";
@@ -1015,7 +1011,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1057,7 +1053,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1129,14 +1125,6 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/malcommac/SwiftDate";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1169,11 +1157,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		F0E9BF0128DBB49B007FBC04 /* SwiftDate */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */;
-			productName = SwiftDate;
 		};
 		F0F0C86928AED64A0047D9EA /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;
