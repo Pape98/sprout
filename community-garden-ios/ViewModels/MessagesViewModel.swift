@@ -82,7 +82,7 @@ class MessagesViewModel: ObservableObject {
                                  text: text, isPrivate: isPrivate, date: Date.now,
                                  senderFlower: "\(sender.settings!.flowerColor)-\(addDash(sender.settings!.flower))"
         )
-        
+                
         messagesRepository.sendMessage(newMessage)
     }
     

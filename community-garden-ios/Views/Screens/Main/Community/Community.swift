@@ -52,6 +52,7 @@ struct Community: View {
         .onAppear{
             communityViewModel.fetchTrees()
             communityViewModel.fetchGroup()
+            SproutAnalytics.shared.viewCommunity()
         }
         .sheet(isPresented: $showMessageSheet) {
             Messages()

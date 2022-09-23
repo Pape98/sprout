@@ -24,7 +24,7 @@ struct CommunityGardenIosApp: App {
         let weather = getWeatherInfo()
         
         if weather["color"]! == "evening"{
-            return Color.white
+            return Color.black
         }
         
         return Color.black
