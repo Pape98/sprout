@@ -15,6 +15,7 @@ struct User: Identifiable, Codable {
     var hasBeenOnboarded: Bool? = false
     var settings: UserSettings?
     var fcmToken: String = ""
+    var lastReset: String = ""
 }
 
 struct UserGarden: Identifiable {
@@ -25,6 +26,7 @@ struct UserGarden: Identifiable {
 
 struct UserSettings: Codable {
     var data: [String] = []
+    var mappedData: [String: String] = [:]
 
     var flower: String = ""
     var flowerColor: String = ""

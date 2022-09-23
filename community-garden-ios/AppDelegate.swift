@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UIApplication.shared.registerForRemoteNotifications()
-        
+                
         return true
     }
     
@@ -64,6 +64,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         MessagesViewModel.shared.getUserMessages()
         // show the notification alert (banner), and with sound
         completionHandler([.banner,.sound])
+        
+        print("userNotificationCenter 1")
     }
     
     // This function will be called right after user tap on the notification

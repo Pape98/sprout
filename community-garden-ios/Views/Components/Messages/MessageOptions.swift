@@ -125,6 +125,8 @@ struct MessageOptions: View {
                                     messagesViewModel.sendMessage(receiver: user,
                                                                   text: selectedMessage.text,
                                                                   isPrivate: isMessagePrivate)
+                                    
+                                    messagesViewModel.showMessageOptionsSheet = false
                                 }
                         }
                     }
@@ -172,5 +174,6 @@ struct MessageOptions_Previews: PreviewProvider {
     static var previews: some View {
         MessageOptions(user: user)
             .environmentObject(MessagesViewModel())
+            .environmentObject(AppViewModel())
     }
 }

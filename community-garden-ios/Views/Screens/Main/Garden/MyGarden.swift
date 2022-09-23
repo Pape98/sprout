@@ -35,7 +35,6 @@ struct MyGarden: View {
                         HStack {
                             Button("Switch"){
                                 toggleDropItem()
-                                //                                gardenViewModel.saveItems()
                             }
                             .foregroundColor(.black)
                             
@@ -48,19 +47,17 @@ struct MyGarden: View {
                     }
                 }
                 .onAppear {
-                    gardenViewModel.getUserItems()
                     SproutAnalytics.shared.viewOwnGarden()
                 }
                 .onDisappear {
-                    gardenViewModel.saveItems()
+                    gardenViewModel.getUserItems()
                 }
             
             // MARK: Lottie View
             
             VStack {
-                
+                //
                 //                LottieView(filename: "bird_2")
-                //                    .frame(height: 250)
                 //                    .offset(y: 30)
                 
                 Spacer()
@@ -75,8 +72,6 @@ struct MyGarden: View {
     func toggleDropItem(){
         gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
         GardenElement.seed : GardenElement.droplet
-        
-        print(gardenViewModel.dropItem)
     }
 }
 

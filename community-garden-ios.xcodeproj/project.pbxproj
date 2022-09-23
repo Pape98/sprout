@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		F0057381276F828F00EB487B /* MyGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* MyGarden.swift */; };
 		F005739227702F9B00EB487B /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* ActionButton.swift */; };
-		F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F37283C4E1600A176D6 /* FriendsList.swift */; };
-		F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */; };
 		F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */; };
 		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
 		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
@@ -41,7 +39,6 @@
 		F043F25E287CFDC6008F211C /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25D287CFDC6008F211C /* Protocols.swift */; };
 		F043F260287EEBA7008F211C /* GardenRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F25F287EEBA7008F211C /* GardenRepository.swift */; };
 		F043F262287EEDD1008F211C /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F261287EEDD1008F211C /* AppViewModel.swift */; };
-		F043F26428807473008F211C /* Garden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F26328807473008F211C /* Garden.swift */; };
 		F043F266288076EC008F211C /* SceneHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F043F265288076EC008F211C /* SceneHelper.swift */; };
 		F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B562860FB6100C68B35 /* Modifiers.swift */; };
 		F0475B59286100D700C68B35 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B58286100D600C68B35 /* DataMapping.swift */; };
@@ -49,11 +46,17 @@
 		F0475B61286228D000C68B35 /* LastSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B60286228CF00C68B35 /* LastSteps.swift */; };
 		F04AD4BD288A397A00BC17AB /* CustomMessageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */; };
 		F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */; };
-		F04AD4C7288AE22B00BC17AB /* FriendListBasicCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */; };
 		F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */; };
 		F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */; };
 		F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* Messages.swift */; };
+		F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F059833D28D4D88100542D64 /* FirebaseRemoteConfig */; };
+		F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
+		F07657F528D6870E00C72F2C /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F428D6870E00C72F2C /* Community.swift */; };
+		F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */; };
+		F07657F928D749B700C72F2C /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F828D749B700C72F2C /* CommunityViewModel.swift */; };
+		F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */; };
+		F07657FE28D7D81200C72F2C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657FD28D7D81200C72F2C /* Group.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
 		F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B59285A4A32002C79BD /* CircledFlower.swift */; };
@@ -71,7 +74,6 @@
 		F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F08C8C5E28AC1B0800DDDFB8 /* Lottie */; };
 		F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */; };
 		F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */; };
-		F08C8C7128AC29D800DDDFB8 /* droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */; };
 		F08C8C7328AC37AA00DDDFB8 /* turtle_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */; };
 		F08C8C7528AC37B000DDDFB8 /* bird_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7428AC37B000DDDFB8 /* bird_2.json */; };
 		F08C8C7728AD420200DDDFB8 /* turtle_3.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7628AD420200DDDFB8 /* turtle_3.json */; };
@@ -94,16 +96,16 @@
 		F0B6DAEC2875C30100DD3F03 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAEB2875C30100DD3F03 /* Statistics.swift */; };
 		F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */; };
 		F0B6DAF02876181D00DD3F03 /* ProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */; };
-		F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */; };
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
-		F0D66E30288340090095AEDE /* FriendGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E2F288340090095AEDE /* FriendGarden.swift */; };
+		F0D2CB6728DC764700C7005C /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D2CB6628DC764700C7005C /* water_droplet.mp3 */; };
 		F0D66E3328834EDC0095AEDE /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3228834EDC0095AEDE /* SettingButton.swift */; };
 		F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3428836AD50095AEDE /* SettingPicker.swift */; };
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
 		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
 		F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* MessageOptions.swift */; };
+		F0E9BF0228DBB49B007FBC04 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0E9BF0128DBB49B007FBC04 /* SwiftDate */; };
 		F0F0C86A28AED64A0047D9EA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86928AED64A0047D9EA /* FirebaseMessaging */; };
 		F0F0C86C28AF333B0047D9EA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */; };
 		F0F0C86E28AFC6090047D9EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */; };
@@ -122,8 +124,6 @@
 		E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.debug.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		F0057380276F828F00EB487B /* MyGarden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarden.swift; sourceTree = "<group>"; };
 		F005739127702F9B00EB487B /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
-		F00A6F37283C4E1600A176D6 /* FriendsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsList.swift; sourceTree = "<group>"; };
-		F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItems.swift; sourceTree = "<group>"; };
 		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
@@ -154,7 +154,6 @@
 		F043F25D287CFDC6008F211C /* Protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		F043F25F287EEBA7008F211C /* GardenRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenRepository.swift; sourceTree = "<group>"; };
 		F043F261287EEDD1008F211C /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
-		F043F26328807473008F211C /* Garden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garden.swift; sourceTree = "<group>"; };
 		F043F265288076EC008F211C /* SceneHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneHelper.swift; sourceTree = "<group>"; };
 		F0475B562860FB6100C68B35 /* Modifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifiers.swift; sourceTree = "<group>"; };
 		F0475B58286100D600C68B35 /* DataMapping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataMapping.swift; sourceTree = "<group>"; };
@@ -163,11 +162,16 @@
 		F0475B60286228CF00C68B35 /* LastSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSteps.swift; sourceTree = "<group>"; };
 		F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageSheet.swift; sourceTree = "<group>"; };
 		F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
-		F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListBasicCard.swift; sourceTree = "<group>"; };
 		F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		F04AD4CE288B22DD00BC17AB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
+		F07657F428D6870E00C72F2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
+		F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenScene.swift; sourceTree = "<group>"; };
+		F07657F828D749B700C72F2C /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
+		F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
+		F07657FD28D7D81200C72F2C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
 		F0842B59285A4A32002C79BD /* CircledFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledFlower.swift; sourceTree = "<group>"; };
@@ -183,7 +187,6 @@
 		F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SproutAnalytics.swift; sourceTree = "<group>"; };
 		F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = droplet.mp3; path = ../../../../../Downloads/droplet.mp3; sourceTree = "<group>"; };
 		F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_2.json; sourceTree = "<group>"; };
 		F08C8C7428AC37B000DDDFB8 /* bird_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird_2.json; sourceTree = "<group>"; };
 		F08C8C7628AD420200DDDFB8 /* turtle_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_3.json; sourceTree = "<group>"; };
@@ -206,11 +209,10 @@
 		F0B6DAEB2875C30100DD3F03 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
 		F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRepository.swift; sourceTree = "<group>"; };
 		F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRepository.swift; sourceTree = "<group>"; };
-		F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGardenScene.swift; sourceTree = "<group>"; };
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		F0D66E2F288340090095AEDE /* FriendGarden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendGarden.swift; sourceTree = "<group>"; };
+		F0D2CB6628DC764700C7005C /* water_droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water_droplet.mp3; sourceTree = "<group>"; };
 		F0D66E3228834EDC0095AEDE /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		F0D66E3428836AD50095AEDE /* SettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPicker.swift; sourceTree = "<group>"; };
 		F0D66E3628886E4D0095AEDE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
@@ -237,8 +239,10 @@
 				F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
+				F0E9BF0228DBB49B007FBC04 /* SwiftDate in Frameworks */,
 				F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */,
 				F085A8B328C51EB100A08BE4 /* FirebaseAnalytics in Frameworks */,
+				F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,20 +276,10 @@
 				F0149D5A284ED5ED00782D27 /* CircledTree.swift */,
 				F0842B59285A4A32002C79BD /* CircledFlower.swift */,
 				F0F5E93B2873ACA0002C30BC /* MainBackground.swift */,
-				F043F26328807473008F211C /* Garden.swift */,
 				F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */,
 				F0F0C87628B53AA60047D9EA /* Messages */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		F00A6F34283C4DDB00A176D6 /* Friends */ = {
-			isa = PBXGroup;
-			children = (
-				F00A6F37283C4E1600A176D6 /* FriendsList.swift */,
-				F04AD4C5288AE20500BC17AB /* components */,
-			);
-			path = Friends;
 			sourceTree = "<group>";
 		};
 		F0132C6F286BB2DD00267B9D /* Main */ = {
@@ -294,9 +288,8 @@
 				F024BFF5286BB37100850018 /* MainView.swift */,
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
 				F0F0C87828B53CCF0047D9EA /* History */,
-				F00A6F34283C4DDB00A176D6 /* Friends */,
+				F07657F328D686EE00C72F2C /* Community */,
 				F09B71E327724B260085C7AC /* Garden */,
-				F04AD4CD288B22C300BC17AB /* Messages */,
 				F0F5E93828739422002C30BC /* Settings */,
 			);
 			path = Main;
@@ -358,14 +351,6 @@
 			path = Fonts;
 			sourceTree = "<group>";
 		};
-		F04AD4C5288AE20500BC17AB /* components */ = {
-			isa = PBXGroup;
-			children = (
-				F04AD4C6288AE22B00BC17AB /* FriendListBasicCard.swift */,
-			);
-			path = components;
-			sourceTree = "<group>";
-		};
 		F04AD4CA288B1EB200BC17AB /* Launch */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,9 +374,18 @@
 			children = (
 				F043F265288076EC008F211C /* SceneHelper.swift */,
 				F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */,
-				F0C99DF5283D650500D170A1 /* FriendGardenScene.swift */,
+				F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */,
 			);
 			path = GameScenes;
+			sourceTree = "<group>";
+		};
+		F07657F328D686EE00C72F2C /* Community */ = {
+			isa = PBXGroup;
+			children = (
+				F07657F428D6870E00C72F2C /* Community.swift */,
+				F04AD4CD288B22C300BC17AB /* Messages */,
+			);
+			path = Community;
 			sourceTree = "<group>";
 		};
 		F0842B57285A4170002C79BD /* components */ = {
@@ -450,9 +444,9 @@
 		F08C8C6528AC259500DDDFB8 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				F0D2CB6628DC764700C7005C /* water_droplet.mp3 */,
 				F04085F928B5562F002EDECD /* click1.mp3 */,
 				F04085F828B5562F002EDECD /* click2.mp3 */,
-				F08C8C7028AC29D800DDDFB8 /* droplet.mp3 */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -485,7 +479,6 @@
 			isa = PBXGroup;
 			children = (
 				F0057380276F828F00EB487B /* MyGarden.swift */,
-				F0D66E2F288340090095AEDE /* FriendGarden.swift */,
 			);
 			path = Garden;
 			sourceTree = "<group>";
@@ -547,6 +540,7 @@
 				F0C99E1C2783B871004514D4 /* NotificationService.swift */,
 				F038369D2839497600D444E4 /* SQLiteService.swift */,
 				F02682D02850F13A004747FD /* UserDefaultService.swift */,
+				F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -556,7 +550,6 @@
 			children = (
 				F043F261287EEDD1008F211C /* AppViewModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
-				F00A6F39283C4E5300A176D6 /* FriendsViewModel.swift */,
 				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
 				F00A6F3D283C957800A176D6 /* GardenViewModel.swift */,
 				F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */,
@@ -564,6 +557,7 @@
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
 				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
+				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -589,6 +583,7 @@
 				F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */,
 				F0B6DAEB2875C30100DD3F03 /* Statistics.swift */,
 				F0D66E3628886E4D0095AEDE /* Message.swift */,
+				F07657FD28D7D81200C72F2C /* Group.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -604,6 +599,7 @@
 				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
 				F043F25F287EEBA7008F211C /* GardenRepository.swift */,
 				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
+				F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -687,6 +683,8 @@
 				F0F0C86928AED64A0047D9EA /* FirebaseMessaging */,
 				F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */,
 				F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */,
+				F059833D28D4D88100542D64 /* FirebaseRemoteConfig */,
+				F0E9BF0128DBB49B007FBC04 /* SwiftDate */,
 			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
@@ -719,6 +717,7 @@
 			packageReferences = (
 				F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F08C8C5D28AC1B0700DDDFB8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = F0B32C9D275AF77700C714A2 /* Products */;
 			projectDirPath = "";
@@ -739,9 +738,9 @@
 				F08C8C7728AD420200DDDFB8 /* turtle_3.json in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
 				F04085FB28B5562F002EDECD /* click1.mp3 in Resources */,
+				F0D2CB6728DC764700C7005C /* water_droplet.mp3 in Resources */,
 				F04085FA28B5562F002EDECD /* click2.mp3 in Resources */,
 				F0F0C86E28AFC6090047D9EA /* GoogleService-Info.plist in Resources */,
-				F08C8C7128AC29D800DDDFB8 /* droplet.mp3 in Resources */,
 				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
 				F08C8C7528AC37B000DDDFB8 /* bird_2.json in Resources */,
 				F08C8C7328AC37AA00DDDFB8 /* turtle_2.json in Resources */,
@@ -799,19 +798,21 @@
 			files = (
 				F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */,
 				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
-				F043F26428807473008F211C /* Garden.swift in Sources */,
 				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
 				F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */,
 				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,
+				F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */,
+				F07657F528D6870E00C72F2C /* Community.swift in Sources */,
+				F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */,
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */,
-				F00A6F3A283C4E5300A176D6 /* FriendsViewModel.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
+				F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */,
 				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
 				F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */,
 				F0B6DAF02876181D00DD3F03 /* ProgressRepository.swift in Sources */,
@@ -819,11 +820,11 @@
 				F043F266288076EC008F211C /* SceneHelper.swift in Sources */,
 				F0842BB7285E2980002C79BD /* Onboarding.swift in Sources */,
 				F096426A275B510300F1CEC1 /* Health.swift in Sources */,
+				F07657F928D749B700C72F2C /* CommunityViewModel.swift in Sources */,
 				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
 				F0D66E3728886E4D0095AEDE /* Message.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
-				F04AD4C7288AE22B00BC17AB /* FriendListBasicCard.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
@@ -846,8 +847,8 @@
 				F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */,
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
+				F07657FE28D7D81200C72F2C /* Group.swift in Sources */,
 				F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */,
-				F0D66E30288340090095AEDE /* FriendGarden.swift in Sources */,
 				F096426C275B513100F1CEC1 /* User.swift in Sources */,
 				F0475B61286228D000C68B35 /* LastSteps.swift in Sources */,
 				F0D66E3328834EDC0095AEDE /* SettingButton.swift in Sources */,
@@ -861,7 +862,6 @@
 				F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */,
 				F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */,
 				F043F260287EEBA7008F211C /* GardenRepository.swift in Sources */,
-				F00A6F38283C4E1600A176D6 /* FriendsList.swift in Sources */,
 				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,
 				F04085FE28B862AD002EDECD /* DataStatus.swift in Sources */,
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,
@@ -870,7 +870,6 @@
 				F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */,
 				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
 				F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */,
-				F0C99DF6283D650500D170A1 /* FriendGardenScene.swift in Sources */,
 				F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */,
 				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
 				F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */,
@@ -1016,7 +1015,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1028,6 +1027,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1057,7 +1057,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1069,6 +1069,7 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
@@ -1128,6 +1129,14 @@
 				minimumVersion = 8.0.0;
 			};
 		};
+		F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1135,6 +1144,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseFirestoreSwift-Beta";
+		};
+		F059833D28D4D88100542D64 /* FirebaseRemoteConfig */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseRemoteConfig;
 		};
 		F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -1155,6 +1169,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
+		};
+		F0E9BF0128DBB49B007FBC04 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 		F0F0C86928AED64A0047D9EA /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;

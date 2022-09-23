@@ -8,20 +8,6 @@
 import SpriteKit
 import AVFoundation
 
-enum CollisionTypes: UInt32 {
-    case tree = 1
-    case ground = 2
-    case dropItem = 4
-}
-
-enum NodeNames: String {
-    case tree
-    case droplet
-    case ground
-    case flower
-    case seed
-}
-
 class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     let TREE_SCALE_FACTOR = 0.25
@@ -72,6 +58,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         // Scene setup
         ground = SceneHelper.setupGround(scene: self)
         
+        SceneHelper.setupPond(scene: self)
+        
         addExisitingItems()
         
         // Timer
@@ -96,7 +84,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         flower.setScale(0)
         flower.zPosition = 10
         
-        let scale = getRandomCGFloat(0.075, 0.1)
+        let scale = getRandomCGFloat(0.05,0.07)
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
         
@@ -108,7 +96,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
                                     name: flowerName, x: x, y: y,
-                                    scale: scale)
+                                    scale: scale,
+                                    group: UserService.user.group)
         
         gardenViewModel.addFlower(flowerItem)
         
@@ -137,7 +126,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-        releaseDropItem(position: location)
+                        
+        if gardenViewModel.hasEnoughDropItem() {
+            releaseDropItem(position: location)
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -148,23 +140,25 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         soundEffectHandler(nodeA)
         soundEffectHandler(nodeB)
         
+        
         // Contact droplet + tree
         if nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.tree.rawValue {
             handleTreeDropletContact(droplet: nodeA)
         } else if nodeB.name == NodeNames.droplet.rawValue && nodeA.name == NodeNames.tree.rawValue{
             handleTreeDropletContact(droplet: nodeB)
-            
-            // Contact seed + ground
+
+        // Contact seed + ground
         } else if(nodeA.name == NodeNames.seed.rawValue && nodeB.name == NodeNames.ground.rawValue){
             handleFlowerSeedContact(position: contact.contactPoint, seed: nodeA)
         } else if(nodeA.name == NodeNames.ground.rawValue && nodeB.name == NodeNames.seed.rawValue){
             handleFlowerSeedContact(position: contact.contactPoint, seed: nodeB)
         }
         
+
         // Others
-        else if nodeB.name == NodeNames.droplet.rawValue  || nodeB.name == NodeNames.seed.rawValue {
+        if nodeB.name == NodeNames.droplet.rawValue  || nodeB.name == NodeNames.seed.rawValue {
             nodeB.removeFromParent()
-        } else if nodeA.name == NodeNames.droplet.rawValue || nodeB.name == NodeNames.seed.rawValue {
+        } else if nodeA.name == NodeNames.droplet.rawValue || nodeA.name == NodeNames.seed.rawValue {
             nodeA.removeFromParent()
         }
     }
@@ -173,18 +167,25 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     // MARK: Garden item creation methods
     func releaseDropItem(position: CGPoint){
         let name = gardenViewModel.dropItem
-        let droplet = SKSpriteNode(imageNamed: name.rawValue)
-        droplet.position = position
-        droplet.setScale(0.55)
-        droplet.physicsBody = SKPhysicsBody(circleOfRadius: droplet.size.width / 2)
-        droplet.physicsBody?.categoryBitMask = CollisionTypes.dropItem.rawValue
+        let dropItem = SKSpriteNode(imageNamed: name.rawValue)
+        dropItem.position = position
+        dropItem.setScale(0.55)
+        dropItem.physicsBody = SKPhysicsBody(circleOfRadius: dropItem.size.width / 2)
+        dropItem.physicsBody?.categoryBitMask = CollisionTypes.dropItem.rawValue
         
         if gardenViewModel.dropItem == GardenElement.droplet {
-            droplet.physicsBody?.contactTestBitMask = CollisionTypes.tree.rawValue
+            dropItem.physicsBody?.contactTestBitMask = CollisionTypes.tree.rawValue
         }
         
-        droplet.name =  gardenViewModel.dropItem == GardenElement.droplet ? NodeNames.droplet.rawValue : NodeNames.seed.rawValue
-        addChild(droplet)
+        dropItem.name =  gardenViewModel.dropItem == GardenElement.droplet ? NodeNames.droplet.rawValue : NodeNames.seed.rawValue
+        addChild(dropItem)
+        
+        // Update current drop item count
+        if dropItem.name == GardenElement.droplet.rawValue {
+            gardenViewModel.decreaseNumDroplets()
+        } else {
+            gardenViewModel.decreaseNumSeeds()
+        }
     }
     
     @objc func createCloud(){
@@ -201,6 +202,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             
             // Update tree object's scale
             gardenViewModel.tree?.scale = treeScale
+            gardenViewModel.saveTreeScale()
         }
         
         droplet.removeFromParent()
@@ -217,7 +219,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         switch(node.name) {
         case NodeNames.droplet.rawValue:
-            AudioPlayer.playCustomSound(filename: "droplet.mp3")
+            AudioPlayer.playCustomSound(filename: "water_droplet.mp3")
         case NodeNames.seed.rawValue:
             print("Playing seed")
         case .none:

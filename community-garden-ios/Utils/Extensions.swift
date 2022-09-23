@@ -73,6 +73,13 @@ extension String {
     mutating func capitalizeFirstLetter() {
         self = self.capitalizeFirstLetter()
     }
+    
+    func convertToDictionary() -> [String: Any]? {
+           if let data = data(using: .utf8) {
+               return try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+           }
+           return nil
+       }
 }
 
 extension Color {
@@ -180,4 +187,16 @@ extension Double {
         return Double(Int((pow(10, Double(places)) * self).rounded())) / pow(10, Double(places))
     }
     
+}
+
+extension Dictionary where Value : Hashable {
+
+    func swapKeyValues() -> [Value : Key] {
+        assert(Set(self.values).count == self.keys.count, "Values must be unique")
+        var newDict = [Value : Key]()
+        for (key, value) in self {
+            newDict[value] = key
+        }
+        return newDict
+    }
 }

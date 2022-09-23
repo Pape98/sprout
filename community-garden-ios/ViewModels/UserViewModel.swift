@@ -20,6 +20,7 @@ class UserViewModel: ObservableObject {
     
     let userRepository = UserRepository.shared
     let statsRepository = StatsRepository.shared
+    let progressRepository = ProgressRepository.shared
     
     let nc = NotificationCenter.default
     
@@ -29,6 +30,11 @@ class UserViewModel: ObservableObject {
         setupObservers()
         getNumDroplets()
         getNumSeeds()
+        
+        nc.addObserver(self,
+                       selector: #selector(self.getUser),
+                       name: Notification.Name(NotificationType.UpdateUserService.rawValue),
+                       object: nil)
     }
     
     @objc func initialSetup(){
@@ -45,6 +51,7 @@ class UserViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.currentUser = user
                 UserService.user = user
+                self.handleResets()
             }
         }
     }
@@ -86,6 +93,17 @@ class UserViewModel: ObservableObject {
     func getNumSeeds(){
         DispatchQueue.main.async {
             self.numSeeds = self.statsRepository.getNumSeeds()
+        }
+    }
+    
+    func handleResets(){
+        let lastResetDate = UserService.user.lastReset
+        
+        if lastResetDate != Date.today {
+            SQLiteService.shared.resetTableValues(forceReset: true)
+            userRepository.updateUser(userID: UserService.user.id, updates: ["lastReset" : Date.today]) {
+                UserService.user.lastReset = Date.today
+            }
         }
     }
     

@@ -27,15 +27,15 @@ class SproutAnalytics {
     
     // Screen views
     func viewOwnGarden(){
-        Analytics.logEvent("view_own_garden", parameters: nil)
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: ["screen": "own_garden"])
     }
     
-    func viewFriendGarden(friendData: [String: Any]){
-        Analytics.logEvent("view_friend_garden", parameters: friendData)
+    func viewCommunity(){
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: ["screen": "community"])
     }
     
     func viewHistory(){
-        Analytics.logEvent("view_history", parameters: nil)
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: ["screen": "history"])
     }
     
     // Customization

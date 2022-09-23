@@ -29,14 +29,6 @@ class StatsRepository {
 
     
     // Default Settings
-    var mapping: [String: String]? {
-//        let mappedData:[String: Any]? = userDefaults.get(key: UserDefaultsKey.MAPPED_DATA) // ["Tree": "Steps"]
-//        if let convertedData = mappedData as? [String: String] {
-//            let swappedData = convertedData.swapKeyValues() // ["Steps":"Tree"]
-//            return swappedData
-//        }
-        return nil
-    }
     var statUpdateCallbacks: [String: ((Double) -> Void)] {
         [
             "Flower": updateNumSeeds,
@@ -44,9 +36,7 @@ class StatsRepository {
         ]
     }
     
-    init(){
-        SQLiteDB.resetTableValues()
-    }
+    init(){}
     
     // MARK: Droplet & Seed methods
     
@@ -68,33 +58,62 @@ class StatsRepository {
     
     
     // MARK: Update methods
+    
     func stepsChangeCallback(value: Double){
-        // Check if user is tracking data
-        guard let mapping = mapping else { return }
-        guard mapping[DataOptions.steps.rawValue] != nil else { return }
         
+        guard let settings = UserService.user.settings else {  return }
+        
+        print(settings.data.contains(DataOptions.steps.rawValue))
+        
+        // Check if user is tracking data
+        if !settings.data.contains(DataOptions.steps.rawValue) { return }
+                        
         // Update progress
-        let threshold = Double(userDefaults.get(key: UserDefaultsKey.STEPS_GOAL) * 0.01)
+        let stepGoal = settings.stepsGoal
+        let threshold =  Double(stepGoal!) * 0.01
         let progress: Progress = progressRepo.getStepProgress()
         updateProgress(data: DataOptions.steps, value: value, progress: progress, threshold: threshold)
     }
     
     func workoutsChangeCallback(value: Double){
-        // TODO: Finish implementation
+        guard let settings = UserService.user.settings else {  return }
+                
+        // Check if user is tracking data
+        if !settings.data.contains(DataOptions.workouts.rawValue) { return }
+        
+        
+        print(value)
+                                
+        // Update progress
+        let workoutsGoal = settings.workoutsGoal
+        let threshold =  Double(workoutsGoal!) * 0.1
+        let progress: Progress = progressRepo.getWorkoutsProgress()
+        updateProgress(data: DataOptions.workouts, value: value, progress: progress, threshold: threshold)
     }
     
     func walkingRunningChangeCallback(value: Double){
+        guard let settings = UserService.user.settings else {  return }
+        
         // Check if user is tracking data
-        guard let mapping = mapping else { return }
-        guard mapping[DataOptions.steps.rawValue] != nil else { return }
+        if !settings.data.contains(DataOptions.walkingRunningDistance.rawValue) { return }
+        
         // Update progress
-        let threshold = Double(userDefaults.get(key: UserDefaultsKey.WALKING_RUNNING_GOAL) * 0.1)
+        let walkingRunningGoal = settings.walkingRunningGoal!
+        let threshold = Double(walkingRunningGoal) * 0.1
         let progress: Progress = progressRepo.getWalkingRunningProgress()
         updateProgress(data: DataOptions.walkingRunningDistance, value: value, progress: progress, threshold: threshold)
     }
     
     func sleepChangeCallback(value: Double){
-        // TODO: Finish implementation
+        guard let settings = UserService.user.settings else {  return }
+        // Check if user is tracking data
+        if !settings.data.contains(DataOptions.sleep.rawValue) { return }
+                                
+        // Update progress
+        let sleepGoal = settings.sleepGoal
+        let threshold =  Double(sleepGoal!) * 0.01
+        let progress: Progress = progressRepo.getSleepProgress()
+        updateProgress(data: DataOptions.sleep, value: value, progress: progress, threshold: threshold)
     }
     
     // MARK: Utility Methods
@@ -115,23 +134,18 @@ class StatsRepository {
         }
     }
     
-    func getStatUpdateCallback(data: DataOptions) -> (_: Double) -> Void {
-        if mapping![data.rawValue] == "Flower" {
-            return updateNumDroplets
-        } else {
-            return updateNumSeeds
-        }
-    }
-    
     func updateProgress(data: DataOptions, value: Double, progress: Progress, threshold: Double){
         var progress = progress
         let progressDifference = value - progress.old
+                        
+        // Get callback function
+        let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
+        let mappedElement = mappedData[data.rawValue]! // "Tree"
         
         if  progressDifference >= threshold && threshold > 0 {
             progress.old = value - (value.truncatingRemainder(dividingBy: threshold))
             let statAddition = progressDifference / threshold
-            print(statAddition)
-            guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mapping![data.rawValue]!] else { return }
+            guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mappedElement] else { return }
             updateCallback(statAddition)
         }
         progress.new = value

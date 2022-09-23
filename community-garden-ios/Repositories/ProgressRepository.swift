@@ -21,14 +21,11 @@ class ProgressRepository {
     
     let type = Progress.self
     
-    init(){
-        scheduleProgressReset()
-    }
+    init(){}
     
     // MARK: Get Progress Methods
     func getStepProgress() -> Progress {
         let progress = getProgress(DataOptions.steps)
-        print("Here", progress)
         return progress
     }
     
@@ -48,20 +45,4 @@ class ProgressRepository {
         return SQLiteDB.getRowsByColumn(table: progressTable, column: column, value: data.rawValue, type: type)[0]
     }
     
-    
-    // MARK: Utility methods
-    func scheduleProgressReset(){
-        var calendarDate = Calendar.current.dateComponents([.day, .year, .month], from: Date.now)
-        calendarDate.hour = 19
-        calendarDate.minute = 30
-        calendarDate.second = 0
-        
-        let date = Calendar.current.date(from: calendarDate)!
-        let timer = Timer(fireAt: date, interval: 0, target: self, selector: #selector(resetProgress), userInfo: nil, repeats: false)
-        RunLoop.main.add(timer, forMode: .common)
-    }
-    
-    @objc func resetProgress(){
-        SQLiteDB.resetProgress(forceReset: true)
-    }
 }

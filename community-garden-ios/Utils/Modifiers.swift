@@ -24,6 +24,12 @@ struct WeatherOverlay: ViewModifier {
                 .resizable()
                 .ignoresSafeArea()
                 .opacity(opacity)
+                .overlay {
+                    Rectangle()
+                        .fill(Color(weatherInfo["color"]!))
+                        .blendMode(BlendMode.overlay)
+                        .edgesIgnoringSafeArea([.top])
+                }
             // Scene View
             content
             
@@ -40,12 +46,6 @@ struct WeatherOverlay: ViewModifier {
                 }
                 .padding()
             }
-        }
-        .overlay {
-            Rectangle()
-                .fill(Color(weatherInfo["color"]!))
-                .blendMode(BlendMode.overlay)
-                .edgesIgnoringSafeArea([.top])
         }
     }
 }

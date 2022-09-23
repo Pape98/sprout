@@ -8,6 +8,7 @@
 import Foundation
 import FirebaseFirestore
 import GoogleSignIn
+import FirebaseAuth
 
 class UserRepository {
     
@@ -76,8 +77,10 @@ class UserRepository {
                 completion(decodedUser)
             } catch {
                 print("[fetchLoggedInUser() decoding]", error)
+                
+                // FIXME: Remove later in production
+                AuthenticationViewModel.shared.signOut()
             }
-            
             
         }
     }
@@ -103,11 +106,7 @@ class UserRepository {
     }
     
     // Fetch all users except current user
-    func fetchAllUsers(userID: String, completion: @escaping (_ users: [User]) -> Void){
-        guard let usersCollection = usersCollection else {
-            return
-        }
-        let query = usersCollection.whereField("id", isNotEqualTo: userID)
+    func fetchAllUsers(query: Query, completion: @escaping (_ users: [User]) -> Void){
         
         query.getDocuments { querySnapshot, error in
             if let error = error {

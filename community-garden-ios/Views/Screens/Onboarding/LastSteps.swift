@@ -32,9 +32,9 @@ struct LastSteps: View {
                     TextField("", text: $gardenName )
                         .textFieldStyle(OvalTextFieldStyle())
                 }.segment()
-                Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
-                    .tint(.appleGreen)
-                    .segment()
+//                Toggle("Reflect weather changes", isOn: $reflectWeatherChanges)
+//                    .tint(.appleGreen)
+//                    .segment()
             }
             .padding()
             

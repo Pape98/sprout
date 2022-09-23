@@ -8,6 +8,22 @@
 import Foundation
 import SpriteKit
 
+enum CollisionTypes: UInt32 {
+    case tree = 1
+    case ground = 2
+    case dropItem = 4
+    case pond = 8
+}
+
+enum NodeNames: String {
+    case tree
+    case droplet
+    case ground
+    case flower
+    case seed
+    case pond
+}
+
 class SceneHelper {
     
     // MARK: Properties
@@ -35,6 +51,48 @@ class SceneHelper {
         return ground
     }
     
+    static func setupPond(scene: SKScene){
+        let pondTexture = SKTexture(imageNamed: "pond")
+        let pond = SKSpriteNode(texture: pondTexture)
+        
+        pond.anchorPoint = CGPoint(x: 0, y:0)
+        pond.position = CGPoint(x: -20, y:0)
+        pond.name = NodeNames.pond.rawValue
+        
+        let pondPhysicsBodySize = CGSize(width: pond.size.width * 2, height: pond.size.height * 2)
+        pond.physicsBody = SKPhysicsBody(texture: pondTexture, size: pondPhysicsBodySize)
+        pond.physicsBody?.categoryBitMask = CollisionTypes.pond.rawValue
+        pond.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
+        pond.physicsBody?.isDynamic = false
+        
+        scene.addChild(pond)
+    }
+    
+    // For community view
+    static func addTree(tree: GardenItem, scene: SKScene, position: CGPoint){
+        // Tree
+        let treeNode = SKSpriteNode(imageNamed: tree.name)
+        treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
+        treeNode.position = position
+        treeNode.name = tree.userID
+        treeNode.zPosition = 5
+        
+        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
+        addGrass(scene: scene, location: grassLocation)
+        
+        treeNode.setScale(tree.scale * 0.5)
+//        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
+//        treeNode.run(treeAction)
+        
+        // Shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
+        shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
+        shadowNode.setScale(tree.scale * 0.5)
+        
+        scene.addChild(shadowNode)
+        scene.addChild(treeNode)
+    }
+    
     static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> SKSpriteNode {
         // Tree
         let treeTexture = SKTexture(imageNamed: tree.name)
@@ -59,7 +117,27 @@ class SceneHelper {
         
         scene.addChild(treeNode)
         
+        // Grass
+        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
+        addGrass(scene: scene, location: grassLocation)
+        
+        // Shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
+        shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
+        shadowNode.setScale(tree.scale)
+        
+        scene.addChild(shadowNode)
+        
         return treeNode
+    }
+    
+    static func addGrass(scene: SKScene, location: CGPoint){
+        let grassNode = SKSpriteNode(imageNamed: "grass")
+        grassNode.position = location
+        grassNode.setScale(0.85)
+        grassNode.zPosition = 6
+        
+        scene.addChild(grassNode)
     }
     
     static func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){
@@ -81,20 +159,24 @@ class SceneHelper {
     }
     
     
-    @objc static func createCloud(scene: SKScene, scale: Double = 0.75) {
+    @objc static func createCloud(scene: SKScene, scale: Double = 0.75, isCommunityView: Bool = false) {
         guard let selectedCloud = clouds.randomElement() else { return }
         let cloud = SKSpriteNode(imageNamed: selectedCloud)
         
         cloud.setScale(scale)
         cloud.anchorPoint = CGPoint(x: 0, y: 0.5)
-        let randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.midY+20,scene.frame.maxY))
+        var randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.midY+20,scene.frame.maxY))
+        
+        if isCommunityView {
+            randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(0,scene.frame.size.height))
+        }
         
         let moveCloudAction = SKAction.moveTo(x: scene.frame.maxX, duration: 10.0)
         let actionRepeat = SKAction.repeatForever(moveCloudAction)
         
         cloud.position = randomPosition
         cloud.alpha = 0.5
-        cloud.zPosition = -1
+        cloud.zPosition = 20
         cloud.run(actionRepeat)
         
         scene.addChild(cloud)

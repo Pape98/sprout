@@ -12,6 +12,7 @@ class GardenViewModel: ObservableObject {
     
     static var shared: GardenViewModel = GardenViewModel()
     let gardenRepo = GardenRepository.shared
+    let statsRepo = StatsRepository.shared
     let userDefaults = UserDefaultsService.shared
     let collections = Collections.shared
     
@@ -37,8 +38,8 @@ class GardenViewModel: ObservableObject {
         guard let userID = getUserID() else { return }
         
         let query = collection.whereField("date", isEqualTo: Date.today)
-                              .whereField("userID", isEqualTo: userID)
-              
+            .whereField("userID", isEqualTo: userID)
+        
         gardenRepo.getUserItems(query: query) { result in
             DispatchQueue.main.async {
                 self.items = result
@@ -56,31 +57,57 @@ class GardenViewModel: ObservableObject {
         let settings = UserService.user.settings
         guard settings != nil else { return }
         let treeName = "\(settings!.treeColor)-\(addDash(settings!.tree))"
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName)
+        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName, group: UserService.user.group)
         gardenRepo.addItem(item: tree)
         self.items.append(tree)
     }
     
     func addFlower(_ flower: GardenItem){
-        flowers.append(flower)
+        gardenRepo.addItem(item: flower)
     }
     
     func saveItems(){
-        saveFlowers()
         saveTreeScale()
-    }
-    
-    func saveFlowers(){
-        for flower in flowers {
-            gardenRepo.addItem(item: flower)
-            items.append(flower)
-        }
-        flowers = []
     }
     
     func saveTreeScale(){
         if let item = tree {
             gardenRepo.udpateGardenItem(docName: item.documentName!, updates: item)
+        }
+    }
+    
+    func decreaseNumDroplets(){
+        statsRepo.updateNumDroplets(-1)
+        UserViewModel.shared.getNumDroplets()
+    }
+    
+    func decreaseNumSeeds(){
+        statsRepo.updateNumSeeds(-1)
+        UserViewModel.shared.getNumSeeds()
+    }
+    
+    func hasEnoughDroplets() -> Bool {
+        if let stat = statsRepo.getNumDroplets() {
+            return stat.value > 0
+        }
+        
+        return false
+    }
+    
+    func hasEnoughSeeds() -> Bool {
+        if let stat = statsRepo.getNumSeeds() {
+            return stat.value > 0
+        }
+        return false
+    }
+    
+    func hasEnoughDropItem () -> Bool {
+        // FIXME: Remove line
+        return true
+        if dropItem == GardenElement.droplet {
+            return hasEnoughDroplets()
+        } else {
+            return hasEnoughSeeds()
         }
     }
     
