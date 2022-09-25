@@ -60,6 +60,7 @@ enum UserDefaultsKey: String {
     case GARDEN_NAME = "garden-name"
     case REFLECT_WEATHER_CHANGES = "reflect-weather-changes"
     case MESSAGE_OPTIONS = "messageOptions"
+    case FCM_TOKEN = "fcmToken"
     
 }
 

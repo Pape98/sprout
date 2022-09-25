@@ -38,7 +38,6 @@ enum GardenElement: String {
 
 enum DataOptions: String, CaseIterable {
     case steps = "Steps"
-//    case exerciseMinute = "Exercise Minute"
     case sleep = "Sleep"
     case walkingRunningDistance = "Walking+running Distance"
     case workouts = "Workout Time"

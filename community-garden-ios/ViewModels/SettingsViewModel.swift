@@ -39,10 +39,9 @@ class SettingsViewModel: ObservableObject {
     }
     
     func updateTodaysTree(update: String){
-        let userID = getUserID()
         let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
                 
-        guard let collection = collection, let userID = userID, var tree = GardenViewModel.shared.tree else { return }
+        guard var tree = GardenViewModel.shared.tree else { return }
         tree.name = update
         gardenItemRepository.udpateGardenItem(docName: tree.documentName!, updates: tree){
             NotificationSender.send(type: NotificationType.GetUserItems.rawValue)

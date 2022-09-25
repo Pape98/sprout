@@ -46,7 +46,7 @@ class UserViewModel: ObservableObject {
         guard let userID = userID else {
             return
         }
-
+        
         self.userRepository.fetchLoggedInUser(userID: userID) { user in
             DispatchQueue.main.async {
                 self.currentUser = user
@@ -66,19 +66,19 @@ class UserViewModel: ObservableObject {
         let notiticationType = NotificationType(rawValue: notification.name.rawValue)
         let userInfo = notification.userInfo as? [String: Double] ?? [:]
         let value = userInfo["message"]!
-    
-            switch notiticationType {
-            case .FetchStepCount:
-                statsRepository.stepsChangeCallback(value: value)
-            case .FetchWalkingRunningDistance:
-                statsRepository.walkingRunningChangeCallback(value: value)
-            case .FetchWorkout:
-                statsRepository.workoutsChangeCallback(value: value)
-            case .FetchSleep:
-                statsRepository.sleepChangeCallback(value: value)
-            default:
-                print("Error in updateNumDroplets")
-            }
+        
+        switch notiticationType {
+        case .FetchStepCount:
+            statsRepository.stepsChangeCallback(value: value)
+        case .FetchWalkingRunningDistance:
+            statsRepository.walkingRunningChangeCallback(value: value)
+        case .FetchWorkout:
+            statsRepository.workoutsChangeCallback(value: value)
+        case .FetchSleep:
+            statsRepository.sleepChangeCallback(value: value)
+        default:
+            print("Error in updateNumDroplets")
+        }
         
         getNumDroplets()
         getNumSeeds()
@@ -96,12 +96,18 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func updateUser(updates: [String: Any], completion: @escaping () -> Void){
+        userRepository.updateUser(userID: UserService.user.id, updates: updates) {
+            completion()
+        }
+    }
+    
     func handleResets(){
         let lastResetDate = UserService.user.lastReset
         
         if lastResetDate != Date.today {
             SQLiteService.shared.resetTableValues(forceReset: true)
-            userRepository.updateUser(userID: UserService.user.id, updates: ["lastReset" : Date.today]) {
+            updateUser(updates: ["lastReset" : Date.today]) {
                 UserService.user.lastReset = Date.today
             }
         }

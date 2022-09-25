@@ -47,13 +47,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        if let userID = getUserID(), let token = fcmToken {
-            userRepository.doesUserExist(userID: userID) { userExists in
-                guard let userExists = userExists else { return }
-                if userExists {
-                    self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
-                }
-            }
+//        if let userID = getUserID(), let token = fcmToken {
+//            userRepository.doesUserExist(userID: userID) { userExists in
+//                guard let userExists = userExists else {
+//                    print("User does not exist so cannot set FCM Token")
+//                    return
+//                }
+//                if userExists {
+//                    self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
+//                }
+//            }
+//        }
+        if let fcmToken = fcmToken {
+            UserDefaultsService.shared.save(value: fcmToken, key: UserDefaultsKey.FCM_TOKEN)
         }
     }
     

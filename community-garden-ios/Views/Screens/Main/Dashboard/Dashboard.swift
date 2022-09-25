@@ -101,41 +101,46 @@ struct Dashboard: View {
                         
                         LazyVGrid(columns: twoColumnGrid) {
                             
-                            
-                            DashboardCard(icon: "figure.walk"){
-                                if let step = healthStoreViewModel.todayStepCount {
-                                    CardInfo(value: "\(Int(step.count))", label: "Step(s)")
-                                } else {
-                                    CardInfo(value: "0", label: "Step(s)")
+                            if isUserTrackingData(DataOptions.steps){
+                                DashboardCard(icon: "figure.walk"){
+                                    if let step = healthStoreViewModel.todayStepCount {
+                                        CardInfo(value: "\(Int(step.count))", label: "Step(s)")
+                                    } else {
+                                        CardInfo(value: "0", label: "Step(s)")
+                                    }
                                 }
                             }
                             
                             
-                            DashboardCard(icon: "figure.walk"){
-                                if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
-                                    CardInfo(value: "\(Int(walkingRunning.distance))", label: "Mile(s)")
-                                } else {
-                                    CardInfo(value: "0", label: "Mile(s)")
+                            if isUserTrackingData(DataOptions.walkingRunningDistance){
+                                DashboardCard(icon: "figure.walk"){
+                                    if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
+                                        CardInfo(value: "\(Int(walkingRunning.distance))", label: "Mile(s)")
+                                    } else {
+                                        CardInfo(value: "0", label: "Mile(s)")
+                                    }
                                 }
                             }
                             
-                            DashboardCard(icon: "clock"){
-                                if let workout = healthStoreViewModel.todayWorkout {
-                                    CardInfo(value: "\(Int(workout.duration))", label: "Workout Minute(s)")
-                                } else {
-                                    CardInfo(value: "0", label: "Workout Minute(s)")
+                            if isUserTrackingData(DataOptions.workouts){
+                                DashboardCard(icon: "clock"){
+                                    if let workout = healthStoreViewModel.todayWorkout {
+                                        CardInfo(value: "\(Int(workout.duration))", label: "Workout Minute(s)")
+                                    } else {
+                                        CardInfo(value: "0", label: "Workout Minute(s)")
+                                    }
                                 }
                             }
                             
-                            
-                            DashboardCard(icon: "bed.double"){
-                                if let sleep = healthStoreViewModel.todaySleep {
-                                    CardInfo(value: "\(Int(sleep.duration/60))", label: "Sleep Hour(s)")
-                                } else {
-                                    CardInfo(value: "0", label: "Sleep Hour(s)")
+                            if isUserTrackingData(DataOptions.sleep){
+                                DashboardCard(icon: "bed.double"){
+                                    if let sleep = healthStoreViewModel.todaySleep {
+                                        CardInfo(value: "\(Int(sleep.duration/60))", label: "Sleep Hour(s)")
+                                    } else {
+                                        CardInfo(value: "0", label: "Sleep Hour(s)")
+                                    }
                                 }
                             }
-                            
                         }
                         
                         Spacer()

@@ -11,7 +11,7 @@ class OnboardingViewModel: ObservableObject {
     
     static let shared = OnboardingViewModel()
     let userRepository = UserRepository.shared
-
+    
     func saveSettings(values: [String: Any]){
         let userID = getUserID()
         if let userID = userID {
@@ -22,12 +22,23 @@ class OnboardingViewModel: ObservableObject {
         }
     }
     
-    func updateOnboardedStatus(){
+    func updateTokenAndStatus(){
+        var updates: [String: Any] = ["hasBeenOnboarded": true]
+        let token: String? = UserDefaultsService.shared.get(key: UserDefaultsKey.FCM_TOKEN)
+        if token != nil {
+            updates["fcmToken"] = token!
+        }
+        
+        updateUser(updates: updates) {}
+    }
+    
+    func updateUser(updates: [String: Any], completion: @escaping () -> Void){
         let userID = getUserID()
         if let userID = userID {
-            userRepository.updateUser(userID: userID, updates: ["hasBeenOnboarded": true]) {
+            userRepository.updateUser(userID: UserService.user.id, updates: updates) {
+                completion()
             }
         }
     }
-
+    
 }

@@ -26,8 +26,7 @@ struct History: View {
                     Text("Tap below to select data 😊")
                     Picker("Data",selection: $selectedData){
                         ForEach(HistoryViewModel.Data.dalatList, id: \.self){ text in
-                            ZStack {
-                                
+                            if isUserTrackingData(DataOptions(rawValue: text)!) {
                                 Text(text.capitalized)
                                     .bold()
                                     .tag(text)

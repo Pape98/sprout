@@ -11,22 +11,20 @@ struct LastSteps: View {
     
     @EnvironmentObject var onboardingViewModel: OnboardingViewModel
     @EnvironmentObject var onboardingRouter: OnboardingRouter
-    @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     
     var userDefaults = UserDefaultsService.shared
     
     @State private var gardenName: String = ""
     @State private var reflectWeatherChanges = false
-    @State private var showAlert = false
-
+    @State private var showErrorAlert = false
     
     var body: some View {
         VStack(){
             
             PickerTitle(header: "Final touches", subheader: "Your garden cannot wait to grow with you🍊")
             VStack (alignment: .leading) {
-              
+                
                 VStack(alignment: .leading) {
                     Text("Enter your garden's name:")
                     TextField("", text: $gardenName )
@@ -39,7 +37,7 @@ struct LastSteps: View {
             
             PickerButton(text: "Complete") {
                 if(gardenName.count == 0){
-                    showAlert = true
+                    showErrorAlert = true
                     return
                 }
                 
@@ -47,14 +45,15 @@ struct LastSteps: View {
                 onboardingRouter.saveSetting(key: FirestoreKey.REFLECT_WEATHER_CHANGES, value: reflectWeatherChanges)
                 
                 onboardingViewModel.saveSettings(values: onboardingRouter.settings)
-                onboardingViewModel.updateOnboardedStatus()
+                onboardingViewModel.updateTokenAndStatus()
                 authViewModel.userOnboarded = true
+                
             }
             .frame(maxWidth: 250)
             .padding()
-         
+            
         }
-        .alert("Garden name cannot be empty 😊", isPresented: $showAlert){
+        .alert("Garden name cannot be empty 😊", isPresented: $showErrorAlert){
             Button("OK", role: .cancel){}
         }
     }
