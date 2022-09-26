@@ -68,9 +68,13 @@ struct MainView: View {
         .environmentObject(messagesViewModel)
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
+        .onAppear {
+            AudioPlayer.shared.startBackgroundMusic()
+        }
     }
+    
     func playSound(){
-        AudioPlayer.playCustomSound(filename: "click2.mp3")
+        AudioPlayer.shared.playCustomSound(filename: "click1.mp3", volume: 0.5)
     }
 }
 

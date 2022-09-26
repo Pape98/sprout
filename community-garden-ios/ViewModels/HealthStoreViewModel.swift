@@ -13,6 +13,7 @@ class HealthStoreViewModel: ObservableObject {
     
     static let shared = HealthStoreViewModel()
     let healthStoreRepo = HealthStoreRepository.shared
+    let progressRepo = ProgressRepository.shared
     let today = Date.today
     var stepCounts: [Step] = []
     
@@ -52,6 +53,35 @@ class HealthStoreViewModel: ObservableObject {
                        selector: #selector(self.getTodaySleep),
                        name: Notification.Name(NotificationType.FetchSleep.rawValue),
                        object: nil)
+        
+    }
+    
+    func hasUserMetSleepGoal(data: DataOptions) -> Bool {
+        guard let settings = UserService.user.settings else { return false }
+        let goal = settings.sleepGoal
+        let progress = progressRepo.getSleepProgress()
+        return progress.old >= Double(goal!)
+        
+    }
+    func hasUserMetStepGoal(data: DataOptions) -> Bool {
+        guard let settings = UserService.user.settings else { return false }
+        let goal = settings.stepsGoal
+        let progress = progressRepo.getStepProgress()
+        return progress.old >= Double(goal!)
+        
+    }
+    func hasUserMetWorkoutsGoal(data: DataOptions) -> Bool {
+        guard let settings = UserService.user.settings else { return false }
+        let goal = settings.workoutsGoal
+        let progress = progressRepo.getWorkoutsProgress()
+        return progress.old >= Double(goal!)
+        
+    }
+    func hasUserMetWalkingRunningGoal(data: DataOptions) -> Bool {
+        guard let settings = UserService.user.settings else { return false }
+        let goal = settings.walkingRunningGoal
+        let progress = progressRepo.getWalkingRunningProgress()
+        return progress.old >= Double(goal!)
         
     }
     

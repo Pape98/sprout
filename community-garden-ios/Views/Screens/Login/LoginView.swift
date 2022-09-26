@@ -48,6 +48,9 @@ struct LoginView: View {
                 .frame(width: geometry.size.width * 0.8)
                 .offset(y: geometry.size.height * -0.2)
             }
+            .onAppear {
+                AudioPlayer.shared.stopBackgroundMusic()
+            }
         }
     }
 }

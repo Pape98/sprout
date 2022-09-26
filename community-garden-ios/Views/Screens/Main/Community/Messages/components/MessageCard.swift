@@ -43,7 +43,7 @@ struct MessageCard: View {
                 VStack(alignment: .leading, spacing: 5) {
                     
                     HStack {
-                        Text(message.isPrivate ? "Anonymous" : username)
+                        Text(message.isPrivate ? "Anonymous User" : username)
                             .font(.system(size: 15))
                             .bold()
                         

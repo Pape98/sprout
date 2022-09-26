@@ -53,8 +53,7 @@ struct Dashboard: View {
                                 VStack(spacing: 10) {
                                     Text("Hi, \(getFirstName(user.name))!")
                                         .headerStyle()
-                                    
-                                    
+
                                     Text(date)
                                         .bold()
                                         .bodyStyle()

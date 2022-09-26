@@ -20,7 +20,7 @@ class CommunityViewModel: ObservableObject {
     @Published var members: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     @Published var group: GardenGroup? = nil
-        
+    
     init(){
         fetchTrees()
         fetchGroupMembers()
@@ -51,7 +51,7 @@ class CommunityViewModel: ObservableObject {
         guard let collection = collection else { return }
         
         let query = collection.whereField("group", isEqualTo: userGroup)
-                              .whereField("id", isNotEqualTo: userID)
+            .whereField("id", isNotEqualTo: userID)
         
         userRepository.fetchAllUsers(query: query) { users in
             var temp: [String: User] = [:]
@@ -74,6 +74,7 @@ class CommunityViewModel: ObservableObject {
         let query = collection.whereField("date", isEqualTo: Date.today)
             .whereField("group", isEqualTo: userGroup)
             .whereField("type", isEqualTo: GardenItemType.tree.rawValue)
+        
         
         gardenRepository.getUserItems(query: query) { trees in
             DispatchQueue.main.async {

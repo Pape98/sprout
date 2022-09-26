@@ -76,7 +76,7 @@ struct MessageOptions: View {
                                         print(newValue)
                                     }
                                 }
-                                Toggle("Private Message", isOn: $isMessagePrivate)
+                                Toggle("Make Anonymous", isOn: $isMessagePrivate)
                                     .alert(isPresented: $showDeleteAlert){
                                         Alert(title: Text("Deleting message"),
                                               message: Text("Are you sure you want to delete message?"),
@@ -120,7 +120,7 @@ struct MessageOptions: View {
                             Image(systemName: "paperplane")
                                 .foregroundColor(.seaGreen)
                                 .onTapGesture {
-                                    AudioPlayer.playSystemSound(soundID: 1004)
+                                    AudioPlayer.shared.playSystemSound(soundID: 1004)
                                     
                                     messagesViewModel.sendMessage(receiver: user,
                                                                   text: selectedMessage.text,

@@ -72,6 +72,7 @@ class StatsRepository {
 
         let threshold =  Double(stepGoal) * getPercentage(key: DataOptions.steps)
         let progress: Progress = progressRepo.getStepProgress()
+        if progress.old >= Double(stepGoal) { return }
         updateProgress(data: DataOptions.steps, value: value, progress: progress, threshold: threshold)
     }
     
@@ -87,6 +88,7 @@ class StatsRepository {
 
         let threshold =  Double(workoutsGoal) * getPercentage(key: DataOptions.workouts)
         let progress: Progress = progressRepo.getWorkoutsProgress()
+        if progress.old >= Double(workoutsGoal) { return }
         updateProgress(data: DataOptions.workouts, value: value, progress: progress, threshold: threshold)
     }
     
@@ -101,6 +103,7 @@ class StatsRepository {
         guard let walkingRunningGoal = walkingRunningGoal else { return}
         let threshold = Double(walkingRunningGoal) * getPercentage(key: DataOptions.walkingRunningDistance)
         let progress: Progress = progressRepo.getWalkingRunningProgress()
+        if progress.old >= Double(walkingRunningGoal) { return }
         updateProgress(data: DataOptions.walkingRunningDistance, value: value, progress: progress, threshold: threshold)
     }
     
@@ -112,8 +115,9 @@ class StatsRepository {
         // Update progress
         let sleepGoal = settings.sleepGoal
         guard let sleepGoal = sleepGoal else { return }
-        let threshold =  Double(sleepGoal) * getPercentage(key: DataOptions.sleep)
+        let threshold =  Double(sleepGoal) * 60 * getPercentage(key: DataOptions.sleep)
         let progress: Progress = progressRepo.getSleepProgress()
+        if progress.old >= Double(sleepGoal) * 60 { return }
         updateProgress(data: DataOptions.sleep, value: value, progress: progress, threshold: threshold)
     }
     

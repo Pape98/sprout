@@ -18,6 +18,7 @@ class SproutAnalytics {
             let parameters: [String: Any] = ["userID": user.uid, "name": user.displayName ?? "No Name", "timestamp": Date().timeIntervalSince1970]
             Analytics.setUserID(user.uid)
             Analytics.setDefaultEventParameters(parameters)
+            Analytics.setUserProperty("group-\(UserService.user.group)", forName: "group")
         }
     }
     

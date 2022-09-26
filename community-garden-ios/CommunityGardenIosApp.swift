@@ -58,7 +58,7 @@ struct CommunityGardenIosApp: App {
             LaunchView()
                 .foregroundColor(fontColor)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
-                    SproutAnalytics.shared.appLaunch()
+                    // SproutAnalytics.shared.appLaunch()
                 })
                 .background(Color.porcelain)
                 .environmentObject(authViewModel)
