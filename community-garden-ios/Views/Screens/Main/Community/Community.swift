@@ -24,42 +24,44 @@ struct Community: View {
     
     var body: some View {
         
-        ZStack(alignment: .topTrailing) {
-            // Background image
-            Image("community-grass-bg")
-                .resizable()
-                .ignoresSafeArea(.container, edges: [.top])
-                .overlay {
-                    Rectangle()
-                        .fill(Color(weatherInfo["color"]!))
-                        .blendMode(BlendMode.overlay)
-                        .ignoresSafeArea()
-                }
-            
-            if communityViewModel.group != nil {
-                SpriteView(scene: scene, options: [.allowsTransparency])
+        ZStack {
+            ZStack(alignment: .topTrailing) {
+                // Background image
+                Image("community-bg")
+                    .resizable()
                     .ignoresSafeArea(.container, edges: [.top])
-            }
-            
-            VStack(spacing: 15) {
-                Button(image: "paperplane"){
-                    showMessageSheet = true
+                    .overlay {
+                        Rectangle()
+                            .fill(Color(weatherInfo["color"]!))
+                            .blendMode(BlendMode.overlay)
+                            .ignoresSafeArea()
+                    }
+                
+                if communityViewModel.group != nil {
+                    SpriteView(scene: scene, options: [.allowsTransparency])
+                        .ignoresSafeArea(.container, edges: [.top])
                 }
+                
+                VStack(spacing: 15) {
+                    Button(image: "paperplane"){
+                        showMessageSheet = true
+                    }
+                }
+                .padding()
+                
             }
-            .padding()
-            
-        }
-        .onAppear{
-            communityViewModel.fetchTrees()
-            communityViewModel.fetchGroup()
-            SproutAnalytics.shared.viewCommunity()
-        }
-        .sheet(isPresented: $showMessageSheet) {
-            Messages()
-        }
-        .sheet(isPresented: $messagesViewModel.showMessageOptionsSheet) {
-            if let user = messagesViewModel.selectedUser {
-                MessageOptions(user: user)
+            .onAppear{
+                communityViewModel.fetchTrees()
+                communityViewModel.fetchGroup()
+                SproutAnalytics.shared.viewCommunity()
+            }
+            .sheet(isPresented: $showMessageSheet) {
+                Messages()
+            }
+            .sheet(isPresented: $messagesViewModel.showMessageOptionsSheet) {
+                if let user = messagesViewModel.selectedUser {
+                    MessageOptions(user: user)
+                }
             }
         }
         

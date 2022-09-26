@@ -69,13 +69,13 @@ class SceneHelper {
     }
     
     // For community view
-    static func addTree(tree: GardenItem, scene: SKScene, position: CGPoint){
+    static func addTree(tree: GardenItem, scene: SKScene, position: CGPoint, zPosition: CGFloat = 5.0){
         // Tree
         let treeNode = SKSpriteNode(imageNamed: tree.name)
         treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
         treeNode.position = position
         treeNode.name = tree.userID
-        treeNode.zPosition = 5
+        treeNode.zPosition = zPosition
         
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
         addGrass(scene: scene, location: grassLocation)

@@ -78,7 +78,7 @@ class CommunityViewModel: ObservableObject {
         
         gardenRepository.getUserItems(query: query) { trees in
             DispatchQueue.main.async {
-                self.trees = trees
+                self.trees = trees.shuffled()
             }
         }
     }

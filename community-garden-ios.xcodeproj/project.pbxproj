@@ -1031,7 +1031,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1073,7 +1073,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;

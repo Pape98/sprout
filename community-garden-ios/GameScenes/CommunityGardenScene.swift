@@ -13,14 +13,18 @@ class CommunityGardenScene: SKScene {
     var gameTimer: Timer?
     var havePlacedFlowers = false
     var validPositions: [String: CGPoint] = [:]
-        
+    
     // Nodes
-    var river : SKSpriteNode?
-    var fence: SKSpriteNode?
-            
+    var leftFence: SKSpriteNode?
+    var rightFence: SKSpriteNode?
+    
     // ViewModels
     let communityViewModel = CommunityViewModel.shared
     let messagesViewModel = MessagesViewModel.shared
+    
+    var treePositions: [CGPoint]?
+    //    let xOffset = 80.0
+    //    let yOffset = 225.0
     
     
     override func didMove(to view: SKView) {
@@ -33,10 +37,9 @@ class CommunityGardenScene: SKScene {
         
         
         // Setting up scene elements
-        river = setupRiver()
-        fence = setupFence(location: CGPoint(x: 0, y: river!.position.y - 100), anchor: CGPoint(x: 0, y: 0))
-        validPositions = initializeValidPositions()
-        
+        leftFence = setupFence(location: CGPoint(x: 0, y:  frame.midY))
+        rightFence = setupFence(location: CGPoint(x: frame.maxX, y:  frame.midY))
+        treePositions = initializeTreePositions()
         setupTrees()
         setupFlowers()
     }
@@ -46,6 +49,7 @@ class CommunityGardenScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
+            print(location)
             let touchedNode = self.nodes(at: location)
             for node in touchedNode {
                 
@@ -65,52 +69,48 @@ class CommunityGardenScene: SKScene {
     
     func setupTrees(){
         var counter = 0
-        let positions = Array(validPositions.keys)
+        //        var zIndex = 5
+        
         for tree in communityViewModel.trees {
-            let position = validPositions[positions[counter]]
-            SceneHelper.addTree(tree: tree, scene: self, position: position!)
+            let position = treePositions![counter]
+            SceneHelper.addTree(tree: tree, scene: self, position: position)
             counter += 1
             
             // Get new Positions
-            if counter == 4 {
-                validPositions = initializeValidPositions()
-            }
+            if counter == treePositions!.endIndex { return }
         }
     }
     
-    func setupRiver() -> SKSpriteNode {
-        let river = SKSpriteNode(imageNamed: "river")
-        river.position = CGPoint(x: frame.minX, y: frame.midY+40)
-        river.zPosition = -5
-        addChild(river)
-        return river
+    func initializeTreePositions() -> [CGPoint]{
+        
+        let xOffset = 80.0
+        let yOffset = 225.0
+        
+        let fenceOffset = (leftFence?.size.height)!/2
+        // Bottom
+        let bottomLeft = CGPoint(x: xOffset, y: frame.maxY * 1/4 - fenceOffset)
+        let bottomRight = CGPoint(x: frame.maxX - xOffset, y: frame.maxY * 1/4 - fenceOffset)
+        
+        // Top
+        let topLeft = CGPoint(x: xOffset, y: frame.height * 3/4)
+        let topRight = CGPoint(x: frame.maxX - xOffset, y: frame.height * 3/4)
+        
+        
+        return [topLeft,topRight,bottomLeft,bottomRight]
+        
     }
     
-    func setupFence(location: CGPoint, anchor: CGPoint) -> SKSpriteNode{
+    func setupFence(location: CGPoint, anchor: CGPoint? = nil) -> SKSpriteNode{
         let fence = SKSpriteNode(imageNamed: "fence")
-        fence.anchorPoint = anchor
+        if anchor != nil { fence.anchorPoint = anchor! }
         fence.position = location
         addChild(fence)
         return fence
     }
     
-    func initializeValidPositions() -> [String: CGPoint]{
-        
-        let riverTop = river!.position.y + river!.size.height
-        let fenceBottom = fence!.position.y
-        
-        let topLeft = CGPoint(x: getRandomCGFloat(40, frame.midX-50), y: getRandomCGFloat(riverTop, riverTop + 20))
-        let topRight = CGPoint(x: getRandomCGFloat(frame.midX + 10, frame.maxX-70), y: getRandomCGFloat(riverTop, riverTop + 20))
-        
-        let bottomLeft = CGPoint(x: getRandomCGFloat(40, frame.midX-50), y: getRandomCGFloat(0, fenceBottom - 100))
-        let bottomRight = CGPoint(x: getRandomCGFloat(frame.midX + 10, frame.maxX-50), y: getRandomCGFloat(0,fenceBottom - 100))
-        
-        return ["topLeft": topLeft,"topRight": topRight,"bottomLeft" : bottomLeft ,"bottomRight":bottomRight]
-    }
-    
     func setupFlowers(){
         guard let group = communityViewModel.group else { return }
-                
+        
         let mapping = [
             0: "abyss-sage",
             1: "savage-morel",
@@ -118,10 +118,8 @@ class CommunityGardenScene: SKScene {
         ]
         
         let flowers = group.flowers
-        
-        validPositions = initializeValidPositions()
-        let positionKeys = Array(validPositions.keys)
-        var positionIndex : Int = 0
+        var positions = getFlowerPositions()
+        var positionIndex = 0
         
         for color in flowers.keys {
             if let flowersArr = flowers[color] {
@@ -129,19 +127,33 @@ class CommunityGardenScene: SKScene {
                     let numFlower = flowersArr[i]
                     if numFlower > 0 {
                         for _ in 1...numFlower {
-                            let flower = color + "-" + mapping[i]!
-                            addFlower(flower, position: validPositions[positionKeys[positionIndex]]!)
-                            positionIndex += 1
-                                                        
-                            if positionIndex >= positionKeys.count {
-                                validPositions = initializeValidPositions()
+                            if positionIndex == positions.endIndex {
+                                positions = getFlowerPositions()
                                 positionIndex = 0
                             }
+                            let flower = color + "-" + mapping[i]!
+                            addFlower(flower, position: positions[positionIndex])
+                            positionIndex += 1
                         }
                     }
                 }
             }
         }
+    }
+    
+    func getFlowerPositions() -> [CGPoint] {
+        let xOffset = 25.0
+        let yOffset = 25.0
+        
+        // bottom
+        let bl =  CGPoint(x: getRandomCGFloat(xOffset, frame.midX), y:getRandomCGFloat(0, frame.maxY * 1/4 - yOffset))
+        let br =  CGPoint(x: getRandomCGFloat(frame.midX, frame.maxX - xOffset), y:getRandomCGFloat(0, frame.maxY * 1/4 - yOffset))
+        
+        // top
+        let tl = CGPoint(x: getRandomCGFloat(xOffset, frame.midX), y: getRandomCGFloat(frame.midY + leftFence!.size.height / 2, frame.maxY * 3/4 - yOffset))
+        let tr = CGPoint(x: getRandomCGFloat(frame.midX, frame.maxX - xOffset), y: getRandomCGFloat(frame.midY + leftFence!.size.height / 2, frame.maxY * 3/4 - yOffset))
+        
+        return [bl,br,tl,tr]
     }
     
     // For communityView
@@ -150,8 +162,8 @@ class CommunityGardenScene: SKScene {
         node.anchorPoint = CGPoint(x: 0, y: 0)
         node.position = position
         node.colorBlendFactor = getRandomCGFloat(0, 0.2)
-        node.zPosition = 7
-        node.setScale(0.075)
+        //        node.zPosition = 7
+        node.setScale(0.085)
         
         addChild(node)
     }

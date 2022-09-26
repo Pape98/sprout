@@ -24,13 +24,6 @@ struct MainView: View {
     var body: some View {
         
         TabView {
-            Dashboard()
-                .tabItem {
-                    Label("Dashboard", systemImage: "house.fill")
-                }
-                .onAppear {
-                    playSound()
-                }
             
             if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
                 Community()
@@ -41,6 +34,25 @@ struct MainView: View {
                         playSound()
                     }
             }
+            
+            
+            Dashboard()
+                .tabItem {
+                    Label("Dashboard", systemImage: "house.fill")
+                }
+                .onAppear {
+                    playSound()
+                }
+            
+//            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+//                Community()
+//                    .tabItem {
+//                        Label("Community", systemImage: "globe")
+//                    }
+//                    .onAppear {
+//                        playSound()
+//                    }
+//            }
             
             History()
                 .tabItem {
@@ -69,7 +81,7 @@ struct MainView: View {
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
         .onAppear {
-            AudioPlayer.shared.startBackgroundMusic()
+//            AudioPlayer.shared.startBackgroundMusic()
         }
     }
     
