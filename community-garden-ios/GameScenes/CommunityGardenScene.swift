@@ -49,7 +49,6 @@ class CommunityGardenScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            print(location)
             let touchedNode = self.nodes(at: location)
             for node in touchedNode {
                 

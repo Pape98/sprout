@@ -13,6 +13,7 @@ class CommunityViewModel: ObservableObject {
     let gardenRepository = GardenRepository.shared
     let userRepository = UserRepository.shared
     let groupRepository = GroupRepository.shared
+    let reactionRepository = ReactioRepository.shared
     
     let collections = Collections.shared
     let nc = NotificationCenter.default
@@ -20,12 +21,13 @@ class CommunityViewModel: ObservableObject {
     @Published var members: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     @Published var group: GardenGroup? = nil
+    @Published var reactions: Reactions? = nil
     
     init(){
         fetchTrees()
         fetchGroupMembers()
         fetchGroup()
-        
+        fetchReactions()
         nc.addObserver(self,
                        selector: #selector(self.fetchTrees),
                        name: Notification.Name(NotificationType.FetchCommunityTrees.rawValue),
@@ -80,6 +82,21 @@ class CommunityViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.trees = trees.shuffled()
             }
+        }
+    }
+    
+    func fetchReactions(){
+        reactionRepository.fetchReactions { result in
+            DispatchQueue.main.async {
+                self.reactions = result
+            }
+        }
+    }
+    
+    func sendLove(){
+        let tokens: [String] = members.values.map { $0.fcmToken }
+        reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
+            fetchReactions()
         }
     }
 }

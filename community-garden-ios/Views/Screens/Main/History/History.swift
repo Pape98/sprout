@@ -50,9 +50,6 @@ struct History: View {
                 
             }
             .navigationBarTitle("History", displayMode: .inline)
-            .toolbar {
-                
-            }
             
         }
         .navigationViewStyle(.stack)

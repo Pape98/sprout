@@ -24,67 +24,83 @@ struct Community: View {
     
     var body: some View {
         
-        ZStack {
-            ZStack(alignment: .topTrailing) {
-                // Background image
-                Image("community-bg")
-                    .resizable()
+        ZStack(alignment: .topTrailing) {
+            // Background image
+            Image("community-bg")
+                .resizable()
+                .ignoresSafeArea(.container, edges: [.top])
+                .overlay {
+                    Rectangle()
+                        .fill(Color(weatherInfo["color"]!))
+                        .blendMode(BlendMode.overlay)
+                        .ignoresSafeArea()
+                }
+            
+            if communityViewModel.group != nil {
+                SpriteView(scene: scene, options: [.allowsTransparency])
                     .ignoresSafeArea(.container, edges: [.top])
-                    .overlay {
-                        Rectangle()
-                            .fill(Color(weatherInfo["color"]!))
-                            .blendMode(BlendMode.overlay)
-                            .ignoresSafeArea()
-                    }
+            }
+            
+            HStack() {
                 
-                if communityViewModel.group != nil {
-                    SpriteView(scene: scene, options: [.allowsTransparency])
-                        .ignoresSafeArea(.container, edges: [.top])
+                ActionButton(image: "paperplane.fill", foreground: .appleGreen) {
+                    showMessageSheet = true
                 }
                 
-                VStack(spacing: 15) {
-                    Button(image: "paperplane"){
-                        showMessageSheet = true
+                Spacer()
+                
+                if let reactions = communityViewModel.reactions {
+                    ActionButton(image: "heart.fill", text: String(reactions.love), foreground: .red) {
+                        communityViewModel.sendLove()
                     }
                 }
-                .padding()
-                
             }
-            .onAppear{
-                communityViewModel.fetchTrees()
-                communityViewModel.fetchGroup()
-                SproutAnalytics.shared.viewCommunity()
-            }
-            .sheet(isPresented: $showMessageSheet) {
-                Messages()
-            }
-            .sheet(isPresented: $messagesViewModel.showMessageOptionsSheet) {
-                if let user = messagesViewModel.selectedUser {
-                    MessageOptions(user: user)
-                }
+            .padding(.horizontal)
+        }
+        .onAppear{
+            communityViewModel.fetchTrees()
+            communityViewModel.fetchGroup()
+            SproutAnalytics.shared.viewCommunity()
+        }
+        .sheet(isPresented: $showMessageSheet) {
+            Messages()
+        }
+        .sheet(isPresented: $messagesViewModel.showMessageOptionsSheet) {
+            if let user = messagesViewModel.selectedUser {
+                MessageOptions(user: user)
             }
         }
+        
         
     }
     
     @ViewBuilder
-    func Button(image: String,_ callback: @escaping () -> Void) -> some View {
-        VStack {
-            ZStack{
-                Circle()
-                    .fill(Color.white)
-                    .opacity(0.7)
-                
-                Image(systemName: image)
-                    .foregroundColor(.white)
-            }
-            .frame(width: 40, height: 40)
-        }
-        
-        .onTapGesture {
+    func ActionButton(image: String, text: String = "", foreground: Color, _ callback: @escaping () -> Void) -> some View {
+        Button {
             callback()
+        } label: {
+            ZStack {
+                Circle()
+                    .fill(.white)
+                    .opacity(0.5)
+                Image(systemName: image)
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .foregroundColor(foreground)
+                    .frame(width: 25, height: 25)
+                
+                if text != "" {
+                    Text(text)
+                        .foregroundColor(.white)
+                        .font(.system(size: 11))
+                        .bold()
+                }
+                
+            }
+            .frame(width: 45, height: 45,alignment: .center)
         }
     }
+    
 }
 
 struct Community_Previews: PreviewProvider {

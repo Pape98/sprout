@@ -39,7 +39,6 @@ class SettingsViewModel: ObservableObject {
     }
     
     func updateTodaysTree(update: String){
-        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
                 
         guard var tree = GardenViewModel.shared.tree else { return }
         tree.name = update

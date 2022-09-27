@@ -110,6 +110,7 @@
 		F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF1028E133E7007FBC04 /* autumn_town_day.mp3 */; };
 		F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF1328E1343B007FBC04 /* winter_glade_evening.mp3 */; };
 		F0E9BF1628E1348F007FBC04 /* summer_bar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF1528E1348F007FBC04 /* summer_bar.mp3 */; };
+		F0E9BF1828E25C3E007FBC04 /* ReactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */; };
 		F0F0C86A28AED64A0047D9EA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86928AED64A0047D9EA /* FirebaseMessaging */; };
 		F0F0C86C28AF333B0047D9EA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */; };
 		F0F0C86E28AFC6090047D9EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */; };
@@ -227,6 +228,7 @@
 		F0E9BF1028E133E7007FBC04 /* autumn_town_day.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = autumn_town_day.mp3; sourceTree = "<group>"; };
 		F0E9BF1328E1343B007FBC04 /* winter_glade_evening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winter_glade_evening.mp3; sourceTree = "<group>"; };
 		F0E9BF1528E1348F007FBC04 /* summer_bar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = summer_bar.mp3; sourceTree = "<group>"; };
+		F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionRepository.swift; sourceTree = "<group>"; };
 		F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0F0C87428B50A9B0047D9EA /* MessageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCard.swift; sourceTree = "<group>"; };
 		F0F0C87928B53CFE0047D9EA /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
@@ -613,6 +615,7 @@
 				F043F25F287EEBA7008F211C /* GardenRepository.swift */,
 				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
 				F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */,
+				F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -872,6 +875,7 @@
 				F0149D63284F18B300782D27 /* IconButton.swift in Sources */,
 				F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */,
 				F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */,
+				F0E9BF1828E25C3E007FBC04 /* ReactionRepository.swift in Sources */,
 				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,

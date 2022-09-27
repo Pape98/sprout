@@ -21,3 +21,9 @@ struct GardenGroup: Codable {
         "tangerine": [0,0,0],
     ]
 }
+
+struct Reactions: Codable {
+    var group: Int
+    var date: String
+    var love: Int = 0
+}
