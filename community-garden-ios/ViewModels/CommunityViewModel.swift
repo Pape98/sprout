@@ -92,6 +92,7 @@ class CommunityViewModel: ObservableObject {
     func fetchReactions(){
         reactionRepository.fetchReactions { result in
             DispatchQueue.main.async {
+                print(result)
                 self.reactions = result
             }
         }
@@ -100,7 +101,14 @@ class CommunityViewModel: ObservableObject {
     func sendLove(){
         let tokens: [String] = members.values.map { $0.fcmToken }
         reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
-            self.reactions!.love += 1
+            self.fetchReactions()
+        }
+    }
+    
+    func sendEncouragement(){
+        let tokens: [String] = members.values.map { $0.fcmToken }
+        reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
+            self.fetchReactions()
         }
     }
 }

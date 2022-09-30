@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 
 enum ReactionType: String {
-    case love
+    case love, encouragement
 }
 
 class ReactioRepository: ObservableObject {
@@ -22,21 +22,23 @@ class ReactioRepository: ObservableObject {
         reactionsCollection = collections.db.collection(CollectionName.reactions.rawValue)
     }
     
-    func increaseReactionCount(reaction: ReactionType, tokens: [String], callback: () -> Void){
+    func increaseReactionCount(reaction: ReactionType, tokens: [String], callback: @escaping () -> Void){
         guard let reactionsCollection = reactionsCollection else { return }
         let userGroup = UserService.user.group
         let docRef = reactionsCollection.document("\(userGroup)-\(Date.today)")
         docRef.setData(["date": Date.today,
                         "group": userGroup,
                         "tokens": tokens,
-                        reaction.rawValue : FieldValue.increment(Int64(1))], merge: true)
-        callback()
+                        reaction.rawValue : FieldValue.increment(Int64(1))], merge: true){_ in 
+            callback()
+        }
     }
     
     func fetchReactions(completion: @escaping (_ : Reactions) -> Void){
         guard let reactionsCollection = reactionsCollection else { return }
         let userGroup = UserService.user.group
         let docRef = reactionsCollection.document("\(userGroup)-\(Date.today)")
+        
         
         docRef.getDocument(as: Reactions.self) { result in
             switch result {
