@@ -21,15 +21,15 @@ struct GardenInfoCard: View {
                 
                 // Buttons
                 if let numDroplets = userViewModel.numDroplets {
-                    IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) droplets")
+                    IconButton(icon: "droplet-icon", text: "\(Int(numDroplets.value)) droplet(s)")
                 }
                 
                 if let numSeeds = userViewModel.numSeeds {
-                    IconButton(icon: "seed-icon", text: "\(Int(numSeeds.value)) seeds")
+                    IconButton(icon: "seed-icon", text: "\(Int(numSeeds.value)) seed(s)")
                 }
                 
             }
-            .padding(25)
+            .padding(25)
             .background {
                 ZStack (alignment: .leading) {
                     Rectangle()

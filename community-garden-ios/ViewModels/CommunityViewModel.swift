@@ -92,7 +92,6 @@ class CommunityViewModel: ObservableObject {
     func fetchReactions(){
         reactionRepository.fetchReactions { result in
             DispatchQueue.main.async {
-                print(result)
                 self.reactions = result
             }
         }

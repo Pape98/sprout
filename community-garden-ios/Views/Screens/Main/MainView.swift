@@ -24,16 +24,16 @@ struct MainView: View {
     var body: some View {
         
         TabView {
-            
-            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-                Community()
-                    .tabItem {
-                        Label("Community", systemImage: "globe")
-                    }
-                    .onAppear {
-                        playSound()
-                    }
-            }
+//            
+//            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+//                Community()
+//                    .tabItem {
+//                        Label("Community", systemImage: "globe")
+//                    }
+//                    .onAppear {
+//                        playSound()
+//                    }
+//            }
 
             
             Dashboard()
@@ -44,15 +44,15 @@ struct MainView: View {
                     playSound()
                 }
             
-//            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-//                Community()
-//                    .tabItem {
-//                        Label("Community", systemImage: "globe")
-//                    }
-//                    .onAppear {
-//                        playSound()
-//                    }
-//            }
+            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+                Community()
+                    .tabItem {
+                        Label("Community", systemImage: "globe")
+                    }
+                    .onAppear {
+                        playSound()
+                    }
+            }
             
             History()
                 .tabItem {
@@ -80,9 +80,9 @@ struct MainView: View {
         .environmentObject(messagesViewModel)
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
-        .onAppear {
-            AudioPlayer.shared.startBackgroundMusic()
-        }
+//        .onAppear {
+//            AudioPlayer.shared.startBackgroundMusic()
+//        }
     }
     
     func playSound(){

@@ -134,7 +134,7 @@ class SceneHelper {
     static func addGrass(scene: SKScene, location: CGPoint){
         let grassNode = SKSpriteNode(imageNamed: "grass")
         grassNode.position = location
-        grassNode.setScale(0.5)
+        grassNode.setScale(0.35)
         grassNode.zPosition = 6
         
         scene.addChild(grassNode)

@@ -37,7 +37,7 @@ struct CommunityGardenIosApp: App {
         //        }
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
-        setupLocalEmulator()
+//        setupLocalEmulator()
     }
     
     func setupLocalEmulator(){
@@ -67,6 +67,12 @@ struct CommunityGardenIosApp: App {
                     
                     if newPhase == .active {
                         RemoteConfiguration.shared.fetchRemoteConfig()
+                        AudioPlayer.shared.startBackgroundMusic()
+                    }
+                    
+                    else if newPhase == .background {
+                        RemoteConfiguration.shared.fetchRemoteConfig()
+                        AudioPlayer.shared.stopBackgroundMusic()
                     }
                     
                 }

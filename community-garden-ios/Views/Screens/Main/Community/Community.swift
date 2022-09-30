@@ -15,6 +15,8 @@ struct Community: View {
     
     var weatherInfo: [String: String] = getWeatherInfo()
     @State var showMessageSheet = false
+    @State var showConfirmationAlert = false
+    @State var alertMessage = "Sent message ❤️⭐"
     
     var scene: SKScene {
         let scene = CommunityGardenScene()
@@ -42,7 +44,7 @@ struct Community: View {
                     .ignoresSafeArea(.container, edges: [.top])
             }
             
-            HStack() {
+            VStack {
                 
                 ActionButton(image: "paperplane.fill", foreground: .appleGreen) {
                     showMessageSheet = true
@@ -52,17 +54,24 @@ struct Community: View {
                 
                 if let reactions = communityViewModel.reactions {
                     VStack(spacing: 5) {
+                        
                         ActionButton(image: "heart.fill", text: String(reactions.love), foreground: .red) {
+                            alertMessage = "Sent love ❤️ to members."
                             communityViewModel.sendLove()
+                            showConfirmationAlert = true
                         }
                         
                         ActionButton(image: "star.fill", text: String(reactions.encouragement), foreground: .yellow) {
+                            alertMessage = "Sent encouragement ⭐ to members."
                             communityViewModel.sendEncouragement()
+                            showConfirmationAlert = true
                         }
                     }
+                   
                 }
             }
             .padding(.horizontal)
+            .padding(.vertical, 20)
         }
         .onAppear{
             communityViewModel.fetchTrees()
@@ -77,6 +86,10 @@ struct Community: View {
                 MessageOptions(user: user)
             }
         }
+        .alert(isPresented: $showConfirmationAlert){
+            Alert(title: Text("Community Message ✉️"), message: Text(alertMessage), dismissButton: .default(Text("Ok")))
+            
+        }
         
         
     }
@@ -86,7 +99,7 @@ struct Community: View {
         Button {
             callback()
         } label: {
-            ZStack {
+            ZStack(alignment: .center) {
                 Circle()
                     .fill(.white)
                     .opacity(0.5)
@@ -94,7 +107,7 @@ struct Community: View {
                     .resizable()
                     .aspectRatio(contentMode: .fit)
                     .foregroundColor(foreground)
-                    .frame(width: 25, height: 25)
+                    .frame(width: 30, height: 30)
                 
                 if text != "" {
                     Text(text)
@@ -106,6 +119,7 @@ struct Community: View {
             }
             .frame(width: 45, height: 45,alignment: .center)
         }
+        .padding(.bottom, 10)
     }
     
 }

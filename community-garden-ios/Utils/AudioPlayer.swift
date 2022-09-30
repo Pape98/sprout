@@ -13,11 +13,13 @@ class AudioPlayer {
     var soundEffect: AVAudioPlayer?
     var audioPlayer: AVAudioPlayer?
     
-    var backgroundSongs = ["summer_bar",
+    var backgroundSongs = ["slightly_sour",
+                           "summer_bar",
                            "winter_glade_evening",
                            "autumn_town_day",
-                           "slightly_sour",
                            "spring_hamlet_evening"]
+    
+    var currentSongIndex = -1
     
     func playCustomSound(filename: String, volume: Float = 1){
         let path = Bundle.main.path(forResource: filename, ofType:nil)
@@ -40,7 +42,8 @@ class AudioPlayer {
     }
     
     func startBackgroundMusic(){
-        let song = backgroundSongs[(Int.random(in: 0..<5))]
+        changeSong()
+        let song = backgroundSongs[currentSongIndex]
         if let bundle = Bundle.main.path(forResource: song, ofType: "mp3") {
             let backgroundMusic = NSURL(fileURLWithPath: bundle)
             do {
@@ -64,6 +67,13 @@ class AudioPlayer {
     
     func playSystemSound(soundID: UInt32){
         AudioServicesPlaySystemSound(soundID)
+    }
+    
+    func changeSong(){
+        currentSongIndex += 1
+        if currentSongIndex == backgroundSongs.endIndex{
+            currentSongIndex = 0
+        }
     }
     
 }
