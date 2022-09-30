@@ -37,7 +37,7 @@ struct CommunityGardenIosApp: App {
         //        }
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
-        setupLocalEmulator()
+//        setupLocalEmulator()
     }
     
     func setupLocalEmulator(){
@@ -45,7 +45,7 @@ struct CommunityGardenIosApp: App {
         // Local firestore
         let settings = Firestore.firestore().settings
         settings.host = "localhost:8080"
-        settings.isPersistenceEnabled = false
+        settings.isPersistenceEnabled = true
         settings.isSSLEnabled = false
         Firestore.firestore().settings = settings
         

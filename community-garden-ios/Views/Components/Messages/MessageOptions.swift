@@ -12,12 +12,11 @@ struct MessageOptions: View {
     
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     
-    @State private var showSheet = false
-    @State private var showDeleteAlert = false
-    @State private var showMessageAlert = false
     
     @State private var selectedMessage: MessageOption = MessageOption(text: "Proud of you!", color: "cosmos")
     @State private var isMessagePrivate = true
+    @State private var messageText = ""
+    @State private var showErrorAlert = false
     
     var user: User
     
@@ -43,7 +42,7 @@ struct MessageOptions: View {
                         .padding(.top)
                         
                         // Selected Messsage
-                        Text(selectedMessage.text)
+                        Text(messageText)
                             .frame(alignment: .center)
                             .padding()
                             .multilineTextAlignment(.center)
@@ -58,40 +57,10 @@ struct MessageOptions: View {
                         // Form
                         Form {
                             Section("Content") {
-                                Picker("Select Message", selection: $selectedMessage) {
-                                    ScrollView {
-                                        VStack(spacing: 20) {
-                                            ForEach(messagesViewModel.options, id: \.self) { message in
-                                                MessageCard(message: message)
-                                                    .tag(message)
-                                            }
-                                            
-                                            ForEach(messagesViewModel.customUptions, id: \.self) { message in
-                                                MessageCard(message: message)
-                                                    .tag(message)
-                                            }
-                                        }
-                                    }
-                                    .onChange(of: selectedMessage) { newValue in
-                                        print(newValue)
-                                    }
-                                }
+                                
+                                TextField("Enter message here", text: $messageText)
                                 
                                 Toggle("Make Anonymous", isOn: $isMessagePrivate)
-                                    .alert(isPresented: $showDeleteAlert){
-                                        Alert(title: Text("Deleting message"),
-                                              message: Text("Are you sure you want to delete message?"),
-                                              primaryButton: .default(
-                                                Text("Cancel"),
-                                                action: { () -> () in showDeleteAlert = false }
-                                              ),
-                                              secondaryButton: .destructive(
-                                                Text("Delete"),
-                                                action: messagesViewModel.deleteOption
-                                              )
-                                        )
-                                    }
-                                
                             }
                             
                         }
@@ -99,21 +68,12 @@ struct MessageOptions: View {
                         .modifier(ListBackgroundModifier())
                     }
                 }
-                .sheet(isPresented: $showSheet, content: {
-                    CustomMessageSheet(selectedMessage: $selectedMessage)
-                })
+                .alert("Message cannot be empty 😊", isPresented: $showErrorAlert){
+                    Button("OK", role: .cancel){}
+                }
                 .navigationTitle("Send Message")
                 .navigationBarTitleDisplayMode(.inline)
                 .toolbar {
-                    
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Button {
-                            showSheet = true
-                        } label: {
-                            Image(systemName: "plus.circle")
-                                .foregroundColor(.seaGreen)
-                        }
-                    }
                     
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Button {
@@ -122,10 +82,16 @@ struct MessageOptions: View {
                             Image(systemName: "paperplane")
                                 .foregroundColor(.seaGreen)
                                 .onTapGesture {
+                                    
+                                    if messageText.isEmpty {
+                                        showErrorAlert = true
+                                        return
+                                    }
+                                    
                                     AudioPlayer.shared.playSystemSound(soundID: 1004)
                                     
                                     messagesViewModel.sendMessage(receiver: user,
-                                                                  text: selectedMessage.text,
+                                                                  text: messageText,
                                                                   isPrivate: isMessagePrivate)
                                     
                                     messagesViewModel.showMessageOptionsSheet = false
@@ -133,37 +99,8 @@ struct MessageOptions: View {
                         }
                     }
                 }
-                .alert(isPresented: $showMessageAlert) {
-                    Alert(title: Text("Error"), message: Text("Cannot delete default message."), dismissButton: .default(Text("Got it!")))
-                }
+                
             }
-        }
-    }
-    
-    @ViewBuilder
-    func MessageCard(message: MessageOption) -> some View {
-        HStack {
-            Text(message.text)
-                .padding()
-            Spacer()
-        }
-        .background {
-            RoundedRectangle(cornerRadius: 10)
-            //                .fill(message.text == selectedMessage.text ? Color(message.color): Color.haze)
-                .fill(Color(message.color))
-                .frame(maxWidth: .infinity, maxHeight: 70)
-                .opacity(0.8)
-                .onTapGesture {
-                    selectedMessage.text = message.text
-                }
-                .onLongPressGesture {
-                    if message.isDefault == false {
-                        showDeleteAlert = true
-                        messagesViewModel.messageToDelete = message.text
-                    } else {
-                        showMessageAlert = true
-                    }
-                }
         }
     }
 }

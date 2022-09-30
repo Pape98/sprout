@@ -30,6 +30,7 @@ class AppViewModel: ObservableObject {
         UserService.user = user
     }
     
+    
     func setBackground(){
         
         let date = Date()

@@ -66,7 +66,7 @@ class GardenRepository {
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){
         do {
-            try docRef.setData(from: data)
+            try docRef.setData(from: data, merge: true)
         } catch {
             print("saveData: Error writing to Firestore: \(error)")
         }

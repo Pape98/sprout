@@ -30,7 +30,7 @@ struct Community: View {
             // Background image
             Image("community-bg")
                 .resizable()
-                .ignoresSafeArea(.container, edges: [.top])
+                .ignoresSafeArea(.all, edges: [.top])
                 .overlay {
                     Rectangle()
                         .fill(Color(weatherInfo["color"]!))
@@ -55,13 +55,13 @@ struct Community: View {
                 if let reactions = communityViewModel.reactions {
                     VStack(spacing: 5) {
                         
-                        ActionButton(image: "heart.fill", text: String(reactions.love), foreground: .red) {
+                        ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
                             alertMessage = "Sent love ❤️ to members."
                             communityViewModel.sendLove()
                             showConfirmationAlert = true
                         }
                         
-                        ActionButton(image: "star.fill", text: String(reactions.encouragement), foreground: .yellow) {
+                        ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
                             alertMessage = "Sent encouragement ⭐ to members."
                             communityViewModel.sendEncouragement()
                             showConfirmationAlert = true

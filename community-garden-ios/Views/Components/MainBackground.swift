@@ -18,7 +18,7 @@ struct MainBackground: View {
     var body: some View {
         Image(appViewModel.backgroundImage)
             .resizable()
-            .ignoresSafeArea(.container, edges: edges)
+            .ignoresSafeArea(.all, edges: edges)
             .overlay {
                 Rectangle()
                     .fill(Color(appViewModel.backgroundColor))

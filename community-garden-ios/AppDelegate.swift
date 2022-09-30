@@ -43,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         MessagesViewModel.shared.getUserMessages()
+        // Print message ID.
+        print(userInfo)
+
+         // Print full message.
+         print(userInfo)
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -50,6 +55,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         if let fcmToken = fcmToken {
             print("fcm",fcmToken)
             UserDefaultsService.shared.save(value: fcmToken, key: UserDefaultsKey.FCM_TOKEN)
+            
+            // Subscribe to group topic
+            let groupNumber = UserService.user.group
+            let group = "group\(groupNumber)"
+            
+            Messaging.messaging().subscribe(toTopic: group) { error in
+                if let error = error {
+                    print(error)
+                    return
+                }
+                print("Subscribed to weather topic \(group)")
+            }
+            
         }
         
         if let userID = getUserID(), let token = fcmToken {
