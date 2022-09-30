@@ -32,6 +32,7 @@ struct SettingPicker: View {
                     }
                 }
                 .opacity(0.95)
+                .modifier(ListBackgroundModifier())
             }
         }
         .navigationTitle(title)

@@ -68,6 +68,7 @@ struct Settings: View {
                         
                     }
                 }
+                .modifier(ListBackgroundModifier())
                 .opacity(0.95)
                 .offset(y: -15)
                 .navigationTitle("Settings")

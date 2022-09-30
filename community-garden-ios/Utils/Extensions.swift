@@ -8,6 +8,19 @@
 import Foundation
 import SwiftUI
 
+struct ListBackgroundModifier: ViewModifier {
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *) {
+            content
+                .scrollContentBackground(.hidden)
+        } else {
+            content
+        }
+    }
+}
+
 extension Date {
     func getFormattedDate(format: String) -> String {
         let dateFormat = DateFormatter()
@@ -200,3 +213,5 @@ extension Dictionary where Value : Hashable {
         return newDict
     }
 }
+
+

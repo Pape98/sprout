@@ -60,6 +60,7 @@ struct CustomMessageSheet: View {
                                         }
                                     }
                                 }
+                                .modifier(ListBackgroundModifier())
                             }
                             
                         }
