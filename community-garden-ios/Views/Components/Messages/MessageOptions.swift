@@ -76,6 +76,7 @@ struct MessageOptions: View {
                                         print(newValue)
                                     }
                                 }
+                                
                                 Toggle("Make Anonymous", isOn: $isMessagePrivate)
                                     .alert(isPresented: $showDeleteAlert){
                                         Alert(title: Text("Deleting message"),
@@ -95,6 +96,7 @@ struct MessageOptions: View {
                             
                         }
                         .offset(y: -20)
+                        .modifier(ListBackgroundModifier())
                     }
                 }
                 .sheet(isPresented: $showSheet, content: {

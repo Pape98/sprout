@@ -37,7 +37,7 @@ struct CommunityGardenIosApp: App {
         //        }
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
-//        setupLocalEmulator()
+        setupLocalEmulator()
     }
     
     func setupLocalEmulator(){
