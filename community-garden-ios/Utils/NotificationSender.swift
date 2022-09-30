@@ -18,6 +18,7 @@ enum NotificationType: String {
     case UpdateUserService
     case GetUserItems
     case FetchCommunityTrees
+    case CreateTree
 }
 
 class NotificationSender {

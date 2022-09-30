@@ -25,13 +25,12 @@ class GardenViewModel: ObservableObject {
     init(){
         getUserItems()
         nc.addObserver(self,
-                       selector: #selector(self.getUserItems),
-                       name: Notification.Name(NotificationType.GetUserItems.rawValue),
+                       selector: #selector(self.addTree),
+                       name: Notification.Name(NotificationType.CreateTree.rawValue),
                        object: nil)
     }
     
-    @objc
-    func getUserItems() -> Void {
+    @objc func getUserItems() -> Void {
         let collection = collections.getCollectionReference("gardenItems")
         
         guard let collection = collection else { return }
@@ -43,21 +42,22 @@ class GardenViewModel: ObservableObject {
         gardenRepo.getUserItems(query: query) { result in
             DispatchQueue.main.async {
                 self.items = result
-                // Check if tree already exists
-                if let i = result.firstIndex(where: { $0.type == GardenItemType.tree }) {
-                    self.tree = result[i]
-                } else {
-                    self.addTree()
+                
+                let index = self.items.firstIndex{$0.type == GardenItemType.tree}
+                
+                if let index = index {
+                    self.tree = self.items[index]
                 }
+                
             }
         }
     }
     
-    func addTree(){
+    @objc func addTree(){
         let settings = UserService.user.settings
         guard settings != nil else { return }
         let treeName = "\(settings!.treeColor)-\(addDash(settings!.tree))"
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName, group: UserService.user.group)
+        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName, scale: 0.2, group: UserService.user.group)
         gardenRepo.addItem(item: tree)
         DispatchQueue.main.async {
             self.tree = tree

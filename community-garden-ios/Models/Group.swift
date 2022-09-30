@@ -23,7 +23,7 @@ struct GardenGroup: Codable {
 }
 
 struct Reactions: Codable {
-    var group: Int
-    var date: String
+    var group: Int = 0
+    var date: String = ""
     var love: Int = 0
 }

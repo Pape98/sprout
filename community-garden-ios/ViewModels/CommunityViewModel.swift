@@ -32,6 +32,10 @@ class CommunityViewModel: ObservableObject {
                        selector: #selector(self.fetchTrees),
                        name: Notification.Name(NotificationType.FetchCommunityTrees.rawValue),
                        object: nil)
+        
+        DispatchQueue.main.async {
+            self.reactions = Reactions(group: UserService.user.group, date: Date.today, love: 0)
+        }
     }
     
     func fetchGroup(){
@@ -96,7 +100,7 @@ class CommunityViewModel: ObservableObject {
     func sendLove(){
         let tokens: [String] = members.values.map { $0.fcmToken }
         reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
-            fetchReactions()
+            self.reactions!.love += 1
         }
     }
 }

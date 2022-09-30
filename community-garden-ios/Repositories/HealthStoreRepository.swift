@@ -1,5 +1,5 @@
 //
-//  HealthStoreRepository2.swift
+//  HealthStoreRepository.swift
 //  community-garden-ios
 //
 //  Created by Pape Sow Traoré on 11/07/2022.

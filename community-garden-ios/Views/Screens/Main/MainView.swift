@@ -81,7 +81,7 @@ struct MainView: View {
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
         .onAppear {
-//            AudioPlayer.shared.startBackgroundMusic()
+            AudioPlayer.shared.startBackgroundMusic()
         }
     }
     

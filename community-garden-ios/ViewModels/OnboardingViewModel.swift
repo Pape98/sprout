@@ -14,10 +14,23 @@ class OnboardingViewModel: ObservableObject {
     
     func saveSettings(values: [String: Any]){
         let userID = getUserID()
+        
+        // Convert to settings object
+        do {
+            let json = try JSONSerialization.data(withJSONObject: values)
+            let decoder = JSONDecoder()
+
+            let decodedSetting = try decoder.decode(UserSettings.self, from: json)
+            UserService.user.settings = decodedSetting
+        } catch {
+            print(error)
+            return
+        }
+        
         if let userID = userID {
             userRepository.updateUser(userID: userID, updates: ["settings": values]) {
                 NotificationSender.send(type: NotificationType.FetchUser.rawValue)
-                NotificationSender.send(type: NotificationType.GetUserItems.rawValue)
+                NotificationSender.send(type: NotificationType.CreateTree.rawValue)
             }
         }
     }
