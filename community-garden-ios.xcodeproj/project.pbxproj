@@ -283,12 +283,12 @@
 		F005738C2770293B00EB487B /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				F0D66E3B288894B00095AEDE /* MessageOptions.swift */,
 				F005739127702F9B00EB487B /* ActionButton.swift */,
 				F0149D5A284ED5ED00782D27 /* CircledTree.swift */,
 				F0842B59285A4A32002C79BD /* CircledFlower.swift */,
 				F0F5E93B2873ACA0002C30BC /* MainBackground.swift */,
 				F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */,
-				F0F0C87628B53AA60047D9EA /* Messages */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -568,14 +568,14 @@
 			children = (
 				F043F261287EEDD1008F211C /* AppViewModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
+				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
 				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
+				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
 				F00A6F3D283C957800A176D6 /* GardenViewModel.swift */,
 				F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */,
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
-				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
-				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
-				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
+				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -639,14 +639,6 @@
 				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
 			);
 			path = components;
-			sourceTree = "<group>";
-		};
-		F0F0C87628B53AA60047D9EA /* Messages */ = {
-			isa = PBXGroup;
-			children = (
-				F0D66E3B288894B00095AEDE /* MessageOptions.swift */,
-			);
-			path = Messages;
 			sourceTree = "<group>";
 		};
 		F0F0C87828B53CCF0047D9EA /* History */ = {

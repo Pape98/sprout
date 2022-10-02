@@ -15,7 +15,6 @@ struct Community: View {
     
     var weatherInfo: [String: String] = getWeatherInfo()
     @State var showMessageSheet = false
-    @State var showConfirmationAlert = false
     @State var alertMessage = "Sent message ❤️⭐"
     
     var scene: SKScene {
@@ -56,18 +55,19 @@ struct Community: View {
                     VStack(spacing: 5) {
                         
                         ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
-                            alertMessage = "Sent love ❤️ to members."
                             communityViewModel.sendLove()
-                            showConfirmationAlert = true
+                            let message = NotificationMessage(title: "Community Message ✉️", body: "Sent love ❤️ to members.")
+                            NotificationService.shared.sendNotification(message: message, interval: 1)
                         }
                         
                         ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
                             alertMessage = "Sent encouragement ⭐ to members."
                             communityViewModel.sendEncouragement()
-                            showConfirmationAlert = true
+                            let message = NotificationMessage(title: "Community Message ✉️", body: "Sent encouragement ⭐ to members.")
+                            NotificationService.shared.sendNotification(message: message, interval: 1)
                         }
                     }
-                   
+                    
                 }
             }
             .padding(.horizontal)
@@ -86,12 +86,6 @@ struct Community: View {
                 MessageOptions(user: user)
             }
         }
-        .alert(isPresented: $showConfirmationAlert){
-            Alert(title: Text("Community Message ✉️"), message: Text(alertMessage), dismissButton: .default(Text("Ok")))
-            
-        }
-        
-        
     }
     
     @ViewBuilder

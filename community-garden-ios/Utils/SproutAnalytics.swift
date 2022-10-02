@@ -15,10 +15,13 @@ class SproutAnalytics {
     
     init(){
         if let user = Auth.auth().currentUser {
-            let parameters: [String: Any] = ["userID": user.uid, "name": user.displayName ?? "No Name", "timestamp": Date().timeIntervalSince1970]
+            let parameters: [String: Any] = ["userID": user.uid,
+                                             "name": user.displayName ?? "No Name", "timestamp": Date().timeIntervalSince1970,
+                                             "group": UserService.user.group
+            ]
             Analytics.setUserID(user.uid)
             Analytics.setDefaultEventParameters(parameters)
-            Analytics.setUserProperty("group-\(UserService.user.group)", forName: "group")
+//            Analytics.setUserProperty("group-\(UserService.user.group)", forName: "group")
         }
     }
     
@@ -39,32 +42,39 @@ class SproutAnalytics {
         Analytics.logEvent(AnalyticsEventScreenView, parameters: ["screen": "history"])
     }
     
+    // Droplet & Seeds
+    
+    func gainingDroplets(numDroplet: Int){
+        Analytics.logEvent("gaining_droplets", parameters: ["dropletCount": numDroplet])
+    }
+    
+    func gainingSseeds(numSeed: Int){
+        Analytics.logEvent("gaining_seeds", parameters: ["seedCount": numSeed])
+    }
+    
+    func useDroplet(){
+        Analytics.logEvent("use_droplet", parameters: nil)
+    }
+    
+    func useSeed(){
+        Analytics.logEvent("use_seed", parameters: nil)
+    }
+    
+    
+    // Messages
+    func individualMessage(senderID: String, senderName: String, receiverID: String, receiverName: String){
+        let params = ["senderID": senderID, "senderName": senderName, "receiverID": receiverID, "receiverName": receiverName]
+        Analytics.logEvent("individual_message", parameters: params)
+    }
+    
+    func groupMessage(senderID: String, senderName: String, type: ReactionType){
+        let params : [String: Any] = ["senderID": senderID, "senderName": senderName, "type": type.rawValue]
+        Analytics.logEvent("group_message", parameters: params)
+    }
+    
     // Customization
     func appCustomization(type: String){ // what was customized
         Analytics.logEvent("app_customization", parameters: ["type": type])
-    }
-    
-}
-
-class AnalyticsTimer {
-    
-    var timer: Timer?
-    var count = 0
-    
-    func start() {
-        timer =
-        Timer.scheduledTimer(withTimeInterval:1.0, repeats: true) { _ in
-            self.count = self.count + 1
-        }
-    }
-    
-    func stop(){
-        timer?.invalidate()
-        timer = nil
-    }
-    
-    func reset(){
-        count = 0
     }
     
 }

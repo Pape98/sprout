@@ -101,6 +101,8 @@ class CommunityViewModel: ObservableObject {
         let tokens: [String] = members.values.map { $0.fcmToken }
         reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
             self.fetchReactions()
+            let user = UserService.user
+            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.love)
         }
     }
     
@@ -108,6 +110,8 @@ class CommunityViewModel: ObservableObject {
         let tokens: [String] = members.values.map { $0.fcmToken }
         reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
             self.fetchReactions()
+            let user = UserService.user
+            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.encouragement)
         }
     }
 }

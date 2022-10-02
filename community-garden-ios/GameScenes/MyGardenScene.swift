@@ -84,7 +84,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         flower.setScale(0)
         flower.zPosition = 10
         
-        let scale = 0.06
+        let scale = 0.065
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
         

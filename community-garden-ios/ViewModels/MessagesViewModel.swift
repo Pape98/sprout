@@ -42,6 +42,10 @@ class MessagesViewModel: ObservableObject {
         )
                         
         messagesRepository.sendMessage(newMessage)
+        SproutAnalytics.shared.individualMessage(senderID: sender.id,
+                                                 senderName: sender.name,
+                                                 receiverID: receiver.id,
+                                                 receiverName: receiver.name)
     }
     
     func getUserMessages(){

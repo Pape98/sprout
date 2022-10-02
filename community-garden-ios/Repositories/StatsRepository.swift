@@ -150,8 +150,18 @@ class StatsRepository {
         if  progressDifference >= threshold && threshold > 0 {
             progress.old = value - (value.truncatingRemainder(dividingBy: threshold))
             let statAddition = progressDifference / threshold
+            print("addition",data, mappedElement, Int(statAddition))
+            
             guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mappedElement] else { return }
             updateCallback(statAddition)
+            
+            // Analytics
+            let addition = Int(statAddition)
+            if mappedElement == "Tree"{
+                SproutAnalytics.shared.gainingDroplets(numDroplet: addition)
+            } else {
+                SproutAnalytics.shared.gainingSseeds(numSeed: addition)
+            }
         }
         progress.new = value
         
