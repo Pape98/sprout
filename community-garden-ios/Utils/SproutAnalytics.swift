@@ -25,7 +25,7 @@ class SproutAnalytics {
     func appLaunch(){
         Analytics.logEvent("app_launch", parameters: nil)
     }
-    
+        
     // Screen views
     func viewOwnGarden(){
         Analytics.logEvent(AnalyticsEventScreenView, parameters: ["screen": "own_garden"])
