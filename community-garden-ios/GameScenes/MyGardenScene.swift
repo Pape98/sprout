@@ -84,7 +84,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         flower.setScale(0)
         flower.zPosition = 10
         
-        let scale = getRandomCGFloat(0.05,0.07)
+        let scale = 0.06
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
         
@@ -97,7 +97,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
                                     name: flowerName, x: x, y: y,
                                     scale: scale,
-                                    group: UserService.user.group)
+                                    group: UserService.user.group,
+                                    gardenName: UserService.user.settings!.gardenName,
+                                    userName: UserService.user.name
+        )
         
         gardenViewModel.addFlower(flowerItem)
         

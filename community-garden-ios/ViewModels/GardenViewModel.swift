@@ -57,7 +57,14 @@ class GardenViewModel: ObservableObject {
         let settings = UserService.user.settings
         guard settings != nil else { return }
         let treeName = "\(settings!.treeColor)-\(addDash(settings!.tree))"
-        let tree = GardenItem(userID: UserService.user.id, type: GardenItemType.tree, name: treeName, scale: 0.5, group: UserService.user.group)
+        let tree = GardenItem(userID: UserService.user.id,
+                              type: GardenItemType.tree,
+                              name: treeName,
+                              scale: 0.5,
+                              group: UserService.user.group,
+                              gardenName: settings!.gardenName,
+                              userName: UserService.user.name)
+        
         gardenRepo.addItem(item: tree)
         DispatchQueue.main.async {
             self.tree = tree

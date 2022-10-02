@@ -28,3 +28,8 @@ struct Reactions: Codable {
     var love: Int?
     var encouragement: Int?
 }
+
+struct NotificationMessage {
+    var title: String = ""
+    var body: String = ""
+}

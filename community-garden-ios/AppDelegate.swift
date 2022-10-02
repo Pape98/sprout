@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UIApplication.shared.registerForRemoteNotifications()
-                
+        
         return true
     }
     
@@ -43,11 +43,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         MessagesViewModel.shared.getUserMessages()
-        // Print message ID.
-        print(userInfo)
-
-         // Print full message.
-         print(userInfo)
+        
+        guard let userInfo = userInfo as NSDictionary? as? [String: Any] else {
+            completionHandler(UIBackgroundFetchResult.newData)
+            return
+        }
+        
+        var message = NotificationMessage()
+        
+        if let type = userInfo["type"] {
+            
+            if type as! String == "encouragement" {
+                message.title = "Community Encouragement 🌟"
+                message.body  = "You got this 🌟!"
+            } else {
+                message.title = "Community Love 💖"
+                message.body  = "We love you 💖"
+            }
+            
+            NotificationService.shared.sendNotification(message: message)
+        }
+        
         completionHandler(UIBackgroundFetchResult.newData)
     }
     

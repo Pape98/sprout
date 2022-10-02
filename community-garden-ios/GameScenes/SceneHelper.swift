@@ -68,31 +68,6 @@ class SceneHelper {
         scene.addChild(pond)
     }
     
-    // For community view
-    static func addTree(tree: GardenItem, scene: SKScene, position: CGPoint, zPosition: CGFloat = 5.0){
-        // Tree
-        let treeNode = SKSpriteNode(imageNamed: tree.name)
-        treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
-        treeNode.position = position
-        treeNode.name = tree.userID
-        treeNode.zPosition = zPosition
-        
-        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
-        addGrass(scene: scene, location: grassLocation)
-        
-        treeNode.setScale(tree.scale * 0.5)
-//        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
-//        treeNode.run(treeAction)
-        
-        // Shadow
-        let shadowNode = SKSpriteNode(imageNamed: "shadow")
-        shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
-        shadowNode.setScale(tree.scale * 0.5)
-        
-        scene.addChild(shadowNode)
-        scene.addChild(treeNode)
-    }
-    
     static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> SKSpriteNode {
         // Tree
         let treeTexture = SKTexture(imageNamed: tree.name)

@@ -233,6 +233,7 @@
 		F0F0C87428B50A9B0047D9EA /* MessageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCard.swift; sourceTree = "<group>"; };
 		F0F0C87928B53CFE0047D9EA /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		F0F3672528EA026300F79D1A /* Baloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Baloo.ttf; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
@@ -356,6 +357,7 @@
 		F0475B5E28610E3400C68B35 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F0F3672528EA026300F79D1A /* Baloo.ttf */,
 				F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */,
 			);
 			path = Fonts;

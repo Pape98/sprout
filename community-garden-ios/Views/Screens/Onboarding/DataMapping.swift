@@ -55,7 +55,7 @@ struct DataMapping: View {
     var body: some View {
         
         VStack {
-            PickerTitle(header: "I want to see...", subheader: "To map data to elements in the scene, drag label to the image 🔎  ")
+            PickerTitle(header: "I want to see...", subheader: "To map data to elements in the scene, hold & drag label to the image 🔎  ")
             
             LazyVGrid(columns: columns, spacing: 20) {
                 MetaphorCard(name: "\(treeColor)-\(treeType)", key: MappingKeys.TREE)

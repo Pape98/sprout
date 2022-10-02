@@ -133,6 +133,7 @@ extension Text {
         self.font(.largeTitle)
             .foregroundColor(.black)
             .bold()
+            .font(.custom("Baloo", size: 25))
     }
     
     func bodyStyle() -> some View {

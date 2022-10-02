@@ -72,7 +72,7 @@ class CommunityGardenScene: SKScene {
         
         for tree in communityViewModel.trees {
             let position = treePositions![counter]
-            SceneHelper.addTree(tree: tree, scene: self, position: position)
+            addTree(tree: tree, position: position)
             counter += 1
             
             // Get new Positions
@@ -83,7 +83,6 @@ class CommunityGardenScene: SKScene {
     func initializeTreePositions() -> [CGPoint]{
         
         let xOffset = 80.0
-        let yOffset = 225.0
         
         let fenceOffset = (leftFence?.size.height)!/2
         // Bottom
@@ -165,6 +164,40 @@ class CommunityGardenScene: SKScene {
         node.setScale(0.085)
         
         addChild(node)
+    }
+    
+    // For community view
+    func addTree(tree: GardenItem, position: CGPoint, zPosition: CGFloat = 5.0){
+        // Tree
+        let treeNode = SKSpriteNode(imageNamed: tree.name)
+        treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
+        treeNode.position = position
+        treeNode.name = tree.userID
+        treeNode.zPosition = zPosition
+        
+        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
+        SceneHelper.addGrass(scene: self, location: grassLocation)
+        
+        treeNode.setScale(tree.scale * 0.5)
+        
+        // Label
+        
+        let label = SKLabelNode(text: "Baloo")
+        let labely = treeNode.position.y + treeNode.size.height + 10
+        label.position = CGPoint(x: treeNode.position.x , y: labely)
+        label.text = tree.gardenName
+        label.color = UIColor.darkText
+        label.colorBlendFactor = 1;
+        label.fontSize = treeNode.size.width * 0.20
+        addChild(label)
+        
+        // Shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
+        shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
+        shadowNode.setScale(tree.scale * 0.5)
+        
+        addChild(shadowNode)
+        addChild(treeNode)
     }
     
     

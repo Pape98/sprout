@@ -23,4 +23,6 @@ struct GardenItem: Identifiable, Codable {
     var date = Date.now.getFormattedDate(format: "MM-dd-yyyy")
     var documentName: String?
     var group: Int = 0
+    var gardenName = ""
+    var userName = ""
 }
