@@ -23,10 +23,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         
+        
+        // Styling
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UIApplication.shared.registerForRemoteNotifications()
+        
+        // Toolbar title
+        let date = Date()
+        let dateComponents = Calendar.current.dateComponents([.hour], from: date)
+        let hour = dateComponents.hour!
+        var toolbarFontColor = UIColor.black
+        
+        if hour >= 0 && hour <= 6 {
+            toolbarFontColor = UIColor.white
+        }
+        
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: toolbarFontColor ]
         
         return true
     }

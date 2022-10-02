@@ -11,7 +11,7 @@ import AVFoundation
 struct MessageOptions: View {
     
     @EnvironmentObject var messagesViewModel: MessagesViewModel
-    
+    @EnvironmentObject var appViewModel: AppViewModel
     
     @State private var selectedMessage: MessageOption = MessageOption(text: "Proud of you!", color: "cosmos")
     @State private var isMessagePrivate = true
@@ -38,6 +38,7 @@ struct MessageOptions: View {
                             
                             Text(user.name)
                                 .bodyStyle()
+                                .foregroundColor(appViewModel.fontColor)
                         }
                         .padding(.top)
                         

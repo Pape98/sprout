@@ -12,6 +12,7 @@ struct MyGarden: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
     
     let userDefaults = UserDefaultsService.shared
     
@@ -36,7 +37,7 @@ struct MyGarden: View {
                             Button("Switch"){
                                 toggleDropItem()
                             }
-                            .foregroundColor(.black)
+                            .foregroundColor(appViewModel.fontColor)
                             
                             Image(gardenViewModel.dropItem.rawValue)
                                 .resizable()
@@ -77,10 +78,20 @@ struct MyGarden: View {
 
 struct Stats: View {
     
+    @EnvironmentObject var appViewModel: AppViewModel
+    
     var image: String
     var value: Int
     var imageSize: CGFloat {
         40.0
+    }
+    
+    var fontColor: Color {
+        if appViewModel.backgroundColor == "night" {
+            return .white
+        }
+        
+        return .seaGreen
     }
     
     var body: some View {
@@ -91,7 +102,7 @@ struct Stats: View {
             Text("\(value)")
                 .font(.title2)
                 .bold()
-                .foregroundColor(.seaGreen)
+                .foregroundColor(fontColor)
         }
     }
 }
@@ -103,6 +114,7 @@ struct StepView_Previews: PreviewProvider {
             .background(Color.hawks)
             .environmentObject(UserViewModel())
             .environmentObject(GardenViewModel())
+            .environmentObject(AppViewModel())
         
     }
 }

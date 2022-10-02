@@ -23,55 +23,57 @@ struct MainView: View {
     
     var body: some View {
         
-        TabView {
-            
-            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-                Community()
-                    .tabItem {
-                        Label("Community", systemImage: "globe")
-                    }
-                    .onAppear {
-                        playSound()
-                    }
-            }
+        ZStack {
+            TabView {
+                
+    //            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+    //                Community()
+    //                    .tabItem {
+    //                        Label("Community", systemImage: "globe")
+    //                    }
+    //                    .onAppear {
+    //                        playSound()
+    //                    }
+    //            }
 
-            
-            Dashboard()
-                .tabItem {
-                    Label("Dashboard", systemImage: "house.fill")
-                }
-                .onAppear {
-                    playSound()
-                }
-            
-            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-                Community()
+                
+                Dashboard()
                     .tabItem {
-                        Label("Community", systemImage: "globe")
+                        Label("Dashboard", systemImage: "house.fill")
                     }
                     .onAppear {
                         playSound()
                     }
+
+                if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+                    Community()
+                        .tabItem {
+                            Label("Community", systemImage: "globe")
+                        }
+                        .onAppear {
+                            playSound()
+                        }
+                }
+
+                History()
+                    .tabItem {
+                        Label("History", systemImage: "target")
+                    }
+                    .onAppear {
+                        SproutAnalytics.shared.viewHistory()
+                        playSound()
+                    }
+
+                if RemoteConfiguration.shared.canCustomize(group: UserService.user.group){
+                    Settings()
+                        .tabItem {
+                            Label("Settings", systemImage: "gearshape")
+                        }
+                        .onAppear {
+                            playSound()
+                        }
+                }
             }
-            
-            History()
-                .tabItem {
-                    Label("History", systemImage: "target")
-                }
-                .onAppear {
-                    SproutAnalytics.shared.viewHistory()
-                    playSound()
-                }
-            
-//            if RemoteConfiguration.shared.canCustomize(group: UserService.user.group){
-//                Settings()
-//                    .tabItem {
-//                        Label("Settings", systemImage: "gearshape")
-//                    }
-//                    .onAppear {
-//                        playSound()
-//                    }
-//            }
         }
         .accentColor(.appleGreen)
         .environmentObject(userViewModel)
@@ -80,9 +82,6 @@ struct MainView: View {
         .environmentObject(messagesViewModel)
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
-//        .onAppear {
-//            AudioPlayer.shared.startBackgroundMusic()
-//        }
     }
     
     func playSound(){

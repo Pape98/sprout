@@ -47,7 +47,7 @@ func getWeatherInfo() -> [String: String]{
     let date = Date()
     let dateComponents = Calendar.current.dateComponents([.hour], from: date)
     let hour = dateComponents.hour!
-    
+        
     if hour >= 0 && hour <= 6 { // night
         return ["image": "night-bg", "color": "night"]
     } else if hour >= 7 && hour <= 10 { // morning

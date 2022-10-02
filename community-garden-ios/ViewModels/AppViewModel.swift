@@ -7,13 +7,15 @@
 
 import Foundation
 import FirebaseAuth
+import SwiftUI
 
 class AppViewModel: ObservableObject {
     static let shared = AppViewModel()
     let nc = NotificationCenter.default
     
-    @Published var backgroundImage: String = "intro-bg"
-    @Published var backgroundColor: String = "day"
+    @Published var backgroundImage: String = "night-bg"
+    @Published var backgroundColor: String = "night"
+    @Published var fontColor: Color = .black
     
     init(){
         nc.addObserver(self,
@@ -22,6 +24,7 @@ class AppViewModel: ObservableObject {
                        object: nil)
         
         setBackground()
+
     }
     
     @objc func setUserProfile(){
@@ -55,8 +58,13 @@ class AppViewModel: ObservableObject {
         }
         
         DispatchQueue.main.async {
+            
             self.backgroundImage = image
             self.backgroundColor = color
+                        
+            if self.backgroundColor == "night" {
+                self.fontColor = .white
+            }
         }
     }
     

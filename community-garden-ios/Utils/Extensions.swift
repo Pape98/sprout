@@ -129,15 +129,15 @@ extension Color {
 }
 
 extension Text {
-    func headerStyle() -> some View {
+    func headerStyle(foregroundColor: Color = .black) -> some View {
         self.font(.largeTitle)
-            .foregroundColor(.black)
+            .foregroundColor(foregroundColor)
             .bold()
             .font(.custom("Baloo", size: 25))
     }
     
-    func bodyStyle() -> some View {
-        self.foregroundColor(.black)
+    func bodyStyle(foregroundColor: Color = .black) -> some View {
+        self.foregroundColor(foregroundColor)
             .opacity(0.66)
     }
 }

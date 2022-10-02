@@ -15,8 +15,9 @@ enum ViewMessageType {
 struct Messages: View {
     
     @EnvironmentObject var messagesViewModel: MessagesViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
+    
     @State var selectedMessageType: ViewMessageType = .received
-    @State private var isShowingSheet = false
     @State var date = ""
     
     var messages: [Message] {
@@ -38,7 +39,8 @@ struct Messages: View {
                 VStack {
                     
                     Picker("", selection: $selectedMessageType){
-                        Text("Received").tag(ViewMessageType.received)
+                        Text("Received")
+                            .tag(ViewMessageType.received)
                         Text("Sent").tag(ViewMessageType.sent)
                     }
                     .pickerStyle(.segmented)
@@ -58,18 +60,13 @@ struct Messages: View {
                 }
                 
             }
-            .sheet(isPresented: $isShowingSheet, content: {
-                //                MessageOptions(user: garden.user)
-                
-                Text("Pape")
-            })
             .navigationBarTitle("Messages", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
                     Button("Refresh"){
                         messagesViewModel.getUserMessages()
                     }
-                    .foregroundColor(.black)
+                    .foregroundColor(appViewModel.fontColor)
                 }
             }
         }
@@ -86,5 +83,6 @@ struct Messages_Previews: PreviewProvider {
     static var previews: some View {
         Messages()
             .environmentObject(MessagesViewModel())
+            .environmentObject(AppViewModel())
     }
 }

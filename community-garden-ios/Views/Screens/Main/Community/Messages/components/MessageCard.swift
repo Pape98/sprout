@@ -12,6 +12,8 @@ struct MessageCard: View {
     var message: Message
     var messageType: ViewMessageType
     
+    @EnvironmentObject var appViewModel: AppViewModel
+    
     @State var isShowingSheet = false
     
     var userFlower: String {
@@ -46,6 +48,7 @@ struct MessageCard: View {
                         Text(message.isPrivate ? "Anonymous User" : username)
                             .font(.system(size: 15))
                             .bold()
+                            .foregroundColor(appViewModel.fontColor)
                         
                         Spacer()
                         
@@ -58,6 +61,7 @@ struct MessageCard: View {
                     
                     Text(message.text)
                         .font(.system(size: 13))
+                        .foregroundColor(appViewModel.fontColor)
                     
                 }
                 
@@ -80,5 +84,6 @@ struct MessageCard_Previews: PreviewProvider {
     
     static var previews: some View {
         MessageCard(message: message, messageType: .received)
+            .environmentObject(AppViewModel())
     }
 }

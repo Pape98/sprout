@@ -9,6 +9,8 @@ import SwiftUI
 
 struct DataStatus: View {
     
+    @EnvironmentObject var appViewModel: AppViewModel
+
     var data: HealthData
     
     var date: String {
@@ -69,6 +71,7 @@ struct DataStatus: View {
                 
                 Text(data.textDisplay)
                     .font(.system(size: 15))
+                    .foregroundColor(appViewModel.fontColor)
                 
                 Spacer()
 
@@ -91,6 +94,7 @@ struct DataStatus_Previews: PreviewProvider {
     static let step = Step(date: "07-14-2022", count: 4, userID: "555")
     static var previews: some View {
         DataStatus(data: step)
+            .environmentObject(AppViewModel())
         
     }
 }

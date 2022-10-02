@@ -121,5 +121,8 @@ struct Community: View {
 struct Community_Previews: PreviewProvider {
     static var previews: some View {
         Community()
+            .environmentObject(AppViewModel())
+            .environmentObject(CommunityViewModel())
+            .environmentObject(MessagesViewModel())
     }
 }

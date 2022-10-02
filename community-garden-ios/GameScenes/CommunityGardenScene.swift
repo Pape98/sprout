@@ -188,7 +188,7 @@ class CommunityGardenScene: SKScene {
         label.text = tree.gardenName
         label.color = UIColor.darkText
         label.colorBlendFactor = 1;
-        label.fontSize = treeNode.size.width * 0.20
+        label.fontSize = treeNode.size.width * 0.17
         addChild(label)
         
         // Shadow

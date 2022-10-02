@@ -10,7 +10,7 @@ import SwiftUI
 struct MainBackground: View {
     
     var weatherInfo: [String: String] = getWeatherInfo()
-    @EnvironmentObject var appViewModel : AppViewModel
+    @State var appViewModel : AppViewModel = AppViewModel.shared
     
     var image: String = "intro-bg"
     var edges: Edge.Set = [.top]
@@ -29,8 +29,8 @@ struct MainBackground: View {
 }
 
 struct MainBackground_Previews: PreviewProvider {
+    @State static var appViewModel: AppViewModel = AppViewModel()
     static var previews: some View {
         MainBackground()
-            .environmentObject(AppViewModel())
     }
 }

@@ -12,6 +12,8 @@ import SwiftUI
 struct History: View {
     
     @EnvironmentObject var historyViewModel: HistoryViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
+    
     @State var selectedData: String = HistoryViewModel.Data.steps.rawValue
     
     var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 4)
@@ -24,6 +26,7 @@ struct History: View {
                 VStack {
                     
                     Text("Tap below to select data 😊")
+                        .foregroundColor(appViewModel.fontColor)
                     Picker("Data",selection: $selectedData){
                         ForEach(HistoryViewModel.Data.dalatList, id: \.self){ text in
                             if isUserTrackingData(DataOptions(rawValue: text)!) {
@@ -60,5 +63,6 @@ struct History_Previews: PreviewProvider {
     static var previews: some View {
         History()
             .environmentObject(HistoryViewModel())
+            .environmentObject(AppViewModel())
     }
 }
