@@ -11,6 +11,8 @@ import AVFoundation
 struct MainView: View {
     
     // MARK: View Models
+    
+    @EnvironmentObject var authViewModel: AuthenticationViewModel
     @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
@@ -26,16 +28,16 @@ struct MainView: View {
         ZStack {
             TabView {
                 
-    //            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-    //                Community()
-    //                    .tabItem {
-    //                        Label("Community", systemImage: "globe")
-    //                    }
-    //                    .onAppear {
-    //                        playSound()
-    //                    }
-    //            }
-
+                //            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+                //                Community()
+                //                    .tabItem {
+                //                        Label("Community", systemImage: "globe")
+                //                    }
+                //                    .onAppear {
+                //                        playSound()
+                //                    }
+                //            }
+                
                 
                 Dashboard()
                     .tabItem {
@@ -44,7 +46,7 @@ struct MainView: View {
                     .onAppear {
                         playSound()
                     }
-
+                
                 if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
                     Community()
                         .tabItem {
@@ -54,7 +56,7 @@ struct MainView: View {
                             playSound()
                         }
                 }
-
+                
                 History()
                     .tabItem {
                         Label("History", systemImage: "target")
@@ -63,7 +65,7 @@ struct MainView: View {
                         SproutAnalytics.shared.viewHistory()
                         playSound()
                     }
-
+                
                 if RemoteConfiguration.shared.canCustomize(group: UserService.user.group){
                     Settings()
                         .tabItem {
@@ -72,6 +74,11 @@ struct MainView: View {
                         .onAppear {
                             playSound()
                         }
+                } else {
+                    SignOut()
+                    .tabItem {
+                        Label("Sign out", systemImage: "rectangle.portrait.and.arrow.right")
+                    }
                 }
             }
         }
@@ -82,6 +89,21 @@ struct MainView: View {
         .environmentObject(messagesViewModel)
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
+    }
+    
+    @ViewBuilder
+    
+    func SignOut() -> some View {
+        ZStack {
+            MainBackground()
+            
+            VStack {
+                ActionButton(title: "Sign out", backgroundColor: .red, fontColor: .white){
+                    authViewModel.signOut()
+                }
+                .frame(width: 225)
+            }
+        }
     }
     
     func playSound(){
@@ -96,5 +118,6 @@ struct MainView_Previews: PreviewProvider {
             .environmentObject(HealthStoreViewModel())
             .environmentObject(HistoryViewModel())
             .environmentObject(CommunityViewModel())
+            .environmentObject(AppViewModel())
     }
 }
