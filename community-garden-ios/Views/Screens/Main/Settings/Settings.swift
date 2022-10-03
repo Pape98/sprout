@@ -24,6 +24,17 @@ struct Settings: View {
             ZStack {
                 MainBackground()
                 List {
+                    
+                    Section("Data"){
+                        NavigationLink {
+                            if let settings = settingsViewModel.settings {
+                                GoalslEditing()
+                            }
+                        } label : {
+                            Text("Edit Goals")
+                        }
+                    }
+                    
                     Section("Garden"){
                         
                         NavigationLink {

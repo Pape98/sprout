@@ -15,7 +15,11 @@ struct GoalsSetting: View {
 
     
     var selectedData: [String] {
-        (onboardingRouter.settings[FirestoreKey.DATA.rawValue] as! [String])
+        if onboardingRouter.settings[FirestoreKey.DATA.rawValue] != nil {
+          return (onboardingRouter.settings[FirestoreKey.DATA.rawValue] as! [String])
+        } else {
+            return []
+        }
     }
     
     var body: some View {
@@ -38,6 +42,8 @@ struct GoalsSetting: View {
 struct GoalSlider: View {
     
     @State var value: Float = 0
+    @State private var isEditing = false
+    
     var goalName: String
     var defaultKey: FirestoreKey {
         GoalsSettings.defaultsKeys[goalName]!
@@ -53,11 +59,16 @@ struct GoalSlider: View {
             Slider(
                 value: $value,
                 in: GoalsSettings.ranges[goalName]!,
-                step: GoalsSettings.steps[goalName]!
+                step: GoalsSettings.steps[goalName]!,
+                onEditingChanged: { editing in
+                    isEditing = editing
+                }
             )
             .tint(.appleGreen)
-            .onChange(of: value) { newValue in
-                onboardingRouter.saveSetting(key: defaultKey, value: value)
+            .onChange(of: isEditing) { newValue in
+                if newValue == false {
+                    onboardingRouter.saveSetting(key: defaultKey, value: value)
+                }
             }
             
             Text("\(Int(value)) \(GoalsSettings.labels[goalName]!)")
@@ -73,5 +84,7 @@ struct GoalsSetting_Previews: PreviewProvider {
     static var previews: some View {
         GoalsSetting()
             .background(Color.hawks)
+            .environmentObject(AppViewModel())
+            .environmentObject(OnboardingRouter())
     }
 }

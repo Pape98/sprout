@@ -118,6 +118,7 @@
 		F0F0C87A28B53CFE0047D9EA /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87928B53CFE0047D9EA /* History.swift */; };
 		F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */; };
 		F0F3672928EA97B400F79D1A /* moon-jubilant.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672828EA97B400F79D1A /* moon-jubilant.json */; };
+		F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F3672A28EB422800F79D1A /* GoalslEditing.swift */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
 		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
@@ -236,6 +237,7 @@
 		F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		F0F3672528EA026300F79D1A /* Baloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Baloo.ttf; sourceTree = "<group>"; };
 		F0F3672828EA97B400F79D1A /* moon-jubilant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "moon-jubilant.json"; sourceTree = "<group>"; };
+		F0F3672A28EB422800F79D1A /* GoalslEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalslEditing.swift; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
@@ -629,6 +631,7 @@
 				F0D66E3228834EDC0095AEDE /* SettingButton.swift */,
 				F0D66E3428836AD50095AEDE /* SettingPicker.swift */,
 				F0337C392887A9A400251FD0 /* NameChanging.swift */,
+				F0F3672A28EB422800F79D1A /* GoalslEditing.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -866,6 +869,7 @@
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
 				F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
+				F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */,
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
 				F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */,
 				F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */,

@@ -47,24 +47,24 @@ struct MainView: View {
                         playSound()
                     }
                 
-                if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-                    Community()
-                        .tabItem {
-                            Label("Community", systemImage: "globe")
-                        }
-                        .onAppear {
-                            playSound()
-                        }
-                }
-                
-                History()
-                    .tabItem {
-                        Label("History", systemImage: "target")
-                    }
-                    .onAppear {
-                        SproutAnalytics.shared.viewHistory()
-                        playSound()
-                    }
+                //                if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+                //                    Community()
+                //                        .tabItem {
+                //                            Label("Community", systemImage: "globe")
+                //                        }
+                //                        .onAppear {
+                //                            playSound()
+                //                        }
+                //                }
+                //
+                //                History()
+                //                    .tabItem {
+                //                        Label("History", systemImage: "target")
+                //                    }
+                //                    .onAppear {
+                //                        SproutAnalytics.shared.viewHistory()
+                //                        playSound()
+                //                    }
                 
                 if RemoteConfiguration.shared.canCustomize(group: UserService.user.group){
                     Settings()
@@ -76,9 +76,9 @@ struct MainView: View {
                         }
                 } else {
                     SignOut()
-                    .tabItem {
-                        Label("Sign out", systemImage: "rectangle.portrait.and.arrow.right")
-                    }
+                        .tabItem {
+                            Label("Sign out", systemImage: "rectangle.portrait.and.arrow.right")
+                        }
                 }
             }
         }

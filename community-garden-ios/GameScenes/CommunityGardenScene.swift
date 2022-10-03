@@ -174,7 +174,7 @@ class CommunityGardenScene: SKScene {
         treeNode.zPosition = zPosition
         
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
-        let grass = SceneHelper.addGrass(scene: self, location: grassLocation)
+        let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
         
         treeNode.setScale(tree.scale * 0.5)
         
