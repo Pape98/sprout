@@ -115,7 +115,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             case .flower:
                 SceneHelper.addExistingFlower(flower: item, scene: self)
             case .tree:
-                let nodes = SceneHelper.addTree(tree: item, ground: ground, scene: self)
+                let nodes = addTree(tree: item, ground: ground, scene: self)
                 tree = nodes[0]
                 grass = nodes[1]
                 shadow = nodes[2]
@@ -231,6 +231,50 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     @objc func createCloud(){
         SceneHelper.createCloud(scene: self)
+    }
+    
+    func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> [SKSpriteNode] {
+        // Tree
+        let treeTexture = SKTexture(imageNamed: tree.name)
+        let treeNode = SKSpriteNode(texture: treeTexture)
+        treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
+        
+        if tree.y == 0 && tree.x == 0 {
+            treeNode.position = CGPoint(x: scene.frame.midX, y: ground.size.height / 2)
+        } else {
+            treeNode.position = CGPoint(x: tree.x, y: tree.y)
+        }
+            
+        treeNode.name = NodeNames.tree.rawValue
+        treeNode.zPosition = 5
+        
+        let physicsBodySize = CGSize(width: treeNode.size.width, height: treeNode.size.height * 1.5)
+        treeNode.physicsBody = SKPhysicsBody(texture: treeTexture, size: physicsBodySize)
+        treeNode.physicsBody?.categoryBitMask = CollisionTypes.tree.rawValue
+        treeNode.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
+        treeNode.physicsBody?.isDynamic = false
+        treeNode.setScale(tree.scale)
+        
+        if isAnimated {
+            treeNode.setScale(0)
+            let treeAction = SKAction.scale(to: tree.scale, duration: SCALE_DURATION)
+            treeNode.run(treeAction)
+        }
+        
+        scene.addChild(treeNode)
+        
+        // Grass
+        let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
+        let grassNode = SceneHelper.addGrass(scene: scene, location: grassLocation)
+        
+        // Shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
+        shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
+        shadowNode.setScale(tree.scale)
+        
+        scene.addChild(shadowNode)
+        
+        return [treeNode, grassNode, shadowNode]
     }
     
     // MARK: Utility methods

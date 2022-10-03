@@ -26,6 +26,7 @@ struct NameChanging: View {
                     TextField("", text: $gardenName)
                 }
             }
+            .modifier(ListBackgroundModifier())
         }
         .navigationTitle("Names")
         .toolbar {

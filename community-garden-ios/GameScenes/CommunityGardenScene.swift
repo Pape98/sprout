@@ -174,7 +174,7 @@ class CommunityGardenScene: SKScene {
         treeNode.zPosition = zPosition
         
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
-        let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
+        let grass = SceneHelper.addGrass(scene: self, location: grassLocation)
         
         treeNode.setScale(tree.scale * 0.5)
         
@@ -189,7 +189,7 @@ class CommunityGardenScene: SKScene {
         
         // Label
         let label = SKLabelNode(text: "Baloo")
-        label.position = CGPoint(x: shadowNode.position.x , y: shadowNode.position.y - shadowNode.size.height * 1.25)
+        label.position = CGPoint(x: shadowNode.position.x , y: shadowNode.position.y - 25)
         label.text = tree.gardenName
         label.color = UIColor.black
         label.colorBlendFactor = 1;
