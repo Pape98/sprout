@@ -117,6 +117,7 @@
 		F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87428B50A9B0047D9EA /* MessageCard.swift */; };
 		F0F0C87A28B53CFE0047D9EA /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87928B53CFE0047D9EA /* History.swift */; };
 		F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */; };
+		F0F3672928EA97B400F79D1A /* moon-jubilant.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672828EA97B400F79D1A /* moon-jubilant.json */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
 		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
@@ -234,6 +235,7 @@
 		F0F0C87928B53CFE0047D9EA /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
 		F0F3672528EA026300F79D1A /* Baloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Baloo.ttf; sourceTree = "<group>"; };
+		F0F3672828EA97B400F79D1A /* moon-jubilant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "moon-jubilant.json"; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
@@ -436,10 +438,8 @@
 		F08C8C5828AC1A6500DDDFB8 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				F04B545828E72FCC00F6FFE1 /* deer.json */,
-				F04B545928E72FCC00F6FFE1 /* dog.json */,
-				F04B545628E72F9000F6FFE1 /* turtle.json */,
-				F08C8C7428AC37B000DDDFB8 /* bird.json */,
+				F0F3672728EA97A300F79D1A /* Moon */,
+				F0F3672628EA979600F79D1A /* Animals */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -650,6 +650,25 @@
 			path = History;
 			sourceTree = "<group>";
 		};
+		F0F3672628EA979600F79D1A /* Animals */ = {
+			isa = PBXGroup;
+			children = (
+				F04B545828E72FCC00F6FFE1 /* deer.json */,
+				F04B545928E72FCC00F6FFE1 /* dog.json */,
+				F04B545628E72F9000F6FFE1 /* turtle.json */,
+				F08C8C7428AC37B000DDDFB8 /* bird.json */,
+			);
+			path = Animals;
+			sourceTree = "<group>";
+		};
+		F0F3672728EA97A300F79D1A /* Moon */ = {
+			isa = PBXGroup;
+			children = (
+				F0F3672828EA97B400F79D1A /* moon-jubilant.json */,
+			);
+			path = Moon;
+			sourceTree = "<group>";
+		};
 		F0F5E93828739422002C30BC /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -756,6 +775,7 @@
 				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
 				F04B545728E72F9100F6FFE1 /* turtle.json in Resources */,
 				F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */,
+				F0F3672928EA97B400F79D1A /* moon-jubilant.json in Resources */,
 				F08C8C7528AC37B000DDDFB8 /* bird.json in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
 			);
@@ -1029,7 +1049,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1071,7 +1091,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;

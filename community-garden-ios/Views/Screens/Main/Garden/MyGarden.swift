@@ -23,7 +23,7 @@ struct MyGarden: View {
     }
     
     var body: some View {
-        ZStack() {
+        ZStack(alignment: .trailing) {
             
             // MARK: SpriteKit view
             
@@ -56,14 +56,12 @@ struct MyGarden: View {
             
             // MARK: Lottie View
             
-            VStack {
-                //
-                //                LottieView(filename: "bird")
-                //                    .offset(y: 30)
+            VStack(alignment: .leading) {
+                
+                    LottieView(filename: "moon-jubilant")
+                        .frame(width: 210, height: 210)
                 
                 Spacer()
-//                LottieView(filename: "bird")
-//                    .frame(height: 150)
             }
             
         }

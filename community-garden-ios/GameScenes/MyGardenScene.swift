@@ -146,17 +146,12 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             let location = touch.location(in: self)
             // let nodes = self.nodes(at: location)
             
-            let yBoundary = ground.size.height - shadow.size.height/2
-            let xBoundary = pond.size.width + 20
-            
-            if location.y >= yBoundary || location.y <= 25 {
-                continue
-            }
-            
-            if location.x  <= xBoundary {
-                continue
-            }
-            
+            guard tree != nil else { continue }
+            guard grass != nil else { continue }
+            guard shadow != nil else { continue }
+        
+            if isValidTreeLocation(location) == false { continue }
+                        
             // NOTE: Can only move tree
             tree.position = location
             grass.position = CGPoint(x: tree.position.x - 15, y: tree.position.y)
@@ -167,6 +162,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
+        
+        if isValidTreeLocation(location) == false { return }
         
         if gardenViewModel.tree != nil {
             gardenViewModel.tree!.x = location.x
@@ -237,6 +234,16 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     }
     
     // MARK: Utility methods
+    func isValidTreeLocation(_ location: CGPoint) -> Bool {
+        let yBoundary = ground.size.height - shadow.size.height/2
+        let xBoundary = pond.size.width + 20
+        
+        if location.y >= yBoundary || location.y <= 20 { return false }
+        else if location.x  <= xBoundary { return false }
+        
+        return true
+    }
+    
     func handleTreeDropletContact(droplet: SKNode){
         // Only increase height if less than max height
         if tree.size.height < growthBreakpoint && gardenViewModel.dropItem == GardenElement.droplet {

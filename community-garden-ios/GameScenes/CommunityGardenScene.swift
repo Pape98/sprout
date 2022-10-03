@@ -23,9 +23,7 @@ class CommunityGardenScene: SKScene {
     let messagesViewModel = MessagesViewModel.shared
     
     var treePositions: [CGPoint]?
-    //    let xOffset = 80.0
-    //    let yOffset = 225.0
-    
+    let SCALE_DURATION = 2.0
     
     override func didMove(to view: SKView) {
         
@@ -176,26 +174,28 @@ class CommunityGardenScene: SKScene {
         treeNode.zPosition = zPosition
         
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
-        SceneHelper.addGrass(scene: self, location: grassLocation)
+        let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
         
         treeNode.setScale(tree.scale * 0.5)
         
-        // Label
-        
-        let label = SKLabelNode(text: "Baloo")
-        let labely = treeNode.position.y + treeNode.size.height + 10
-        label.position = CGPoint(x: treeNode.position.x , y: labely)
-        label.text = tree.gardenName
-        label.color = UIColor.darkText
-        label.colorBlendFactor = 1;
-        label.fontSize = treeNode.size.width * 0.17
-        addChild(label)
+        treeNode.setScale(0)
+        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
+        treeNode.run(treeAction)
         
         // Shadow
         let shadowNode = SKSpriteNode(imageNamed: "shadow")
         shadowNode.position = CGPoint(x: treeNode.position.x, y: treeNode.position.y)
         shadowNode.setScale(tree.scale * 0.5)
         
+        // Label
+        let label = SKLabelNode(text: "Baloo")
+        label.position = CGPoint(x: shadowNode.position.x , y: shadowNode.position.y - shadowNode.size.height * 1.25)
+        label.text = tree.gardenName
+        label.color = UIColor.black
+        label.colorBlendFactor = 1;
+        label.fontSize = treeNode.size.width * 0.17
+        
+        addChild(label)
         addChild(shadowNode)
         addChild(treeNode)
     }

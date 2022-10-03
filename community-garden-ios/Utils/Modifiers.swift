@@ -22,7 +22,7 @@ struct WeatherOverlay: ViewModifier {
             // Background Image
             Image(weatherInfo["image"]!)
                 .resizable()
-                .ignoresSafeArea()
+                .ignoresSafeArea(.all, edges: [.top])
                 .opacity(opacity)
                 .overlay {
                     Rectangle()
