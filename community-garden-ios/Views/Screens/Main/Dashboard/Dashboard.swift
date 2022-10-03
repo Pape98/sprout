@@ -114,7 +114,7 @@ struct Dashboard: View {
 
 
                             if isUserTrackingData(DataOptions.walkingRunningDistance){
-                                DashboardCard(icon: "figure.walk"){
+                                DashboardCard(icon: "sportscourt.fill"){
                                     if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
                                         CardInfo(value: "\(Int(walkingRunning.distance))", label: "Mile(s)")
                                     } else {

@@ -10,6 +10,10 @@ import FirebaseAuth
 
 class GardenViewModel: ObservableObject {
     
+    enum GardenMode {
+        case moving, planting
+    }
+    
     static var shared: GardenViewModel = GardenViewModel()
     let gardenRepo = GardenRepository.shared
     let statsRepo = StatsRepository.shared
@@ -19,6 +23,8 @@ class GardenViewModel: ObservableObject {
     
     @Published var items: [GardenItem] = []
     @Published var dropItem = GardenElement.droplet
+    @Published var gardenMode = GardenMode.moving
+    
     var flowers: [GardenItem] = []
     var tree: GardenItem?
     
@@ -50,6 +56,12 @@ class GardenViewModel: ObservableObject {
                 }
                 
             }
+        }
+    }
+    
+    func toggleGardenMode() {
+        DispatchQueue.main.async {
+            self.gardenMode = self.gardenMode == .moving ? .planting : .moving
         }
     }
     
@@ -89,9 +101,9 @@ class GardenViewModel: ObservableObject {
     }
     
     func decreaseNumSeeds(){
-        statsRepo.updateNumSeeds(-1)
-        UserViewModel.shared.getNumSeeds()
-        SproutAnalytics.shared.useSeed()
+//        statsRepo.updateNumSeeds(-1)
+//        UserViewModel.shared.getNumSeeds()
+//        SproutAnalytics.shared.useSeed()
     }
     
     func hasEnoughDroplets() -> Bool {

@@ -10,7 +10,8 @@ import AVFoundation
 
 class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
-    let TREE_SCALE_FACTOR = 0.25
+    let TREE_SCALE_FACTOR = 0.075
+    let TREE_MAX_SCALE = 2.0
     let SCALE_DURATION = 2.0
     let userDefaults = UserDefaultsService.shared
     
@@ -38,10 +39,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     var gameTimer: Timer?
     
     let clouds = ["cloud1", "cloud2"]
-    // When to start/stop growing
-    var growthBreakpoint: CGFloat {
-        frame.midY * 0.8
-    }
     
     // ViewModels
     let userViewModel = UserViewModel.shared
@@ -72,6 +69,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Flower methods
     func createNewFlower(position: CGPoint) {
+        
+        // Check if position is valid
+        if position.y > ground.size.height { return }
+        
         // Garden Flower
         let settings = UserService.user.settings
         guard let settings = settings else { return }
@@ -80,14 +81,14 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let flower = SKSpriteNode(imageNamed: "flowers/\(flowerName)")
         
         flower.anchorPoint = CGPoint(x: 0, y: 0)
-        flower.position = CGPoint(x: position.x, y: getRandomCGFloat(5, ground.size.height * 0.7))
+        flower.position = CGPoint(x: position.x, y: position.y)
         
         flower.name = NodeNames.flower.rawValue
         flower.colorBlendFactor = getRandomCGFloat(0, 0.2)
         flower.setScale(0)
         flower.zPosition = 10
         
-        let scale = 0.068
+        let scale = 0.08
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
         
@@ -136,12 +137,16 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
         
-        if gardenViewModel.hasEnoughDropItem() {
+        // Check if user has enough drop item and is in planting mode
+        if gardenViewModel.hasEnoughDropItem() && gardenViewModel.gardenMode == GardenViewModel.GardenMode.planting {
             releaseDropItem(position: location)
         }
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+        if gardenViewModel.gardenMode != GardenViewModel.GardenMode.moving { return }
+        
         for touch in touches {
             let location = touch.location(in: self)
             // let nodes = self.nodes(at: location)
@@ -207,10 +212,14 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Garden item creation methods
     func releaseDropItem(position: CGPoint){
+        
+        // Case tree has reached max height for tree
+        if gardenViewModel.dropItem == GardenElement.droplet && gardenViewModel.tree!.scale >= TREE_MAX_SCALE { return }
+            
         let name = gardenViewModel.dropItem
         let dropItem = SKSpriteNode(imageNamed: name.rawValue)
         dropItem.position = position
-        dropItem.setScale(0.55)
+        dropItem.setScale(0.50)
         dropItem.physicsBody = SKPhysicsBody(circleOfRadius: dropItem.size.width / 2)
         dropItem.physicsBody?.categoryBitMask = CollisionTypes.dropItem.rawValue
         
@@ -290,10 +299,14 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     func handleTreeDropletContact(droplet: SKNode){
         // Only increase height if less than max height
-        if tree.size.height < growthBreakpoint && gardenViewModel.dropItem == GardenElement.droplet {
-            let treeScale = tree.xScale + TREE_SCALE_FACTOR
+        if gardenViewModel.tree!.scale < TREE_MAX_SCALE && gardenViewModel.dropItem == GardenElement.droplet {
+            var treeScale = gardenViewModel.tree!.scale + TREE_SCALE_FACTOR
+            treeScale = round(treeScale * 1000) / 1000.0
+       
             let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
+            let shadowAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
             tree.run(treeAction)
+            shadow.run(shadowAction)
             
             // Update tree object's scale
             gardenViewModel.tree?.scale = treeScale

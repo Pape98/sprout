@@ -161,6 +161,10 @@ class CommunityGardenScene: SKScene {
         //        node.zPosition = 7
         node.setScale(0.1)
         
+        node.setScale(0)
+        let action = SKAction.scale(to: 0.1, duration: SCALE_DURATION)
+        node.run(action)
+        
         addChild(node)
     }
     
@@ -188,14 +192,14 @@ class CommunityGardenScene: SKScene {
         shadowNode.setScale(tree.scale * 0.5)
         
         // Label
-        let label = SKLabelNode(text: "Baloo")
-        label.position = CGPoint(x: shadowNode.position.x , y: shadowNode.position.y - 25)
-        label.text = tree.gardenName
-        label.color = UIColor.black
-        label.colorBlendFactor = 1;
-        label.fontSize = treeNode.size.width * 0.17
-        
-        addChild(label)
+//        let label = SKLabelNode(text: "Baloo")
+//        label.position = CGPoint(x: shadowNode.position.x , y: shadowNode.position.y - 25)
+//        label.text = tree.gardenName
+//        label.color = UIColor.black
+//        label.colorBlendFactor = 1;
+//        label.fontSize = treeNode.size.width * 0.17
+//
+//        addChild(label)
         addChild(shadowNode)
         addChild(treeNode)
     }

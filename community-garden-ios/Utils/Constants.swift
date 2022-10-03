@@ -66,7 +66,7 @@ struct GoalsSettings {
     static let ranges: [String: ClosedRange<Float>] = [
         "Steps": 0...20000,
         "Sleep": 0...12,
-        "Workout Time": 0...300,
+        "Workout Time": 0...180,
         "Walking+running Distance": 1...50
     ]
     

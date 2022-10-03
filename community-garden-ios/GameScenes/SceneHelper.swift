@@ -27,7 +27,7 @@ enum NodeNames: String {
 class SceneHelper {
     
     // MARK: Properties
-    static let TREE_SCALE_FACTOR = 0.25
+    static let TREE_SCALE_FACTOR = 0.075
     static let SCALE_DURATION = 2.0
     static let clouds = ["cloud1", "cloud2"]
     
@@ -106,7 +106,7 @@ class SceneHelper {
         
         cloud.setScale(scale)
         cloud.anchorPoint = CGPoint(x: 0, y: 0.5)
-        var randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.midY+20,scene.frame.maxY))
+        var randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.size.height * 0.70 ,scene.frame.maxY))
         
         if isCommunityView {
             randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(0,scene.frame.size.height))

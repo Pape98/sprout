@@ -18,7 +18,6 @@ struct MyGarden: View {
     
     let userDefaults = UserDefaultsService.shared
     
-    
     var scene: SKScene {
         let scene = MyGardenScene()
         scene.scaleMode = .resizeFill
@@ -26,7 +25,7 @@ struct MyGarden: View {
     }
     
     var body: some View {
-        ZStack(alignment: .trailing) {
+        ZStack(alignment: .topTrailing) {
             
             // MARK: SpriteKit view
             
@@ -34,22 +33,6 @@ struct MyGarden: View {
                 .ignoresSafeArea(.container, edges:[.top])
                 .weatherOverlay()
                 .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        HStack {
-                            Button("Switch"){
-                                toggleDropItem()
-                            }
-                            .foregroundColor(appViewModel.fontColor)
-                            
-                            Image(gardenViewModel.dropItem.rawValue)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                            
-                        }
-                    }
-                }
                 .onAppear {
                     SproutAnalytics.shared.viewOwnGarden()
                     withAnimation(.linear(duration: 1)) {
@@ -60,22 +43,68 @@ struct MyGarden: View {
                     gardenViewModel.getUserItems()
                 }
             
-            // MARK: Lottie View
-          
-                VStack {
+            ZStack {
+                VStack(spacing: 10) {
                     
-                    if showSunMoon {
-                        LottieView(filename: "moon-jubilant")
-                            .frame(width: 210, height: 210)
-                            .transition(.move(edge: .trailing))
+                    // MARK: Mode button
+                    Button {
+                        gardenViewModel.toggleGardenMode()
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .fill(gardenViewModel.gardenMode == .planting ? Color.appleGreen : Color.red)
+                                .opacity(0.5)
+                                .frame(width:45,height:45)
+                            
+                            Image("gardening")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
+                            
+                        }
+                        .frame(width:45,height: 45)
                     }
                     
-                  Spacer()
+                    // MARK: Drop Item toggle
+                    Button {
+                        toggleDropItem()
+                    } label: {
+                        ZStack {
+                            Circle()
+                                .fill(.white)
+                                .opacity(0.5)
+                                .frame(width:45,height: 45)
+                            
+                            Image(gardenViewModel.dropItem.rawValue)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 30, height: 30)
+                            
+                            
+                        }
+                        .frame(width:45,height: 45)
+                    }
+                    
                 }
-            
+                .padding()
+            }
             
         }
-        
+        .overlay {
+            VStack {
+                if showSunMoon {
+                    LottieView(filename: "moon-jubilant")
+                        .frame(width: 150, height: 200)
+                        .transition(.move(edge: .trailing))
+                        .offset(y: -25)
+                }
+                Spacer()
+            }
+        }
+        .onDisappear {
+            gardenViewModel.gardenMode = GardenViewModel.GardenMode.moving
+        }
     }
     
     func toggleDropItem(){

@@ -69,12 +69,12 @@ struct CommunityGardenIosApp: App {
                     
                     if newPhase == .active {
                         RemoteConfiguration.shared.fetchRemoteConfig()
-                        AudioPlayer.shared.startBackgroundMusic()
+//                        AudioPlayer.shared.startBackgroundMusic()
                     }
                     
-                    else if newPhase == .background {
+                    else {
                         RemoteConfiguration.shared.fetchRemoteConfig()
-                        AudioPlayer.shared.stopBackgroundMusic()
+//                        AudioPlayer.shared.stopBackgroundMusic()
                     }
                     
                 }
