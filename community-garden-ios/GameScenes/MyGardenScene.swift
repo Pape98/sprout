@@ -30,7 +30,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     // SKNode
     var tree: SKSpriteNode!
+    var grass: SKSpriteNode!
+    var shadow: SKSpriteNode!
     var ground: SKSpriteNode!
+    var pond: SKSpriteNode!
     
     var gameTimer: Timer?
     
@@ -58,7 +61,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         // Scene setup
         ground = SceneHelper.setupGround(scene: self)
         
-        SceneHelper.setupPond(scene: self)
+        pond = SceneHelper.setupPond(scene: self)
         
         addExisitingItems()
         
@@ -112,7 +115,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             case .flower:
                 SceneHelper.addExistingFlower(flower: item, scene: self)
             case .tree:
-                tree = SceneHelper.addTree(tree: item, ground: ground, scene: self)
+                let nodes = SceneHelper.addTree(tree: item, ground: ground, scene: self)
+                tree = nodes[0]
+                grass = nodes[1]
+                shadow = nodes[2]
             }
         }
     }
@@ -129,9 +135,44 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         let location = touch.location(in: self)
-                        
+        
         if gardenViewModel.hasEnoughDropItem() {
             releaseDropItem(position: location)
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        for touch in touches {
+            let location = touch.location(in: self)
+            // let nodes = self.nodes(at: location)
+            
+            let yBoundary = ground.size.height - shadow.size.height/2
+            let xBoundary = pond.size.width + 20
+            
+            if location.y >= yBoundary || location.y <= 25 {
+                continue
+            }
+            
+            if location.x  <= xBoundary {
+                continue
+            }
+            
+            // NOTE: Can only move tree
+            tree.position = location
+            grass.position = CGPoint(x: tree.position.x - 15, y: tree.position.y)
+            shadow.position = tree.position
+        }
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        let location = touch.location(in: self)
+        
+        if gardenViewModel.tree != nil {
+            gardenViewModel.tree!.x = location.x
+            gardenViewModel.tree!.y = location.y
+            gardenViewModel.updateTree()
+
         }
     }
     
@@ -149,15 +190,15 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             handleTreeDropletContact(droplet: nodeA)
         } else if nodeB.name == NodeNames.droplet.rawValue && nodeA.name == NodeNames.tree.rawValue{
             handleTreeDropletContact(droplet: nodeB)
-
-        // Contact seed + ground
+            
+            // Contact seed + ground
         } else if(nodeA.name == NodeNames.seed.rawValue && nodeB.name == NodeNames.ground.rawValue){
             handleFlowerSeedContact(position: contact.contactPoint, seed: nodeA)
         } else if(nodeA.name == NodeNames.ground.rawValue && nodeB.name == NodeNames.seed.rawValue){
             handleFlowerSeedContact(position: contact.contactPoint, seed: nodeB)
         }
         
-
+        
         // Others
         if nodeB.name == NodeNames.droplet.rawValue  || nodeB.name == NodeNames.seed.rawValue {
             nodeB.removeFromParent()
@@ -205,7 +246,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             
             // Update tree object's scale
             gardenViewModel.tree?.scale = treeScale
-            gardenViewModel.saveTreeScale()
+            gardenViewModel.updateTree()
         }
         
         droplet.removeFromParent()

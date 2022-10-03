@@ -51,7 +51,7 @@ class SceneHelper {
         return ground
     }
     
-    static func setupPond(scene: SKScene){
+    static func setupPond(scene: SKScene) -> SKSpriteNode{
         let pondTexture = SKTexture(imageNamed: "pond")
         let pond = SKSpriteNode(texture: pondTexture)
         
@@ -66,14 +66,22 @@ class SceneHelper {
         pond.physicsBody?.isDynamic = false
         
         scene.addChild(pond)
+        
+        return pond
     }
     
-    static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> SKSpriteNode {
+    static func addTree(tree: GardenItem, ground: SKSpriteNode, scene: SKScene, isAnimated: Bool = true) -> [SKSpriteNode] {
         // Tree
         let treeTexture = SKTexture(imageNamed: tree.name)
         let treeNode = SKSpriteNode(texture: treeTexture)
         treeNode.anchorPoint = CGPoint(x:0.5, y: 0)
-        treeNode.position = CGPoint(x: scene.frame.midX, y: ground.size.height / 2)
+        
+        if tree.y == 0 && tree.x == 0 {
+            treeNode.position = CGPoint(x: scene.frame.midX, y: ground.size.height / 2)
+        } else {
+            treeNode.position = CGPoint(x: tree.x, y: tree.y)
+        }
+            
         treeNode.name = NodeNames.tree.rawValue
         treeNode.zPosition = 5
         
@@ -94,7 +102,7 @@ class SceneHelper {
         
         // Grass
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
-        addGrass(scene: scene, location: grassLocation)
+        let grassNode = addGrass(scene: scene, location: grassLocation)
         
         // Shadow
         let shadowNode = SKSpriteNode(imageNamed: "shadow")
@@ -103,16 +111,18 @@ class SceneHelper {
         
         scene.addChild(shadowNode)
         
-        return treeNode
+        return [treeNode, grassNode, shadowNode]
     }
     
-    static func addGrass(scene: SKScene, location: CGPoint){
+    static func addGrass(scene: SKScene, location: CGPoint) -> SKSpriteNode {
         let grassNode = SKSpriteNode(imageNamed: "grass")
         grassNode.position = location
         grassNode.setScale(0.35)
         grassNode.zPosition = 6
         
         scene.addChild(grassNode)
+            
+        return grassNode
     }
     
     static func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){

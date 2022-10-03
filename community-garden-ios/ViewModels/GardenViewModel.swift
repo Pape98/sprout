@@ -76,7 +76,7 @@ class GardenViewModel: ObservableObject {
         gardenRepo.addItem(item: flower)
     }
     
-    func saveTreeScale(){
+    func updateTree(){
         if let item = tree {
             gardenRepo.udpateGardenItem(docName: item.documentName!, updates: item){}
         }

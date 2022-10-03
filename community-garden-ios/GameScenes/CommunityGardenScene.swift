@@ -161,7 +161,7 @@ class CommunityGardenScene: SKScene {
         node.position = position
         node.colorBlendFactor = getRandomCGFloat(0, 0.2)
         //        node.zPosition = 7
-        node.setScale(0.085)
+        node.setScale(0.1)
         
         addChild(node)
     }
