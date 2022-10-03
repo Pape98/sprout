@@ -28,17 +28,6 @@ struct MainView: View {
         ZStack {
             TabView {
                 
-                //            if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-                //                Community()
-                //                    .tabItem {
-                //                        Label("Community", systemImage: "globe")
-                //                    }
-                //                    .onAppear {
-                //                        playSound()
-                //                    }
-                //            }
-                
-                
                 Dashboard()
                     .tabItem {
                         Label("Dashboard", systemImage: "house.fill")
@@ -47,24 +36,24 @@ struct MainView: View {
                         playSound()
                     }
                 
-                //                if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
-                //                    Community()
-                //                        .tabItem {
-                //                            Label("Community", systemImage: "globe")
-                //                        }
-                //                        .onAppear {
-                //                            playSound()
-                //                        }
-                //                }
-                //
-                //                History()
-                //                    .tabItem {
-                //                        Label("History", systemImage: "target")
-                //                    }
-                //                    .onAppear {
-                //                        SproutAnalytics.shared.viewHistory()
-                //                        playSound()
-                //                    }
+                if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+                    Community()
+                        .tabItem {
+                            Label("Community", systemImage: "globe")
+                        }
+                        .onAppear {
+                            playSound()
+                        }
+                }
+                
+                History()
+                    .tabItem {
+                        Label("History", systemImage: "target")
+                    }
+                    .onAppear {
+                        SproutAnalytics.shared.viewHistory()
+                        playSound()
+                    }
                 
                 if RemoteConfiguration.shared.canCustomize(group: UserService.user.group){
                     Settings()

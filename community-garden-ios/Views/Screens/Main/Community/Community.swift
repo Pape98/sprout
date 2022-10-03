@@ -43,6 +43,10 @@ struct Community: View {
                     .ignoresSafeArea(.container, edges: [.top])
             }
             
+            ZStack() {
+                LottieView(filename: "bird")
+            }
+            
             VStack {
                 
                 ActionButton(image: "paperplane.fill", foreground: .appleGreen) {
@@ -86,6 +90,7 @@ struct Community: View {
                 MessageOptions(user: user)
             }
         }
+        
     }
     
     @ViewBuilder

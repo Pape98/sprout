@@ -31,7 +31,7 @@ struct NameChanging: View {
         .navigationTitle("Names")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button("Done") {
+                Button("Save") {
                     self.settingsViewModel.updateSettings(settingKey: FirestoreKey.GARDEN_NAME, value: gardenName)
                     self.mode.wrappedValue.dismiss()
                 }
