@@ -55,7 +55,7 @@ struct DataMapping: View {
     var body: some View {
         
         VStack {
-            PickerTitle(header: "I want to see...", subheader: "To map data to elements in the scene, hold & drag label to the image 🔎  ")
+            PickerTitle(header: "I want to see...", subheader: " Hold & drag label to the image 🔎  ")
             
             LazyVGrid(columns: columns, spacing: 20) {
                 MetaphorCard(name: "\(treeColor)-\(treeType)", key: MappingKeys.TREE)
@@ -72,9 +72,10 @@ struct DataMapping: View {
             Spacer()
             
             BackNextButtons() {
-                //                if mappedData.count != 2 {
-                //                    showingAlert = true
-                //                }
+                if mappedData.count != 2 {
+                    showingAlert = true
+                    return
+                }
                 
                 onboardingRouter.saveSetting(key: FirestoreKey.MAPPED_DATA, value: mappedData)
                 
@@ -83,7 +84,7 @@ struct DataMapping: View {
         .onAppear {
             self.availableLabels = selectedData
         }
-        .alert("Must map all data 😊", isPresented: $showingAlert){
+        .alert("Must map all data 😊. Hold and drag.", isPresented: $showingAlert){
             Button("OK", role: .cancel){}
         }
     }
@@ -125,7 +126,7 @@ struct DataMapping: View {
                         let _ = first.loadObject(ofClass: URL.self) { value, error in
                             if error != nil { return }
                             guard let url = value else  { return }
-                
+                            
                             
                             // Check if card has already mapping
                             if let oldLabel = mappedData[key.rawValue] {

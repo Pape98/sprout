@@ -17,7 +17,7 @@ struct CommunityGardenIosApp: App {
     
     @StateObject private var authViewModel = AuthenticationViewModel.shared
     @StateObject private var appViewModel = AppViewModel.shared
-    
+    
     // To send notifications to user
     let notificationService: NotificationService = NotificationService.shared
     
@@ -38,7 +38,7 @@ struct CommunityGardenIosApp: App {
         //        }
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
-//        setupLocalEmulator()
+        setupLocalEmulator()
         
     }
     

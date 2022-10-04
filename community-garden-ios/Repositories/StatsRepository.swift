@@ -145,7 +145,9 @@ class StatsRepository {
         
         // Get callback function
         let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
-        let mappedElement = mappedData[data.rawValue]! // "Tree"
+        
+        guard let element = mappedData[data.rawValue] else { return }
+        let mappedElement = element // "Tree"
         
         if  progressDifference >= threshold && threshold > 0 {
             progress.old = value - (value.truncatingRemainder(dividingBy: threshold))

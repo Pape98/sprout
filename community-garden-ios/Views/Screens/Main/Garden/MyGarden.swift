@@ -34,9 +34,9 @@ struct MyGarden: View {
                 .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
                 .onAppear {
                     SproutAnalytics.shared.viewOwnGarden()
-                    withAnimation(.linear(duration: 1)) {
+                    
                         showSunMoon = true
-                    }
+                    
                 }
                 .onDisappear {
                     gardenViewModel.getUserItems()

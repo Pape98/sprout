@@ -81,7 +81,6 @@ struct MainView: View {
     }
     
     @ViewBuilder
-    
     func SignOut() -> some View {
         ZStack {
             MainBackground()

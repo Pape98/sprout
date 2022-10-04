@@ -48,7 +48,6 @@ class CommunityGardenScene: SKScene {
         for touch in touches {
             let location = touch.location(in: self)
             let touchedNodes = self.nodes(at: location)
-            print(location,touchedNodes)
 
             for node in touchedNodes {
                 guard let name = node.name else { return }
@@ -57,7 +56,7 @@ class CommunityGardenScene: SKScene {
                 messagesViewModel.showMessageOptionsSheet = true
                 messagesViewModel.selectedUser = user
             }
-        }
+        }        
     }
     
     
