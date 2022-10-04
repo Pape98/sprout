@@ -101,9 +101,9 @@ class GardenViewModel: ObservableObject {
     }
     
     func decreaseNumSeeds(){
-//        statsRepo.updateNumSeeds(-1)
-//        UserViewModel.shared.getNumSeeds()
-//        SproutAnalytics.shared.useSeed()
+        statsRepo.updateNumSeeds(-1)
+        UserViewModel.shared.getNumSeeds()
+        SproutAnalytics.shared.useSeed()
     }
     
     func hasEnoughDroplets() -> Bool {

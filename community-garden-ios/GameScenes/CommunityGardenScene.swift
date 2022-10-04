@@ -47,9 +47,10 @@ class CommunityGardenScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            let touchedNode = self.nodes(at: location)
-            for node in touchedNode {
-                
+            let touchedNodes = self.nodes(at: location)
+            print(location,touchedNodes)
+
+            for node in touchedNodes {
                 guard let name = node.name else { return }
                 guard let user = communityViewModel.members[name] else { return }
                 
@@ -66,8 +67,6 @@ class CommunityGardenScene: SKScene {
     
     func setupTrees(){
         var counter = 0
-        //        var zIndex = 5
-        
         for tree in communityViewModel.trees {
             let position = treePositions![counter]
             addTree(tree: tree, position: position)
@@ -158,11 +157,9 @@ class CommunityGardenScene: SKScene {
         node.anchorPoint = CGPoint(x: 0, y: 0)
         node.position = position
         node.colorBlendFactor = getRandomCGFloat(0, 0.2)
-        //        node.zPosition = 7
-        node.setScale(0.1)
-        
+        node.zPosition = 1
         node.setScale(0)
-        let action = SKAction.scale(to: 0.1, duration: SCALE_DURATION)
+        let action = SKAction.scale(to: 0.08, duration: SCALE_DURATION)
         node.run(action)
         
         addChild(node)
@@ -192,14 +189,14 @@ class CommunityGardenScene: SKScene {
         shadowNode.setScale(tree.scale * 0.5)
         
         // Label
-//        let label = SKLabelNode(text: "Baloo")
-//        label.position = CGPoint(x: shadowNode.position.x , y: shadowNode.position.y - 25)
-//        label.text = tree.gardenName
-//        label.color = UIColor.black
-//        label.colorBlendFactor = 1;
-//        label.fontSize = treeNode.size.width * 0.17
-//
-//        addChild(label)
+        let label = SKLabelNode(text: "Baloo")
+        label.position = CGPoint(x: shadowNode.position.x , y: shadowNode.position.y - 25)
+        label.text = tree.gardenName
+        label.color = UIColor.black
+        label.colorBlendFactor = 1;
+        label.fontSize = treeNode.size.width * 0.17
+
+        addChild(label)
         addChild(shadowNode)
         addChild(treeNode)
     }

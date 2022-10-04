@@ -30,6 +30,13 @@ struct WeatherOverlay: ViewModifier {
                         .blendMode(BlendMode.overlay)
                         .edgesIgnoringSafeArea([.top])
                 }
+            
+            VStack {
+                LottieView(filename: "birds")
+                Spacer()
+                LottieView(filename: "birds")
+            }
+            
             // Scene View
             content
             

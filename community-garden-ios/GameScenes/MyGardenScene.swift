@@ -10,8 +10,16 @@ import AVFoundation
 
 class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
-    let TREE_SCALE_FACTOR = 0.075
-    let TREE_MAX_SCALE = 2.0
+    var TREE_SCALE_FACTOR: Double {
+        let treeParams = RemoteConfiguration.shared.getTreeParams()!
+        return treeParams["scaleFactor"]! as! Double
+    }
+    
+    var TREE_MAX_SCALE: Double {
+        let treeParams = RemoteConfiguration.shared.getTreeParams()!
+        return treeParams["maxScale"]! as! Double
+    }
+    
     let SCALE_DURATION = 2.0
     let userDefaults = UserDefaultsService.shared
     
@@ -72,6 +80,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // Check if position is valid
         if position.y > ground.size.height { return }
+        if position.x < pond.position.x + pond.size.width + 10 { return }
         
         // Garden Flower
         let settings = UserService.user.settings
@@ -86,7 +95,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         flower.name = NodeNames.flower.rawValue
         flower.colorBlendFactor = getRandomCGFloat(0, 0.2)
         flower.setScale(0)
-        flower.zPosition = 10
+        flower.zPosition = 1
         
         let scale = 0.08
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
@@ -107,7 +116,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         )
         
         gardenViewModel.addFlower(flowerItem)
-        
+        gardenViewModel.decreaseNumSeeds()
     }
     
     func addExisitingItems(){
@@ -138,9 +147,14 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let location = touch.location(in: self)
         
         // Check if user has enough drop item and is in planting mode
-        if gardenViewModel.hasEnoughDropItem() && gardenViewModel.gardenMode == GardenViewModel.GardenMode.planting {
+        guard gardenViewModel.gardenMode == GardenViewModel.GardenMode.planting && gardenViewModel.hasEnoughDropItem() else { return }
+        
+        if gardenViewModel.dropItem == .droplet {
             releaseDropItem(position: location)
+        } else {
+            createNewFlower(position: location)
         }
+        
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -192,14 +206,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             handleTreeDropletContact(droplet: nodeA)
         } else if nodeB.name == NodeNames.droplet.rawValue && nodeA.name == NodeNames.tree.rawValue{
             handleTreeDropletContact(droplet: nodeB)
-            
-            // Contact seed + ground
-        } else if(nodeA.name == NodeNames.seed.rawValue && nodeB.name == NodeNames.ground.rawValue){
-            handleFlowerSeedContact(position: contact.contactPoint, seed: nodeA)
-        } else if(nodeA.name == NodeNames.ground.rawValue && nodeB.name == NodeNames.seed.rawValue){
-            handleFlowerSeedContact(position: contact.contactPoint, seed: nodeB)
         }
-        
         
         // Others
         if nodeB.name == NodeNames.droplet.rawValue  || nodeB.name == NodeNames.seed.rawValue {
@@ -233,8 +240,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         // Update current drop item count
         if dropItem.name == GardenElement.droplet.rawValue {
             gardenViewModel.decreaseNumDroplets()
-        } else {
-            gardenViewModel.decreaseNumSeeds()
         }
     }
     

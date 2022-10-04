@@ -17,11 +17,9 @@ class SproutAnalytics {
         if let user = Auth.auth().currentUser {
             let parameters: [String: Any] = ["userID": user.uid,
                                              "name": user.displayName ?? "No Name", "timestamp": Date().timeIntervalSince1970,
-                                             "group": UserService.user.group
-            ]
+                                             "group": UserService.user.group]
             Analytics.setUserID(user.uid)
             Analytics.setDefaultEventParameters(parameters)
-//            Analytics.setUserProperty("group-\(UserService.user.group)", forName: "group")
         }
     }
     
@@ -75,6 +73,11 @@ class SproutAnalytics {
     // Customization
     func appCustomization(type: String){ // what was customized
         Analytics.logEvent("app_customization", parameters: ["type": type])
+    }
+    
+    func goalChange(goal: String, old: Float, new: Float){
+        let params : [String: Any] = ["goal": goal, "old": old, "new": new]
+        Analytics.logEvent("goal_change", parameters: params)
     }
     
 }

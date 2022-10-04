@@ -38,14 +38,18 @@ struct Community: View {
                 }
             
             
+            VStack {
+                LottieView(filename: "birds")
+                Spacer()
+                LottieView(filename: "birds")
+            }
+            
             if communityViewModel.group != nil {
                 SpriteView(scene: scene, options: [.allowsTransparency])
                     .ignoresSafeArea(.container, edges: [.top])
             }
             
-            ZStack() {
-                LottieView(filename: "bird")
-            }
+            
             
             VStack {
                 

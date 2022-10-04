@@ -20,19 +20,21 @@ struct LottieView: UIViewRepresentable {
         
         let animationView = AnimationView()
         let animation = Animation.named(filename)
+        
         animationView.animation = animation
         animationView.contentMode = contentMode
         animationView.loopMode = loopMode
         animationView.backgroundBehavior = .pauseAndRestore
         animationView.play()
-
+        
         animationView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(animationView)
 
         NSLayoutConstraint.activate([
             animationView.widthAnchor.constraint(equalTo: view.widthAnchor),
-            animationView.heightAnchor.constraint(equalTo: view.heightAnchor)
+            animationView.heightAnchor.constraint(equalTo: view.heightAnchor),
         ])
+                
         
         return view
     }

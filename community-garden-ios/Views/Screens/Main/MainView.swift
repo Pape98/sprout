@@ -86,11 +86,19 @@ struct MainView: View {
         ZStack {
             MainBackground()
             
-            VStack {
+            VStack(spacing: 50) {
+                
+                LottieView(filename: "bird-feeding")
+                    .frame(width: 300, height: 300)
+                
+                Spacer()
+                
                 ActionButton(title: "Sign out", backgroundColor: .red, fontColor: .white){
                     authViewModel.signOut()
+                    
                 }
-                .frame(width: 225)
+                .frame(width: 200)
+                .padding(.bottom, 40)
             }
         }
     }

@@ -23,7 +23,10 @@ class SettingsViewModel: ObservableObject {
         let key = "settings.\(settingKey.rawValue)"
                 
         userRepository.updateUser(userID: userID, updates: [key: value]){
-            SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
+          
+            if settingKey.rawValue.contains("Goal") == false {
+                SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
+            }
             
             let settings = UserService.user.settings!
             var tree = ""

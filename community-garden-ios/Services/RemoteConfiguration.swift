@@ -31,19 +31,21 @@ class RemoteConfiguration {
             "Workout Time": 0.01
         ]
         
+        let treeParams = ["scaleFactor":0.05,"maxScale":1.5]
+        
         let defaultValues = [
             "group0" : ["isSocial": true, "canCustomize": true] as NSObject,
             "group1" : ["isSocial": true, "canCustomize": false] as NSObject,
             "group2" : ["isSocial": false,"canCustomize": true] as NSObject,
             "group3" : ["isSocial": true, "canCustomize": true] as NSObject,
-            "percentages": percentages as NSObject
+            "percentages": percentages as NSObject,
+            "treeParams": treeParams as NSObject
         ]
         
         config.setDefaults(defaultValues)
     }
     
     func fetchRemoteConfig() {
-        
         config.fetchAndActivate { status, error in
             guard error == nil else {
                 print("Uh-oh. Got an error fetching remote values: \(String(describing: error))")
@@ -73,6 +75,13 @@ class RemoteConfiguration {
     
     func getPercentages() -> NSDictionary? {
         let json = config.configValue(forKey: "percentages").jsonValue
+        guard let json  = json else { return nil }
+        let dict = json as! NSDictionary
+        return dict
+    }
+    
+    func getTreeParams() -> NSDictionary? {
+        let json = config.configValue(forKey: "treeParams").jsonValue
         guard let json  = json else { return nil }
         let dict = json as! NSDictionary
         return dict

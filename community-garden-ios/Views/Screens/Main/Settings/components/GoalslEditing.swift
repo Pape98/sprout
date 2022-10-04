@@ -60,6 +60,7 @@ struct GoalEditingSlider: View {
         }
     }
     
+    @State private var oldValue: Float = 0
     @State private var value: Float = 0
     @State private var isEditing = false
     
@@ -78,8 +79,13 @@ struct GoalEditingSlider: View {
             )
             .tint(.appleGreen)
             .onChange(of: isEditing) { newValue in
-                if newValue == false {
+                if newValue == true {
+                    oldValue = value
+                    print(oldValue)
+                } else if newValue == false {
                     settingsViewModel.updateSettings(settingKey: firestoreKey, value: value)
+                    SproutAnalytics.shared.goalChange(goal: firestoreKey.rawValue, old: oldValue, new: value)
+                    print(value)
                 }
             }
             
@@ -91,6 +97,7 @@ struct GoalEditingSlider: View {
         .opacity(0.8)
         .cornerRadius(10)
         .onAppear {
+            oldValue = currentGoal
             value = currentGoal
         }
     }

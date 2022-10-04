@@ -28,7 +28,6 @@ struct MyGarden: View {
         ZStack(alignment: .topTrailing) {
             
             // MARK: SpriteKit view
-            
             SpriteView(scene: scene, options: [.allowsTransparency])
                 .ignoresSafeArea(.container, edges:[.top])
                 .weatherOverlay()
