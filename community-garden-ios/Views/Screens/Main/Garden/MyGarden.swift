@@ -35,7 +35,7 @@ struct MyGarden: View {
                 .onAppear {
                     SproutAnalytics.shared.viewOwnGarden()
                     
-                        showSunMoon = true
+                    showSunMoon = true
                     
                 }
                 .onDisappear {
@@ -43,52 +43,47 @@ struct MyGarden: View {
                 }
             
             ZStack {
-                VStack(spacing: 10) {
-                    
-                    // MARK: Mode button
-                    Button {
-                        gardenViewModel.toggleGardenMode()
-                    } label: {
-                        ZStack {
-                            Circle()
-                                .fill(gardenViewModel.gardenMode == .planting ? Color.appleGreen : Color.red)
-                                .opacity(0.5)
-                                .frame(width:45,height:45)
-                            
-                            Image("gardening")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                            
-                            
-                        }
-                        .frame(width:45,height: 45)
+                // MARK: Mode button
+                Button {
+                    gardenViewModel.toggleGardenMode()
+                } label: {
+                    ZStack {
+                        
+                        Circle()
+                            .fill(gardenViewModel.gardenMode == .planting ? Color.appleGreen : Color.red)
+                            .opacity(0.5)
+                            .frame(width:40,height:40)
+                        
+                        Image(systemName: gardenViewModel.gardenMode == .planting ? "lock.open.fill" : "lock.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 25, height: 25)
+                        
+                        
                     }
-                    
-                    // MARK: Drop Item toggle
-                    Button {
-                        toggleDropItem()
-                    } label: {
-                        ZStack {
-                            Circle()
-                                .fill(.white)
-                                .opacity(0.5)
-                                .frame(width:45,height: 45)
-                            
-                            Image(gardenViewModel.dropItem.rawValue)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                            
-                            
-                        }
-                        .frame(width:45,height: 45)
-                    }
-                    
+                    .frame(width:40,height: 40)
                 }
                 .padding()
             }
             
+            if gardenViewModel.gardenMode == .planting {
+                HStack {
+                    // Stats
+                    VStack(alignment: .leading, spacing: 10) {
+                        if let numDroplets = userViewModel.numDroplets {
+                            Stats(image: "droplet-icon", value: Int(numDroplets.value))
+                        }
+                        
+                        if let numSeeds = userViewModel.numSeeds {
+                            Stats(image: "seed-icon", value: Int(numSeeds.value))
+                        }
+                    }
+                    .padding()
+                    
+                    Spacer()
+                }
+                
+            }
         }
         .overlay {
             VStack {
@@ -105,16 +100,12 @@ struct MyGarden: View {
             gardenViewModel.gardenMode = GardenViewModel.GardenMode.moving
         }
     }
-    
-    func toggleDropItem(){
-        gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
-        GardenElement.seed : GardenElement.droplet
-    }
 }
 
 struct Stats: View {
     
     @EnvironmentObject var appViewModel: AppViewModel
+    @EnvironmentObject var gardenViewModel: GardenViewModel
     
     var image: String
     var value: Int
@@ -130,16 +121,27 @@ struct Stats: View {
         return .seaGreen
     }
     
+    var grayscale: Double { image.contains(gardenViewModel.dropItem.rawValue) ? 0.0 : 0.9995 }
+    
     var body: some View {
         HStack{
             Image(image)
                 .resizable()
                 .frame(maxWidth: imageSize, maxHeight: imageSize)
+                .grayscale(grayscale)
             Text("\(value)")
                 .font(.title2)
                 .bold()
                 .foregroundColor(fontColor)
         }
+        .onTapGesture {
+            toggleDropItem()
+        }
+    }
+    
+    func toggleDropItem(){
+        gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
+        GardenElement.seed : GardenElement.droplet
     }
 }
 

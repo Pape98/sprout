@@ -46,6 +46,7 @@ class AppViewModel: ObservableObject {
         if hour >= 0 && hour <= 6 { // night
             image = "night-bg"
             color = "night"
+            UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .normal)
         } else if hour >= 7 && hour <= 10 { // morning
             image = "intro-bg"
             color = "morning"

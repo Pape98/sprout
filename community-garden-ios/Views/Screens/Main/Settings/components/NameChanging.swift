@@ -12,6 +12,7 @@ struct NameChanging: View {
     @Environment(\.presentationMode) var mode: Binding<PresentationMode>
     @State private var gardenName: String
     @EnvironmentObject var settingsViewModel: SettingsViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
 
     init(garden: String){
         _gardenName = State(initialValue: garden)
@@ -35,6 +36,7 @@ struct NameChanging: View {
                     self.settingsViewModel.updateSettings(settingKey: FirestoreKey.GARDEN_NAME, value: gardenName)
                     self.mode.wrappedValue.dismiss()
                 }
+                .foregroundColor(appViewModel.fontColor)
                 
             }
         }
@@ -44,5 +46,6 @@ struct NameChanging: View {
 struct NameChanging_Previews: PreviewProvider {
     static var previews: some View {
         NameChanging(garden: "Wonderland")
+            .environmentObject(AppViewModel())
     }
 }

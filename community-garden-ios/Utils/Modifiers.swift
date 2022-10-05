@@ -40,19 +40,19 @@ struct WeatherOverlay: ViewModifier {
             // Scene View
             content
             
-            if showStats {
-                // Stats
-                VStack(alignment: .leading, spacing: 10) {
-                    if let numDroplets = userViewModel.numDroplets {
-                        Stats(image: "droplet-icon", value: Int(numDroplets.value))
-                    }
-                    
-                    if let numSeeds = userViewModel.numSeeds {
-                        Stats(image: "seed-icon", value: Int(numSeeds.value))
-                    }
-                }
-                .padding()
-            }
+//            if showStats {
+//                // Stats
+//                VStack(alignment: .leading, spacing: 10) {
+//                    if let numDroplets = userViewModel.numDroplets {
+//                        Stats(image: "droplet-icon", value: Int(numDroplets.value))
+//                    }
+//                    
+//                    if let numSeeds = userViewModel.numSeeds {
+//                        Stats(image: "seed-icon", value: Int(numSeeds.value))
+//                    }
+//                }
+//                .padding()
+//            }
         }
     }
 }

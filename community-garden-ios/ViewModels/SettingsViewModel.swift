@@ -28,22 +28,28 @@ class SettingsViewModel: ObservableObject {
                 SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
             }
             
+            guard var tree = GardenViewModel.shared.tree else { return }
             let settings = UserService.user.settings!
-            var tree = ""
+            var name = ""
             
             if settingKey == FirestoreKey.TREE {
-                tree = "\(settings.treeColor)-\(addDash(value as! String))"
+                name = "\(settings.treeColor)-\(addDash(value as! String))"
+                tree.name = name
                 self.updateTodaysTree(update: tree)
             } else if settingKey == FirestoreKey.TREE_COLOR {
-                tree = "\(value as! String)-\(addDash(settings.tree))"
+                name = "\(value as! String)-\(addDash(settings.tree))"
+                tree.name = name
+                self.updateTodaysTree(update: tree)
+            } else if settingKey == FirestoreKey.GARDEN_NAME {
+                tree.gardenName = value as! String
                 self.updateTodaysTree(update: tree)
             }
+            
+            GardenViewModel.shared.tree = tree
         }
     }
     
-    func updateTodaysTree(update: String){
-        guard var tree = GardenViewModel.shared.tree else { return }
-        tree.name = update
+    func updateTodaysTree(update tree: GardenItem){
         gardenItemRepository.udpateGardenItem(docName: tree.documentName!, updates: tree){
             NotificationSender.send(type: NotificationType.GetUserItems.rawValue)
             NotificationSender.send(type: NotificationType.FetchCommunityTrees.rawValue)
