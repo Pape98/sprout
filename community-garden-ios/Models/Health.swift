@@ -14,6 +14,7 @@ protocol HealthData: Codable {
     var value: Double { get }
     var date: String { get set }
     var label: String { get }
+    var goal: Int? { get }
 }
 
 struct Step: HealthData {

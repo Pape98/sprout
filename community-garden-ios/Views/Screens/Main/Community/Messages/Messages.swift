@@ -14,6 +14,7 @@ enum ViewMessageType {
 
 struct Messages: View {
     
+    @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     
@@ -63,10 +64,21 @@ struct Messages: View {
             .navigationBarTitle("Messages", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
-                    Button("Refresh"){
+                    
+                    Button {
                         messagesViewModel.getUserMessages()
+                    } label: {
+                        Image(systemName: "arrow.triangle.2.circlepath")
+                            .foregroundColor(appViewModel.fontColor)
                     }
-                    .foregroundColor(appViewModel.fontColor)
+                }
+                ToolbarItem(placement: .navigationBarTrailing){
+                    Button {
+                        presentationMode.wrappedValue.dismiss()
+                    } label: {
+                        Image(systemName: "multiply")
+                            .foregroundColor(appViewModel.fontColor)
+                    }
                 }
             }
         }

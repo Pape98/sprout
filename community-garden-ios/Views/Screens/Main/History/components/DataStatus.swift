@@ -10,7 +10,7 @@ import SwiftUI
 struct DataStatus: View {
     
     @EnvironmentObject var appViewModel: AppViewModel
-
+    
     var data: HealthData
     
     var date: String {
@@ -18,41 +18,28 @@ struct DataStatus: View {
         return "\(tokens[0])/\(tokens[1])"
     }
     
-    var goal: Int? {
-        if let settings = UserService.user.settings {
-            switch data.label {
-            case "step":
-                return settings.stepsGoal
-            case "walkingRunning":
-                return settings.walkingRunningGoal
-            case "sleep":
-                return settings.sleepGoal
-            case "workout":
-                return settings.workoutsGoal
-            default:
-                return 0
-            }
+    var goal: Int {
+        if let goal = data.goal {
+            return goal
         }
-        
         return 0;
     }
     
-    var image: String? {
-        if let goal = goal {
-            let progress = (data.value / Double(goal)) * 100;
-            
-            if 0...24 ~= progress {
-                return "faces/sad"
-            } else if 25...50 ~= progress {
-                return "faces/meh"
-            } else if 51...75 ~= progress {
-                return "faces/content"
-            } else {
-                return "faces/happy"
-            }
+    var image: String {
+        
+        let progress = (data.value / Double(goal)) * 100;
+        
+        if 0...24 ~= progress {
+            return "faces/sad"
+        } else if 25...50 ~= progress {
+            return "faces/meh"
+        } else if 51...75 ~= progress {
+            return "faces/content"
+        } else {
+            return "faces/happy"
         }
         
-        return nil
+        
     }
     
     
@@ -74,7 +61,7 @@ struct DataStatus: View {
                     .foregroundColor(appViewModel.fontColor)
                 
                 Spacer()
-
+                
                 
                 Text(data.date)
                     .font(.system(size: 13))
