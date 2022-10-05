@@ -13,6 +13,7 @@ struct Community: View {
     
     @EnvironmentObject var communityViewModel: CommunityViewModel
     @EnvironmentObject var messagesViewModel: MessagesViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
     
     @State var showMessageSheet = false
     @State var showToast = false
@@ -38,7 +39,7 @@ struct Community: View {
                 .ignoresSafeArea(.all, edges: [.top])
                 .overlay {
                     Rectangle()
-                        .fill(Color(weatherInfo["color"]!))
+                        .fill(Color(appViewModel.backgroundColor))
                         .blendMode(BlendMode.overlay)
                         .ignoresSafeArea()
                 }

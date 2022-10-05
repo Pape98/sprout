@@ -59,6 +59,22 @@ func getWeatherInfo() -> [String: String]{
     }
 }
 
+func getIntroBackground() -> String {
+    let date = Date()
+    let dateComponents = Calendar.current.dateComponents([.hour], from: date)
+    let hour = dateComponents.hour!
+        
+    if hour >= 0 && hour <= 6 { // night
+        return "intro-bg-night"
+    } else if hour >= 7 && hour <= 10 { // morning
+        return "intro-bg-morning"
+    } else if hour >= 11 && hour <= 19 { // day
+        return "intro-bg-day"
+    } else { // evening
+        return "intro-bg-evening"
+    }
+}
+
 func getUserID() -> String? {
     return Auth.auth().currentUser?.uid
 }

@@ -101,6 +101,11 @@ struct Dashboard: View {
                         // Card Row Two
 
                         LazyVGrid(columns: twoColumnGrid) {
+                            
+                            DashboardCard(icon: "figure.walk"){
+                                CardInfo(value: "0", label: "Step(s)")
+                            }
+                     
 
                             if isUserTrackingData(DataOptions.steps){
                                 DashboardCard(icon: "figure.walk"){
@@ -164,6 +169,9 @@ struct Dashboard: View {
             Text(label)
                 .bold()
                 .bodyStyle()
+            
+            ProgressView(value: 0.25)
+                .padding(.horizontal)
         }
     }
     

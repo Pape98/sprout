@@ -9,22 +9,15 @@ import SwiftUI
 
 struct MainBackground: View {
     
-    var weatherInfo: [String: String] = getWeatherInfo()
     @State var appViewModel : AppViewModel = AppViewModel.shared
     
     var image: String = "intro-bg"
     var edges: Edge.Set = [.top]
     
     var body: some View {
-        Image(appViewModel.backgroundImage)
+        Image(getIntroBackground())
             .resizable()
             .ignoresSafeArea(.all, edges: edges)
-            .overlay {
-                Rectangle()
-                    .fill(Color(appViewModel.backgroundColor))
-                    .blendMode(BlendMode.overlay)
-                    .ignoresSafeArea()
-            }
     }
 }
 
