@@ -33,7 +33,10 @@ class HealthStoreRepository {
     
     // MARK: Saving data
     func saveStepCount(value v: Double){
-        let object = Step(date: today, count: v, userID: userID!)
+        guard let settings = UserService.user.settings else { return }
+        let goal = settings.stepsGoal
+        let object = Step(date: today, count: v, userID: userID!, goal: goal)
+        
         let collection = collections.getCollectionReference(Data.steps.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
@@ -41,7 +44,10 @@ class HealthStoreRepository {
     }
     
     func saveWalkingRunningDistance(value v: Double){
-        let object = WalkingRunningDistance(date: today, distance: v, userID: userID!)
+        guard let settings = UserService.user.settings else { return }
+        let goal = settings.walkingRunningGoal
+        let object = WalkingRunningDistance(date: today, distance: v, userID: userID!,goal: goal)
+        
         let collection = collections.getCollectionReference(Data.walkingRunning.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
@@ -49,7 +55,10 @@ class HealthStoreRepository {
     }
     
     func saveWorkouts(value v: Double){
-        let object = Workout(date: today, duration: v, userID: userID!)
+        guard let settings = UserService.user.settings else { return }
+        let goal = settings.workoutsGoal
+        let object = Workout(date: today, duration: v, userID: userID!,goal: goal)
+        
         let collection = collections.getCollectionReference(Data.workouts.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
@@ -57,7 +66,10 @@ class HealthStoreRepository {
     }
     
     func saveSleep(value v: Double){
-        let object = Sleep(date: today, duration: v, userID: userID!)
+        guard let settings = UserService.user.settings else { return }
+        let goal = settings.sleepGoal
+        let object = Sleep(date: today, duration: v, userID: userID!,goal: goal)
+        
         let collection = collections.getCollectionReference(Data.sleep.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
@@ -123,7 +135,7 @@ class HealthStoreRepository {
     
     func saveData<T: Encodable>(docRef: DocumentReference, data: T, notification: NotificationType, message: Double){
         do {
-            try docRef.setData(from: data)
+            try docRef.setData(from: data, merge: true)
             NotificationSender.send(type: notification.rawValue, message: message)
         } catch {
             print("saveData: Error writing to Firestore: \(error)")
@@ -135,7 +147,7 @@ class HealthStoreRepository {
         guard let collection = collection else { return }
         let docRef = collection.document("\(userID!)-\(date)")
         docRef.getDocument(as: type) { result in
-    
+            
             switch result {
             case .success(let data):
                 completion(data)

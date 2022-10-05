@@ -102,17 +102,12 @@ struct Dashboard: View {
 
                         LazyVGrid(columns: twoColumnGrid) {
                             
-                            DashboardCard(icon: "figure.walk"){
-                                CardInfo(value: "0", label: "Step(s)")
-                            }
-                     
-
                             if isUserTrackingData(DataOptions.steps){
                                 DashboardCard(icon: "figure.walk"){
                                     if let step = healthStoreViewModel.todayStepCount {
-                                        CardInfo(value: "\(Int(step.count))", label: "Step(s)")
+                                        CardInfo(value: step.count, label: "Step(s)", goal: step.goal)
                                     } else {
-                                        CardInfo(value: "0", label: "Step(s)")
+                                        CardInfo(value: 0, label: "Step(s)")
                                     }
                                 }
                             }
@@ -121,9 +116,9 @@ struct Dashboard: View {
                             if isUserTrackingData(DataOptions.walkingRunningDistance){
                                 DashboardCard(icon: "sportscourt.fill"){
                                     if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
-                                        CardInfo(value: "\(Int(walkingRunning.distance))", label: "Mile(s)")
+                                        CardInfo(value: walkingRunning.distance, label: "Mile(s)", goal: walkingRunning.goal)
                                     } else {
-                                        CardInfo(value: "0", label: "Mile(s)")
+                                        CardInfo(value: 0, label: "Mile(s)")
                                     }
                                 }
                             }
@@ -131,9 +126,9 @@ struct Dashboard: View {
                             if isUserTrackingData(DataOptions.workouts){
                                 DashboardCard(icon: "clock"){
                                     if let workout = healthStoreViewModel.todayWorkout {
-                                        CardInfo(value: "\(Int(workout.duration))", label: "Workout Minute(s)")
+                                        CardInfo(value: workout.duration, label: "Workout Minute(s)", goal: workout.goal)
                                     } else {
-                                        CardInfo(value: "0", label: "Workout Minute(s)")
+                                        CardInfo(value: 0, label: "Workout Minute(s)")
                                     }
                                 }
                             }
@@ -141,9 +136,9 @@ struct Dashboard: View {
                             if isUserTrackingData(DataOptions.sleep){
                                 DashboardCard(icon: "bed.double"){
                                     if let sleep = healthStoreViewModel.todaySleep {
-                                        CardInfo(value: "\(Int(sleep.duration/60))", label: "Sleep Hour(s)")
+                                        CardInfo(value: sleep.duration/60, label: "Sleep Hour(s)", goal: sleep.goal)
                                     } else {
-                                        CardInfo(value: "0", label: "Sleep Hour(s)")
+                                        CardInfo(value: 0, label: "Sleep Hour(s)")
                                     }
                                 }
                             }
@@ -161,17 +156,19 @@ struct Dashboard: View {
     }
     
     @ViewBuilder
-    func CardInfo(value: String, label: String = "") -> some View {
+    func CardInfo(value: Double, label: String = "", goal: Int? = nil) -> some View {
         VStack {
-            Text(value)
+            Text(String(Int(value)))
                 .headerStyle()
                 .font(.title3)
             Text(label)
                 .bold()
                 .bodyStyle()
             
-            ProgressView(value: 0.25)
-                .padding(.horizontal)
+            if goal != nil && goal! > 0 {
+                ProgressView(value: value/Double(goal!))
+                    .padding(.horizontal)
+            }
         }
     }
     
