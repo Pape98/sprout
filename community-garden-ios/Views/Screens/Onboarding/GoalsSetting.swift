@@ -13,12 +13,11 @@ struct GoalsSetting: View {
     let userDefaults = UserDefaultsService.shared
     @EnvironmentObject var onboardingRouter: OnboardingRouter
 
-    
     var selectedData: [String] {
         if onboardingRouter.settings[FirestoreKey.DATA.rawValue] != nil {
           return (onboardingRouter.settings[FirestoreKey.DATA.rawValue] as! [String])
         } else {
-            return []
+          return []
         }
     }
     

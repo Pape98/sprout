@@ -17,7 +17,7 @@ struct CommunityGardenIosApp: App {
     
     @StateObject private var authViewModel = AuthenticationViewModel.shared
     @StateObject private var appViewModel = AppViewModel.shared
-    
+    
     // To send notifications to user
     let notificationService: NotificationService = NotificationService.shared
     
@@ -65,18 +65,19 @@ struct CommunityGardenIosApp: App {
                 .background(Color.porcelain)
                 .environmentObject(authViewModel)
                 .environmentObject(appViewModel)
+                .onAppear {
+                    RemoteConfiguration.shared.fetchRemoteConfig()
+                }
                 .onChange(of: scenePhase) { newPhase in
                     
                     if newPhase == .active {
-                        RemoteConfiguration.shared.fetchRemoteConfig()
                         AudioPlayer.shared.startBackgroundMusic()
                     }
-                    
                     else {
-                        RemoteConfiguration.shared.fetchRemoteConfig()
                         AudioPlayer.shared.stopBackgroundMusic()
                     }
                     
+                    RemoteConfiguration.shared.fetchRemoteConfig()
                 }
         }
     }

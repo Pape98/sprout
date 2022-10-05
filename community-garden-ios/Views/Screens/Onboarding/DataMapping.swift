@@ -50,12 +50,13 @@ struct DataMapping: View {
     @State private var mappedData: [String: String] = [:]
     @State private var availableLabels: [String] = []
     @State private var showingAlert = false
+    @State private var isError = true
     
     
     var body: some View {
         
         VStack {
-            PickerTitle(header: "I want to see...", subheader: " Hold & drag label to the image 🔎  ")
+            PickerTitle(header: "I want to see...", subheader: "Map data to elements")
             
             LazyVGrid(columns: columns, spacing: 20) {
                 MetaphorCard(name: "\(treeColor)-\(treeType)", key: MappingKeys.TREE)
@@ -67,20 +68,29 @@ struct DataMapping: View {
                 .bold()
                 .bodyStyle()
             
+            Text("Hold & drag label area")
+                .padding()
+                .foregroundColor(.red)
+            
             DataLabels()
             
             Spacer()
             
-            BackNextButtons() {
-                if mappedData.count != 2 {
+            BackNextButtons(isError: isError) {
+                if isError {
                     showingAlert = true
-                    return
+                } else {
+                    onboardingRouter.saveSetting(key: FirestoreKey.MAPPED_DATA, value: mappedData)
                 }
-                
-                onboardingRouter.saveSetting(key: FirestoreKey.MAPPED_DATA, value: mappedData)
-                
             }.environmentObject(onboardingRouter)
         }
+        .onChange(of: mappedData, perform: { newValue in
+            if newValue.count != 2 {
+                isError = true
+            } else {
+                isError = false
+            }
+        })
         .onAppear {
             self.availableLabels = selectedData
         }

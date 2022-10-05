@@ -177,6 +177,7 @@
 		E966191B1149AEE7B5295921B2AD7381 /* OIDServiceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFE1BE1C6D52091E7628F847352FB13 /* OIDServiceConfiguration.m */; };
 		EBE36AFF9964F232ABAEA6E260C5CF82 /* OIDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = B41A374291963E7C2FC8CE395487B506 /* OIDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE2C1A0DD32A33303C09254902FEAADC /* GIDSignInStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB6B8BB8616927E38933C2391436936 /* GIDSignInStrings.m */; };
+		F02552C828ED0AA8000B429D /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = F02552C728ED0AA8000B429D /* PopupView */; };
 		F0B6DAE3287484A200DD3F03 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = F0B6DAE2287484A200DD3F03 /* SQLite */; };
 		F159FDF0C26037758BF2D029A4BDEF6E /* GIDSignIn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4A17DF35F5124EA6DB3234DB22044C /* GIDSignIn_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F23CEE6326992BCA15408CE8A833123A /* GIDGoogleUser_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = E4D5635B68C398D7C4F61EEDA9555479 /* GIDGoogleUser_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -517,6 +518,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F02552C828ED0AA8000B429D /* PopupView in Frameworks */,
 				F0B6DAE3287484A200DD3F03 /* SQLite in Frameworks */,
 				A6EA7EACB89331534B852B9FC87DFA17 /* Foundation.framework in Frameworks */,
 			);
@@ -1112,6 +1114,7 @@
 			name = "Pods-community-garden-ios";
 			packageProductDependencies = (
 				F0B6DAE2287484A200DD3F03 /* SQLite */,
+				F02552C728ED0AA8000B429D /* PopupView */,
 			);
 			productName = Pods_community_garden_ios;
 			productReference = A487ED77831335A494BA6CBF504626B4 /* Pods-community-garden-ios */;
@@ -1214,6 +1217,7 @@
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			packageReferences = (
 				F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */,
+				F02552C628ED0AA7000B429D /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 6A1666EA7787449E247EB91D424FC8A6 /* Products */;
 			projectDirPath = "";
@@ -2061,6 +2065,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F02552C628ED0AA7000B429D /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
@@ -2072,6 +2084,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F02552C728ED0AA8000B429D /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F02552C628ED0AA7000B429D /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
+		};
 		F0B6DAE2287484A200DD3F03 /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */;

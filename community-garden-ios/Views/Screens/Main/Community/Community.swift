@@ -7,15 +7,19 @@
 
 import SwiftUI
 import SpriteKit
+import PopupView
 
 struct Community: View {
     
     @EnvironmentObject var communityViewModel: CommunityViewModel
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     
-    var weatherInfo: [String: String] = getWeatherInfo()
     @State var showMessageSheet = false
-    @State var alertMessage = "Sent message ❤️⭐"
+    @State var showingPopup = false
+    @State var popupMessage = ""
+    @State var popupBackgound: Color = .red
+    
+    var weatherInfo: [String: String] = getWeatherInfo()
     
     var scene: SKScene {
         let scene = CommunityGardenScene()
@@ -37,7 +41,7 @@ struct Community: View {
                         .ignoresSafeArea()
                 }
             
-            
+            // Birds
             VStack {
                 LottieView(filename: "birds")
                 Spacer()
@@ -48,8 +52,6 @@ struct Community: View {
                 SpriteView(scene: scene, options: [.allowsTransparency])
                     .ignoresSafeArea(.container, edges: [.top])
             }
-            
-            
             
             VStack {
                 
@@ -63,16 +65,17 @@ struct Community: View {
                     VStack(spacing: 5) {
                         
                         ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
-                            communityViewModel.sendLove()
-                            let message = NotificationMessage(title: "Community Message ✉️", body: "Sent love ❤️ to members.")
-                            NotificationService.shared.sendNotification(message: message, interval: 1)
+//                            communityViewModel.sendLove()
+                            popupMessage = "Love sent to group"
+                            popupBackgound = .red
+                            showingPopup = true
                         }
                         
                         ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
-                            alertMessage = "Sent encouragement ⭐ to members."
-                            communityViewModel.sendEncouragement()
-                            let message = NotificationMessage(title: "Community Message ✉️", body: "Sent encouragement ⭐ to members.")
-                            NotificationService.shared.sendNotification(message: message, interval: 1)
+//                            communityViewModel.sendEncouragement()
+                            popupMessage = "Encouragment sent to group"
+                            popupBackgound = .yellow
+                            showingPopup = true
                         }
                     }
                     
@@ -93,6 +96,16 @@ struct Community: View {
             if let user = messagesViewModel.selectedUser {
                 MessageOptions(user: user)
             }
+        }
+        .popup(isPresented: $showingPopup, type: Popup.PopupType.toast, position: Popup.Position.bottom, autohideIn: 2){
+            
+            ZStack {
+                RoundedRectangle(cornerRadius: 5)
+                    .background(popupBackgound)
+                    .opacity(0.6)
+                Text(popupMessage)
+            }
+            .frame(width: 160, height: 40)
         }
         
     }
