@@ -7,7 +7,7 @@
 
 import SwiftUI
 import SpriteKit
-import PopupView
+import AlertToast
 
 struct Community: View {
     
@@ -15,9 +15,11 @@ struct Community: View {
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     
     @State var showMessageSheet = false
-    @State var showingPopup = false
-    @State var popupMessage = ""
-    @State var popupBackgound: Color = .red
+    @State var showToast = false
+    
+    @State var toastTitle = ""
+    @State var toastImage = ""
+    @State var toastColor: Color = .red
     
     var weatherInfo: [String: String] = getWeatherInfo()
     
@@ -65,17 +67,19 @@ struct Community: View {
                     VStack(spacing: 5) {
                         
                         ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
-//                            communityViewModel.sendLove()
-                            popupMessage = "Love sent to group"
-                            popupBackgound = .red
-                            showingPopup = true
+                            communityViewModel.sendLove()
+                            toastTitle = "Sent love to 🧑‍🤝‍🧑"
+                            toastImage = "heart.fill"
+                            toastColor = .red
+                            showToast = true
                         }
                         
                         ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
-//                            communityViewModel.sendEncouragement()
-                            popupMessage = "Encouragment sent to group"
-                            popupBackgound = .yellow
-                            showingPopup = true
+                            communityViewModel.sendEncouragement()
+                            toastTitle = "Sent cheers to 🧑‍🤝‍🧑"
+                            toastImage = "star.fill"
+                            toastColor = .yellow
+                            showToast = true
                         }
                     }
                     
@@ -97,17 +101,11 @@ struct Community: View {
                 MessageOptions(user: user)
             }
         }
-        .popup(isPresented: $showingPopup, type: Popup.PopupType.toast, position: Popup.Position.bottom, autohideIn: 2){
-            
-            ZStack {
-                RoundedRectangle(cornerRadius: 5)
-                    .background(popupBackgound)
-                    .opacity(0.6)
-                Text(popupMessage)
-            }
-            .frame(width: 160, height: 40)
+        .toast(isPresenting: $showToast) {
+            AlertToast(displayMode: .hud,
+                       type: AlertToast.AlertType.systemImage(toastImage, toastColor),
+                       title: toastTitle)
         }
-        
     }
     
     @ViewBuilder

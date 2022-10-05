@@ -757,6 +757,7 @@
 			packageReferences = (
 				F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F08C8C5D28AC1B0700DDDFB8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				F0F3673928ED178100F79D1A /* XCRemoteSwiftPackageReference "Toaster" */,
 			);
 			productRefGroup = F0B32C9D275AF77700C714A2 /* Products */;
 			projectDirPath = "";
@@ -1177,6 +1178,14 @@
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 8.0.0;
+			};
+		};
+		F0F3673928ED178100F79D1A /* XCRemoteSwiftPackageReference "Toaster" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/devxoul/Toaster.git";
+			requirement = {
+				branch = master;
+				kind = branch;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
