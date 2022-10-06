@@ -78,7 +78,7 @@ struct DataStatus: View {
 
 struct DataStatus_Previews: PreviewProvider {
     
-    static let step = Step(date: "07-14-2022", count: 4, userID: "555")
+    static let step = Step(date: "07-14-2022", count: 4, userID: "555", username: "Pape Traore")
     static var previews: some View {
         DataStatus(data: step)
             .environmentObject(AppViewModel())
