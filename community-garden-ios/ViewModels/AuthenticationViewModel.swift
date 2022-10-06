@@ -77,8 +77,9 @@ class AuthenticationViewModel: ObservableObject {
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
-                UserService.user = result
+                let topic = "group\(UserService.shared.user.group)"
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
+                MessagingService.shared.subscribeToTopic(topic)
             }
             // Check login status again to update UI
             DispatchQueue.main.async {
@@ -95,6 +96,7 @@ class AuthenticationViewModel: ObservableObject {
         if let configuration = self.configuration {
             
             let rootViewController = UIApplication.shared.windows.first!.rootViewController
+            
             
             guard rootViewController != nil else {
                 return

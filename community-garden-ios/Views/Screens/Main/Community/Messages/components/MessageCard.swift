@@ -20,7 +20,7 @@ struct MessageCard: View {
         if messageType == .received {
             return message.senderFlower
         } else {
-            let settings = UserService.user.settings!
+            let settings = UserService.shared.user.settings!
             return "\(settings.flowerColor)-\(addDash(settings.flower))"
         }
     }

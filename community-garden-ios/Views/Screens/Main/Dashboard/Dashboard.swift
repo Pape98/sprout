@@ -26,7 +26,7 @@ struct Dashboard: View {
         return "\(color)-\(tree)"
     }
     
-    let user = UserService.user
+    let user = UserService.shared.user
     
     var body: some View {
         

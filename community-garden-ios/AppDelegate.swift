@@ -7,12 +7,12 @@
 
 import SwiftUI
 import Firebase
-import FirebaseMessaging
 import FirebaseFunctions
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
     var userRepository: UserRepository
+    var messagingService: MessagingService = MessagingService.shared
     
     override init() {
         self.userRepository = UserRepository.shared
@@ -88,26 +88,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
                 
             // TODO: Find more effective way to do this
             // Unsusbcribe from all group topics
-            for i in 0...3 {
-                unsubscribeFromTopic(topic: "group\(i)")
-            }
-            
-            // Subscribe to group topic
-            let groupNumber = UserService.user.group
-            let group = "group\(groupNumber)"
-            
-            Messaging.messaging().subscribe(toTopic: group) { error in
-                if let error = error {
-                    print(error)
-                    return
-                }
-                print("Subscribed to topic \(group)")
-            }
-            
+            MessagingService.shared.unsubscribeFromAllTopics()
         }
         
         if let userID = getUserID(), let token = fcmToken {
-            if UserService.user.fcmToken == fcmToken { return }
+            if UserService.shared.user.fcmToken == fcmToken { return }
             userRepository.doesUserExist(userID: userID) { userExists in
                 guard let userExists = userExists else {
                     print("User does not exist so cannot set FCM Token")
@@ -134,16 +119,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         MessagesViewModel.shared.getUserMessages()
         // tell the app that we have finished processing the user’s action / response
         completionHandler()
-    }
-    
-    // MARK: Utils
-    func unsubscribeFromTopic(topic: String){
-        Messaging.messaging().unsubscribe(fromTopic: topic) { err in
-            if let error = err {
-                print(error)
-                return
-            }
-            print("Unsubscribed from topic: \(topic)")
-        }
     }
 }

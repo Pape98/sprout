@@ -24,7 +24,7 @@ class ReactioRepository: ObservableObject {
     
     func increaseReactionCount(reaction: ReactionType, tokens: [String], callback: @escaping () -> Void){
         guard let reactionsCollection = reactionsCollection else { return }
-        let userGroup = UserService.user.group
+        let userGroup = UserService.shared.user.group
         let docRef = reactionsCollection.document("\(userGroup)-\(Date.today)")
         docRef.setData(["date": Date.today,
                         "group": userGroup,
@@ -36,7 +36,7 @@ class ReactioRepository: ObservableObject {
     
     func fetchReactions(completion: @escaping (_ : Reactions) -> Void){
         guard let reactionsCollection = reactionsCollection else { return }
-        let userGroup = UserService.user.group
+        let userGroup = UserService.shared.user.group
         let docRef = reactionsCollection.document("\(userGroup)-\(Date.today)")
         
         

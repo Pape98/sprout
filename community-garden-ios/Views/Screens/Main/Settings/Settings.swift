@@ -27,7 +27,7 @@ struct Settings: View {
                     
                     Section("Data"){
                         NavigationLink {
-                            if let settings = settingsViewModel.settings {
+                            if let _ = settingsViewModel.settings {
                                 GoalslEditing()
                             }
                         } label : {
@@ -42,7 +42,7 @@ struct Settings: View {
                                 NameChanging(garden: settings.gardenName)
                             }
                         } label : {
-                            Text("Garden Name")
+                            Text("Edit Garden Name")
                         }
                     }
                     
@@ -85,7 +85,7 @@ struct Settings: View {
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
-                    if let settings = UserService.user.settings {
+                    if let settings = UserService.shared.user.settings {
                         reflectWeatherChanges = settings.reflectWeatherChanges
                     }
                     

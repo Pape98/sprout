@@ -32,7 +32,7 @@ class MessagesViewModel: ObservableObject {
     
     // MARK: Methods for sending and receiving messages
     func sendMessage(receiver: User, text: String, isPrivate: Bool){
-        let sender = UserService.user
+        let sender = UserService.shared.user
         guard sender.settings != nil else { return }
         let newMessage = Message(senderID: sender.id, senderName: sender.name,
                                  receiverID: receiver.id, receiverName: receiver.name,

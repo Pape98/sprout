@@ -49,8 +49,6 @@
 		F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */; };
 		F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* Messages.swift */; };
 		F04B545728E72F9100F6FFE1 /* turtle.json in Resources */ = {isa = PBXBuildFile; fileRef = F04B545628E72F9000F6FFE1 /* turtle.json */; };
-		F04B545A28E72FCC00F6FFE1 /* deer.json in Resources */ = {isa = PBXBuildFile; fileRef = F04B545828E72FCC00F6FFE1 /* deer.json */; };
-		F04B545B28E72FCC00F6FFE1 /* dog.json in Resources */ = {isa = PBXBuildFile; fileRef = F04B545928E72FCC00F6FFE1 /* dog.json */; };
 		F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F059833D28D4D88100542D64 /* FirebaseRemoteConfig */; };
 		F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
@@ -76,7 +74,6 @@
 		F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F08C8C5E28AC1B0800DDDFB8 /* Lottie */; };
 		F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */; };
 		F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */; };
-		F08C8C7528AC37B000DDDFB8 /* bird.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7428AC37B000DDDFB8 /* bird.json */; };
 		F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
@@ -87,6 +84,9 @@
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
 		F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2A275ED13D0039B134 /* LoginView.swift */; };
 		F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2C275ED1740039B134 /* LaunchView.swift */; };
+		F0B07D1428EF106C00AA99FC /* deer.json in Resources */ = {isa = PBXBuildFile; fileRef = F0B07D1228EF106C00AA99FC /* deer.json */; };
+		F0B07D1528EF106C00AA99FC /* dog.json in Resources */ = {isa = PBXBuildFile; fileRef = F0B07D1328EF106C00AA99FC /* dog.json */; };
+		F0B07D1728EF190400AA99FC /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B07D1628EF190400AA99FC /* MessagingService.swift */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
@@ -175,8 +175,6 @@
 		F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		F04AD4CE288B22DD00BC17AB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		F04B545628E72F9000F6FFE1 /* turtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle.json; sourceTree = "<group>"; };
-		F04B545828E72FCC00F6FFE1 /* deer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer.json; sourceTree = "<group>"; };
-		F04B545928E72FCC00F6FFE1 /* dog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog.json; sourceTree = "<group>"; };
 		F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F07657F428D6870E00C72F2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
@@ -199,7 +197,6 @@
 		F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SproutAnalytics.swift; sourceTree = "<group>"; };
 		F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
 		F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		F08C8C7428AC37B000DDDFB8 /* bird.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird.json; sourceTree = "<group>"; };
 		F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -209,6 +206,9 @@
 		F0964272275C25C800F1CEC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		F0B07D1228EF106C00AA99FC /* deer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer.json; sourceTree = "<group>"; };
+		F0B07D1328EF106C00AA99FC /* dog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog.json; sourceTree = "<group>"; };
+		F0B07D1628EF190400AA99FC /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
 		F0B32CA3275AF77900C714A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -567,6 +567,7 @@
 				F038369D2839497600D444E4 /* SQLiteService.swift */,
 				F02682D02850F13A004747FD /* UserDefaultService.swift */,
 				F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */,
+				F0B07D1628EF190400AA99FC /* MessagingService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -662,13 +663,12 @@
 		F0F3672628EA979600F79D1A /* Animals */ = {
 			isa = PBXGroup;
 			children = (
+				F0B07D1228EF106C00AA99FC /* deer.json */,
+				F0B07D1328EF106C00AA99FC /* dog.json */,
 				F0F3673628EBC06D00F79D1A /* sun.json */,
 				F0F3673428EBBC9400F79D1A /* bird-feeding.json */,
 				F0F3673028EBB6C100F79D1A /* birds.json */,
-				F04B545828E72FCC00F6FFE1 /* deer.json */,
-				F04B545928E72FCC00F6FFE1 /* dog.json */,
 				F04B545628E72F9000F6FFE1 /* turtle.json */,
-				F08C8C7428AC37B000DDDFB8 /* bird.json */,
 			);
 			path = Animals;
 			sourceTree = "<group>";
@@ -779,9 +779,8 @@
 				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
 				F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
-				F04B545A28E72FCC00F6FFE1 /* deer.json in Resources */,
-				F04B545B28E72FCC00F6FFE1 /* dog.json in Resources */,
 				F04085FB28B5562F002EDECD /* click1.mp3 in Resources */,
+				F0B07D1428EF106C00AA99FC /* deer.json in Resources */,
 				F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */,
 				F04085FA28B5562F002EDECD /* click2.mp3 in Resources */,
 				F0E9BF1628E1348F007FBC04 /* summer_bar.mp3 in Resources */,
@@ -791,8 +790,8 @@
 				F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */,
 				F0F3672928EA97B400F79D1A /* moon-jubilant.json in Resources */,
 				F0F3673728EBC06D00F79D1A /* sun.json in Resources */,
-				F08C8C7528AC37B000DDDFB8 /* bird.json in Resources */,
 				F0F3673128EBB6C100F79D1A /* birds.json in Resources */,
+				F0B07D1528EF106C00AA99FC /* dog.json in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -874,6 +873,7 @@
 				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
 				F0D66E3728886E4D0095AEDE /* Message.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
+				F0B07D1728EF190400AA99FC /* MessagingService.swift in Sources */,
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,

@@ -19,6 +19,7 @@ enum NotificationType: String {
     case GetUserItems
     case FetchCommunityTrees
     case CreateTree
+    case SubscribeToTopic
 }
 
 class NotificationSender {

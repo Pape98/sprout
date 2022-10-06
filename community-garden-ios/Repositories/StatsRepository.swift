@@ -61,7 +61,7 @@ class StatsRepository {
     
     func stepsChangeCallback(value: Double){
         
-        guard let settings = UserService.user.settings else {  return }
+        guard let settings = UserService.shared.user.settings else {  return }
                 
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.steps.rawValue) { return }
@@ -77,7 +77,7 @@ class StatsRepository {
     }
     
     func workoutsChangeCallback(value: Double){
-        guard let settings = UserService.user.settings else {  return }
+        guard let settings = UserService.shared.user.settings else {  return }
         
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.workouts.rawValue) { return }
@@ -93,7 +93,7 @@ class StatsRepository {
     }
     
     func walkingRunningChangeCallback(value: Double){
-        guard let settings = UserService.user.settings else {  return }
+        guard let settings = UserService.shared.user.settings else {  return }
         
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.walkingRunningDistance.rawValue) { return }
@@ -108,7 +108,7 @@ class StatsRepository {
     }
     
     func sleepChangeCallback(value: Double){
-        guard let settings = UserService.user.settings else {  return }
+        guard let settings = UserService.shared.user.settings else {  return }
         // Check if user is tracking data
         if !settings.data.contains(DataOptions.sleep.rawValue) { return }
         
@@ -144,7 +144,7 @@ class StatsRepository {
         let progressDifference = value - progress.old
         
         // Get callback function
-        let mappedData = UserService.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
+        let mappedData = UserService.shared.user.settings!.mappedData.swapKeyValues() // ["Steps": "Tree"]
         
         guard let element = mappedData[data.rawValue] else { return }
         let mappedElement = element // "Tree"

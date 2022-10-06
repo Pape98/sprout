@@ -34,12 +34,12 @@ class CommunityViewModel: ObservableObject {
                        object: nil)
         
         DispatchQueue.main.async {
-            self.reactions = Reactions(group: UserService.user.group, date: Date.today, love: 0)
+            self.reactions = Reactions(group: UserService.shared.user.group, date: Date.today, love: 0)
         }
     }
     
     func fetchGroup(){
-        let groupNumber = UserService.user.group
+        let groupNumber = UserService.shared.user.group
         
         groupRepository.fetchGroup(groupNumber: groupNumber) { group in
             DispatchQueue.main.async {
@@ -49,7 +49,7 @@ class CommunityViewModel: ObservableObject {
     }
     
     func fetchGroupMembers(){
-        let userGroup = UserService.user.group
+        let userGroup = UserService.shared.user.group
         let userID = getUserID()
         guard let userID = userID else { return }
         
@@ -74,7 +74,7 @@ class CommunityViewModel: ObservableObject {
     
     @objc
     func fetchTrees(){
-        let userGroup = UserService.user.group
+        let userGroup = UserService.shared.user.group
         let collection = self.collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
         let query = collection.whereField("date", isEqualTo: Date.today)
@@ -101,7 +101,7 @@ class CommunityViewModel: ObservableObject {
         let tokens: [String] = members.values.map { $0.fcmToken }
         reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
             self.fetchReactions()
-            let user = UserService.user
+            let user = UserService.shared.user
             SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.love)
         }
     }
@@ -110,7 +110,7 @@ class CommunityViewModel: ObservableObject {
         let tokens: [String] = members.values.map { $0.fcmToken }
         reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
             self.fetchReactions()
-            let user = UserService.user
+            let user = UserService.shared.user
             SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.encouragement)
         }
     }

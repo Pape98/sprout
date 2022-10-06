@@ -21,7 +21,7 @@ class OnboardingViewModel: ObservableObject {
             let decoder = JSONDecoder()
 
             let decodedSetting = try decoder.decode(UserSettings.self, from: json)
-            UserService.user.settings = decodedSetting
+            UserService.shared.user.settings = decodedSetting
         } catch {
             print(error)
             return
@@ -48,7 +48,7 @@ class OnboardingViewModel: ObservableObject {
     func updateUser(updates: [String: Any], completion: @escaping () -> Void){
         let userID = getUserID()
         if let userID = userID {
-            userRepository.updateUser(userID: UserService.user.id, updates: updates) {
+            userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
                 completion()
             }
         }

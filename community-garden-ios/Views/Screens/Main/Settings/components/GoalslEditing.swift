@@ -43,7 +43,7 @@ struct GoalEditingSlider: View {
     }
     
     var currentGoal: Float {
-        let settings = UserService.user.settings!
+        let settings = UserService.shared.user.settings!
         let dataOption = DataOptions(rawValue: key)
         
         switch dataOption {

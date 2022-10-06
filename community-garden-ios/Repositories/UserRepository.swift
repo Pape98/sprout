@@ -73,7 +73,7 @@ class UserRepository {
             
             do {
                 let decodedUser: User = try document!.data(as: User.self)
-                UserService.user = decodedUser
+                UserService.shared.user = decodedUser
                 completion(decodedUser)
             } catch {
                 print("[fetchLoggedInUser() decoding]", error)

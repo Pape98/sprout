@@ -83,7 +83,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         if position.x < pond.position.x + pond.size.width + 10 { return }
         
         // Garden Flower
-        let settings = UserService.user.settings
+        let settings = UserService.shared.user.settings
         guard let settings = settings else { return }
         
         let flowerName = "\(settings.flowerColor)-\(addDash(settings.flower))"
@@ -107,12 +107,13 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let x = flower.position.x / frame.maxX
         let y = flower.position.y / frame.maxY
         
-        let flowerItem = GardenItem(userID: UserService.user.id, type: GardenItemType.flower,
+        let flowerItem = GardenItem(userID: UserService.shared.user.id,
+                                    type: GardenItemType.flower,
                                     name: flowerName, x: x, y: y,
                                     scale: scale,
-                                    group: UserService.user.group,
-                                    gardenName: UserService.user.settings!.gardenName,
-                                    userName: UserService.user.name
+                                    group: UserService.shared.user.group,
+                                    gardenName: UserService.shared.user.settings!.gardenName,
+                                    userName: UserService.shared.user.name
         )
         
         gardenViewModel.addFlower(flowerItem)

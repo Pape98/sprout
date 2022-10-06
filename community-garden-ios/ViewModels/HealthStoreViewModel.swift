@@ -57,28 +57,28 @@ class HealthStoreViewModel: ObservableObject {
     }
     
     func hasUserMetSleepGoal(data: DataOptions) -> Bool {
-        guard let settings = UserService.user.settings else { return false }
+        guard let settings = UserService.shared.user.settings else { return false }
         let goal = settings.sleepGoal
         let progress = progressRepo.getSleepProgress()
         return progress.old >= Double(goal!)
         
     }
     func hasUserMetStepGoal(data: DataOptions) -> Bool {
-        guard let settings = UserService.user.settings else { return false }
+        guard let settings = UserService.shared.user.settings else { return false }
         let goal = settings.stepsGoal
         let progress = progressRepo.getStepProgress()
         return progress.old >= Double(goal!)
         
     }
     func hasUserMetWorkoutsGoal(data: DataOptions) -> Bool {
-        guard let settings = UserService.user.settings else { return false }
+        guard let settings = UserService.shared.user.settings else { return false }
         let goal = settings.workoutsGoal
         let progress = progressRepo.getWorkoutsProgress()
         return progress.old >= Double(goal!)
         
     }
     func hasUserMetWalkingRunningGoal(data: DataOptions) -> Bool {
-        guard let settings = UserService.user.settings else { return false }
+        guard let settings = UserService.shared.user.settings else { return false }
         let goal = settings.walkingRunningGoal
         let progress = progressRepo.getWalkingRunningProgress()
         return progress.old >= Double(goal!)

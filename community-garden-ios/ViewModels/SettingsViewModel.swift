@@ -9,7 +9,7 @@ import Foundation
 
 class SettingsViewModel: ObservableObject {
     
-    @Published var settings = UserService.user.settings
+    @Published var settings = UserService.shared.user.settings
     static let shared = SettingsViewModel()
     let appViewModel = AppViewModel.shared
     let userRepository = UserRepository()
@@ -29,7 +29,7 @@ class SettingsViewModel: ObservableObject {
             }
             
             guard var tree = GardenViewModel.shared.tree else { return }
-            let settings = UserService.user.settings!
+            let settings = UserService.shared.user.settings!
             var name = ""
             
             if settingKey == FirestoreKey.TREE {
@@ -62,7 +62,7 @@ class SettingsViewModel: ObservableObject {
         userRepository.fetchLoggedInUser(userID: userID) { user in
             DispatchQueue.main.async {
                 self.settings = user.settings
-                UserService.user = user
+                UserService.shared.user = user
                 NotificationSender.send(type: NotificationType.UpdateUserService.rawValue)
             }
         }

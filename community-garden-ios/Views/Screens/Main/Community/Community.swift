@@ -23,6 +23,9 @@ struct Community: View {
     @State var toastColor: Color = .red
     
     var weatherInfo: [String: String] = getWeatherInfo()
+    var animalSize: CGFloat {
+        75
+    }
     
     var scene: SKScene {
         let scene = CommunityGardenScene()
@@ -51,9 +54,19 @@ struct Community: View {
                 LottieView(filename: "birds")
             }
             
+            // Sprites
             if communityViewModel.group != nil {
                 SpriteView(scene: scene, options: [.allowsTransparency])
                     .ignoresSafeArea(.container, edges: [.top])
+            }
+            
+            // Animals
+            
+            ZStack {
+//                LottieView(filename: "dog")
+//                    .frame(height: animalSize)
+//                LottieView(filename: "turtle")
+//                    .frame(height: animalSize)
             }
             
             VStack {

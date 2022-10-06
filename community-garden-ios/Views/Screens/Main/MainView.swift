@@ -36,7 +36,7 @@ struct MainView: View {
                         playSound()
                     }
                 
-                if RemoteConfiguration.shared.isSocialConfig(group: UserService.user.group){
+                if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
                     Community()
                         .tabItem {
                             Label("Community", systemImage: "globe")
@@ -55,7 +55,7 @@ struct MainView: View {
                         playSound()
                     }
                 
-                if RemoteConfiguration.shared.canCustomize(group: UserService.user.group){
+                if RemoteConfiguration.shared.canCustomize(group: UserService.shared.user.group){
                     Settings()
                         .tabItem {
                             Label("Settings", systemImage: "gearshape")

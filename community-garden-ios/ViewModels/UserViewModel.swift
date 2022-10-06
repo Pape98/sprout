@@ -12,7 +12,7 @@ class UserViewModel: ObservableObject {
     
     // MARK: - Properties
     
-    @Published var currentUser: User = UserService.user
+    @Published var currentUser: User = UserService.shared.user
     @Published var numDroplets: Stat?
     @Published var numSeeds: Stat?
     
@@ -50,7 +50,6 @@ class UserViewModel: ObservableObject {
         self.userRepository.fetchLoggedInUser(userID: userID) { user in
             DispatchQueue.main.async {
                 self.currentUser = user
-                UserService.user = user
                 self.handleResets()
             }
         }
@@ -58,7 +57,7 @@ class UserViewModel: ObservableObject {
     
     @objc func getUserNewUpdates(){
         DispatchQueue.main.async {
-            self.currentUser = UserService.user
+            self.currentUser = UserService.shared.user
         }
     }
     
@@ -97,18 +96,18 @@ class UserViewModel: ObservableObject {
     }
     
     func updateUser(updates: [String: Any], completion: @escaping () -> Void){
-        userRepository.updateUser(userID: UserService.user.id, updates: updates) {
+        userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
             completion()
         }
     }
     
     func handleResets(){
-        let lastResetDate = UserService.user.lastReset
+        let lastResetDate = UserService.shared.user.lastReset
         
         if lastResetDate != Date.today {
             SQLiteService.shared.resetTableValues(forceReset: true)
             updateUser(updates: ["lastReset" : Date.today]) {
-                UserService.user.lastReset = Date.today
+                UserService.shared.user.lastReset = Date.today
             }
         }
     }
