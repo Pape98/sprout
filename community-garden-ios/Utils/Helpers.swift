@@ -130,3 +130,9 @@ func isUserTrackingData(_ data: DataOptions) -> Bool {
     guard let settings = UserService.user.settings else {  return false }
     return settings.data.contains(data.rawValue)
 }
+
+func isUserLoggedIn() -> Bool {
+    let user = Auth.auth().currentUser
+    guard let _ = user else { return false }
+    return true
+}
