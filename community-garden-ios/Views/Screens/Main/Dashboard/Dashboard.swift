@@ -174,7 +174,7 @@ struct Dashboard: View {
                 .bodyStyle()
             
             if goal != nil && goal! > 0 {
-                ProgressView(value: value/Double(goal!))
+                ProgressView(value: value/Double(goal!) <= 1 ? value/Double(goal!) : 1 )
                     .padding(.horizontal)
             }
         }

@@ -63,10 +63,22 @@ struct DataStatus: View {
                 Spacer()
                 
                 
-                Text(data.date)
-                    .font(.system(size: 13))
-                    .foregroundColor(.chalice)
-                    .bold()
+                VStack(alignment: .trailing, spacing: 11) {
+                    Text(data.date)
+                        .font(.system(size: 13))
+                        .foregroundColor(.chalice)
+                        .bold()
+                    
+                    HStack(alignment: .center) {
+                        
+                        Image(systemName: "target")
+                            .foregroundColor(.appleGreen)
+                        
+                        Text(String(goal))
+                            .font(.system(size: 13))
+                            .foregroundColor(.appleGreen)
+                    }
+                }
                 
             }
             .frame(maxWidth: .infinity, alignment: .leading)
