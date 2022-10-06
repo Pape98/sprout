@@ -38,7 +38,7 @@ struct CommunityGardenIosApp: App {
         //        }
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
-//        setupLocalEmulator()
+        setupLocalEmulator()
         
     }
     
@@ -47,7 +47,7 @@ struct CommunityGardenIosApp: App {
         // Local firestore
         let settings = Firestore.firestore().settings
         settings.host = "localhost:8080"
-        settings.isPersistenceEnabled = false
+        settings.isPersistenceEnabled = true
         settings.isSSLEnabled = false
         Firestore.firestore().settings = settings
         
@@ -60,7 +60,7 @@ struct CommunityGardenIosApp: App {
             LaunchView()
                 .foregroundColor(fontColor)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
-                    // SproutAnalytics.shared.appLaunch()
+                    SproutAnalytics.shared.setDefaultParams()
                 })
                 .background(Color.porcelain)
                 .environmentObject(authViewModel)

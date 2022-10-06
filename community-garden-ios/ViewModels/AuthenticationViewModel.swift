@@ -130,6 +130,9 @@ class AuthenticationViewModel: ObservableObject {
                     
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
+                    // Set up analytics default parameter
+                    SproutAnalytics.shared.setDefaultParams()
+                    
                     // Check user if already exists in database
                     self.userRepository.doesUserExist(userID: userID){ result in
                         

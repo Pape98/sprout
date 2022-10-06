@@ -35,13 +35,13 @@ struct Dashboard: View {
             ZStack {
                 MainBackground(edges: [.top])
                 ScrollView(showsIndicators: false) {
-
+                    
                     VStack {
-
+                        
                         if let user = userViewModel.currentUser {
                             // Header
                             VStack {
-
+                                
                                 if let settings = user.settings {
                                     CircledTree(option: "\(settings.treeColor)-\(addDash(settings.tree))",
                                                 background: .appleGreen,
@@ -50,56 +50,56 @@ struct Dashboard: View {
                                     CircledTree(option: TREE, background: .seaGreen, size: 75)
                                         .padding(.top, 15)
                                 }
-
+                                
                                 VStack(spacing: 10) {
                                     Text("Hi, \(getFirstName(user.name))!")
                                         .headerStyle(foregroundColor: appViewModel.fontColor)
-
+                                    
                                     Text(date)
                                         .bold()
                                         .bodyStyle(foregroundColor: appViewModel.fontColor)
-
+                                    
                                 }
-
-
+                                
+                                
                             }.padding(.bottom, 10)
                         }
-
+                        
                         // Card Row One
-
-
+                        
+                        
                         LazyVGrid(columns: rowOneGrid){
-
-
+                            
+                            
                             GardenInfoCard()
-
-
+                            
+                            
                             NavigationLink(destination: MyGarden()) {
                                 ZStack {
-
+                                    
                                     RoundedRectangle(cornerRadius: 10)
                                         .fill(Color.appleGreen)
                                         .opacity(0.7)
                                         .shadow(radius: 2)
-
+                                    
                                     VStack(spacing:10) {
                                         Image("garden-icon")
-
-
+                                        
+                                        
                                         Text("View Garden")
                                             .font(.system(size: 15))
                                             .foregroundColor(Color.white)
                                             .bold()
-
+                                        
                                     }
                                 }
                                 .frame(height: 141)
                             }
                         }
-
-
+                        
+                        
                         // Card Row Two
-
+                        
                         LazyVGrid(columns: twoColumnGrid) {
                             
                             if isUserTrackingData(DataOptions.steps){
@@ -111,8 +111,8 @@ struct Dashboard: View {
                                     }
                                 }
                             }
-
-
+                            
+                            
                             if isUserTrackingData(DataOptions.walkingRunningDistance){
                                 DashboardCard(icon: "sportscourt.fill"){
                                     if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
@@ -122,7 +122,7 @@ struct Dashboard: View {
                                     }
                                 }
                             }
-
+                            
                             if isUserTrackingData(DataOptions.workouts){
                                 DashboardCard(icon: "clock"){
                                     if let workout = healthStoreViewModel.todayWorkout {
@@ -132,7 +132,7 @@ struct Dashboard: View {
                                     }
                                 }
                             }
-
+                            
                             if isUserTrackingData(DataOptions.sleep){
                                 DashboardCard(icon: "bed.double"){
                                     if let sleep = healthStoreViewModel.todaySleep {
@@ -143,9 +143,9 @@ struct Dashboard: View {
                                 }
                             }
                         }
-
+                        
                         Spacer()
-
+                        
                     }
                 }
                 .navigationBarHidden(true)
@@ -158,9 +158,17 @@ struct Dashboard: View {
     @ViewBuilder
     func CardInfo(value: Double, label: String = "", goal: Int? = nil) -> some View {
         VStack {
-            Text(String(Int(value)))
-                .headerStyle()
-                .font(.title3)
+            
+            if label == "Mile(s)" {
+                Text(String(format: "%.2f", value) )
+                    .headerStyle()
+                    .font(.title3)
+            } else {
+                Text(String(Int(value)))
+                    .headerStyle()
+                    .font(.title3)
+            }
+            
             Text(label)
                 .bold()
                 .bodyStyle()

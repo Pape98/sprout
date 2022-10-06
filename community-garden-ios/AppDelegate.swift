@@ -85,6 +85,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         if let fcmToken = fcmToken {
             print("fcm",fcmToken)
             UserDefaultsService.shared.save(value: fcmToken, key: UserDefaultsKey.FCM_TOKEN)
+                
+            // TODO: Find more effective way to do this
+            // Unsusbcribe from all group topics
+            for i in 0...3 {
+                unsubscribeFromTopic(topic: "group\(i)")
+            }
             
             // Subscribe to group topic
             let groupNumber = UserService.user.group
@@ -95,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
                     print(error)
                     return
                 }
-                print("Subscribed to weather topic \(group)")
+                print("Subscribed to topic \(group)")
             }
             
         }
@@ -128,5 +134,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         MessagesViewModel.shared.getUserMessages()
         // tell the app that we have finished processing the user’s action / response
         completionHandler()
+    }
+    
+    // MARK: Utils
+    func unsubscribeFromTopic(topic: String){
+        Messaging.messaging().unsubscribe(fromTopic: topic) { err in
+            if let error = err {
+                print(error)
+                return
+            }
+            print("Unsubscribed from topic: \(topic)")
+        }
     }
 }
