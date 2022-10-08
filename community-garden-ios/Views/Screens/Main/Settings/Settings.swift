@@ -35,48 +35,50 @@ struct Settings: View {
                         }
                     }
                     
-                    Section("Garden"){
-                        
-                        NavigationLink {
-                            if let settings = settingsViewModel.settings {
-                                NameChanging(garden: settings.gardenName)
+                    if RemoteConfiguration.shared.canCustomize(group: UserService.shared.user.group){
+                        Section("Garden"){
+                            
+                            NavigationLink {
+                                if let settings = settingsViewModel.settings {
+                                    NameChanging(garden: settings.gardenName)
+                                }
+                            } label : {
+                                Text("Edit Garden Name")
                             }
-                        } label : {
-                            Text("Edit Garden Name")
-                        }
-                    }
-                    
-                    Section("Types & Colors"){
-                        if let settings = settingsViewModel.settings {
-                            SettingButton(label: "Tree Type",
-                                          image: "moss-\(addDash(settings.tree))",
-                                          prefix: "moss",
-                                          data: treeTypes,
-                                          mode: SettingsMode.treeType,
-                                          settingKey: FirestoreKey.TREE)
-                            
-                            
-                            SettingButton(label: "Flower Type",
-                                          image: "flowers/cosmos-\(addDash(settings.flower))",
-                                          prefix: "flowers/cosmos",
-                                          data: flowerTypes,
-                                          mode: SettingsMode.flowerType,
-                                          settingKey: FirestoreKey.FLOWER)
-                            
-                            
-                            SettingButton(label: "Tree Color",
-                                          image: addDash("\(settings.treeColor)-\(settings.tree)"),
-                                          data: treeColors,
-                                          mode: SettingsMode.treeColor,
-                                          settingKey: FirestoreKey.TREE_COLOR)
-                            
-                            SettingButton(label: "Flower color",
-                                          image: "petals/" + addDash("\(settings.flowerColor)-\(settings.flower)"),
-                                          data: flowerColors,
-                                          mode: SettingsMode.flowerColor,
-                                          settingKey: FirestoreKey.FLOWER_COLOR)
                         }
                         
+                        Section("Types & Colors"){
+                            if let settings = settingsViewModel.settings {
+                                SettingButton(label: "Tree Type",
+                                              image: "moss-\(addDash(settings.tree))",
+                                              prefix: "moss",
+                                              data: treeTypes,
+                                              mode: SettingsMode.treeType,
+                                              settingKey: FirestoreKey.TREE)
+                                
+                                
+                                SettingButton(label: "Flower Type",
+                                              image: "flowers/cosmos-\(addDash(settings.flower))",
+                                              prefix: "flowers/cosmos",
+                                              data: flowerTypes,
+                                              mode: SettingsMode.flowerType,
+                                              settingKey: FirestoreKey.FLOWER)
+                                
+                                
+                                SettingButton(label: "Tree Color",
+                                              image: addDash("\(settings.treeColor)-\(settings.tree)"),
+                                              data: treeColors,
+                                              mode: SettingsMode.treeColor,
+                                              settingKey: FirestoreKey.TREE_COLOR)
+                                
+                                SettingButton(label: "Flower color",
+                                              image: "petals/" + addDash("\(settings.flowerColor)-\(settings.flower)"),
+                                              data: flowerColors,
+                                              mode: SettingsMode.flowerColor,
+                                              settingKey: FirestoreKey.FLOWER_COLOR)
+                            }
+                            
+                        }
                     }
                 }
                 .modifier(ListBackgroundModifier())

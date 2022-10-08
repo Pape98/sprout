@@ -48,7 +48,7 @@ class OnboardingViewModel: ObservableObject {
     func updateUser(updates: [String: Any], completion: @escaping () -> Void){
         let userID = getUserID()
         if let userID = userID {
-            userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
+            userRepository.updateUser(userID: userID, updates: updates) {
                 completion()
             }
         }

@@ -49,6 +49,7 @@
 		F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */; };
 		F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* Messages.swift */; };
 		F04B545728E72F9100F6FFE1 /* turtle.json in Resources */ = {isa = PBXBuildFile; fileRef = F04B545628E72F9000F6FFE1 /* turtle.json */; };
+		F04E752228EF6DF00046195B /* birds.json in Resources */ = {isa = PBXBuildFile; fileRef = F04E752128EF6DF00046195B /* birds.json */; };
 		F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F059833D28D4D88100542D64 /* FirebaseRemoteConfig */; };
 		F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
@@ -119,7 +120,6 @@
 		F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */; };
 		F0F3672928EA97B400F79D1A /* moon-jubilant.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672828EA97B400F79D1A /* moon-jubilant.json */; };
 		F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F3672A28EB422800F79D1A /* GoalslEditing.swift */; };
-		F0F3673128EBB6C100F79D1A /* birds.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3673028EBB6C100F79D1A /* birds.json */; };
 		F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3673428EBBC9400F79D1A /* bird-feeding.json */; };
 		F0F3673728EBC06D00F79D1A /* sun.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3673628EBC06D00F79D1A /* sun.json */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
@@ -175,6 +175,7 @@
 		F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
 		F04AD4CE288B22DD00BC17AB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
 		F04B545628E72F9000F6FFE1 /* turtle.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle.json; sourceTree = "<group>"; };
+		F04E752128EF6DF00046195B /* birds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = birds.json; sourceTree = "<group>"; };
 		F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F07657F428D6870E00C72F2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
@@ -241,7 +242,6 @@
 		F0F3672528EA026300F79D1A /* Baloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Baloo.ttf; sourceTree = "<group>"; };
 		F0F3672828EA97B400F79D1A /* moon-jubilant.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "moon-jubilant.json"; sourceTree = "<group>"; };
 		F0F3672A28EB422800F79D1A /* GoalslEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalslEditing.swift; sourceTree = "<group>"; };
-		F0F3673028EBB6C100F79D1A /* birds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = birds.json; sourceTree = "<group>"; };
 		F0F3673428EBBC9400F79D1A /* bird-feeding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bird-feeding.json"; sourceTree = "<group>"; };
 		F0F3673628EBC06D00F79D1A /* sun.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun.json; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -663,11 +663,11 @@
 		F0F3672628EA979600F79D1A /* Animals */ = {
 			isa = PBXGroup;
 			children = (
+				F04E752128EF6DF00046195B /* birds.json */,
 				F0B07D1228EF106C00AA99FC /* deer.json */,
 				F0B07D1328EF106C00AA99FC /* dog.json */,
 				F0F3673628EBC06D00F79D1A /* sun.json */,
 				F0F3673428EBBC9400F79D1A /* bird-feeding.json */,
-				F0F3673028EBB6C100F79D1A /* birds.json */,
 				F04B545628E72F9000F6FFE1 /* turtle.json */,
 			);
 			path = Animals;
@@ -790,7 +790,7 @@
 				F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */,
 				F0F3672928EA97B400F79D1A /* moon-jubilant.json in Resources */,
 				F0F3673728EBC06D00F79D1A /* sun.json in Resources */,
-				F0F3673128EBB6C100F79D1A /* birds.json in Resources */,
+				F04E752228EF6DF00046195B /* birds.json in Resources */,
 				F0B07D1528EF106C00AA99FC /* dog.json in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
 			);

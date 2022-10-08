@@ -77,9 +77,7 @@ class AuthenticationViewModel: ObservableObject {
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
-                let topic = "group\(UserService.shared.user.group)"
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
-                MessagingService.shared.subscribeToTopic(topic)
             }
             // Check login status again to update UI
             DispatchQueue.main.async {

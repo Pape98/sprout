@@ -48,6 +48,10 @@ class UserViewModel: ObservableObject {
         }
         
         self.userRepository.fetchLoggedInUser(userID: userID) { user in
+            
+            let topic = "group\(user.group)"
+            MessagingService.shared.subscribeToTopic(topic)
+            
             DispatchQueue.main.async {
                 self.currentUser = user
                 self.handleResets()

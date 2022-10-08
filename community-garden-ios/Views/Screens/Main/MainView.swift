@@ -55,20 +55,15 @@ struct MainView: View {
                         playSound()
                     }
                 
-                if RemoteConfiguration.shared.canCustomize(group: UserService.shared.user.group){
-                    Settings()
-                        .tabItem {
-                            Label("Settings", systemImage: "gearshape")
-                        }
-                        .onAppear {
-                            playSound()
-                        }
-                } else {
-                    SignOut()
-                        .tabItem {
-                            Label("Sign out", systemImage: "rectangle.portrait.and.arrow.right")
-                        }
-                }
+                
+                Settings()
+                    .tabItem {
+                        Label("Settings", systemImage: "gearshape")
+                    }
+                    .onAppear {
+                        playSound()
+                    }
+                
             }
         }
         .accentColor(.appleGreen)
@@ -78,28 +73,6 @@ struct MainView: View {
         .environmentObject(messagesViewModel)
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
-    }
-    
-    @ViewBuilder
-    func SignOut() -> some View {
-        ZStack {
-            MainBackground()
-            
-            VStack(spacing: 50) {
-                
-                LottieView(filename: "bird-feeding")
-                    .frame(width: 300, height: 300)
-                
-                Spacer()
-                
-                ActionButton(title: "Sign out", backgroundColor: .red, fontColor: .white){
-                    authViewModel.signOut()
-                    
-                }
-                .frame(width: 200)
-                .padding(.bottom, 40)
-            }
-        }
     }
     
     func playSound(){
