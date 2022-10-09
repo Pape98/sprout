@@ -185,7 +185,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         if isValidTreeLocation(location) == false { return }
         
-        if gardenViewModel.tree != nil {
+        if gardenViewModel.tree != nil && gardenViewModel.gardenMode == GardenViewModel.GardenMode.moving {
             gardenViewModel.tree!.x = location.x
             gardenViewModel.tree!.y = location.y
             gardenViewModel.updateTree()

@@ -24,6 +24,7 @@ class GardenViewModel: ObservableObject {
     @Published var items: [GardenItem] = []
     @Published var dropItem = GardenElement.droplet
     @Published var gardenMode = GardenMode.moving
+    @Published var sunMoon = "sun"
     
     var flowers: [GardenItem] = []
     var tree: GardenItem?
@@ -81,6 +82,18 @@ class GardenViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.tree = tree
             self.items.append(tree)
+        }
+    }
+    
+    func setSunMoon() {
+        let hour = Date.hour
+        
+        DispatchQueue.main.async {
+            if hour >= 19 && hour <= 6 { // night
+                self.sunMoon = "sun"
+            } else { // evening
+                self.sunMoon = "moon"
+            }
         }
     }
     

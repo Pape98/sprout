@@ -35,10 +35,7 @@ class AppViewModel: ObservableObject {
     
     
     func setBackground(){
-        
-        let date = Date()
-        let dateComponents = Calendar.current.dateComponents([.hour], from: date)
-        let hour = dateComponents.hour!
+        let hour = Date.hour
         
         var image = backgroundImage
         var color = backgroundColor

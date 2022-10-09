@@ -138,7 +138,7 @@ class HealthStoreRepository {
             try docRef.setData(from: data, merge: true)
             NotificationSender.send(type: notification.rawValue, message: message)
         } catch {
-            print("saveData: Error writing to Firestore: \(error)")
+            Debug.log.error("Error saving data to Firestore: \(error)")
         }
     }
     
@@ -152,7 +152,7 @@ class HealthStoreRepository {
             case .success(let data):
                 completion(data)
             case .failure(let error):
-                print("Error getting \(name) from Firestore: \(error)")
+                Debug.log.error("Error getting \(name) from Firestore: \(error)")
             }
         }
     }
@@ -166,14 +166,14 @@ class HealthStoreRepository {
         
         docRef.getDocuments() {(snapshot, err) in
             if let err = err {
-                print("Error getting documents: \(err)")
+                Debug.log.error("Error getting documents: \(err)")
             } else {
                 do {
                     for doc in snapshot!.documents {
                         res.append(try doc.data(as: type))
                     }
                 } catch {
-                    print("getData: Error reading from Firestore: \(error)")
+                    Debug.log.error("getData: Error reading from Firestore: \(error)")
                 }
                 
                 completion(res)

@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseFunctions
+import SwiftyBeaver
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
@@ -83,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         if let fcmToken = fcmToken {
-            print("fcm",fcmToken)
+            Debug.log.verbose("FCM TOKEN: \(fcmToken)")
             UserDefaultsService.shared.save(value: fcmToken, key: UserDefaultsKey.FCM_TOKEN)
                 
             // TODO: Find more effective way to do this

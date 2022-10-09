@@ -53,6 +53,13 @@ extension Date {
     static func - (lhs: Date, rhs: Date) -> TimeInterval {
         return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
     }
+    
+    static var hour: Int {
+        let date = Date()
+        let dateComponents = Calendar.current.dateComponents([.hour], from: date)
+        let hour = dateComponents.hour!
+        return hour
+    }
 }
 
 extension String {

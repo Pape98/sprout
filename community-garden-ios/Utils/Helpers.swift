@@ -60,9 +60,7 @@ func getWeatherInfo() -> [String: String]{
 }
 
 func getIntroBackground() -> String {
-    let date = Date()
-    let dateComponents = Calendar.current.dateComponents([.hour], from: date)
-    let hour = dateComponents.hour!
+    let hour = Date.hour
         
     if hour >= 0 && hour <= 6 { // night
         return "intro-bg-night"

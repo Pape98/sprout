@@ -13,6 +13,7 @@ struct MainView: View {
     // MARK: View Models
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
     @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared
@@ -43,6 +44,7 @@ struct MainView: View {
                         }
                         .onAppear {
                             playSound()
+                            appViewModel.setBackground()
                         }
                 }
                 
@@ -53,6 +55,7 @@ struct MainView: View {
                     .onAppear {
                         SproutAnalytics.shared.viewHistory()
                         playSound()
+                        appViewModel.setBackground()
                     }
                 
                 
@@ -62,9 +65,12 @@ struct MainView: View {
                     }
                     .onAppear {
                         playSound()
+                        appViewModel.setBackground()
                     }
-                
             }
+        }
+        .onAppear {
+            appViewModel.setBackground()
         }
         .accentColor(.appleGreen)
         .environmentObject(userViewModel)
@@ -88,5 +94,6 @@ struct MainView_Previews: PreviewProvider {
             .environmentObject(HistoryViewModel())
             .environmentObject(CommunityViewModel())
             .environmentObject(AppViewModel())
+            .environmentObject(AuthenticationViewModel())
     }
 }

@@ -21,7 +21,7 @@ class MessagingService {
                 print(error)
                 return
             }
-            print("Subscribed to topic \(topic)")
+            Debug.log.info("Subscribed to topic \(topic)")
         }
     }
     
@@ -31,7 +31,7 @@ class MessagingService {
                 print(error)
                 return
             }
-            print("Unsubscribed from topic: \(topic)")
+            Debug.log.info("Unsubscribed from topic: \(topic)")
         }
     }
     
