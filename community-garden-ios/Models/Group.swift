@@ -22,6 +22,12 @@ struct GardenGroup: Codable {
     ]
 }
 
+struct GoalsStat: Codable {
+    var numberOfGoalsAchieved: Int = 0
+    var date: String
+    var group: Int
+}
+
 struct Reactions: Codable {
     var group: Int = 0
     var date: String = ""

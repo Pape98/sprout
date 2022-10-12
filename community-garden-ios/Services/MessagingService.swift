@@ -28,10 +28,9 @@ class MessagingService {
     func unsubscribeFromTopic(topic: String){
         Messaging.messaging().unsubscribe(fromTopic: topic) { err in
             if let error = err {
-                print(error)
+                Debug.log.error("Messaging error: \(error)")
                 return
             }
-            Debug.log.info("Unsubscribed from topic: \(topic)")
         }
     }
     

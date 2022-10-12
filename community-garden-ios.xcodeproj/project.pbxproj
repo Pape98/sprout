@@ -89,6 +89,7 @@
 		F09F81F228F660E2009287E6 /* sun2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81EE28F660E1009287E6 /* sun2.json */; };
 		F09F81F328F660E2009287E6 /* sun4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81EF28F660E1009287E6 /* sun4.json */; };
 		F09F81F428F660E2009287E6 /* sun3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81F028F660E2009287E6 /* sun3.json */; };
+		F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F528F67126009287E6 /* GoalsRepository.swift */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
@@ -222,6 +223,7 @@
 		F09F81EE28F660E1009287E6 /* sun2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun2.json; sourceTree = "<group>"; };
 		F09F81EF28F660E1009287E6 /* sun4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun4.json; sourceTree = "<group>"; };
 		F09F81F028F660E2009287E6 /* sun3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun3.json; sourceTree = "<group>"; };
+		F09F81F528F67126009287E6 /* GoalsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsRepository.swift; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B07D1228EF106C00AA99FC /* deer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer.json; sourceTree = "<group>"; };
@@ -648,15 +650,16 @@
 			isa = PBXGroup;
 			children = (
 				F04234A42784C6F40063DA08 /* Collections.swift */,
-				F0C99E21278481A6004514D4 /* UserRepository.swift */,
-				F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */,
-				F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */,
-				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
-				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
 				F043F25F287EEBA7008F211C /* GardenRepository.swift */,
-				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
+				F09F81F528F67126009287E6 /* GoalsRepository.swift */,
 				F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */,
+				F0C99E21278481A6004514D4 /* UserRepository.swift */,
+				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
+				F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */,
+				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
+				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
 				F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */,
+				F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -917,6 +920,7 @@
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F06558AB28F1FD230077C50B /* Debug.swift in Sources */,
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
+				F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F0F0C87A28B53CFE0047D9EA /* History.swift in Sources */,
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,

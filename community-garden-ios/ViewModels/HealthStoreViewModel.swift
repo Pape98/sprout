@@ -13,7 +13,10 @@ class HealthStoreViewModel: ObservableObject {
     
     static let shared = HealthStoreViewModel()
     let healthStoreRepo = HealthStoreRepository.shared
+    let goalsRepo = GoalsRepository.shared
     let progressRepo = ProgressRepository.shared
+    let collections = Collections.shared
+    
     let today = Date.today
     var stepCounts: [Step] = []
     
@@ -29,10 +32,10 @@ class HealthStoreViewModel: ObservableObject {
     
     
     func getTodayData(){
-        getTodayStepCount()
-        getTodayWalkingRunningDistance()
-        getTodayWorkout()
-        getTodaySleep()
+        if isUserTrackingData(DataOptions.steps) { getTodayStepCount() }
+        if isUserTrackingData(DataOptions.sleep) { getTodaySleep() }
+        if isUserTrackingData(DataOptions.workouts) { getTodayWorkout() }
+        if isUserTrackingData(DataOptions.walkingRunningDistance) { getTodayWalkingRunningDistance()}
     }
     
     func setupObservers() {
@@ -63,6 +66,7 @@ class HealthStoreViewModel: ObservableObject {
         return progress.old >= Double(goal!)
         
     }
+    
     func hasUserMetStepGoal(data: DataOptions) -> Bool {
         guard let settings = UserService.shared.user.settings else { return false }
         let goal = settings.stepsGoal
@@ -70,6 +74,7 @@ class HealthStoreViewModel: ObservableObject {
         return progress.old >= Double(goal!)
         
     }
+    
     func hasUserMetWorkoutsGoal(data: DataOptions) -> Bool {
         guard let settings = UserService.shared.user.settings else { return false }
         let goal = settings.workoutsGoal
@@ -77,6 +82,7 @@ class HealthStoreViewModel: ObservableObject {
         return progress.old >= Double(goal!)
         
     }
+    
     func hasUserMetWalkingRunningGoal(data: DataOptions) -> Bool {
         guard let settings = UserService.shared.user.settings else { return false }
         let goal = settings.walkingRunningGoal
@@ -89,6 +95,12 @@ class HealthStoreViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.healthStoreRepo.getStepCountByDate(date: self.today) { result in
                 self.todayStepCount = result
+                guard let goal = result.goal else { return }
+                
+                if result.count >= Double(goal) && result.hasReachedGoal == false {
+                    self.goalsRepo.updateGoalsAchieved()
+                    self.updateTrackedData(data: HealthStoreRepository.Data.steps, updates: ["hasReachedGoal": true])
+                }
             }
         }
     }
@@ -97,6 +109,12 @@ class HealthStoreViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.healthStoreRepo.getWalkingRunningDistanceByDate(date: self.today) { result in
                 self.todayWalkingRunningDistance = result
+                guard let goal = result.goal  else { return }
+                
+                if result.distance >= Double(goal) && result.hasReachedGoal == false {
+                    self.goalsRepo.updateGoalsAchieved()
+                    self.updateTrackedData(data: HealthStoreRepository.Data.walkingRunning, updates: ["hasReachedGoal": true])
+                }
             }
         }
     }
@@ -105,6 +123,12 @@ class HealthStoreViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.healthStoreRepo.getWorkoutByDate(date: self.today) { result in
                 self.todayWorkout = result
+                guard let goal = result.goal else { return }
+                
+                if result.duration >= Double(goal) && result.hasReachedGoal == false {
+                    self.goalsRepo.updateGoalsAchieved()
+                    self.updateTrackedData(data: HealthStoreRepository.Data.workouts, updates: ["hasReachedGoal": true])
+                }
             }
         }
     }
@@ -113,7 +137,21 @@ class HealthStoreViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.healthStoreRepo.getSleepByDate(date: self.today) { result in
                 self.todaySleep = result
+                guard let goal = result.goal else { return }
+                
+                if result.duration >= Double(goal) && result.hasReachedGoal == false {
+                    self.goalsRepo.updateGoalsAchieved()
+                    self.updateTrackedData(data: HealthStoreRepository.Data.sleep, updates: ["hasReachedGoal": true])
+                }
             }
         }
+    }
+    
+    func updateTrackedData(data: HealthStoreRepository.Data, updates: [String: Any]){
+        let collection = collections.getCollectionReference(data.rawValue)
+        guard let collection = collection else { return }
+        let user = UserService.shared.user
+        let docRef = collection.document("\(user.id)-\(Date.today)")
+        healthStoreRepo.saveData(docRef: docRef, updates: updates)
     }
 }

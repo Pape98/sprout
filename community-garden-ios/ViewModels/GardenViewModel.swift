@@ -16,6 +16,7 @@ class GardenViewModel: ObservableObject {
     
     static var shared: GardenViewModel = GardenViewModel()
     let userDefaults = UserDefaultsService.shared
+    let goalsRepo = GoalsRepository.shared
     let collections = Collections.shared
     let nc = NotificationCenter.default
     
@@ -36,10 +37,14 @@ class GardenViewModel: ObservableObject {
                        selector: #selector(self.addTree),
                        name: Notification.Name(NotificationType.CreateTree.rawValue),
                        object: nil)
+        
+        getGoalCompletions()
     }
     
     func getGoalCompletions(){
-        
+        goalsRepo.getGoalsStatByDate(date: Date.today) { goalsStat in
+//            Debug.log.debug(goalsStat)
+        }
     }
     
     @objc func getUserItems() -> Void {

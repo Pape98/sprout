@@ -294,6 +294,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     // MARK: Utility methods
     func isValidTreeLocation(_ location: CGPoint) -> Bool {
+        guard let ground = ground else { return false }
+        guard let shadow = shadow else { return false }
         let yBoundary = ground.size.height - shadow.size.height/2
         let xBoundary = pond.size.width + 20
         
