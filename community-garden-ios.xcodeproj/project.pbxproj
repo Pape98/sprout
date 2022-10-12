@@ -90,6 +90,7 @@
 		F09F81F328F660E2009287E6 /* sun4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81EF28F660E1009287E6 /* sun4.json */; };
 		F09F81F428F660E2009287E6 /* sun3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81F028F660E2009287E6 /* sun3.json */; };
 		F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F528F67126009287E6 /* GoalsRepository.swift */; };
+		F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F728F71D67009287E6 /* GoalsMetCard.swift */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
@@ -224,6 +225,7 @@
 		F09F81EF28F660E1009287E6 /* sun4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun4.json; sourceTree = "<group>"; };
 		F09F81F028F660E2009287E6 /* sun3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun3.json; sourceTree = "<group>"; };
 		F09F81F528F67126009287E6 /* GoalsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsRepository.swift; sourceTree = "<group>"; };
+		F09F81F728F71D67009287E6 /* GoalsMetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsMetCard.swift; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B07D1228EF106C00AA99FC /* deer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer.json; sourceTree = "<group>"; };
@@ -445,6 +447,7 @@
 				F0149D5E284F181600782D27 /* GardenInfoCard.swift */,
 				F0149D60284F184000782D27 /* DashboardCard.swift */,
 				F0149D62284F18B300782D27 /* IconButton.swift */,
+				F09F81F728F71D67009287E6 /* GoalsMetCard.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -962,6 +965,7 @@
 				F04085FE28B862AD002EDECD /* DataStatus.swift in Sources */,
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
+				F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */,
 				F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */,
 				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
 				F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */,

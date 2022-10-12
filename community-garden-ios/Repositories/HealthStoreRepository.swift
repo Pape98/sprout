@@ -36,48 +36,76 @@ class HealthStoreRepository {
         guard let settings = UserService.shared.user.settings else { return }
         let goal = settings.stepsGoal
         let user = UserService.shared.user
-        let updates: [String: Any] = ["date": today, "count": v, "userID": userID!, "goal": goal as Any, "username": user.name, "group": user.group]
+        let updates: [String: Any] = ["date": today,
+                                      "count": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
                 
         let collection = collections.getCollectionReference(Data.steps.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, updates: updates, notification: NotificationType.FetchStepCount, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchStepCount.rawValue, message: v)
+        }
     }
     
     func saveWalkingRunningDistance(value v: Double){
         guard let settings = UserService.shared.user.settings else { return }
         let goal = settings.walkingRunningGoal
         let user = UserService.shared.user
-        let updates: [String: Any] = ["date": today, "count": v, "userID": userID!, "goal": goal as Any, "username": user.name, "group": user.group]
+        let updates: [String: Any] = ["date": today,
+                                      "count": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
         
         let collection = collections.getCollectionReference(Data.walkingRunning.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, updates: updates, notification: NotificationType.FetchWalkingRunningDistance, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue, message: v)
+        }
     }
     
     func saveWorkouts(value v: Double){
         guard let settings = UserService.shared.user.settings else { return }
         let goal = settings.workoutsGoal
         let user = UserService.shared.user
-        let updates: [String: Any] = ["date": today, "count": v, "userID": userID!, "goal": goal as Any, "username": user.name, "group": user.group]
+        let updates: [String: Any] = ["date": today,
+                                      "duration": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
         
         let collection = collections.getCollectionReference(Data.workouts.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, updates: updates, notification: NotificationType.FetchWorkout, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchWorkout.rawValue, message: v)
+        }
     }
     
     func saveSleep(value v: Double){
         guard let settings = UserService.shared.user.settings else { return }
         let goal = settings.sleepGoal
         let user = UserService.shared.user
-        let updates: [String: Any] = ["date": today, "count": v, "userID": userID!, "goal": goal as Any, "username": user.name, "group": user.group]
+        let updates: [String: Any] = ["date": today,
+                                      "duration": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
         
         let collection = collections.getCollectionReference(Data.sleep.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, updates: updates, notification: NotificationType.FetchSleep, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchSleep.rawValue, message: v)
+        }
     }
     
     
@@ -137,25 +165,24 @@ class HealthStoreRepository {
         return "\(userID!)-\(today)"
     }
     
-    func saveData(docRef: DocumentReference, updates: [String: Any], notification: NotificationType? = nil, message: Double? = nil){
+    func saveData(docRef: DocumentReference, updates: [String: Any], completion: @escaping () -> Void){
         docRef.setData(updates, merge: true) { err in
             if let err = err {
                 Debug.log.error("Error saving data to Firestore: \(err)")
             } else {
-                guard let notification = notification, let message = message else { return }
-                NotificationSender.send(type: notification.rawValue, message: message)
+                completion()
             }
         }
     }
     
-    func saveData<T: Encodable>(docRef: DocumentReference, data: T, notification: NotificationType, message: Double){
-        do {
-            try docRef.setData(from: data, merge: true)
-            NotificationSender.send(type: notification.rawValue, message: message)
-        } catch {
-            Debug.log.error("Error saving data to Firestore: \(error)")
-        }
-    }
+//    func saveData<T: Encodable>(docRef: DocumentReference, data: T, notification: NotificationType, message: Double){
+//        do {
+//            try docRef.setData(from: data, merge: true)
+//            NotificationSender.send(type: notification.rawValue, message: message)
+//        } catch {
+//            Debug.log.error("Error saving data to Firestore: \(error)")
+//        }
+//    }
     
     func getDataByDate<T: Decodable>(collectionName name: Data, date: String, type: T.Type, completion: @escaping (T) -> Void) {
         let collection = collections.getCollectionReference(name.rawValue)

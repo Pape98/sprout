@@ -96,9 +96,9 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getStepCountByDate(date: self.today) { result in
                 self.todayStepCount = result
                 guard let goal = result.goal else { return }
-                
-                if result.count >= Double(goal) && result.hasReachedGoal == false {
-                    self.goalsRepo.updateGoalsAchieved()
+
+                if result.count >= Double(goal) && result.hasReachedGoal == nil{
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.steps)
                     self.updateTrackedData(data: HealthStoreRepository.Data.steps, updates: ["hasReachedGoal": true])
                 }
             }
@@ -109,10 +109,10 @@ class HealthStoreViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.healthStoreRepo.getWalkingRunningDistanceByDate(date: self.today) { result in
                 self.todayWalkingRunningDistance = result
-                guard let goal = result.goal  else { return }
-                
-                if result.distance >= Double(goal) && result.hasReachedGoal == false {
-                    self.goalsRepo.updateGoalsAchieved()
+                guard let goal = result.goal else { return }
+
+                if result.distance >= Double(goal) && result.hasReachedGoal == nil {
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.walkingRunningDistance)
                     self.updateTrackedData(data: HealthStoreRepository.Data.walkingRunning, updates: ["hasReachedGoal": true])
                 }
             }
@@ -124,9 +124,9 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getWorkoutByDate(date: self.today) { result in
                 self.todayWorkout = result
                 guard let goal = result.goal else { return }
-                
-                if result.duration >= Double(goal) && result.hasReachedGoal == false {
-                    self.goalsRepo.updateGoalsAchieved()
+
+                if result.duration >= Double(goal) && result.hasReachedGoal == nil {
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.workouts)
                     self.updateTrackedData(data: HealthStoreRepository.Data.workouts, updates: ["hasReachedGoal": true])
                 }
             }
@@ -137,10 +137,10 @@ class HealthStoreViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.healthStoreRepo.getSleepByDate(date: self.today) { result in
                 self.todaySleep = result
-                guard let goal = result.goal else { return }
+                guard let goal = result.goal  else { return }
                 
-                if result.duration >= Double(goal) && result.hasReachedGoal == false {
-                    self.goalsRepo.updateGoalsAchieved()
+                if result.duration >= Double(goal) && result.hasReachedGoal == nil {
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.sleep)
                     self.updateTrackedData(data: HealthStoreRepository.Data.sleep, updates: ["hasReachedGoal": true])
                 }
             }
@@ -152,6 +152,10 @@ class HealthStoreViewModel: ObservableObject {
         guard let collection = collection else { return }
         let user = UserService.shared.user
         let docRef = collection.document("\(user.id)-\(Date.today)")
-        healthStoreRepo.saveData(docRef: docRef, updates: updates)
+        
+        Debug.log.debug(data)
+        healthStoreRepo.saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
+        }
     }
 }

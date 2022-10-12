@@ -66,7 +66,11 @@ struct GoalSlider: View {
             .tint(.appleGreen)
             .onChange(of: isEditing) { newValue in
                 if newValue == false {
-                    onboardingRouter.saveSetting(key: defaultKey, value: value)
+                    if defaultKey == .SLEEP_GOAL {
+                        onboardingRouter.saveSetting(key: defaultKey, value: Int(value * 60))
+                    } else {
+                        onboardingRouter.saveSetting(key: defaultKey, value: value)
+                    }
                 }
             }
             

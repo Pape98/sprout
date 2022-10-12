@@ -88,8 +88,8 @@ struct MyGarden: View {
         .overlay {
             VStack {
                 if showSunMoon {
-                    LottieView(filename: "sun1")
-                        .frame(width: 100, height: 100)
+                    LottieView(filename: "sun2")
+                        .frame(width: 125, height: 125)
                         .transition(.move(edge: .trailing))
                 }
                 Spacer()

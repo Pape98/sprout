@@ -48,7 +48,7 @@ struct GoalEditingSlider: View {
         
         switch dataOption {
         case .sleep:
-            return Float(settings.sleepGoal!)
+            return Float(Int(settings.sleepGoal! / 60))
         case .steps:
             return Float(settings.stepsGoal!)
         case .walkingRunningDistance:

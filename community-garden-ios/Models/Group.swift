@@ -26,6 +26,7 @@ struct GoalsStat: Codable {
     var numberOfGoalsAchieved: Int = 0
     var date: String
     var group: Int
+    var trackedData: [String] = []
 }
 
 struct Reactions: Codable {

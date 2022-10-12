@@ -20,6 +20,7 @@ enum NotificationType: String {
     case FetchCommunityTrees
     case CreateTree
     case SubscribeToTopic
+    case FetchGoalStat
 }
 
 class NotificationSender {

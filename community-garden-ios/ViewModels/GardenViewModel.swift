@@ -27,6 +27,7 @@ class GardenViewModel: ObservableObject {
     @Published var dropItem = GardenElement.droplet
     @Published var gardenMode = GardenMode.moving
     @Published var sunMoon = "sun"
+    @Published var goalsStat: GoalsStat? = nil
     
     var flowers: [GardenItem] = []
     var tree: GardenItem?
@@ -38,12 +39,17 @@ class GardenViewModel: ObservableObject {
                        name: Notification.Name(NotificationType.CreateTree.rawValue),
                        object: nil)
         
+        nc.addObserver(self,
+                       selector: #selector(self.getGoalCompletions),
+                       name: Notification.Name(NotificationType.FetchGoalStat.rawValue),
+                       object: nil)
+        
         getGoalCompletions()
     }
     
-    func getGoalCompletions(){
-        goalsRepo.getGoalsStatByDate(date: Date.today) { goalsStat in
-//            Debug.log.debug(goalsStat)
+    @objc func getGoalCompletions(){
+        goalsRepo.getGoalsStatByDate(date: Date.today) { result in
+            self.goalsStat = result
         }
     }
     

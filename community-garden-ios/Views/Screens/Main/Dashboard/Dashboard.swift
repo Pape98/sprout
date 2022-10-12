@@ -13,6 +13,7 @@ struct Dashboard: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @EnvironmentObject var healthStoreViewModel: HealthStoreViewModel
     @EnvironmentObject var appViewModel: AppViewModel
+    @EnvironmentObject var gardenViewModel: GardenViewModel
     
     let date = Date().getFormattedDate(format: "MMMM dd")
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
@@ -124,7 +125,7 @@ struct Dashboard: View {
                             }
                             
                             if isUserTrackingData(DataOptions.workouts){
-                                DashboardCard(icon: "clock"){
+                                DashboardCard(icon: "dumbbell"){
                                     if let workout = healthStoreViewModel.todayWorkout {
                                         CardInfo(value: workout.duration, label: "Workout Minute(s)", goal: workout.goal)
                                     } else {
@@ -142,6 +143,11 @@ struct Dashboard: View {
                                     }
                                 }
                             }
+                        }
+                        
+                        // Card Row 3
+                        if let goals = gardenViewModel.goalsStat {
+                            GoalsMetCard(goals: goals)
                         }
                         
                         Spacer()
@@ -188,6 +194,7 @@ struct Dashboard_Previews: PreviewProvider {
             .environmentObject(AuthenticationViewModel())
             .environmentObject(HealthStoreViewModel())
             .environmentObject(AppViewModel())
+            .environmentObject(GardenViewModel())
     }
 }
 
