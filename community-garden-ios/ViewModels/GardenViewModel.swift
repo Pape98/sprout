@@ -15,11 +15,12 @@ class GardenViewModel: ObservableObject {
     }
     
     static var shared: GardenViewModel = GardenViewModel()
-    let gardenRepo = GardenRepository.shared
-    let statsRepo = StatsRepository.shared
     let userDefaults = UserDefaultsService.shared
     let collections = Collections.shared
     let nc = NotificationCenter.default
+    
+    let gardenRepo = GardenRepository.shared
+    let statsRepo = StatsRepository.shared
     
     @Published var items: [GardenItem] = []
     @Published var dropItem = GardenElement.droplet
@@ -37,8 +38,13 @@ class GardenViewModel: ObservableObject {
                        object: nil)
     }
     
+    func getGoalCompletions(){
+        
+    }
+    
     @objc func getUserItems() -> Void {
         let collection = collections.getCollectionReference("gardenItems")
+        
         
         guard let collection = collection else { return }
         guard let userID = getUserID() else { return }

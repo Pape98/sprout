@@ -88,15 +88,15 @@ struct MyGarden: View {
         .overlay {
             VStack {
                 if showSunMoon {
-                    LottieView(filename: "moon2")
-                        .frame(width: 145, height: 145)
+                    LottieView(filename: "sun1")
+                        .frame(width: 100, height: 100)
                         .transition(.move(edge: .trailing))
                 }
                 Spacer()
             }
         }
         .onDisappear {
-            gardenViewModel.setSunMoon ()
+            gardenViewModel.setSunMoon()
             gardenViewModel.gardenMode = GardenViewModel.GardenMode.moving
         }
     }

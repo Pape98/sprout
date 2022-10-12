@@ -13,18 +13,22 @@ protocol HealthData: Codable {
     var textDisplay: String { get }
     var value: Double { get }
     var date: String { get set }
-    var label: String { get }
-    var goal: Int? { get }
+    var label: String { get  }
+    var goal: Int? { get set }
     var username: String { get set }
+    var group: Int { get set }
+    var hasReachedGoal: Bool { get set }
 }
 
-struct Step: HealthData {
+struct Step: HealthData {    
     var id: String { UUID().uuidString }
     var date: String
     var count: Double
     var userID: String
     var goal: Int?
     var username: String
+    var group: Int
+    var hasReachedGoal: Bool = false
     
     var value: Double { count }
     var textDisplay: String { "\(Int(count)) Step(s)" }
@@ -38,6 +42,8 @@ struct Sleep: HealthData, Identifiable {
     var userID: String
     var goal: Int?
     var username: String
+    var group: Int
+    var hasReachedGoal: Bool = false
     
     var value: Double { duration }
     var textDisplay: String { "\(Int(duration)/60) Hour(s)" }
@@ -51,6 +57,8 @@ struct Workout: HealthData, Identifiable {
     var userID: String
     var goal: Int?
     var username: String
+    var group: Int
+    var hasReachedGoal: Bool = false
     
     var value: Double { duration }
     var textDisplay: String { "\(Int(duration)) Minute(s)" }
@@ -64,6 +72,8 @@ struct WalkingRunningDistance: HealthData, Identifiable {
     var userID: String
     var goal: Int?
     var username: String
+    var group: Int
+    var hasReachedGoal: Bool = false
     
     var value: Double { distance }
     var textDisplay: String { "\(distance.truncate(to: 2)) Mile(s)" }
