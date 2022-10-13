@@ -47,18 +47,13 @@ struct Community: View {
             //                        .ignoresSafeArea()
             //                }
             
-            // Birds
-            VStack {
-                LottieView(filename: "birds")
-                Spacer()
-                LottieView(filename: "birds")
-            }
-            
             // Sprites
             if communityViewModel.group != nil {
                 SpriteView(scene: scene, options: [.allowsTransparency])
                     .ignoresSafeArea(.container, edges: [.top])
             }
+            
+            
             
             // Animals
             

@@ -10,6 +10,15 @@ import SwiftUI
 import CoreGraphics
 import FirebaseAuth
 
+
+struct Platform {
+
+    static var isSimulator: Bool {
+        return TARGET_OS_SIMULATOR != 0
+    }
+
+}
+
 func getFirstName(_ name: String) -> String {
     let delimiter = " "
     let tokens = name.components(separatedBy: delimiter)
