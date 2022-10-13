@@ -40,12 +40,12 @@ struct Community: View {
             Image("community-bg")
                 .resizable()
                 .ignoresSafeArea(.all, edges: [.top])
-                .overlay {
-                    Rectangle()
-                        .fill(Color(appViewModel.backgroundColor))
-                        .blendMode(BlendMode.overlay)
-                        .ignoresSafeArea()
-                }
+            //                .overlay {
+            //                    Rectangle()
+            //                        .fill(Color(appViewModel.backgroundColor))
+            //                        .blendMode(BlendMode.overlay)
+            //                        .ignoresSafeArea()
+            //                }
             
             // Birds
             VStack {
@@ -63,10 +63,10 @@ struct Community: View {
             // Animals
             
             ZStack {
-//                LottieView(filename: "dog")
-//                    .frame(height: animalSize)
-//                LottieView(filename: "turtle")
-//                    .frame(height: animalSize)
+                //                LottieView(filename: "dog")
+                //                    .frame(height: animalSize)
+                //                LottieView(filename: "turtle")
+                //                    .frame(height: animalSize)
             }
             
             VStack {

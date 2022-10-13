@@ -153,7 +153,6 @@ class HealthStoreViewModel: ObservableObject {
         let user = UserService.shared.user
         let docRef = collection.document("\(user.id)-\(Date.today)")
         
-        Debug.log.debug(data)
         healthStoreRepo.saveData(docRef: docRef, updates: updates){
             NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
         }

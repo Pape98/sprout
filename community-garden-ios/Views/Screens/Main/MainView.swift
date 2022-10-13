@@ -29,14 +29,6 @@ struct MainView: View {
         ZStack {
             TabView {
                 
-                Dashboard()
-                    .tabItem {
-                        Label("Dashboard", systemImage: "house.fill")
-                    }
-                    .onAppear {
-                        playSound()
-                    }
-                
                 if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
                     Community()
                         .tabItem {
@@ -47,6 +39,14 @@ struct MainView: View {
                             appViewModel.setBackground()
                         }
                 }
+                
+                Dashboard()
+                    .tabItem {
+                        Label("Dashboard", systemImage: "house.fill")
+                    }
+                    .onAppear {
+                        playSound()
+                    }
                 
                 History()
                     .tabItem {

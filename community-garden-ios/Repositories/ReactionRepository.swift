@@ -41,9 +41,6 @@ class ReactioRepository: ObservableObject {
         
         
         docRef.getDocument(as: Reactions.self) { result in
-            
-            Debug.log.debug(result)
-            
             switch result {
             case .success(let reactions):
                 completion(reactions)

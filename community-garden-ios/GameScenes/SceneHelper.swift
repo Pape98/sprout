@@ -106,16 +106,18 @@ class SceneHelper {
         
         cloud.setScale(scale)
         cloud.anchorPoint = CGPoint(x: 0, y: 0.5)
-        var randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.size.height * 0.70 ,scene.frame.maxY))
-        
+        var randomPosition: CGPoint? = nil
+                
         if isCommunityView {
-            randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(0,scene.frame.size.height))
+            randomPosition = CGPoint(x: -cloud.size.width, y: -1 * getRandomCGFloat(0,scene.frame.height))
+        } else {
+            randomPosition = CGPoint(x: -cloud.size.width, y: getRandomCGFloat(scene.frame.size.height * 0.70 ,scene.frame.maxY))
         }
         
         let moveCloudAction = SKAction.moveTo(x: scene.frame.maxX, duration: 10.0)
         let actionRepeat = SKAction.repeatForever(moveCloudAction)
         
-        cloud.position = randomPosition
+        cloud.position = randomPosition!
         cloud.alpha = 0.5
         cloud.zPosition = 20
         cloud.run(actionRepeat)

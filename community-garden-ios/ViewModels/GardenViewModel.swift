@@ -109,7 +109,6 @@ class GardenViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.sunMoon = hour >= 18 || hour <= 7 ? "moon" : "sun"
         }
-        
     }
     
     func addFlower(_ flower: GardenItem){
