@@ -52,7 +52,7 @@ func getWeatherInfo() -> [String: String]{
         return ["image": "night-bg", "color": "night"]
     } else if hour >= 7 && hour <= 10 { // morning
         return ["image": "morning-bg", "color": "morning"]
-    } else if hour >= 11 && hour <= 19 { // day
+    } else if hour >= 11 && hour <= 18 { // day
         return ["image": "day-bg", "color": "day"]
     } else { // evening
         return ["image": "evening-bg", "color": "evening"]

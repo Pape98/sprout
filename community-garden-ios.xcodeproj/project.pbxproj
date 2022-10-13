@@ -84,13 +84,13 @@
 		F09F81E928F660D7009287E6 /* moon1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81E528F660D7009287E6 /* moon1.json */; };
 		F09F81EA28F660D7009287E6 /* moon2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81E628F660D7009287E6 /* moon2.json */; };
 		F09F81EB28F660D7009287E6 /* moon3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81E728F660D7009287E6 /* moon3.json */; };
-		F09F81EC28F660D7009287E6 /* moon4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81E828F660D7009287E6 /* moon4.json */; };
 		F09F81F128F660E2009287E6 /* sun1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81ED28F660E0009287E6 /* sun1.json */; };
 		F09F81F228F660E2009287E6 /* sun2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81EE28F660E1009287E6 /* sun2.json */; };
 		F09F81F328F660E2009287E6 /* sun4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81EF28F660E1009287E6 /* sun4.json */; };
 		F09F81F428F660E2009287E6 /* sun3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81F028F660E2009287E6 /* sun3.json */; };
 		F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F528F67126009287E6 /* GoalsRepository.swift */; };
 		F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F728F71D67009287E6 /* GoalsMetCard.swift */; };
+		F09F81FA28F7BC9F009287E6 /* moon4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81F928F7BC9F009287E6 /* moon4.json */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
@@ -219,13 +219,13 @@
 		F09F81E528F660D7009287E6 /* moon1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon1.json; sourceTree = "<group>"; };
 		F09F81E628F660D7009287E6 /* moon2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon2.json; sourceTree = "<group>"; };
 		F09F81E728F660D7009287E6 /* moon3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon3.json; sourceTree = "<group>"; };
-		F09F81E828F660D7009287E6 /* moon4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon4.json; sourceTree = "<group>"; };
 		F09F81ED28F660E0009287E6 /* sun1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun1.json; sourceTree = "<group>"; };
 		F09F81EE28F660E1009287E6 /* sun2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun2.json; sourceTree = "<group>"; };
 		F09F81EF28F660E1009287E6 /* sun4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun4.json; sourceTree = "<group>"; };
 		F09F81F028F660E2009287E6 /* sun3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun3.json; sourceTree = "<group>"; };
 		F09F81F528F67126009287E6 /* GoalsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsRepository.swift; sourceTree = "<group>"; };
 		F09F81F728F71D67009287E6 /* GoalsMetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsMetCard.swift; sourceTree = "<group>"; };
+		F09F81F928F7BC9F009287E6 /* moon4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon4.json; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B07D1228EF106C00AA99FC /* deer.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer.json; sourceTree = "<group>"; };
@@ -714,7 +714,7 @@
 				F09F81E528F660D7009287E6 /* moon1.json */,
 				F09F81E628F660D7009287E6 /* moon2.json */,
 				F09F81E728F660D7009287E6 /* moon3.json */,
-				F09F81E828F660D7009287E6 /* moon4.json */,
+				F09F81F928F7BC9F009287E6 /* moon4.json */,
 			);
 			path = Moon;
 			sourceTree = "<group>";
@@ -814,7 +814,6 @@
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */,
-				F09F81EC28F660D7009287E6 /* moon4.json in Resources */,
 				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
 				F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
@@ -832,6 +831,7 @@
 				F04B545728E72F9100F6FFE1 /* turtle.json in Resources */,
 				F09F81F428F660E2009287E6 /* sun3.json in Resources */,
 				F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */,
+				F09F81FA28F7BC9F009287E6 /* moon4.json in Resources */,
 				F0F3673728EBC06D00F79D1A /* sun.json in Resources */,
 				F09F81F228F660E2009287E6 /* sun2.json in Resources */,
 				F09F81EB28F660D7009287E6 /* moon3.json in Resources */,

@@ -45,6 +45,7 @@ class GardenViewModel: ObservableObject {
                        object: nil)
         
         getGoalCompletions()
+        setSunMoon()
     }
     
     @objc func getGoalCompletions(){
@@ -103,15 +104,12 @@ class GardenViewModel: ObservableObject {
     }
     
     func setSunMoon() {
-        let hour = Date.hour
-        
+        let hour = Int(Date.hour)
+            
         DispatchQueue.main.async {
-            if hour >= 19 && hour <= 6 { // night
-                self.sunMoon = "sun"
-            } else { // evening
-                self.sunMoon = "moon"
-            }
+            self.sunMoon = hour >= 18 || hour <= 7 ? "moon" : "sun"
         }
+        
     }
     
     func addFlower(_ flower: GardenItem){

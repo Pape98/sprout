@@ -158,6 +158,9 @@ struct Dashboard: View {
                 .padding(.horizontal, 25)
             }
         }
+        .onAppear {
+            appViewModel.setBackground()
+        }
         
     }
     

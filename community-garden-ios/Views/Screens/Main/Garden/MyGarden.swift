@@ -13,9 +13,7 @@ struct MyGarden: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
     @EnvironmentObject var appViewModel: AppViewModel
-    
-    @State var showSunMoon = false
-    
+        
     let userDefaults = UserDefaultsService.shared
     
     var scene: SKScene {
@@ -34,9 +32,6 @@ struct MyGarden: View {
                 .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
                 .onAppear {
                     SproutAnalytics.shared.viewOwnGarden()
-                    
-                    showSunMoon = true
-                    
                 }
                 .onDisappear {
                     gardenViewModel.getUserItems()
@@ -87,11 +82,11 @@ struct MyGarden: View {
         }
         .overlay {
             VStack {
-                if showSunMoon {
-                    LottieView(filename: "sun2")
+        
+                    LottieView(filename: "\(gardenViewModel.sunMoon)4")
                         .frame(width: 125, height: 125)
                         .transition(.move(edge: .trailing))
-                }
+                
                 Spacer()
             }
         }

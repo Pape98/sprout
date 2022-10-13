@@ -87,6 +87,8 @@ struct Settings: View {
                 .navigationTitle("Settings")
                 .navigationBarTitleDisplayMode(.inline)
                 .onAppear {
+                    
+                    appViewModel.setBackground()
                     if let settings = UserService.shared.user.settings {
                         reflectWeatherChanges = settings.reflectWeatherChanges
                     }
@@ -114,6 +116,7 @@ struct Settings_Previews: PreviewProvider {
         Settings()
             .environmentObject(UserViewModel())
             .environmentObject(SettingsViewModel())
+            .environmentObject(AppViewModel())
             .previewInterfaceOrientation(.portraitUpsideDown)
     }
 }

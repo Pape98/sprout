@@ -36,6 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         let dateComponents = Calendar.current.dateComponents([.hour], from: date)
         let hour = dateComponents.hour!
         var toolbarFontColor = UIColor.black
+    
         
         if hour >= 0 && hour <= 6 {
             toolbarFontColor = UIColor.white

@@ -56,7 +56,7 @@ class HealthStoreRepository {
         let goal = settings.walkingRunningGoal
         let user = UserService.shared.user
         let updates: [String: Any] = ["date": today,
-                                      "count": v,
+                                      "distance": v,
                                       "userID": userID!,
                                       "goal": goal as Any,
                                       "username": user.name,

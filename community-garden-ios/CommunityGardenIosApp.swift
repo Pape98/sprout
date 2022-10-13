@@ -18,6 +18,8 @@ struct CommunityGardenIosApp: App {
     @StateObject private var authViewModel = AuthenticationViewModel.shared
     @StateObject private var appViewModel = AppViewModel.shared
     
+    let hour = Int(Date.hour)
+    
     // To send notifications to user
     let notificationService: NotificationService = NotificationService.shared
     
@@ -31,15 +33,13 @@ struct CommunityGardenIosApp: App {
         return Color.black
     }
     
-    
     init() {
         //        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
         //            print(defaults)
         //        }
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
-        setupLocalEmulator()
-        
+//        setupLocalEmulator()
     }
     
     func setupLocalEmulator(){
