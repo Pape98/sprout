@@ -9,7 +9,7 @@ import SwiftUI
 
 struct GoalsMetCard: View {
     
-    var goals: GoalsStat
+    var goals: GoalsStat?
     
     var icons = [
         DataOptions.sleep.rawValue: "bed.double",
@@ -30,9 +30,15 @@ struct GoalsMetCard: View {
                     
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(0..<8){ i in
-                            DataItem(width: geometry.size.width * 0.1,
-                                     opacity: i < goals.numberOfGoalsAchieved ? 1 : 0.125,
-                                     icon: i < goals.numberOfGoalsAchieved ?  icons[goals.trackedData[i]]! : "")
+                            if let goals = goals {
+                                DataItem(width: geometry.size.width * 0.1,
+                                         opacity: i < goals.numberOfGoalsAchieved ? 1 : 0.125,
+                                         icon: i < goals.numberOfGoalsAchieved ?  icons[goals.trackedData[i]]! : "")
+                            } else {
+                                DataItem(width: geometry.size.width * 0.1,
+                                         opacity: 0.125, icon: "questionmark")
+                            }
+                            
                         }
                     }.padding()
                 }

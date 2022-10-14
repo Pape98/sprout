@@ -9,8 +9,16 @@ import Foundation
 import SpriteKit
 import SwiftUI
 
+struct Parcel {
+    var plot: SKSpriteNode
+    var board: SKSpriteNode
+    var tree: SKSpriteNode?
+}
+
 class CommunityGardenScene: SKScene {
     var gameTimer: Timer?
+    var gameTimer2: Timer?
+
     var havePlacedFlowers = false
     var validPositions: [String: CGPoint] = [:]
     
@@ -18,6 +26,7 @@ class CommunityGardenScene: SKScene {
     let firstColumn: SKSpriteNode = SKSpriteNode()
     let secondColumn: SKSpriteNode = SKSpriteNode()
     var plots: [SKSpriteNode] = []
+    var parcels: [Parcel] = []
     
     // Positions nextYPosition
     var currYposition: CGFloat = 0
@@ -25,6 +34,7 @@ class CommunityGardenScene: SKScene {
     // ViewModels
     let communityViewModel = CommunityViewModel.shared
     let messagesViewModel = MessagesViewModel.shared
+    
     
     let SCALE_DURATION = 2.0
     
@@ -40,6 +50,8 @@ class CommunityGardenScene: SKScene {
         
         // Timer
         gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+        gameTimer2 = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+
         
         
         // Setting up scene elements
@@ -47,9 +59,22 @@ class CommunityGardenScene: SKScene {
 //        setupTrees()
 //        setupFlowers()
         
-        addPlotsToColumn(firstColumn, count: 2)
-        addPlotsToColumn(secondColumn, count: 2)
-        addTreesToPlots()
+        let plot = SKSpriteNode(imageNamed: "plot")
+        let x = plot.size.width
+        let y = plot.size.height
+        
+        let xOffset: CGFloat = 35
+
+        
+        let firstColumnBoardPosition = CGPoint(x: -x/2 + xOffset, y: y/2)
+        let secondColumnBoardPosition = CGPoint(x: x/2 - xOffset, y: -y/2)
+        
+        let numPlotsPerColumn: Int = Int(ceil(Double(communityViewModel.trees.count) / 2))
+        
+        
+        addPlotsToColumn(firstColumn, boardPosition: firstColumnBoardPosition, count: numPlotsPerColumn)
+        addPlotsToColumn(secondColumn, boardPosition: secondColumnBoardPosition, count: numPlotsPerColumn)
+        addTreesToParcels()
 
         addChild(firstColumn)
         addChild(secondColumn)
@@ -76,38 +101,49 @@ class CommunityGardenScene: SKScene {
         SceneHelper.createCloud(scene: self, scale: 0.45, isCommunityView: true)
     }
 
-    func addPlotsToColumn(_ column: SKSpriteNode, count: Int){
+    func addPlotsToColumn(_ column: SKSpriteNode, boardPosition: CGPoint , count: Int){
         
         let width = frame.width * 0.5
-        let height = frame.height * 0.5
+        let height = frame.height * 0.25
         var yPosition: CGFloat = 0
                         
         for _ in 1...count {
+            // cell
             let cell = SKSpriteNode()
             cell.size = CGSize(width: width, height: height)
                     
             cell.anchorPoint = CGPoint(x: 0, y: 1)
             cell.position = CGPoint(x: 0, y: -yPosition)
             
+            // plot
             let plot = SKSpriteNode(imageNamed: "plot")
             plot.position = CGPoint(x: cell.size.width / 2 , y: -cell.size.height / 2)
-            plot.size.height = height * 0.75
-            plot.size.width = width * 0.75
+            plot.size.height = height * 0.8
+            plot.size.width = width * 0.8
             
+            // board
+            let board = SKSpriteNode(imageNamed: "board")
+            board.position = boardPosition
+            board.setScale(plot.size.width * 0.0065)
+            board.zRotation = .pi / 8
+
+            plot.addChild(board)
             cell.addChild(plot)
             column.addChild(cell)
             
-            plots.append(plot)
+            let parcel = Parcel(plot: plot, board: board)
+            parcels.append(parcel)
             yPosition = yPosition + height
         }
     }
     
-    func addTreesToPlots(){
-        var plotCounter = 0
+    func addTreesToParcels(){
+        var counter = 0
+        communityViewModel.trees.shuffle()
         for tree in communityViewModel.trees {
-            let plot = plots[plotCounter]
-            addTree(tree: tree, plot: plot)
-            plotCounter += 1
+            let parcel = parcels[counter]
+            addTree(tree: tree, parcel: parcel)
+            counter += 1
         }
     }
     
@@ -159,7 +195,7 @@ class CommunityGardenScene: SKScene {
 //    }
 //
     // For community view
-    func addTree(tree: GardenItem, plot: SKSpriteNode, zPosition: CGFloat = 5.0){
+    func addTree(tree: GardenItem, parcel: Parcel, zPosition: CGFloat = 5.0){
         // Tree
         let treeNode = SKSpriteNode(imageNamed: tree.name)
         treeNode.position = position
@@ -191,8 +227,17 @@ class CommunityGardenScene: SKScene {
 //
 //        addChild(label)
 //        addChild(shadowNode)
-            
-        plot.addChild(treeNode)
+        
+        // label
+        let label = SKLabelNode(fontNamed: "Chalkduster")
+        label.text = tree.gardenName
+        label.fontSize = 11
+        label.fontColor = UIColor(Color.oldCopper)
+        
+        parcel.board.addChild(label)
+        
+//        parcel.tree = treeNode
+        parcel.plot.addChild(treeNode)
     }
     
     

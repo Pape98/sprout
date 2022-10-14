@@ -8,6 +8,7 @@
 import SwiftUI
 import SpriteKit
 import AlertToast
+import Foundation
 
 struct Community: View {
     
@@ -33,69 +34,83 @@ struct Community: View {
         return scene
     }
     
+//    var backgroundHeight: CGFloat {
+//        let height = ceil(CGFloat(communityViewModel.trees.count) / 4)
+//        print(height)
+//        return 2
+//    }
+    
     var body: some View {
         
-        ZStack(alignment: .topTrailing) {
-            // Background image
-            Image("community-bg")
-                .resizable()
-                .ignoresSafeArea(.all, edges: [.top])
-            //                .overlay {
-            //                    Rectangle()
-            //                        .fill(Color(appViewModel.backgroundColor))
-            //                        .blendMode(BlendMode.overlay)
-            //                        .ignoresSafeArea()
-            //                }
+        GeometryReader { geo in
             
-            // Sprites
-            if communityViewModel.group != nil {
-                SpriteView(scene: scene, options: [.allowsTransparency])
-                    .ignoresSafeArea(.container, edges: [.top])
-            }
-            
-            
-            
-            // Animals
-            
-            ZStack {
-                //                LottieView(filename: "dog")
-                //                    .frame(height: animalSize)
-                //                LottieView(filename: "turtle")
-                //                    .frame(height: animalSize)
-            }
-            
-            VStack {
-                
-                ActionButton(image: "paperplane.fill", foreground: .appleGreen) {
-                    showMessageSheet = true
+            Color.greenishBlue
+                .edgesIgnoringSafeArea(.top)
+                .overlay {
+                    Rectangle()
+                        .fill(Color(appViewModel.backgroundColor))
+                        .blendMode(BlendMode.overlay)
+                        .ignoresSafeArea()
                 }
+            
+            ZStack(alignment: .topTrailing) {
                 
-                Spacer()
-                
-                if let reactions = communityViewModel.reactions {
-                    VStack(spacing: 5) {
+                ScrollView {
+                    ZStack {
+                        // Background image
+                        Image("community-bg")
+                            .resizable()
+                            .ignoresSafeArea(.all, edges: [.all])
+                            .frame(height: geo.size.height * 2)
                         
-                        ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
-                            communityViewModel.sendLove()
-                            toastTitle = "Sent love to 🧑‍🤝‍🧑"
-                            toastImage = "heart.fill"
-                            toastColor = .red
-                            showToast = true
-                        }
-                        
-                        ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
-                            communityViewModel.sendEncouragement()
-                            toastTitle = "Sent cheers to 🧑‍🤝‍🧑"
-                            toastImage = "star.fill"
-                            toastColor = .yellow
-                            showToast = true
+                        // Sprites
+                        if communityViewModel.group != nil {
+                            SpriteView(scene: scene, options: [.allowsTransparency])
+                                .ignoresSafeArea(.container, edges: [.top])
                         }
                     }
-                    
+                    .overlay {
+                        Rectangle()
+                            .fill(Color(appViewModel.backgroundColor))
+                            .blendMode(BlendMode.overlay)
+                            .ignoresSafeArea()
+                    }
                 }
+                
+                ZStack {
+                    VStack {
+                        
+                        ActionButton(image: "paperplane.fill", foreground: .appleGreen) {
+                            showMessageSheet = true
+                        }
+                        
+                        if let reactions = communityViewModel.reactions {
+                            VStack(spacing: 5) {
+                                
+                                ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
+                                    communityViewModel.sendLove()
+                                    toastTitle = "Sent love to 🧑‍🤝‍🧑"
+                                    toastImage = "heart.fill"
+                                    toastColor = .red
+                                    showToast = true
+                                }
+                                
+                                ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
+                                    communityViewModel.sendEncouragement()
+                                    toastTitle = "Sent cheers to 🧑‍🤝‍🧑"
+                                    toastImage = "star.fill"
+                                    toastColor = .yellow
+                                    showToast = true
+                                }
+                            }
+                            
+                        }
+                    }
+                    .padding(.horizontal)
+                    .padding(.vertical, 20)
+                }
+                
             }
-            .padding(.horizontal)
-            .padding(.vertical, 20)
         }
         .onAppear{
             communityViewModel.fetchTrees()
@@ -117,6 +132,8 @@ struct Community: View {
                        title: toastTitle)
         }
     }
+    
+    
     
     @ViewBuilder
     func ActionButton(image: String, text: String = "", foreground: Color, _ callback: @escaping () -> Void) -> some View {

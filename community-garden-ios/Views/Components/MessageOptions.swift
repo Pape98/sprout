@@ -38,7 +38,7 @@ struct MessageOptions: View {
                             
                             Text(user.name)
                                 .bodyStyle()
-                                .foregroundColor(Color.white)
+                                .foregroundColor(appViewModel.fontColor)
                         }
                         .padding(.top)
                         

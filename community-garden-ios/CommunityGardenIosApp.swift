@@ -75,6 +75,8 @@ struct CommunityGardenIosApp: App {
                     
                     if newPhase == .active {
 //                        AudioPlayer.shared.startBackgroundMusic()
+                        UserViewModel.shared.getNumSeeds()
+                        UserViewModel.shared.getNumDroplets()
                     }
                     else {
 //                        AudioPlayer.shared.stopBackgroundMusic()

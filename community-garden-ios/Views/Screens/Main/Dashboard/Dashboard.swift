@@ -146,8 +146,8 @@ struct Dashboard: View {
                         }
                         
                         // Card Row 3
-                        if let goals = gardenViewModel.goalsStat {
-                            GoalsMetCard(goals: goals)
+                        if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
+                            GoalsMetCard(goals: gardenViewModel.goalsStat)
                         }
                         
                         Spacer()
