@@ -139,7 +139,6 @@ class CommunityGardenScene: SKScene {
     
     func addTreesToParcels(){
         var counter = 0
-        communityViewModel.trees.shuffle()
         for tree in communityViewModel.trees {
             let parcel = parcels[counter]
             addTree(tree: tree, parcel: parcel)
@@ -206,7 +205,7 @@ class CommunityGardenScene: SKScene {
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
         let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
         
-        treeNode.setScale(tree.scale * 0.5)
+        treeNode.setScale(tree.scale * 0.4)
         
         treeNode.setScale(0)
         let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
