@@ -96,7 +96,7 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getStepCountByDate(date: self.today) { result in
                 self.todayStepCount = result
                 guard let goal = result.goal else { return }
-
+                
                 if result.count >= Double(goal) && result.hasReachedGoal == nil{
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.steps)
                     self.updateTrackedData(data: HealthStoreRepository.Data.steps, updates: ["hasReachedGoal": true])

@@ -69,11 +69,11 @@ class CommunityGardenScene: SKScene {
         let firstColumnBoardPosition = CGPoint(x: -x/2 + xOffset, y: y/2)
         let secondColumnBoardPosition = CGPoint(x: x/2 - xOffset, y: -y/2)
         
-        let numPlotsPerColumn: Int = Int(ceil(Double(communityViewModel.trees.count) / 2))
+//        let numPlotsPerColumn: Int = Int(ceil(Double(communityViewModel.trees.count) / 2))
+                
         
-        
-        addPlotsToColumn(firstColumn, boardPosition: firstColumnBoardPosition, count: numPlotsPerColumn)
-        addPlotsToColumn(secondColumn, boardPosition: secondColumnBoardPosition, count: numPlotsPerColumn)
+        addPlotsToColumn(firstColumn, boardPosition: firstColumnBoardPosition, count: 4)
+        addPlotsToColumn(secondColumn, boardPosition: secondColumnBoardPosition, count: 4)
         addTreesToParcels()
 
         addChild(firstColumn)
@@ -103,6 +103,8 @@ class CommunityGardenScene: SKScene {
 
     func addPlotsToColumn(_ column: SKSpriteNode, boardPosition: CGPoint , count: Int){
         
+        guard count != 0 else { return }
+        
         let width = frame.width * 0.5
         let height = frame.height * 0.25
         var yPosition: CGFloat = 0
@@ -124,7 +126,7 @@ class CommunityGardenScene: SKScene {
             // board
             let board = SKSpriteNode(imageNamed: "board")
             board.position = boardPosition
-            board.setScale(plot.size.width * 0.0065)
+            board.setScale(plot.size.width * 0.006)
             board.zRotation = .pi / 8
 
             plot.addChild(board)
@@ -205,7 +207,7 @@ class CommunityGardenScene: SKScene {
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
         let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
         
-        treeNode.setScale(tree.scale * 0.4)
+        treeNode.setScale(tree.scale * 0.3)
         
         treeNode.setScale(0)
         let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
