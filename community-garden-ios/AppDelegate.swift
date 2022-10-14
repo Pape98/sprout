@@ -31,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
         UIApplication.shared.registerForRemoteNotifications()
         
+        UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: "Baloo"))
+
+        
         // Toolbar title
         let date = Date()
         let dateComponents = Calendar.current.dateComponents([.hour], from: date)

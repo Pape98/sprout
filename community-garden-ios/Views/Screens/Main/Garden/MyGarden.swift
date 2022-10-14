@@ -79,6 +79,12 @@ struct MyGarden: View {
                 }
                 
             }
+            
+            VStack {
+                LottieView(filename: "deer_a1")
+                LottieView(filename: "dog_a1")
+                LottieView(filename: "turtle_a1")
+            }
         }
         .overlay {
             VStack {
