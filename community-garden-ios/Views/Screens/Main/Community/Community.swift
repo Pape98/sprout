@@ -34,6 +34,11 @@ struct Community: View {
         return scene
     }
     
+    var animals: [String: Any] = [
+        "dog": 130,
+        "deer": 110,
+    ]
+    
     //    var backgroundHeight: CGFloat {
     //        let height = ceil(CGFloat(communityViewModel.trees.count) / 4)
     //        print(height)
@@ -71,6 +76,38 @@ struct Community: View {
                                 .ignoresSafeArea(.container, edges: [.top])
                             
                         }
+                        
+                        VStack {
+                            Spacer()
+                            LottieView(filename: "dog_b3")
+                                .frame(height: geo.size.height * 0.23)
+                                .offset(y: -geo.size.height * 0.05)
+                            
+                            Spacer(minLength: 10)
+                            LottieView(filename: "turtle_s3")
+                                .frame(height: geo.size.height * 0.13)
+                                .offset(x: -geo.size.width * 0.25, y: -geo.size.height * 0.05  )
+                            
+                            Spacer()
+                            LottieView(filename: "deer_a5")
+                                .frame(height: geo.size.height * 0.135)
+                            
+                            Spacer()
+                            LottieView(filename: "dog_s3")
+                                .frame(height: geo.size.height * 0.23)
+                                .offset(x: geo.size.width * 0.25, y: -geo.size.width * 0.1)
+                        }
+                        
+                        
+                        
+                        VStack {
+                            LottieView(filename: "birds")
+                            LottieView(filename: "birds")
+                            LottieView(filename: "birds")
+                            LottieView(filename: "birds")
+                        }
+                        
+                        
                     }
                     .overlay {
                         

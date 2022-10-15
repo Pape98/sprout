@@ -80,12 +80,10 @@ class CommunityGardenScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let location = touch.location(in: self)
-            Debug.log.debug(location)
             let touchedNodes = self.nodes(at: location)
             
             for node in touchedNodes {
                 guard let name = node.name else { return }
-                Debug.log.debug(name)
                 guard let user = communityViewModel.members[name] else { return }
                 
                 messagesViewModel.showMessageOptionsSheet = true
@@ -261,12 +259,15 @@ class CommunityGardenScene: SKScene {
         guard parcel.tree != nil else { return }
         
         // create soils
-        parcel.soils.append(Soil(node:SKSpriteNode(imageNamed: "soil-vertical"), alignment: SoilAlignment.vertical))
-        parcel.soils.append(Soil(node:SKSpriteNode(imageNamed: "soil-vertical"), alignment: SoilAlignment.vertical))
+        parcel.soils.append(Soil(node:SKSpriteNode(), alignment: SoilAlignment.vertical))
+        parcel.soils.append(Soil(node:SKSpriteNode(), alignment: SoilAlignment.vertical))
         
         let soilLeft = parcel.soils[0]
         let soilRight = parcel.soils[1]
         let parcelHeight = parcel.node.size.height
+        
+        soilLeft.node.size.height = parcel.node.size.height / 2
+        soilRight.node.size.height = parcel.node.size.height / 2
         
         soilLeft.node.name = parcel.node.name
         soilRight.node.name = parcel.node.name
@@ -274,7 +275,7 @@ class CommunityGardenScene: SKScene {
         soils.append(soilLeft)
         soils.append(soilRight)
 
-        let xOffset = parcel.node.size.width * 0.30
+        let xOffset = parcel.node.size.width * 0.4
         let yOffset: CGFloat = 10
         
         // change anchor point
