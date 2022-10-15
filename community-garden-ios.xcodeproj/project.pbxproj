@@ -12,10 +12,7 @@
 		F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */; };
 		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
 		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
-		F013199828FA0A28002B47A4 /* deer_a1.json in Resources */ = {isa = PBXBuildFile; fileRef = F013199528FA0A28002B47A4 /* deer_a1.json */; };
 		F013199928FA0A28002B47A4 /* turtle_a1.json in Resources */ = {isa = PBXBuildFile; fileRef = F013199628FA0A28002B47A4 /* turtle_a1.json */; };
-		F013199A28FA0A28002B47A4 /* dog_a1.json in Resources */ = {isa = PBXBuildFile; fileRef = F013199728FA0A28002B47A4 /* dog_a1.json */; };
-		F013199C28FA0F0B002B47A4 /* deer_a2.json in Resources */ = {isa = PBXBuildFile; fileRef = F013199B28FA0F0B002B47A4 /* deer_a2.json */; };
 		F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */ = {isa = PBXBuildFile; fileRef = F013199D28FA0FE9002B47A4 /* turtle_a2.json */; };
 		F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */ = {isa = PBXBuildFile; fileRef = F01319A328FA1AF6002B47A4 /* deer_a5.json */; };
 		F01319A628FA2282002B47A4 /* SceneElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01319A528FA2282002B47A4 /* SceneElements.swift */; };
@@ -97,12 +94,21 @@
 		F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F528F67126009287E6 /* GoalsRepository.swift */; };
 		F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F728F71D67009287E6 /* GoalsMetCard.swift */; };
 		F09F81FA28F7BC9F009287E6 /* moon4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81F928F7BC9F009287E6 /* moon4.json */; };
+		F09F81FF28FB0241009287E6 /* deer_s1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81FB28FB0240009287E6 /* deer_s1.json */; };
+		F09F820028FB0241009287E6 /* dog_s1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81FC28FB0241009287E6 /* dog_s1.json */; };
+		F09F820128FB0241009287E6 /* dog_b1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81FD28FB0241009287E6 /* dog_b1.json */; };
+		F09F820228FB0241009287E6 /* turtle_s1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81FE28FB0241009287E6 /* turtle_s1.json */; };
+		F09F820828FB0B64009287E6 /* dog_b2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F820728FB0B63009287E6 /* dog_b2.json */; };
+		F09F820A28FB1804009287E6 /* deer_s2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F820928FB1804009287E6 /* deer_s2.json */; };
+		F09F820C28FB180B009287E6 /* dog_s2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F820B28FB180B009287E6 /* dog_s2.json */; };
+		F09F820E28FB1818009287E6 /* turtle_s2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F820D28FB1817009287E6 /* turtle_s2.json */; };
+		F09F821028FB1E99009287E6 /* dog_b3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F820F28FB1E99009287E6 /* dog_b3.json */; };
+		F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821128FB1EAA009287E6 /* turtle_s3.json */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
 		F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2A275ED13D0039B134 /* LoginView.swift */; };
 		F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2C275ED1740039B134 /* LaunchView.swift */; };
-		F0B07D1528EF106C00AA99FC /* dog.json in Resources */ = {isa = PBXBuildFile; fileRef = F0B07D1328EF106C00AA99FC /* dog.json */; };
 		F0B07D1728EF190400AA99FC /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B07D1628EF190400AA99FC /* MessagingService.swift */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
@@ -151,10 +157,7 @@
 		F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItems.swift; sourceTree = "<group>"; };
 		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
-		F013199528FA0A28002B47A4 /* deer_a1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer_a1.json; sourceTree = "<group>"; };
 		F013199628FA0A28002B47A4 /* turtle_a1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_a1.json; sourceTree = "<group>"; };
-		F013199728FA0A28002B47A4 /* dog_a1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_a1.json; sourceTree = "<group>"; };
-		F013199B28FA0F0B002B47A4 /* deer_a2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer_a2.json; sourceTree = "<group>"; };
 		F013199D28FA0FE9002B47A4 /* turtle_a2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_a2.json; sourceTree = "<group>"; };
 		F01319A328FA1AF6002B47A4 /* deer_a5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer_a5.json; sourceTree = "<group>"; };
 		F01319A528FA2282002B47A4 /* SceneElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneElements.swift; sourceTree = "<group>"; };
@@ -236,9 +239,18 @@
 		F09F81F528F67126009287E6 /* GoalsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsRepository.swift; sourceTree = "<group>"; };
 		F09F81F728F71D67009287E6 /* GoalsMetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsMetCard.swift; sourceTree = "<group>"; };
 		F09F81F928F7BC9F009287E6 /* moon4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon4.json; sourceTree = "<group>"; };
+		F09F81FB28FB0240009287E6 /* deer_s1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer_s1.json; sourceTree = "<group>"; };
+		F09F81FC28FB0241009287E6 /* dog_s1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_s1.json; sourceTree = "<group>"; };
+		F09F81FD28FB0241009287E6 /* dog_b1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_b1.json; sourceTree = "<group>"; };
+		F09F81FE28FB0241009287E6 /* turtle_s1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_s1.json; sourceTree = "<group>"; };
+		F09F820728FB0B63009287E6 /* dog_b2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_b2.json; sourceTree = "<group>"; };
+		F09F820928FB1804009287E6 /* deer_s2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer_s2.json; sourceTree = "<group>"; };
+		F09F820B28FB180B009287E6 /* dog_s2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_s2.json; sourceTree = "<group>"; };
+		F09F820D28FB1817009287E6 /* turtle_s2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_s2.json; sourceTree = "<group>"; };
+		F09F820F28FB1E99009287E6 /* dog_b3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_b3.json; sourceTree = "<group>"; };
+		F09F821128FB1EAA009287E6 /* turtle_s3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_s3.json; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
-		F0B07D1328EF106C00AA99FC /* dog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog.json; sourceTree = "<group>"; };
 		F0B07D1628EF190400AA99FC /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
@@ -560,6 +572,49 @@
 			path = Garden;
 			sourceTree = "<group>";
 		};
+		F09F820328FB0250009287E6 /* deer */ = {
+			isa = PBXGroup;
+			children = (
+				F09F820928FB1804009287E6 /* deer_s2.json */,
+				F09F81FB28FB0240009287E6 /* deer_s1.json */,
+				F01319A328FA1AF6002B47A4 /* deer_a5.json */,
+			);
+			path = deer;
+			sourceTree = "<group>";
+		};
+		F09F820428FB025E009287E6 /* dog */ = {
+			isa = PBXGroup;
+			children = (
+				F09F820F28FB1E99009287E6 /* dog_b3.json */,
+				F09F820B28FB180B009287E6 /* dog_s2.json */,
+				F09F81FD28FB0241009287E6 /* dog_b1.json */,
+				F09F820728FB0B63009287E6 /* dog_b2.json */,
+				F09F81FC28FB0241009287E6 /* dog_s1.json */,
+			);
+			path = dog;
+			sourceTree = "<group>";
+		};
+		F09F820528FB0274009287E6 /* turtle */ = {
+			isa = PBXGroup;
+			children = (
+				F09F821128FB1EAA009287E6 /* turtle_s3.json */,
+				F09F820D28FB1817009287E6 /* turtle_s2.json */,
+				F09F81FE28FB0241009287E6 /* turtle_s1.json */,
+				F013199D28FA0FE9002B47A4 /* turtle_a2.json */,
+				F013199628FA0A28002B47A4 /* turtle_a1.json */,
+			);
+			path = turtle;
+			sourceTree = "<group>";
+		};
+		F09F820628FB0285009287E6 /* bird */ = {
+			isa = PBXGroup;
+			children = (
+				F04E752128EF6DF00046195B /* birds.json */,
+				F0F3673428EBBC9400F79D1A /* bird-feeding.json */,
+			);
+			path = bird;
+			sourceTree = "<group>";
+		};
 		F0B32C93275AF77700C714A2 = {
 			isa = PBXGroup;
 			children = (
@@ -715,15 +770,10 @@
 		F0F3672628EA979600F79D1A /* Animals */ = {
 			isa = PBXGroup;
 			children = (
-				F01319A328FA1AF6002B47A4 /* deer_a5.json */,
-				F013199D28FA0FE9002B47A4 /* turtle_a2.json */,
-				F013199528FA0A28002B47A4 /* deer_a1.json */,
-				F013199728FA0A28002B47A4 /* dog_a1.json */,
-				F013199628FA0A28002B47A4 /* turtle_a1.json */,
-				F04E752128EF6DF00046195B /* birds.json */,
-				F013199B28FA0F0B002B47A4 /* deer_a2.json */,
-				F0B07D1328EF106C00AA99FC /* dog.json */,
-				F0F3673428EBBC9400F79D1A /* bird-feeding.json */,
+				F09F820328FB0250009287E6 /* deer */,
+				F09F820428FB025E009287E6 /* dog */,
+				F09F820528FB0274009287E6 /* turtle */,
+				F09F820628FB0285009287E6 /* bird */,
 			);
 			path = Animals;
 			sourceTree = "<group>";
@@ -831,18 +881,22 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F013199828FA0A28002B47A4 /* deer_a1.json in Resources */,
+				F09F820E28FB1818009287E6 /* turtle_s2.json in Resources */,
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
-				F013199C28FA0F0B002B47A4 /* deer_a2.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */,
+				F09F820228FB0241009287E6 /* turtle_s1.json in Resources */,
 				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
+				F09F820128FB0241009287E6 /* dog_b1.json in Resources */,
 				F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */,
 				F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
 				F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */,
+				F09F821028FB1E99009287E6 /* dog_b3.json in Resources */,
+				F09F820828FB0B64009287E6 /* dog_b2.json in Resources */,
 				F04085FB28B5562F002EDECD /* click1.mp3 in Resources */,
 				F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */,
+				F09F820C28FB180B009287E6 /* dog_s2.json in Resources */,
 				F09F81EA28F660D7009287E6 /* moon2.json in Resources */,
 				F04085FA28B5562F002EDECD /* click2.mp3 in Resources */,
 				F0E9BF1628E1348F007FBC04 /* summer_bar.mp3 in Resources */,
@@ -851,16 +905,18 @@
 				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
 				F013199928FA0A28002B47A4 /* turtle_a1.json in Resources */,
 				F09F81F128F660E2009287E6 /* sun1.json in Resources */,
+				F09F81FF28FB0241009287E6 /* deer_s1.json in Resources */,
 				F09F81F328F660E2009287E6 /* sun4.json in Resources */,
 				F09F81F428F660E2009287E6 /* sun3.json in Resources */,
+				F09F820A28FB1804009287E6 /* deer_s2.json in Resources */,
 				F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */,
 				F09F81FA28F7BC9F009287E6 /* moon4.json in Resources */,
 				F09F81F228F660E2009287E6 /* sun2.json in Resources */,
-				F013199A28FA0A28002B47A4 /* dog_a1.json in Resources */,
+				F09F820028FB0241009287E6 /* dog_s1.json in Resources */,
 				F09F81EB28F660D7009287E6 /* moon3.json in Resources */,
 				F04E752228EF6DF00046195B /* birds.json in Resources */,
-				F0B07D1528EF106C00AA99FC /* dog.json in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
+				F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

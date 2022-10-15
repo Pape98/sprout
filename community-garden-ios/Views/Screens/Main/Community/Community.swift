@@ -34,11 +34,11 @@ struct Community: View {
         return scene
     }
     
-//    var backgroundHeight: CGFloat {
-//        let height = ceil(CGFloat(communityViewModel.trees.count) / 4)
-//        print(height)
-//        return 2
-//    }
+    //    var backgroundHeight: CGFloat {
+    //        let height = ceil(CGFloat(communityViewModel.trees.count) / 4)
+    //        print(height)
+    //        return 2
+    //    }
     
     var body: some View {
         
@@ -63,17 +63,23 @@ struct Community: View {
                             .ignoresSafeArea(.all, edges: [.all])
                             .frame(height: geo.size.height * 2)
                         
+                        // Birds
+                        
                         // Sprites
                         if communityViewModel.group != nil {
                             SpriteView(scene: scene, options: [.allowsTransparency])
                                 .ignoresSafeArea(.container, edges: [.top])
+                            
                         }
                     }
                     .overlay {
-                        Rectangle()
-                            .fill(Color(appViewModel.backgroundColor))
-                            .blendMode(BlendMode.overlay)
-                            .ignoresSafeArea()
+                        
+                        ZStack {
+                            Rectangle()
+                                .fill(Color(appViewModel.backgroundColor))
+                                .blendMode(BlendMode.overlay)
+                                .ignoresSafeArea()
+                        }
                     }
                 }
                 

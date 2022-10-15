@@ -13,7 +13,7 @@ struct Parcel {
     var node: SKSpriteNode
     var board: SKSpriteNode
     var tree: SKSpriteNode?
-    var soils: [Soil] = [Soil(), Soil()]
+    var soils: [Soil] = []
     var currentSoil: Soil? {
         if soils[0].isFull != false {
             return soils[0]
@@ -25,12 +25,17 @@ struct Parcel {
 }
 
 struct Soil {
-    var node: SKSpriteNode = SKSpriteNode(imageNamed: "soil")
+    var node: SKSpriteNode
     var flowers: [SKSpriteNode] = []
     var numFlowers: Int { flowers.count }
     var lastFlower : SKSpriteNode? {
         if flowers.count != 0 { return flowers.last }
-        else return nil
+        return nil
     }
-    var isFull: Bool { numFlowers == 4}
+    var isFull: Bool { numFlowers == 4 }
+    var alignment: SoilAlignment
+}
+
+enum SoilAlignment{
+    case horizontal, vertical
 }
