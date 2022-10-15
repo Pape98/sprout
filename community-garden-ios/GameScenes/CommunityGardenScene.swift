@@ -159,7 +159,9 @@ class CommunityGardenScene: SKScene {
                     if numFlower > 0 {
                         for _ in 1...numFlower {
                             let flower = color + "-" + mapping[i]!
-                            addFlower(flower, parcel: parcels[parcelIndex])
+                            let nodeFlower = SKSpriteNode(imageNamed: flower)
+                            guard var currentSoil = parcels[parcelIndex].currentSoil else { continue }
+                            currentSoil.flowers.append(nodeFlower)
                             parcelIndex += 1
                             if parcelIndex == parcels.endIndex {
                                 parcelIndex = 0
@@ -192,6 +194,13 @@ class CommunityGardenScene: SKScene {
             soil.node.position = CGPoint(x: 0, y: -yPosition)
             soil.node.size.width = parcel.node.size.width * 0.8
             yPosition += soil.node.size.height + offset
+            
+            // show flowers
+            for i in 0...soil.flowers.count-1 {
+                addFlower(&soil.flowers[i], soil: soil)
+                soil.node.addChild(soil.flowers[i])
+            }
+            
             parcel.node.addChild(soil.node)
         }
     }
@@ -213,7 +222,7 @@ class CommunityGardenScene: SKScene {
         soilRight.node.zRotation = .pi / 2
         
         // place soils
-        soilLeft.node.position = CGPoint(x:  -xOffset , y: 0)
+        soilLeft.node.position = CGPoint(x:  -1 * xOffset , y: 0)
         soilRight.node.position = CGPoint(x: xOffset, y: 0)
         
         // add soils to parcel
@@ -221,25 +230,39 @@ class CommunityGardenScene: SKScene {
         parcel.node.addChild(soilRight.node)
     }
     
-    func addFlower(_ flowerName: String, parcel: Parcel ){
-        let node = SKSpriteNode(imageNamed: "flowers/\(flowerName)")
-        node.anchorPoint = CGPoint(x: 0, y: 0)
+    func addFlower(_ flower: inout SKSpriteNode, soil: Soil ){
         
-        let x = parcel.node.size.width / 2
-        let y = parcel.node.size.height / 2
+        // Four flowers per soil
+        let spacing = soil.node.size.width / 4
         
-        let offset: CGFloat = 10
-        let randomX = getRandomCGFloat(-x + offset, x - offset)
-        let randomY = getRandomCGFloat(-y + offset, y - offset)
+        flower.anchorPoint = CGPoint(x: 0.5, y: 0)
         
-        node.position = CGPoint(x: randomX, y: randomY)
-        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
-        node.zPosition = 1
-        node.setScale(0)
-        let action = SKAction.scale(to: 0.075, duration: SCALE_DURATION)
-        node.run(action)
-
-        parcel.node.addChild(node)
+        if let lastFlower = soil.lastFlower {
+            flower.position = CGPoint(x: lastFlower.position.x + spacing, y: 0)
+        } else {
+            flower.position = CGPoint(x: 0: spacing, y: 0)
+        }
+        
+        
+        
+//        let node = SKSpriteNode(imageNamed: "flowers/\(flowerName)")
+//        node.anchorPoint = CGPoint(x: 0, y: 0)
+//
+//        let x = parcel.node.size.width / 2
+//        let y = parcel.node.size.height / 2
+//
+//        let offset: CGFloat = 10
+//        let randomX = getRandomCGFloat(-1 * x + offset, x - offset)
+//        let randomY = getRandomCGFloat(-1 * y + offset, y - offset)
+//
+//        node.position = CGPoint(x: randomX, y: randomY)
+//        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
+//        node.zPosition = 1
+//        node.setScale(0)
+//        let action = SKAction.scale(to: 0.075, duration: SCALE_DURATION)
+//        node.run(action)
+//
+//        parcel.node.addChild(node)
     }
 
     func addTree(tree: GardenItem, parcel: inout Parcel, zPosition: CGFloat = 5.0){

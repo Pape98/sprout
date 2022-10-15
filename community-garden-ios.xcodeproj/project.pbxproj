@@ -331,6 +331,15 @@
 			path = Components;
 			sourceTree = "<group>";
 		};
+		F01319A728FA6B65002B47A4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F043F265288076EC008F211C /* SceneHelper.swift */,
+				F01319A528FA2282002B47A4 /* SceneElements.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		F0132C6F286BB2DD00267B9D /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -433,10 +442,9 @@
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
-				F043F265288076EC008F211C /* SceneHelper.swift */,
 				F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */,
 				F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */,
-				F01319A528FA2282002B47A4 /* SceneElements.swift */,
+				F01319A728FA6B65002B47A4 /* Utils */,
 			);
 			path = GameScenes;
 			sourceTree = "<group>";

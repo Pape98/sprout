@@ -26,7 +26,11 @@ struct Parcel {
 
 struct Soil {
     var node: SKSpriteNode = SKSpriteNode(imageNamed: "soil")
-    var flowers: [String] = []
+    var flowers: [SKSpriteNode] = []
     var numFlowers: Int { flowers.count }
+    var lastFlower : SKSpriteNode? {
+        if flowers.count != 0 { return flowers.last }
+        else return nil
+    }
     var isFull: Bool { numFlowers == 4}
 }
