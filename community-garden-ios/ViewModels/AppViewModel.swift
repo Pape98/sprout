@@ -47,7 +47,7 @@ class AppViewModel: ObservableObject {
         } else if hour >= 7 && hour <= 10 { // morning
             image = "intro-bg"
             color = "morning"
-        } else if hour >= 11 && hour <= 18 { // day
+        } else if hour >= 11 && hour < 18 { // day
             image = "intro-bg"
             color = "day"
         } else { // evening

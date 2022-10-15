@@ -74,7 +74,7 @@ struct CommunityGardenIosApp: App {
                 .onChange(of: scenePhase) { newPhase in
                     
                     if newPhase == .active {
-//                        AudioPlayer.shared.startBackgroundMusic()
+//                        AudioPlayer.shared.startBackgroundMusic()
                         UserViewModel.shared.getNumSeeds()
                         UserViewModel.shared.getNumDroplets()
                     }

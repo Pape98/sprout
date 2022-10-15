@@ -29,7 +29,6 @@ class Debug {
     }
     
     func warning(_ message: Any){
-        print(message)
         SwiftyBeaver.warning(message)
     }
     

@@ -53,15 +53,14 @@ func splitString(str: String) -> String {
 
 func getWeatherInfo() -> [String: String]{
         
-    let date = Date()
-    let dateComponents = Calendar.current.dateComponents([.hour], from: date)
-    let hour = dateComponents.hour!
+    let hour = Date.hour
+    
         
     if hour >= 0 && hour <= 6 { // night
         return ["image": "night-bg", "color": "night"]
     } else if hour >= 7 && hour <= 10 { // morning
         return ["image": "morning-bg", "color": "morning"]
-    } else if hour >= 11 && hour <= 18 { // day
+    } else if hour >= 11 && hour < 18 { // day
         return ["image": "day-bg", "color": "day"]
     } else { // evening
         return ["image": "evening-bg", "color": "evening"]
@@ -75,7 +74,7 @@ func getIntroBackground() -> String {
         return "intro-bg-night"
     } else if hour >= 7 && hour <= 10 { // morning
         return "intro-bg-morning"
-    } else if hour >= 11 && hour <= 19 { // day
+    } else if hour >= 11 && hour < 18 { // day
         return "intro-bg-day"
     } else { // evening
         return "intro-bg-evening"
