@@ -16,6 +16,11 @@ class AppViewModel: ObservableObject {
     @Published var backgroundImage: String = "night-bg"
     @Published var backgroundColor: String = "night"
     @Published var fontColor: Color = .black
+    @Published var showPointsGainedAlert = false
+    
+    var alertImage = ""
+    var alertTitle = ""
+    var alertSubtitle = ""
     
     init(){
         nc.addObserver(self,
@@ -25,6 +30,17 @@ class AppViewModel: ObservableObject {
         
         setBackground()
 
+    }
+    
+    func alertPointsGained(mappedElement: String, value: Double){
+        alertImage = mappedElement == "Tree" ? "droplet" : "seed"
+        let label = mappedElement == "Tree" ? "droplet(s)" : "seed(s)"
+        alertSubtitle = " Make sure to use them 😊"
+        alertTitle = "\(Int(value)) \(label)"
+        
+        DispatchQueue.main.async {
+            self.showPointsGainedAlert = true
+        }
     }
     
     @objc func setUserProfile(){

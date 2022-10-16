@@ -24,6 +24,10 @@ class HealthStoreViewModel: ObservableObject {
     @Published var todayWalkingRunningDistance: WalkingRunningDistance?
     @Published var todayWorkout: Workout?
     @Published var todaySleep: Sleep?
+    @Published var showGoalCompletedAlert = false
+    
+    var goalCompletedAlertSubtitle = ""
+    var goalCompletedAlertImage = ""
     
     init(){
         setupObservers()
@@ -36,6 +40,13 @@ class HealthStoreViewModel: ObservableObject {
         if isUserTrackingData(DataOptions.sleep) { getTodaySleep() }
         if isUserTrackingData(DataOptions.workouts) { getTodayWorkout() }
         if isUserTrackingData(DataOptions.walkingRunningDistance) { getTodayWalkingRunningDistance()}
+    }
+    
+    func setGoalCompletionAlertData(subtitle: String = "", image: String){
+        goalCompletedAlertSubtitle = subtitle
+        goalCompletedAlertImage = image
+        AudioPlayer.shared.playCustomSound(filename: "congratulations.mp3")
+        showGoalCompletedAlert = true
     }
     
     func setupObservers() {
@@ -96,10 +107,11 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getStepCountByDate(date: self.today) { result in
                 self.todayStepCount = result
                 guard let goal = result.goal else { return }
-                
-                if result.count >= Double(goal) && result.hasReachedGoal == nil{
+                                
+                if result.count >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.steps)
                     self.updateTrackedData(data: HealthStoreRepository.Data.steps, updates: ["hasReachedGoal": true])
+                    self.setGoalCompletionAlertData(image: "figure.walk")
                 }
             }
         }
@@ -114,6 +126,7 @@ class HealthStoreViewModel: ObservableObject {
                 if result.distance >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.walkingRunningDistance)
                     self.updateTrackedData(data: HealthStoreRepository.Data.walkingRunning, updates: ["hasReachedGoal": true])
+                    self.setGoalCompletionAlertData(image: "sportscourt.fill")
                 }
             }
         }
@@ -128,6 +141,7 @@ class HealthStoreViewModel: ObservableObject {
                 if result.duration >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.workouts)
                     self.updateTrackedData(data: HealthStoreRepository.Data.workouts, updates: ["hasReachedGoal": true])
+                    self.setGoalCompletionAlertData(image: "dumbbell")
                 }
             }
         }
@@ -142,6 +156,7 @@ class HealthStoreViewModel: ObservableObject {
                 if result.duration >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.sleep)
                     self.updateTrackedData(data: HealthStoreRepository.Data.sleep, updates: ["hasReachedGoal": true])
+                    self.setGoalCompletionAlertData(image: "bed.double")
                 }
             }
         }

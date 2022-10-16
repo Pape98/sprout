@@ -25,7 +25,7 @@ class AudioPlayer {
         let path = Bundle.main.path(forResource: filename, ofType:nil)
         
         guard let path = path else {
-            print("Audio file \(filename) does not exist")
+            Debug.log.error("Audio file \(filename) does not exist")
             return
         }
         
@@ -37,7 +37,7 @@ class AudioPlayer {
             soundEffect?.volume = volume
         } catch {
             // couldn't load file :(
-            print("Could not load \(filename) sound effect: \(error)")
+            Debug.log.error("Could not load \(filename) sound effect: \(error)")
         }
     }
     
@@ -54,7 +54,7 @@ class AudioPlayer {
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()
             } catch {
-                print(error)
+                Debug.log.error(error)
             }
         }
     }

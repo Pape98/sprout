@@ -150,10 +150,16 @@ class StatsRepository {
         let mappedElement = element // "Tree"
         
         if  progressDifference >= threshold && threshold > 0 {
+            
             progress.old = value - (value.truncatingRemainder(dividingBy: threshold))
             let statAddition = progressDifference / threshold
             
             guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mappedElement] else { return }
+            
+            // Play win sound
+            AudioPlayer.shared.playCustomSound(filename: "win.mp3", volume: 0.5)
+            AppViewModel.shared.alertPointsGained(mappedElement: mappedElement, value: statAddition)
+            
             updateCallback(statAddition)
             
             // Analytics

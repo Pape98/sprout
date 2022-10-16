@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVFoundation
+import AlertToast
 
 struct MainView: View {
     
@@ -79,6 +80,17 @@ struct MainView: View {
                     }
             }
         }
+        .toast(isPresenting: $appViewModel.showPointsGainedAlert, duration: 5, tapToDismiss: true, alert: {
+            AlertToast(displayMode: .alert,
+                       type: .image(appViewModel.alertImage, Color.green),
+                       title: appViewModel.alertTitle, subTitle: appViewModel.alertSubtitle)
+        })
+        .toast(isPresenting: $healthStoreViewModel.showGoalCompletedAlert, duration: 5, tapToDismiss: true, alert: {
+            AlertToast(displayMode: .alert,
+                       type: .systemImage(healthStoreViewModel.goalCompletedAlertImage, .appleGreen),
+                       title: "Goal Completed! ", subTitle: healthStoreViewModel.goalCompletedAlertSubtitle)
+        })
+        
         .onAppear {
             appViewModel.setBackground()
         }

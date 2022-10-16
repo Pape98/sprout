@@ -121,9 +121,9 @@ class CommunityGardenScene: SKScene {
             // board
             let board = SKSpriteNode(imageNamed: "board")
             board.position = CGPoint(x: 0, y: -plot.size.height / 2)
-            board.setScale(plot.size.width * 0.006)
-            //            board.zRotation = .pi / 8
+            board.size.width = plot.size.width * 0.7
             
+            // adding nodes to parents
             plot.addChild(board)
             cell.addChild(plot)
             column.addChild(cell)
@@ -148,7 +148,6 @@ class CommunityGardenScene: SKScene {
                 addHorizontalSoil(parcel: &parcels[i])
             } else {
                 addVerticalSoil(parcel: &parcels[i])
-                
             }
         }
     }
@@ -316,14 +315,16 @@ class CommunityGardenScene: SKScene {
         grassNode.position = CGPoint(x: -10, y: 0)
         // grassNode.setScale(tree.scale * 0.1)
         
-        
         // label
         let label = SKLabelNode(fontNamed: "Chalkduster")
         label.name = parcel.node.name
-        label.text = tree.gardenName
-        label.fontSize = 13
         label.fontColor = UIColor(Color.oldCopper)
-        
+        label.text = tree.gardenName
+        label.fontSize = 12
+        label.preferredMaxLayoutWidth = parcel.board.size.width
+        label.numberOfLines = 0
+        label.lineBreakMode = .byTruncatingTail
+                
         treeNode.addChild(grassNode)
         
         parcel.tree = treeNode

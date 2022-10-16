@@ -79,7 +79,7 @@ struct Community: View {
                             
                             Spacer()
                             LottieView(filename: "deer_a5")
-                                .frame(height: geo.size.height * 0.135)
+                                .frame(height: geo.size.height * 0.155)
                             
                             Spacer()
                             LottieView(filename: "dog_s3")
@@ -119,6 +119,10 @@ struct Community: View {
                         ActionButton(image: "paperplane.fill", foreground: .tangerine) {
                             messagesViewModel.showSendMessageSheet = true
                         }
+                        
+//                        ActionButton(image: "arrow.clockwise", foreground: .white) {
+//                            communityViewModel.refreshCommunity()
+//                        }
                         
                         Spacer()
                         

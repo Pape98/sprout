@@ -23,7 +23,7 @@ struct Badges: View {
                         LazyVGrid(columns: columns, spacing: 40) {
                             ForEach(1...30, id: \.self) { number in
                                     Circle()
-                                    .frame(width: 150)
+                                    .frame(width: 120)
                                 }
                             
                     

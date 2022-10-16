@@ -24,10 +24,7 @@ class CommunityViewModel: ObservableObject {
     @Published var reactions: Reactions? = nil
     
     init(){
-        fetchTrees()
-        fetchGroupMembers()
-        fetchGroup()
-        fetchReactions()
+        refreshCommunity()
         nc.addObserver(self,
                        selector: #selector(self.fetchTrees),
                        name: Notification.Name(NotificationType.FetchCommunityTrees.rawValue),
@@ -36,6 +33,13 @@ class CommunityViewModel: ObservableObject {
         DispatchQueue.main.async {
             self.reactions = Reactions(group: UserService.shared.user.group, date: Date.today, love: 0)
         }
+    }
+    
+    func refreshCommunity(){
+        fetchTrees()
+        fetchGroupMembers()
+        fetchGroup()
+        fetchReactions()
     }
     
     func fetchGroup(){

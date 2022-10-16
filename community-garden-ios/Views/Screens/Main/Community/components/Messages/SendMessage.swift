@@ -30,7 +30,7 @@ struct SendMessage: View {
                     
                     VStack(spacing: 10) {
                         
-                        Text("SCROLL LEFT TO SELECT RECIPIENT")
+                        Text("TAP TREE TO SELECT RECIPIENT")
                             .font(.system(size: 14))
                             .foregroundColor(appViewModel.fontColor)
                             .padding(.top)

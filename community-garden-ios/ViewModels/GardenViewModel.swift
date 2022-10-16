@@ -95,9 +95,6 @@ class GardenViewModel: ObservableObject {
                               group: UserService.shared.user.group,
                               gardenName: settings!.gardenName,
                               userName: UserService.shared.user.name)
-        
-        Debug.log.debug(tree)
-        
         gardenRepo.addItem(item: tree)
         DispatchQueue.main.async {
             self.tree = tree

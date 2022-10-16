@@ -126,9 +126,11 @@
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
 		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
 		F0D66E3C288894B00095AEDE /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* SendMessage.swift */; };
-		F0D9064028FBD7E5007ADDED /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9063F28FBD7E5007ADDED /* win.mp3 */; };
 		F0D9064228FBD814007ADDED /* Badges.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9064128FBD814007ADDED /* Badges.swift */; };
 		F0D9064628FBD896007ADDED /* BadgesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9064528FBD896007ADDED /* BadgesViewModel.swift */; };
+		F0D9064B28FC85DF007ADDED /* pointGained.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064A28FC85DF007ADDED /* pointGained.mp3 */; };
+		F0D9064D28FCB4DD007ADDED /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064C28FCB4DD007ADDED /* win.mp3 */; };
+		F0D9064F28FCB597007ADDED /* congratulations.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064E28FCB597007ADDED /* congratulations.mp3 */; };
 		F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */; };
 		F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */; };
 		F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */; };
@@ -271,9 +273,11 @@
 		F0D66E3628886E4D0095AEDE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F0D66E38288872160095AEDE /* MessagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRepository.swift; sourceTree = "<group>"; };
 		F0D66E3B288894B00095AEDE /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
-		F0D9063F28FBD7E5007ADDED /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		F0D9064128FBD814007ADDED /* Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badges.swift; sourceTree = "<group>"; };
 		F0D9064528FBD896007ADDED /* BadgesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewModel.swift; sourceTree = "<group>"; };
+		F0D9064A28FC85DF007ADDED /* pointGained.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pointGained.mp3; sourceTree = "<group>"; };
+		F0D9064C28FCB4DD007ADDED /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		F0D9064E28FCB597007ADDED /* congratulations.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = congratulations.mp3; sourceTree = "<group>"; };
 		F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water_droplet.mp3; sourceTree = "<group>"; };
 		F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spring_hamlet_evening.mp3; sourceTree = "<group>"; };
 		F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slightly_sour.mp3; sourceTree = "<group>"; };
@@ -787,7 +791,9 @@
 		F0D9063E28FBD7D4007ADDED /* other */ = {
 			isa = PBXGroup;
 			children = (
-				F0D9063F28FBD7E5007ADDED /* win.mp3 */,
+				F0D9064E28FCB597007ADDED /* congratulations.mp3 */,
+				F0D9064C28FCB4DD007ADDED /* win.mp3 */,
+				F0D9064A28FC85DF007ADDED /* pointGained.mp3 */,
 				F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */,
 				F04085F928B5562F002EDECD /* click1.mp3 */,
 				F04085F828B5562F002EDECD /* click2.mp3 */,
@@ -926,9 +932,11 @@
 				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
 				F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */,
 				F09F822528FBACB0009287E6 /* koala-laughing.json in Resources */,
+				F0D9064B28FC85DF007ADDED /* pointGained.mp3 in Resources */,
 				F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
 				F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */,
+				F0D9064F28FCB597007ADDED /* congratulations.mp3 in Resources */,
 				F09F821028FB1E99009287E6 /* dog_b3.json in Resources */,
 				F04085FB28B5562F002EDECD /* click1.mp3 in Resources */,
 				F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */,
@@ -936,6 +944,7 @@
 				F04085FA28B5562F002EDECD /* click2.mp3 in Resources */,
 				F0E9BF1628E1348F007FBC04 /* summer_bar.mp3 in Resources */,
 				F0F0C86E28AFC6090047D9EA /* GoogleService-Info.plist in Resources */,
+				F0D9064D28FCB4DD007ADDED /* win.mp3 in Resources */,
 				F09F81E928F660D7009287E6 /* moon1.json in Resources */,
 				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
 				F09F81F128F660E2009287E6 /* sun1.json in Resources */,
@@ -949,7 +958,6 @@
 				F09F81F228F660E2009287E6 /* sun2.json in Resources */,
 				F09F823128FBB033009287E6 /* sleeping-bear.json in Resources */,
 				F09F81EB28F660D7009287E6 /* moon3.json in Resources */,
-				F0D9064028FBD7E5007ADDED /* win.mp3 in Resources */,
 				F04E752228EF6DF00046195B /* birds.json in Resources */,
 				F09F821F28FBA5C5009287E6 /* dog-walking.json in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,

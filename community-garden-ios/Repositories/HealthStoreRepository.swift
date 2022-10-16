@@ -160,7 +160,6 @@ class HealthStoreRepository {
     
     
     // MARK: Utility Methods
-    
     func getDocName() -> String {
         return "\(userID!)-\(today)"
     }
