@@ -80,11 +80,11 @@ struct MyGarden: View {
                 
             }
             
-            VStack(spacing: 25) {
-                LottieView(filename: "turtle_s3")
-                LottieView(filename: "dog_b3")
-                LottieView(filename: "deer_s2")
-            }
+//            VStack {
+//                Spacer()
+//                LottieView(filename: "turtle_s3")
+//                    .frame(height: 100)
+//            }
         }
         .overlay {
             VStack {

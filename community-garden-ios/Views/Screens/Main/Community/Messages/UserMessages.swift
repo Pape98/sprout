@@ -12,7 +12,7 @@ enum ViewMessageType {
     case sent
 }
 
-struct Messages: View {
+struct UserMessages: View {
     
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var messagesViewModel: MessagesViewModel
@@ -61,7 +61,7 @@ struct Messages: View {
                 }
                 
             }
-            .navigationBarTitle("Messages", displayMode: .inline)
+            .navigationBarTitle("Your Messages", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
                     
@@ -91,9 +91,9 @@ struct Messages: View {
     
 }
 
-struct Messages_Previews: PreviewProvider {
+struct UserMessages_Previews: PreviewProvider {
     static var previews: some View {
-        Messages()
+        UserMessages()
             .environmentObject(MessagesViewModel())
             .environmentObject(AppViewModel())
     }

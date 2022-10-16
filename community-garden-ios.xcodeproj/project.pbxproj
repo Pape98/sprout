@@ -50,7 +50,7 @@
 		F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */; };
 		F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */; };
 		F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */; };
-		F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* Messages.swift */; };
+		F04AD4CF288B22DD00BC17AB /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* UserMessages.swift */; };
 		F04E752228EF6DF00046195B /* birds.json in Resources */ = {isa = PBXBuildFile; fileRef = F04E752128EF6DF00046195B /* birds.json */; };
 		F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F059833D28D4D88100542D64 /* FirebaseRemoteConfig */; };
 		F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */; };
@@ -120,7 +120,7 @@
 		F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3428836AD50095AEDE /* SettingPicker.swift */; };
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
 		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
-		F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* MessageOptions.swift */; };
+		F0D66E3C288894B00095AEDE /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* SendMessage.swift */; };
 		F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */; };
 		F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */; };
 		F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */; };
@@ -190,7 +190,7 @@
 		F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
-		F04AD4CE288B22DD00BC17AB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		F04AD4CE288B22DD00BC17AB /* UserMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
 		F04E752128EF6DF00046195B /* birds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = birds.json; sourceTree = "<group>"; };
 		F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
 		F06558AA28F1FD230077C50B /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -257,7 +257,7 @@
 		F0D66E3428836AD50095AEDE /* SettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPicker.swift; sourceTree = "<group>"; };
 		F0D66E3628886E4D0095AEDE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F0D66E38288872160095AEDE /* MessagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRepository.swift; sourceTree = "<group>"; };
-		F0D66E3B288894B00095AEDE /* MessageOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageOptions.swift; sourceTree = "<group>"; };
+		F0D66E3B288894B00095AEDE /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
 		F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water_droplet.mp3; sourceTree = "<group>"; };
 		F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spring_hamlet_evening.mp3; sourceTree = "<group>"; };
 		F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slightly_sour.mp3; sourceTree = "<group>"; };
@@ -321,7 +321,6 @@
 		F005738C2770293B00EB487B /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				F0D66E3B288894B00095AEDE /* MessageOptions.swift */,
 				F005739127702F9B00EB487B /* ActionButton.swift */,
 				F0149D5A284ED5ED00782D27 /* CircledTree.swift */,
 				F0842B59285A4A32002C79BD /* CircledFlower.swift */,
@@ -422,7 +421,8 @@
 		F04AD4CD288B22C300BC17AB /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				F04AD4CE288B22DD00BC17AB /* Messages.swift */,
+				F0D66E3B288894B00095AEDE /* SendMessage.swift */,
+				F04AD4CE288B22DD00BC17AB /* UserMessages.swift */,
 				F0F0C87328B50A7A0047D9EA /* components */,
 			);
 			path = Messages;
@@ -998,7 +998,7 @@
 				F0149D59284ECDC900782D27 /* Styling.swift in Sources */,
 				F085A8B528C531D000A08BE4 /* SproutAnalytics.swift in Sources */,
 				F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */,
-				F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */,
+				F04AD4CF288B22DD00BC17AB /* UserMessages.swift in Sources */,
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
 				F07657FE28D7D81200C72F2C /* Group.swift in Sources */,
@@ -1009,7 +1009,7 @@
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
 				F0149D63284F18B300782D27 /* IconButton.swift in Sources */,
 				F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */,
-				F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */,
+				F0D66E3C288894B00095AEDE /* SendMessage.swift in Sources */,
 				F0E9BF1828E25C3E007FBC04 /* ReactionRepository.swift in Sources */,
 				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,

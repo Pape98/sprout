@@ -8,17 +8,18 @@
 import SwiftUI
 import AVFoundation
 
-struct MessageOptions: View {
+struct SendMessage: View {
     
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
+    @EnvironmentObject var communityViewModel: CommunityViewModel
     
     @State private var selectedMessage: MessageOption = MessageOption(text: "Proud of you!", color: "cosmos")
     @State private var isMessagePrivate = true
     @State private var messageText = ""
     @State private var showErrorAlert = false
     
-    var user: User
+    @State var selectedUser: User? = nil
     
     var body: some View {
         GeometryReader { geometry in
@@ -27,22 +28,29 @@ struct MessageOptions: View {
                     
                     MainBackground(image: "sky-cloud-bg",edges: [.bottom])
                     
-                    VStack {
+                    VStack(spacing: 10) {
                         
-                        VStack {
-                            if let settings = user.settings {
-                                CircledTree(option: "\(settings.treeColor)-\(addDash(settings.tree))",
-                                            background: .haze,
-                                            size: 140)
+                        Text("SCROLL LEFT TO SELECT RECIPIENT")
+                            .font(.system(size: 14))
+                            .padding(.top)
+                            .frame(alignment: .leading)
+                        
+                        ScrollView(.horizontal, showsIndicators: false){
+                            HStack(spacing: 20) {
+                                ForEach(Array(communityViewModel.members.values)){ member in
+                                    UserCard(user: member)
+                                        .onTapGesture {
+                                            selectedUser = member
+                                        }
+                                }
                             }
-                            
-                            Text(user.name)
-                                .bodyStyle()
-                                .foregroundColor(appViewModel.fontColor)
                         }
-                        .padding(.top)
+                        .padding()
                         
                         // Selected Messsage
+                        Text("MESSAGE PREVIEW")
+                            .font(.system(size: 14))
+                        
                         Text(messageText)
                             .frame(alignment: .center)
                             .padding()
@@ -58,9 +66,7 @@ struct MessageOptions: View {
                         // Form
                         Form {
                             Section("Content") {
-                                
                                 TextField("Enter message here", text: $messageText)
-                                
                                 Toggle("Make Anonymous", isOn: $isMessagePrivate)
                             }
                             
@@ -69,8 +75,12 @@ struct MessageOptions: View {
                         .modifier(ListBackgroundModifier())
                     }
                 }
-                .alert("Message cannot be empty 😊", isPresented: $showErrorAlert){
-                    Button("OK", role: .cancel){}
+                .alert(isPresented: $showErrorAlert){
+                    Alert(
+                        title: Text("Error"),
+                        message: Text("Recipient must be selected and message cannot be empty 😊"),
+                        dismissButton: .default(Text("Got it!"))
+                    )
                 }
                 .navigationTitle("Send Message")
                 .navigationBarTitleDisplayMode(.inline)
@@ -84,18 +94,18 @@ struct MessageOptions: View {
                                 .foregroundColor(.seaGreen)
                                 .onTapGesture {
                                     
-                                    if messageText.isEmpty {
+                                    if messageText.isEmpty || selectedUser == nil {
                                         showErrorAlert = true
                                         return
                                     }
                                     
                                     AudioPlayer.shared.playSystemSound(soundID: 1004)
                                     
-                                    messagesViewModel.sendMessage(receiver: user,
+                                    messagesViewModel.sendMessage(receiver: selectedUser!,
                                                                   text: messageText,
                                                                   isPrivate: isMessagePrivate)
                                     
-                                    messagesViewModel.showMessageOptionsSheet = false
+                                    messagesViewModel.showSendMessageSheet = false
                                 }
                         }
                     }
@@ -104,16 +114,57 @@ struct MessageOptions: View {
             }
         }
     }
+    
+    @ViewBuilder
+    func UserCard(user: User) -> some View {
+        VStack {
+            
+            if let settings = user.settings {
+                
+                ZStack {
+                    Image("board")
+                    
+                    Text(settings.gardenName)
+                        .bodyStyle(foregroundColor: .white)
+                        .font(.system(size: 13))
+                        .lineLimit(1)
+                        .frame(width: 100)
+                        .truncationMode(.tail)
+                        .padding(.horizontal)
+                    
+                }
+                
+                ZStack {
+                    Circle()
+                        .fill(selectedUser != nil && selectedUser!.id == user.id ? Color.appleGreen : Color.white)
+                        .opacity(0.7)
+                        .frame(width: 120, height: 120)
+                    
+                    
+                    Image("\(settings.treeColor)-\(addDash(settings.tree))")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 75, height: 75)
+                    
+                    
+                }
+                
+                Text(user.name)
+                    .bodyStyle()
+                    .font(.system(size: 13))
+                    .lineLimit(1)
+            }
+        }
+    }
 }
 
-
-
-struct MessageOptions_Previews: PreviewProvider {
+struct SendMessage_Previews: PreviewProvider {
     static let settings = UserSettings(tree: "sad holly", treeColor: "grenadier")
     static let user = User(id: UUID().uuidString, name: "Pape Sow Traore", settings: settings)
     static var previews: some View {
-        MessageOptions(user: user)
+        SendMessage()
             .environmentObject(MessagesViewModel())
             .environmentObject(AppViewModel())
+            .environmentObject(CommunityViewModel())
     }
 }

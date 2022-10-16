@@ -16,7 +16,8 @@ struct Community: View {
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     
-    @State var showMessageSheet = false
+    @State var showUserMessageSheet = false
+    @State var showSendMessageSheet = false
     @State var showToast = false
     
     @State var toastTitle = ""
@@ -24,9 +25,6 @@ struct Community: View {
     @State var toastColor: Color = .red
     
     var weatherInfo: [String: String] = getWeatherInfo()
-    var animalSize: CGFloat {
-        75
-    }
     
     var scene: SKScene {
         let scene = CommunityGardenScene()
@@ -38,12 +36,6 @@ struct Community: View {
         "dog": 130,
         "deer": 110,
     ]
-    
-    //    var backgroundHeight: CGFloat {
-    //        let height = ceil(CGFloat(communityViewModel.trees.count) / 4)
-    //        print(height)
-    //        return 2
-    //    }
     
     var body: some View {
         
@@ -68,7 +60,6 @@ struct Community: View {
                             .ignoresSafeArea(.all, edges: [.all])
                             .frame(height: geo.size.height * 2)
                         
-                        // Birds
                         
                         // Sprites
                         if communityViewModel.group != nil {
@@ -111,21 +102,31 @@ struct Community: View {
                     }
                     .overlay {
                         
-                        ZStack {
-                            Rectangle()
-                                .fill(Color(appViewModel.backgroundColor))
-                                .blendMode(BlendMode.overlay)
-                                .ignoresSafeArea()
-                        }
+//                        ZStack {
+//                            Rectangle()
+//                                .fill(Color(appViewModel.backgroundColor))
+//                                .blendMode(BlendMode.overlay)
+//                                .ignoresSafeArea()
+//                        }
                     }
                 }
                 
                 ZStack {
                     VStack {
                         
-                        ActionButton(image: "paperplane.fill", foreground: .appleGreen) {
-                            showMessageSheet = true
+                        ActionButton(image: "envelope.fill", foreground: .everglade) {
+                            showUserMessageSheet = true
                         }
+                        
+                        ActionButton(image: "paperplane.fill", foreground: .tangerine) {
+                            messagesViewModel.showSendMessageSheet = true
+                        }
+                        
+                        ActionButton(image: "books.vertical.fill", foreground: .cosmos) {
+                            
+                        }
+                        
+                        Spacer()
                         
                         if let reactions = communityViewModel.reactions {
                             VStack(spacing: 5) {
@@ -161,13 +162,12 @@ struct Community: View {
             SproutAnalytics.shared.viewCommunity()
             appViewModel.setBackground()
         }
-        .sheet(isPresented: $showMessageSheet) {
-            Messages()
+        .sheet(isPresented: $showUserMessageSheet) {
+            UserMessages()
         }
-        .sheet(isPresented: $messagesViewModel.showMessageOptionsSheet) {
-            if let user = messagesViewModel.selectedUser {
-                MessageOptions(user: user)
-            }
+        .sheet(isPresented: $messagesViewModel.showSendMessageSheet) {
+            SendMessage()
+            
         }
         .toast(isPresenting: $showToast) {
             AlertToast(displayMode: .hud,
