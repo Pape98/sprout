@@ -9,6 +9,8 @@ import SwiftUI
 
 struct GoalsMetCard: View {
     
+    @EnvironmentObject var communityViewModel: CommunityViewModel
+    
     var goals: GoalsStat?
     
     var icons = [
@@ -19,17 +21,21 @@ struct GoalsMetCard: View {
     ]
     
     let columns: [GridItem] = Array(repeating: .init(.flexible()), count: 8)
+    var totalNumberOfGoals: Int {
+        (communityViewModel.members.count + 1) * 2
+    }
     
     var body: some View {
         GeometryReader { geometry in
-            DashboardCard(icon: "") {
+            ZStack {
                 VStack(spacing: 2) {
                     Text("Community Goals Completion")
                         .bold()
                         .bodyStyle()
+                        .padding(.top)
                     
                     LazyVGrid(columns: columns, spacing: 20) {
-                        ForEach(0..<8){ i in
+                        ForEach(0..<totalNumberOfGoals, id: \.self){ i in
                             if let goals = goals {
                                 DataItem(width: geometry.size.width * 0.1,
                                          opacity: i < goals.numberOfGoalsAchieved ? 1 : 0.125,
@@ -42,7 +48,14 @@ struct GoalsMetCard: View {
                         }
                     }.padding()
                 }
-
+                
+            }
+            .background{
+                Rectangle()
+                    .fill(.white)
+                    .cornerRadius(10)
+                    .opacity(0.9)
+                    .frame(maxWidth: .infinity)
             }
         }
     }

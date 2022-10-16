@@ -26,12 +26,13 @@ struct SendMessage: View {
             NavigationView {
                 ZStack(alignment: .top) {
                     
-                    MainBackground(image: "sky-cloud-bg",edges: [.bottom])
+                    MainBackground()
                     
                     VStack(spacing: 10) {
                         
                         Text("SCROLL LEFT TO SELECT RECIPIENT")
                             .font(.system(size: 14))
+                            .foregroundColor(appViewModel.fontColor)
                             .padding(.top)
                             .frame(alignment: .leading)
                         
@@ -50,6 +51,7 @@ struct SendMessage: View {
                         // Selected Messsage
                         Text("MESSAGE PREVIEW")
                             .font(.system(size: 14))
+                            .foregroundColor(appViewModel.fontColor)
                         
                         Text(messageText)
                             .frame(alignment: .center)
@@ -125,7 +127,7 @@ struct SendMessage: View {
                     Image("board")
                     
                     Text(settings.gardenName)
-                        .bodyStyle(foregroundColor: .white)
+                        .bodyStyle(foregroundColor: appViewModel.fontColor)
                         .font(.system(size: 13))
                         .lineLimit(1)
                         .frame(width: 100)
@@ -150,7 +152,7 @@ struct SendMessage: View {
                 }
                 
                 Text(user.name)
-                    .bodyStyle()
+                    .bodyStyle(foregroundColor: appViewModel.fontColor)
                     .font(.system(size: 13))
                     .lineLimit(1)
             }

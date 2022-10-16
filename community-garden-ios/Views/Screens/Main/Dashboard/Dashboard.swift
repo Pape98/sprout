@@ -35,6 +35,7 @@ struct Dashboard: View {
         NavigationView {
             ZStack {
                 MainBackground(edges: [.top])
+                
                 ScrollView(showsIndicators: false) {
                     
                     VStack {

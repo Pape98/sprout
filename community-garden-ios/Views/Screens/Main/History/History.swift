@@ -50,7 +50,7 @@ struct History: View {
                     .clipped()
                     
                 }
-                
+                FloatingAnimal(animal: "penguin-waving-hello")
             }
             .navigationBarTitle("History", displayMode: .inline)
             

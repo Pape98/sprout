@@ -98,6 +98,11 @@
 		F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821128FB1EAA009287E6 /* turtle_s3.json */; };
 		F09F821428FB4038009287E6 /* turtle_a1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821328FB4037009287E6 /* turtle_a1.json */; };
 		F09F821628FB5ABD009287E6 /* dog_s3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821528FB5ABD009287E6 /* dog_s3.json */; };
+		F09F821828FB9FA6009287E6 /* FloatingAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F821728FB9FA6009287E6 /* FloatingAnimal.swift */; };
+		F09F821F28FBA5C5009287E6 /* dog-walking.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821E28FBA5C5009287E6 /* dog-walking.json */; };
+		F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F822228FBABBD009287E6 /* penguin-waving-hello.json */; };
+		F09F822528FBACB0009287E6 /* koala-laughing.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F822428FBACB0009287E6 /* koala-laughing.json */; };
+		F09F823128FBB033009287E6 /* sleeping-bear.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F823028FBB033009287E6 /* sleeping-bear.json */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
@@ -121,6 +126,9 @@
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
 		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
 		F0D66E3C288894B00095AEDE /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* SendMessage.swift */; };
+		F0D9064028FBD7E5007ADDED /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9063F28FBD7E5007ADDED /* win.mp3 */; };
+		F0D9064228FBD814007ADDED /* Badges.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9064128FBD814007ADDED /* Badges.swift */; };
+		F0D9064628FBD896007ADDED /* BadgesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9064528FBD896007ADDED /* BadgesViewModel.swift */; };
 		F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */; };
 		F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */; };
 		F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */; };
@@ -237,6 +245,11 @@
 		F09F821128FB1EAA009287E6 /* turtle_s3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_s3.json; sourceTree = "<group>"; };
 		F09F821328FB4037009287E6 /* turtle_a1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_a1.json; sourceTree = "<group>"; };
 		F09F821528FB5ABD009287E6 /* dog_s3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_s3.json; sourceTree = "<group>"; };
+		F09F821728FB9FA6009287E6 /* FloatingAnimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingAnimal.swift; sourceTree = "<group>"; };
+		F09F821E28FBA5C5009287E6 /* dog-walking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dog-walking.json"; sourceTree = "<group>"; };
+		F09F822228FBABBD009287E6 /* penguin-waving-hello.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "penguin-waving-hello.json"; sourceTree = "<group>"; };
+		F09F822428FBACB0009287E6 /* koala-laughing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "koala-laughing.json"; sourceTree = "<group>"; };
+		F09F823028FBB033009287E6 /* sleeping-bear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sleeping-bear.json"; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B07D1628EF190400AA99FC /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
@@ -258,6 +271,9 @@
 		F0D66E3628886E4D0095AEDE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F0D66E38288872160095AEDE /* MessagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRepository.swift; sourceTree = "<group>"; };
 		F0D66E3B288894B00095AEDE /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
+		F0D9063F28FBD7E5007ADDED /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		F0D9064128FBD814007ADDED /* Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badges.swift; sourceTree = "<group>"; };
+		F0D9064528FBD896007ADDED /* BadgesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewModel.swift; sourceTree = "<group>"; };
 		F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water_droplet.mp3; sourceTree = "<group>"; };
 		F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spring_hamlet_evening.mp3; sourceTree = "<group>"; };
 		F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slightly_sour.mp3; sourceTree = "<group>"; };
@@ -326,6 +342,7 @@
 				F0842B59285A4A32002C79BD /* CircledFlower.swift */,
 				F0F5E93B2873ACA0002C30BC /* MainBackground.swift */,
 				F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */,
+				F09F821728FB9FA6009287E6 /* FloatingAnimal.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -344,6 +361,7 @@
 			children = (
 				F024BFF5286BB37100850018 /* MainView.swift */,
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
+				F09F823428FBD602009287E6 /* Badges */,
 				F0F0C87828B53CCF0047D9EA /* History */,
 				F07657F328D686EE00C72F2C /* Community */,
 				F09B71E327724B260085C7AC /* Garden */,
@@ -423,7 +441,7 @@
 			children = (
 				F0D66E3B288894B00095AEDE /* SendMessage.swift */,
 				F04AD4CE288B22DD00BC17AB /* UserMessages.swift */,
-				F0F0C87328B50A7A0047D9EA /* components */,
+				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -453,7 +471,7 @@
 			isa = PBXGroup;
 			children = (
 				F07657F428D6870E00C72F2C /* Community.swift */,
-				F04AD4CD288B22C300BC17AB /* Messages */,
+				F09F823328FBD27B009287E6 /* components */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -515,14 +533,8 @@
 		F08C8C6528AC259500DDDFB8 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				F0E9BF1528E1348F007FBC04 /* summer_bar.mp3 */,
-				F0E9BF1328E1343B007FBC04 /* winter_glade_evening.mp3 */,
-				F0E9BF1028E133E7007FBC04 /* autumn_town_day.mp3 */,
-				F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */,
-				F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */,
-				F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */,
-				F04085F928B5562F002EDECD /* click1.mp3 */,
-				F04085F828B5562F002EDECD /* click2.mp3 */,
+				F0D9063E28FBD7D4007ADDED /* other */,
+				F0D9063D28FBD7C0007ADDED /* background */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -595,6 +607,33 @@
 				F0F3673428EBBC9400F79D1A /* bird-feeding.json */,
 			);
 			path = bird;
+			sourceTree = "<group>";
+		};
+		F09F821D28FBA5BB009287E6 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				F09F823028FBB033009287E6 /* sleeping-bear.json */,
+				F09F822428FBACB0009287E6 /* koala-laughing.json */,
+				F09F822228FBABBD009287E6 /* penguin-waving-hello.json */,
+				F09F821E28FBA5C5009287E6 /* dog-walking.json */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		F09F823328FBD27B009287E6 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F04AD4CD288B22C300BC17AB /* Messages */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		F09F823428FBD602009287E6 /* Badges */ = {
+			isa = PBXGroup;
+			children = (
+				F0D9064128FBD814007ADDED /* Badges.swift */,
+			);
+			path = Badges;
 			sourceTree = "<group>";
 		};
 		F0B32C93275AF77700C714A2 = {
@@ -673,6 +712,7 @@
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
+				F0D9064528FBD896007ADDED /* BadgesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -732,12 +772,27 @@
 			path = components;
 			sourceTree = "<group>";
 		};
-		F0F0C87328B50A7A0047D9EA /* components */ = {
+		F0D9063D28FBD7C0007ADDED /* background */ = {
 			isa = PBXGroup;
 			children = (
-				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
+				F0E9BF1528E1348F007FBC04 /* summer_bar.mp3 */,
+				F0E9BF1328E1343B007FBC04 /* winter_glade_evening.mp3 */,
+				F0E9BF1028E133E7007FBC04 /* autumn_town_day.mp3 */,
+				F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */,
+				F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */,
 			);
-			path = components;
+			path = background;
+			sourceTree = "<group>";
+		};
+		F0D9063E28FBD7D4007ADDED /* other */ = {
+			isa = PBXGroup;
+			children = (
+				F0D9063F28FBD7E5007ADDED /* win.mp3 */,
+				F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */,
+				F04085F928B5562F002EDECD /* click1.mp3 */,
+				F04085F828B5562F002EDECD /* click2.mp3 */,
+			);
+			path = other;
 			sourceTree = "<group>";
 		};
 		F0F0C87828B53CCF0047D9EA /* History */ = {
@@ -752,6 +807,7 @@
 		F0F3672628EA979600F79D1A /* Animals */ = {
 			isa = PBXGroup;
 			children = (
+				F09F821D28FBA5BB009287E6 /* other */,
 				F09F820328FB0250009287E6 /* deer */,
 				F09F820428FB025E009287E6 /* dog */,
 				F09F820528FB0274009287E6 /* turtle */,
@@ -864,10 +920,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
+				F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
 				F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */,
 				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
 				F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */,
+				F09F822528FBACB0009287E6 /* koala-laughing.json in Resources */,
 				F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
 				F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */,
@@ -889,8 +947,11 @@
 				F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */,
 				F09F81FA28F7BC9F009287E6 /* moon4.json in Resources */,
 				F09F81F228F660E2009287E6 /* sun2.json in Resources */,
+				F09F823128FBB033009287E6 /* sleeping-bear.json in Resources */,
 				F09F81EB28F660D7009287E6 /* moon3.json in Resources */,
+				F0D9064028FBD7E5007ADDED /* win.mp3 in Resources */,
 				F04E752228EF6DF00046195B /* birds.json in Resources */,
+				F09F821F28FBA5C5009287E6 /* dog-walking.json in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
 				F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */,
 			);
@@ -947,6 +1008,7 @@
 			files = (
 				F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */,
 				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
+				F0D9064628FBD896007ADDED /* BadgesViewModel.swift in Sources */,
 				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
 				F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */,
 				F01319A628FA2282002B47A4 /* SceneElements.swift in Sources */,
@@ -980,10 +1042,12 @@
 				F06558AB28F1FD230077C50B /* Debug.swift in Sources */,
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
 				F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */,
+				F09F821828FB9FA6009287E6 /* FloatingAnimal.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F0F0C87A28B53CFE0047D9EA /* History.swift in Sources */,
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
 				F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */,
+				F0D9064228FBD814007ADDED /* Badges.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
 				F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */,
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,

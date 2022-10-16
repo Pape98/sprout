@@ -16,8 +16,6 @@ struct Community: View {
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     
-    @State var showUserMessageSheet = false
-    @State var showSendMessageSheet = false
     @State var showToast = false
     
     @State var toastTitle = ""
@@ -115,15 +113,11 @@ struct Community: View {
                     VStack {
                         
                         ActionButton(image: "envelope.fill", foreground: .everglade) {
-                            showUserMessageSheet = true
+                            messagesViewModel.showUserMessageSheet = true
                         }
                         
                         ActionButton(image: "paperplane.fill", foreground: .tangerine) {
                             messagesViewModel.showSendMessageSheet = true
-                        }
-                        
-                        ActionButton(image: "books.vertical.fill", foreground: .cosmos) {
-                            
                         }
                         
                         Spacer()
@@ -162,13 +156,13 @@ struct Community: View {
             SproutAnalytics.shared.viewCommunity()
             appViewModel.setBackground()
         }
-        .sheet(isPresented: $showUserMessageSheet) {
+        .sheet(isPresented: $messagesViewModel.showUserMessageSheet) {
             UserMessages()
         }
         .sheet(isPresented: $messagesViewModel.showSendMessageSheet) {
             SendMessage()
-            
         }
+        
         .toast(isPresenting: $showToast) {
             AlertToast(displayMode: .hud,
                        type: AlertToast.AlertType.systemImage(toastImage, toastColor),

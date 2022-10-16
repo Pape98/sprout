@@ -21,6 +21,7 @@ class MessagesViewModel: ObservableObject {
     // TODO: Remove later
     @Published var showMessageOptionsSheet = false
     @Published var showSendMessageSheet = false
+    @Published var showUserMessageSheet = false
     var selectedUser: User? = nil
     
     // Messages

@@ -95,7 +95,7 @@ struct Settings: View {
                     
                     settingsViewModel.fetchSettings()
                 }
-                
+                FloatingAnimal(animal: "sleeping-bear")
             }
             .toolbar {
                 Button("Logout"){

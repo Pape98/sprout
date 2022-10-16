@@ -60,6 +60,8 @@ struct UserMessages: View {
                     Spacer()
                 }
                 
+                FloatingAnimal(animal: "koala-laughing")
+                
             }
             .navigationBarTitle("Your Messages", displayMode: .inline)
             .toolbar {

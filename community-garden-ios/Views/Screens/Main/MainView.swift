@@ -20,6 +20,7 @@ struct MainView: View {
     @StateObject var messagesViewModel: MessagesViewModel = MessagesViewModel.shared
     @StateObject var historyViewModel: HistoryViewModel = HistoryViewModel.shared
     @StateObject var communityViewModel: CommunityViewModel = CommunityViewModel.shared
+    @StateObject var badgesViewModel: BadgesViewModel = BadgesViewModel.shared
     
     let userDefaults = UserDefaultsService.shared
     let soundID:UInt32 = 1306
@@ -28,6 +29,15 @@ struct MainView: View {
         
         ZStack {
             TabView {
+                
+                Dashboard()
+                    .tabItem {
+                        Label("Dashboard", systemImage: "house.fill")
+                    }
+                    .onAppear {
+                        playSound()
+                    }
+                
                 
                 if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
                     Community()
@@ -40,9 +50,9 @@ struct MainView: View {
                         }
                 }
                 
-                Dashboard()
+                Badges()
                     .tabItem {
-                        Label("Dashboard", systemImage: "house.fill")
+                        Label("Badges", systemImage: "book.fill")
                     }
                     .onAppear {
                         playSound()
@@ -79,6 +89,7 @@ struct MainView: View {
         .environmentObject(messagesViewModel)
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
+        .environmentObject(badgesViewModel)
     }
     
     func playSound(){
