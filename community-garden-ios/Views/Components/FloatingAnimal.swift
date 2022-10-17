@@ -20,9 +20,9 @@ struct FloatingAnimal: View {
     var body: some View {
         ZStack{
             Circle()
-                .fill(Color.white)
+                .fill(Color.appleGreen)
                 .frame(width: 70)
-                .opacity(0.8)
+                .opacity(0.2)
             LottieView(filename: animal)
                 .frame(width: 70, height: 70,alignment: .bottomTrailing)
         }
@@ -34,7 +34,6 @@ struct FloatingAnimal: View {
 struct FloatingAnimal_Previews: PreviewProvider {
     static var previews: some View {
         ZStack {
-            Color.red
             FloatingAnimal()
         }
     }

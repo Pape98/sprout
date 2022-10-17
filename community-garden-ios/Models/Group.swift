@@ -40,3 +40,9 @@ struct NotificationMessage {
     var title: String = ""
     var body: String = ""
 }
+
+struct CommunityBadge: Hashable {
+    var name: String
+    var description: String = ""
+    var numberOfDaysRequired = 2
+}

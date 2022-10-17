@@ -38,6 +38,7 @@ class StatsRepository {
     
     init(){}
     
+    
     // MARK: Droplet & Seed methods
     
     func getNumDroplets() -> Stat? {
@@ -157,7 +158,7 @@ class StatsRepository {
             guard let updateCallback: ((Double) -> Void) = statUpdateCallbacks[mappedElement] else { return }
             
             // Play win sound
-            AudioPlayer.shared.playCustomSound(filename: "win.mp3", volume: 0.5)
+            AudioPlayer.shared.playCustomSound(filename: "win", volume: 0.5)
             AppViewModel.shared.alertPointsGained(mappedElement: mappedElement, value: statAddition)
             
             updateCallback(statAddition)

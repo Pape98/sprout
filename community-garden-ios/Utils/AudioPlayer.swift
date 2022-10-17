@@ -27,7 +27,7 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
     }
     
     func playCustomSound(filename: String, volume: Float = 1){
-        let path = Bundle.main.path(forResource: filename, ofType:nil)
+        let path = Bundle.main.path(forResource: filename, ofType:"mp3")
         
         guard let path = path else {
             Debug.log.error("Audio file \(filename) does not exist")

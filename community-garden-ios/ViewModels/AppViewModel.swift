@@ -76,7 +76,7 @@ class AppViewModel: ObservableObject {
             self.backgroundImage = image
             self.backgroundColor = color
                         
-            if self.backgroundColor == "night" {
+            if self.backgroundColor == "night" || self.backgroundColor == "evening"  {
                 self.fontColor = .white
             }
         }

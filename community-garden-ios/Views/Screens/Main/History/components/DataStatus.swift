@@ -57,7 +57,6 @@ struct DataStatus: View {
                 }
                 
                 Text(data.textDisplay)
-                    .font(.system(size: 15))
                     .foregroundColor(appViewModel.fontColor)
                 
                 Spacer()
@@ -65,10 +64,7 @@ struct DataStatus: View {
                 
                 VStack(alignment: .trailing, spacing: 11) {
                     Text(data.date)
-                        .font(.system(size: 13))
-                        .foregroundColor(.chalice)
-                        .bold()
-                    
+                        .bodyStyle(foregroundColor: .chalice, size: 13)
                     HStack(alignment: .center) {
                         
                         Image(systemName: "target")
@@ -77,6 +73,7 @@ struct DataStatus: View {
                         Text(String(goal))
                             .font(.system(size: 13))
                             .foregroundColor(.appleGreen)
+                            .bodyStyle(foregroundColor: .appleGreen, size: 13)
                     }
                 }
                 

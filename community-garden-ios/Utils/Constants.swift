@@ -17,6 +17,19 @@ struct Constants {
     static let flowers = ["abyss-sage", "joyful-clover","savage-morel"]
     static let trees = ["spiky-maple", "whomping-medlar", "serpent-sumac","sad-holly","sneezy-cypress","tickle-beech","royal-larch","chilling-leaf"]
     static let colors = ["moss","cosmos","sunglow","grenadier","hawks","tangerine","lavender","mint","raspberry","porcelain"]
+    
+    static let badges = [
+        CommunityBadge(name: "birds", numberOfDaysRequired: 1),
+        CommunityBadge(name: "cloud", numberOfDaysRequired: 2),
+        CommunityBadge(name: "deer", numberOfDaysRequired: 4),
+        CommunityBadge(name: "dog-house", numberOfDaysRequired: 3),
+        CommunityBadge(name: "dog", numberOfDaysRequired: 6),
+        CommunityBadge(name: "fence", numberOfDaysRequired: 4),
+        CommunityBadge(name: "music", numberOfDaysRequired: 3),
+        CommunityBadge(name: "turtle", numberOfDaysRequired: 1),
+    ].sorted(by: { $0.numberOfDaysRequired < $1.numberOfDaysRequired })
+    
+    static let mainFont = "Baloo2-medium"
 }
 
 struct JSON {
@@ -105,6 +118,8 @@ enum SettingsMode: String {
     case treeColor
     case flowerColor
 }
+
+
 
 
 

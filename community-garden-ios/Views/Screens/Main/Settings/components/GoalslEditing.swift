@@ -67,7 +67,7 @@ struct GoalEditingSlider: View {
     var body: some View {
         VStack(spacing: 10) {
             Text(key)
-                .font(.title3)
+                .font(.custom("Baloo2-medium", size: 20))
                 .bold()
             Slider(
                 value: $value,

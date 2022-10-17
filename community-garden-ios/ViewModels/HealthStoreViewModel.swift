@@ -45,7 +45,7 @@ class HealthStoreViewModel: ObservableObject {
     func setGoalCompletionAlertData(subtitle: String = "", image: String){
         goalCompletedAlertSubtitle = subtitle
         goalCompletedAlertImage = image
-        AudioPlayer.shared.playCustomSound(filename: "congratulations.mp3")
+        AudioPlayer.shared.playCustomSound(filename: "congratulations")
         showGoalCompletedAlert = true
     }
     

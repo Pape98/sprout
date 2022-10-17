@@ -7,16 +7,17 @@
 
 import SwiftUI
 
-
+enum HistoryViewType {
+    case personal, community
+}
 
 struct History: View {
     
-    @EnvironmentObject var historyViewModel: HistoryViewModel
     @EnvironmentObject var appViewModel: AppViewModel
+    @EnvironmentObject var communityViewModel: CommunityViewModel
     
-    @State var selectedData: String = HistoryViewModel.Data.steps.rawValue
+    @State var historyView: HistoryViewType = .personal
     
-    var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 4)
     
     var body: some View {
         NavigationView {
@@ -24,32 +25,19 @@ struct History: View {
                 MainBackground()
                 
                 VStack {
-                    
-                    Text("Tap below to select data 😊")
-                        .foregroundColor(appViewModel.fontColor)
-                    Picker("Data",selection: $selectedData){
-                        ForEach(HistoryViewModel.Data.dalatList, id: \.self){ text in
-                            if isUserTrackingData(DataOptions(rawValue: text)!) {
-                                Text(text.capitalized)
-                                    .bold()
-                                    .tag(text)
-                            }
-                        }
+                    Picker("", selection: $historyView){
+                        Text("Personal")
+                            .tag(HistoryViewType.personal)
+                        Text("Community").tag(HistoryViewType.community)
                     }
+                    .pickerStyle(.segmented)
+                    .padding()
                     
-                    ScrollView {
-                        VStack {
-                            if let dataList = historyViewModel.dataMapping[selectedData] {
-                                ForEach(dataList, id: \.id){ item in
-                                    DataStatus(data: item)
-                                }
-                            }
-                        }
-                        .padding()
-                    }
-                    .clipped()
-                    
+                    if historyView == .personal { PersonalHistory() }
+                    else { CommunityHistory() }
+                    Spacer()
                 }
+                
                 FloatingAnimal(animal: "penguin-waving-hello")
             }
             .navigationBarTitle("History", displayMode: .inline)

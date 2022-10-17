@@ -23,22 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
-        
+        UIApplication.shared.registerForRemoteNotifications()
+
         
         // Styling
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        UIApplication.shared.registerForRemoteNotifications()
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont(name: "Baloo2-medium", size: 16)!], for: [])
         
-        UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: "Baloo"))
-        
+        UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: "Baloo2-medium"))
         UITabBar.appearance().backgroundColor = .white
-        
+        UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: "Baloo2-medium", size: 12)!], for: [])
+    
+
         // Toolbar title
-        let date = Date()
-        let dateComponents = Calendar.current.dateComponents([.hour], from: date)
-        let hour = dateComponents.hour!
+        let hour = Date.hour
         var toolbarFontColor = UIColor.black
     
         
@@ -47,6 +46,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         }
         
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: toolbarFontColor ]
+        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Baloo2-medium", size: 20)!, .foregroundColor: toolbarFontColor]
+
         
         return true
     }

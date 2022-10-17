@@ -46,22 +46,17 @@ struct MessageCard: View {
                     
                     HStack {
                         Text(message.isPrivate ? "Anonymous User" : username)
-                            .font(.system(size: 15))
-                            .bold()
-                            .foregroundColor(appViewModel.fontColor)
+                            .bodyStyle(foregroundColor: appViewModel.fontColor)
                         
                         Spacer()
                         
                         Text(message.date.getFormattedDate(format: "MMM d"))
-                            .font(.system(size: 13))
-                            .foregroundColor(.chalice)
-                            .bold()
+                            .bodyStyle(foregroundColor: .chalice)
                         
                     }
                     
                     Text(message.text)
-                        .font(.system(size: 13))
-                        .foregroundColor(appViewModel.fontColor)
+                        .bodyStyle(foregroundColor: appViewModel.fontColor, size: 13)
                     
                 }
                 

@@ -43,6 +43,12 @@ struct Settings: View {
                             if newValue == true { AudioPlayer.shared.startBackgroundMusic() }
                             else { AudioPlayer.shared.stopBackgroundMusic()}
                         }
+                        
+                        NavigationLink {
+                          MusicList()
+                        } label: {
+                            Text("View list of songs")
+                        }
                     }
                     
                     Section("Data"){
@@ -104,8 +110,7 @@ struct Settings: View {
                 .modifier(ListBackgroundModifier())
                 .opacity(0.95)
                 .offset(y: -15)
-                .navigationTitle("Settings")
-                .navigationBarTitleDisplayMode(.inline)
+                .navigationBarTitle (Text("Settings"), displayMode: .inline)
                 .onAppear {
                     
                     appViewModel.setBackground()

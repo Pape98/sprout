@@ -12,4 +12,5 @@ class BadgesViewModel: ObservableObject {
     @Published var showBadgesSheet = false
     
     init(){}
+    
 }

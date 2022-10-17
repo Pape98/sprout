@@ -28,9 +28,7 @@ class UserViewModel: ObservableObject {
     
     init(){
         setupObservers()
-        getNumDroplets()
-        getNumSeeds()
-        
+        refreshStats()
         nc.addObserver(self,
                        selector: #selector(self.getUser),
                        name: Notification.Name(NotificationType.UpdateUserService.rawValue),
@@ -39,6 +37,11 @@ class UserViewModel: ObservableObject {
     
     @objc func initialSetup(){
         getUser()
+    }
+    
+    func refreshStats(){
+        getNumDroplets()
+        getNumSeeds()
     }
     
     @objc func getUser() {
@@ -83,8 +86,7 @@ class UserViewModel: ObservableObject {
             print("Error in updateNumDroplets")
         }
         
-        getNumDroplets()
-        getNumSeeds()
+        refreshStats()
     }
     
     func getNumDroplets(){

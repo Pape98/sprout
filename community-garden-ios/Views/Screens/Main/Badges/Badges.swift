@@ -12,7 +12,7 @@ struct Badges: View {
     @EnvironmentObject var appViewModel: AppViewModel
     
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
-
+    
     var body: some View {
         NavigationView {
             ZStack {
@@ -20,13 +20,35 @@ struct Badges: View {
                 
                 ScrollView {
                     VStack {
+                        
+                        Text("Tap badge to view")
+                            .bodyStyle()
+                        
                         LazyVGrid(columns: columns, spacing: 40) {
-                            ForEach(1...30, id: \.self) { number in
-                                    Circle()
-                                    .frame(width: 120)
+                            ForEach(Constants.badges, id: \.self) { badge in
+                                NavigationLink {
+                                    BadgeInfo(badge: badge)
+                                } label: {
+                                    VStack {
+                                        Image("badges/\(badge.name)")
+                                            .resizable()
+                                            .scaledToFit()
+                                            .frame(width: 100)
+                                    
+                                            ProgressView("", value: 0)
+                                                .frame(width: 100)
+                                        
+                                        
+                                        HStack(alignment: .center) {
+                                            Image(systemName: "target")
+                                                .foregroundColor(.appleGreen)
+                                            Text("\(badge.numberOfDaysRequired)")
+                                                .bodyStyle()
+                                        }
+                                    }
+                                    
                                 }
-                            
-                    
+                            }
                         }
                         
                         Spacer()

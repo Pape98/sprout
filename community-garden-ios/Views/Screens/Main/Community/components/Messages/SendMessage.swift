@@ -31,10 +31,8 @@ struct SendMessage: View {
                     VStack(spacing: 10) {
                         
                         Text("TAP TREE TO SELECT RECIPIENT")
-                            .font(.system(size: 14))
-                            .foregroundColor(appViewModel.fontColor)
-                            .padding(.top)
-                            .frame(alignment: .leading)
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 14)
+                            .frame(width: geometry.size.width * 0.8, alignment: .leading)
                         
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 20) {
@@ -50,8 +48,8 @@ struct SendMessage: View {
                         
                         // Selected Messsage
                         Text("MESSAGE PREVIEW")
-                            .font(.system(size: 14))
-                            .foregroundColor(appViewModel.fontColor)
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 14)
+                            .frame(width: geometry.size.width * 0.8, alignment: .leading)
                         
                         Text(messageText)
                             .frame(alignment: .center)

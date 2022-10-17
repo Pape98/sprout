@@ -103,6 +103,7 @@
 		F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F822228FBABBD009287E6 /* penguin-waving-hello.json */; };
 		F09F822528FBACB0009287E6 /* koala-laughing.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F822428FBACB0009287E6 /* koala-laughing.json */; };
 		F09F823128FBB033009287E6 /* sleeping-bear.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F823028FBB033009287E6 /* sleeping-bear.json */; };
+		F0A898FE28FDE93A007018C1 /* Catamaran-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
@@ -131,6 +132,12 @@
 		F0D9064B28FC85DF007ADDED /* pointGained.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064A28FC85DF007ADDED /* pointGained.mp3 */; };
 		F0D9064D28FCB4DD007ADDED /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064C28FCB4DD007ADDED /* win.mp3 */; };
 		F0D9064F28FCB597007ADDED /* congratulations.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064E28FCB597007ADDED /* congratulations.mp3 */; };
+		F0D9065128FDC839007ADDED /* MusicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065028FDC839007ADDED /* MusicList.swift */; };
+		F0D9065328FDD4DE007ADDED /* PersonalHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */; };
+		F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065428FDD772007ADDED /* CommunityHistory.swift */; };
+		F0D9065828FDDC14007ADDED /* BadgeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065728FDDC14007ADDED /* BadgeInfo.swift */; };
+		F0D9065A28FDE48C007ADDED /* JustifiedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065928FDE48C007ADDED /* JustifiedText.swift */; };
+		F0D9065B28FDE7C6007ADDED /* Baloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672528EA026300F79D1A /* Baloo.ttf */; };
 		F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */; };
 		F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */; };
 		F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */; };
@@ -278,6 +285,11 @@
 		F0D9064A28FC85DF007ADDED /* pointGained.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pointGained.mp3; sourceTree = "<group>"; };
 		F0D9064C28FCB4DD007ADDED /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
 		F0D9064E28FCB597007ADDED /* congratulations.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = congratulations.mp3; sourceTree = "<group>"; };
+		F0D9065028FDC839007ADDED /* MusicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicList.swift; sourceTree = "<group>"; };
+		F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalHistory.swift; sourceTree = "<group>"; };
+		F0D9065428FDD772007ADDED /* CommunityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHistory.swift; sourceTree = "<group>"; };
+		F0D9065728FDDC14007ADDED /* BadgeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeInfo.swift; sourceTree = "<group>"; };
+		F0D9065928FDE48C007ADDED /* JustifiedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedText.swift; sourceTree = "<group>"; };
 		F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water_droplet.mp3; sourceTree = "<group>"; };
 		F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spring_hamlet_evening.mp3; sourceTree = "<group>"; };
 		F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slightly_sour.mp3; sourceTree = "<group>"; };
@@ -418,6 +430,8 @@
 			isa = PBXGroup;
 			children = (
 				F04085FD28B862AD002EDECD /* DataStatus.swift */,
+				F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */,
+				F0D9065428FDD772007ADDED /* CommunityHistory.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -527,8 +541,8 @@
 		F08C8C6428AC258800DDDFB8 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				F08C8C6528AC259500DDDFB8 /* Sounds */,
 				F0475B5E28610E3400C68B35 /* Fonts */,
+				F08C8C6528AC259500DDDFB8 /* Sounds */,
 				F08C8C5828AC1A6500DDDFB8 /* Lottie */,
 			);
 			path = Assets;
@@ -564,6 +578,7 @@
 				F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */,
 				F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */,
 				F06558AA28F1FD230077C50B /* Debug.swift */,
+				F0D9065928FDE48C007ADDED /* JustifiedText.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -636,6 +651,7 @@
 			isa = PBXGroup;
 			children = (
 				F0D9064128FBD814007ADDED /* Badges.swift */,
+				F0D9065628FDDBEC007ADDED /* components */,
 			);
 			path = Badges;
 			sourceTree = "<group>";
@@ -772,6 +788,7 @@
 				F0D66E3428836AD50095AEDE /* SettingPicker.swift */,
 				F0337C392887A9A400251FD0 /* NameChanging.swift */,
 				F0F3672A28EB422800F79D1A /* GoalslEditing.swift */,
+				F0D9065028FDC839007ADDED /* MusicList.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -799,6 +816,14 @@
 				F04085F828B5562F002EDECD /* click2.mp3 */,
 			);
 			path = other;
+			sourceTree = "<group>";
+		};
+		F0D9065628FDDBEC007ADDED /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F0D9065728FDDC14007ADDED /* BadgeInfo.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		F0F0C87828B53CCF0047D9EA /* History */ = {
@@ -925,6 +950,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0D9065B28FDE7C6007ADDED /* Baloo.ttf in Resources */,
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
 				F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
@@ -960,6 +986,7 @@
 				F09F81EB28F660D7009287E6 /* moon3.json in Resources */,
 				F04E752228EF6DF00046195B /* birds.json in Resources */,
 				F09F821F28FBA5C5009287E6 /* dog-walking.json in Resources */,
+				F0A898FE28FDE93A007018C1 /* Catamaran-VariableFont_wght.ttf in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
 				F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */,
 			);
@@ -1022,12 +1049,14 @@
 				F01319A628FA2282002B47A4 /* SceneElements.swift in Sources */,
 				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
+				F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,
 				F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */,
 				F07657F528D6870E00C72F2C /* Community.swift in Sources */,
 				F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */,
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
+				F0D9065328FDD4DE007ADDED /* PersonalHistory.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
@@ -1072,6 +1101,7 @@
 				F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */,
 				F04AD4CF288B22DD00BC17AB /* UserMessages.swift in Sources */,
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
+				F0D9065128FDC839007ADDED /* MusicList.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
 				F07657FE28D7D81200C72F2C /* Group.swift in Sources */,
 				F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */,
@@ -1107,7 +1137,9 @@
 				F0149D61284F184000782D27 /* DashboardCard.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 				F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */,
+				F0D9065A28FDE48C007ADDED /* JustifiedText.swift in Sources */,
 				F043F25E287CFDC6008F211C /* Protocols.swift in Sources */,
+				F0D9065828FDDC14007ADDED /* BadgeInfo.swift in Sources */,
 				F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */,
 				F0842BB9285E2A19002C79BD /* Screens.swift in Sources */,
 			);

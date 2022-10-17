@@ -323,10 +323,8 @@ class CommunityGardenScene: SKScene {
         label.name = parcel.node.name
         label.fontColor = UIColor(Color.oldCopper)
         label.text = tree.gardenName
-        label.fontSize = 12
+        label.fontSize = 13
         label.preferredMaxLayoutWidth = parcel.board.size.width
-        label.numberOfLines = 0
-        label.lineBreakMode = .byTruncatingTail
                 
         treeNode.addChild(grassNode)
         

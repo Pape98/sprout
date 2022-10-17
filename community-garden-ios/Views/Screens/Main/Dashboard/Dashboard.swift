@@ -86,9 +86,8 @@ struct Dashboard: View {
                                         
                                         
                                         Text("View Garden")
-                                            .font(.system(size: 15))
-                                            .foregroundColor(Color.white)
-                                            .bold()
+                                            .bodyStyle(foregroundColor: Color.white)
+                                            .opacity(1)
                                         
                                     }
                                 }
@@ -164,16 +163,16 @@ struct Dashboard: View {
     
     @ViewBuilder
     func CardInfo(value: Double, label: String = "", goal: Int? = nil) -> some View {
-        VStack {
+        VStack(spacing: 3) {
             
             if label == "Mile(s)" {
                 Text(String(format: "%.2f", value) )
                     .headerStyle()
-                    .font(.title3)
+                
             } else {
                 Text(String(Int(value)))
                     .headerStyle()
-                    .font(.title3)
+            
             }
             
             Text(label)
@@ -183,8 +182,12 @@ struct Dashboard: View {
             if goal != nil && goal! > 0 {
                 ProgressView(value: value/Double(goal!) <= 1 ? value/Double(goal!) : 1 )
                     .padding(.horizontal)
+            } else {
+                ProgressView(value: 0)
+                    .padding(.horizontal)
             }
         }
+        .padding()
     }
     
 }

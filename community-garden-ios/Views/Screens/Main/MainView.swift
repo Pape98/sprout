@@ -31,12 +31,24 @@ struct MainView: View {
         ZStack {
             TabView {
                 
+                History()
+                    .tabItem {
+                        Label("History", systemImage: "target")
+                    }
+                    .onAppear {
+                        SproutAnalytics.shared.viewHistory()
+                        playSound()
+                        appViewModel.setBackground()
+                        userViewModel.refreshStats()
+                    }
+                
                 Dashboard()
                     .tabItem {
                         Label("Dashboard", systemImage: "house.fill")
                     }
                     .onAppear {
                         playSound()
+                        userViewModel.refreshStats()
                     }
                 
                 
@@ -49,6 +61,7 @@ struct MainView: View {
                             playSound()
                             SproutAnalytics.shared.viewCommunity()
                             appViewModel.setBackground()
+                            userViewModel.refreshStats()
                         }
                 }
                 
@@ -59,17 +72,20 @@ struct MainView: View {
                     .onAppear {
                         playSound()
                         SproutAnalytics.shared.viewBadges()
-                    }
-                
-                History()
-                    .tabItem {
-                        Label("History", systemImage: "target")
-                    }
-                    .onAppear {
-                        SproutAnalytics.shared.viewHistory()
-                        playSound()
+                        userViewModel.refreshStats()
                         appViewModel.setBackground()
                     }
+                
+//                History()
+//                    .tabItem {
+//                        Label("History", systemImage: "target")
+//                    }
+//                    .onAppear {
+//                        SproutAnalytics.shared.viewHistory()
+//                        playSound()
+//                        appViewModel.setBackground()
+//                userViewModel.refreshStats()
+//                    }
                 
                 
                 Settings()
@@ -79,6 +95,7 @@ struct MainView: View {
                     .onAppear {
                         playSound()
                         appViewModel.setBackground()
+                        userViewModel.refreshStats()
                     }
             }
         }
@@ -107,7 +124,7 @@ struct MainView: View {
     }
     
     func playSound(){
-        AudioPlayer.shared.playCustomSound(filename: "click1.mp3", volume: 0.5)
+        AudioPlayer.shared.playCustomSound(filename: "click1", volume: 0.5)
     }
 }
 

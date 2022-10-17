@@ -61,6 +61,7 @@ struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
+                .font(Font.custom("Baloo2-medium", size: 18))
                 .foregroundColor(fontColor)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
                     SproutAnalytics.shared.setDefaultParams()
@@ -70,6 +71,8 @@ struct CommunityGardenIosApp: App {
                 .environmentObject(appViewModel)
                 .onAppear {
                     RemoteConfiguration.shared.fetchRemoteConfig()
+                    UserViewModel.shared.getNumSeeds()
+                    UserViewModel.shared.refreshStats()
                 }
                 .onChange(of: scenePhase) { newPhase in
                     
