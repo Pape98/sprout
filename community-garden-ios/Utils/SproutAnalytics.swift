@@ -43,6 +43,11 @@ class SproutAnalytics {
         Analytics.logEvent(AnalyticsEventScreenView, parameters: ["screen": "history"])
     }
     
+    func viewBadges(){
+        guard isUserLoggedIn() == true else { return }
+        Analytics.logEvent(AnalyticsEventScreenView, parameters: ["screen": "badges"])
+    }
+    
     // Droplet & Seeds
     
     func gainingDroplets(numDroplet: Int){

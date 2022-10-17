@@ -27,49 +27,47 @@ enum NodeNames: String {
 class SceneHelper {
     
     // MARK: Properties
-    static let TREE_SCALE_FACTOR = 0.075
-    static let SCALE_DURATION = 2.0
     static let clouds = ["cloud1", "cloud2"]
     
     // MARK: Methods
-    static func setupGround(scene: SKScene) -> SKSpriteNode {
-        let groundTexture = SKTexture(imageNamed: "ground")
-        let ground = SKSpriteNode(texture: groundTexture)
-        
-        ground.anchorPoint = CGPoint(x: 0, y:0)
-        ground.position = CGPoint(x: 0, y:0)
-        ground.size = CGSize(width: scene.frame.width, height: ground.size.height)
-        ground.name = NodeNames.ground.rawValue
-        
-        let groundPhysicsBodySize = CGSize(width: ground.size.width * 2, height: ground.size.height)
-        ground.physicsBody = SKPhysicsBody(texture: groundTexture, size: groundPhysicsBodySize)
-        ground.physicsBody?.categoryBitMask = CollisionTypes.ground.rawValue
-        ground.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
-        ground.physicsBody?.isDynamic = false
-        
-        scene.addChild(ground)
-        return ground
-    }
-    
-    static func setupPond(scene: SKScene) -> SKSpriteNode{
-        let pondTexture = SKTexture(imageNamed: "pond")
-        let pond = SKSpriteNode(texture: pondTexture)
-        
-        pond.anchorPoint = CGPoint(x: 0, y:0)
-        pond.position = CGPoint(x: -20, y:0)
-        pond.name = NodeNames.pond.rawValue
-        
-        let pondPhysicsBodySize = CGSize(width: pond.size.width * 2, height: pond.size.height * 2)
-        pond.physicsBody = SKPhysicsBody(texture: pondTexture, size: pondPhysicsBodySize)
-        pond.physicsBody?.categoryBitMask = CollisionTypes.pond.rawValue
-        pond.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
-        pond.physicsBody?.isDynamic = false
-        
-        scene.addChild(pond)
-        
-        return pond
-    }
-    
+//    static func setupGround(scene: SKScene) -> SKSpriteNode {
+//        let groundTexture = SKTexture(imageNamed: "ground")
+//        let ground = SKSpriteNode(texture: groundTexture)
+//        
+//        ground.anchorPoint = CGPoint(x: 0, y:0)
+//        ground.position = CGPoint(x: 0, y:0)
+//        ground.size = CGSize(width: scene.frame.width, height: ground.size.height)
+//        ground.name = NodeNames.ground.rawValue
+//        
+//        let groundPhysicsBodySize = CGSize(width: ground.size.width * 2, height: ground.size.height)
+//        ground.physicsBody = SKPhysicsBody(texture: groundTexture, size: groundPhysicsBodySize)
+//        ground.physicsBody?.categoryBitMask = CollisionTypes.ground.rawValue
+//        ground.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
+//        ground.physicsBody?.isDynamic = false
+//        
+//        scene.addChild(ground)
+//        return ground
+//    }
+//    
+//    static func setupPond(scene: SKScene) -> SKSpriteNode{
+//        let pondTexture = SKTexture(imageNamed: "pond")
+//        let pond = SKSpriteNode(texture: pondTexture)
+//        
+//        pond.anchorPoint = CGPoint(x: 0, y:0)
+//        pond.position = CGPoint(x: -20, y:0)
+//        pond.name = NodeNames.pond.rawValue
+//        
+//        let pondPhysicsBodySize = CGSize(width: pond.size.width * 2, height: pond.size.height * 2)
+//        pond.physicsBody = SKPhysicsBody(texture: pondTexture, size: pondPhysicsBodySize)
+//        pond.physicsBody?.categoryBitMask = CollisionTypes.pond.rawValue
+//        pond.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
+//        pond.physicsBody?.isDynamic = false
+//        
+//        scene.addChild(pond)
+//        
+//        return pond
+//    }
+//    
     static func addGrass(scene: SKScene, location: CGPoint) -> SKSpriteNode {
         let grassNode = SKSpriteNode(imageNamed: "grass")
         grassNode.position = location
@@ -80,24 +78,24 @@ class SceneHelper {
             
         return grassNode
     }
-    
-    static func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){
-        let node = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
-        node.anchorPoint = CGPoint(x: 0, y: 0)
-        node.position = CGPoint(x: flower.x * scene.frame.width, y: flower.y * scene.frame.height)
-        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
-        node.zPosition = 10
-        node.setScale(flower.scale)
-        
-        // Animation
-        if isAnimated {
-            node.setScale(0)
-            let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
-            node.run(nodeAction)
-        }
-        
-        scene.addChild(node)
-    }
+//    
+//    static func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){
+//        let node = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
+//        node.anchorPoint = CGPoint(x: 0, y: 0)
+//        node.position = CGPoint(x: flower.x * scene.frame.width, y: flower.y * scene.frame.height)
+//        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
+//        node.zPosition = 4
+//        node.setScale(flower.scale)
+//        
+//        // Animation
+//        if isAnimated {
+//            node.setScale(0)
+//            let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
+//            node.run(nodeAction)
+//        }
+//        
+//        scene.addChild(node)
+//    }
     
     
     @objc static func createCloud(scene: SKScene, scale: Double = 0.75, isCommunityView: Bool = false) {

@@ -32,7 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UIApplication.shared.registerForRemoteNotifications()
         
         UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: "Baloo"))
-
+        
+        UITabBar.appearance().backgroundColor = .white
         
         // Toolbar title
         let date = Date()

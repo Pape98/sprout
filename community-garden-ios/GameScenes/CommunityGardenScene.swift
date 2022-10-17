@@ -275,15 +275,10 @@ class CommunityGardenScene: SKScene {
         soils.append(soilRight)
 
         let xOffset = parcel.node.size.width * 0.4
-        let yOffset: CGFloat = 10
-        
-        // change anchor point
-        soilLeft.node.anchorPoint = CGPoint(x: 0.5, y: 1)
-        soilRight.node.anchorPoint = CGPoint(x: 0.5, y: 1)
-        
+
         // place soils
-        soilLeft.node.position = CGPoint(x:  -1 * xOffset , y: parcelHeight / 2 - yOffset)
-        soilRight.node.position = CGPoint(x: xOffset, y: parcelHeight / 2 - yOffset)
+        soilLeft.node.position = CGPoint(x:  -1 * xOffset , y: 0)
+        soilRight.node.position = CGPoint(x: xOffset, y: 0)
         
         // add soils to parcel
         parcel.node.addChild(soilLeft.node)

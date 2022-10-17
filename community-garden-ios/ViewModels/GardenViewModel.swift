@@ -148,10 +148,13 @@ class GardenViewModel: ObservableObject {
     }
     
     func hasEnoughDropItem () -> Bool {
+        let enoughDroplets = hasEnoughDroplets()
+        let enoughtSeeds = hasEnoughSeeds()
+        
         if dropItem == GardenElement.droplet {
-            return hasEnoughDroplets()
+            return enoughDroplets;
         } else {
-            return hasEnoughSeeds()
+            return enoughtSeeds;
         }
     }
     

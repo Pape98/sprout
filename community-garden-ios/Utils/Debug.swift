@@ -16,23 +16,23 @@ class Debug {
         SwiftyBeaver.addDestination(console)
     }
     
-    func verbose(_ message: Any){
+    func verbose(_ message: Any...){
         SwiftyBeaver.verbose(message)
     }
     
-    func debug(_ message: Any){
+    func debug(_ message: Any...){
         SwiftyBeaver.debug(message)
     }
     
-    func info(_ message: Any){
+    func info(_ message: Any...){
         SwiftyBeaver.info(message)
     }
     
-    func warning(_ message: Any){
+    func warning(_ message: Any...){
         SwiftyBeaver.warning(message)
     }
     
-    func error(_ message: Any){
+    func error(_ message: Any...){
         SwiftyBeaver.error(message)
     }
 }

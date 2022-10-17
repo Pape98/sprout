@@ -67,8 +67,7 @@ struct Dashboard: View {
                             }.padding(.bottom, 10)
                         }
                         
-                        // Card Row One
-                        
+                        // Card Row 1
                         
                         LazyVGrid(columns: rowOneGrid){
                             
@@ -99,9 +98,7 @@ struct Dashboard: View {
                             }
                         }
                         
-                        
-                        // Card Row Two
-                        
+                        // Card Row 2
                         LazyVGrid(columns: twoColumnGrid) {
                             
                             if isUserTrackingData(DataOptions.steps){
@@ -150,6 +147,8 @@ struct Dashboard: View {
                         if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
                             GoalsMetCard(goals: gardenViewModel.goalsStat)
                         }
+                        
+                        EmptyView()
                         
                         Spacer()
                         

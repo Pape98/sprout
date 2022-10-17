@@ -157,7 +157,6 @@ struct Community: View {
         .onAppear{
             communityViewModel.fetchTrees()
             communityViewModel.fetchGroup()
-            SproutAnalytics.shared.viewCommunity()
             appViewModel.setBackground()
         }
         .sheet(isPresented: $messagesViewModel.showUserMessageSheet) {

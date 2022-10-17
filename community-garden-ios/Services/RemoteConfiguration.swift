@@ -31,7 +31,7 @@ class RemoteConfiguration {
             "Workout Time": 0.01
         ]
         
-        let treeParams = ["scaleFactor":0.05,"maxScale":1.5]
+        let treeParams = ["scaleFactor":0.0875,"maxScale":1.75]
         
         let defaultValues = [
             "group0" : ["isSocial": true, "canCustomize": true] as NSObject,

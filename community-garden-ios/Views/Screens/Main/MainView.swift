@@ -47,6 +47,7 @@ struct MainView: View {
                         }
                         .onAppear {
                             playSound()
+                            SproutAnalytics.shared.viewCommunity()
                             appViewModel.setBackground()
                         }
                 }
@@ -57,6 +58,7 @@ struct MainView: View {
                     }
                     .onAppear {
                         playSound()
+                        SproutAnalytics.shared.viewBadges()
                     }
                 
                 History()

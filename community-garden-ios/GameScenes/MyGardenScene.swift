@@ -64,9 +64,9 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = .clear
         
         // Scene setup
-        ground = SceneHelper.setupGround(scene: self)
+        ground = setupGround()
         
-        pond = SceneHelper.setupPond(scene: self)
+        pond = setupPond()
         
         addExisitingItems()
         
@@ -124,7 +124,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         for item in gardenViewModel.items {
             switch item.type {
             case .flower:
-                SceneHelper.addExistingFlower(flower: item, scene: self)
+                addExistingFlower(flower: item, scene: self)
             case .tree:
                 let nodes = addTree(tree: item, ground: ground, scene: self)
                 tree = nodes[0]
@@ -292,6 +292,62 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         return [treeNode, grassNode, shadowNode]
     }
     
+    func setupGround() -> SKSpriteNode {
+        let groundTexture = SKTexture(imageNamed: "ground")
+        let ground = SKSpriteNode(texture: groundTexture)
+        
+        ground.anchorPoint = CGPoint(x: 0, y:0)
+        ground.position = CGPoint(x: 0, y:0)
+        ground.size = CGSize(width: frame.width, height: ground.size.height)
+        ground.name = NodeNames.ground.rawValue
+        
+        let groundPhysicsBodySize = CGSize(width: ground.size.width * 2, height: ground.size.height)
+        ground.physicsBody = SKPhysicsBody(texture: groundTexture, size: groundPhysicsBodySize)
+        ground.physicsBody?.categoryBitMask = CollisionTypes.ground.rawValue
+        ground.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
+        ground.physicsBody?.isDynamic = false
+        
+        addChild(ground)
+        return ground
+    }
+    
+    func setupPond() -> SKSpriteNode{
+        let pondTexture = SKTexture(imageNamed: "pond")
+        let pond = SKSpriteNode(texture: pondTexture)
+        
+        pond.anchorPoint = CGPoint(x: 0, y:0)
+        pond.position = CGPoint(x: -20, y:0)
+        pond.name = NodeNames.pond.rawValue
+        
+        let pondPhysicsBodySize = CGSize(width: pond.size.width * 2, height: pond.size.height * 2)
+        pond.physicsBody = SKPhysicsBody(texture: pondTexture, size: pondPhysicsBodySize)
+        pond.physicsBody?.categoryBitMask = CollisionTypes.pond.rawValue
+        pond.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
+        pond.physicsBody?.isDynamic = false
+        
+        addChild(pond)
+        
+        return pond
+    }
+    
+    func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){
+        let node = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
+        node.anchorPoint = CGPoint(x: 0, y: 0)
+        node.position = CGPoint(x: flower.x * scene.frame.width, y: flower.y * scene.frame.height)
+        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
+        node.zPosition = 4
+        node.setScale(flower.scale)
+        
+        // Animation
+        if isAnimated {
+            node.setScale(0)
+            let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
+            node.run(nodeAction)
+        }
+        
+        scene.addChild(node)
+    }
+    
     // MARK: Utility methods
     func isValidTreeLocation(_ location: CGPoint) -> Bool {
         guard let ground = ground else { return false }
@@ -319,6 +375,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             // Update tree object's scale
             gardenViewModel.tree?.scale = treeScale
             gardenViewModel.updateTree()
+        } else {
+            // Tree has reached maximum height
         }
         
         droplet.removeFromParent()
