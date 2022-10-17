@@ -263,7 +263,6 @@ class CommunityGardenScene: SKScene {
         
         let soilLeft = parcel.soils[0]
         let soilRight = parcel.soils[1]
-        let parcelHeight = parcel.node.size.height
         
         soilLeft.node.size.height = parcel.node.size.height / 2
         soilRight.node.size.height = parcel.node.size.height / 2
@@ -279,6 +278,15 @@ class CommunityGardenScene: SKScene {
         // place soils
         soilLeft.node.position = CGPoint(x:  -1 * xOffset , y: 0)
         soilRight.node.position = CGPoint(x: xOffset, y: 0)
+        
+        
+        // add dog or turtle house
+        let houseNode = SKSpriteNode(imageNamed: "dog-house-shadow")
+        houseNode.anchorPoint = CGPoint(x: 1, y: 0)
+        houseNode.setScale(0.5)
+        houseNode.position = CGPoint(x: parcel.node.size.width/2 - 10, y: parcel.node.size.width/2 + houseNode.size.height * 0.5)
+        
+        parcel.node.addChild(houseNode)
         
         // add soils to parcel
         parcel.node.addChild(soilLeft.node)

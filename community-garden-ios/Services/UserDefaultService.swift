@@ -36,7 +36,7 @@ class UserDefaultsService {
         return dictionary
     }
     
-    func get(key: UserDefaultsKey) -> Bool {
+    func get(key: UserDefaultsKey) -> Bool? {
         return defaults.bool(forKey: key.rawValue)
     }
     
@@ -46,22 +46,8 @@ class UserDefaultsService {
 }
 
 enum UserDefaultsKey: String {
-    // Onboarding
-    case TREE = "tree"
-    case TREE_COLOR = "tree-color"
-    case FLOWER = "flower"
-    case FLOWER_COLOR = "flower-color"
-    case DATA = "data"
-    case STEPS_GOAL = "steps-goal"
-    case SLEEP_GOAL = "sleep-goal"
-    case WORKOUT_GOAL = "workout-goal"
-    case WALKING_RUNNING_GOAL = "walking-running-goal"
-    case MAPPED_DATA = "mapped-data"
-    case GARDEN_NAME = "garden-name"
-    case REFLECT_WEATHER_CHANGES = "reflect-weather-changes"
-    case MESSAGE_OPTIONS = "messageOptions"
     case FCM_TOKEN = "fcmToken"
-    
+    case IS_MUSIC_ON = "isMusicOn"
 }
 
 

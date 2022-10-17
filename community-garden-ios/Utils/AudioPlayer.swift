@@ -7,7 +7,7 @@
 
 import AVFoundation
 
-class AudioPlayer {
+class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
     
     static let shared = AudioPlayer()
     var soundEffect: AVAudioPlayer?
@@ -20,6 +20,11 @@ class AudioPlayer {
                            "spring_hamlet_evening"]
     
     var currentSongIndex = -1
+    let userDefaults = UserDefaultsService.shared
+    
+    override init(){
+        backgroundSongs = backgroundSongs.shuffled()
+    }
     
     func playCustomSound(filename: String, volume: Float = 1){
         let path = Bundle.main.path(forResource: filename, ofType:nil)
@@ -41,7 +46,15 @@ class AudioPlayer {
         }
     }
     
+    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
+        startBackgroundMusic()
+    }
+    
     func startBackgroundMusic(){
+        let isMusicOn: Bool? = userDefaults.get(key: UserDefaultsKey.IS_MUSIC_ON)
+        
+        guard isMusicOn != nil && isMusicOn! == true else { return }
+        
         changeSong()
         let song = backgroundSongs[currentSongIndex]
         if let bundle = Bundle.main.path(forResource: song, ofType: "mp3") {
@@ -49,7 +62,8 @@ class AudioPlayer {
             do {
                 audioPlayer = try AVAudioPlayer(contentsOf:backgroundMusic as URL)
                 guard let audioPlayer = audioPlayer else { return }
-                audioPlayer.numberOfLoops = -1
+                audioPlayer.numberOfLoops = 0
+                audioPlayer.delegate = self
                 audioPlayer.volume = 0.05
                 audioPlayer.prepareToPlay()
                 audioPlayer.play()

@@ -12,12 +12,14 @@ struct Settings: View {
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     @StateObject var settingsViewModel: SettingsViewModel = SettingsViewModel()
+    @State var isMusicOn: Bool = true
     
     @State private var reflectWeatherChanges = false
     var treeTypes = Constants.trees
     var flowerTypes = Constants.flowers
     var treeColors = Constants.colors
     var flowerColors = Constants.colors.filter { $0 != "moss"}
+    let userDefaults = UserDefaultsService.shared
     
     var body: some View {
         NavigationView {
@@ -25,13 +27,31 @@ struct Settings: View {
                 MainBackground()
                 List {
                     
+                    Section("System"){
+                        
+                        // Music on/off toggle
+                        Toggle(isOn: $isMusicOn) {
+                                Text("Turn on background music")
+                            }
+                        .onAppear {
+                            if let musicOn: Bool = userDefaults.get(key: UserDefaultsKey.IS_MUSIC_ON) {
+                                isMusicOn = musicOn
+                            }
+                        }
+                        .onChange(of: isMusicOn) { newValue in
+                            userDefaults.save(value: newValue, key: UserDefaultsKey.IS_MUSIC_ON)
+                            if newValue == true { AudioPlayer.shared.startBackgroundMusic() }
+                            else { AudioPlayer.shared.stopBackgroundMusic()}
+                        }
+                    }
+                    
                     Section("Data"){
                         NavigationLink {
                             if let _ = settingsViewModel.settings {
                                 GoalslEditing()
                             }
                         } label : {
-                            Text("Edit Goals")
+                            Text("Edit goals")
                         }
                     }
                     
@@ -43,7 +63,7 @@ struct Settings: View {
                                     NameChanging(garden: settings.gardenName)
                                 }
                             } label : {
-                                Text("Edit Garden Name")
+                                Text("Change garden name")
                             }
                         }
                         

@@ -34,9 +34,9 @@ struct CommunityGardenIosApp: App {
     }
     
     init() {
-        //        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
-        //            print(defaults)
-        //        }
+        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
+            Debug.log.info(defaults)
+        }
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
         
@@ -74,12 +74,12 @@ struct CommunityGardenIosApp: App {
                 .onChange(of: scenePhase) { newPhase in
                     
                     if newPhase == .active {
-//                        AudioPlayer.shared.startBackgroundMusic()
+                        AudioPlayer.shared.startBackgroundMusic()
                         UserViewModel.shared.getNumSeeds()
                         UserViewModel.shared.getNumDroplets()
                     }
                     else {
-//                        AudioPlayer.shared.stopBackgroundMusic()
+                        AudioPlayer.shared.stopBackgroundMusic()
                     }
                     
                     RemoteConfiguration.shared.fetchRemoteConfig()

@@ -21,11 +21,9 @@ struct Dashboard: View {
     
     let today = Date()
     let userDefaults = UserDefaultsService.shared
-    var TREE: String {
-        let color = userDefaults.get(key: UserDefaultsKey.TREE_COLOR) ?? "cosmos"
-        let tree = userDefaults.get(key: UserDefaultsKey.TREE) ?? "spiky-maple"
-        return "\(color)-\(tree)"
-    }
+    var defaultTree: String = "cosmos-spiky-maple"
+     
+    
     
     let user = UserService.shared.user
     
@@ -49,7 +47,7 @@ struct Dashboard: View {
                                                 background: .appleGreen,
                                                 size: 75)
                                 } else {
-                                    CircledTree(option: TREE, background: .seaGreen, size: 75)
+                                    CircledTree(option: defaultTree, background: .seaGreen, size: 75)
                                         .padding(.top, 15)
                                 }
                                 
@@ -197,6 +195,7 @@ struct Dashboard_Previews: PreviewProvider {
             .environmentObject(AuthenticationViewModel())
             .environmentObject(HealthStoreViewModel())
             .environmentObject(AppViewModel())
+            .environmentObject(CommunityViewModel())
             .environmentObject(GardenViewModel())
     }
 }
