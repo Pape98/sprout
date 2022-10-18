@@ -8,8 +8,8 @@
 import Foundation
 import SQLite
 
-class StatsRepository {
-    static let shared = StatsRepository()
+class StatsSQLRepository {
+    static let shared = StatsSQLRepository()
     let SQLiteDB = SQLiteService.shared
     let progressRepo = ProgressRepository()
     let userDefaults = UserDefaultsService.shared

@@ -100,12 +100,12 @@ struct Community: View {
                     }
                     .overlay {
                         
-//                        ZStack {
-//                            Rectangle()
-//                                .fill(Color(appViewModel.backgroundColor))
-//                                .blendMode(BlendMode.overlay)
-//                                .ignoresSafeArea()
-//                        }
+                        ZStack {
+                            Rectangle()
+                                .fill(Color(appViewModel.backgroundColor))
+                                .blendMode(BlendMode.overlay)
+                                .ignoresSafeArea()
+                        }
                     }
                 }
                 
@@ -119,10 +119,6 @@ struct Community: View {
                         ActionButton(image: "paperplane.fill", foreground: .tangerine) {
                             messagesViewModel.showSendMessageSheet = true
                         }
-                        
-//                        ActionButton(image: "arrow.clockwise", foreground: .white) {
-//                            communityViewModel.refreshCommunity()
-//                        }
                         
                         Spacer()
                         

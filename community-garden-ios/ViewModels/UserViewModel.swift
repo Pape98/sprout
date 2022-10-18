@@ -19,7 +19,7 @@ class UserViewModel: ObservableObject {
     static var shared = UserViewModel()
     
     let userRepository = UserRepository.shared
-    let statsRepository = StatsRepository.shared
+    let statsRepository = StatsSQLRepository.shared
     let progressRepository = ProgressRepository.shared
     
     let nc = NotificationCenter.default

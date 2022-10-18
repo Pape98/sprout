@@ -9,7 +9,7 @@ import Foundation
 
 class BadgesViewModel: ObservableObject {
     static let shared = BadgesViewModel()
-    @Published var showBadgesSheet = false
+    let groupRepository = GroupRepository.shared
     
     init(){}
     

@@ -15,8 +15,6 @@ class MessagesViewModel: ObservableObject {
     var messageToDelete = ""
     let collections = Collections.shared
     
-
-    
     @Published var customUptions: [MessageOption] = []
     // TODO: Remove later
     @Published var showMessageOptionsSheet = false

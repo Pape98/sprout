@@ -64,7 +64,7 @@ class CommunityGardenScene: SKScene {
         //        let numPlotsPerColumn: Int = Int(ceil(Double(communityViewModel.trees.count) / 2))
         
         // TODO: Remove number of parcels hardcoding
-        addParcelsToColumn(firstColumn, count: 4)
+        addParcelsToColumn(firstColumn, count: 4, swap: true)
         addParcelsToColumn(secondColumn, count: 4)
         addTreesToParcels()
         addSoilsToParcels()
@@ -96,7 +96,7 @@ class CommunityGardenScene: SKScene {
         SceneHelper.createCloud(scene: self, scale: 0.45, isCommunityView: true)
     }
     
-    func addParcelsToColumn(_ column: SKSpriteNode, count: Int){
+    func addParcelsToColumn(_ column: SKSpriteNode, count: Int, swap: Bool = false){
         
         guard count != 0 else { return }
         
@@ -132,6 +132,8 @@ class CommunityGardenScene: SKScene {
             parcels.append(parcel)
             yPosition = yPosition + height
         }
+        
+        if swap { swapParcels(&parcels) }
     }
     
     func addTreesToParcels(){
@@ -239,6 +241,8 @@ class CommunityGardenScene: SKScene {
         guard let tree = parcel.tree else { return }
         let offset = parcel.node.size.height * 0.085
         var yPosition = tree.position.y + offset
+        let parcelHeight = parcel.node.size.height
+        let parcelWidth = parcel.node.size.width
         
         // create soils
         parcel.soils.append(Soil(node:SKSpriteNode(imageNamed: "soil-horizontal"), alignment: SoilAlignment.horizontal))
@@ -252,6 +256,16 @@ class CommunityGardenScene: SKScene {
             parcel.node.addChild(soil.node)
             soils.append(soil)
         }
+        
+        // add pond
+        let pondNode = SKSpriteNode(imageNamed: "pond\(getRandomNumber(1, 1))")
+        pondNode.size = CGSize(width: parcelWidth * 0.8, height: parcelHeight * 0.35)
+        pondNode.anchorPoint = CGPoint(x: 0.5, y: 0)
+        pondNode.position = CGPoint(x: 0, y: parcelHeight * 0.1)
+
+        
+        parcel.node.addChild(pondNode)
+        
     }
     
     func addVerticalSoil(parcel: inout Parcel){
@@ -281,7 +295,8 @@ class CommunityGardenScene: SKScene {
         
         
         // add dog or turtle house
-        let houseNode = SKSpriteNode(imageNamed: "dog-house-shadow")
+        let houses = ["dog-house-shadow", "turtle-house-shadow"]
+        let houseNode = SKSpriteNode(imageNamed: houses[getRandomNumber(0, 0)])
         houseNode.anchorPoint = CGPoint(x: 1, y: 0)
         houseNode.setScale(0.5)
         houseNode.position = CGPoint(x: parcel.node.size.width/2 - 10, y: parcel.node.size.width/2 + houseNode.size.height * 0.5)
@@ -309,9 +324,15 @@ class CommunityGardenScene: SKScene {
         let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
         
         
-        treeNode.setScale(tree.scale * 0.5)
+        treeNode.setScale(tree.scale * 0.35)
 //        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
 //        treeNode.run(treeAction)
+        
+        // shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow-community")
+        shadowNode.zPosition = -1
+        shadowNode.setScale(0.5)
+        treeNode.addChild(shadowNode)
         
         // grass
         let grassNode = SKSpriteNode(imageNamed: "grass2")
@@ -331,6 +352,16 @@ class CommunityGardenScene: SKScene {
         parcel.tree = treeNode
         parcel.board.addChild(label)
         parcel.node.addChild(treeNode)
+    }
+    
+    func swapParcels(_ parcels: inout [Parcel]){
+        var i = 0, j = 1
+
+        while i < parcels.endIndex && j < parcels.endIndex {
+            parcels.swapAt(i, j)
+            i += 2
+            j += 2
+        }
     }
     
 }

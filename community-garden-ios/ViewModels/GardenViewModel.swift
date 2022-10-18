@@ -21,13 +21,14 @@ class GardenViewModel: ObservableObject {
     let nc = NotificationCenter.default
     
     let gardenRepo = GardenRepository.shared
-    let statsRepo = StatsRepository.shared
+    let statsRepo = StatsSQLRepository.shared
     
     @Published var items: [GardenItem] = []
     @Published var dropItem = GardenElement.droplet
     @Published var gardenMode = GardenMode.moving
     @Published var sunMoon = "sun"
     @Published var goalsStat: GoalsStat? = nil
+    @Published var showToast = false
     
     var flowers: [GardenItem] = []
     var tree: GardenItem?

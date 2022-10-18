@@ -30,9 +30,9 @@ struct SendMessage: View {
                     
                     VStack(spacing: 10) {
                         
-                        Text("TAP TREE TO SELECT RECIPIENT")
-                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 14)
-                            .frame(width: geometry.size.width * 0.8, alignment: .leading)
+                        Text("Scroll right and tap tree to select recipient")
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
                         
                         ScrollView(.horizontal, showsIndicators: false){
                             HStack(spacing: 20) {
@@ -47,9 +47,9 @@ struct SendMessage: View {
                         .padding()
                         
                         // Selected Messsage
-                        Text("MESSAGE PREVIEW")
-                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 14)
-                            .frame(width: geometry.size.width * 0.8, alignment: .leading)
+                        Text("Message preview")
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
                         
                         Text(messageText)
                             .frame(alignment: .center)
@@ -64,11 +64,16 @@ struct SendMessage: View {
                             .padding()
                         
                         // Form
+                        
+                        Text("Content")
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                        
                         Form {
-                            Section("Content") {
+                        
                                 TextField("Enter message here", text: $messageText)
                                 Toggle("Make Anonymous", isOn: $isMessagePrivate)
-                            }
+                            
                             
                         }
                         .offset(y: -20)

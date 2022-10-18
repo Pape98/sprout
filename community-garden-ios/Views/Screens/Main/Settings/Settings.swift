@@ -27,7 +27,7 @@ struct Settings: View {
                 MainBackground()
                 List {
                     
-                    Section("System"){
+                    Section(header: Text("System").foregroundColor(appViewModel.fontColor)){
                         
                         // Music on/off toggle
                         Toggle(isOn: $isMusicOn) {
@@ -51,7 +51,7 @@ struct Settings: View {
                         }
                     }
                     
-                    Section("Data"){
+                    Section(header: Text("Data").foregroundColor(appViewModel.fontColor)){
                         NavigationLink {
                             if let _ = settingsViewModel.settings {
                                 GoalslEditing()
@@ -62,7 +62,7 @@ struct Settings: View {
                     }
                     
                     if RemoteConfiguration.shared.canCustomize(group: UserService.shared.user.group){
-                        Section("Garden"){
+                        Section(header: Text("Garden").foregroundColor(appViewModel.fontColor)){
                             
                             NavigationLink {
                                 if let settings = settingsViewModel.settings {
@@ -73,7 +73,7 @@ struct Settings: View {
                             }
                         }
                         
-                        Section("Types & Colors"){
+                        Section(header: Text("Types & Colors").foregroundColor(appViewModel.fontColor)){
                             if let settings = settingsViewModel.settings {
                                 SettingButton(label: "Tree Type",
                                               image: "moss-\(addDash(settings.tree))",
@@ -125,6 +125,7 @@ struct Settings: View {
             .toolbar {
                 Button("Logout"){
                     authViewModel.signOut()
+                    AudioPlayer.shared.stopBackgroundMusic()
                 }
                 .foregroundColor(.red)
             }

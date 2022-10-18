@@ -31,17 +31,6 @@ struct MainView: View {
         ZStack {
             TabView {
                 
-                History()
-                    .tabItem {
-                        Label("History", systemImage: "target")
-                    }
-                    .onAppear {
-                        SproutAnalytics.shared.viewHistory()
-                        playSound()
-                        appViewModel.setBackground()
-                        userViewModel.refreshStats()
-                    }
-                
                 Dashboard()
                     .tabItem {
                         Label("Dashboard", systemImage: "house.fill")
@@ -64,28 +53,30 @@ struct MainView: View {
                             userViewModel.refreshStats()
                         }
                 }
+                if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
+                    
+                    Badges()
+                        .tabItem {
+                            Label("Badges", systemImage: "book.fill")
+                        }
+                        .onAppear {
+                            playSound()
+                            SproutAnalytics.shared.viewBadges()
+                            userViewModel.refreshStats()
+                            appViewModel.setBackground()
+                        }
+                }
                 
-                Badges()
+                History()
                     .tabItem {
-                        Label("Badges", systemImage: "book.fill")
+                        Label("History", systemImage: "target")
                     }
                     .onAppear {
+                        SproutAnalytics.shared.viewHistory()
                         playSound()
-                        SproutAnalytics.shared.viewBadges()
-                        userViewModel.refreshStats()
                         appViewModel.setBackground()
+                        userViewModel.refreshStats()
                     }
-                
-//                History()
-//                    .tabItem {
-//                        Label("History", systemImage: "target")
-//                    }
-//                    .onAppear {
-//                        SproutAnalytics.shared.viewHistory()
-//                        playSound()
-//                        appViewModel.setBackground()
-//                userViewModel.refreshStats()
-//                    }
                 
                 
                 Settings()

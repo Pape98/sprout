@@ -117,7 +117,7 @@
 		F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */; };
 		F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */; };
 		F0B6DAEC2875C30100DD3F03 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAEB2875C30100DD3F03 /* Statistics.swift */; };
-		F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */; };
+		F0B6DAEE2875CB5100DD3F03 /* StatsSQLRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAED2875CB5100DD3F03 /* StatsSQLRepository.swift */; };
 		F0B6DAF02876181D00DD3F03 /* ProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */; };
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
@@ -270,7 +270,7 @@
 		F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreSQLRepository.swift; sourceTree = "<group>"; };
 		F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreViewModel.swift; sourceTree = "<group>"; };
 		F0B6DAEB2875C30100DD3F03 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
-		F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRepository.swift; sourceTree = "<group>"; };
+		F0B6DAED2875CB5100DD3F03 /* StatsSQLRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsSQLRepository.swift; sourceTree = "<group>"; };
 		F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRepository.swift; sourceTree = "<group>"; };
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
@@ -380,7 +380,6 @@
 				F09F823428FBD602009287E6 /* Badges */,
 				F0F0C87828B53CCF0047D9EA /* History */,
 				F07657F328D686EE00C72F2C /* Community */,
-				F09B71E327724B260085C7AC /* Garden */,
 				F0F5E93828739422002C30BC /* Settings */,
 			);
 			path = Main;
@@ -575,7 +574,6 @@
 				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
 				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 				F043F25D287CFDC6008F211C /* Protocols.swift */,
-				F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */,
 				F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */,
 				F06558AA28F1FD230077C50B /* Debug.swift */,
 				F0D9065928FDE48C007ADDED /* JustifiedText.swift */,
@@ -715,6 +713,7 @@
 				F02682D02850F13A004747FD /* UserDefaultService.swift */,
 				F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */,
 				F0B07D1628EF190400AA99FC /* MessagingService.swift */,
+				F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -776,7 +775,7 @@
 				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
 				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
 				F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */,
-				F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */,
+				F0B6DAED2875CB5100DD3F03 /* StatsSQLRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -829,6 +828,7 @@
 		F0F0C87828B53CCF0047D9EA /* History */ = {
 			isa = PBXGroup;
 			children = (
+				F09B71E327724B260085C7AC /* Garden */,
 				F0F0C87928B53CFE0047D9EA /* History.swift */,
 				F04085FC28B8628C002EDECD /* components */,
 			);
@@ -1047,7 +1047,7 @@
 				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
 				F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */,
 				F01319A628FA2282002B47A4 /* SceneElements.swift in Sources */,
-				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
+				F0B6DAEE2875CB5100DD3F03 /* StatsSQLRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
 				F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,

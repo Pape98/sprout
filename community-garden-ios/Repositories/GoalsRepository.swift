@@ -40,5 +40,31 @@ class GoalsRepository {
             }
         }
     }
+    
+    func getAllGoalsStat(query: Query, completion: @escaping ([GoalsStat]) -> Void){
+        let collection = collections.getCollectionReference(CollectionName.goals.rawValue)
+        guard let collection = collection else { return }
+        
+        query.getDocuments { querySnapshot, error in
+            if let error = error {
+                Debug.log.error("Error getting documents: \(error)")
+            } else {
+                var stats:[GoalsStat] = []
+                for document in querySnapshot!.documents {
+                    
+                    do {
+                        let decodedStat: GoalsStat = try document.data(as: GoalsStat.self)
+                        stats.append(decodedStat)
+                    } catch {
+                        Debug.log.error("[getAllGoalsStat()]: \(error)")
+                        
+                    }
+                }
+                completion(stats)
+            }
+        }
+        
+        
+    }
 }
 

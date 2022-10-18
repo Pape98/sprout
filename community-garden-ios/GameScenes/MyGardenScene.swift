@@ -220,7 +220,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     func releaseDropItem(position: CGPoint){
         
         // Case tree has reached max height for tree
-        if gardenViewModel.dropItem == GardenElement.droplet && gardenViewModel.tree!.scale >= TREE_MAX_SCALE { return }
+        if gardenViewModel.dropItem == GardenElement.droplet && gardenViewModel.tree!.scale >= TREE_MAX_SCALE {
+            gardenViewModel.showToast = true
+            return
+        }
             
         let name = gardenViewModel.dropItem
         let dropItem = SKSpriteNode(imageNamed: name.rawValue)
@@ -275,6 +278,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         }
         
         addChild(treeNode)
+        
+        // shadow
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
+        shadowNode.zPosition = -1
+        treeNode.addChild(shadowNode)
         
         // Grass
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
@@ -336,7 +344,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             treeScale = round(treeScale * 1000) / 1000.0
        
             let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
-            let shadowAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
             tree.run(treeAction)
             
             // Update tree object's scale

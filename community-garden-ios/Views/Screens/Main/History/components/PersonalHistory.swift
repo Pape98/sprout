@@ -23,7 +23,7 @@ struct PersonalHistory: View {
                 ForEach(HistoryViewModel.Data.dalatList, id: \.self){ text in
                     if isUserTrackingData(DataOptions(rawValue: text)!) {
                         Text(text.capitalized)
-                            .font(.custom("Baloo2-medium", size: 14))
+                            .font(.custom(Constants.mainFont, size: 14))
                             .tag(text)
                     }
                 }

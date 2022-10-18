@@ -61,7 +61,7 @@ struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
-                .font(Font.custom("Baloo2-medium", size: 18))
+                .font(Font.custom(Constants.mainFont, size: 18))
                 .foregroundColor(fontColor)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
                     SproutAnalytics.shared.setDefaultParams()

@@ -26,27 +26,51 @@ struct Badges: View {
                         
                         LazyVGrid(columns: columns, spacing: 40) {
                             ForEach(Constants.badges, id: \.self) { badge in
-                                NavigationLink {
-                                    BadgeInfo(badge: badge)
-                                } label: {
+                                
+                                if appViewModel.numFiftyPercentDays >= badge.numberOfDaysRequired {
+                                    NavigationLink {
+                                        BadgeInfo(badge: badge)
+                                    } label: {
+                                        VStack {
+                                            
+                                            Image("badges/\(badge.name)")
+                                                .resizable()
+                                                .scaledToFit()
+                                                .frame(width: 100)
+                                            
+                                            ProgressView("", value: CGFloat(appViewModel.numFiftyPercentDays / badge.numberOfDaysRequired))
+                                                .frame(width: 100)
+                                            
+                                            
+                                            HStack(alignment: .center) {
+                                                Image(systemName: "target")
+                                                    .foregroundColor(.appleGreen)
+                                                Text("\(min(appViewModel.numFiftyPercentDays,badge.numberOfDaysRequired)) /\(badge.numberOfDaysRequired) day(s)")
+                                                    .bodyStyle()
+                                            }
+                                        }
+                                    }
+                                }
+                                
+                                else {
                                     VStack {
-                                        Image("badges/\(badge.name)")
+                                        
+                                        Image("badges/locked")
                                             .resizable()
                                             .scaledToFit()
                                             .frame(width: 100)
-                                    
-                                            ProgressView("", value: 0)
-                                                .frame(width: 100)
+                                        
+                                        ProgressView("", value: CGFloat(appViewModel.numFiftyPercentDays / badge.numberOfDaysRequired))
+                                            .frame(width: 100)
                                         
                                         
                                         HStack(alignment: .center) {
                                             Image(systemName: "target")
                                                 .foregroundColor(.appleGreen)
-                                            Text("\(badge.numberOfDaysRequired)")
+                                            Text("\( min(appViewModel.numFiftyPercentDays,badge.numberOfDaysRequired)) / \(badge.numberOfDaysRequired) day(s)")
                                                 .bodyStyle()
                                         }
                                     }
-                                    
                                 }
                             }
                         }
@@ -69,5 +93,6 @@ struct Badges_Previews: PreviewProvider {
     static var previews: some View {
         Badges()
             .environmentObject(AppViewModel())
+            .environmentObject(BadgesViewModel())
     }
 }

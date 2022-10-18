@@ -13,7 +13,7 @@ struct DataPicker: View {
     @State private var selections: [String] = []
     @State private var showingAlert = false
     @EnvironmentObject var onboardingRouter: OnboardingRouter
-        
+    
     let header = "I want to track ..."
     let subheader = "Select two things from the Health App"
     let dataOptions = DataOptions.dalatList
@@ -23,21 +23,23 @@ struct DataPicker: View {
         VStack {
             PickerTitle(header: header, subheader: subheader)
             
-            VStack(spacing: 15) {
-                ForEach(dataOptions, id:\.self){ title in
-                    DataCard(data: title, isSelected: selections.contains(title))
-                        .onTapGesture {
-                            // Deselect Item
-                            if selections.contains(title) {
-                                selections = selections.filter {$0 != title}
-                                // Select Item
-                            } else {
-                                selections.append(title)
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(dataOptions, id:\.self){ title in
+                        DataCard(data: title, isSelected: selections.contains(title))
+                            .onTapGesture {
+                                // Deselect Item
+                                if selections.contains(title) {
+                                    selections = selections.filter {$0 != title}
+                                    // Select Item
+                                } else {
+                                    selections.append(title)
+                                }
                             }
-                        }
+                    }
                 }
+                .padding()
             }
-            .padding()
             
             Spacer()
             

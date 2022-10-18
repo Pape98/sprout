@@ -27,6 +27,7 @@ struct LastSteps: View {
                 
                 VStack(alignment: .leading) {
                     Text("Enter your garden's name:")
+                        .bodyStyle(size: 18)
                     TextField("", text: $gardenName )
                         .textFieldStyle(OvalTextFieldStyle())
                 }.segment()

@@ -53,8 +53,7 @@ struct GoalSlider: View {
     var body: some View {
         VStack(spacing: 10) {
             Text(GoalsSettings.titles[goalName]!)
-                .font(.title3)
-                .bold()
+                .bodyStyle(foregroundColor: .greenVogue, size: 20)
             Slider(
                 value: $value,
                 in: GoalsSettings.ranges[goalName]!,

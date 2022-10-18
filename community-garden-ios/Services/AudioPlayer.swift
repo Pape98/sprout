@@ -51,6 +51,8 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
     }
     
     func startBackgroundMusic(){
+        
+        guard isUserLoggedIn() == true else { return }
         let isMusicOn: Bool? = userDefaults.get(key: UserDefaultsKey.IS_MUSIC_ON)
         
         guard isMusicOn != nil && isMusicOn! == true else { return }

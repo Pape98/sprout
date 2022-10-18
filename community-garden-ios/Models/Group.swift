@@ -20,6 +20,7 @@ struct GardenGroup: Codable {
         "sunglow": [0,0,0],
         "tangerine": [0,0,0],
     ]
+    var fiftyPercentDays: Int? = 0
 }
 
 struct GoalsStat: Codable {

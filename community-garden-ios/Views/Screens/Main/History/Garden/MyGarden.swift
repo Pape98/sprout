@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SpriteKit
+import AlertToast
 
 struct MyGarden: View {
     
@@ -80,11 +81,12 @@ struct MyGarden: View {
                 
             }
             
-//            VStack {
-//                Spacer()
-//                LottieView(filename: "turtle_s3")
-//                    .frame(height: 100)
-//            }
+
+        }
+        .toast(isPresenting: $gardenViewModel.showToast, duration: 5, tapToDismiss: true) {
+            AlertToast(displayMode: .banner(.slide),
+                       type: .systemImage("leaf.fill", .appleGreen),
+                       title: "Max height", subTitle: "Tree has reached its max height.")
         }
         .overlay {
             VStack {

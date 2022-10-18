@@ -29,11 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         // Styling
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont(name: "Baloo2-medium", size: 16)!], for: [])
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont(name: Constants.mainFont, size: 16)!], for: [])
         
-        UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: "Baloo2-medium"))
+        UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Constants.mainFont))
         UITabBar.appearance().backgroundColor = .white
-        UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: "Baloo2-medium", size: 12)!], for: [])
+        UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: Constants.mainFont, size: 12)!], for: [])
     
 
         // Toolbar title
@@ -41,12 +41,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         var toolbarFontColor = UIColor.black
     
         
-        if hour >= 0 && hour <= 6 {
+        if hour >= 18 || hour <= 6  {
             toolbarFontColor = UIColor.white
         }
         
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: toolbarFontColor ]
-        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Baloo2-medium", size: 20)!, .foregroundColor: toolbarFontColor]
+        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Baloo2-bold", size: 20)!, .foregroundColor: toolbarFontColor]
 
         
         return true
