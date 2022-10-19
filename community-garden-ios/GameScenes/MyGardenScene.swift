@@ -221,7 +221,13 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // Case tree has reached max height for tree
         if gardenViewModel.dropItem == GardenElement.droplet && gardenViewModel.tree!.scale >= TREE_MAX_SCALE {
-            gardenViewModel.showToast = true
+            gardenViewModel.toastMessage = ToastContent(image: "leaf.fill",
+                                                        color: .appleGreen,
+                                                        title: "Max Height",
+                                                        subtitle: "Tree has reached its max height.")
+            DispatchQueue.main.async {
+                self.gardenViewModel.showToast = true
+            }
             return
         }
             

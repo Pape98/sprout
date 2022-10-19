@@ -144,7 +144,7 @@ extension Text {
     }
     
     func bodyStyle(foregroundColor: Color = .black, size: CGFloat = 17) -> some View {
-        self.foregroundColor(foregroundColor)
+        return self.foregroundColor(foregroundColor)
             .opacity(foregroundColor != .black ? 1: 0.5)
             .font(.custom(Constants.mainFont, size: size))
     }

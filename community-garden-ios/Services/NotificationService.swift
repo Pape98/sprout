@@ -61,7 +61,8 @@ class NotificationService {
         // Step 2: Create the notification trigger
 
         let date =  "12:00:00".convertToDateObject(format: "HH:mm:ss")
-        let dateComponents = Calendar.current.dateComponents([.hour,.minute, .second], from: date!)
+        guard let date = date else { return }
+        let dateComponents = Calendar.current.dateComponents([.hour,.minute, .second], from: date)
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                     repeats: true)

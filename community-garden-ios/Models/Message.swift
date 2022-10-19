@@ -20,9 +20,5 @@ struct Message: Identifiable, Codable {
     var senderFlower: String
 }
 
-struct MessageOption: Codable, Identifiable, Hashable {
-    var id: String = UUID().uuidString
-    var text: String
-    var color: String
-    var isDefault: Bool = false
-}
+
+

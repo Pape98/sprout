@@ -14,7 +14,7 @@ struct SendMessage: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var communityViewModel: CommunityViewModel
     
-    @State private var selectedMessage: MessageOption = MessageOption(text: "Proud of you!", color: "cosmos")
+
     @State private var isMessagePrivate = true
     @State private var messageText = ""
     @State private var showErrorAlert = false

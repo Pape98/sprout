@@ -36,8 +36,7 @@ struct MainView: View {
                         Label("Dashboard", systemImage: "house.fill")
                     }
                     .onAppear {
-                        playSound()
-                        userViewModel.refreshStats()
+                        onAppearTabBarItem()
                     }
                 
                 
@@ -47,10 +46,8 @@ struct MainView: View {
                             Label("Community", systemImage: "globe")
                         }
                         .onAppear {
-                            playSound()
                             SproutAnalytics.shared.viewCommunity()
-                            appViewModel.setBackground()
-                            userViewModel.refreshStats()
+                            onAppearTabBarItem()
                         }
                 }
                 if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
@@ -60,10 +57,8 @@ struct MainView: View {
                             Label("Badges", systemImage: "book.fill")
                         }
                         .onAppear {
-                            playSound()
                             SproutAnalytics.shared.viewBadges()
-                            userViewModel.refreshStats()
-                            appViewModel.setBackground()
+                            onAppearTabBarItem()
                         }
                 }
                 
@@ -73,9 +68,7 @@ struct MainView: View {
                     }
                     .onAppear {
                         SproutAnalytics.shared.viewHistory()
-                        playSound()
-                        appViewModel.setBackground()
-                        userViewModel.refreshStats()
+                        onAppearTabBarItem()
                     }
                 
                 
@@ -84,9 +77,7 @@ struct MainView: View {
                         Label("Settings", systemImage: "gearshape")
                     }
                     .onAppear {
-                        playSound()
-                        appViewModel.setBackground()
-                        userViewModel.refreshStats()
+                        onAppearTabBarItem()
                     }
             }
         }
@@ -112,6 +103,12 @@ struct MainView: View {
         .environmentObject(historyViewModel)
         .environmentObject(communityViewModel)
         .environmentObject(badgesViewModel)
+    }
+    
+    func onAppearTabBarItem(){
+        playSound()
+        appViewModel.setBackground()
+        userViewModel.refreshStats()
     }
     
     func playSound(){

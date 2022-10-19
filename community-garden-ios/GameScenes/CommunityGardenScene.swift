@@ -77,20 +77,7 @@ class CommunityGardenScene: SKScene {
     
     override func update(_ currentTime: TimeInterval) {}
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        for touch in touches {
-            let location = touch.location(in: self)
-            let touchedNodes = self.nodes(at: location)
-            
-            for node in touchedNodes {
-                guard let name = node.name else { return }
-                guard let user = communityViewModel.members[name] else { return }
-                
-                messagesViewModel.showMessageOptionsSheet = true
-                messagesViewModel.selectedUser = user
-            }
-        }
-    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {}
     
     @objc func createCloud(){
         SceneHelper.createCloud(scene: self, scale: 0.45, isCommunityView: true)

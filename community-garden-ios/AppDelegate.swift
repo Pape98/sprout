@@ -41,13 +41,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         var toolbarFontColor = UIColor.black
     
         
-        if hour >= 18 || hour <= 6  {
+        if hour >= 0 || hour <= 6  {
             toolbarFontColor = UIColor.white
         }
         
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: toolbarFontColor ]
         UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Baloo2-bold", size: 20)!, .foregroundColor: toolbarFontColor]
-
         
         return true
     }

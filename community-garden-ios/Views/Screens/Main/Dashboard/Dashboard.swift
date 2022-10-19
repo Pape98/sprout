@@ -31,128 +31,131 @@ struct Dashboard: View {
         
         // Content
         NavigationView {
-            ZStack {
-                MainBackground(edges: [.top])
-                
-                ScrollView(showsIndicators: false) {
+            GeometryReader { geo in
+                ZStack {
+                    MainBackground(edges: [.top])
                     
-                    VStack {
+                    ScrollView(showsIndicators: false) {
                         
-                        if let user = userViewModel.currentUser {
-                            // Header
-                            VStack {
-                                
-                                if let settings = user.settings {
-                                    CircledTree(option: "\(settings.treeColor)-\(addDash(settings.tree))",
-                                                background: .appleGreen,
-                                                size: 75)
-                                } else {
-                                    CircledTree(option: defaultTree, background: .seaGreen, size: 75)
-                                        .padding(.top, 15)
-                                }
-                                
-                                VStack(spacing: 10) {
-                                    Text("Hi, \(getFirstName(user.name))!")
-                                        .headerStyle(foregroundColor: appViewModel.fontColor)
-                                    
-                                    Text(date)
-                                        .bold()
-                                        .bodyStyle(foregroundColor: appViewModel.fontColor)
-                                    
-                                }
-                                
-                                
-                            }.padding(.bottom, 10)
-                        }
-                        
-                        // Card Row 1
-                        
-                        LazyVGrid(columns: rowOneGrid){
+                        VStack {
                             
-                            
-                            GardenInfoCard()
-                            
-                            
-                            NavigationLink(destination: MyGarden()) {
-                                ZStack {
+                            if let user = userViewModel.currentUser {
+                                // Header
+                                VStack(spacing: 2) {
                                     
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.appleGreen)
-                                        .opacity(0.7)
-                                        .shadow(radius: 2)
+                                    if let settings = user.settings {
+                                        CircledTree(option: "\(settings.treeColor)-\(addDash(settings.tree))",
+                                                    background: .appleGreen,
+                                                    size: 75)
+                                    } else {
+                                        CircledTree(option: defaultTree, background: .seaGreen, size: 75)
+                                            .padding(.top, 15)
+                                    }
                                     
-                                    VStack(spacing:10) {
-                                        Image("garden-icon")
+                                    VStack(spacing: 0) {
+                                        Text("Hi, \(getFirstName(user.name))!")
+                                            .headerStyle(foregroundColor: appViewModel.fontColor)
                                         
-                                        
-                                        Text("View Garden")
-                                            .bodyStyle(foregroundColor: Color.white)
-                                            .opacity(1)
+                                        Text(date)
+                                            .bold()
+                                            .bodyStyle(foregroundColor: appViewModel.fontColor)
                                         
                                     }
-                                }
-                                .frame(height: 141)
+                                    
+                                    
+                                }.padding(.bottom, 10)
                             }
+                            
+                            // Card Row 1
+                            
+                            LazyVGrid(columns: rowOneGrid){
+                                
+                                
+                                GardenInfoCard()
+                                
+                                
+                                NavigationLink(destination: MyGarden()) {
+                                    ZStack {
+                                        
+                                        RoundedRectangle(cornerRadius: 10)
+                                            .fill(Color.appleGreen)
+                                      
+                                        
+                                        VStack(spacing:10) {
+                                            Image("garden-icon")
+                                                .shadow(color: .chalice, radius: 5, x: 0, y: 8)
+                                            
+                                            
+                                            Text("View Garden")
+                                                .bodyStyle(foregroundColor: Color.white)
+                                                .opacity(1)
+                                            
+                                        }
+                                    }
+                                    .frame(height: 141)
+                                }
+                            }
+                            
+                            // Card Row 2
+                            LazyVGrid(columns: twoColumnGrid) {
+                                
+                                if isUserTrackingData(DataOptions.steps){
+                                    DashboardCard(icon: "figure.walk"){
+                                        if let step = healthStoreViewModel.todayStepCount {
+                                            CardInfo(value: step.count, label: "Step(s)", goal: step.goal)
+                                        } else {
+                                            CardInfo(value: 0, label: "Step(s)")
+                                        }
+                                    }
+                                }
+                                
+                                
+                                if isUserTrackingData(DataOptions.walkingRunningDistance){
+                                    DashboardCard(icon: "sportscourt.fill"){
+                                        if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
+                                            CardInfo(value: walkingRunning.distance, label: "Mile(s)", goal: walkingRunning.goal)
+                                        } else {
+                                            CardInfo(value: 0, label: "Mile(s)")
+                                        }
+                                    }
+                                }
+                                
+                                if isUserTrackingData(DataOptions.workouts){
+                                    DashboardCard(icon: "dumbbell"){
+                                        if let workout = healthStoreViewModel.todayWorkout {
+                                            CardInfo(value: workout.duration, label: "Workout Minute(s)", goal: workout.goal)
+                                        } else {
+                                            CardInfo(value: 0, label: "Workout Minute(s)")
+                                        }
+                                    }
+                                }
+                                
+                                if isUserTrackingData(DataOptions.sleep){
+                                    DashboardCard(icon: "bed.double"){
+                                        if let sleep = healthStoreViewModel.todaySleep {
+                                            CardInfo(value: sleep.duration/60, label: "Sleep Hour(s)", goal: sleep.goal)
+                                        } else {
+                                            CardInfo(value: 0, label: "Sleep Hour(s)")
+                                        }
+                                    }
+                                }
+                            }
+                            
+                            // Card Row 3
+                            if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
+                                GoalsMetCard(goals: gardenViewModel.goalsStat)
+                            }
+                            
+                            EmptyView()
+                            
+                            Spacer()
+                            
                         }
-                        
-                        // Card Row 2
-                        LazyVGrid(columns: twoColumnGrid) {
-                            
-                            if isUserTrackingData(DataOptions.steps){
-                                DashboardCard(icon: "figure.walk"){
-                                    if let step = healthStoreViewModel.todayStepCount {
-                                        CardInfo(value: step.count, label: "Step(s)", goal: step.goal)
-                                    } else {
-                                        CardInfo(value: 0, label: "Step(s)")
-                                    }
-                                }
-                            }
-                            
-                            
-                            if isUserTrackingData(DataOptions.walkingRunningDistance){
-                                DashboardCard(icon: "sportscourt.fill"){
-                                    if let walkingRunning = healthStoreViewModel.todayWalkingRunningDistance {
-                                        CardInfo(value: walkingRunning.distance, label: "Mile(s)", goal: walkingRunning.goal)
-                                    } else {
-                                        CardInfo(value: 0, label: "Mile(s)")
-                                    }
-                                }
-                            }
-                            
-                            if isUserTrackingData(DataOptions.workouts){
-                                DashboardCard(icon: "dumbbell"){
-                                    if let workout = healthStoreViewModel.todayWorkout {
-                                        CardInfo(value: workout.duration, label: "Workout Minute(s)", goal: workout.goal)
-                                    } else {
-                                        CardInfo(value: 0, label: "Workout Minute(s)")
-                                    }
-                                }
-                            }
-                            
-                            if isUserTrackingData(DataOptions.sleep){
-                                DashboardCard(icon: "bed.double"){
-                                    if let sleep = healthStoreViewModel.todaySleep {
-                                        CardInfo(value: sleep.duration/60, label: "Sleep Hour(s)", goal: sleep.goal)
-                                    } else {
-                                        CardInfo(value: 0, label: "Sleep Hour(s)")
-                                    }
-                                }
-                            }
-                        }
-                        
-                        // Card Row 3
-                        if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
-                            GoalsMetCard(goals: gardenViewModel.goalsStat)
-                        }
-                        
-                        EmptyView()
-                        
-                        Spacer()
-                        
+                        .frame(height: geo.size.height * 1.25)
                     }
+                    .navigationBarHidden(true)
+                    .padding(.horizontal, 25)
                 }
-                .navigationBarHidden(true)
-                .padding(.horizontal, 25)
             }
         }
         .onAppear {

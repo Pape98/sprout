@@ -23,7 +23,8 @@ struct GardenGroup: Codable {
     var fiftyPercentDays: Int? = 0
 }
 
-struct GoalsStat: Codable {
+struct GoalsStat: Codable, Identifiable {
+    var id: UUID { UUID() }
     var numberOfGoalsAchieved: Int = 0
     var date: String
     var group: Int

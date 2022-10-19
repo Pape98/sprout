@@ -104,6 +104,8 @@
 		F09F822528FBACB0009287E6 /* koala-laughing.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F822428FBACB0009287E6 /* koala-laughing.json */; };
 		F09F823128FBB033009287E6 /* sleeping-bear.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F823028FBB033009287E6 /* sleeping-bear.json */; };
 		F0A898FE28FDE93A007018C1 /* Catamaran-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */; };
+		F0A8990328FF9420007018C1 /* dog_c1.json in Resources */ = {isa = PBXBuildFile; fileRef = F0A8990228FF9420007018C1 /* dog_c1.json */; };
+		F0A8990528FF999D007018C1 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A8990428FF999D007018C1 /* Other.swift */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
@@ -259,6 +261,8 @@
 		F09F822228FBABBD009287E6 /* penguin-waving-hello.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "penguin-waving-hello.json"; sourceTree = "<group>"; };
 		F09F822428FBACB0009287E6 /* koala-laughing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "koala-laughing.json"; sourceTree = "<group>"; };
 		F09F823028FBB033009287E6 /* sleeping-bear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sleeping-bear.json"; sourceTree = "<group>"; };
+		F0A8990228FF9420007018C1 /* dog_c1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_c1.json; sourceTree = "<group>"; };
+		F0A8990428FF999D007018C1 /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
 		F0B07D1628EF190400AA99FC /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
@@ -378,6 +382,7 @@
 				F024BFF5286BB37100850018 /* MainView.swift */,
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
 				F09F823428FBD602009287E6 /* Badges */,
+				F09B71E327724B260085C7AC /* Garden */,
 				F0F0C87828B53CCF0047D9EA /* History */,
 				F07657F328D686EE00C72F2C /* Community */,
 				F0F5E93828739422002C30BC /* Settings */,
@@ -602,6 +607,7 @@
 			isa = PBXGroup;
 			children = (
 				F09F820F28FB1E99009287E6 /* dog_b3.json */,
+				F0A8990228FF9420007018C1 /* dog_c1.json */,
 				F09F821528FB5ABD009287E6 /* dog_s3.json */,
 			);
 			path = dog;
@@ -758,6 +764,7 @@
 				F0B6DAEB2875C30100DD3F03 /* Statistics.swift */,
 				F0D66E3628886E4D0095AEDE /* Message.swift */,
 				F07657FD28D7D81200C72F2C /* Group.swift */,
+				F0A8990428FF999D007018C1 /* Other.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -828,7 +835,6 @@
 		F0F0C87828B53CCF0047D9EA /* History */ = {
 			isa = PBXGroup;
 			children = (
-				F09B71E327724B260085C7AC /* Garden */,
 				F0F0C87928B53CFE0047D9EA /* History.swift */,
 				F04085FC28B8628C002EDECD /* components */,
 			);
@@ -966,6 +972,7 @@
 				F09F821028FB1E99009287E6 /* dog_b3.json in Resources */,
 				F04085FB28B5562F002EDECD /* click1.mp3 in Resources */,
 				F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */,
+				F0A8990328FF9420007018C1 /* dog_c1.json in Resources */,
 				F09F81EA28F660D7009287E6 /* moon2.json in Resources */,
 				F04085FA28B5562F002EDECD /* click2.mp3 in Resources */,
 				F0E9BF1628E1348F007FBC04 /* summer_bar.mp3 in Resources */,
@@ -1077,6 +1084,7 @@
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F06558AB28F1FD230077C50B /* Debug.swift in Sources */,
+				F0A8990528FF999D007018C1 /* Other.swift in Sources */,
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
 				F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */,
 				F09F821828FB9FA6009287E6 /* FloatingAnimal.swift in Sources */,
@@ -1274,7 +1282,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1316,7 +1324,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;

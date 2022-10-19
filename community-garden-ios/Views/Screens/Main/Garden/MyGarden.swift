@@ -85,8 +85,8 @@ struct MyGarden: View {
         }
         .toast(isPresenting: $gardenViewModel.showToast, duration: 5, tapToDismiss: true) {
             AlertToast(displayMode: .banner(.slide),
-                       type: .systemImage("leaf.fill", .appleGreen),
-                       title: "Max height", subTitle: "Tree has reached its max height.")
+                       type: .systemImage(gardenViewModel.toastMessage.image, gardenViewModel.toastMessage.color),
+                       title: gardenViewModel.toastMessage.title, subTitle: gardenViewModel.toastMessage.subtitle)
         }
         .overlay {
             VStack {

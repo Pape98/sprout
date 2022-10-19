@@ -68,7 +68,7 @@ struct Community: View {
                         
                         VStack {
                             Spacer()
-                            LottieView(filename: "dog_b3")
+                            LottieView(filename: "dog_c1")
                                 .frame(height: geo.size.height * 0.23)
                                 .offset(y: -geo.size.height * 0.05)
                             

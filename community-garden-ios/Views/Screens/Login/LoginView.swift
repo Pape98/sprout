@@ -22,16 +22,15 @@ struct LoginView: View {
                     .resizable()
                     .ignoresSafeArea()
                 
-                VStack {
+                VStack(spacing: 5) {
                     Image("sprout-logo")
                         .resizable()
                         .scaledToFit()
                     
                     
                     Text("Track Together")
-                        .font(.title)
-                        .foregroundColor(.pine)
-                        .offset(y:-35)
+                        .headerStyle(foregroundColor: .pine)
+                        .offset(y: -35)
                     
                     if (authenticationModel.isLoggedIn == false) {
                         // Sign-In Button
@@ -65,7 +64,7 @@ struct AuthButton: View {
         } label: {
             HStack {
                 Text("Sign in with Google")
-                    .font(.title2)
+                    .font(.custom(Constants.mainFont, size: 20))
                     .foregroundColor(Color.white)
                 Image("google-logo")
             }

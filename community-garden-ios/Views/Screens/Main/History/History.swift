@@ -31,7 +31,7 @@ struct History: View {
                         Text("Community").tag(HistoryViewType.community)
                     }
                     .pickerStyle(.segmented)
-                    .padding()
+                    .padding(.horizontal)
                     
                     if historyView == .personal { PersonalHistory() }
                     else { CommunityHistory() }

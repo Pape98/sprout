@@ -32,7 +32,7 @@ struct CommunityGardenIosApp: App {
         
         return Color.black
     }
-    
+
     init() {
         if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
             Debug.log.info(defaults)

@@ -29,6 +29,7 @@ class GardenViewModel: ObservableObject {
     @Published var sunMoon = "sun"
     @Published var goalsStat: GoalsStat? = nil
     @Published var showToast = false
+    var toastMessage: ToastContent = ToastContent()
     
     var flowers: [GardenItem] = []
     var tree: GardenItem?
@@ -105,7 +106,7 @@ class GardenViewModel: ObservableObject {
     
     func setSunMoon() {
         let hour = Int(Date.hour)
-            
+        
         DispatchQueue.main.async {
             self.sunMoon = hour >= 18 || hour <= 7 ? "moon" : "sun"
         }
@@ -153,10 +154,33 @@ class GardenViewModel: ObservableObject {
         let enoughtSeeds = hasEnoughSeeds()
         
         if dropItem == GardenElement.droplet {
+            if enoughDroplets == false {
+                
+                toastMessage = ToastContent(image: "drop.fill",
+                                            color: .blue,
+                                            title: "Not Enough Droplets",
+                                            subtitle: "You don't have any droplets.")
+                
+                DispatchQueue.main.async {
+                    self.showToast = true
+                }
+            }
             return enoughDroplets;
         } else {
+            if enoughtSeeds == false {
+                
+                toastMessage = ToastContent(image: "camera.macro",
+                                            color: .pink,
+                                            title: "Not Enough Seeds",
+                                            subtitle: "You don't have any seeds.")
+                
+                DispatchQueue.main.async {
+                    self.showToast = true
+                }
+            }
             return enoughtSeeds;
         }
     }
     
 }
+

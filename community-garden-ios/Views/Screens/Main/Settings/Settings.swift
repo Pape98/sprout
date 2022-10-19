@@ -23,7 +23,7 @@ struct Settings: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
+            ZStack(alignment: .bottomTrailing) {
                 MainBackground()
                 List {
                     
@@ -107,9 +107,10 @@ struct Settings: View {
                         }
                     }
                 }
+                .padding(.vertical, 0)
                 .modifier(ListBackgroundModifier())
                 .opacity(0.95)
-                .offset(y: -15)
+//                .offset(y: -15)
                 .navigationBarTitle (Text("Settings"), displayMode: .inline)
                 .onAppear {
                     
@@ -120,6 +121,7 @@ struct Settings: View {
                     
                     settingsViewModel.fetchSettings()
                 }
+                
                 FloatingAnimal(animal: "sleeping-bear")
             }
             .toolbar {

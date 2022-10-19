@@ -37,7 +37,7 @@ struct PersonalHistory: View {
                         }
                     }
                 }
-                .padding()
+                .padding(.horizontal)
             }
             .clipped()
             
