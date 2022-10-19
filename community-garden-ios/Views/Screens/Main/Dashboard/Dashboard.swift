@@ -133,7 +133,7 @@ struct Dashboard: View {
                                 if isUserTrackingData(DataOptions.sleep){
                                     DashboardCard(icon: "bed.double"){
                                         if let sleep = healthStoreViewModel.todaySleep {
-                                            CardInfo(value: sleep.duration/60, label: "Sleep Hour(s)", goal: sleep.goal)
+                                            CardInfo(value: sleep.duration/60, label: "Sleep Hour(s)", goal: (sleep.goal ?? 0)/60)
                                         } else {
                                             CardInfo(value: 0, label: "Sleep Hour(s)")
                                         }

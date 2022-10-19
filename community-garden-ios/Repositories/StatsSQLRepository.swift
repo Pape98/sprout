@@ -116,7 +116,7 @@ class StatsSQLRepository {
         // Update progress
         let sleepGoal = settings.sleepGoal
         guard let sleepGoal = sleepGoal else { return }
-        let threshold =  Double(sleepGoal) * 60 * getPercentage(key: DataOptions.sleep)
+        let threshold =  Double(sleepGoal) * getPercentage(key: DataOptions.sleep)
         let progress: Progress = progressRepo.getSleepProgress()
   
         updateProgress(data: DataOptions.sleep, value: value, progress: progress, threshold: threshold)
@@ -149,7 +149,7 @@ class StatsSQLRepository {
         
         guard let element = mappedData[data.rawValue] else { return }
         let mappedElement = element // "Tree"
-        
+                
         if  progressDifference >= threshold && threshold > 0 {
             
             progress.old = value - (value.truncatingRemainder(dividingBy: threshold))
