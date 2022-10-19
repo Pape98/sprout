@@ -40,7 +40,7 @@ struct MainView: View {
                     }
                 
                 
-                if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
+                if appViewModel.isSocialConfig {
                     Community()
                         .tabItem {
                             Label("Community", systemImage: "globe")
@@ -50,7 +50,7 @@ struct MainView: View {
                             onAppearTabBarItem()
                         }
                 }
-                if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
+                if appViewModel.isSocialConfig {
                     
                     Badges()
                         .tabItem {
@@ -58,6 +58,7 @@ struct MainView: View {
                         }
                         .onAppear {
                             SproutAnalytics.shared.viewBadges()
+                            appViewModel.setNumFiftyPercentDays()
                             onAppearTabBarItem()
                         }
                 }
@@ -108,7 +109,10 @@ struct MainView: View {
     func onAppearTabBarItem(){
         playSound()
         appViewModel.setBackground()
+        appViewModel.isSocialConfigGroup()
+        appViewModel.isCustomizationGroup()
         userViewModel.refreshStats()
+        setToolBarTitleColor()
     }
     
     func playSound(){

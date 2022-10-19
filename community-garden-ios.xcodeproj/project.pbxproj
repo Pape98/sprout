@@ -77,7 +77,7 @@
 		F085A8B528C531D000A08BE4 /* SproutAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */; };
 		F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F08C8C5E28AC1B0800DDDFB8 /* Lottie */; };
 		F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */; };
-		F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */; };
+		F08C8C6D28AC277500DDDFB8 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */; };
 		F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
@@ -233,7 +233,7 @@
 		F0842BBC285EA252002C79BD /* PickerTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTitle.swift; sourceTree = "<group>"; };
 		F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SproutAnalytics.swift; sourceTree = "<group>"; };
 		F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
-		F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -719,7 +719,7 @@
 				F02682D02850F13A004747FD /* UserDefaultService.swift */,
 				F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */,
 				F0B07D1628EF190400AA99FC /* MessagingService.swift */,
-				F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */,
+				F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1091,7 +1091,7 @@
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F0F0C87A28B53CFE0047D9EA /* History.swift in Sources */,
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
-				F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */,
+				F08C8C6D28AC277500DDDFB8 /* AudioPlayerService.swift in Sources */,
 				F0D9064228FBD814007ADDED /* Badges.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
 				F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */,

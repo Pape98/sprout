@@ -214,7 +214,7 @@ class HealthStoreRepository {
                         res.append(try doc.data(as: type))
                     }
                 } catch {
-                    Debug.log.error("getData: Error reading from Firestore: \(error)")
+                    Debug.log.error("getData: Error reading from Firestore for \(name): \(error)")
                 }
                 
                 completion(res)

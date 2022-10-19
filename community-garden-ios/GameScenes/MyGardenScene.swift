@@ -34,11 +34,12 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     // ViewModels
     let userViewModel = UserViewModel.shared
     let gardenViewModel: GardenViewModel = GardenViewModel.shared
+    let appViewModel: AppViewModel = AppViewModel.shared
     
     // Others
     
     override func didMove(to view: SKView) {
-                
+        
         // Game Scene
         physicsBody = SKPhysicsBody(edgeLoopFrom: frame)
         physicsWorld.contactDelegate = self
@@ -48,14 +49,17 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // Scene setup
         ground = setupGround()
-//        pond = setupPond()
+        //        pond = setupPond()
         
-        setupFence()
-        setupDogHouse()
+        if appViewModel.isBadgeUnlocked(UnlockableBadge.fence) { setupFence() }
+        if appViewModel.isBadgeUnlocked(UnlockableBadge.dogHouse) { setupDogHouse() }
+        
         addExisitingItems()
         
         // Timer
-        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+        if appViewModel.isBadgeUnlocked(UnlockableBadge.cloud) {
+            gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+        }
         
     }
     
@@ -150,9 +154,9 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             
             guard tree != nil else { continue }
             guard grass != nil else { continue }
-        
+            
             if isValidTreeLocation(location) == false { continue }
-                        
+            
             // NOTE: Can only move tree
             tree.position = location
             grass.position = CGPoint(x: tree.position.x - 15, y: tree.position.y)
@@ -169,7 +173,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             gardenViewModel.tree!.x = location.x
             gardenViewModel.tree!.y = location.y
             gardenViewModel.updateTree()
-
+            
         }
     }
     
@@ -230,7 +234,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             }
             return
         }
-            
+        
         let name = gardenViewModel.dropItem
         let dropItem = SKSpriteNode(imageNamed: name.rawValue)
         dropItem.position = position
@@ -266,7 +270,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         } else {
             treeNode.position = CGPoint(x: tree.x, y: tree.y)
         }
-            
+        
         treeNode.name = NodeNames.tree.rawValue
         treeNode.zPosition = 5
         
@@ -348,7 +352,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         if gardenViewModel.tree!.scale < TREE_MAX_SCALE && gardenViewModel.dropItem == GardenElement.droplet {
             var treeScale = gardenViewModel.tree!.scale + TREE_SCALE_FACTOR
             treeScale = round(treeScale * 1000) / 1000.0
-       
+            
             let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
             tree.run(treeAction)
             

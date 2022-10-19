@@ -44,6 +44,9 @@ struct LaunchView: View {
         }
         .onAppear {
             authModel.checkLogin()
+            if authModel.isLoggedIn {
+                AudioPlayer.shared.startBackgroundMusic()
+            }
         }
         .environmentObject(onboardingViewModel)
         .environmentObject(onboardingRouter)

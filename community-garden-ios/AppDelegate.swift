@@ -36,16 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: Constants.mainFont, size: 12)!], for: [])
     
 
-        // Toolbar title
-        let hour = Date.hour
-        var toolbarFontColor = UIColor.black
-    
-        
-        if hour >= 0 || hour <= 6  {
-            toolbarFontColor = UIColor.white
-        }
-        
-        UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Baloo2-bold", size: 20)!, .foregroundColor: toolbarFontColor]
+        setToolBarTitleColor()
         
         return true
     }

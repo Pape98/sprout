@@ -68,32 +68,46 @@ struct Community: View {
                         
                         VStack {
                             Spacer()
-                            LottieView(filename: "dog_c1")
-                                .frame(height: geo.size.height * 0.23)
-                                .offset(y: -geo.size.height * 0.05)
+                            if appViewModel.isBadgeUnlocked(UnlockableBadge.dog){
+                                LottieView(filename: "dog_c1")
+                                    .frame(height: geo.size.height * 0.23)
+                                    .offset(y: -geo.size.height * 0.05)
+                            }
                             
                             Spacer(minLength: 10)
-                            LottieView(filename: "turtle_s3")
-                                .frame(height: geo.size.height * 0.13)
-                                .offset(x: -geo.size.width * 0.25, y: -geo.size.height * 0.05  )
+                            
+                            if appViewModel.isBadgeUnlocked(UnlockableBadge.turtle){
+                                LottieView(filename: "turtle_s3")
+                                    .frame(height: geo.size.height * 0.13)
+                                    .offset(x: -geo.size.width * 0.25, y: 0)
+                            }
+                            
                             
                             Spacer()
-                            LottieView(filename: "deer_a5")
-                                .frame(height: geo.size.height * 0.155)
+                            
+                            if appViewModel.isBadgeUnlocked(UnlockableBadge.deer){
+                                LottieView(filename: "deer_a5")
+                                    .frame(height: geo.size.height * 0.155)
+                            }
                             
                             Spacer()
-                            LottieView(filename: "dog_s3")
-                                .frame(height: geo.size.height * 0.23)
-                                .offset(x: geo.size.width * 0.25, y: -geo.size.width * 0.1)
+                            
+                            if appViewModel.isBadgeUnlocked(UnlockableBadge.dog){
+                                LottieView(filename: "dog_s3")
+                                    .frame(height: geo.size.height * 0.23)
+                                    .offset(x: geo.size.width * 0.25, y: -geo.size.width * 0.1)
+                            }
                         }
                         
                         
                         
-                        VStack {
-                            LottieView(filename: "birds")
-                            LottieView(filename: "birds")
-                            LottieView(filename: "birds")
-                            LottieView(filename: "birds")
+                        if appViewModel.isBadgeUnlocked(UnlockableBadge.birds){
+                            VStack {
+                                LottieView(filename: "birds")
+                                LottieView(filename: "birds")
+                                LottieView(filename: "birds")
+                                LottieView(filename: "birds")
+                            }
                         }
                         
                         

@@ -17,6 +17,8 @@ struct CommunityGardenIosApp: App {
     
     @StateObject private var authViewModel = AuthenticationViewModel.shared
     @StateObject private var appViewModel = AppViewModel.shared
+    let constants : Constants = Constants.shared
+
     
     let hour = Int(Date.hour)
     
@@ -32,7 +34,7 @@ struct CommunityGardenIosApp: App {
         
         return Color.black
     }
-
+    
     init() {
         if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
             Debug.log.info(defaults)
@@ -41,7 +43,7 @@ struct CommunityGardenIosApp: App {
         RemoteConfiguration.shared.fetchRemoteConfig()
         
         if Platform.isSimulator {
-            setupLocalEmulator()
+            //            setupLocalEmulator()
         }
     }
     
@@ -77,7 +79,6 @@ struct CommunityGardenIosApp: App {
                 .onChange(of: scenePhase) { newPhase in
                     
                     if newPhase == .active {
-                        AudioPlayer.shared.startBackgroundMusic()
                         UserViewModel.shared.getNumSeeds()
                         UserViewModel.shared.getNumDroplets()
                     }

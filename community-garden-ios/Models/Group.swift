@@ -20,7 +20,7 @@ struct GardenGroup: Codable {
         "sunglow": [0,0,0],
         "tangerine": [0,0,0],
     ]
-    var fiftyPercentDays: Int? = 0
+    var fiftyPercentDays: Int = 0
 }
 
 struct GoalsStat: Codable, Identifiable {
@@ -43,7 +43,11 @@ struct NotificationMessage {
     var body: String = ""
 }
 
-struct CommunityBadge: Hashable {
+struct CommunityBadge: Hashable, Comparable {
+    static func < (lhs: CommunityBadge, rhs: CommunityBadge) -> Bool {
+        lhs.numberOfDaysRequired < rhs.numberOfDaysRequired
+    }
+    
     var name: String
     var description: String = ""
     var numberOfDaysRequired = 2

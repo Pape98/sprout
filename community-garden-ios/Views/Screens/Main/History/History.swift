@@ -17,7 +17,7 @@ struct History: View {
     @EnvironmentObject var communityViewModel: CommunityViewModel
     
     @State var historyView: HistoryViewType = .personal
-    
+    let remoteConfig = RemoteConfiguration.shared
     
     var body: some View {
         NavigationView {
@@ -25,13 +25,16 @@ struct History: View {
                 MainBackground()
                 
                 VStack {
-                    Picker("", selection: $historyView){
-                        Text("Personal")
-                            .tag(HistoryViewType.personal)
-                        Text("Community").tag(HistoryViewType.community)
+                    
+                    if remoteConfig.isSocialConfig(group: UserService.shared.user.group){
+                        Picker("", selection: $historyView){
+                            Text("Personal")
+                                .tag(HistoryViewType.personal)
+                            Text("Community").tag(HistoryViewType.community)
+                        }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal)
                     }
-                    .pickerStyle(.segmented)
-                    .padding(.horizontal)
                     
                     if historyView == .personal { PersonalHistory() }
                     else { CommunityHistory() }

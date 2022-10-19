@@ -14,19 +14,15 @@ struct CommunityHistory: View {
     @EnvironmentObject var communityViewModel: CommunityViewModel
     
     var numFiftyPercentDays: Int {
-        var count = 0
-        
-        for stat in historyViewModel.communityGoalsStat {
-            if Double(stat.numberOfGoalsAchieved / (numOfMembers * 2)) >= 0.5 {
-                count += 1
-            }
+        if let group = communityViewModel.group {
+            return group.fiftyPercentDays
         }
-        
-        return count
+        return 0
     }
     
     var numOfMembers: Int {
-        communityViewModel.members.count
+        // Adding 1 to include current user
+        communityViewModel.members.count + 1
     }
     
     var body: some View {
@@ -72,8 +68,9 @@ struct CommunityProgressCard : View {
     }
     
     var progress: Double {
-        Double(goalStat.numberOfGoalsAchieved / (numOfMembers * 2))
+        Double(goalStat.numberOfGoalsAchieved) / Double(numOfMembers * 2)
     }
+    
     var face: String {
         if progress >= 0.5 {
             return "happy"

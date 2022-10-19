@@ -19,11 +19,13 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
                            "autumn_town_day",
                            "spring_hamlet_evening"]
     
-    var currentSongIndex = -1
+    var currentSongIndex = 0
     let userDefaults = UserDefaultsService.shared
     
     override init(){
-        backgroundSongs = backgroundSongs.shuffled()
+        if AppViewModel.shared.isBadgeUnlocked(UnlockableBadge.music) == true {
+            backgroundSongs = backgroundSongs.shuffled()
+        }
     }
     
     func playCustomSound(filename: String, volume: Float = 1){
@@ -86,10 +88,13 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
     }
     
     func changeSong(){
-        currentSongIndex += 1
+        if AppViewModel.shared.isBadgeUnlocked(UnlockableBadge.music) == false {
+            currentSongIndex = 0
+            return
+        }
+        
         if currentSongIndex == backgroundSongs.endIndex{
             currentSongIndex = 0
         }
     }
-    
 }

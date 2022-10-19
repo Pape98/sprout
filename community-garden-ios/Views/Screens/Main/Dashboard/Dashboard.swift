@@ -142,7 +142,7 @@ struct Dashboard: View {
                             }
                             
                             // Card Row 3
-                            if RemoteConfiguration.shared.isSocialConfig(group: UserService.shared.user.group){
+                            if appViewModel.isSocialConfig {
                                 GoalsMetCard(goals: gardenViewModel.goalsStat)
                             }
                             

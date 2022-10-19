@@ -44,10 +44,12 @@ struct Settings: View {
                             else { AudioPlayer.shared.stopBackgroundMusic()}
                         }
                         
-                        NavigationLink {
-                          MusicList()
-                        } label: {
-                            Text("View list of songs")
+                        if appViewModel.isBadgeUnlocked(UnlockableBadge.music) {
+                            NavigationLink {
+                              MusicList()
+                            } label: {
+                                Text("View list of songs")
+                            }
                         }
                     }
                     
@@ -61,7 +63,7 @@ struct Settings: View {
                         }
                     }
                     
-                    if RemoteConfiguration.shared.canCustomize(group: UserService.shared.user.group){
+                    if appViewModel.canCustomize {
                         Section(header: Text("Garden").foregroundColor(appViewModel.fontColor)){
                             
                             NavigationLink {

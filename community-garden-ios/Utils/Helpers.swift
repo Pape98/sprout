@@ -19,6 +19,17 @@ struct Platform {
 
 }
 
+func setToolBarTitleColor(){
+    let hour = Date.hour
+    var toolbarFontColor = UIColor.black
+    
+    if hour >= 0 || hour <= 6  {
+        toolbarFontColor = UIColor.white
+    }
+    
+    UINavigationBar.appearance().titleTextAttributes = [.font : UIFont(name: "Baloo2-bold", size: 20)!, .foregroundColor: toolbarFontColor]
+}
+
 func getFirstName(_ name: String) -> String {
     let delimiter = " "
     let tokens = name.components(separatedBy: delimiter)

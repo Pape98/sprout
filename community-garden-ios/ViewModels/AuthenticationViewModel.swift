@@ -149,6 +149,8 @@ class AuthenticationViewModel: ObservableObject {
                             self.userRepository.createNewUser(newUser)
                         }
                         
+                        AudioPlayer.shared.startBackgroundMusic()
+                        
                         self.setLoggedInUserProfile()
                     }
                 }

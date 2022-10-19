@@ -13,12 +13,16 @@ class AppViewModel: ObservableObject {
     static let shared = AppViewModel()
     let nc = NotificationCenter.default
     let groupRepository = GroupRepository.shared
+    let remoteConfig = RemoteConfiguration.shared
     
     @Published var backgroundImage: String = "night-bg"
     @Published var backgroundColor: String = "night"
     @Published var fontColor: Color = .black
     @Published var showPointsGainedAlert = false
     @Published var numFiftyPercentDays = 0
+    
+    @Published var isSocialConfig = true
+    @Published var canCustomize = true
     
     var alertImage = ""
     var alertTitle = ""
@@ -34,12 +38,35 @@ class AppViewModel: ObservableObject {
         setNumFiftyPercentDays()
     }
     
+    func isBadgeUnlocked(_ badge: UnlockableBadge) -> Bool {
+        let groupNumber = UserService.shared.user.group
+        if remoteConfig.isSocialConfig(group: groupNumber) == false {
+            return true
+        }
+        let minimunNumDays = Constants.badges[badge]!.numberOfDaysRequired
+        return numFiftyPercentDays >= minimunNumDays
+    }
+    
+    func isSocialConfigGroup(){
+        remoteConfig.fetchRemoteConfig()
+        let groupNumber = UserService.shared.user.group
+        DispatchQueue.main.async {
+            self.isSocialConfig = self.remoteConfig.isSocialConfig(group: groupNumber)
+        }
+    }
+    
+    func isCustomizationGroup(){
+        remoteConfig.fetchRemoteConfig()
+        let groupNumber = UserService.shared.user.group
+        DispatchQueue.main.async {
+            self.canCustomize = self.remoteConfig.canCustomize(group: groupNumber)
+        }
+    }
+    
     func setNumFiftyPercentDays() {
         let userGroup = UserService.shared.user.group
         groupRepository.fetchGroup(groupNumber: userGroup) { group in
-            if let numFiftyPercentDays = group.fiftyPercentDays {
-                self.numFiftyPercentDays = numFiftyPercentDays
-            }
+            self.numFiftyPercentDays = group.fiftyPercentDays
         }
     }
     
@@ -85,7 +112,7 @@ class AppViewModel: ObservableObject {
             
             self.backgroundImage = image
             self.backgroundColor = color
-                        
+            
             if self.backgroundColor == "night" || self.backgroundColor == "evening"  {
                 self.fontColor = .white
             }

@@ -59,10 +59,10 @@ class NotificationService {
         content.sound = UNNotificationSound.default
 
         // Step 2: Create the notification trigger
-
-        let date =  "12:00:00".convertToDateObject(format: "HH:mm:ss")
-        guard let date = date else { return }
-        let dateComponents = Calendar.current.dateComponents([.hour,.minute, .second], from: date)
+        var dateComponents = DateComponents()
+        dateComponents.calendar = Calendar.current
+        dateComponents.hour = 12    // 12:00 hours, noon
+        dateComponents.minute = 0
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                     repeats: true)

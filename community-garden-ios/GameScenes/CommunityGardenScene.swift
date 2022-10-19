@@ -29,7 +29,7 @@ class CommunityGardenScene: SKScene {
     // ViewModels
     let communityViewModel = CommunityViewModel.shared
     let messagesViewModel = MessagesViewModel.shared
-    
+    let appViewModel = AppViewModel.shared
     
     let SCALE_DURATION = 2.0
     
@@ -44,24 +44,10 @@ class CommunityGardenScene: SKScene {
         self.backgroundColor = .clear
         
         // Timer
-        gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
-        gameTimer2 = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
-        
-        
-        
-        // Setting up scene elements
-        
-        //        let plot = SKSpriteNode(imageNamed: "plot")
-        //        let x = plot.size.width
-        //        let y = plot.size.height
-        
-        //        let xOffset: CGFloat = 35
-        
-        
-        //        let firstColumnBoardPosition = CGPoint(x: -x/2 + xOffset, y: y/2)
-        //        let secondColumnBoardPosition = CGPoint(x: x/2 - xOffset, y: -y/2)
-        
-        //        let numPlotsPerColumn: Int = Int(ceil(Double(communityViewModel.trees.count) / 2))
+        if appViewModel.isBadgeUnlocked(UnlockableBadge.cloud) {
+            gameTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+            gameTimer2 = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(createCloud), userInfo: nil, repeats: true)
+        }
         
         // TODO: Remove number of parcels hardcoding
         addParcelsToColumn(firstColumn, count: 4, swap: true)
@@ -167,7 +153,7 @@ class CommunityGardenScene: SKScene {
             
             if soilCounter == soils.endIndex { soilCounter = 0 }
         }
-                
+        
         // attach flower nodes to soils
         for soil in soils {
             let soilWidth = soil.alignment == .horizontal ?  soil.node.size.width : soil.node.size.height
@@ -175,7 +161,7 @@ class CommunityGardenScene: SKScene {
             
             var xStart = -soilWidth / 2 + 10
             var yStart = -10.0
-                                    
+            
             for flower in soil.flowers {
                 if soil.alignment == .horizontal {
                     flower.position = CGPoint(x: xStart, y: 0)
@@ -245,13 +231,13 @@ class CommunityGardenScene: SKScene {
         }
         
         // add pond
-        let pondNode = SKSpriteNode(imageNamed: "pond\(getRandomNumber(1, 1))")
-        pondNode.size = CGSize(width: parcelWidth * 0.8, height: parcelHeight * 0.35)
-        pondNode.anchorPoint = CGPoint(x: 0.5, y: 0)
-        pondNode.position = CGPoint(x: 0, y: parcelHeight * 0.1)
-
-        
-        parcel.node.addChild(pondNode)
+        if appViewModel.isBadgeUnlocked(UnlockableBadge.pond){
+            let pondNode = SKSpriteNode(imageNamed: "pond\(getRandomNumber(1, 1))")
+            pondNode.size = CGSize(width: parcelWidth * 0.8, height: parcelHeight * 0.35)
+            pondNode.anchorPoint = CGPoint(x: 0.5, y: 0)
+            pondNode.position = CGPoint(x: 0, y: parcelHeight * 0.1)
+            parcel.node.addChild(pondNode)
+        }
         
     }
     
@@ -273,22 +259,34 @@ class CommunityGardenScene: SKScene {
         
         soils.append(soilLeft)
         soils.append(soilRight)
-
+        
         let xOffset = parcel.node.size.width * 0.4
-
+        
         // place soils
         soilLeft.node.position = CGPoint(x:  -1 * xOffset , y: 0)
         soilRight.node.position = CGPoint(x: xOffset, y: 0)
         
         
         // add dog or turtle house
-        let houses = ["dog-house-shadow", "turtle-house-shadow"]
-        let houseNode = SKSpriteNode(imageNamed: houses[getRandomNumber(0, 0)])
-        houseNode.anchorPoint = CGPoint(x: 1, y: 0)
-        houseNode.setScale(0.5)
-        houseNode.position = CGPoint(x: parcel.node.size.width/2 - 10, y: parcel.node.size.width/2 + houseNode.size.height * 0.5)
+        let isDogHouseUnlocked = appViewModel.isBadgeUnlocked(UnlockableBadge.dogHouse)
+        let isTurtleHouseUnlocked = appViewModel.isBadgeUnlocked(UnlockableBadge.turtleHouse)
+        var houseNode = SKSpriteNode()
         
-        parcel.node.addChild(houseNode)
+        if isDogHouseUnlocked || isTurtleHouseUnlocked {
+            
+            if isDogHouseUnlocked || isTurtleHouseUnlocked {
+                let houses = ["dog-house-shadow", "turtle-house-shadow"]
+                houseNode = SKSpriteNode(imageNamed: houses[getRandomNumber(0, 0)])
+            } else if isDogHouseUnlocked {
+                houseNode = SKSpriteNode(imageNamed: "dog-house-shadow")
+            } else {
+                houseNode = SKSpriteNode(imageNamed: "turtle-house-shadow")
+            }
+            houseNode.anchorPoint = CGPoint(x: 1, y: 0)
+            houseNode.setScale(0.5)
+            houseNode.position = CGPoint(x: parcel.node.size.width/2 - 10, y: parcel.node.size.width/2 + houseNode.size.height * 0.5)
+            parcel.node.addChild(houseNode)
+        }
         
         // add soils to parcel
         parcel.node.addChild(soilLeft.node)
@@ -312,8 +310,8 @@ class CommunityGardenScene: SKScene {
         
         
         treeNode.setScale(tree.scale * 0.35)
-//        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
-//        treeNode.run(treeAction)
+        //        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
+        //        treeNode.run(treeAction)
         
         // shadow
         let shadowNode = SKSpriteNode(imageNamed: "shadow-community")
@@ -332,8 +330,9 @@ class CommunityGardenScene: SKScene {
         label.fontColor = UIColor(Color.oldCopper)
         label.text = tree.gardenName
         label.fontSize = 13
-        label.preferredMaxLayoutWidth = parcel.board.size.width
-                
+        
+        parcel.board.size.width = label.frame.size.width + 10
+        
         treeNode.addChild(grassNode)
         
         parcel.tree = treeNode
@@ -343,7 +342,7 @@ class CommunityGardenScene: SKScene {
     
     func swapParcels(_ parcels: inout [Parcel]){
         var i = 0, j = 1
-
+        
         while i < parcels.endIndex && j < parcels.endIndex {
             parcels.swapAt(i, j)
             i += 2
