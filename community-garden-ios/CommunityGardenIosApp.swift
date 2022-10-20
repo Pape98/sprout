@@ -57,7 +57,7 @@ struct CommunityGardenIosApp: App {
         Firestore.firestore().settings = settings
         
         // Cloud Functions
-        Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
+        Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
     }
     
     var body: some Scene {
@@ -81,6 +81,7 @@ struct CommunityGardenIosApp: App {
                     if newPhase == .active {
                         UserViewModel.shared.getNumSeeds()
                         UserViewModel.shared.getNumDroplets()
+                        AudioPlayer.shared.startBackgroundMusic()
                     }
                     else {
                         AudioPlayer.shared.stopBackgroundMusic()
