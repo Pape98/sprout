@@ -18,7 +18,7 @@ struct CommunityGardenIosApp: App {
     @StateObject private var authViewModel = AuthenticationViewModel.shared
     @StateObject private var appViewModel = AppViewModel.shared
     let constants : Constants = Constants.shared
-
+    
     
     let hour = Int(Date.hour)
     
@@ -36,9 +36,10 @@ struct CommunityGardenIosApp: App {
     }
     
     init() {
-        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
+        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.sprout-ios") {
             Debug.log.info(defaults)
         }
+        
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
         
@@ -57,7 +58,7 @@ struct CommunityGardenIosApp: App {
         Firestore.firestore().settings = settings
         
         // Cloud Functions
-        Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
+        Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
     }
     
     var body: some Scene {

@@ -15,13 +15,8 @@ struct Community: View {
     @EnvironmentObject var communityViewModel: CommunityViewModel
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
-    
-    @State var showToast = false
-    
-    @State var toastTitle = ""
-    @State var toastImage = ""
-    @State var toastColor: Color = .red
-    
+        
+    let userDefaults = UserDefaultsService.shared
     var weatherInfo: [String: String] = getWeatherInfo()
     
     var scene: SKScene {
@@ -141,18 +136,10 @@ struct Community: View {
                                 
                                 ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
                                     communityViewModel.sendLove()
-                                    toastTitle = "Sent love to 🧑‍🤝‍🧑"
-                                    toastImage = "heart.fill"
-                                    toastColor = .red
-                                    showToast = true
                                 }
                                 
                                 ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
                                     communityViewModel.sendEncouragement()
-                                    toastTitle = "Sent cheers to 🧑‍🤝‍🧑"
-                                    toastImage = "star.fill"
-                                    toastColor = .yellow
-                                    showToast = true
                                 }
                             }
                             
@@ -161,7 +148,6 @@ struct Community: View {
                     .padding(.horizontal)
                     .padding(.vertical, 20)
                 }
-                
             }
         }
         .onAppear{
@@ -176,14 +162,12 @@ struct Community: View {
             SendMessage()
         }
         
-        .toast(isPresenting: $showToast) {
+        .toast(isPresenting: $communityViewModel.showToast) {
             AlertToast(displayMode: .hud,
-                       type: AlertToast.AlertType.systemImage(toastImage, toastColor),
-                       title: toastTitle)
+                       type: AlertToast.AlertType.systemImage(communityViewModel.toastImage, communityViewModel.toastColor),
+                       title: communityViewModel.toastTitle)
         }
     }
-    
-    
     
     @ViewBuilder
     func ActionButton(image: String, text: String = "", foreground: Color, _ callback: @escaping () -> Void) -> some View {

@@ -54,7 +54,6 @@ class HistoryViewModel: ObservableObject {
             .order(by: "date", descending: true)
         
         goalsRepo.getAllGoalsStat(query: query) { stats in
-            Debug.log.debug(stats)
             self.communityGoalsStat = stats
         }
     }

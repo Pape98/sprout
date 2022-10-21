@@ -14,9 +14,7 @@ struct MyGarden: View {
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
     @EnvironmentObject var appViewModel: AppViewModel
-        
-    let userDefaults = UserDefaultsService.shared
-    
+            
     var scene: SKScene {
         let scene = MyGardenScene()
         scene.scaleMode = .resizeFill

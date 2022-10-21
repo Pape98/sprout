@@ -178,6 +178,7 @@
 		EBE36AFF9964F232ABAEA6E260C5CF82 /* OIDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = B41A374291963E7C2FC8CE395487B506 /* OIDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE2C1A0DD32A33303C09254902FEAADC /* GIDSignInStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB6B8BB8616927E38933C2391436936 /* GIDSignInStrings.m */; };
 		F06558A628F1FA3F0077C50B /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = F06558A528F1FA3F0077C50B /* SwiftyBeaver */; };
+		F0AE96742901B5E300DD788C /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0AE96732901B5E300DD788C /* SwiftDate */; };
 		F0B6DAE3287484A200DD3F03 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = F0B6DAE2287484A200DD3F03 /* SQLite */; };
 		F0F3673E28ED1E9600F79D1A /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F0F3673D28ED1E9600F79D1A /* AlertToast */; };
 		F159FDF0C26037758BF2D029A4BDEF6E /* GIDSignIn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4A17DF35F5124EA6DB3234DB22044C /* GIDSignIn_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -539,6 +540,7 @@
 			files = (
 				F0F3673E28ED1E9600F79D1A /* AlertToast in Frameworks */,
 				8CF9E0A7ADD7449CF2026546440EBB1F /* Foundation.framework in Frameworks */,
+				F0AE96742901B5E300DD788C /* SwiftDate in Frameworks */,
 				4816ED359D1CCB98A1C010564EE02C2F /* SafariServices.framework in Frameworks */,
 				F06558A628F1FA3F0077C50B /* SwiftyBeaver in Frameworks */,
 			);
@@ -1056,6 +1058,7 @@
 			packageProductDependencies = (
 				F0F3673D28ED1E9600F79D1A /* AlertToast */,
 				F06558A528F1FA3F0077C50B /* SwiftyBeaver */,
+				F0AE96732901B5E300DD788C /* SwiftDate */,
 			);
 			productName = AppAuth;
 			productReference = 3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */;
@@ -1222,6 +1225,7 @@
 				F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */,
 				F0F3673C28ED1E9600F79D1A /* XCRemoteSwiftPackageReference "AlertToast" */,
 				F06558A428F1FA3F0077C50B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				F0AE96722901B5E300DD788C /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = 6A1666EA7787449E247EB91D424FC8A6 /* Products */;
 			projectDirPath = "";
@@ -2077,6 +2081,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		F0AE96722901B5E300DD788C /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
@@ -2100,6 +2112,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F06558A428F1FA3F0077C50B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
 			productName = SwiftyBeaver;
+		};
+		F0AE96732901B5E300DD788C /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0AE96722901B5E300DD788C /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 		F0B6DAE2287484A200DD3F03 /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;

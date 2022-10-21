@@ -56,8 +56,6 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
         
         guard isUserLoggedIn() == true else { return }
         let isMusicOn: Bool? = userDefaults.get(key: UserDefaultsKey.IS_MUSIC_ON)
-        Debug.log.debug(isMusicOn)
-
         
         guard isMusicOn != nil && isMusicOn! == true else { return }
         

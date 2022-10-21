@@ -15,7 +15,6 @@ class GardenViewModel: ObservableObject {
     }
     
     static var shared: GardenViewModel = GardenViewModel()
-    let userDefaults = UserDefaultsService.shared
     let goalsRepo = GoalsRepository.shared
     let collections = Collections.shared
     let nc = NotificationCenter.default

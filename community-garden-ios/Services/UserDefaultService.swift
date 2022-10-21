@@ -13,8 +13,20 @@ class UserDefaultsService {
     let defaults = UserDefaults.standard
     static let shared = UserDefaultsService()
     
+    func remove(key: String){
+        defaults.removeObject(forKey: key)
+    }
+    
+    func remove(key: UserDefaultsKey){
+        defaults.removeObject(forKey: key.rawValue)
+    }
+    
     func save<T>(value: T, key: UserDefaultsKey){
         defaults.set(value, forKey: key.rawValue)
+    }
+    
+    func save<T>(value: T, key: String){
+        defaults.set(value, forKey: key)
     }
     
     func get(key: UserDefaultsKey) -> String? {
@@ -43,11 +55,17 @@ class UserDefaultsService {
     func get(key: UserDefaultsKey) -> Data? {
         return defaults.data(forKey: key.rawValue)
     }
+    
+    func get(key: String) -> Int? {
+        return defaults.integer(forKey: key)
+    }
 }
 
 enum UserDefaultsKey: String {
     case FCM_TOKEN = "fcmToken"
     case IS_MUSIC_ON = "isMusicOn"
+    case NUM_LOVE_SENT = "loveSent"
+    case NUM_ENCOURAGEMENT_SENT = "encouragementSent"
 }
 
 

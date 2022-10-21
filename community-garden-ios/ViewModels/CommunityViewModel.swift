@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import SwiftDate
+import SwiftUI
 
 class CommunityViewModel: ObservableObject {
     static let shared = CommunityViewModel()
@@ -14,6 +16,7 @@ class CommunityViewModel: ObservableObject {
     let userRepository = UserRepository.shared
     let groupRepository = GroupRepository.shared
     let reactionRepository = ReactioRepository.shared
+    let userDefaults = UserDefaultsService.shared
     
     let collections = Collections.shared
     let nc = NotificationCenter.default
@@ -22,6 +25,13 @@ class CommunityViewModel: ObservableObject {
     @Published var trees: [GardenItem] = []
     @Published var group: GardenGroup? = nil
     @Published var reactions: Reactions? = nil
+    
+    let MAX_NUM_MESSAGES = 3
+    
+    @Published var showToast = false
+    var toastTitle = ""
+    var toastImage = ""
+    var toastColor: Color = .red
     
     init(){
         refreshCommunity()
@@ -76,8 +86,7 @@ class CommunityViewModel: ObservableObject {
         }
     }
     
-    @objc
-    func fetchTrees(){
+    @objc func fetchTrees(){
         let userGroup = UserService.shared.user.group
         let collection = self.collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
@@ -87,7 +96,7 @@ class CommunityViewModel: ObservableObject {
         
         
         gardenRepository.getUserItems(query: query) { trees in
-            DispatchQueue.main.async {                
+            DispatchQueue.main.async {
                 self.trees = trees
             }
         }
@@ -102,20 +111,79 @@ class CommunityViewModel: ObservableObject {
     }
     
     func sendLove(){
-        let tokens: [String] = members.values.map { $0.fcmToken }
-        reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
-            self.fetchReactions()
-            let user = UserService.shared.user
-            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.love)
+        
+        let todayKey = todayDefaultKey(defaultKey: UserDefaultsKey.NUM_LOVE_SENT)
+        let yesterdayKey = yesterdayDefaultKey(defaultKey: UserDefaultsKey.NUM_LOVE_SENT)
+        let numLoveSent: Int? = userDefaults.get(key: todayKey)
+        
+        if numLoveSent == nil {
+            userDefaults.save(value: 1, key: todayKey)
+            userDefaults.remove(key: yesterdayKey)
+        }  else if numLoveSent! >= MAX_NUM_MESSAGES {
+            setToast(title: "Can only send 5 per day", image: "xmark.octagon.fill", color: .red)
+            showToast = true
+            return
+        } else {
+            userDefaults.save(value: numLoveSent! + 1, key: todayKey)
         }
+        
+        setToast(title: "Sent love to 🧑‍🤝‍🧑", image: "heart.fill", color: .red)
+        showToast = true
+        
+        //        let tokens: [String] = members.values.map { $0.fcmToken }
+        //        reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
+        //            self.fetchReactions()
+        //            let user = UserService.shared.user
+        //            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.love)
+        //        }
+        
     }
     
     func sendEncouragement(){
-        let tokens: [String] = members.values.map { $0.fcmToken }
-        reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
-            self.fetchReactions()
-            let user = UserService.shared.user
-            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.encouragement)
+        
+        let todayKey = todayDefaultKey(defaultKey: UserDefaultsKey.NUM_ENCOURAGEMENT_SENT)
+        let yesterdayKey = yesterdayDefaultKey(defaultKey: UserDefaultsKey.NUM_ENCOURAGEMENT_SENT)
+        let numEncouragementSent: Int? = userDefaults.get(key: todayKey)
+        
+        if numEncouragementSent == nil {
+            userDefaults.save(value: 1, key: todayKey)
+            userDefaults.remove(key: yesterdayKey)
+        }  else if numEncouragementSent! >= MAX_NUM_MESSAGES {
+            setToast(title: "Can only send 5 per day", image: "xmark.octagon.fill", color: .red)
+            showToast = true
+            return
+        } else {
+            userDefaults.save(value: numEncouragementSent! + 1, key: todayKey)
         }
+        
+        setToast(title: "Sent cheers to 🧑‍🤝‍🧑", image:  "star.fill", color: .yellow)
+        showToast = true
+        
+//        let tokens: [String] = members.values.map { $0.fcmToken }
+//        reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
+//            self.fetchReactions()
+//            let user = UserService.shared.user
+//            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.encouragement)
+//            self.showToast = true
+//        }
+    }
+    
+    // helpers
+    func setToast(title: String, image: String, color: Color){
+        toastTitle = title
+        toastImage = image
+        toastColor = color
+    }
+    
+    func todayDefaultKey(defaultKey: UserDefaultsKey) -> String {
+        let today = Date()
+        let todayKey =  today.toFormat("dd MM yyyy").replacingOccurrences(of: " ", with: "-") + "-" + defaultKey.rawValue
+        return todayKey
+    }
+    
+    func yesterdayDefaultKey(defaultKey: UserDefaultsKey) -> String {
+        let yesterday = Date() - 1.days
+        let yesterdayKey =  yesterday.toFormat("dd MM yyyy").replacingOccurrences(of: " ", with: "-") + "-" + defaultKey.rawValue
+        return yesterdayKey
     }
 }
