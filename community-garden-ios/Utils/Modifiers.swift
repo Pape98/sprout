@@ -11,6 +11,8 @@ import SwiftUI
 struct WeatherOverlay: ViewModifier {
     
     @EnvironmentObject var userViewModel: UserViewModel
+    @EnvironmentObject var appViewModel: AppViewModel
+    
     var showStats: Bool
     var opacity: Double
     
@@ -22,7 +24,7 @@ struct WeatherOverlay: ViewModifier {
             // Background Image
             Image(weatherInfo["image"]!)
                 .resizable()
-                .ignoresSafeArea()
+                .ignoresSafeArea(.all, edges: [.top])
                 .opacity(opacity)
                 .overlay {
                     Rectangle()
@@ -30,22 +32,16 @@ struct WeatherOverlay: ViewModifier {
                         .blendMode(BlendMode.overlay)
                         .edgesIgnoringSafeArea([.top])
                 }
-            // Scene View
-            content
             
-            if showStats {
-                // Stats
-                VStack(alignment: .leading, spacing: 10) {
-                    if let numDroplets = userViewModel.numDroplets {
-                        Stats(image: "droplet-icon", value: Int(numDroplets.value))
-                    }
-                    
-                    if let numSeeds = userViewModel.numSeeds {
-                        Stats(image: "seed-icon", value: Int(numSeeds.value))
-                    }
+            if appViewModel.isBadgeUnlocked(UnlockableBadge.birds){
+                VStack {
+                    LottieView(filename: "birds")
+                    Spacer()
+                    LottieView(filename: "birds")
                 }
-                .padding()
             }
+            
+            content
         }
     }
 }

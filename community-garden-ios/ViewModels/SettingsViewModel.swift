@@ -9,7 +9,7 @@ import Foundation
 
 class SettingsViewModel: ObservableObject {
     
-    @Published var settings = UserService.user.settings
+    @Published var settings = UserService.shared.user.settings
     static let shared = SettingsViewModel()
     let appViewModel = AppViewModel.shared
     let userRepository = UserRepository()
@@ -23,28 +23,37 @@ class SettingsViewModel: ObservableObject {
         let key = "settings.\(settingKey.rawValue)"
                 
         userRepository.updateUser(userID: userID, updates: [key: value]){
-            SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
+          
+            if settingKey.rawValue.contains("Goal") == false {
+                SproutAnalytics.shared.appCustomization(type: settingKey.rawValue)
+            }
+            
+            guard var tree = GardenViewModel.shared.tree else { return }
+            let settings = UserService.shared.user.settings!
+            var name = ""
             
             if settingKey == FirestoreKey.TREE {
-                self.updateTodaysTree(field: "settings.tree", update: value as! String)
+                name = "\(settings.treeColor)-\(addDash(value as! String))"
+                tree.name = name
+                self.updateTodaysTree(update: tree)
             } else if settingKey == FirestoreKey.TREE_COLOR {
-                self.updateTodaysTree(field: "settings.treeColor", update: value as! String)
+                name = "\(value as! String)-\(addDash(settings.tree))"
+                tree.name = name
+                self.updateTodaysTree(update: tree)
+            } else if settingKey == FirestoreKey.GARDEN_NAME {
+                tree.gardenName = value as! String
+                self.updateTodaysTree(update: tree)
             }
+            
+            GardenViewModel.shared.tree = tree
         }
     }
     
-    func updateTodaysTree(field: String, update: String){
-        let userID = getUserID()
-        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
-        
-        guard let collection = collection, let userID = userID else { return }
-        let query = collection
-            .whereField("date", isEqualTo: Date.today)
-            .whereField("type", isEqualTo: "tree")
-            .whereField("userID", isEqualTo: userID)
-        
-        gardenItemRepository.updateGardenItem(query: query, updates: [field : update])
-        
+    func updateTodaysTree(update tree: GardenItem){
+        gardenItemRepository.udpateGardenItem(docName: tree.documentName!, updates: tree){
+            NotificationSender.send(type: NotificationType.GetUserItems.rawValue)
+            NotificationSender.send(type: NotificationType.FetchCommunityTrees.rawValue)
+        }
     }
     
     func fetchSettings(){
@@ -53,7 +62,7 @@ class SettingsViewModel: ObservableObject {
         userRepository.fetchLoggedInUser(userID: userID) { user in
             DispatchQueue.main.async {
                 self.settings = user.settings
-                UserService.user = user
+                UserService.shared.user = user
                 NotificationSender.send(type: NotificationType.UpdateUserService.rawValue)
             }
         }

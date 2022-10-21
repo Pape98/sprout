@@ -55,10 +55,8 @@ struct PickerCard: View {
                         .frame(width: geometry.size.width * 0.5, height: geometry.size.width * 0.5)
                     
                     Text(formatItemName(option))
-                        .font(.system(size: geometry.size.width * 0.1))
-                        .foregroundColor(.everglade)
-                        .bold()
-                    
+                        .bodyStyle(foregroundColor: .everglade, size: geometry.size.width * 0.1)
+                                            
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
             }

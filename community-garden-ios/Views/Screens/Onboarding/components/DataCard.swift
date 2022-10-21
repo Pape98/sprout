@@ -36,14 +36,13 @@ struct DataCard: View {
             
             HStack {
                 
-                VStack(alignment: .leading, spacing:10) {
+                VStack(alignment: .leading, spacing:0) {
                     Text(data)
                         .bold()
-                        .font(.title3)
-                        .foregroundColor(.seaGreen)
+                        .bodyStyle(foregroundColor: .seaGreen, size: 20)
                     if let metadata = metadata {
                         Text(metadata[1])
-                            .foregroundColor(.everglade)
+                            .bodyStyle(size: 16)
                     }
                     
                 }.padding()

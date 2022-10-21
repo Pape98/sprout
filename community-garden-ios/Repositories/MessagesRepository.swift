@@ -20,7 +20,7 @@ class MessagesRepository {
         do {
             try collection.document(message.id).setData(from: message)
         } catch let error {
-            print("Error sending message to Firestore: \(error)")
+            Debug.log.error("Error sending message to Firestore: \(error)")
         }
 
     }
@@ -29,7 +29,7 @@ class MessagesRepository {
         query.getDocuments { querySnapshot, error in
             
             if error != nil {
-                print("getMessages: Error reading from Firestore: \(error!)")
+                Debug.log.error("getMessages: Error reading from Firestore: \(error!)")
                 return
             }
             
@@ -40,7 +40,7 @@ class MessagesRepository {
                     messages.append(try doc.data(as: Message.self))
                 }
             } catch {
-                print("getUserItems: Error reading from: \(error)")
+                Debug.log.error("getUserItems: Error reading from: \(error)")
             }
             
             completion(messages)

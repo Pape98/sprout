@@ -1,5 +1,5 @@
 //
-//  HealthStoreRepository2.swift
+//  HealthStoreRepository.swift
 //  community-garden-ios
 //
 //  Created by Pape Sow Traoré on 11/07/2022.
@@ -33,35 +33,79 @@ class HealthStoreRepository {
     
     // MARK: Saving data
     func saveStepCount(value v: Double){
-        let object = Step(date: today, count: v, userID: userID!)
+        guard let settings = UserService.shared.user.settings else { return }
+        let goal = settings.stepsGoal
+        let user = UserService.shared.user
+        let updates: [String: Any] = ["date": today,
+                                      "count": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
+                
         let collection = collections.getCollectionReference(Data.steps.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, data: object, notification: NotificationType.FetchStepCount, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchStepCount.rawValue, message: v)
+        }
     }
     
     func saveWalkingRunningDistance(value v: Double){
-        let object = WalkingRunningDistance(date: today, distance: v, userID: userID!)
+        guard let settings = UserService.shared.user.settings else { return }
+        let goal = settings.walkingRunningGoal
+        let user = UserService.shared.user
+        let updates: [String: Any] = ["date": today,
+                                      "distance": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
+        
         let collection = collections.getCollectionReference(Data.walkingRunning.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, data: object, notification: NotificationType.FetchWalkingRunningDistance, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchWalkingRunningDistance.rawValue, message: v)
+        }
     }
     
     func saveWorkouts(value v: Double){
-        let object = Workout(date: today, duration: v, userID: userID!)
+        guard let settings = UserService.shared.user.settings else { return }
+        let goal = settings.workoutsGoal
+        let user = UserService.shared.user
+        let updates: [String: Any] = ["date": today,
+                                      "duration": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
+        
         let collection = collections.getCollectionReference(Data.workouts.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, data: object, notification: NotificationType.FetchWorkout, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchWorkout.rawValue, message: v)
+        }
     }
     
     func saveSleep(value v: Double){
-        let object = Sleep(date: today, duration: v, userID: userID!)
+        guard let settings = UserService.shared.user.settings else { return }
+        let goal = settings.sleepGoal
+        let user = UserService.shared.user
+        let updates: [String: Any] = ["date": today,
+                                      "duration": v,
+                                      "userID": userID!,
+                                      "goal": goal as Any,
+                                      "username": user.name,
+                                      "group": user.group]
+        
         let collection = collections.getCollectionReference(Data.sleep.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(getDocName())
-        saveData(docRef: docRef, data: object, notification: NotificationType.FetchSleep, message: v)
+        saveData(docRef: docRef, updates: updates){
+            NotificationSender.send(type: NotificationType.FetchSleep.rawValue, message: v)
+        }
     }
     
     
@@ -116,31 +160,40 @@ class HealthStoreRepository {
     
     
     // MARK: Utility Methods
-    
     func getDocName() -> String {
         return "\(userID!)-\(today)"
     }
     
-    func saveData<T: Encodable>(docRef: DocumentReference, data: T, notification: NotificationType, message: Double){
-        do {
-            try docRef.setData(from: data)
-            NotificationSender.send(type: notification.rawValue, message: message)
-        } catch {
-            print("saveData: Error writing to Firestore: \(error)")
+    func saveData(docRef: DocumentReference, updates: [String: Any], completion: @escaping () -> Void){
+        docRef.setData(updates, merge: true) { err in
+            if let err = err {
+                Debug.log.error("Error saving data to Firestore: \(err)")
+            } else {
+                completion()
+            }
         }
     }
+    
+//    func saveData<T: Encodable>(docRef: DocumentReference, data: T, notification: NotificationType, message: Double){
+//        do {
+//            try docRef.setData(from: data, merge: true)
+//            NotificationSender.send(type: notification.rawValue, message: message)
+//        } catch {
+//            Debug.log.error("Error saving data to Firestore: \(error)")
+//        }
+//    }
     
     func getDataByDate<T: Decodable>(collectionName name: Data, date: String, type: T.Type, completion: @escaping (T) -> Void) {
         let collection = collections.getCollectionReference(name.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document("\(userID!)-\(date)")
         docRef.getDocument(as: type) { result in
-    
+            
             switch result {
             case .success(let data):
                 completion(data)
             case .failure(let error):
-                print("Error getting \(name) from Firestore: \(error)")
+                Debug.log.error("Error getting \(name) from Firestore: \(error)")
             }
         }
     }
@@ -154,14 +207,14 @@ class HealthStoreRepository {
         
         docRef.getDocuments() {(snapshot, err) in
             if let err = err {
-                print("Error getting documents: \(err)")
+                Debug.log.error("Error getting documents: \(err)")
             } else {
                 do {
                     for doc in snapshot!.documents {
                         res.append(try doc.data(as: type))
                     }
                 } catch {
-                    print("getData: Error reading from Firestore: \(error)")
+                    Debug.log.error("getData: Error reading from Firestore for \(name): \(error)")
                 }
                 
                 completion(res)

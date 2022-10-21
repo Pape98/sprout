@@ -12,14 +12,14 @@ class UserViewModel: ObservableObject {
     
     // MARK: - Properties
     
-    @Published var currentUser: User = UserService.user
+    @Published var currentUser: User = UserService.shared.user
     @Published var numDroplets: Stat?
     @Published var numSeeds: Stat?
     
     static var shared = UserViewModel()
     
     let userRepository = UserRepository.shared
-    let statsRepository = StatsRepository.shared
+    let statsRepository = StatsSQLRepository.shared
     let progressRepository = ProgressRepository.shared
     
     let nc = NotificationCenter.default
@@ -28,9 +28,7 @@ class UserViewModel: ObservableObject {
     
     init(){
         setupObservers()
-        getNumDroplets()
-        getNumSeeds()
-        
+        refreshStats()
         nc.addObserver(self,
                        selector: #selector(self.getUser),
                        name: Notification.Name(NotificationType.UpdateUserService.rawValue),
@@ -41,16 +39,24 @@ class UserViewModel: ObservableObject {
         getUser()
     }
     
+    func refreshStats(){
+        getNumDroplets()
+        getNumSeeds()
+    }
+    
     @objc func getUser() {
         let userID = getUserID()
         guard let userID = userID else {
             return
         }
-
+        
         self.userRepository.fetchLoggedInUser(userID: userID) { user in
+            
+            let topic = "group\(user.group)"
+            MessagingService.shared.subscribeToTopic(topic)
+            
             DispatchQueue.main.async {
                 self.currentUser = user
-                UserService.user = user
                 self.handleResets()
             }
         }
@@ -58,7 +64,7 @@ class UserViewModel: ObservableObject {
     
     @objc func getUserNewUpdates(){
         DispatchQueue.main.async {
-            self.currentUser = UserService.user
+            self.currentUser = UserService.shared.user
         }
     }
     
@@ -66,22 +72,21 @@ class UserViewModel: ObservableObject {
         let notiticationType = NotificationType(rawValue: notification.name.rawValue)
         let userInfo = notification.userInfo as? [String: Double] ?? [:]
         let value = userInfo["message"]!
-    
-            switch notiticationType {
-            case .FetchStepCount:
-                statsRepository.stepsChangeCallback(value: value)
-            case .FetchWalkingRunningDistance:
-                statsRepository.walkingRunningChangeCallback(value: value)
-            case .FetchWorkout:
-                statsRepository.workoutsChangeCallback(value: value)
-            case .FetchSleep:
-                statsRepository.sleepChangeCallback(value: value)
-            default:
-                print("Error in updateNumDroplets")
-            }
         
-        getNumDroplets()
-        getNumSeeds()
+        switch notiticationType {
+        case .FetchStepCount:
+            statsRepository.stepsChangeCallback(value: value)
+        case .FetchWalkingRunningDistance:
+            statsRepository.walkingRunningChangeCallback(value: value)
+        case .FetchWorkout:
+            statsRepository.workoutsChangeCallback(value: value)
+        case .FetchSleep:
+            statsRepository.sleepChangeCallback(value: value)
+        default:
+            print("Error in updateNumDroplets")
+        }
+        
+        refreshStats()
     }
     
     func getNumDroplets(){
@@ -96,13 +101,19 @@ class UserViewModel: ObservableObject {
         }
     }
     
+    func updateUser(updates: [String: Any], completion: @escaping () -> Void){
+        userRepository.updateUser(userID: UserService.shared.user.id, updates: updates) {
+            completion()
+        }
+    }
+    
     func handleResets(){
-        let lastResetDate = UserService.user.lastReset
+        let lastResetDate = UserService.shared.user.lastReset
         
         if lastResetDate != Date.today {
             SQLiteService.shared.resetTableValues(forceReset: true)
-            userRepository.updateUser(userID: UserService.user.id, updates: ["lastReset" : Date.today]) {
-                UserService.user.lastReset = Date.today
+            updateUser(updates: ["lastReset" : Date.today]) {
+                UserService.shared.user.lastReset = Date.today
             }
         }
     }

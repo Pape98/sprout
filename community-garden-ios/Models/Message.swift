@@ -15,14 +15,10 @@ struct Message: Identifiable, Codable {
     var receiverName: String
     var receiverFcmToken: String
     var text: String
-    var isPrivate = false
+    var isPrivate = true
     var date: Date
     var senderFlower: String
 }
 
-struct MessageOption: Codable, Identifiable, Hashable {
-    var id: String = UUID().uuidString
-    var text: String
-    var color: String
-    var isDefault: Bool = false
-}
+
+

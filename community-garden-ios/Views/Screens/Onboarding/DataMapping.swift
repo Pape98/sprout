@@ -50,12 +50,13 @@ struct DataMapping: View {
     @State private var mappedData: [String: String] = [:]
     @State private var availableLabels: [String] = []
     @State private var showingAlert = false
+    @State private var isError = true
     
     
     var body: some View {
         
         VStack {
-            PickerTitle(header: "I want to see...", subheader: "To map data to elements in the scene, drag label to the image 🔎  ")
+            PickerTitle(header: "I want to see...", subheader: "Map data to elements")
             
             LazyVGrid(columns: columns, spacing: 20) {
                 MetaphorCard(name: "\(treeColor)-\(treeType)", key: MappingKeys.TREE)
@@ -67,23 +68,33 @@ struct DataMapping: View {
                 .bold()
                 .bodyStyle()
             
+            Text("Hold & drag label area")
+                .padding()
+                .foregroundColor(.red)
+            
             DataLabels()
             
             Spacer()
             
-            BackNextButtons() {
-                //                if mappedData.count != 2 {
-                //                    showingAlert = true
-                //                }
-                
-                onboardingRouter.saveSetting(key: FirestoreKey.MAPPED_DATA, value: mappedData)
-                
+            BackNextButtons(isError: isError) {
+                if isError {
+                    showingAlert = true
+                } else {
+                    onboardingRouter.saveSetting(key: FirestoreKey.MAPPED_DATA, value: mappedData)
+                }
             }.environmentObject(onboardingRouter)
         }
+        .onChange(of: mappedData, perform: { newValue in
+            if newValue.count != 2 {
+                isError = true
+            } else {
+                isError = false
+            }
+        })
         .onAppear {
             self.availableLabels = selectedData
         }
-        .alert("Must map all data 😊", isPresented: $showingAlert){
+        .alert("Must map all data 😊. Hold and drag.", isPresented: $showingAlert){
             Button("OK", role: .cancel){}
         }
     }
@@ -125,7 +136,7 @@ struct DataMapping: View {
                         let _ = first.loadObject(ofClass: URL.self) { value, error in
                             if error != nil { return }
                             guard let url = value else  { return }
-                
+                            
                             
                             // Check if card has already mapping
                             if let oldLabel = mappedData[key.rawValue] {

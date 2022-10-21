@@ -11,12 +11,36 @@ import SwiftUI
 
 struct Constants {
     
+    static let shared = Constants()
+    
     static let clientID = "987260271190-lt53tt7akbciedliq2mdno33jpg08eb2.apps.googleusercontent.com"
     
     // Garden Items
     static let flowers = ["abyss-sage", "joyful-clover","savage-morel"]
     static let trees = ["spiky-maple", "whomping-medlar", "serpent-sumac","sad-holly","sneezy-cypress","tickle-beech","royal-larch","chilling-leaf"]
     static let colors = ["moss","cosmos","sunglow","grenadier","hawks","tangerine","lavender","mint","raspberry","porcelain"]
+    
+    static var badges = [UnlockableBadge.birds: CommunityBadge(name: "birds", numberOfDaysRequired: 1),
+                         UnlockableBadge.cloud: CommunityBadge(name: "cloud", numberOfDaysRequired: 2),
+                         UnlockableBadge.deer : CommunityBadge(name: "deer", numberOfDaysRequired: 4),
+                         UnlockableBadge.dogHouse: CommunityBadge(name: "dog-house", numberOfDaysRequired: 3),
+                         UnlockableBadge.turtleHouse: CommunityBadge(name: "turtle-house", numberOfDaysRequired: 3),
+                         UnlockableBadge.dog: CommunityBadge(name: "dog", numberOfDaysRequired: 6),
+                         UnlockableBadge.pond: CommunityBadge(name: "pond", numberOfDaysRequired: 5),
+                         UnlockableBadge.fence: CommunityBadge(name: "fence", numberOfDaysRequired: 4),
+                         UnlockableBadge.music: CommunityBadge(name: "music", numberOfDaysRequired: 3),
+                         UnlockableBadge.turtle: CommunityBadge(name: "turtle", numberOfDaysRequired: 1),
+    ]
+    
+    
+    
+    static let mainFont = "Baloo2-medium"
+    
+    init(){}
+}
+
+enum UnlockableBadge {
+    case birds, cloud, deer, dogHouse, dog, fence, music, turtle, turtleHouse, pond
 }
 
 struct JSON {
@@ -38,14 +62,13 @@ enum GardenElement: String {
 
 enum DataOptions: String, CaseIterable {
     case steps = "Steps"
-//    case exerciseMinute = "Exercise Minute"
     case sleep = "Sleep"
     case walkingRunningDistance = "Walking+running Distance"
     case workouts = "Workout Time"
     
     static var dalatList: [String] {
         return DataOptions.allCases.map { $0.rawValue }
-      }
+    }
     
     static let icons = ["Steps":["figure.walk","🦶🏻Daily number of steps."],
                         "Sleep":["bed.double.circle","🛌🏽 Amount of time in bed."],
@@ -67,7 +90,7 @@ struct GoalsSettings {
     static let ranges: [String: ClosedRange<Float>] = [
         "Steps": 0...20000,
         "Sleep": 0...12,
-        "Workout Time": 0...300,
+        "Workout Time": 0...180,
         "Walking+running Distance": 1...50
     ]
     
@@ -106,6 +129,8 @@ enum SettingsMode: String {
     case treeColor
     case flowerColor
 }
+
+
 
 
 

@@ -7,12 +7,13 @@
 
 import SwiftUI
 import Firebase
-import FirebaseMessaging
 import FirebaseFunctions
+import SwiftyBeaver
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
     var userRepository: UserRepository
+    var messagingService: MessagingService = MessagingService.shared
     
     override init() {
         self.userRepository = UserRepository.shared
@@ -22,12 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
+        UIApplication.shared.registerForRemoteNotifications()
+
         
+        // Styling
         UITableView.appearance().backgroundColor = .clear
         UISegmentedControl.appearance().selectedSegmentTintColor = UIColor(Color.appleGreen)
-        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white], for: .selected)
-        UIApplication.shared.registerForRemoteNotifications()
-                
+        UISegmentedControl.appearance().setTitleTextAttributes([.foregroundColor: UIColor.white, .font: UIFont(name: Constants.mainFont, size: 16)!], for: [])
+        
+        UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Constants.mainFont))
+        UITabBar.appearance().backgroundColor = .white
+        UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: Constants.mainFont, size: 12)!], for: [])
+    
+
+        setToolBarTitleColor()
+        
         return true
     }
     
@@ -43,13 +53,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         MessagesViewModel.shared.getUserMessages()
+        
+        guard let userInfo = userInfo as NSDictionary? as? [String: Any] else {
+            completionHandler(UIBackgroundFetchResult.newData)
+            return
+        }
+        
+        var message = NotificationMessage()
+        
+        if let type = userInfo["type"] {
+            
+            if type as! String == "encouragement" {
+                message.title = "Community Encouragement 🌟"
+                message.body  = "You got this 🌟!"
+            } else {
+                message.title = "Community Love 💖"
+                message.body  = "We love you 💖"
+            }
+            
+            NotificationService.shared.sendNotification(message: message)
+        }
+        
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let fcmToken = fcmToken {
+            Debug.log.verbose("FCM TOKEN: \(fcmToken)")
+            UserDefaultsService.shared.save(value: fcmToken, key: UserDefaultsKey.FCM_TOKEN)
+                
+            // TODO: Find more effective way to do this
+            // Unsusbcribe from all group topics
+            MessagingService.shared.unsubscribeFromAllTopics()
+        }
+        
         if let userID = getUserID(), let token = fcmToken {
+            if UserService.shared.user.fcmToken == fcmToken { return }
             userRepository.doesUserExist(userID: userID) { userExists in
-                guard let userExists = userExists else { return }
+                guard let userExists = userExists else {
+                    print("User does not exist so cannot set FCM Token")
+                    return
+                }
                 if userExists {
                     self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
                 }
@@ -58,14 +102,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     // MARK: Notification Delegate Methods
-    
     // This function will be called when the app receive notification
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         MessagesViewModel.shared.getUserMessages()
         // show the notification alert (banner), and with sound
         completionHandler([.banner,.sound])
-        
-        print("userNotificationCenter 1")
     }
     
     // This function will be called right after user tap on the notification

@@ -38,6 +38,7 @@ struct ColorOptionsScroll: View {
                                 .cornerRadius(10)
                                 .padding()
                             Text(color.capitalizeFirstLetter())
+                                .bodyStyle(size: 18)
                         }
                         .onTapGesture {
                             selectedColor = color;

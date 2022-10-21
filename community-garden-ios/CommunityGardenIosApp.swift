@@ -17,8 +17,13 @@ struct CommunityGardenIosApp: App {
     
     @StateObject private var authViewModel = AuthenticationViewModel.shared
     @StateObject private var appViewModel = AppViewModel.shared
+    let constants : Constants = Constants.shared
+    
+    
+    let hour = Int(Date.hour)
+    
     // To send notifications to user
-    let notificationService: NotificationService = NotificationService()
+    let notificationService: NotificationService = NotificationService.shared
     
     var fontColor: Color {
         let weather = getWeatherInfo()
@@ -30,14 +35,17 @@ struct CommunityGardenIosApp: App {
         return Color.black
     }
     
-    
     init() {
-        //        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.community-garden-ios") {
-        //            print(defaults)
-        //        }
+        if let defaults = UserDefaults.standard.persistentDomain(forName: "empower.lab.sprout-ios") {
+            Debug.log.info(defaults)
+        }
+        
         FirebaseApp.configure()
         RemoteConfiguration.shared.fetchRemoteConfig()
-        //        setupLocalEmulator()
+        
+        if Platform.isSimulator {
+            //            setupLocalEmulator()
+        }
     }
     
     func setupLocalEmulator(){
@@ -56,19 +64,31 @@ struct CommunityGardenIosApp: App {
     var body: some Scene {
         WindowGroup {
             LaunchView()
+                .font(Font.custom(Constants.mainFont, size: 18))
                 .foregroundColor(fontColor)
                 .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification), perform: { _ in
-                    SproutAnalytics.shared.appLaunch()
+                    SproutAnalytics.shared.setDefaultParams()
                 })
                 .background(Color.porcelain)
                 .environmentObject(authViewModel)
                 .environmentObject(appViewModel)
+                .onAppear {
+                    RemoteConfiguration.shared.fetchRemoteConfig()
+                    UserViewModel.shared.getNumSeeds()
+                    UserViewModel.shared.refreshStats()
+                }
                 .onChange(of: scenePhase) { newPhase in
                     
                     if newPhase == .active {
-                        RemoteConfiguration.shared.fetchRemoteConfig()
+                        UserViewModel.shared.getNumSeeds()
+                        UserViewModel.shared.getNumDroplets()
+                        AudioPlayer.shared.startBackgroundMusic()
+                    }
+                    else {
+                        AudioPlayer.shared.stopBackgroundMusic()
                     }
                     
+                    RemoteConfiguration.shared.fetchRemoteConfig()
                 }
         }
     }

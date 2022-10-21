@@ -8,9 +8,10 @@
 import Foundation
 
 // Singleton Class to represent logged in user
-class UserService {
+final class UserService {
     
-    static var user = User()
+    static var shared = UserService()
+    var user = User()
         
     private init() {}
 }

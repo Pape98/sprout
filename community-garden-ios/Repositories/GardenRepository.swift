@@ -47,38 +47,26 @@ class GardenRepository {
         }
     }
     
-    func udpateGardenItem(docName: String, updates: GardenItem){
+    func udpateGardenItem(docName: String, updates: GardenItem, completion: @escaping () -> Void){
         let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document(docName)
         saveData(docRef: docRef, data: updates)
+        completion()
     }
     
     func updateGardenItem(query: Query, updates: [String: Any]){
         let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let _ = collection else { return }
-        // TODO: Finish update
-    }
-    
-    func resetFlowers(){
-        let collection = collections.getCollectionReference("gardenItems")
-        guard let collection = collection else { return }
-        let query = collection.whereField("type", isEqualTo: "flower")
-        query.getDocuments { querySnapshot, error in
-            if error != nil {
-                print("getItems: Error writing to Firestore: \(error!)")
-                return
-            }
-            for doc in querySnapshot!.documents {
-                doc.reference.delete()
-            }
-        }
+        
+        // TODO: Finish if needed
+        
     }
     
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){
         do {
-            try docRef.setData(from: data)
+            try docRef.setData(from: data, merge: true)
         } catch {
             print("saveData: Error writing to Firestore: \(error)")
         }

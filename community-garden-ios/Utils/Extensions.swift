@@ -8,6 +8,19 @@
 import Foundation
 import SwiftUI
 
+struct ListBackgroundModifier: ViewModifier {
+
+    @ViewBuilder
+    func body(content: Content) -> some View {
+        if #available(iOS 16.0, *) {
+            content
+                .scrollContentBackground(.hidden)
+        } else {
+            content
+        }
+    }
+}
+
 extension Date {
     func getFormattedDate(format: String) -> String {
         let dateFormat = DateFormatter()
@@ -39,6 +52,13 @@ extension Date {
     
     static func - (lhs: Date, rhs: Date) -> TimeInterval {
         return lhs.timeIntervalSinceReferenceDate - rhs.timeIntervalSinceReferenceDate
+    }
+    
+    static var hour: Int {
+        let date = Date()
+        let dateComponents = Calendar.current.dateComponents([.hour], from: date)
+        let hour = dateComponents.hour!
+        return hour
     }
 }
 
@@ -94,6 +114,8 @@ extension Color {
     static let leaf = Color("leaf")
     static let haze = Color("haze")
     static let ceramic = Color("ceramic")
+    static let greenishBlue = Color("greenish-blue")
+    static let oldCopper = Color("old-copper")
     
     // Weather colors
     static let night = Color("night")
@@ -116,15 +138,15 @@ extension Color {
 }
 
 extension Text {
-    func headerStyle() -> some View {
-        self.font(.largeTitle)
-            .foregroundColor(.black)
-            .bold()
+    func headerStyle(foregroundColor: Color = .black) -> some View {
+        self.foregroundColor(foregroundColor)
+            .font(.custom("Baloo2-bold", size: 35))
     }
     
-    func bodyStyle() -> some View {
-        self.foregroundColor(.black)
-            .opacity(0.66)
+    func bodyStyle(foregroundColor: Color = .black, size: CGFloat = 17) -> some View {
+        return self.foregroundColor(foregroundColor)
+            .opacity(foregroundColor != .black ? 1: 0.5)
+            .font(.custom(Constants.mainFont, size: size))
     }
 }
 
@@ -199,4 +221,7 @@ extension Dictionary where Value : Hashable {
         }
         return newDict
     }
+    
 }
+
+

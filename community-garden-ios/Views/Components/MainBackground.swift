@@ -9,28 +9,27 @@ import SwiftUI
 
 struct MainBackground: View {
     
-    var weatherInfo: [String: String] = getWeatherInfo()
-    @EnvironmentObject var appViewModel : AppViewModel
+    @State var appViewModel : AppViewModel = AppViewModel.shared
     
-    var image: String = "intro-bg"
+    var image: String? = nil
     var edges: Edge.Set = [.top]
     
     var body: some View {
-        Image(appViewModel.backgroundImage)
-            .resizable()
-            .ignoresSafeArea(.container, edges: edges)
-            .overlay {
-                Rectangle()
-                    .fill(Color(appViewModel.backgroundColor))
-                    .blendMode(BlendMode.overlay)
-                    .ignoresSafeArea()
-            }
+        if let image = image {
+            Image(image)
+                .resizable()
+                .ignoresSafeArea(.all, edges: edges)
+        } else {
+            Image(getIntroBackground())
+                .resizable()
+                .ignoresSafeArea(.all, edges: edges)
+        }
     }
 }
 
 struct MainBackground_Previews: PreviewProvider {
+    @State static var appViewModel: AppViewModel = AppViewModel()
     static var previews: some View {
         MainBackground()
-            .environmentObject(AppViewModel())
     }
 }

@@ -16,6 +16,11 @@ enum NotificationType: String {
     case FetchWorkout
     case FetchSleep
     case UpdateUserService
+    case GetUserItems
+    case FetchCommunityTrees
+    case CreateTree
+    case SubscribeToTopic
+    case FetchGoalStat
 }
 
 class NotificationSender {

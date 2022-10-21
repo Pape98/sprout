@@ -77,7 +77,6 @@ class AuthenticationViewModel: ObservableObject {
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
-                UserService.user = result
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
             }
             // Check login status again to update UI
@@ -96,6 +95,7 @@ class AuthenticationViewModel: ObservableObject {
             
             let rootViewController = UIApplication.shared.windows.first!.rootViewController
             
+            
             guard rootViewController != nil else {
                 return
             }
@@ -113,9 +113,7 @@ class AuthenticationViewModel: ObservableObject {
                       // let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
                 else { return }
-                
-                print("here", authenticaton)
-                
+                                
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
                 
@@ -132,6 +130,9 @@ class AuthenticationViewModel: ObservableObject {
                     
                     guard let userID = Auth.auth().currentUser?.uid else { return }
                     
+                    // Set up analytics default parameter
+                    SproutAnalytics.shared.setDefaultParams()
+                    
                     // Check user if already exists in database
                     self.userRepository.doesUserExist(userID: userID){ result in
                         
@@ -147,6 +148,8 @@ class AuthenticationViewModel: ObservableObject {
                             
                             self.userRepository.createNewUser(newUser)
                         }
+                        
+                        AudioPlayer.shared.startBackgroundMusic()
                         
                         self.setLoggedInUserProfile()
                     }

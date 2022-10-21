@@ -16,9 +16,7 @@ struct ColorPicker: View {
     var subheader: String
     @Binding var selectedColor: String
     
-    
-    let userDefaults = UserDefaultsService.shared
-    
+        
     
     var DEFAULT_TREE: String {
         onboardingRouter.getSetting(key: FirestoreKey.TREE) as! String

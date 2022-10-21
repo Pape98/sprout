@@ -7,14 +7,14 @@
 
 import SwiftUI
 import SpriteKit
+import AlertToast
 
 struct MyGarden: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
-    
-    let userDefaults = UserDefaultsService.shared
-    
+    @EnvironmentObject var appViewModel: AppViewModel
+            
     var scene: SKScene {
         let scene = MyGardenScene()
         scene.scaleMode = .resizeFill
@@ -22,30 +22,13 @@ struct MyGarden: View {
     }
     
     var body: some View {
-        ZStack() {
+        ZStack(alignment: .topTrailing) {
             
             // MARK: SpriteKit view
-            
             SpriteView(scene: scene, options: [.allowsTransparency])
                 .ignoresSafeArea(.container, edges:[.top])
                 .weatherOverlay()
                 .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        HStack {
-                            Button("Switch"){
-                                toggleDropItem()
-                            }
-                            .foregroundColor(.black)
-                            
-                            Image(gardenViewModel.dropItem.rawValue)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height: 30)
-                            
-                        }
-                    }
-                }
                 .onAppear {
                     SproutAnalytics.shared.viewOwnGarden()
                 }
@@ -53,29 +36,77 @@ struct MyGarden: View {
                     gardenViewModel.getUserItems()
                 }
             
-            // MARK: Lottie View
-            
-            VStack {
-                //
-                //                LottieView(filename: "bird_2")
-                //                    .offset(y: 30)
-                
-                Spacer()
-                LottieView(filename: "turtle_2")
-                    .frame(height: 150)
+            ZStack {
+                // MARK: Mode button
+                Button {
+                    gardenViewModel.toggleGardenMode()
+                } label: {
+                    ZStack {
+                        
+                        Circle()
+                            .fill(gardenViewModel.gardenMode == .planting ? Color.appleGreen : Color.red)
+                            .opacity(0.5)
+                            .frame(width:40,height:40)
+                        
+                        Image(systemName: gardenViewModel.gardenMode == .planting ? "lock.open.fill" : "lock.fill")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 25, height: 25)
+                        
+                        
+                    }
+                    .frame(width:40,height: 40)
+                }
+                .padding()
             }
             
+            if gardenViewModel.gardenMode == .planting {
+                HStack {
+                    // Stats
+                    VStack(alignment: .leading, spacing: 10) {
+                        if let numDroplets = userViewModel.numDroplets {
+                            Stats(image: "droplet-icon", value: Int(numDroplets.value))
+                        }
+                        
+                        if let numSeeds = userViewModel.numSeeds {
+                            Stats(image: "seed-icon", value: Int(numSeeds.value))
+                        }
+                    }
+                    .padding()
+                    
+                    Spacer()
+                }
+                
+            }
+            
+
         }
+        .toast(isPresenting: $gardenViewModel.showToast, duration: 5, tapToDismiss: true) {
+            AlertToast(displayMode: .banner(.slide),
+                       type: .systemImage(gardenViewModel.toastMessage.image, gardenViewModel.toastMessage.color),
+                       title: gardenViewModel.toastMessage.title, subTitle: gardenViewModel.toastMessage.subtitle)
+        }
+        .overlay {
+            VStack {
         
-    }
-    
-    func toggleDropItem(){
-        gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
-        GardenElement.seed : GardenElement.droplet
+                    LottieView(filename: "\(gardenViewModel.sunMoon)4")
+                        .frame(width: 125, height: 125)
+                        .transition(.move(edge: .trailing))
+                
+                Spacer()
+            }
+        }
+        .onDisappear {
+            gardenViewModel.setSunMoon()
+            gardenViewModel.gardenMode = GardenViewModel.GardenMode.moving
+        }
     }
 }
 
 struct Stats: View {
+    
+    @EnvironmentObject var appViewModel: AppViewModel
+    @EnvironmentObject var gardenViewModel: GardenViewModel
     
     var image: String
     var value: Int
@@ -83,16 +114,35 @@ struct Stats: View {
         40.0
     }
     
+    var fontColor: Color {
+        if appViewModel.backgroundColor == "night" {
+            return .white
+        }
+        
+        return .seaGreen
+    }
+    
+    var grayscale: Double { image.contains(gardenViewModel.dropItem.rawValue) ? 0.0 : 0.9995 }
+    
     var body: some View {
         HStack{
             Image(image)
                 .resizable()
                 .frame(maxWidth: imageSize, maxHeight: imageSize)
+                .grayscale(grayscale)
             Text("\(value)")
                 .font(.title2)
                 .bold()
-                .foregroundColor(.seaGreen)
+                .foregroundColor(fontColor)
         }
+        .onTapGesture {
+            toggleDropItem()
+        }
+    }
+    
+    func toggleDropItem(){
+        gardenViewModel.dropItem = gardenViewModel.dropItem == GardenElement.droplet ?
+        GardenElement.seed : GardenElement.droplet
     }
 }
 
@@ -103,6 +153,7 @@ struct StepView_Previews: PreviewProvider {
             .background(Color.hawks)
             .environmentObject(UserViewModel())
             .environmentObject(GardenViewModel())
+            .environmentObject(AppViewModel())
         
     }
 }

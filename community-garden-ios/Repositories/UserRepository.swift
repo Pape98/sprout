@@ -47,7 +47,7 @@ class UserRepository {
         userRef.getDocument { document, error in
             
             guard error == nil else {
-                print("[doesUserExist()]", error!)
+                Debug.log.error("[doesUserExist()]: \(error)!")
                 return
             }
             completion(document?.exists)
@@ -67,16 +67,16 @@ class UserRepository {
         userRef.getDocument { document, error in
             
             guard error == nil else {
-                print("[fetchLoggedInUser() ref]", error!)
+                Debug.log.error("[fetchLoggedInUser()]: \(error)!")
                 return
             }
             
             do {
                 let decodedUser: User = try document!.data(as: User.self)
-                UserService.user = decodedUser
+                UserService.shared.user = decodedUser
                 completion(decodedUser)
             } catch {
-                print("[fetchLoggedInUser() decoding]", error)
+                Debug.log.error("[fetchLoggedInUser() decoding]: \(error)")
                 
                 // FIXME: Remove later in production
                 AuthenticationViewModel.shared.signOut()
@@ -95,9 +95,8 @@ class UserRepository {
         
         userRef.updateData(updates) { err in
             if let err = err {
-                print("Error updating document: \(err)")
+                Debug.log.error("Error updating document: \(err)")
             } else {
-                print("Document successfully updated")
                 completion()
             }
             
@@ -110,7 +109,7 @@ class UserRepository {
         
         query.getDocuments { querySnapshot, error in
             if let error = error {
-                print("Error getting documents: \(error)")
+                Debug.log.error("Error getting documents: \(error)")
             } else {
                 var users:[User] = []
                 for document in querySnapshot!.documents {
@@ -119,7 +118,8 @@ class UserRepository {
                         let decodedUser: User = try document.data(as: User.self)
                         users.append(decodedUser)
                     } catch {
-                        print("[fetchLoggedInUser()]", error)
+                        Debug.log.error("[fetchAllUsers()]: \(error)")
+                        
                     }
                 }
                 completion(users)

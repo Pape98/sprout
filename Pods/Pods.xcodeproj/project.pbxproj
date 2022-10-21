@@ -177,7 +177,10 @@
 		E966191B1149AEE7B5295921B2AD7381 /* OIDServiceConfiguration.m in Sources */ = {isa = PBXBuildFile; fileRef = FEFE1BE1C6D52091E7628F847352FB13 /* OIDServiceConfiguration.m */; };
 		EBE36AFF9964F232ABAEA6E260C5CF82 /* OIDServiceDiscovery.h in Headers */ = {isa = PBXBuildFile; fileRef = B41A374291963E7C2FC8CE395487B506 /* OIDServiceDiscovery.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EE2C1A0DD32A33303C09254902FEAADC /* GIDSignInStrings.m in Sources */ = {isa = PBXBuildFile; fileRef = FFB6B8BB8616927E38933C2391436936 /* GIDSignInStrings.m */; };
+		F06558A628F1FA3F0077C50B /* SwiftyBeaver in Frameworks */ = {isa = PBXBuildFile; productRef = F06558A528F1FA3F0077C50B /* SwiftyBeaver */; };
+		F0AE96742901B5E300DD788C /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0AE96732901B5E300DD788C /* SwiftDate */; };
 		F0B6DAE3287484A200DD3F03 /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = F0B6DAE2287484A200DD3F03 /* SQLite */; };
+		F0F3673E28ED1E9600F79D1A /* AlertToast in Frameworks */ = {isa = PBXBuildFile; productRef = F0F3673D28ED1E9600F79D1A /* AlertToast */; };
 		F159FDF0C26037758BF2D029A4BDEF6E /* GIDSignIn_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C4A17DF35F5124EA6DB3234DB22044C /* GIDSignIn_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F23CEE6326992BCA15408CE8A833123A /* GIDGoogleUser_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = E4D5635B68C398D7C4F61EEDA9555479 /* GIDGoogleUser_Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		F2D0761B5C842C92D20189388D3B5069 /* pt.lproj in Resources */ = {isa = PBXBuildFile; fileRef = 3DBC0B175A8B06781E6770FD1CC7DBC8 /* pt.lproj */; };
@@ -535,8 +538,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F3673E28ED1E9600F79D1A /* AlertToast in Frameworks */,
 				8CF9E0A7ADD7449CF2026546440EBB1F /* Foundation.framework in Frameworks */,
+				F0AE96742901B5E300DD788C /* SwiftDate in Frameworks */,
 				4816ED359D1CCB98A1C010564EE02C2F /* SafariServices.framework in Frameworks */,
+				F06558A628F1FA3F0077C50B /* SwiftyBeaver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1050,6 +1056,9 @@
 			);
 			name = AppAuth;
 			packageProductDependencies = (
+				F0F3673D28ED1E9600F79D1A /* AlertToast */,
+				F06558A528F1FA3F0077C50B /* SwiftyBeaver */,
+				F0AE96732901B5E300DD788C /* SwiftDate */,
 			);
 			productName = AppAuth;
 			productReference = 3FD1B4C1246D643E9476438C28048FA8 /* AppAuth.framework */;
@@ -1214,6 +1223,9 @@
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
 			packageReferences = (
 				F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */,
+				F0F3673C28ED1E9600F79D1A /* XCRemoteSwiftPackageReference "AlertToast" */,
+				F06558A428F1FA3F0077C50B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
+				F0AE96722901B5E300DD788C /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = 6A1666EA7787449E247EB91D424FC8A6 /* Products */;
 			projectDirPath = "";
@@ -1490,6 +1502,7 @@
 			baseConfigurationReference = A0154DC0FE8350781E8CBE7D3D7C3F71 /* GoogleSignIn.release.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleSignIn";
+				DEVELOPMENT_TEAM = 75URXTAXCM;
 				IBSC_MODULE = GoogleSignIn;
 				INFOPLIST_FILE = "Target Support Files/GoogleSignIn/ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -1609,6 +1622,7 @@
 			baseConfigurationReference = 7D3D2F686BF81E862D58EADB59D6E10D /* GoogleSignIn.debug.xcconfig */;
 			buildSettings = {
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/GoogleSignIn";
+				DEVELOPMENT_TEAM = 75URXTAXCM;
 				IBSC_MODULE = GoogleSignIn;
 				INFOPLIST_FILE = "Target Support Files/GoogleSignIn/ResourceBundle-GoogleSignIn-GoogleSignIn-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -2059,6 +2073,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F06558A428F1FA3F0077C50B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		F0AE96722901B5E300DD788C /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
@@ -2067,13 +2097,36 @@
 				minimumVersion = 0.9.2;
 			};
 		};
+		F0F3673C28ED1E9600F79D1A /* XCRemoteSwiftPackageReference "AlertToast" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/elai950/AlertToast.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F06558A528F1FA3F0077C50B /* SwiftyBeaver */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F06558A428F1FA3F0077C50B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */;
+			productName = SwiftyBeaver;
+		};
+		F0AE96732901B5E300DD788C /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0AE96722901B5E300DD788C /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
 		F0B6DAE2287484A200DD3F03 /* SQLite */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F0B6DAE1287484A200DD3F03 /* XCRemoteSwiftPackageReference "SQLite" */;
 			productName = SQLite;
+		};
+		F0F3673D28ED1E9600F79D1A /* AlertToast */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0F3673C28ED1E9600F79D1A /* XCRemoteSwiftPackageReference "AlertToast" */;
+			productName = AlertToast;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

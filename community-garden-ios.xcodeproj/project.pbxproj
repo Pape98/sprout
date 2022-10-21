@@ -12,6 +12,9 @@
 		F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */; };
 		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
 		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
+		F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */ = {isa = PBXBuildFile; fileRef = F013199D28FA0FE9002B47A4 /* turtle_a2.json */; };
+		F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */ = {isa = PBXBuildFile; fileRef = F01319A328FA1AF6002B47A4 /* deer_a5.json */; };
+		F01319A628FA2282002B47A4 /* SceneElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01319A528FA2282002B47A4 /* SceneElements.swift */; };
 		F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0132C68286A746900267B9D /* GoalsSetting.swift */; };
 		F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */; };
 		F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0149D53284E9E0D00782D27 /* TreePicker.swift */; };
@@ -44,13 +47,14 @@
 		F0475B59286100D700C68B35 /* DataMapping.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B58286100D600C68B35 /* DataMapping.swift */; };
 		F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B5A286101BA00C68B35 /* DataCard.swift */; };
 		F0475B61286228D000C68B35 /* LastSteps.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0475B60286228CF00C68B35 /* LastSteps.swift */; };
-		F04AD4BD288A397A00BC17AB /* CustomMessageSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */; };
 		F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */; };
 		F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */; };
 		F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */; };
-		F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* Messages.swift */; };
+		F04AD4CF288B22DD00BC17AB /* UserMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = F04AD4CE288B22DD00BC17AB /* UserMessages.swift */; };
+		F04E752228EF6DF00046195B /* birds.json in Resources */ = {isa = PBXBuildFile; fileRef = F04E752128EF6DF00046195B /* birds.json */; };
 		F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = F059833D28D4D88100542D64 /* FirebaseRemoteConfig */; };
 		F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */; };
+		F06558AB28F1FD230077C50B /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = F06558AA28F1FD230077C50B /* Debug.swift */; };
 		F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */; };
 		F07657F528D6870E00C72F2C /* Community.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F428D6870E00C72F2C /* Community.swift */; };
 		F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */; };
@@ -73,20 +77,41 @@
 		F085A8B528C531D000A08BE4 /* SproutAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */; };
 		F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = F08C8C5E28AC1B0800DDDFB8 /* Lottie */; };
 		F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */; };
-		F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */; };
-		F08C8C7328AC37AA00DDDFB8 /* turtle_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */; };
-		F08C8C7528AC37B000DDDFB8 /* bird_2.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7428AC37B000DDDFB8 /* bird_2.json */; };
-		F08C8C7728AD420200DDDFB8 /* turtle_3.json in Resources */ = {isa = PBXBuildFile; fileRef = F08C8C7628AD420200DDDFB8 /* turtle_3.json */; };
+		F08C8C6D28AC277500DDDFB8 /* AudioPlayerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */; };
 		F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */; };
 		F0964268275B3A8900F1CEC1 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0964267275B3A8900F1CEC1 /* HealthKit.framework */; };
 		F096426A275B510300F1CEC1 /* Health.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964269275B510300F1CEC1 /* Health.swift */; };
 		F096426C275B513100F1CEC1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
 		F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426F275B52AC00F1CEC1 /* UserViewModel.swift */; };
+		F09F81E928F660D7009287E6 /* moon1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81E528F660D7009287E6 /* moon1.json */; };
+		F09F81EA28F660D7009287E6 /* moon2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81E628F660D7009287E6 /* moon2.json */; };
+		F09F81EB28F660D7009287E6 /* moon3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81E728F660D7009287E6 /* moon3.json */; };
+		F09F81F128F660E2009287E6 /* sun1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81ED28F660E0009287E6 /* sun1.json */; };
+		F09F81F228F660E2009287E6 /* sun2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81EE28F660E1009287E6 /* sun2.json */; };
+		F09F81F328F660E2009287E6 /* sun4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81EF28F660E1009287E6 /* sun4.json */; };
+		F09F81F428F660E2009287E6 /* sun3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81F028F660E2009287E6 /* sun3.json */; };
+		F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F528F67126009287E6 /* GoalsRepository.swift */; };
+		F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F81F728F71D67009287E6 /* GoalsMetCard.swift */; };
+		F09F81FA28F7BC9F009287E6 /* moon4.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F81F928F7BC9F009287E6 /* moon4.json */; };
+		F09F820A28FB1804009287E6 /* deer_s2.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F820928FB1804009287E6 /* deer_s2.json */; };
+		F09F821028FB1E99009287E6 /* dog_b3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F820F28FB1E99009287E6 /* dog_b3.json */; };
+		F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821128FB1EAA009287E6 /* turtle_s3.json */; };
+		F09F821428FB4038009287E6 /* turtle_a1.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821328FB4037009287E6 /* turtle_a1.json */; };
+		F09F821628FB5ABD009287E6 /* dog_s3.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821528FB5ABD009287E6 /* dog_s3.json */; };
+		F09F821828FB9FA6009287E6 /* FloatingAnimal.swift in Sources */ = {isa = PBXBuildFile; fileRef = F09F821728FB9FA6009287E6 /* FloatingAnimal.swift */; };
+		F09F821F28FBA5C5009287E6 /* dog-walking.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F821E28FBA5C5009287E6 /* dog-walking.json */; };
+		F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F822228FBABBD009287E6 /* penguin-waving-hello.json */; };
+		F09F822528FBACB0009287E6 /* koala-laughing.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F822428FBACB0009287E6 /* koala-laughing.json */; };
+		F09F823128FBB033009287E6 /* sleeping-bear.json in Resources */ = {isa = PBXBuildFile; fileRef = F09F823028FBB033009287E6 /* sleeping-bear.json */; };
+		F0A898FE28FDE93A007018C1 /* Catamaran-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */; };
+		F0A8990328FF9420007018C1 /* dog_c1.json in Resources */ = {isa = PBXBuildFile; fileRef = F0A8990228FF9420007018C1 /* dog_c1.json */; };
+		F0A8990528FF999D007018C1 /* Other.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0A8990428FF999D007018C1 /* Other.swift */; };
 		F0ADEA11275CB00D0039B134 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0964272275C25C800F1CEC1 /* Constants.swift */; };
 		F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA1E275CE40E0039B134 /* FirebaseFirestore */; };
 		F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0ADEA22275ECCA80039B134 /* FirebaseAuth */; };
 		F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2A275ED13D0039B134 /* LoginView.swift */; };
 		F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0ADEA2C275ED1740039B134 /* LaunchView.swift */; };
+		F0B07D1728EF190400AA99FC /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B07D1628EF190400AA99FC /* MessagingService.swift */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
 		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
@@ -94,24 +119,42 @@
 		F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */; };
 		F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */; };
 		F0B6DAEC2875C30100DD3F03 /* Statistics.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAEB2875C30100DD3F03 /* Statistics.swift */; };
-		F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */; };
+		F0B6DAEE2875CB5100DD3F03 /* StatsSQLRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAED2875CB5100DD3F03 /* StatsSQLRepository.swift */; };
 		F0B6DAF02876181D00DD3F03 /* ProgressRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */; };
 		F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E1C2783B871004514D4 /* NotificationService.swift */; };
 		F0C99E22278481A6004514D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0C99E21278481A6004514D4 /* UserRepository.swift */; };
 		F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0CA2CE52760A1D300F42683 /* Extensions.swift */; };
-		F0D2CB6728DC764700C7005C /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D2CB6628DC764700C7005C /* water_droplet.mp3 */; };
 		F0D66E3328834EDC0095AEDE /* SettingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3228834EDC0095AEDE /* SettingButton.swift */; };
 		F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3428836AD50095AEDE /* SettingPicker.swift */; };
 		F0D66E3728886E4D0095AEDE /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3628886E4D0095AEDE /* Message.swift */; };
 		F0D66E39288872160095AEDE /* MessagesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E38288872160095AEDE /* MessagesRepository.swift */; };
-		F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* MessageOptions.swift */; };
-		F0E9BF0228DBB49B007FBC04 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0E9BF0128DBB49B007FBC04 /* SwiftDate */; };
+		F0D66E3C288894B00095AEDE /* SendMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D66E3B288894B00095AEDE /* SendMessage.swift */; };
+		F0D9064228FBD814007ADDED /* Badges.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9064128FBD814007ADDED /* Badges.swift */; };
+		F0D9064628FBD896007ADDED /* BadgesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9064528FBD896007ADDED /* BadgesViewModel.swift */; };
+		F0D9064B28FC85DF007ADDED /* pointGained.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064A28FC85DF007ADDED /* pointGained.mp3 */; };
+		F0D9064D28FCB4DD007ADDED /* win.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064C28FCB4DD007ADDED /* win.mp3 */; };
+		F0D9064F28FCB597007ADDED /* congratulations.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0D9064E28FCB597007ADDED /* congratulations.mp3 */; };
+		F0D9065128FDC839007ADDED /* MusicList.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065028FDC839007ADDED /* MusicList.swift */; };
+		F0D9065328FDD4DE007ADDED /* PersonalHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */; };
+		F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065428FDD772007ADDED /* CommunityHistory.swift */; };
+		F0D9065828FDDC14007ADDED /* BadgeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065728FDDC14007ADDED /* BadgeInfo.swift */; };
+		F0D9065A28FDE48C007ADDED /* JustifiedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065928FDE48C007ADDED /* JustifiedText.swift */; };
+		F0D9065B28FDE7C6007ADDED /* Baloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672528EA026300F79D1A /* Baloo.ttf */; };
+		F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */; };
+		F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */; };
+		F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */; };
+		F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF1028E133E7007FBC04 /* autumn_town_day.mp3 */; };
+		F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF1328E1343B007FBC04 /* winter_glade_evening.mp3 */; };
+		F0E9BF1628E1348F007FBC04 /* summer_bar.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF1528E1348F007FBC04 /* summer_bar.mp3 */; };
+		F0E9BF1828E25C3E007FBC04 /* ReactionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */; };
 		F0F0C86A28AED64A0047D9EA /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86928AED64A0047D9EA /* FirebaseMessaging */; };
 		F0F0C86C28AF333B0047D9EA /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */; };
 		F0F0C86E28AFC6090047D9EA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */; };
 		F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87428B50A9B0047D9EA /* MessageCard.swift */; };
 		F0F0C87A28B53CFE0047D9EA /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87928B53CFE0047D9EA /* History.swift */; };
 		F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */; };
+		F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F3672A28EB422800F79D1A /* GoalslEditing.swift */; };
+		F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3673428EBBC9400F79D1A /* bird-feeding.json */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
 		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
@@ -127,6 +170,9 @@
 		F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItems.swift; sourceTree = "<group>"; };
 		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
+		F013199D28FA0FE9002B47A4 /* turtle_a2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_a2.json; sourceTree = "<group>"; };
+		F01319A328FA1AF6002B47A4 /* deer_a5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer_a5.json; sourceTree = "<group>"; };
+		F01319A528FA2282002B47A4 /* SceneElements.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneElements.swift; sourceTree = "<group>"; };
 		F0132C68286A746900267B9D /* GoalsSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsSetting.swift; sourceTree = "<group>"; };
 		F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewModel.swift; sourceTree = "<group>"; };
 		F0149D53284E9E0D00782D27 /* TreePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreePicker.swift; sourceTree = "<group>"; };
@@ -160,12 +206,13 @@
 		F0475B5A286101BA00C68B35 /* DataCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCard.swift; sourceTree = "<group>"; };
 		F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Catamaran-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		F0475B60286228CF00C68B35 /* LastSteps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastSteps.swift; sourceTree = "<group>"; };
-		F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomMessageSheet.swift; sourceTree = "<group>"; };
 		F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewModel.swift; sourceTree = "<group>"; };
 		F04AD4C8288B049F00BC17AB /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F04AD4CB288B1EE500BC17AB /* LaunchScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreen.swift; sourceTree = "<group>"; };
-		F04AD4CE288B22DD00BC17AB /* Messages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Messages.swift; sourceTree = "<group>"; };
+		F04AD4CE288B22DD00BC17AB /* UserMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMessages.swift; sourceTree = "<group>"; };
+		F04E752128EF6DF00046195B /* birds.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = birds.json; sourceTree = "<group>"; };
 		F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfiguration.swift; sourceTree = "<group>"; };
+		F06558AA28F1FD230077C50B /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
 		F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGardenScene.swift; sourceTree = "<group>"; };
 		F07657F428D6870E00C72F2C /* Community.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Community.swift; sourceTree = "<group>"; };
 		F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenScene.swift; sourceTree = "<group>"; };
@@ -186,10 +233,7 @@
 		F0842BBC285EA252002C79BD /* PickerTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PickerTitle.swift; sourceTree = "<group>"; };
 		F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SproutAnalytics.swift; sourceTree = "<group>"; };
 		F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lottie.swift; sourceTree = "<group>"; };
-		F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
-		F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_2.json; sourceTree = "<group>"; };
-		F08C8C7428AC37B000DDDFB8 /* bird_2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = bird_2.json; sourceTree = "<group>"; };
-		F08C8C7628AD420200DDDFB8 /* turtle_3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_3.json; sourceTree = "<group>"; };
+		F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayerService.swift; sourceTree = "<group>"; };
 		F08C8C7828AD91F000DDDFB8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0964265275B3A8900F1CEC1 /* community-garden-ios.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "community-garden-ios.entitlements"; sourceTree = "<group>"; };
 		F0964267275B3A8900F1CEC1 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -197,8 +241,31 @@
 		F096426B275B513100F1CEC1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F096426F275B52AC00F1CEC1 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
 		F0964272275C25C800F1CEC1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		F09F81E528F660D7009287E6 /* moon1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon1.json; sourceTree = "<group>"; };
+		F09F81E628F660D7009287E6 /* moon2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon2.json; sourceTree = "<group>"; };
+		F09F81E728F660D7009287E6 /* moon3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon3.json; sourceTree = "<group>"; };
+		F09F81ED28F660E0009287E6 /* sun1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun1.json; sourceTree = "<group>"; };
+		F09F81EE28F660E1009287E6 /* sun2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun2.json; sourceTree = "<group>"; };
+		F09F81EF28F660E1009287E6 /* sun4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun4.json; sourceTree = "<group>"; };
+		F09F81F028F660E2009287E6 /* sun3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sun3.json; sourceTree = "<group>"; };
+		F09F81F528F67126009287E6 /* GoalsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsRepository.swift; sourceTree = "<group>"; };
+		F09F81F728F71D67009287E6 /* GoalsMetCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsMetCard.swift; sourceTree = "<group>"; };
+		F09F81F928F7BC9F009287E6 /* moon4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon4.json; sourceTree = "<group>"; };
+		F09F820928FB1804009287E6 /* deer_s2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = deer_s2.json; sourceTree = "<group>"; };
+		F09F820F28FB1E99009287E6 /* dog_b3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_b3.json; sourceTree = "<group>"; };
+		F09F821128FB1EAA009287E6 /* turtle_s3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_s3.json; sourceTree = "<group>"; };
+		F09F821328FB4037009287E6 /* turtle_a1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_a1.json; sourceTree = "<group>"; };
+		F09F821528FB5ABD009287E6 /* dog_s3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_s3.json; sourceTree = "<group>"; };
+		F09F821728FB9FA6009287E6 /* FloatingAnimal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingAnimal.swift; sourceTree = "<group>"; };
+		F09F821E28FBA5C5009287E6 /* dog-walking.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "dog-walking.json"; sourceTree = "<group>"; };
+		F09F822228FBABBD009287E6 /* penguin-waving-hello.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "penguin-waving-hello.json"; sourceTree = "<group>"; };
+		F09F822428FBACB0009287E6 /* koala-laughing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "koala-laughing.json"; sourceTree = "<group>"; };
+		F09F823028FBB033009287E6 /* sleeping-bear.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "sleeping-bear.json"; sourceTree = "<group>"; };
+		F0A8990228FF9420007018C1 /* dog_c1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_c1.json; sourceTree = "<group>"; };
+		F0A8990428FF999D007018C1 /* Other.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Other.swift; sourceTree = "<group>"; };
 		F0ADEA2A275ED13D0039B134 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		F0ADEA2C275ED1740039B134 /* LaunchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchView.swift; sourceTree = "<group>"; };
+		F0B07D1628EF190400AA99FC /* MessagingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagingService.swift; sourceTree = "<group>"; };
 		F0B32C9C275AF77700C714A2 /* community-garden-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "community-garden-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityGardenIosApp.swift; sourceTree = "<group>"; };
 		F0B32CA3275AF77900C714A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -207,21 +274,40 @@
 		F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreSQLRepository.swift; sourceTree = "<group>"; };
 		F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStoreViewModel.swift; sourceTree = "<group>"; };
 		F0B6DAEB2875C30100DD3F03 /* Statistics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statistics.swift; sourceTree = "<group>"; };
-		F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsRepository.swift; sourceTree = "<group>"; };
+		F0B6DAED2875CB5100DD3F03 /* StatsSQLRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsSQLRepository.swift; sourceTree = "<group>"; };
 		F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRepository.swift; sourceTree = "<group>"; };
 		F0C99E1C2783B871004514D4 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		F0C99E21278481A6004514D4 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		F0CA2CE52760A1D300F42683 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		F0D2CB6628DC764700C7005C /* water_droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water_droplet.mp3; sourceTree = "<group>"; };
 		F0D66E3228834EDC0095AEDE /* SettingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingButton.swift; sourceTree = "<group>"; };
 		F0D66E3428836AD50095AEDE /* SettingPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingPicker.swift; sourceTree = "<group>"; };
 		F0D66E3628886E4D0095AEDE /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		F0D66E38288872160095AEDE /* MessagesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesRepository.swift; sourceTree = "<group>"; };
-		F0D66E3B288894B00095AEDE /* MessageOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageOptions.swift; sourceTree = "<group>"; };
+		F0D66E3B288894B00095AEDE /* SendMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMessage.swift; sourceTree = "<group>"; };
+		F0D9064128FBD814007ADDED /* Badges.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badges.swift; sourceTree = "<group>"; };
+		F0D9064528FBD896007ADDED /* BadgesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgesViewModel.swift; sourceTree = "<group>"; };
+		F0D9064A28FC85DF007ADDED /* pointGained.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = pointGained.mp3; sourceTree = "<group>"; };
+		F0D9064C28FCB4DD007ADDED /* win.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = win.mp3; sourceTree = "<group>"; };
+		F0D9064E28FCB597007ADDED /* congratulations.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = congratulations.mp3; sourceTree = "<group>"; };
+		F0D9065028FDC839007ADDED /* MusicList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicList.swift; sourceTree = "<group>"; };
+		F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalHistory.swift; sourceTree = "<group>"; };
+		F0D9065428FDD772007ADDED /* CommunityHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityHistory.swift; sourceTree = "<group>"; };
+		F0D9065728FDDC14007ADDED /* BadgeInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeInfo.swift; sourceTree = "<group>"; };
+		F0D9065928FDE48C007ADDED /* JustifiedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JustifiedText.swift; sourceTree = "<group>"; };
+		F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = water_droplet.mp3; sourceTree = "<group>"; };
+		F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = spring_hamlet_evening.mp3; sourceTree = "<group>"; };
+		F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = slightly_sour.mp3; sourceTree = "<group>"; };
+		F0E9BF1028E133E7007FBC04 /* autumn_town_day.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = autumn_town_day.mp3; sourceTree = "<group>"; };
+		F0E9BF1328E1343B007FBC04 /* winter_glade_evening.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = winter_glade_evening.mp3; sourceTree = "<group>"; };
+		F0E9BF1528E1348F007FBC04 /* summer_bar.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = summer_bar.mp3; sourceTree = "<group>"; };
+		F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionRepository.swift; sourceTree = "<group>"; };
 		F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F0F0C87428B50A9B0047D9EA /* MessageCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageCard.swift; sourceTree = "<group>"; };
 		F0F0C87928B53CFE0047D9EA /* History.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewModel.swift; sourceTree = "<group>"; };
+		F0F3672528EA026300F79D1A /* Baloo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Baloo.ttf; sourceTree = "<group>"; };
+		F0F3672A28EB422800F79D1A /* GoalslEditing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalslEditing.swift; sourceTree = "<group>"; };
+		F0F3673428EBBC9400F79D1A /* bird-feeding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bird-feeding.json"; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
@@ -239,7 +325,6 @@
 				F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
-				F0E9BF0228DBB49B007FBC04 /* SwiftDate in Frameworks */,
 				F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */,
 				F085A8B328C51EB100A08BE4 /* FirebaseAnalytics in Frameworks */,
 				F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */,
@@ -277,9 +362,18 @@
 				F0842B59285A4A32002C79BD /* CircledFlower.swift */,
 				F0F5E93B2873ACA0002C30BC /* MainBackground.swift */,
 				F08C8C6028AC1CBA00DDDFB8 /* Lottie.swift */,
-				F0F0C87628B53AA60047D9EA /* Messages */,
+				F09F821728FB9FA6009287E6 /* FloatingAnimal.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		F01319A728FA6B65002B47A4 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F043F265288076EC008F211C /* SceneHelper.swift */,
+				F01319A528FA2282002B47A4 /* SceneElements.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F0132C6F286BB2DD00267B9D /* Main */ = {
@@ -287,9 +381,10 @@
 			children = (
 				F024BFF5286BB37100850018 /* MainView.swift */,
 				F030B021283B2F4F0026F2E0 /* Dashboard */,
+				F09F823428FBD602009287E6 /* Badges */,
+				F09B71E327724B260085C7AC /* Garden */,
 				F0F0C87828B53CCF0047D9EA /* History */,
 				F07657F328D686EE00C72F2C /* Community */,
-				F09B71E327724B260085C7AC /* Garden */,
 				F0F5E93828739422002C30BC /* Settings */,
 			);
 			path = Main;
@@ -339,6 +434,8 @@
 			isa = PBXGroup;
 			children = (
 				F04085FD28B862AD002EDECD /* DataStatus.swift */,
+				F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */,
+				F0D9065428FDD772007ADDED /* CommunityHistory.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -346,6 +443,7 @@
 		F0475B5E28610E3400C68B35 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F0F3672528EA026300F79D1A /* Baloo.ttf */,
 				F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */,
 			);
 			path = Fonts;
@@ -363,18 +461,30 @@
 		F04AD4CD288B22C300BC17AB /* Messages */ = {
 			isa = PBXGroup;
 			children = (
-				F04AD4CE288B22DD00BC17AB /* Messages.swift */,
-				F0F0C87328B50A7A0047D9EA /* components */,
+				F0D66E3B288894B00095AEDE /* SendMessage.swift */,
+				F04AD4CE288B22DD00BC17AB /* UserMessages.swift */,
+				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		F06558AC28F224D10077C50B /* Sun */ = {
+			isa = PBXGroup;
+			children = (
+				F09F81ED28F660E0009287E6 /* sun1.json */,
+				F09F81EE28F660E1009287E6 /* sun2.json */,
+				F09F81F028F660E2009287E6 /* sun3.json */,
+				F09F81EF28F660E1009287E6 /* sun4.json */,
+			);
+			path = Sun;
 			sourceTree = "<group>";
 		};
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
-				F043F265288076EC008F211C /* SceneHelper.swift */,
 				F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */,
 				F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */,
+				F01319A728FA6B65002B47A4 /* Utils */,
 			);
 			path = GameScenes;
 			sourceTree = "<group>";
@@ -383,7 +493,7 @@
 			isa = PBXGroup;
 			children = (
 				F07657F428D6870E00C72F2C /* Community.swift */,
-				F04AD4CD288B22C300BC17AB /* Messages */,
+				F09F823328FBD27B009287E6 /* components */,
 			);
 			path = Community;
 			sourceTree = "<group>";
@@ -394,6 +504,7 @@
 				F0149D5E284F181600782D27 /* GardenInfoCard.swift */,
 				F0149D60284F184000782D27 /* DashboardCard.swift */,
 				F0149D62284F18B300782D27 /* IconButton.swift */,
+				F09F81F728F71D67009287E6 /* GoalsMetCard.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -424,9 +535,9 @@
 		F08C8C5828AC1A6500DDDFB8 /* Lottie */ = {
 			isa = PBXGroup;
 			children = (
-				F08C8C7428AC37B000DDDFB8 /* bird_2.json */,
-				F08C8C7228AC37AA00DDDFB8 /* turtle_2.json */,
-				F08C8C7628AD420200DDDFB8 /* turtle_3.json */,
+				F06558AC28F224D10077C50B /* Sun */,
+				F0F3672728EA97A300F79D1A /* Moon */,
+				F0F3672628EA979600F79D1A /* Animals */,
 			);
 			path = Lottie;
 			sourceTree = "<group>";
@@ -434,8 +545,8 @@
 		F08C8C6428AC258800DDDFB8 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				F08C8C6528AC259500DDDFB8 /* Sounds */,
 				F0475B5E28610E3400C68B35 /* Fonts */,
+				F08C8C6528AC259500DDDFB8 /* Sounds */,
 				F08C8C5828AC1A6500DDDFB8 /* Lottie */,
 			);
 			path = Assets;
@@ -444,9 +555,8 @@
 		F08C8C6528AC259500DDDFB8 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
-				F0D2CB6628DC764700C7005C /* water_droplet.mp3 */,
-				F04085F928B5562F002EDECD /* click1.mp3 */,
-				F04085F828B5562F002EDECD /* click2.mp3 */,
+				F0D9063E28FBD7D4007ADDED /* other */,
+				F0D9063D28FBD7C0007ADDED /* background */,
 			);
 			path = Sounds;
 			sourceTree = "<group>";
@@ -469,8 +579,9 @@
 				F0CA2CE52760A1D300F42683 /* Extensions.swift */,
 				F00A6F3F283C966300A176D6 /* NotificationSender.swift */,
 				F043F25D287CFDC6008F211C /* Protocols.swift */,
-				F08C8C6C28AC277500DDDFB8 /* AudioPlayer.swift */,
 				F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */,
+				F06558AA28F1FD230077C50B /* Debug.swift */,
+				F0D9065928FDE48C007ADDED /* JustifiedText.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -481,6 +592,72 @@
 				F0057380276F828F00EB487B /* MyGarden.swift */,
 			);
 			path = Garden;
+			sourceTree = "<group>";
+		};
+		F09F820328FB0250009287E6 /* deer */ = {
+			isa = PBXGroup;
+			children = (
+				F09F820928FB1804009287E6 /* deer_s2.json */,
+				F01319A328FA1AF6002B47A4 /* deer_a5.json */,
+			);
+			path = deer;
+			sourceTree = "<group>";
+		};
+		F09F820428FB025E009287E6 /* dog */ = {
+			isa = PBXGroup;
+			children = (
+				F09F820F28FB1E99009287E6 /* dog_b3.json */,
+				F0A8990228FF9420007018C1 /* dog_c1.json */,
+				F09F821528FB5ABD009287E6 /* dog_s3.json */,
+			);
+			path = dog;
+			sourceTree = "<group>";
+		};
+		F09F820528FB0274009287E6 /* turtle */ = {
+			isa = PBXGroup;
+			children = (
+				F09F821128FB1EAA009287E6 /* turtle_s3.json */,
+				F013199D28FA0FE9002B47A4 /* turtle_a2.json */,
+				F09F821328FB4037009287E6 /* turtle_a1.json */,
+			);
+			path = turtle;
+			sourceTree = "<group>";
+		};
+		F09F820628FB0285009287E6 /* bird */ = {
+			isa = PBXGroup;
+			children = (
+				F04E752128EF6DF00046195B /* birds.json */,
+				F0F3673428EBBC9400F79D1A /* bird-feeding.json */,
+			);
+			path = bird;
+			sourceTree = "<group>";
+		};
+		F09F821D28FBA5BB009287E6 /* other */ = {
+			isa = PBXGroup;
+			children = (
+				F09F823028FBB033009287E6 /* sleeping-bear.json */,
+				F09F822428FBACB0009287E6 /* koala-laughing.json */,
+				F09F822228FBABBD009287E6 /* penguin-waving-hello.json */,
+				F09F821E28FBA5C5009287E6 /* dog-walking.json */,
+			);
+			path = other;
+			sourceTree = "<group>";
+		};
+		F09F823328FBD27B009287E6 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F04AD4CD288B22C300BC17AB /* Messages */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		F09F823428FBD602009287E6 /* Badges */ = {
+			isa = PBXGroup;
+			children = (
+				F0D9064128FBD814007ADDED /* Badges.swift */,
+				F0D9065628FDDBEC007ADDED /* components */,
+			);
+			path = Badges;
 			sourceTree = "<group>";
 		};
 		F0B32C93275AF77700C714A2 = {
@@ -541,6 +718,8 @@
 				F038369D2839497600D444E4 /* SQLiteService.swift */,
 				F02682D02850F13A004747FD /* UserDefaultService.swift */,
 				F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */,
+				F0B07D1628EF190400AA99FC /* MessagingService.swift */,
+				F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -550,14 +729,15 @@
 			children = (
 				F043F261287EEDD1008F211C /* AppViewModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
+				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
 				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
+				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
 				F00A6F3D283C957800A176D6 /* GardenViewModel.swift */,
 				F04AD4BE288A4A4300BC17AB /* MessagesViewModel.swift */,
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
-				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
-				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
-				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
+				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
+				F0D9064528FBD896007ADDED /* BadgesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -584,6 +764,7 @@
 				F0B6DAEB2875C30100DD3F03 /* Statistics.swift */,
 				F0D66E3628886E4D0095AEDE /* Message.swift */,
 				F07657FD28D7D81200C72F2C /* Group.swift */,
+				F0A8990428FF999D007018C1 /* Other.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -592,14 +773,16 @@
 			isa = PBXGroup;
 			children = (
 				F04234A42784C6F40063DA08 /* Collections.swift */,
-				F0C99E21278481A6004514D4 /* UserRepository.swift */,
-				F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */,
-				F0B6DAED2875CB5100DD3F03 /* StatsRepository.swift */,
-				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
-				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
 				F043F25F287EEBA7008F211C /* GardenRepository.swift */,
-				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
+				F09F81F528F67126009287E6 /* GoalsRepository.swift */,
 				F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */,
+				F0C99E21278481A6004514D4 /* UserRepository.swift */,
+				F043F25B287CF1BB008F211C /* HealthStoreRepository.swift */,
+				F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */,
+				F0D66E38288872160095AEDE /* MessagesRepository.swift */,
+				F0B6DAEF2876181C00DD3F03 /* ProgressRepository.swift */,
+				F0E9BF1728E25C3E007FBC04 /* ReactionRepository.swift */,
+				F0B6DAED2875CB5100DD3F03 /* StatsSQLRepository.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -610,25 +793,43 @@
 				F0D66E3228834EDC0095AEDE /* SettingButton.swift */,
 				F0D66E3428836AD50095AEDE /* SettingPicker.swift */,
 				F0337C392887A9A400251FD0 /* NameChanging.swift */,
+				F0F3672A28EB422800F79D1A /* GoalslEditing.swift */,
+				F0D9065028FDC839007ADDED /* MusicList.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
 		};
-		F0F0C87328B50A7A0047D9EA /* components */ = {
+		F0D9063D28FBD7C0007ADDED /* background */ = {
 			isa = PBXGroup;
 			children = (
-				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
+				F0E9BF1528E1348F007FBC04 /* summer_bar.mp3 */,
+				F0E9BF1328E1343B007FBC04 /* winter_glade_evening.mp3 */,
+				F0E9BF1028E133E7007FBC04 /* autumn_town_day.mp3 */,
+				F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */,
+				F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */,
 			);
-			path = components;
+			path = background;
 			sourceTree = "<group>";
 		};
-		F0F0C87628B53AA60047D9EA /* Messages */ = {
+		F0D9063E28FBD7D4007ADDED /* other */ = {
 			isa = PBXGroup;
 			children = (
-				F0D66E3B288894B00095AEDE /* MessageOptions.swift */,
-				F04AD4BC288A397A00BC17AB /* CustomMessageSheet.swift */,
+				F0D9064E28FCB597007ADDED /* congratulations.mp3 */,
+				F0D9064C28FCB4DD007ADDED /* win.mp3 */,
+				F0D9064A28FC85DF007ADDED /* pointGained.mp3 */,
+				F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */,
+				F04085F928B5562F002EDECD /* click1.mp3 */,
+				F04085F828B5562F002EDECD /* click2.mp3 */,
 			);
-			path = Messages;
+			path = other;
+			sourceTree = "<group>";
+		};
+		F0D9065628FDDBEC007ADDED /* components */ = {
+			isa = PBXGroup;
+			children = (
+				F0D9065728FDDC14007ADDED /* BadgeInfo.swift */,
+			);
+			path = components;
 			sourceTree = "<group>";
 		};
 		F0F0C87828B53CCF0047D9EA /* History */ = {
@@ -638,6 +839,29 @@
 				F04085FC28B8628C002EDECD /* components */,
 			);
 			path = History;
+			sourceTree = "<group>";
+		};
+		F0F3672628EA979600F79D1A /* Animals */ = {
+			isa = PBXGroup;
+			children = (
+				F09F821D28FBA5BB009287E6 /* other */,
+				F09F820328FB0250009287E6 /* deer */,
+				F09F820428FB025E009287E6 /* dog */,
+				F09F820528FB0274009287E6 /* turtle */,
+				F09F820628FB0285009287E6 /* bird */,
+			);
+			path = Animals;
+			sourceTree = "<group>";
+		};
+		F0F3672728EA97A300F79D1A /* Moon */ = {
+			isa = PBXGroup;
+			children = (
+				F09F81E528F660D7009287E6 /* moon1.json */,
+				F09F81E628F660D7009287E6 /* moon2.json */,
+				F09F81E728F660D7009287E6 /* moon3.json */,
+				F09F81F928F7BC9F009287E6 /* moon4.json */,
+			);
+			path = Moon;
 			sourceTree = "<group>";
 		};
 		F0F5E93828739422002C30BC /* Settings */ = {
@@ -684,7 +908,6 @@
 				F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */,
 				F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */,
 				F059833D28D4D88100542D64 /* FirebaseRemoteConfig */,
-				F0E9BF0128DBB49B007FBC04 /* SwiftDate */,
 			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
@@ -717,7 +940,7 @@
 			packageReferences = (
 				F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F08C8C5D28AC1B0700DDDFB8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
-				F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				F0F3673928ED178100F79D1A /* XCRemoteSwiftPackageReference "Toaster" */,
 			);
 			productRefGroup = F0B32C9D275AF77700C714A2 /* Products */;
 			projectDirPath = "";
@@ -733,17 +956,46 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0D9065B28FDE7C6007ADDED /* Baloo.ttf in Resources */,
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
+				F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
-				F08C8C7728AD420200DDDFB8 /* turtle_3.json in Resources */,
+				F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */,
+				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
+				F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */,
+				F09F822528FBACB0009287E6 /* koala-laughing.json in Resources */,
+				F0D9064B28FC85DF007ADDED /* pointGained.mp3 in Resources */,
+				F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */,
 				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
+				F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */,
+				F0D9064F28FCB597007ADDED /* congratulations.mp3 in Resources */,
+				F09F821028FB1E99009287E6 /* dog_b3.json in Resources */,
 				F04085FB28B5562F002EDECD /* click1.mp3 in Resources */,
-				F0D2CB6728DC764700C7005C /* water_droplet.mp3 in Resources */,
+				F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */,
+				F0A8990328FF9420007018C1 /* dog_c1.json in Resources */,
+				F09F81EA28F660D7009287E6 /* moon2.json in Resources */,
 				F04085FA28B5562F002EDECD /* click2.mp3 in Resources */,
+				F0E9BF1628E1348F007FBC04 /* summer_bar.mp3 in Resources */,
 				F0F0C86E28AFC6090047D9EA /* GoogleService-Info.plist in Resources */,
+				F0D9064D28FCB4DD007ADDED /* win.mp3 in Resources */,
+				F09F81E928F660D7009287E6 /* moon1.json in Resources */,
 				F04AD4C9288B049F00BC17AB /* LaunchScreen.storyboard in Resources */,
-				F08C8C7528AC37B000DDDFB8 /* bird_2.json in Resources */,
-				F08C8C7328AC37AA00DDDFB8 /* turtle_2.json in Resources */,
+				F09F81F128F660E2009287E6 /* sun1.json in Resources */,
+				F09F821628FB5ABD009287E6 /* dog_s3.json in Resources */,
+				F09F821428FB4038009287E6 /* turtle_a1.json in Resources */,
+				F09F81F328F660E2009287E6 /* sun4.json in Resources */,
+				F09F81F428F660E2009287E6 /* sun3.json in Resources */,
+				F09F820A28FB1804009287E6 /* deer_s2.json in Resources */,
+				F0E9BF1228E133E7007FBC04 /* autumn_town_day.mp3 in Resources */,
+				F09F81FA28F7BC9F009287E6 /* moon4.json in Resources */,
+				F09F81F228F660E2009287E6 /* sun2.json in Resources */,
+				F09F823128FBB033009287E6 /* sleeping-bear.json in Resources */,
+				F09F81EB28F660D7009287E6 /* moon3.json in Resources */,
+				F04E752228EF6DF00046195B /* birds.json in Resources */,
+				F09F821F28FBA5C5009287E6 /* dog-walking.json in Resources */,
+				F0A898FE28FDE93A007018C1 /* Catamaran-VariableFont_wght.ttf in Resources */,
+				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
+				F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -798,16 +1050,20 @@
 			files = (
 				F0842BBD285EA252002C79BD /* PickerTitle.swift in Sources */,
 				F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */,
+				F0D9064628FBD896007ADDED /* BadgesViewModel.swift in Sources */,
 				F0475B5B286101BA00C68B35 /* DataCard.swift in Sources */,
 				F08C8C7928AD91F000DDDFB8 /* AppDelegate.swift in Sources */,
-				F0B6DAEE2875CB5100DD3F03 /* StatsRepository.swift in Sources */,
+				F01319A628FA2282002B47A4 /* SceneElements.swift in Sources */,
+				F0B6DAEE2875CB5100DD3F03 /* StatsSQLRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
+				F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,
 				F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */,
 				F07657F528D6870E00C72F2C /* Community.swift in Sources */,
 				F059834028D4D8CF00542D64 /* RemoteConfiguration.swift in Sources */,
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
+				F0D9065328FDD4DE007ADDED /* PersonalHistory.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
@@ -824,14 +1080,21 @@
 				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
 				F0D66E3728886E4D0095AEDE /* Message.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
+				F0B07D1728EF190400AA99FC /* MessagingService.swift in Sources */,
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
+				F06558AB28F1FD230077C50B /* Debug.swift in Sources */,
+				F0A8990528FF999D007018C1 /* Other.swift in Sources */,
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
+				F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */,
+				F09F821828FB9FA6009287E6 /* FloatingAnimal.swift in Sources */,
 				F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */,
 				F0F0C87A28B53CFE0047D9EA /* History.swift in Sources */,
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
-				F08C8C6D28AC277500DDDFB8 /* AudioPlayer.swift in Sources */,
+				F08C8C6D28AC277500DDDFB8 /* AudioPlayerService.swift in Sources */,
+				F0D9064228FBD814007ADDED /* Badges.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
+				F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */,
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
 				F0132C6D286B9E8400267B9D /* OnboardingViewModel.swift in Sources */,
 				F0132C69286A746900267B9D /* GoalsSetting.swift in Sources */,
@@ -844,8 +1107,9 @@
 				F0149D59284ECDC900782D27 /* Styling.swift in Sources */,
 				F085A8B528C531D000A08BE4 /* SproutAnalytics.swift in Sources */,
 				F08C8C6128AC1CBA00DDDFB8 /* Lottie.swift in Sources */,
-				F04AD4CF288B22DD00BC17AB /* Messages.swift in Sources */,
+				F04AD4CF288B22DD00BC17AB /* UserMessages.swift in Sources */,
 				F0475B572860FB6100C68B35 /* Modifiers.swift in Sources */,
+				F0D9065128FDC839007ADDED /* MusicList.swift in Sources */,
 				F0842BBB285E67F2002C79BD /* DataPicker.swift in Sources */,
 				F07657FE28D7D81200C72F2C /* Group.swift in Sources */,
 				F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */,
@@ -855,7 +1119,8 @@
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
 				F0149D63284F18B300782D27 /* IconButton.swift in Sources */,
 				F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */,
-				F0D66E3C288894B00095AEDE /* MessageOptions.swift in Sources */,
+				F0D66E3C288894B00095AEDE /* SendMessage.swift in Sources */,
+				F0E9BF1828E25C3E007FBC04 /* ReactionRepository.swift in Sources */,
 				F0057381276F828F00EB487B /* MyGarden.swift in Sources */,
 				F0ADEA2B275ED13D0039B134 /* LoginView.swift in Sources */,
 				F0172737275F687A00FAEB12 /* UserService.swift in Sources */,
@@ -865,8 +1130,8 @@
 				F0842B5C285A4F6B002C79BD /* Environments.swift in Sources */,
 				F04085FE28B862AD002EDECD /* DataStatus.swift in Sources */,
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,
-				F04AD4BD288A397A00BC17AB /* CustomMessageSheet.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
+				F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */,
 				F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */,
 				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
 				F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */,
@@ -880,7 +1145,9 @@
 				F0149D61284F184000782D27 /* DashboardCard.swift in Sources */,
 				F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */,
 				F0842BAE285D34C4002C79BD /* ColorOptionsScroll.swift in Sources */,
+				F0D9065A28FDE48C007ADDED /* JustifiedText.swift in Sources */,
 				F043F25E287CFDC6008F211C /* Protocols.swift in Sources */,
+				F0D9065828FDDC14007ADDED /* BadgeInfo.swift in Sources */,
 				F065B17D2825C8B700F1E1ED /* MyGardenScene.swift in Sources */,
 				F0842BB9285E2A19002C79BD /* Screens.swift in Sources */,
 			);
@@ -1015,13 +1282,14 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sprout;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1030,8 +1298,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1057,13 +1324,14 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 11;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "community-garden-ios/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Sprout;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.games";
 				INFOPLIST_KEY_NSHealthShareUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_NSHealthUpdateUsageDescription = "This application requires access to your health data.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -1072,8 +1340,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
 				INFOPLIST_KEY_UIStatusBarHidden = NO;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1129,9 +1396,9 @@
 				minimumVersion = 8.0.0;
 			};
 		};
-		F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+		F0F3673928ED178100F79D1A /* XCRemoteSwiftPackageReference "Toaster" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/malcommac/SwiftDate";
+			repositoryURL = "https://github.com/devxoul/Toaster.git";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1169,11 +1436,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAuth;
-		};
-		F0E9BF0128DBB49B007FBC04 /* SwiftDate */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F0E9BF0028DBB49A007FBC04 /* XCRemoteSwiftPackageReference "SwiftDate" */;
-			productName = SwiftDate;
 		};
 		F0F0C86928AED64A0047D9EA /* FirebaseMessaging */ = {
 			isa = XCSwiftPackageProductDependency;

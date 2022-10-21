@@ -77,7 +77,7 @@ class SQLiteService {
             })
             
         } catch {
-            print(error)
+            Debug.log.error(error)
         }
         return progressTable
     }
@@ -98,6 +98,7 @@ class SQLiteService {
             
         } catch {
             print("createStatisticsTable()",error)
+            Debug.log.error("createStatisticsTable()",error)
         }
         return statsTable
     }
@@ -139,7 +140,7 @@ class SQLiteService {
         do {
             try db!.run(table.upsert(values, onConflictOf: onClonflictOf))
         } catch {
-            print("insertUpdate()",error)
+            Debug.log.error("insertUpdate()",error)
         }
     }
     
@@ -155,7 +156,7 @@ class SQLiteService {
             }
             
         } catch {
-            print("doesExist()",error)
+            Debug.log.error("doesExist()",error)
         }
         return true
     }
@@ -170,7 +171,7 @@ class SQLiteService {
             return loadedData
             
         } catch {
-            print(error)
+            Debug.log.error(error)
         }
         return []
     }
@@ -180,7 +181,7 @@ class SQLiteService {
         do {
             try db!.run(query.update(update))
         } catch {
-            print("updateColumn",error)
+            Debug.log.error("updateColumn",error)
         }
     }
 }

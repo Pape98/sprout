@@ -57,12 +57,21 @@ class HealthStoreService {
                                             updateHandler: self.healthStoreRepo.saveWalkingRunningDistance)
                     
                     // Listen to changes in workouts
+                    let workoutComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
+                    let workoutDate = Calendar.current.date(from: workoutComponents)
                     self.startSampleQuery(sampleType: HKDataTypes.workouts,
+                                          startDate: workoutDate!,
                                           dataType: HKWorkout.self,
                                           updateHandler: self.healthStoreRepo.saveWorkouts)
                     
                     // Listen to changes in sleep
+                    let midnightComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
+                    let midnightDate = Calendar.current.date(from: midnightComponents)
+                   
+                    let sleepDate = Calendar.current.date(byAdding: .hour, value: -2, to: midnightDate!) // starts at 10 pm
+                    
                     self.startSampleQuery(sampleType: HKDataTypes.sleep,
+                                          startDate: sleepDate!,
                                           dataType: HKCategorySample.self,
                                           updateHandler: self.healthStoreRepo.saveSleep)
                 }
@@ -95,22 +104,20 @@ class HealthStoreService {
         }
     }
     
-    func startSampleQuery<T: HKSample>(sampleType: HKSampleType, dataType: T.Type, updateHandler: @escaping (Double) -> Void){
+    func startSampleQuery<T: HKSample>(sampleType: HKSampleType, startDate: Date, dataType: T.Type, updateHandler: @escaping (Double) -> Void){
         
         // Query descriptor
         let sortDescriptor = NSSortDescriptor(key: HKSampleSortIdentifierEndDate, ascending: false)
         
         // Query predicate
-        let components = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
-        let date = Calendar.current.date(from: components)
-        let predicate = NSPredicate(format: "startDate > %@", date! as NSDate)
-        
+        let predicate = NSPredicate(format: "startDate > %@", startDate as NSDate)
+                
         // Observer query
         let observerQuery = HKObserverQuery(sampleType: sampleType, predicate: predicate) { query, completionHandler, error in
             
             if let error = error {
                 // Properly handle the error.
-                print(error)
+                Debug.log.debug(error)
                 return
             }
             
@@ -120,7 +127,7 @@ class HealthStoreService {
                                             sortDescriptors: [sortDescriptor]) { query, result, error in
                 // Handle error
                 if let error = error {
-                    print(error)
+                    Debug.log.debug(error)
                     return
                 }
                 guard result != nil else { return }
@@ -132,6 +139,8 @@ class HealthStoreService {
                     guard sample != nil else { return }
                     duration += (sample!.endDate - sample!.startDate)/60
                 }
+                
+                Debug.log.debug(sampleType, duration)
                 
                 updateHandler(duration)
             }
@@ -172,6 +181,7 @@ class HealthStoreService {
             assertionFailure("*** [HK] unable to find the next Monday. ***")
             return
         }
+        
         
         let query = HKStatisticsCollectionQuery(quantityType: dataType,
                                                 quantitySamplePredicate: nil,
@@ -217,7 +227,7 @@ class HealthStoreService {
         let calendar = Calendar.current
         
         if let error = error as? HKError {
-            print(error)
+            Debug.log.debug(error)
             return
         }
         
@@ -233,6 +243,7 @@ class HealthStoreService {
                                               year: Int(today.year),
                                               month:Int(today.month),
                                               day: Int(today.day))).date else { return }
+        
         
         statsCollection.enumerateStatistics(from: startDate, to: today) { statistics, stop in
             if let sum = statistics.sumQuantity() {

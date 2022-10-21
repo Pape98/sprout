@@ -13,8 +13,20 @@ class UserDefaultsService {
     let defaults = UserDefaults.standard
     static let shared = UserDefaultsService()
     
+    func remove(key: String){
+        defaults.removeObject(forKey: key)
+    }
+    
+    func remove(key: UserDefaultsKey){
+        defaults.removeObject(forKey: key.rawValue)
+    }
+    
     func save<T>(value: T, key: UserDefaultsKey){
         defaults.set(value, forKey: key.rawValue)
+    }
+    
+    func save<T>(value: T, key: String){
+        defaults.set(value, forKey: key)
     }
     
     func get(key: UserDefaultsKey) -> String? {
@@ -36,31 +48,24 @@ class UserDefaultsService {
         return dictionary
     }
     
-    func get(key: UserDefaultsKey) -> Bool {
+    func get(key: UserDefaultsKey) -> Bool? {
         return defaults.bool(forKey: key.rawValue)
     }
     
     func get(key: UserDefaultsKey) -> Data? {
         return defaults.data(forKey: key.rawValue)
     }
+    
+    func get(key: String) -> Int? {
+        return defaults.integer(forKey: key)
+    }
 }
 
 enum UserDefaultsKey: String {
-    // Onboarding
-    case TREE = "tree"
-    case TREE_COLOR = "tree-color"
-    case FLOWER = "flower"
-    case FLOWER_COLOR = "flower-color"
-    case DATA = "data"
-    case STEPS_GOAL = "steps-goal"
-    case SLEEP_GOAL = "sleep-goal"
-    case WORKOUT_GOAL = "workout-goal"
-    case WALKING_RUNNING_GOAL = "walking-running-goal"
-    case MAPPED_DATA = "mapped-data"
-    case GARDEN_NAME = "garden-name"
-    case REFLECT_WEATHER_CHANGES = "reflect-weather-changes"
-    case MESSAGE_OPTIONS = "messageOptions"
-    
+    case FCM_TOKEN = "fcmToken"
+    case IS_MUSIC_ON = "isMusicOn"
+    case NUM_LOVE_SENT = "loveSent"
+    case NUM_ENCOURAGEMENT_SENT = "encouragementSent"
 }
 
 

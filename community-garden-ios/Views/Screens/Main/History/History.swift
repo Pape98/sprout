@@ -7,14 +7,17 @@
 
 import SwiftUI
 
-
+enum HistoryViewType {
+    case personal, community
+}
 
 struct History: View {
     
-    @EnvironmentObject var historyViewModel: HistoryViewModel
-    @State var selectedData: String = HistoryViewModel.Data.steps.rawValue
+    @EnvironmentObject var appViewModel: AppViewModel
+    @EnvironmentObject var communityViewModel: CommunityViewModel
     
-    var gridItemLayout = Array(repeating: GridItem(.flexible()), count: 4)
+    @State var historyView: HistoryViewType = .personal
+    let remoteConfig = RemoteConfiguration.shared
     
     var body: some View {
         NavigationView {
@@ -23,38 +26,28 @@ struct History: View {
                 
                 VStack {
                     
-                    Text("Tap below to select data 😊")
-                    Picker("Data",selection: $selectedData){
-                        ForEach(HistoryViewModel.Data.dalatList, id: \.self){ text in
-                            ZStack {
-                                
-                                Text(text.capitalized)
-                                    .bold()
-                                    .tag(text)
-                            }
+                    if remoteConfig.isSocialConfig(group: UserService.shared.user.group){
+                        Picker("", selection: $historyView){
+                            Text("Personal")
+                                .tag(HistoryViewType.personal)
+                            Text("Community").tag(HistoryViewType.community)
                         }
+                        .pickerStyle(.segmented)
+                        .padding(.horizontal)
                     }
                     
-                    ScrollView {
-                        VStack {
-                            if let dataList = historyViewModel.dataMapping[selectedData] {
-                                ForEach(dataList, id: \.id){ item in
-                                    DataStatus(data: item)
-                                }
-                            }
-                        }
-                        .padding()
-                    }
-                    .clipped()
-                    
+                    if historyView == .personal { PersonalHistory() }
+                    else { CommunityHistory() }
+                    Spacer()
                 }
                 
+                FloatingAnimal(animal: "penguin-waving-hello")
             }
             .navigationBarTitle("History", displayMode: .inline)
-            .toolbar {
-                
-            }
             
+        }
+        .onAppear {
+            appViewModel.setBackground()
         }
         .navigationViewStyle(.stack)
     }
@@ -64,5 +57,6 @@ struct History_Previews: PreviewProvider {
     static var previews: some View {
         History()
             .environmentObject(HistoryViewModel())
+            .environmentObject(AppViewModel())
     }
 }
