@@ -43,15 +43,19 @@ struct PickerButton: View {
 struct BackNextButtons: View {
     
     @EnvironmentObject var onboardingRouter: OnboardingRouter
+    var backScreen: Screen? = nil
     var isError: Bool = false
-    
     var action: (() -> Void)? = nil
     let columns = [GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 20) {
             PickerButton(text: "Back"){
-                onboardingRouter.navigateBack()
+                if let backScreen = backScreen {
+                    onboardingRouter.setScreen(backScreen)
+                } else {
+                    onboardingRouter.navigateBack()
+                }
             }
             
             PickerButton(text:"Next"){

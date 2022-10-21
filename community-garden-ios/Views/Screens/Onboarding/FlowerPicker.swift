@@ -10,14 +10,21 @@ import SwiftUI
 struct FlowerPicker: View {
     
     @State private var selection = "abyss-sage"
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var body: some View {
         ItemPicker(header: "Pick a flower!",
-               subheader: "Scroll to see all the flowers 🌸",
+                   subheader: "Scroll to see all the flowers 🌸",
                    selection: $selection,
-               options: Constants.flowers,
-               circleType: PickerCard.CircleType.FLOWER
+                   options: Constants.flowers,
+                   circleType: PickerCard.CircleType.FLOWER
         ).dataString(FirestoreKey.FLOWER.rawValue)
+            .onAppear {
+                if onboardingRouter.canCustomize() == false {
+                    onboardingRouter.saveSetting(key: FirestoreKey.FLOWER, value: "joyful-clover")
+                    onboardingRouter.navigateNext()
+                }
+            }
     }
 }
 

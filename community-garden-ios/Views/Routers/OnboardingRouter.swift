@@ -10,11 +10,16 @@ import SwiftUI
 
 class OnboardingRouter: ObservableObject {
     
-    @Published var currentScreen: Screen = .chooseData
+    @Published var currentScreen: Screen = .chooseGroup
     @Published var transition: AnyTransition = .slide
-    var settings: [String: Any] = [:]
+    var settings: [String: Any] = [:] {
+        didSet {
+            Debug.log.debug(settings)
+        }
+    }
     
-    let nextScreens : [Screen: Screen] = [.chooseData: .setGoals,
+    let nextScreens : [Screen: Screen] = [.chooseGroup: .chooseData,
+                                          .chooseData: .setGoals,
                                           .setGoals: .chooseTree,
                                           .chooseTree: .chooseTreeColor,
                                           .chooseTreeColor: .chooseFlower,
@@ -23,7 +28,8 @@ class OnboardingRouter: ObservableObject {
                                           .mapData: .lastSteps,
                                           .lastSteps: .lastSteps]
     
-    let backScreens : [Screen: Screen] = [.setGoals: .chooseData,
+    let backScreens : [Screen: Screen] = [.chooseData: .chooseGroup,
+                                          .setGoals: .chooseData,
                                           .chooseTree: .setGoals,
                                           .chooseTreeColor: .chooseTree,
                                           .chooseFlower: .chooseTreeColor,
@@ -33,6 +39,12 @@ class OnboardingRouter: ObservableObject {
     
     
     static let shared = OnboardingRouter()
+    
+    var selectedGroup = -1 {
+        didSet {
+            UserViewModel.shared.updateUser(updates: ["group":selectedGroup ]) {}
+        }
+    }
     
     func saveSetting(key: FirestoreKey, value: Any){
         settings[key.rawValue] = value
@@ -56,5 +68,9 @@ class OnboardingRouter: ObservableObject {
     
     func setTransition(_ newTransition: AnyTransition){
         transition = newTransition
+    }
+    
+    func canCustomize() -> Bool {
+        return RemoteConfiguration.shared.canCustomize(group: selectedGroup)
     }
 }

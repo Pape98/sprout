@@ -8,6 +8,7 @@
 import Foundation
 
 enum Screen {
+    case chooseGroup
     case chooseData
     case setGoals
     case chooseTree
@@ -16,6 +17,7 @@ enum Screen {
     case chooseFlowerColor
     case mapData
     case lastSteps
+    case loader
 }
 
 
