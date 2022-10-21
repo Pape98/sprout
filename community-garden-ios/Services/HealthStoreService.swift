@@ -68,7 +68,7 @@ class HealthStoreService {
                     let midnightComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
                     let midnightDate = Calendar.current.date(from: midnightComponents)
                    
-                    let sleepDate = Calendar.current.date(byAdding: .hour, value: -2, to: midnightDate!)
+                    let sleepDate = Calendar.current.date(byAdding: .hour, value: -2, to: midnightDate!) // starts at 10 pm
                     
                     self.startSampleQuery(sampleType: HKDataTypes.sleep,
                                           startDate: sleepDate!,

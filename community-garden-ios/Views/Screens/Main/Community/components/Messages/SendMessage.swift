@@ -154,10 +154,10 @@ struct SendMessage: View {
                     
                 }
                 
-                Text(user.name)
-                    .bodyStyle(foregroundColor: appViewModel.fontColor)
-                    .font(.system(size: 13))
-                    .lineLimit(1)
+//                Text(user.name)
+//                    .bodyStyle(foregroundColor: appViewModel.fontColor)
+//                    .font(.system(size: 13))
+//                    .lineLimit(1)
             }
         }
     }

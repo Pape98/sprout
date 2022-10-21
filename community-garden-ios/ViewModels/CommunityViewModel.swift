@@ -130,12 +130,12 @@ class CommunityViewModel: ObservableObject {
         setToast(title: "Sent love to 🧑‍🤝‍🧑", image: "heart.fill", color: .red)
         showToast = true
         
-        //        let tokens: [String] = members.values.map { $0.fcmToken }
-        //        reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
-        //            self.fetchReactions()
-        //            let user = UserService.shared.user
-        //            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.love)
-        //        }
+        let tokens: [String] = members.values.map { $0.fcmToken }
+        reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
+            self.fetchReactions()
+            let user = UserService.shared.user
+            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.love)
+        }
         
     }
     
@@ -159,13 +159,13 @@ class CommunityViewModel: ObservableObject {
         setToast(title: "Sent cheers to 🧑‍🤝‍🧑", image:  "star.fill", color: .yellow)
         showToast = true
         
-//        let tokens: [String] = members.values.map { $0.fcmToken }
-//        reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
-//            self.fetchReactions()
-//            let user = UserService.shared.user
-//            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.encouragement)
-//            self.showToast = true
-//        }
+        let tokens: [String] = members.values.map { $0.fcmToken }
+        reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
+            self.fetchReactions()
+            let user = UserService.shared.user
+            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.encouragement)
+            self.showToast = true
+        }
     }
     
     // helpers
