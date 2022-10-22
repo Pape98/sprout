@@ -10,6 +10,7 @@ import SwiftUI
 struct Loader: View {
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
+    @EnvironmentObject var gardenViewModel: GardenViewModel
     
     var body: some View {
         ZStack {
@@ -21,6 +22,7 @@ struct Loader: View {
         }
         .onAppear {
             RemoteConfiguration.shared.fetchRemoteConfig()
+            GardenViewModel.shared.addTree()
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 authViewModel.userOnboarded = true
             }

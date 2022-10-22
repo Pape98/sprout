@@ -83,7 +83,7 @@ struct ColorPicker: View {
             .onAppear {
                 if onboardingRouter.canCustomize() == false {
                     if settingKey == FirestoreKey.TREE_COLOR.rawValue {
-                        onboardingRouter.saveSetting(key: FirestoreKey.TREE_COLOR, value: "moss")
+                        onboardingRouter.saveSetting(key: FirestoreKey.TREE_COLOR, value: "sunglow")
                     } else {
                         onboardingRouter.saveSetting(key: FirestoreKey.FLOWER_COLOR, value: "cosmos")
                     }

@@ -63,6 +63,8 @@ class NotificationService {
         dateComponents.calendar = Calendar.current
         dateComponents.hour = 12    // 12:00 hours, noon
         dateComponents.minute = 0
+        dateComponents.second = 0
+        dateComponents.nanosecond = 0
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                     repeats: true)

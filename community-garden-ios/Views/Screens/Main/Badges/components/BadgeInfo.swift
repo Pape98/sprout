@@ -30,18 +30,18 @@ struct BadgeInfo: View {
                         Text("\(badge.numberOfDaysRequired)")
                             .bodyStyle()
                     }
+
+                    JustifiedText(badge.description + "" + badge.note)
                     
-                    JustifiedText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas id massa at leo tempor ornare. Curabitur ultrices felis elit, vitae sodales purus dictum convallis. Fusce varius nisi vel velit euismod vestibulum ut id ipsum. Nulla efficitur aliquet ex, eget faucibus lacus pretium ac")
-                      
                 }
                 .padding()
-                .frame(width: geo.size.width * 0.8, height: geo.size.height * 0.7, alignment: .top)
+                .frame(width: geo.size.width * 0.8, height: geo.size.height * 0.9, alignment: .top)
                 .background {
                     RoundedRectangle(cornerRadius: 10)
                         .fill(Color.white)
                         .opacity(0.7)
                 }
-    
+                
                 .navigationBarTitle(badge.name.capitalized)
             }
         }

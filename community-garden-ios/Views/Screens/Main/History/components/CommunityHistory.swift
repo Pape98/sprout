@@ -64,11 +64,11 @@ struct CommunityProgressCard : View {
     var goalStat: GoalsStat
     
     var numOfMembers: Int {
-        communityViewModel.members.count
+        communityViewModel.members.count + 1
     }
     
     var progress: Double {
-        Double(goalStat.numberOfGoalsAchieved) / Double(numOfMembers * 2)
+        Double(goalStat.numberOfGoalsAchieved) / Double((numOfMembers) * 2)
     }
     
     var face: String {
