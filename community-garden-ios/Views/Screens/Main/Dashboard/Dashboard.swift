@@ -147,6 +147,7 @@ struct Dashboard: View {
                                 GoalsMetCard(goals: communityViewModel.goalsStat)
                                     .onAppear {
                                         communityViewModel.getGoalCompletions()
+                                        communityViewModel.fetchGroupMembers()
                                     }
                             }
                             

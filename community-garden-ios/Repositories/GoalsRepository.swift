@@ -24,7 +24,11 @@ class GoalsRepository {
             docRef.setData(["date": Date.today,
                             "group": userGroup,
                             "trackedData": trackedData,
-                            "numberOfGoalsAchieved" : FieldValue.increment(Int64(1))], merge: true){_ in }
+                            "numberOfGoalsAchieved" : FieldValue.increment(Int64(1))], merge: true){ err in
+                if let err = err {
+                    Debug.log.error(err)
+                }
+            }
         }
     }
     
@@ -32,16 +36,27 @@ class GoalsRepository {
         let collection = collections.getCollectionReference(CollectionName.goals.rawValue)
         guard let collection = collection else { return }
         let userGroup = UserService.shared.user.group
-        let docRef = collection.document("\(userGroup)-\(Date.today)")        
+        let docRef = collection.document("\(userGroup)-\(Date.today)")
+        
         docRef.getDocument(as: GoalsStat.self) { result in
                         
             switch result {
             case .success(let goalsStat):
-                // A `City` value was successfully initialized from the DocumentSnapshot.
+                // A `GoalStat` value was successfully initialized from the DocumentSnapshot.
                 completion(goalsStat)
             case .failure(let error):
-                // A `City` value could not be initialized from the DocumentSnapshot.
-                Debug.log.error("Error decoding goalsStat: \(error)")
+                // A `GoalStat` value could not be initialized from the DocumentSnapshot.
+                Debug.log.error(error)
+                docRef.setData(["date": Date.today,
+                                "group": userGroup,
+                                "trackedData": [],
+                                "numberOfGoalsAchieved" : 0]){ err in
+                    if let err = err {
+                        Debug.log.error(err)
+                        return
+                    }
+                    NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
+                }
             }
         }
     }

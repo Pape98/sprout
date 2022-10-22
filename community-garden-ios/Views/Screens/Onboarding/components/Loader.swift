@@ -23,6 +23,7 @@ struct Loader: View {
         .onAppear {
             RemoteConfiguration.shared.fetchRemoteConfig()
             GardenViewModel.shared.addTree()
+            CommunityViewModel.shared.getGoalCompletions()
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 authViewModel.userOnboarded = true
             }
