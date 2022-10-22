@@ -14,6 +14,7 @@ struct Dashboard: View {
     @EnvironmentObject var healthStoreViewModel: HealthStoreViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
+    @EnvironmentObject var communityViewModel: CommunityViewModel
     
     let date = Date().getFormattedDate(format: "MMMM dd")
     let twoColumnGrid = [GridItem(.flexible()), GridItem(.flexible())]
@@ -143,7 +144,10 @@ struct Dashboard: View {
                             
                             // Card Row 3
                             if appViewModel.isSocialConfig {
-                                GoalsMetCard(goals: gardenViewModel.goalsStat)
+                                GoalsMetCard(goals: communityViewModel.goalsStat)
+                                    .onAppear {
+                                        communityViewModel.getGoalCompletions()
+                                    }
                             }
                             
                             EmptyView()

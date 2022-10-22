@@ -53,6 +53,9 @@ struct CommunityHistory: View {
                 .padding()
             }
         }
+        .onAppear {
+            historyViewModel.getGrouptGoalsStats()
+        }
     }
 }
 

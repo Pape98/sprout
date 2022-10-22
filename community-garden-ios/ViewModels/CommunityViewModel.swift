@@ -16,6 +16,7 @@ class CommunityViewModel: ObservableObject {
     let userRepository = UserRepository.shared
     let groupRepository = GroupRepository.shared
     let reactionRepository = ReactioRepository.shared
+    let goalsRepositiry = GoalsRepository.shared
     let userDefaults = UserDefaultsService.shared
     
     let collections = Collections.shared
@@ -25,6 +26,7 @@ class CommunityViewModel: ObservableObject {
     @Published var trees: [GardenItem] = []
     @Published var group: GardenGroup? = nil
     @Published var reactions: Reactions? = nil
+    @Published var goalsStat: GoalsStat? = nil
     
     let MAX_NUM_MESSAGES = 3
     
@@ -40,6 +42,13 @@ class CommunityViewModel: ObservableObject {
                        name: Notification.Name(NotificationType.FetchCommunityTrees.rawValue),
                        object: nil)
         
+        nc.addObserver(self,
+                       selector: #selector(self.getGoalCompletions),
+                       name: Notification.Name(NotificationType.FetchGoalStat.rawValue),
+                       object: nil)
+        
+        getGoalCompletions()
+        
         DispatchQueue.main.async {
             self.reactions = Reactions(group: UserService.shared.user.group, date: Date.today, love: 0)
         }
@@ -50,6 +59,12 @@ class CommunityViewModel: ObservableObject {
         fetchGroupMembers()
         fetchGroup()
         fetchReactions()
+    }
+    
+    @objc func getGoalCompletions(){
+        goalsRepositiry.getGoalsStatByDate(date: Date.today) { result in
+            self.goalsStat = result
+        }
     }
     
     func fetchGroup(){

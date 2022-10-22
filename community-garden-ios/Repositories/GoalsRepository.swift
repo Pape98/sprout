@@ -17,10 +17,15 @@ class GoalsRepository {
         guard let collection = collection else { return }
         let userGroup = UserService.shared.user.group
         let docRef = collection.document("\(userGroup)-\(Date.today)")
-        docRef.setData(["date": Date.today,
-                        "group": userGroup,
-                        "trackedData": FieldValue.arrayUnion([data.rawValue]),
-                        "numberOfGoalsAchieved" : FieldValue.increment(Int64(1))], merge: true){_ in }
+        
+        getGoalsStatByDate(date: Date.today) { stat in
+            var trackedData = stat.trackedData
+            trackedData.append(data.rawValue)
+            docRef.setData(["date": Date.today,
+                            "group": userGroup,
+                            "trackedData": trackedData,
+                            "numberOfGoalsAchieved" : FieldValue.increment(Int64(1))], merge: true){_ in }
+        }
     }
     
     func getGoalsStatByDate(date: String, completion: @escaping (GoalsStat) -> Void){
