@@ -64,8 +64,8 @@ struct Community: View {
                         VStack {
                             Spacer()
                             if appViewModel.isBadgeUnlocked(UnlockableBadge.dog){
-                                LottieView(filename: "dog_d1")
-                                    .frame(height: geo.size.height * 0.12)
+                                LottieView(filename: "dog_d2")
+                                    .frame(height: geo.size.height * 0.11)
                                     .offset(y: -geo.size.height * 0.04)
                             }
                             

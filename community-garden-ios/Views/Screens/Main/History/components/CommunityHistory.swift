@@ -54,7 +54,7 @@ struct CommunityHistory: View {
             }
         }
         .onAppear {
-            historyViewModel.getGrouptGoalsStats()
+            communityViewModel.fetchGroup()
         }
     }
 }
@@ -93,9 +93,6 @@ struct CommunityProgressCard : View {
                 .bodyStyle(foregroundColor: appViewModel.fontColor)
         }
         .padding()
-        .onAppear {
-            Debug.log.debug(numOfMembers, goalStat)
-        }
     }
     
 }

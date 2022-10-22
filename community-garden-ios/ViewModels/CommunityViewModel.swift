@@ -135,7 +135,7 @@ class CommunityViewModel: ObservableObject {
             userDefaults.save(value: 1, key: todayKey)
             userDefaults.remove(key: yesterdayKey)
         }  else if numLoveSent! >= MAX_NUM_MESSAGES {
-            setToast(title: "Can only send 5 per day", image: "xmark.octagon.fill", color: .red)
+            setToast(title: "Can only send \(MAX_NUM_MESSAGES) per day", image: "xmark.octagon.fill", color: .red)
             showToast = true
             return
         } else {
@@ -164,7 +164,7 @@ class CommunityViewModel: ObservableObject {
             userDefaults.save(value: 1, key: todayKey)
             userDefaults.remove(key: yesterdayKey)
         }  else if numEncouragementSent! >= MAX_NUM_MESSAGES {
-            setToast(title: "Can only send 5 per day", image: "xmark.octagon.fill", color: .red)
+            setToast(title: "Can only send \(MAX_NUM_MESSAGES) per day", image: "xmark.octagon.fill", color: .red)
             showToast = true
             return
         } else {
