@@ -160,6 +160,7 @@
 		F0F3673528EBBC9400F79D1A /* bird-feeding.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F3673428EBBC9400F79D1A /* bird-feeding.json */; };
 		F0F5E93A2873945F002C30BC /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E9392873945F002C30BC /* Settings.swift */; };
 		F0F5E93C2873ACA0002C30BC /* MainBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F5E93B2873ACA0002C30BC /* MainBackground.swift */; };
+		F0F67B1B29047132007FACA1 /* dog_d1.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B1A29047132007FACA1 /* dog_d1.json */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -316,6 +317,7 @@
 		F0F3673428EBBC9400F79D1A /* bird-feeding.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "bird-feeding.json"; sourceTree = "<group>"; };
 		F0F5E9392873945F002C30BC /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		F0F5E93B2873ACA0002C30BC /* MainBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainBackground.swift; sourceTree = "<group>"; };
+		F0F67B1A29047132007FACA1 /* dog_d1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = dog_d1.json; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -616,6 +618,7 @@
 			isa = PBXGroup;
 			children = (
 				F09F820F28FB1E99009287E6 /* dog_b3.json */,
+				F0F67B1A29047132007FACA1 /* dog_d1.json */,
 				F0A8990228FF9420007018C1 /* dog_c1.json */,
 				F09F821528FB5ABD009287E6 /* dog_s3.json */,
 			);
@@ -992,6 +995,7 @@
 				F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */,
 				F0D9064F28FCB597007ADDED /* congratulations.mp3 in Resources */,
 				F0089AF92903626E00A66308 /* sun1.json in Resources */,
+				F0F67B1B29047132007FACA1 /* dog_d1.json in Resources */,
 				F09F821028FB1E99009287E6 /* dog_b3.json in Resources */,
 				F04085FB28B5562F002EDECD /* click1.mp3 in Resources */,
 				F0089B012903628000A66308 /* moon3.json in Resources */,
