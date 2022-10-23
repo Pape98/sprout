@@ -89,6 +89,7 @@ struct CommunityGardenIosApp: App {
                     }
                     
                     RemoteConfiguration.shared.fetchRemoteConfig()
+                    appViewModel.setBackground()
                 }
         }
     }

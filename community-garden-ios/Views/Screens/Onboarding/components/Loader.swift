@@ -16,9 +16,12 @@ struct Loader: View {
         ZStack {
             Color.appleGreen
                 .ignoresSafeArea()
-            LottieView(filename: "loading-elephant")
-                .frame(width: 225)
-                
+            VStack(spacing: 5) {
+                LottieView(filename: "flower")
+                    .frame(width: 200, height: 200)
+                Text("Loading...")
+                    .bodyStyle(foregroundColor: .white, size: 25)
+            }
         }
         .onAppear {
             RemoteConfiguration.shared.fetchRemoteConfig()

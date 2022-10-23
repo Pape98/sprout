@@ -314,10 +314,17 @@ class CommunityGardenScene: SKScene {
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
         let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
         
+
+        let treeScale = tree.scale * 0.35
+        treeNode.setScale(treeScale)
         
-        treeNode.setScale(tree.scale * 0.35)
-        //        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
-        //        treeNode.run(treeAction)
+        let scaleUp = SKAction.scale(to: treeScale, duration:2.5)
+        let scaleDown = SKAction.scale(to: treeScale - 0.05, duration:2.5)
+        
+        let scaleAction = SKAction.sequence([scaleDown,scaleUp])
+        let repeatedScaleAction = SKAction.repeatForever(scaleAction)
+        
+        treeNode.run(repeatedScaleAction)
         
         // shadow
         let shadowNode = SKSpriteNode(imageNamed: "shadow-community")

@@ -160,6 +160,7 @@
 		F0F67B2B29048FF0007FACA1 /* moon1.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2729048FEF007FACA1 /* moon1.json */; };
 		F0F67B2C29048FF0007FACA1 /* moon4.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2829048FEF007FACA1 /* moon4.json */; };
 		F0F67B2D29048FF0007FACA1 /* moon3.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2929048FF0007FACA1 /* moon3.json */; };
+		F0F67B2F2905D779007FACA1 /* flower.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2E2905D779007FACA1 /* flower.json */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -316,6 +317,7 @@
 		F0F67B2729048FEF007FACA1 /* moon1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon1.json; sourceTree = "<group>"; };
 		F0F67B2829048FEF007FACA1 /* moon4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon4.json; sourceTree = "<group>"; };
 		F0F67B2929048FF0007FACA1 /* moon3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon3.json; sourceTree = "<group>"; };
+		F0F67B2E2905D779007FACA1 /* flower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = flower.json; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -672,6 +674,7 @@
 		F0AE969829027A0300DD788C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				F0F67B2E2905D779007FACA1 /* flower.json */,
 				F0AE969929027A1900DD788C /* loading-elephant.json */,
 			);
 			path = Other;
@@ -979,6 +982,7 @@
 				F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */,
 				F0F67B1D29048BC8007FACA1 /* dog_d2.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
+				F0F67B2F2905D779007FACA1 /* flower.json in Resources */,
 				F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */,
 				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
 				F0F67B2C29048FF0007FACA1 /* moon4.json in Resources */,
