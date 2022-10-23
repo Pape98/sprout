@@ -18,16 +18,18 @@ struct FloatingAnimal: View {
     
     
     var body: some View {
-        ZStack{
-            Circle()
-                .fill(Color.appleGreen)
-                .frame(width: 70)
-                .opacity(0.2)
-            LottieView(filename: animal)
-                .frame(width: 70, height: 70,alignment: .bottomTrailing)
+        GeometryReader { geo in
+            ZStack(alignment: .bottomTrailing) {
+                Circle()
+                    .fill(Color.appleGreen)
+                    .frame(width: 70)
+                    .opacity(0.2)
+                LottieView(filename: animal)
+                    .frame(width: 70, height: 70)
+            }
+            .frame(maxWidth: geo.size.width, maxHeight: geo.size.height, alignment: .bottomTrailing)
+            .padding()
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .bottomTrailing)
-        .padding()
     }
 }
 
