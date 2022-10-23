@@ -147,7 +147,7 @@ class HealthStoreViewModel: ObservableObject {
                         NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
                     }
                     self.updateTrackedData(data: HealthStoreRepository.Data.workouts, updates: ["hasReachedGoal": true])
-                    self.setGoalCompletionAlertData(image: "dumbbell")
+                    self.setGoalCompletionAlertData(image: "bicycle")
                 }
             }
         }

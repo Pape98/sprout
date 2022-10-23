@@ -140,8 +140,6 @@ class HealthStoreService {
                     duration += (sample!.endDate - sample!.startDate)/60
                 }
                 
-                Debug.log.debug(sampleType, duration)
-                
                 updateHandler(duration)
             }
             

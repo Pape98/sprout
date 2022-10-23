@@ -33,11 +33,6 @@ class GardenViewModel: ObservableObject {
     
     init(){
         getUserItems()
-//        nc.addObserver(self,
-//                       selector: #selector(self.addTree),
-//                       name: Notification.Name(NotificationType.CreateTree.rawValue),
-//                       object: nil)
-        
         setSunMoon()
     }
     

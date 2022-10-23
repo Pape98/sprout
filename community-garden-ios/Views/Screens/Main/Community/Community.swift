@@ -30,6 +30,12 @@ struct Community: View {
         "deer": 110,
     ]
     
+    var viewSize: CGFloat {
+        let communityViewParams = RemoteConfiguration.shared.getConfigs(key: "communityViewParams")
+        guard let communityViewParams = communityViewParams else { return 1 }
+        return communityViewParams["communityViewHeight"] as! CGFloat
+    }
+    
     var body: some View {
         
         GeometryReader { geo in
@@ -51,7 +57,7 @@ struct Community: View {
                         Image("community-bg")
                             .resizable()
                             .ignoresSafeArea(.all, edges: [.all])
-                            .frame(height: geo.size.height * 2)
+                            .frame(height: geo.size.height * 1.5)
                         
                         
                         // Sprites
@@ -68,23 +74,23 @@ struct Community: View {
                                     .frame(height: geo.size.height * 0.11)
                                     .offset(y: -geo.size.height * 0.04)
                             }
-                            
+
                             Spacer(minLength: 10)
-                            
+
                             if appViewModel.isBadgeUnlocked(UnlockableBadge.turtle){
                                 LottieView(filename: "turtle_s3")
                                     .frame(height: geo.size.height * 0.13)
-                                    .offset(x: -geo.size.width * 0.25, y: 0)
+                                    .offset(x: 0, y: geo.size.height * -0.05)
                             }
-                            
-                            
+
+
                             Spacer()
-                            
+
                             if appViewModel.isBadgeUnlocked(UnlockableBadge.deer){
                                 LottieView(filename: "deer_a5")
                                     .frame(height: geo.size.height * 0.155)
                             }
-                            
+
                             Spacer()
                             
                             if appViewModel.isBadgeUnlocked(UnlockableBadge.dog){

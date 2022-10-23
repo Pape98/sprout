@@ -109,7 +109,6 @@ class CommunityViewModel: ObservableObject {
             .whereField("group", isEqualTo: userGroup)
             .whereField("type", isEqualTo: GardenItemType.tree.rawValue)
         
-        
         gardenRepository.getUserItems(query: query) { trees in
             DispatchQueue.main.async {
                 self.trees = trees

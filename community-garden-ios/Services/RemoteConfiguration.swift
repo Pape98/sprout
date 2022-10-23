@@ -32,6 +32,7 @@ class RemoteConfiguration {
         ]
         
         let treeParams = ["scaleFactor":0.05,"maxScale":1.5]
+        let communityViewParams = ["numParcelPerColumn": 3, "communityViewHeight" : 1.5]
         
         let defaultValues = [
             "group0" : ["isSocial": true, "canCustomize": true] as NSObject,
@@ -39,7 +40,8 @@ class RemoteConfiguration {
             "group2" : ["isSocial": false,"canCustomize": true] as NSObject,
             "group3" : ["isSocial": true, "canCustomize": true] as NSObject,
             "percentages": percentages as NSObject,
-            "treeParams": treeParams as NSObject
+            "treeParams": treeParams as NSObject,
+            "communityViewParams": communityViewParams as NSObject
         ]
         
         config.setDefaults(defaultValues)
@@ -48,17 +50,14 @@ class RemoteConfiguration {
     func fetchRemoteConfig() {
         config.fetchAndActivate { status, error in
             guard error == nil else {
-                print("Uh-oh. Got an error fetching remote values: \(String(describing: error))")
+                Debug.log.debug("Uh-oh. Got an error fetching remote values: \(String(describing: error))")
                 return
             }
         }
     }
     
     func getGroupConfig(_ group: String) -> NSDictionary? {
-        let json = config.configValue(forKey: group).jsonValue
-        guard let json  = json else { return nil }
-        let dict = json as! NSDictionary
-        return dict
+        return getConfigs(key: group)
     }
     
     func isSocialConfig(group: Int) -> Bool {
@@ -74,14 +73,16 @@ class RemoteConfiguration {
     }
     
     func getPercentages() -> NSDictionary? {
-        let json = config.configValue(forKey: "percentages").jsonValue
-        guard let json  = json else { return nil }
-        let dict = json as! NSDictionary
-        return dict
+        return getConfigs(key: "percentages")
     }
     
     func getTreeParams() -> NSDictionary? {
-        let json = config.configValue(forKey: "treeParams").jsonValue
+        return getConfigs(key: "treeParams")
+    }
+    
+    // Helper Methods
+    func getConfigs(key: String) -> NSDictionary? {
+        let json = config.configValue(forKey: key).jsonValue
         guard let json  = json else { return nil }
         let dict = json as! NSDictionary
         return dict
@@ -89,5 +90,5 @@ class RemoteConfiguration {
 }
 
 enum RemoteConfigKeys: String {
-    case thresholdsPercentages, maxNumDroplets, maNumxSeeds
+    case thresholdsPercentages, maxNumDroplets, maNumxSeeds, communityViewParams
 }

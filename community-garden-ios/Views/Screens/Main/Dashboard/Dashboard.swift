@@ -122,7 +122,7 @@ struct Dashboard: View {
                                 }
                                 
                                 if isUserTrackingData(DataOptions.workouts){
-                                    DashboardCard(icon: "dumbbell"){
+                                    DashboardCard(icon: "bicycle"){
                                         if let workout = healthStoreViewModel.todayWorkout {
                                             CardInfo(value: workout.duration, label: "Workout Minute(s)", goal: workout.goal)
                                         } else {

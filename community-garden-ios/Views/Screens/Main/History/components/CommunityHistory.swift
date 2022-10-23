@@ -34,7 +34,7 @@ struct CommunityHistory: View {
                     .multilineTextAlignment(.center)
                 
                 Text("\(numFiftyPercentDays) day(s)")
-                    .bodyStyle(foregroundColor: .appleGreen, size: 20)
+                    .bodyStyle(foregroundColor: .greenVogue, size: 20)
             }
             .padding()
             .background {

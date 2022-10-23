@@ -31,7 +31,13 @@ class CommunityGardenScene: SKScene {
     let messagesViewModel = MessagesViewModel.shared
     let appViewModel = AppViewModel.shared
     
-    let SCALE_DURATION = 2.0
+    // Constants
+    let SCALE_DURATION = 2.0    
+    var NUM_PARCEL_PER_COLUMN: Int {
+        let communityViewParams = RemoteConfiguration.shared.getConfigs(key: "communityViewParams")
+        guard let communityViewParams = communityViewParams else { return 1 }
+        return communityViewParams["numParcelPerColumn"] as! Int
+    }
     
     override func didMove(to view: SKView) {
         
@@ -50,8 +56,8 @@ class CommunityGardenScene: SKScene {
         }
         
         // TODO: Remove number of parcels hardcoding
-        addParcelsToColumn(firstColumn, count: 4, swap: true)
-        addParcelsToColumn(secondColumn, count: 4)
+        addParcelsToColumn(firstColumn, count: NUM_PARCEL_PER_COLUMN, swap: true)
+        addParcelsToColumn(secondColumn, count: NUM_PARCEL_PER_COLUMN)
         addTreesToParcels()
         addSoilsToParcels()
         addFlowersToSoils()
@@ -74,7 +80,7 @@ class CommunityGardenScene: SKScene {
         guard count != 0 else { return }
         
         let width = frame.width * 0.5
-        let height = frame.height * 0.25
+        let height = frame.height * (1.0 / CGFloat(count))
         var yPosition: CGFloat = 0
         
         for _ in 1...count {
