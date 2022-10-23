@@ -35,7 +35,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     let userViewModel = UserViewModel.shared
     let gardenViewModel: GardenViewModel = GardenViewModel.shared
     let appViewModel: AppViewModel = AppViewModel.shared
-    
+        
     // Others
     
     override func didMove(to view: SKView) {
@@ -54,7 +54,9 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         if appViewModel.isBadgeUnlocked(UnlockableBadge.fence) { setupFence() }
         if appViewModel.isBadgeUnlocked(UnlockableBadge.dogHouse) { setupDogHouse() }
         
-        addExisitingItems()
+        addExisitingTreeFlowers()
+        addItemsToGround(name: "grass", count: 3)
+        addItemsToGround(name: "rocks", count: 3)
         
         // Timer
         if appViewModel.isBadgeUnlocked(UnlockableBadge.cloud) {
@@ -76,14 +78,14 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let flowerName = "\(settings.flowerColor)-\(addDash(settings.flower))"
         let flower = SKSpriteNode(imageNamed: "flowers/\(flowerName)")
         
-        flower.anchorPoint = CGPoint(x: 0, y: 0)
+        flower.anchorPoint = CGPoint(x: 0.5, y: 0)
         flower.position = CGPoint(x: position.x, y: position.y)
         
         flower.name = NodeNames.flower.rawValue
         flower.colorBlendFactor = getRandomCGFloat(0, 0.2)
         flower.setScale(0)
-        flower.zPosition = 1
-        
+        flower.zPosition = -position.y
+                
         let scale = 0.08
         let flowerAction = SKAction.scale(to: scale, duration: SCALE_DURATION)
         flower.run(flowerAction)
@@ -107,7 +109,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         gardenViewModel.decreaseNumSeeds()
     }
     
-    func addExisitingItems(){
+    func addExisitingTreeFlowers(){
         for item in gardenViewModel.items {
             switch item.type {
             case .flower:
@@ -159,7 +161,9 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             
             // NOTE: Can only move tree
             tree.position = location
+            tree.zPosition = -location.y
             grass.position = CGPoint(x: tree.position.x - 15, y: tree.position.y)
+            grass.zPosition = tree.zPosition + 1
         }
     }
     
@@ -173,7 +177,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             gardenViewModel.tree!.x = location.x
             gardenViewModel.tree!.y = location.y
             gardenViewModel.updateTree()
-            
         }
     }
     
@@ -208,14 +211,15 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let fenceNode = SKSpriteNode(imageNamed: "fence-grass")
         fenceNode.position = CGPoint(x: ground.size.width, y: ground.size.height)
         fenceNode.setScale(0.8)
+        fenceNode.zPosition = ground.zPosition + 1
         ground.addChild(fenceNode)
     }
     
     func setupDogHouse(){
         let dogHouseNode = SKSpriteNode(imageNamed: "dog-house")
         dogHouseNode.anchorPoint = CGPoint(x: 0, y: 0)
-        dogHouseNode.position = CGPoint(x: dogHouseNode.size.width  * -0.1, y: ground.size.height * 0.8 )
-        dogHouseNode.zPosition = -1
+        dogHouseNode.position = CGPoint(x: dogHouseNode.size.width  * -0.1, y: ground.size.height * 0.85 )
+        dogHouseNode.zPosition = dogHouseNode.position.y * -1
         dogHouseNode.setScale(0.55)
         
         ground.addChild(dogHouseNode)
@@ -272,7 +276,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         }
         
         treeNode.name = NodeNames.tree.rawValue
-        treeNode.zPosition = 5
+        treeNode.zPosition = -tree.y
         
         let physicsBodySize = CGSize(width: treeNode.size.width, height: treeNode.size.height * 1.5)
         treeNode.physicsBody = SKPhysicsBody(texture: treeTexture, size: physicsBodySize)
@@ -291,12 +295,15 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // shadow
         let shadowNode = SKSpriteNode(imageNamed: "shadow")
-        shadowNode.zPosition = -1
+        shadowNode.zPosition = -tree.y
+        shadowNode.name = NodeNames.shadow.rawValue
+        
         treeNode.addChild(shadowNode)
         
         // Grass
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
         let grassNode = SceneHelper.addGrass(scene: self, location: grassLocation)
+        grassNode.zPosition = -treeNode.zPosition + 1
         
         return [treeNode, grassNode]
     }
@@ -309,6 +316,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         ground.position = CGPoint(x: 0, y:0)
         ground.size = CGSize(width: frame.width, height: ground.size.height)
         ground.name = NodeNames.ground.rawValue
+        ground.zPosition = -10000
         
         let groundPhysicsBodySize = CGSize(width: ground.size.width * 2, height: ground.size.height)
         ground.physicsBody = SKPhysicsBody(texture: groundTexture, size: groundPhysicsBodySize)
@@ -322,12 +330,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     func addExistingFlower(flower: GardenItem, scene: SKScene, isAnimated: Bool = true){
         let node = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
-        node.anchorPoint = CGPoint(x: 0, y: 0)
+        node.anchorPoint = CGPoint(x: 0.5, y: 0)
         node.position = CGPoint(x: flower.x * scene.frame.width, y: flower.y * scene.frame.height)
-        node.colorBlendFactor = getRandomCGFloat(0, 0.2)
-        node.zPosition = 4
+        node.zPosition =  (flower.y * scene.frame.height) * -1
         node.setScale(flower.scale)
-        
+                
         // Animation
         if isAnimated {
             node.setScale(0)
@@ -336,6 +343,24 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         }
         
         scene.addChild(node)
+    }
+    
+    func addItemsToGround(name: String, count: Int){
+        let maxHeight = ground.size.height
+        let maxWidth = ground.size.width
+        let xOffset = 20.0
+        let yOffset = 20.0
+        
+        for _ in 0...count {
+            let x = getRandomCGFloat(xOffset, maxWidth - xOffset)
+            let y = getRandomCGFloat(yOffset, maxHeight - yOffset)
+            let node = SKSpriteNode(imageNamed: name)
+            node.position = CGPoint(x: x, y: y)
+            node.zPosition = -y
+            node.setScale(0.5)
+            addChild(node)
+        }
+        
     }
     
     // MARK: Utility methods
