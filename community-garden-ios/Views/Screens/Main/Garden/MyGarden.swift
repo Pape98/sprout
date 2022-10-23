@@ -13,12 +13,18 @@ struct MyGarden: View {
     
     @EnvironmentObject var userViewModel: UserViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
+    @EnvironmentObject var communityViewModel: CommunityViewModel
     @EnvironmentObject var appViewModel: AppViewModel
-            
+    
     var scene: SKScene {
         let scene = MyGardenScene()
         scene.scaleMode = .resizeFill
         return scene
+    }
+    var sunMoonLevel: Int {
+        let numTargetGoals = (communityViewModel.members.count + 1) * 2
+        guard let goalStat = communityViewModel.goalsStat else { return 0 }
+        return Int(goalStat.numberOfGoalsAchieved / numTargetGoals)
     }
     
     var body: some View {
@@ -79,7 +85,7 @@ struct MyGarden: View {
                 
             }
             
-
+            
         }
         .toast(isPresenting: $gardenViewModel.showToast, duration: 5, tapToDismiss: true) {
             AlertToast(displayMode: .banner(.slide),
@@ -88,18 +94,29 @@ struct MyGarden: View {
         }
         .overlay {
             VStack {
-        
-                    LottieView(filename: "\(gardenViewModel.sunMoon)4")
-                        .frame(width: 125, height: 125)
-                        .transition(.move(edge: .trailing))
                 
+                LottieView(filename: "\(gardenViewModel.sunMoon)\(getSunMoonLevel())")
+                    .frame(width: 125, height: 125)
+                    .transition(.move(edge: .trailing))
                 Spacer()
             }
         }
         .onDisappear {
             gardenViewModel.setSunMoon()
             gardenViewModel.gardenMode = GardenViewModel.GardenMode.moving
+            communityViewModel.getGoalCompletions()
         }
+    }
+    
+    func getSunMoonLevel() -> Int {
+        let numTargetGoals = (communityViewModel.members.count + 1) * 2
+        guard let goalStat = communityViewModel.goalsStat else { return 1 }
+        let percentCompletion = Double(goalStat.numberOfGoalsAchieved) / Double(numTargetGoals)
+                
+        if percentCompletion >= 0.75 { return 4 }
+        else if percentCompletion >= 0.5 { return 3 }
+        else if percentCompletion >= 0.25 { return 2 }
+        else { return 1 }
     }
 }
 

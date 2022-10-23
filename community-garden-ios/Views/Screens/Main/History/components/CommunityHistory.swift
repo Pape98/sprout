@@ -34,7 +34,7 @@ struct CommunityHistory: View {
                     .multilineTextAlignment(.center)
                 
                 Text("\(numFiftyPercentDays) day(s)")
-                    .bodyStyle(foregroundColor: .appleGreen, size: 20)
+                    .bodyStyle(foregroundColor: .greenVogue, size: 20)
             }
             .padding()
             .background {
@@ -53,6 +53,9 @@ struct CommunityHistory: View {
                 .padding()
             }
         }
+        .onAppear {
+            communityViewModel.fetchGroup()
+        }
     }
 }
 
@@ -64,11 +67,11 @@ struct CommunityProgressCard : View {
     var goalStat: GoalsStat
     
     var numOfMembers: Int {
-        communityViewModel.members.count
+        communityViewModel.members.count + 1
     }
     
     var progress: Double {
-        Double(goalStat.numberOfGoalsAchieved) / Double(numOfMembers * 2)
+        Double(goalStat.numberOfGoalsAchieved) / Double((numOfMembers) * 2)
     }
     
     var face: String {

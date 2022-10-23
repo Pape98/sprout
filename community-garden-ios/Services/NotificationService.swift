@@ -54,7 +54,6 @@ class NotificationService {
         // Step 1: Create the notification content
         let content = UNMutableNotificationContent()
         content.title = "Sprout"
-        content.subtitle = "Your garden is waiting."
         content.body = "Don't forget to check your tree 🌲 and flowers 🌷."
         content.sound = UNNotificationSound.default
 
@@ -62,10 +61,13 @@ class NotificationService {
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
         dateComponents.hour = 12    // 12:00 hours, noon
-        dateComponents.minute = 0
+        dateComponents.minute = 10
+        dateComponents.second = 0
+        dateComponents.nanosecond = 0
 
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents,
                                                     repeats: true)
+        
 
         // Step 3: Create the request
         let uuidString = UUID().uuidString

@@ -18,6 +18,8 @@ struct Onboarding: View {
                 .ignoresSafeArea()
                         
             switch onboardingRouter.currentScreen {
+            case .chooseGroup:
+                ChooseGroup().transition(onboardingRouter.transition)
             case .chooseData:
                 DataPicker().transition(onboardingRouter.transition)
             case .setGoals:
@@ -34,6 +36,8 @@ struct Onboarding: View {
                 DataMapping().transition(onboardingRouter.transition)
             case .lastSteps:
                 LastSteps().transition(onboardingRouter.transition)
+            case .loader:
+                Loader()
             }
         }
     }

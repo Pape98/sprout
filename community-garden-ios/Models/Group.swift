@@ -49,6 +49,7 @@ struct CommunityBadge: Hashable, Comparable {
     }
     
     var name: String
-    var description: String = ""
     var numberOfDaysRequired = 2
+    var description: String = ""
+    var note: String = ""
 }

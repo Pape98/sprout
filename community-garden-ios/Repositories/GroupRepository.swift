@@ -26,7 +26,7 @@ class GroupRepository {
         do {
             try groupsCollection.document(String(groupNumber)).setData(from: group)
         } catch let err {
-            print("[createNewUser()]","Error writing document: \(err)")
+            Debug.log.error("[createGroup()]","Error writing document: \(err)")
         }
     }
     
@@ -38,7 +38,7 @@ class GroupRepository {
         groupRef.getDocument { document, error in
                         
             guard error == nil else {
-                print("[fetchGroup()]", error!)
+                Debug.log.error("[fetchGroup()]", error!)
                 return
             }
             
@@ -54,7 +54,7 @@ class GroupRepository {
                 let decodedGroup: GardenGroup = try document!.data(as: GardenGroup.self)
                 completion(decodedGroup)
             } catch {
-                print("[fetchGroup() decoding]", error)
+                Debug.log.error("[fetchGroup() decoding]", error)
             }
         }
     }

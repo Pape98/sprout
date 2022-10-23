@@ -76,7 +76,7 @@ struct DataMapping: View {
             
             Spacer()
             
-            BackNextButtons(isError: isError) {
+            BackNextButtons(backScreen: Screen.setGoals, isError: isError) {
                 if isError {
                     showingAlert = true
                 } else {

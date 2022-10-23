@@ -41,7 +41,7 @@ struct DataPicker: View {
                 .padding()
             }
             
-            Spacer()
+            Spacer()  
             
             PickerButton(text: "Next"){
                 if selections.count != 2 {

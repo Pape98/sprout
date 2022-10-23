@@ -19,10 +19,16 @@ struct MainBackground: View {
             Image(image)
                 .resizable()
                 .ignoresSafeArea(.all, edges: edges)
+                .onAppear {
+                    appViewModel.setBackground()
+                }
         } else {
             Image(getIntroBackground())
                 .resizable()
                 .ignoresSafeArea(.all, edges: edges)
+                .onAppear {
+                    appViewModel.setBackground()
+                }
         }
     }
 }

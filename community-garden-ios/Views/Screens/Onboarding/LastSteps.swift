@@ -47,7 +47,8 @@ struct LastSteps: View {
                 
                 onboardingViewModel.saveSettings(values: onboardingRouter.settings)
                 onboardingViewModel.updateTokenAndStatus()
-                authViewModel.userOnboarded = true
+                
+                onboardingRouter.setScreen(Screen.loader)
                 
             }
             .frame(maxWidth: 250)

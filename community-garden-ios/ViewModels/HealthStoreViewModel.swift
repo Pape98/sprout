@@ -16,7 +16,7 @@ class HealthStoreViewModel: ObservableObject {
     let goalsRepo = GoalsRepository.shared
     let progressRepo = ProgressRepository.shared
     let collections = Collections.shared
-    
+        
     let today = Date.today
     var stepCounts: [Step] = []
     
@@ -109,7 +109,9 @@ class HealthStoreViewModel: ObservableObject {
                 guard let goal = result.goal else { return }
                                 
                 if result.count >= Double(goal) && result.hasReachedGoal == nil {
-                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.steps)
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.steps){
+                        NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
+                    }
                     self.updateTrackedData(data: HealthStoreRepository.Data.steps, updates: ["hasReachedGoal": true])
                     self.setGoalCompletionAlertData(image: "figure.walk")
                 }
@@ -124,7 +126,9 @@ class HealthStoreViewModel: ObservableObject {
                 guard let goal = result.goal else { return }
 
                 if result.distance >= Double(goal) && result.hasReachedGoal == nil {
-                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.walkingRunningDistance)
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.walkingRunningDistance){
+                        NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
+                    }
                     self.updateTrackedData(data: HealthStoreRepository.Data.walkingRunning, updates: ["hasReachedGoal": true])
                     self.setGoalCompletionAlertData(image: "sportscourt.fill")
                 }
@@ -139,9 +143,11 @@ class HealthStoreViewModel: ObservableObject {
                 guard let goal = result.goal else { return }
 
                 if result.duration >= Double(goal) && result.hasReachedGoal == nil {
-                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.workouts)
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.workouts){
+                        NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
+                    }
                     self.updateTrackedData(data: HealthStoreRepository.Data.workouts, updates: ["hasReachedGoal": true])
-                    self.setGoalCompletionAlertData(image: "dumbbell")
+                    self.setGoalCompletionAlertData(image: "bicycle")
                 }
             }
         }
@@ -154,7 +160,9 @@ class HealthStoreViewModel: ObservableObject {
                 guard let goal = result.goal  else { return }
                 
                 if result.duration >= Double(goal) && result.hasReachedGoal == nil {
-                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.sleep)
+                    self.goalsRepo.updateGoalsAchieved(data: DataOptions.sleep){
+                        NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
+                    }
                     self.updateTrackedData(data: HealthStoreRepository.Data.sleep, updates: ["hasReachedGoal": true])
                     self.setGoalCompletionAlertData(image: "bed.double")
                 }

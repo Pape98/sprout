@@ -15,7 +15,6 @@ class GardenViewModel: ObservableObject {
     }
     
     static var shared: GardenViewModel = GardenViewModel()
-    let goalsRepo = GoalsRepository.shared
     let collections = Collections.shared
     let nc = NotificationCenter.default
     
@@ -26,7 +25,6 @@ class GardenViewModel: ObservableObject {
     @Published var dropItem = GardenElement.droplet
     @Published var gardenMode = GardenMode.moving
     @Published var sunMoon = "sun"
-    @Published var goalsStat: GoalsStat? = nil
     @Published var showToast = false
     var toastMessage: ToastContent = ToastContent()
     
@@ -35,24 +33,7 @@ class GardenViewModel: ObservableObject {
     
     init(){
         getUserItems()
-        nc.addObserver(self,
-                       selector: #selector(self.addTree),
-                       name: Notification.Name(NotificationType.CreateTree.rawValue),
-                       object: nil)
-        
-        nc.addObserver(self,
-                       selector: #selector(self.getGoalCompletions),
-                       name: Notification.Name(NotificationType.FetchGoalStat.rawValue),
-                       object: nil)
-        
-        getGoalCompletions()
         setSunMoon()
-    }
-    
-    @objc func getGoalCompletions(){
-        goalsRepo.getGoalsStatByDate(date: Date.today) { result in
-            self.goalsStat = result
-        }
     }
     
     @objc func getUserItems() -> Void {

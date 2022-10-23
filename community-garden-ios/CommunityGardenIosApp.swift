@@ -44,7 +44,7 @@ struct CommunityGardenIosApp: App {
         RemoteConfiguration.shared.fetchRemoteConfig()
         
         if Platform.isSimulator {
-            //            setupLocalEmulator()
+            setupLocalEmulator()
         }
     }
     

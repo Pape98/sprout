@@ -15,7 +15,7 @@ struct GoalsMetCard: View {
     
     var icons = [
         DataOptions.sleep.rawValue: "bed.double",
-        DataOptions.workouts.rawValue: "dumbbell",
+        DataOptions.workouts.rawValue: "bicycle",
         DataOptions.walkingRunningDistance.rawValue: "sportscourt.fill",
         DataOptions.steps.rawValue: "figure.walk"
     ]

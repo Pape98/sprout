@@ -10,16 +10,22 @@ import SwiftUI
 
 struct TreePicker: View {
     
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
     @State private var selection: String = "spiky-maple"
-    let userDefaults = UserDefaultsService.shared
-        
+    
     var body: some View {
         ItemPicker(header: "Pick a tree!",
-               subheader: "Scroll to see all the trees 🌳",
-               selection: $selection,
-               options: Constants.trees,
-               circleType: PickerCard.CircleType.TREE
+                   subheader: "Scroll to see all the trees 🌳",
+                   selection: $selection,
+                   options: Constants.trees,
+                   circleType: PickerCard.CircleType.TREE
         ).dataString(FirestoreKey.TREE.rawValue)
+        .onAppear {
+            if onboardingRouter.canCustomize() == false {
+                onboardingRouter.saveSetting(key: FirestoreKey.TREE, value: "serpent-sumac")
+                onboardingRouter.navigateNext()
+            }
+        }
     }
 }
 
