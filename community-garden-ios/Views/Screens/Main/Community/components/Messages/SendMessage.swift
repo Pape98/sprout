@@ -114,6 +114,14 @@ struct SendMessage: View {
                                 }
                         }
                     }
+                    
+                    ToolbarItem(placement: .navigationBarLeading) {
+                        Image(systemName: "multiply")
+                            .foregroundColor(.seaGreen)
+                            .onTapGesture {
+                                messagesViewModel.showSendMessageSheet = false
+                            }
+                    }
                 }
                 
             }

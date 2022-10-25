@@ -19,6 +19,7 @@ struct MainBackground: View {
             Image(image)
                 .resizable()
                 .ignoresSafeArea(.all, edges: edges)
+                .scaledToFill()
                 .onAppear {
                     appViewModel.setBackground()
                 }
