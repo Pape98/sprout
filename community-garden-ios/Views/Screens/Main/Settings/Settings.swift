@@ -115,8 +115,6 @@ struct Settings: View {
 //                .offset(y: -15)
                 .navigationBarTitle (Text("Settings"), displayMode: .inline)
                 .onAppear {
-                    
-                    appViewModel.setBackground()
                     if let settings = UserService.shared.user.settings {
                         reflectWeatherChanges = settings.reflectWeatherChanges
                     }

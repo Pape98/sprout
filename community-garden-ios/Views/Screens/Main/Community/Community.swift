@@ -159,7 +159,6 @@ struct Community: View {
         .onAppear{
             communityViewModel.fetchTrees()
             communityViewModel.fetchGroup()
-            appViewModel.setBackground()
         }
         .sheet(isPresented: $messagesViewModel.showUserMessageSheet) {
             UserMessages()

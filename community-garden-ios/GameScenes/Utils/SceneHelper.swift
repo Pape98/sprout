@@ -68,4 +68,14 @@ class SceneHelper {
         scene.addChild(cloud)
     }
     
+    static func getPulseAction(scale: CGFloat, scaleOffset: CGFloat, duration: CGFloat = 2.5) -> SKAction {
+        let scaleUp = SKAction.scale(to: scale, duration: duration)
+        let scaleDown = SKAction.scale(to: scale - scaleOffset, duration: duration)
+        
+        let scaleAction = SKAction.sequence([scaleDown,scaleUp])
+        let repeatedScaleAction = SKAction.repeatForever(scaleAction)
+        
+        return repeatedScaleAction
+    }
+    
 }

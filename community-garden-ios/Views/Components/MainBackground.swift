@@ -20,15 +20,12 @@ struct MainBackground: View {
                 .resizable()
                 .ignoresSafeArea(.all, edges: edges)
                 .scaledToFill()
-                .onAppear {
-                    appViewModel.setBackground()
-                }
         } else {
-            Image(getIntroBackground())
+            Image(appViewModel.introBackground)
                 .resizable()
                 .ignoresSafeArea(.all, edges: edges)
                 .onAppear {
-                    appViewModel.setBackground()
+                    appViewModel.setIntroBackground()
                 }
         }
     }

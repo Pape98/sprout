@@ -46,9 +46,6 @@ struct History: View {
             .navigationBarTitle("History", displayMode: .inline)
             
         }
-        .onAppear {
-            appViewModel.setBackground()
-        }
         .navigationViewStyle(.stack)
     }
 }

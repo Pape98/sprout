@@ -165,6 +165,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             // NOTE: Can only move tree
             tree.position = location
             tree.zPosition = -location.y
+            tree.childNode(withName: NodeNames.shadow.rawValue)?.zPosition = tree.zPosition - 1
             grass.position = CGPoint(x: tree.position.x - 15, y: tree.position.y)
             grass.zPosition = tree.zPosition + 1
         }
@@ -190,7 +191,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         soundEffectHandler(nodeA)
         soundEffectHandler(nodeB)
-        
         
         // Contact droplet + tree
         if nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.tree.rawValue {
@@ -297,13 +297,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // Pulse action
-        let scaleUp = SKAction.scale(to: tree.scale, duration:2.5)
-        let scaleDown = SKAction.scale(to: tree.scale - 0.1, duration:2.5)
-        
-        let scaleAction = SKAction.sequence([scaleDown,scaleUp])
-        let repeatedScaleAction = SKAction.repeatForever(scaleAction)
-        
-        treeNode.run(repeatedScaleAction)
+        let pulseAction = SceneHelper.getPulseAction(scale: tree.scale, scaleOffset: 0.075)
+        treeNode.run(pulseAction)
                 
         addChild(treeNode)
         
@@ -395,8 +390,12 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             var treeScale = gardenViewModel.tree!.scale + TREE_SCALE_FACTOR
             treeScale = round(treeScale * 1000) / 1000.0
             
-            let treeAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
-            tree.run(treeAction)
+            tree.removeAllActions()
+            
+            let growthAction = SKAction.scale(to: treeScale, duration: SCALE_DURATION)
+            let pulseAction = SceneHelper.getPulseAction(scale: gardenViewModel.tree!.scale, scaleOffset: 0.075)
+            let actionSequence = SKAction.sequence([growthAction, pulseAction])
+            tree.run(actionSequence)
             
             // Update tree object's scale
             gardenViewModel.tree?.scale = treeScale

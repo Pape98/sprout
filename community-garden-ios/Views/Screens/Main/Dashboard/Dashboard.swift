@@ -163,10 +163,6 @@ struct Dashboard: View {
                 }
             }
         }
-        .onAppear {
-            appViewModel.setBackground()
-        }
-        
     }
     
     @ViewBuilder

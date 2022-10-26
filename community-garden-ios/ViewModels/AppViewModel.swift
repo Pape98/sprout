@@ -20,6 +20,7 @@ class AppViewModel: ObservableObject {
     @Published var fontColor: Color = .black
     @Published var showPointsGainedAlert = false
     @Published var numFiftyPercentDays = 0
+    @Published var introBackground = "intro-bg-day"
     
     @Published var isSocialConfig = true
     @Published var canCustomize = true
@@ -35,6 +36,7 @@ class AppViewModel: ObservableObject {
                        object: nil)
         
         setBackground()
+        setIntroBackground()
         setNumFiftyPercentDays()
     }
     
@@ -115,6 +117,22 @@ class AppViewModel: ObservableObject {
             
             if self.backgroundColor == "night" || self.backgroundColor == "evening"  {
                 self.fontColor = .white
+            }
+        }
+    }
+    
+    func setIntroBackground() {
+        let hour = Date.hour
+                
+        DispatchQueue.main.async {
+            if hour >= 0 && hour <= 6 { // night
+                self.introBackground = "intro-bg-night"
+            } else if hour >= 7 && hour <= 10 { // morning
+                self.introBackground = "intro-bg-morning"
+            } else if hour >= 11 && hour < 18 { // day
+                self.introBackground = "intro-bg-day"
+            } else { // evening
+                self.introBackground = "intro-bg-evening"
             }
         }
     }
