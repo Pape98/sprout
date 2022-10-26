@@ -118,6 +118,12 @@ struct MyGarden: View {
     }
     
     func getSunMoonLevel() -> Int {
+        
+        let groupNumber = UserService.shared.user.group
+        let isSocial = RemoteConfiguration.shared.isSocialConfig(group: groupNumber)
+        
+        if isSocial == false { return 4 }
+        
         let numTargetGoals = (communityViewModel.members.count + 1) * 2
         guard let goalStat = communityViewModel.goalsStat else { return 1 }
         let percentCompletion = Double(goalStat.numberOfGoalsAchieved) / Double(numTargetGoals)
