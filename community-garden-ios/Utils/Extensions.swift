@@ -116,6 +116,7 @@ extension Color {
     static let ceramic = Color("ceramic")
     static let greenishBlue = Color("greenish-blue")
     static let oldCopper = Color("old-copper")
+    static let yellowGreen = Color("yellow-green")
     
     // Weather colors
     static let night = Color("night")

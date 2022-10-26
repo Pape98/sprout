@@ -56,13 +56,6 @@ class GardenRepository {
         completion()
     }
     
-    func updateGardenItem(query: Query, updates: [String: Any]){
-        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
-        guard let _ = collection else { return }
-        
-        // TODO: Finish if needed
-        
-    }
     
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){

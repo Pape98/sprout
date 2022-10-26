@@ -56,7 +56,7 @@ class CommunityGardenScene: SKScene {
         }
         
         // TODO: Remove number of parcels hardcoding
-        addParcelsToColumn(firstColumn, count: NUM_PARCEL_PER_COLUMN, swap: true)
+        addParcelsToColumn(firstColumn, count: NUM_PARCEL_PER_COLUMN)
         addParcelsToColumn(secondColumn, count: NUM_PARCEL_PER_COLUMN)
         addTreesToParcels()
         addSoilsToParcels()
@@ -323,9 +323,9 @@ class CommunityGardenScene: SKScene {
         treeNode.run(pulseAction)
         
         // shadow
-        let shadowNode = SKSpriteNode(imageNamed: "shadow-community")
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
         shadowNode.zPosition = -1
-        shadowNode.setScale(0.5)
+        shadowNode.setScale(0.75)
         treeNode.addChild(shadowNode)
         
         // grass

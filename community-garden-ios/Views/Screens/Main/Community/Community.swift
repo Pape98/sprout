@@ -40,7 +40,7 @@ struct Community: View {
         
         GeometryReader { geo in
             
-            Color.greenishBlue
+            Color.yellowGreen
                 .edgesIgnoringSafeArea(.top)
                 .overlay {
                     Rectangle()
@@ -54,7 +54,7 @@ struct Community: View {
                 ScrollView {
                     ZStack {
                         // Background image
-                        Image("community-bg")
+                        Image("community-bg-2")
                             .resizable()
                             .ignoresSafeArea(.all, edges: [.all])
                             .frame(height: geo.size.height * 1.5)

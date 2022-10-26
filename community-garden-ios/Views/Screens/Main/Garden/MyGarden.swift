@@ -91,7 +91,7 @@ struct MyGarden: View {
                     VStack {
                         Spacer()
                         LottieView(filename: "dog_d2")
-                            .frame(height: geo.size.height * 0.2)
+                            .frame(height: geo.size.height * 0.15)
                     }
                 }
             }
