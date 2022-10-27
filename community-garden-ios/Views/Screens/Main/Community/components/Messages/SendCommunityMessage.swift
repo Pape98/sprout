@@ -12,8 +12,8 @@ struct SendCommunityMessage: View {
     @EnvironmentObject var messagesViewModel : MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     
-    @State var text = "sdsdsdsddwdwdw"
-    @State var isAnonymous = false
+    @State var text = ""
+    @State var isPrivate = true
     
     var body: some View {
         GeometryReader { geo in
@@ -25,13 +25,20 @@ struct SendCommunityMessage: View {
                         Text("Enter text below")
                             .bodyStyle(foregroundColor: appViewModel.fontColor)
                         
+                        
                         TextEditor(text: $text)
-                            .frame(height: geo.size.height * 0.30)
+                            .frame(width: geo.size.width * 0.82, height: geo.size.height * 0.25)
                             .cornerRadius(10)
                         
-                        Toggle("Show welcome message", isOn: $isAnonymous)
+                        Form {
+                            Section("Parameters"){
+                                Toggle("Anonymous", isOn: $isPrivate)
+                            }
+                        }
+                        .modifier(ListBackgroundModifier())
                         
                         ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
+                            messagesViewModel.sendCommunityMessage(text: text, isPrivate: isPrivate)
                             messagesViewModel.showSendCommunityMessageSheet = false
                         }
                         .frame(width: 200)
@@ -45,7 +52,7 @@ struct SendCommunityMessage: View {
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         Image(systemName: "multiply")
-                            .foregroundColor(.seaGreen)
+                            .foregroundColor(appViewModel.fontColor)
                             .onTapGesture {
                                 messagesViewModel.showSendCommunityMessageSheet = false
                             }
@@ -60,5 +67,6 @@ struct SendCommunityMessage_Previews: PreviewProvider {
     static var previews: some View {
         SendCommunityMessage()
             .environmentObject(MessagesViewModel())
+            .environmentObject(AppViewModel())
     }
 }

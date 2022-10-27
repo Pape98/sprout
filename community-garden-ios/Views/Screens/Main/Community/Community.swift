@@ -65,7 +65,6 @@ struct Community: View {
                         if communityViewModel.group != nil {
                             SpriteView(scene: scene, options: [.allowsTransparency])
                                 .ignoresSafeArea(.container, edges: [.top])
-                            
                         }
                         
                         VStack {
@@ -142,19 +141,6 @@ struct Community: View {
                         
                         Spacer()
                         
-//                        if let reactions = communityViewModel.reactions {
-//                            VStack(spacing: 5) {
-//
-//                                ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
-//                                    communityViewModel.sendLove()
-//                                }
-//
-//                                ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
-//                                    communityViewModel.sendEncouragement()
-//                                }
-//                            }
-//
-//                        }
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 20)

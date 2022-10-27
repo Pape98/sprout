@@ -12,8 +12,8 @@ class MessagesRepository {
     static let shared = MessagesRepository()
     let collections = Collections.shared
     
-    func sendMessage(_ message: Message){
-        let collection = collections.getCollectionReference(CollectionName.messages.rawValue)
+    func sendMessage(_ message: any Messageable, collectionName: CollectionName){
+        let collection = collections.getCollectionReference(collectionName.rawValue)
         
         guard let collection = collection else { return }
         

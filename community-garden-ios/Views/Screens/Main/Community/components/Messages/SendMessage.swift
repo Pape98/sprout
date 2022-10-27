@@ -14,7 +14,7 @@ struct SendSingleUserMessage: View {
     @EnvironmentObject var appViewModel: AppViewModel
     @EnvironmentObject var communityViewModel: CommunityViewModel
     
-
+    
     @State private var isMessagePrivate = true
     @State private var messageText = ""
     @State private var showErrorAlert = false
@@ -70,14 +70,32 @@ struct SendSingleUserMessage: View {
                             .frame(width: geometry.size.width * 0.9, alignment: .leading)
                         
                         Form {
-                        
-                                TextField("Enter message here", text: $messageText)
-                                Toggle("Make Anonymous", isOn: $isMessagePrivate)
+                            
+                            TextField("Enter message here", text: $messageText)
+                            Toggle("Make Anonymous", isOn: $isMessagePrivate)
                             
                             
                         }
                         .offset(y: -20)
                         .modifier(ListBackgroundModifier())
+                        
+                        ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
+                            if messageText.isEmpty || selectedUser == nil {
+                                showErrorAlert = true
+                                return
+                            }
+                            
+                            AudioPlayer.shared.playSystemSound(soundID: 1004)
+                            
+                            messagesViewModel.sendMessage(receiver: selectedUser!,
+                                                          text: messageText,
+                                                          isPrivate: isMessagePrivate)
+                            
+                            messagesViewModel.showSendSingleUserMessageSheet = false
+                        }
+                        .padding()
+                        .frame(width: 200)
+                        
                     }
                 }
                 .alert(isPresented: $showErrorAlert){
@@ -89,41 +107,15 @@ struct SendSingleUserMessage: View {
                 }
                 .navigationTitle("Send Message")
                 .navigationBarTitleDisplayMode(.inline)
-//                .toolbar {
-//                    
-//                    ToolbarItem(placement: .navigationBarTrailing) {
-//                        Button {
-//                            print("sending")
-//                        } label: {
-//                            Image(systemName: "paperplane")
-//                                .foregroundColor(.seaGreen)
-//                                .onTapGesture {
-//                                    
-//                                    if messageText.isEmpty || selectedUser == nil {
-//                                        showErrorAlert = true
-//                                        return
-//                                    }
-//                                    
-//                                    AudioPlayer.shared.playSystemSound(soundID: 1004)
-//                                    
-//                                    messagesViewModel.sendMessage(receiver: selectedUser!,
-//                                                                  text: messageText,
-//                                                                  isPrivate: isMessagePrivate)
-//                                    
-//                                    messagesViewModel.showSendMessageSheet = false
-//                                }
-//                        }
-//                    }
-//                    
-//                    ToolbarItem(placement: .navigationBarLeading) {
-//                        Image(systemName: "multiply")
-//                            .foregroundColor(.seaGreen)
-//                            .onTapGesture {
-//                                messagesViewModel.showSendMessageSheet = false
-//                            }
-//                    }
-//                }
-                
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Image(systemName: "multiply")
+                            .foregroundColor(appViewModel.fontColor)
+                            .onTapGesture {
+                                messagesViewModel.showSendSingleUserMessageSheet = false
+                            }
+                    }
+                }
             }
         }
     }
@@ -162,10 +154,10 @@ struct SendSingleUserMessage: View {
                     
                 }
                 
-//                Text(user.name)
-//                    .bodyStyle(foregroundColor: appViewModel.fontColor)
-//                    .font(.system(size: 13))
-//                    .lineLimit(1)
+                //                Text(user.name)
+                //                    .bodyStyle(foregroundColor: appViewModel.fontColor)
+                //                    .font(.system(size: 13))
+                //                    .lineLimit(1)
             }
         }
     }

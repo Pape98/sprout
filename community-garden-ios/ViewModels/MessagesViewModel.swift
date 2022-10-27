@@ -43,11 +43,24 @@ class MessagesViewModel: ObservableObject {
                                  senderFlower: "\(sender.settings!.flowerColor)-\(addDash(sender.settings!.flower))"
         )
                         
-        messagesRepository.sendMessage(newMessage)
+        messagesRepository.sendMessage(newMessage, collectionName: CollectionName.messages)
         SproutAnalytics.shared.individualMessage(senderID: sender.id,
                                                  senderName: sender.name,
                                                  receiverID: receiver.id,
                                                  receiverName: receiver.name)
+    }
+    
+    func sendCommunityMessage(text: String, isPrivate: Bool){
+        let user = UserService.shared.user
+        let message = CommunityMessage(senderID: user.id,
+                                       senderName: user.name,
+                                       date: Date(),
+                                       group: user.group,
+                                       isPrivate: isPrivate,
+                                       text: text)
+        
+        messagesRepository.sendMessage(message, collectionName: CollectionName.communityFeed)
+        
     }
     
     func getUserMessages(){
