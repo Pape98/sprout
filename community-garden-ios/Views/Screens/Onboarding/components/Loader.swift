@@ -11,6 +11,7 @@ struct Loader: View {
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @EnvironmentObject var gardenViewModel: GardenViewModel
+    @EnvironmentObject var onboardingRouter: OnboardingRouter
     
     var body: some View {
         ZStack {
@@ -25,7 +26,8 @@ struct Loader: View {
         }
         .onAppear {
             RemoteConfiguration.shared.fetchRemoteConfig()
-            GardenViewModel.shared.addTree()
+            let group = onboardingRouter.selectedGroup
+            GardenViewModel.shared.addTree(groupNumber: group)
             CommunityViewModel.shared.getGoalCompletions()
             DispatchQueue.main.asyncAfter(deadline: .now() + 5) {
                 authViewModel.userOnboarded = true

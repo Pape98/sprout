@@ -16,8 +16,11 @@ class MessagesViewModel: ObservableObject {
     let collections = Collections.shared
     
     // TODO: Remove later
-    @Published var showSendMessageSheet = false
+    @Published var showSendSingleUserMessageSheet = false
+    @Published var showSendCommunityMessageSheet = false
     @Published var showUserMessageSheet = false
+    @Published var showCommunityFeed = false
+    
     var selectedUser: User? = nil
     
     // Messages

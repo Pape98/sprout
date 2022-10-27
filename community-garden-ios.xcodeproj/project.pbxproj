@@ -29,6 +29,7 @@
 		F01B635B284FB339004D079A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B635A284FB339004D079A /* Helpers.swift */; };
 		F024BFF6286BB37100850018 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024BFF5286BB37100850018 /* MainView.swift */; };
 		F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02682D02850F13A004747FD /* UserDefaultService.swift */; };
+		F03062062909DD8E009DAAD4 /* SendCommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03062052909DD8E009DAAD4 /* SendCommunityMessage.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
 		F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C372887500E00251FD0 /* SettingsViewModel.swift */; };
 		F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C392887A9A400251FD0 /* NameChanging.swift */; };
@@ -192,6 +193,7 @@
 		F01B635A284FB339004D079A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F024BFF5286BB37100850018 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F02682D02850F13A004747FD /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		F03062052909DD8E009DAAD4 /* SendCommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCommunityMessage.swift; sourceTree = "<group>"; };
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F0337C372887500E00251FD0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F0337C392887A9A400251FD0 /* NameChanging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameChanging.swift; sourceTree = "<group>"; };
@@ -473,6 +475,7 @@
 				F0D66E3B288894B00095AEDE /* SendMessage.swift */,
 				F04AD4CE288B22DD00BC17AB /* UserMessages.swift */,
 				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
+				F03062052909DD8E009DAAD4 /* SendCommunityMessage.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -1162,6 +1165,7 @@
 				F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */,
 				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
 				F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */,
+				F03062062909DD8E009DAAD4 /* SendCommunityMessage.swift in Sources */,
 				F0B6DAEC2875C30100DD3F03 /* Statistics.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,

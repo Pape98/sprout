@@ -23,7 +23,7 @@ class OnboardingViewModel: ObservableObject {
             let decodedSetting = try decoder.decode(UserSettings.self, from: json)
             UserService.shared.user.settings = decodedSetting
         } catch {
-            print(error)
+            Debug.log.debug(error)
             return
         }
         

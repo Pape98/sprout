@@ -15,9 +15,10 @@ struct Community: View {
     @EnvironmentObject var communityViewModel: CommunityViewModel
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
-        
+    
     let userDefaults = UserDefaultsService.shared
     var weatherInfo: [String: String] = getWeatherInfo()
+    @State var showPickMessageTypeAlert = false
     
     var scene: SKScene {
         let scene = CommunityGardenScene()
@@ -74,23 +75,23 @@ struct Community: View {
                                     .frame(height: geo.size.height * 0.11)
                                     .offset(y: -geo.size.height * 0.04)
                             }
-
+                            
                             Spacer(minLength: 10)
-
+                            
                             if appViewModel.isBadgeUnlocked(UnlockableBadge.turtle){
                                 LottieView(filename: "turtle_s3")
                                     .frame(height: geo.size.height * 0.13)
                                     .offset(x: 0, y: geo.size.height * -0.05)
                             }
-
-
+                            
+                            
                             Spacer()
-
+                            
                             if appViewModel.isBadgeUnlocked(UnlockableBadge.deer){
                                 LottieView(filename: "deer_a5")
                                     .frame(height: geo.size.height * 0.155)
                             }
-
+                            
                             Spacer()
                             
                             if appViewModel.isBadgeUnlocked(UnlockableBadge.dog){
@@ -132,24 +133,28 @@ struct Community: View {
                         }
                         
                         ActionButton(image: "paperplane.fill", foreground: .tangerine) {
-                            messagesViewModel.showSendMessageSheet = true
+                            showPickMessageTypeAlert = true
+                        }
+                        
+                        ActionButton(image: "globe", foreground: .grenadier) {
+                            messagesViewModel.showCommunityFeed = true
                         }
                         
                         Spacer()
                         
-                        if let reactions = communityViewModel.reactions {
-                            VStack(spacing: 5) {
-                                
-                                ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
-                                    communityViewModel.sendLove()
-                                }
-                                
-                                ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
-                                    communityViewModel.sendEncouragement()
-                                }
-                            }
-                            
-                        }
+//                        if let reactions = communityViewModel.reactions {
+//                            VStack(spacing: 5) {
+//
+//                                ActionButton(image: "heart.fill", text: String(reactions.love != nil ? reactions.love! : 0), foreground: .red) {
+//                                    communityViewModel.sendLove()
+//                                }
+//
+//                                ActionButton(image: "star.fill", text: String(reactions.encouragement != nil ? reactions.encouragement! : 0), foreground: .yellow) {
+//                                    communityViewModel.sendEncouragement()
+//                                }
+//                            }
+//
+//                        }
                     }
                     .padding(.horizontal)
                     .padding(.vertical, 20)
@@ -163,14 +168,21 @@ struct Community: View {
         .sheet(isPresented: $messagesViewModel.showUserMessageSheet) {
             UserMessages()
         }
-        .sheet(isPresented: $messagesViewModel.showSendMessageSheet) {
-            SendMessage()
+        .sheet(isPresented: $messagesViewModel.showSendSingleUserMessageSheet) {
+            SendSingleUserMessage()
+        }
+        .sheet(isPresented: $messagesViewModel.showSendCommunityMessageSheet) {
+            SendCommunityMessage()
         }
         
         .toast(isPresenting: $communityViewModel.showToast) {
             AlertToast(displayMode: .hud,
                        type: AlertToast.AlertType.systemImage(communityViewModel.toastImage, communityViewModel.toastColor),
                        title: communityViewModel.toastTitle)
+        }
+        .alert("Send to message to...", isPresented: $showPickMessageTypeAlert) {
+            Button("Single user") { messagesViewModel.showSendSingleUserMessageSheet = true}
+            Button("Community") { messagesViewModel.showSendCommunityMessageSheet = true}
         }
     }
     

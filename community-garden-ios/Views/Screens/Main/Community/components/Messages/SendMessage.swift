@@ -8,7 +8,7 @@
 import SwiftUI
 import AVFoundation
 
-struct SendMessage: View {
+struct SendSingleUserMessage: View {
     
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
@@ -89,40 +89,40 @@ struct SendMessage: View {
                 }
                 .navigationTitle("Send Message")
                 .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            print("sending")
-                        } label: {
-                            Image(systemName: "paperplane")
-                                .foregroundColor(.seaGreen)
-                                .onTapGesture {
-                                    
-                                    if messageText.isEmpty || selectedUser == nil {
-                                        showErrorAlert = true
-                                        return
-                                    }
-                                    
-                                    AudioPlayer.shared.playSystemSound(soundID: 1004)
-                                    
-                                    messagesViewModel.sendMessage(receiver: selectedUser!,
-                                                                  text: messageText,
-                                                                  isPrivate: isMessagePrivate)
-                                    
-                                    messagesViewModel.showSendMessageSheet = false
-                                }
-                        }
-                    }
-                    
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Image(systemName: "multiply")
-                            .foregroundColor(.seaGreen)
-                            .onTapGesture {
-                                messagesViewModel.showSendMessageSheet = false
-                            }
-                    }
-                }
+//                .toolbar {
+//                    
+//                    ToolbarItem(placement: .navigationBarTrailing) {
+//                        Button {
+//                            print("sending")
+//                        } label: {
+//                            Image(systemName: "paperplane")
+//                                .foregroundColor(.seaGreen)
+//                                .onTapGesture {
+//                                    
+//                                    if messageText.isEmpty || selectedUser == nil {
+//                                        showErrorAlert = true
+//                                        return
+//                                    }
+//                                    
+//                                    AudioPlayer.shared.playSystemSound(soundID: 1004)
+//                                    
+//                                    messagesViewModel.sendMessage(receiver: selectedUser!,
+//                                                                  text: messageText,
+//                                                                  isPrivate: isMessagePrivate)
+//                                    
+//                                    messagesViewModel.showSendMessageSheet = false
+//                                }
+//                        }
+//                    }
+//                    
+//                    ToolbarItem(placement: .navigationBarLeading) {
+//                        Image(systemName: "multiply")
+//                            .foregroundColor(.seaGreen)
+//                            .onTapGesture {
+//                                messagesViewModel.showSendMessageSheet = false
+//                            }
+//                    }
+//                }
                 
             }
         }
@@ -171,11 +171,11 @@ struct SendMessage: View {
     }
 }
 
-struct SendMessage_Previews: PreviewProvider {
+struct SendSingleUserMessage_Previews: PreviewProvider {
     static let settings = UserSettings(tree: "sad holly", treeColor: "grenadier")
     static let user = User(id: UUID().uuidString, name: "Pape Sow Traore", settings: settings)
     static var previews: some View {
-        SendMessage()
+        SendSingleUserMessage()
             .environmentObject(MessagesViewModel())
             .environmentObject(AppViewModel())
             .environmentObject(CommunityViewModel())
