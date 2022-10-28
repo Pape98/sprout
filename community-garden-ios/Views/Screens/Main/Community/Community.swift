@@ -168,7 +168,8 @@ struct Community: View {
         }
         .alert("Send to message to...", isPresented: $showPickMessageTypeAlert) {
             Button("Single user") { messagesViewModel.showSendSingleUserMessageSheet = true}
-            Button("Community") { messagesViewModel.showSendCommunityMessageSheet = true}
+            Button("Community") { messagesViewModel.showSendCommunityMessageSheet = true }
+            Button("Cancel", role: .destructive) { showPickMessageTypeAlert = false }
         }
     }
     

@@ -25,7 +25,7 @@ class MessagesRepository {
 
     }
     
-    func getMessages(query: Query, completion: @escaping ([Message]) -> Void){
+    func getMessages<T:Messageable>(query: Query, type: T.Type, completion: @escaping ([T]) -> Void){
         query.getDocuments { querySnapshot, error in
             
             if error != nil {
@@ -33,11 +33,11 @@ class MessagesRepository {
                 return
             }
             
-            var messages: [Message] = []
+            var messages: [T] = []
             
             do {
                 for doc in querySnapshot!.documents {
-                    messages.append(try doc.data(as: Message.self))
+                    messages.append(try doc.data(as: T.self))
                 }
             } catch {
                 Debug.log.error("getUserItems: Error reading from: \(error)")

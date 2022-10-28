@@ -117,9 +117,14 @@ class CommunityGardenScene: SKScene {
     
     func addTreesToParcels(){
         var counter = 0
+
         for tree in communityViewModel.trees {
             addTree(tree: tree, parcel: &parcels[counter])
             counter += 1
+            
+            if counter >= 6 {
+                return
+            }
         }
     }
     

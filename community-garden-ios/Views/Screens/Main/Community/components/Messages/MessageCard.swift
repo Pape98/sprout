@@ -40,13 +40,14 @@ struct MessageCard: View {
                 
                 CircledFlower(option: userFlower, background: flowerColor)
                     .frame(width: 55, height: 55)
+                    .padding(.leading)
                 
                 
                 VStack(alignment: .leading, spacing: 5) {
                     
                     HStack {
                         Text(message.isPrivate ? "Anonymous User" : username)
-                            .bodyStyle(foregroundColor: appViewModel.fontColor)
+                            .bodyStyle(foregroundColor: .black)
                         
                         Spacer()
                         
@@ -56,17 +57,19 @@ struct MessageCard: View {
                     }
                     
                     Text(message.text)
-                        .bodyStyle(foregroundColor: appViewModel.fontColor, size: 13)
+                        .bodyStyle(foregroundColor: .black, size: 13)
                     
                 }
+                .padding()
                 
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            Divider()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.white)
+                    .opacity(0.7)
+            }
         }
-        .sheet(isPresented: $isShowingSheet, content: {
-           
-        })
     }
 }
 
@@ -78,7 +81,10 @@ struct MessageCard_Previews: PreviewProvider {
                                  date: Date.now, senderFlower: "grenadier-joyful-clover")
     
     static var previews: some View {
-        MessageCard(message: message, messageType: .received)
-            .environmentObject(AppViewModel())
+        ZStack {
+            Color.hawks
+            MessageCard(message: message, messageType: .received)
+                .environmentObject(AppViewModel())
+        }
     }
 }

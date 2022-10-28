@@ -26,10 +26,12 @@ class MessagesViewModel: ObservableObject {
     // Messages
     @Published var receivedMessages: [Message] = []
     @Published var sentMessages: [Message] = []
+    @Published var feedMessages: [CommunityMessage] = []
     
     
     init(){
         getUserMessages()
+        getCommunityFeed()
     }
     
     // MARK: Methods for sending and receiving messages
@@ -77,13 +79,25 @@ class MessagesViewModel: ObservableObject {
             .whereField("senderID", isEqualTo: userID)
             .order(by: "date", descending: true)
         
-        messagesRepository.getMessages(query: receivedMessagesQuery) { receivedMessages in
-            self.messagesRepository.getMessages(query: sentMessagesQuery) { sentMessages in
+        messagesRepository.getMessages(query: receivedMessagesQuery, type: Message.self) { receivedMessages in
+            self.messagesRepository.getMessages(query: sentMessagesQuery, type: Message.self) { sentMessages in
                 DispatchQueue.main.async {
                     self.receivedMessages = receivedMessages
                     self.sentMessages = sentMessages
                 }
             }
+        }
+    }
+    
+    func getCommunityFeed(){
+        let group = UserService.shared.user.group
+        let collection = collections.getCollectionReference(CollectionName.communityFeed.rawValue)
+        guard let collection = collection else { return }
+                
+        let query = collection.whereField("group", isEqualTo: group)
+        
+        messagesRepository.getMessages(query: query, type: CommunityMessage.self) { feedMessages in
+            self.feedMessages = feedMessages
         }
         
     }
