@@ -16,10 +16,12 @@ struct MainBackground: View {
     
     var body: some View {
         if let image = image {
-            Image(image)
-                .resizable()
-                .ignoresSafeArea(.all, edges: edges)
-                .scaledToFill()
+            
+                Image(image)
+                    .resizable()
+                    .ignoresSafeArea(.all, edges: edges)
+                    .scaledToFill()
+            
         } else {
             Image(appViewModel.introBackground)
                 .resizable()

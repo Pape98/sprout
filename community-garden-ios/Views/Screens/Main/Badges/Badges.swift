@@ -23,7 +23,7 @@ struct Badges: View {
     var body: some View {
         NavigationView {
             ZStack {
-                MainBackground(image: "sky-cloud-bg")
+                MainBackground()
                 
                 ScrollView {
                     VStack {
@@ -92,7 +92,6 @@ struct Badges: View {
                             }
                         }
                         
-                        Spacer()
                     }
                     .padding(.top)
                 }

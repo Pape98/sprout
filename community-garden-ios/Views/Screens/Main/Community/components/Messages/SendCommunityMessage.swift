@@ -19,7 +19,8 @@ struct SendCommunityMessage: View {
         GeometryReader { geo in
             NavigationView {
                 ZStack {
-                    MainBackground()
+                    MainBackground(edges: [.bottom])
+                    
                     VStack {
                         
                         Text("Enter text below")

@@ -27,78 +27,81 @@ struct SendSingleUserMessage: View {
             GeometryReader { geometry in
                 ZStack(alignment: .top) {
                     
-                    MainBackground()
+                    MainBackground(edges: [.bottom])
                     
-                    
-                    VStack(spacing: 10) {
-                        
-                        Text("Scroll right and tap tree to select recipient")
-                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
-                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
-                        
-                        ScrollView(.horizontal, showsIndicators: false){
-                            HStack(spacing: 20) {
-                                ForEach(Array(communityViewModel.members.values)){ member in
-                                    UserCard(user: member)
-                                        .onTapGesture {
-                                            selectedUser = member
-                                        }
+                    ScrollView {
+                        VStack(spacing: 10) {
+                            
+                            Text("Scroll right and tap tree to select recipient")
+                                .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                                .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                                .padding()
+                            
+                            ScrollView(.horizontal, showsIndicators: false){
+                                HStack(spacing: 20) {
+                                    ForEach(Array(communityViewModel.members.values)){ member in
+                                        UserCard(user: member)
+                                            .onTapGesture {
+                                                selectedUser = member
+                                            }
+                                    }
                                 }
                             }
-                        }
-                        .padding()
-                        
-                        // Selected Messsage
-                        Text("Message preview")
-                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
-                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
-                        
-                        Text(messageText)
-                            .frame(alignment: .center)
                             .padding()
-                            .multilineTextAlignment(.center)
-                            .background {
-                                RoundedRectangle(cornerRadius: 10)
-                                    .fill(Color.haze)
-                                    .opacity(0.8)
-                                    .frame(width: geometry.size.width * 0.9)
+                            
+                            // Selected Messsage
+                            Text("Message preview")
+                                .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                                .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                            
+                            Text(messageText)
+                                .frame(alignment: .center)
+                                .padding()
+                                .multilineTextAlignment(.center)
+                                .background {
+                                    RoundedRectangle(cornerRadius: 10)
+                                        .fill(Color.haze)
+                                        .opacity(0.8)
+                                        .frame(width: geometry.size.width * 0.9)
+                                }
+                                .padding()
+                            
+                            // Form
+                            
+                            Text("Content")
+                                .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                                .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                            
+                            Form {
+                                TextEditor(text: $messageText)
+                                    .cornerRadius(10)
+                                
+                                Toggle("Make Anonymous", isOn: $isMessagePrivate)
+                                
+                                
+                            }
+                            .offset(y: -20)
+                            .modifier(ListBackgroundModifier())
+                            .frame(height: geometry.size.height * 0.4)
+                            
+                            ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
+                                if messageText.isEmpty || selectedUser == nil {
+                                    showErrorAlert = true
+                                    return
+                                }
+                                
+                                AudioPlayer.shared.playSystemSound(soundID: 1004)
+                                
+                                messagesViewModel.sendMessage(receiver: selectedUser!,
+                                                              text: messageText,
+                                                              isPrivate: isMessagePrivate)
+                                
+                                messagesViewModel.showSendSingleUserMessageSheet = false
                             }
                             .padding()
-                        
-                        // Form
-                        
-                        Text("Content")
-                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
-                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
-                        
-                        Form {
-                            
-                            TextField("Enter message here", text: $messageText)
-                            Toggle("Make Anonymous", isOn: $isMessagePrivate)
-                            
+                            .frame(width: 150)
                             
                         }
-                        .offset(y: -20)
-                        .modifier(ListBackgroundModifier())
-                        .frame(height: geometry.size.height * 0.2)
-                        
-                        ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
-                            if messageText.isEmpty || selectedUser == nil {
-                                showErrorAlert = true
-                                return
-                            }
-                            
-                            AudioPlayer.shared.playSystemSound(soundID: 1004)
-                            
-                            messagesViewModel.sendMessage(receiver: selectedUser!,
-                                                          text: messageText,
-                                                          isPrivate: isMessagePrivate)
-                            
-                            messagesViewModel.showSendSingleUserMessageSheet = false
-                        }
-                        .padding()
-                        .frame(width: 150)
-                        
                     }
                 }
             }
