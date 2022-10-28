@@ -40,8 +40,9 @@ struct SendCommunityMessage: View {
                         ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
                             messagesViewModel.sendCommunityMessage(text: text, isPrivate: isPrivate)
                             messagesViewModel.showSendCommunityMessageSheet = false
+                            AudioPlayer.shared.playSystemSound(soundID: 1004)
                         }
-                        .frame(width: 200)
+                        .frame(width: 150)
                         .padding()
                         Spacer()
                     }
@@ -57,6 +58,9 @@ struct SendCommunityMessage: View {
                                 messagesViewModel.showSendCommunityMessageSheet = false
                             }
                     }
+                }
+                .onAppear {
+                    messagesViewModel.getCommunityFeed()
                 }
             }
         }

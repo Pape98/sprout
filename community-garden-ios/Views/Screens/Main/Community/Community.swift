@@ -131,12 +131,12 @@ struct Community: View {
                             messagesViewModel.showUserMessageSheet = true
                         }
                         
-                        ActionButton(image: "paperplane.fill", foreground: .tangerine) {
-                            showPickMessageTypeAlert = true
+                        ActionButton(image: "globe", foreground: .grenadier) {
+                            messagesViewModel.showCommunityFeedSheet = true
                         }
                         
-                        ActionButton(image: "globe", foreground: .grenadier) {
-                            messagesViewModel.showCommunityFeed = true
+                        ActionButton(image: "paperplane.fill", foreground: .tangerine) {
+                            showPickMessageTypeAlert = true
                         }
                         
                         Spacer()
@@ -160,6 +160,9 @@ struct Community: View {
         .sheet(isPresented: $messagesViewModel.showSendCommunityMessageSheet) {
             SendCommunityMessage()
         }
+        .sheet(isPresented: $messagesViewModel.showCommunityFeedSheet) {
+            CommunityFeed()
+        }
         
         .toast(isPresenting: $communityViewModel.showToast) {
             AlertToast(displayMode: .hud,
@@ -167,9 +170,9 @@ struct Community: View {
                        title: communityViewModel.toastTitle)
         }
         .alert("Send to message to...", isPresented: $showPickMessageTypeAlert) {
-            Button("Single user") { messagesViewModel.showSendSingleUserMessageSheet = true}
-            Button("Community") { messagesViewModel.showSendCommunityMessageSheet = true }
-            Button("Cancel", role: .destructive) { showPickMessageTypeAlert = false }
+            Button("Single User 👤", role: .none) { messagesViewModel.showSendSingleUserMessageSheet = true}
+            Button("Community 👥", role: .none) { messagesViewModel.showSendCommunityMessageSheet = true }
+            Button("Cancel", role : .cancel) { showPickMessageTypeAlert = false }
         }
     }
     

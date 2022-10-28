@@ -27,6 +27,10 @@ struct MyGarden: View {
         return Int(goalStat.numberOfGoalsAchieved / numTargetGoals)
     }
     
+    var gardenName: String {
+        "🌻\(userViewModel.currentUser.settings?.gardenName ?? "")🌲"
+    }
+    
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .topTrailing) {

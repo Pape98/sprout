@@ -1,33 +1,17 @@
 //
-//  Messages.swift
+//  CommunityMessageCard.swift
 //  community-garden-ios
 //
-//  Created by Pape Sow Traoré on 22/07/2022.
+//  Created by Pape Sow Traoré on 28/10/2022.
 //
 
 import SwiftUI
 
-enum ViewMessageType {
-    case received
-    case sent
-}
-
-struct UserMessages: View {
-    
+struct CommunityFeed: View {
     @Environment(\.presentationMode) var presentationMode
     @EnvironmentObject var messagesViewModel: MessagesViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     
-    @State var selectedMessageType: ViewMessageType = .received
-    @State var date = ""
-    
-    var messages: [Message] {
-        if selectedMessageType == .received {
-            return messagesViewModel.receivedMessages
-        } else {
-            return messagesViewModel.sentMessages
-        }
-    }
     
     var body: some View {
         
@@ -39,19 +23,11 @@ struct UserMessages: View {
                 
                 VStack {
                     
-                    Picker("", selection: $selectedMessageType){
-                        Text("Received")
-                            .tag(ViewMessageType.received)
-                        Text("Sent").tag(ViewMessageType.sent)
-                    }
-                    .pickerStyle(.segmented)
-                    .padding()
-                    
                     ScrollView {
                         
                         VStack (spacing: 12.5){
-                            ForEach(messages){ message in
-                                MessageCard(message: message, messageType: selectedMessageType)
+                            ForEach(messagesViewModel.feedMessages){ message in
+                                CommunityFeedCard(message: message)
                             }
                         }
                         .padding()
@@ -63,12 +39,12 @@ struct UserMessages: View {
                 FloatingAnimal(animal: "koala-laughing")
                 
             }
-            .navigationBarTitle("Your Messages", displayMode: .inline)
+            .navigationBarTitle("Community Feed 🌍", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading){
                     
                     Button {
-                        messagesViewModel.getUserMessages()
+                        messagesViewModel.getCommunityFeed()
                     } label: {
                         Image(systemName: "arrow.triangle.2.circlepath")
                             .foregroundColor(appViewModel.fontColor)
@@ -83,9 +59,6 @@ struct UserMessages: View {
                     }
                 }
             }
-            .onAppear {
-                messagesViewModel.getUserMessages()
-            }
         }
         .navigationViewStyle(.stack)
     }
@@ -96,10 +69,10 @@ struct UserMessages: View {
     
 }
 
-struct UserMessages_Previews: PreviewProvider {
+struct CommunityFeed_Previews: PreviewProvider {
     static var previews: some View {
-        UserMessages()
-            .environmentObject(MessagesViewModel())
+        CommunityFeed()
             .environmentObject(AppViewModel())
+            .environmentObject(MessagesViewModel())
     }
 }

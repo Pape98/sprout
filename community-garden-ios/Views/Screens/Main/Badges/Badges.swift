@@ -99,7 +99,7 @@ struct Badges: View {
                 
                 FloatingAnimal()
             }
-            .navigationTitle("Community Badges")
+            .navigationTitle("Community Badges 📛")
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(.stack)

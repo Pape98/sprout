@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 import AlertToast
+import FirebaseAnalytics
 
 struct MainView: View {
     
@@ -110,6 +111,7 @@ struct MainView: View {
         appViewModel.isCustomizationGroup()
         userViewModel.refreshStats()
         setToolBarTitleColor()
+        Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
     }
     
     func playSound(){

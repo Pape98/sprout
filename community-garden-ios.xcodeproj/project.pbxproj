@@ -162,6 +162,8 @@
 		F0F67B2C29048FF0007FACA1 /* moon4.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2829048FEF007FACA1 /* moon4.json */; };
 		F0F67B2D29048FF0007FACA1 /* moon3.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2929048FF0007FACA1 /* moon3.json */; };
 		F0F67B2F2905D779007FACA1 /* flower.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2E2905D779007FACA1 /* flower.json */; };
+		F0F67B31290BF9DD007FACA1 /* CommunityFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B30290BF9DD007FACA1 /* CommunityFeed.swift */; };
+		F0F67B33290BFBB6007FACA1 /* CommunityFeedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B32290BFBB6007FACA1 /* CommunityFeedCard.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -320,6 +322,8 @@
 		F0F67B2829048FEF007FACA1 /* moon4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon4.json; sourceTree = "<group>"; };
 		F0F67B2929048FF0007FACA1 /* moon3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon3.json; sourceTree = "<group>"; };
 		F0F67B2E2905D779007FACA1 /* flower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = flower.json; sourceTree = "<group>"; };
+		F0F67B30290BF9DD007FACA1 /* CommunityFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeed.swift; sourceTree = "<group>"; };
+		F0F67B32290BFBB6007FACA1 /* CommunityFeedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeedCard.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -476,6 +480,8 @@
 				F04AD4CE288B22DD00BC17AB /* UserMessages.swift */,
 				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
 				F03062052909DD8E009DAAD4 /* SendCommunityMessage.swift */,
+				F0F67B30290BF9DD007FACA1 /* CommunityFeed.swift */,
+				F0F67B32290BFBB6007FACA1 /* CommunityFeedCard.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -752,6 +758,7 @@
 			children = (
 				F043F261287EEDD1008F211C /* AppViewModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
+				F0D9064528FBD896007ADDED /* BadgesViewModel.swift */,
 				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
 				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
 				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
@@ -760,7 +767,6 @@
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
-				F0D9064528FBD896007ADDED /* BadgesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1082,6 +1088,7 @@
 				F0B6DAEE2875CB5100DD3F03 /* StatsSQLRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
 				F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */,
+				F0F67B31290BF9DD007FACA1 /* CommunityFeed.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,
 				F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */,
 				F07657F528D6870E00C72F2C /* Community.swift in Sources */,
@@ -1119,6 +1126,7 @@
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
 				F08C8C6D28AC277500DDDFB8 /* AudioPlayerService.swift in Sources */,
 				F0D9064228FBD814007ADDED /* Badges.swift in Sources */,
+				F0F67B33290BFBB6007FACA1 /* CommunityFeedCard.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
 				F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */,
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,

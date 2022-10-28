@@ -22,103 +22,105 @@ struct SendSingleUserMessage: View {
     @State var selectedUser: User? = nil
     
     var body: some View {
-        GeometryReader { geometry in
-            NavigationView {
+        
+        NavigationView {
+            GeometryReader { geometry in
                 ZStack(alignment: .top) {
                     
                     MainBackground()
                     
-                    ScrollView {
-                        VStack(spacing: 10) {
-                            
-                            Text("Scroll right and tap tree to select recipient")
-                                .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
-                                .frame(width: geometry.size.width * 0.9, alignment: .leading)
-                            
-                            ScrollView(.horizontal, showsIndicators: false){
-                                HStack(spacing: 20) {
-                                    ForEach(Array(communityViewModel.members.values)){ member in
-                                        UserCard(user: member)
-                                            .onTapGesture {
-                                                selectedUser = member
-                                            }
-                                    }
+                    
+                    VStack(spacing: 10) {
+                        
+                        Text("Scroll right and tap tree to select recipient")
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                        
+                        ScrollView(.horizontal, showsIndicators: false){
+                            HStack(spacing: 20) {
+                                ForEach(Array(communityViewModel.members.values)){ member in
+                                    UserCard(user: member)
+                                        .onTapGesture {
+                                            selectedUser = member
+                                        }
                                 }
+                            }
+                        }
+                        .padding()
+                        
+                        // Selected Messsage
+                        Text("Message preview")
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                        
+                        Text(messageText)
+                            .frame(alignment: .center)
+                            .padding()
+                            .multilineTextAlignment(.center)
+                            .background {
+                                RoundedRectangle(cornerRadius: 10)
+                                    .fill(Color.haze)
+                                    .opacity(0.8)
+                                    .frame(width: geometry.size.width * 0.9)
                             }
                             .padding()
+                        
+                        // Form
+                        
+                        Text("Content")
+                            .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
+                            .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                        
+                        Form {
                             
-                            // Selected Messsage
-                            Text("Message preview")
-                                .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
-                                .frame(width: geometry.size.width * 0.9, alignment: .leading)
+                            TextField("Enter message here", text: $messageText)
+                            Toggle("Make Anonymous", isOn: $isMessagePrivate)
                             
-                            Text(messageText)
-                                .frame(alignment: .center)
-                                .padding()
-                                .multilineTextAlignment(.center)
-                                .background {
-                                    RoundedRectangle(cornerRadius: 10)
-                                        .fill(Color.haze)
-                                        .opacity(0.8)
-                                        .frame(width: geometry.size.width * 0.9)
-                                }
-                                .padding()
-                            
-                            // Form
-                            
-                            Text("Content")
-                                .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
-                                .frame(width: geometry.size.width * 0.9, alignment: .leading)
-                            
-                            Form {
-                                
-                                TextField("Enter message here", text: $messageText)
-                                Toggle("Make Anonymous", isOn: $isMessagePrivate)
-                                
-                                
-                            }
-                            .offset(y: -20)
-                            .modifier(ListBackgroundModifier())
-                            
-                            ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
-                                if messageText.isEmpty || selectedUser == nil {
-                                    showErrorAlert = true
-                                    return
-                                }
-                                
-                                AudioPlayer.shared.playSystemSound(soundID: 1004)
-                                
-                                messagesViewModel.sendMessage(receiver: selectedUser!,
-                                                              text: messageText,
-                                                              isPrivate: isMessagePrivate)
-                                
-                                messagesViewModel.showSendSingleUserMessageSheet = false
-                            }
-                            .padding()
-                            .frame(width: 200)
                             
                         }
-                    }
-                }
-                .alert(isPresented: $showErrorAlert){
-                    Alert(
-                        title: Text("Error"),
-                        message: Text("Recipient must be selected and message cannot be empty 😊"),
-                        dismissButton: .default(Text("Got it!"))
-                    )
-                }
-                .navigationTitle("Send Message")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Image(systemName: "multiply")
-                            .foregroundColor(appViewModel.fontColor)
-                            .onTapGesture {
-                                messagesViewModel.showSendSingleUserMessageSheet = false
+                        .offset(y: -20)
+                        .modifier(ListBackgroundModifier())
+                        .frame(height: geometry.size.height * 0.2)
+                        
+                        ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
+                            if messageText.isEmpty || selectedUser == nil {
+                                showErrorAlert = true
+                                return
                             }
+                            
+                            AudioPlayer.shared.playSystemSound(soundID: 1004)
+                            
+                            messagesViewModel.sendMessage(receiver: selectedUser!,
+                                                          text: messageText,
+                                                          isPrivate: isMessagePrivate)
+                            
+                            messagesViewModel.showSendSingleUserMessageSheet = false
+                        }
+                        .padding()
+                        .frame(width: 150)
+                        
                     }
                 }
             }
+            .alert(isPresented: $showErrorAlert){
+                Alert(
+                    title: Text("Error"),
+                    message: Text("Recipient must be selected and message cannot be empty 😊"),
+                    dismissButton: .default(Text("Got it!"))
+                )
+            }
+            .navigationTitle("Send Message")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Image(systemName: "multiply")
+                        .foregroundColor(appViewModel.fontColor)
+                        .onTapGesture {
+                            messagesViewModel.showSendSingleUserMessageSheet = false
+                        }
+                }
+            }
+            
         }
     }
     

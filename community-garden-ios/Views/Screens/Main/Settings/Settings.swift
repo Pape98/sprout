@@ -113,7 +113,7 @@ struct Settings: View {
                 .modifier(ListBackgroundModifier())
                 .opacity(0.95)
 //                .offset(y: -15)
-                .navigationBarTitle (Text("Settings"), displayMode: .inline)
+                .navigationBarTitle (Text("Settings ⚙️"), displayMode: .inline)
                 .onAppear {
                     if let settings = UserService.shared.user.settings {
                         reflectWeatherChanges = settings.reflectWeatherChanges

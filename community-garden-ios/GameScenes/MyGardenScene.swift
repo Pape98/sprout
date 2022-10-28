@@ -232,6 +232,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     
     func releaseDropItem(position: CGPoint){
         
+        guard gardenViewModel.tree != nil else { return }
+        
         // Case tree has reached max height for tree
         if gardenViewModel.dropItem == GardenElement.droplet && gardenViewModel.tree!.scale >= TREE_MAX_SCALE {
             gardenViewModel.toastMessage = ToastContent(image: "leaf.fill",

@@ -13,6 +13,7 @@ protocol Messageable: Identifiable, Codable  {
     var senderName: String { get }
     var date: Date { get }
     var text: String { get }
+    var group: Int { get }
 }
 
 struct Message: Messageable {
@@ -26,6 +27,7 @@ struct Message: Messageable {
     var isPrivate = true
     var date: Date
     var senderFlower: String
+    var group: Int
 }
 
 struct CommunityMessage: Messageable {
@@ -33,9 +35,10 @@ struct CommunityMessage: Messageable {
     var senderID: String
     var senderName: String
     var date: Date
-    var group: Int
     var isPrivate: Bool
     var text: String
+    var senderFlower: String
+    var group: Int
 }
 
 

@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("ERROR: \(error)")
+        Debug.log.debug("ERROR: \(error)")
     }
     
     

@@ -22,8 +22,8 @@ struct Platform {
 func setToolBarTitleColor(){
     let hour = Date.hour
     var toolbarFontColor = UIColor.black
-    
-    if hour >= 0 || hour <= 6  {
+        
+    if hour >= 0 && hour <= 6  {
         toolbarFontColor = UIColor.white
     }
     

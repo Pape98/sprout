@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseFunctions
+import FirebaseAnalytics
 
 @main
 struct CommunityGardenIosApp: App {
@@ -83,6 +84,9 @@ struct CommunityGardenIosApp: App {
                         UserViewModel.shared.getNumSeeds()
                         UserViewModel.shared.getNumDroplets()
                         AudioPlayer.shared.startBackgroundMusic()
+                        // Get anaylytics if user is logged in
+                        Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
+                        
                     }
                     else {
                         AudioPlayer.shared.stopBackgroundMusic()

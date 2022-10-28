@@ -12,13 +12,20 @@ class MessagesRepository {
     static let shared = MessagesRepository()
     let collections = Collections.shared
     
-    func sendMessage(_ message: any Messageable, collectionName: CollectionName){
+    func sendMessage(_ message: any Messageable, collectionName: CollectionName, completion: @escaping () -> Void){
         let collection = collections.getCollectionReference(collectionName.rawValue)
         
         guard let collection = collection else { return }
         
         do {
-            try collection.document(message.id).setData(from: message)
+            try collection.document(message.id).setData(from: message){ error in
+                if let error = error {
+                    Debug.log.debug(error)
+                    return
+                }
+                completion()
+            }
+                      
         } catch let error {
             Debug.log.error("Error sending message to Firestore: \(error)")
         }
