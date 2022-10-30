@@ -38,7 +38,6 @@ class AuthenticationViewModel: ObservableObject {
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
         checkLogin()
         setLoggedInUserProfile()
-//        signOut()
     }
     
     func checkLogin() {
@@ -47,8 +46,17 @@ class AuthenticationViewModel: ObservableObject {
         
         if isLoggedIn {
             updateNewUserStatus()
+            addKeyChainAccessGroup()
         }
         
+    }
+    
+    func addKeyChainAccessGroup(){
+        do {
+          try Auth.auth().useUserAccessGroup("group.empower.lab.community-garden")
+        } catch let error as NSError {
+            Debug.log.debug("Error changing user access group: %@", error.userInfo)
+        }
     }
     
     func updateNewUserStatus(){

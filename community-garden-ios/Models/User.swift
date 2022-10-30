@@ -18,12 +18,6 @@ struct User: Identifiable, Codable {
     var lastReset: String = ""
 }
 
-struct UserGarden: Identifiable {
-    var id: String { UUID().uuidString }
-    var user: User
-    var items: [GardenItem]
-}
-
 struct UserSettings: Codable {
     var data: [String] = []
     var mappedData: [String: String] = [:]

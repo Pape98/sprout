@@ -34,7 +34,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Constants.mainFont))
         UITabBar.appearance().backgroundColor = .white
         UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: Constants.mainFont, size: 12)!], for: [])
-    
 
         setToolBarTitleColor()
         

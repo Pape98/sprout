@@ -161,7 +161,7 @@ struct PersonalStatusWidget: Widget {
             PersonalStatusWidgetEntryView(entry: entry)
         }
         .configurationDisplayName("Progress Widget")
-        .description("This shows your progress towards your 2 goals.")
+        .description("See how many goals you have achieved today.")
         .supportedFamilies([.systemSmall])
     }
 }

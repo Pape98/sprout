@@ -47,7 +47,6 @@ struct CommunityGardenIosApp: App {
         if Platform.isSimulator {
             setupLocalEmulator()
         }
-        
     }
     
     func setupLocalEmulator(){

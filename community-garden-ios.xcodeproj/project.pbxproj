@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		F0057381276F828F00EB487B /* MyGarden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0057380276F828F00EB487B /* MyGarden.swift */; };
 		F005739227702F9B00EB487B /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F005739127702F9B00EB487B /* ActionButton.swift */; };
-		F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */; };
+		F00A6F3C283C6DDA00A176D6 /* Garden.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3B283C6DDA00A176D6 /* Garden.swift */; };
 		F00A6F3E283C957800A176D6 /* GardenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3D283C957800A176D6 /* GardenViewModel.swift */; };
 		F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = F00A6F3F283C966300A176D6 /* NotificationSender.swift */; };
 		F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */ = {isa = PBXBuildFile; fileRef = F013199D28FA0FE9002B47A4 /* turtle_a2.json */; };
@@ -185,6 +185,8 @@
 		F0F67B81290EE9C1007FACA1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B80290EE9C1007FACA1 /* FirebaseFirestore */; };
 		F0F67B83290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B82290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta */; };
 		F0F67B85290EEBC5007FACA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */; };
+		F0F67B88290F1CB6007FACA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
+		F0F67B8A290F2748007FACA1 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B89290F2748007FACA1 /* FirebaseFunctions */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -219,7 +221,7 @@
 		E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-community-garden-ios.debug.xcconfig"; path = "Target Support Files/Pods-community-garden-ios/Pods-community-garden-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		F0057380276F828F00EB487B /* MyGarden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyGarden.swift; sourceTree = "<group>"; };
 		F005739127702F9B00EB487B /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
-		F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenItems.swift; sourceTree = "<group>"; };
+		F00A6F3B283C6DDA00A176D6 /* Garden.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Garden.swift; sourceTree = "<group>"; };
 		F00A6F3D283C957800A176D6 /* GardenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenViewModel.swift; sourceTree = "<group>"; };
 		F00A6F3F283C966300A176D6 /* NotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSender.swift; sourceTree = "<group>"; };
 		F013199D28FA0FE9002B47A4 /* turtle_a2.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = turtle_a2.json; sourceTree = "<group>"; };
@@ -408,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0F67B83290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta in Frameworks */,
+				F0F67B8A290F2748007FACA1 /* FirebaseFunctions in Frameworks */,
 				F0F67B6F290E3087007FACA1 /* SwiftDate in Frameworks */,
 				F0F67B3C290DD832007FACA1 /* SwiftUI.framework in Frameworks */,
 				F0F67B56290DFEE5007FACA1 /* FirebaseAuth in Frameworks */,
@@ -865,7 +868,7 @@
 				F0842B5B285A4F6B002C79BD /* Environments.swift */,
 				F0964269275B510300F1CEC1 /* Health.swift */,
 				F096426B275B513100F1CEC1 /* User.swift */,
-				F00A6F3B283C6DDA00A176D6 /* GardenItems.swift */,
+				F00A6F3B283C6DDA00A176D6 /* Garden.swift */,
 				F0B6DAEB2875C30100DD3F03 /* Statistics.swift */,
 				F0D66E3628886E4D0095AEDE /* Message.swift */,
 				F07657FD28D7D81200C72F2C /* Group.swift */,
@@ -1062,6 +1065,7 @@
 				F0F67B6E290E3087007FACA1 /* SwiftDate */,
 				F0F67B80290EE9C1007FACA1 /* FirebaseFirestore */,
 				F0F67B82290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta */,
+				F0F67B89290F2748007FACA1 /* FirebaseFunctions */,
 			);
 			productName = PersonalStatusWidgetExtension;
 			productReference = F0F67B38290DD832007FACA1 /* PersonalStatusWidgetExtension.appex */;
@@ -1310,7 +1314,7 @@
 				F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */,
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
 				F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */,
-				F00A6F3C283C6DDA00A176D6 /* GardenItems.swift in Sources */,
+				F00A6F3C283C6DDA00A176D6 /* Garden.swift in Sources */,
 				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
 				F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */,
 				F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */,
@@ -1340,6 +1344,7 @@
 				F0F67B7D290EDE0E007FACA1 /* Entries.swift in Sources */,
 				F0F67B65290E03F4007FACA1 /* UserDefaultService.swift in Sources */,
 				F0F67B77290ED83E007FACA1 /* CommunityWidget.swift in Sources */,
+				F0F67B88290F1CB6007FACA1 /* User.swift in Sources */,
 				F0F67B3F290DD832007FACA1 /* PersonalStatusWidget.swift in Sources */,
 				F0F67B7B290EDD3C007FACA1 /* SproutsWidgets.swift in Sources */,
 				F0F67B69290E074F007FACA1 /* AppGroupService.swift in Sources */,
@@ -1761,6 +1766,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseDatabaseSwift-Beta";
+		};
+		F0F67B89290F2748007FACA1 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

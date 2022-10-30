@@ -7,7 +7,7 @@
 		<key>PersonalStatusWidgetExtension.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>8</integer>
+			<integer>9</integer>
 		</dict>
 		<key>community-garden-ios.xcscheme_^#shared#^_</key>
 		<dict>
@@ -20,6 +20,11 @@
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>F0B32C9B275AF77700C714A2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F0F67B37290DD832007FACA1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

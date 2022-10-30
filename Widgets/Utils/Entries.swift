@@ -15,4 +15,5 @@ struct ProgressEntry: TimelineEntry {
 
 struct CommunityEntry: TimelineEntry {
     let date: Date
+    let progress: Int
 }
