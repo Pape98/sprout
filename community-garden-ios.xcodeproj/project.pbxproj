@@ -178,6 +178,7 @@
 		F0F67B6F290E3087007FACA1 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B6E290E3087007FACA1 /* SwiftDate */; };
 		F0F67B70290E3921007FACA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0F67B71290E3921007FACA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
+		F0F67B77290ED83E007FACA1 /* CommunityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B76290ED83E007FACA1 /* CommunityWidget.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -370,6 +371,7 @@
 		F0F67B42290DD834007FACA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F0F67B61290E031F007FACA1 /* PersonalStatusWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PersonalStatusWidgetExtension.entitlements; sourceTree = "<group>"; };
 		F0F67B67290E074F007FACA1 /* AppGroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupService.swift; sourceTree = "<group>"; };
+		F0F67B76290ED83E007FACA1 /* CommunityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWidget.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -755,7 +757,7 @@
 				F0F67B61290E031F007FACA1 /* PersonalStatusWidgetExtension.entitlements */,
 				F0B32C9E275AF77700C714A2 /* community-garden-ios */,
 				F0FCDE7A282CD7F500FDA5BA /* Resources */,
-				F0F67B3D290DD832007FACA1 /* PersonalStatusWidget */,
+				F0F67B3D290DD832007FACA1 /* Widgets */,
 				F0B32C9D275AF77700C714A2 /* Products */,
 				F0964266275B3A8900F1CEC1 /* Frameworks */,
 				C18ED0BE3AAC051BD9EE1AA1 /* Pods */,
@@ -966,14 +968,15 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
-		F0F67B3D290DD832007FACA1 /* PersonalStatusWidget */ = {
+		F0F67B3D290DD832007FACA1 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
 				F0F67B3E290DD832007FACA1 /* PersonalStatusWidget.swift */,
+				F0F67B76290ED83E007FACA1 /* CommunityWidget.swift */,
 				F0F67B40290DD834007FACA1 /* Assets.xcassets */,
 				F0F67B42290DD834007FACA1 /* Info.plist */,
 			);
-			path = PersonalStatusWidget;
+			path = Widgets;
 			sourceTree = "<group>";
 		};
 		F0FCDE7A282CD7F500FDA5BA /* Resources */ = {
@@ -994,8 +997,8 @@
 				F174789EAD8EF00B3A3E21EB /* [CP] Check Pods Manifest.lock */,
 				F0B32C98275AF77700C714A2 /* Sources */,
 				F0B32C99275AF77700C714A2 /* Frameworks */,
-				F0B32C9A275AF77700C714A2 /* Resources */,
 				D1721EC04174E4FD2D855AF2 /* [CP] Embed Pods Frameworks */,
+				F0B32C9A275AF77700C714A2 /* Resources */,
 				F0F67B46290DD834007FACA1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
@@ -1309,6 +1312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F0F67B65290E03F4007FACA1 /* UserDefaultService.swift in Sources */,
+				F0F67B77290ED83E007FACA1 /* CommunityWidget.swift in Sources */,
 				F0F67B3F290DD832007FACA1 /* PersonalStatusWidget.swift in Sources */,
 				F0F67B69290E074F007FACA1 /* AppGroupService.swift in Sources */,
 			);
@@ -1547,7 +1551,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PersonalStatusWidget/Info.plist;
+				INFOPLIST_FILE = Widgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PersonalStatusWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
@@ -1578,7 +1582,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = PersonalStatusWidget/Info.plist;
+				INFOPLIST_FILE = Widgets/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = PersonalStatusWidget;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;

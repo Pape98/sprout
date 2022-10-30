@@ -9,7 +9,7 @@ import WidgetKit
 import SwiftUI
 import SwiftDate
 
-struct Provider: TimelineProvider {
+struct PersonalStatusProvider: TimelineProvider {
     func placeholder(in context: Context) -> ProgressEntry {
         ProgressEntry(date: Date(), progress:[0,0], lastUpdate: Float((Date() - 3.hours).millisecondsSince1970))
     }
@@ -50,7 +50,7 @@ struct ProgressEntry: TimelineEntry {
 
 struct PersonalStatusWidgetEntryView : View {
     
-    var entry: Provider.Entry
+    var entry: PersonalStatusProvider.Entry
     
     var face1: String {
         let progress = entry.progress
@@ -137,15 +137,6 @@ struct PersonalStatusWidgetEntryView : View {
         }
     }
     
-    func printFonts(){
-        for familyName in UIFont.familyNames {
-            print("\n-- \(familyName) \n")
-            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                print(fontName)
-            }
-        }
-    }
-    
     func returnFace(progress: Float) -> String {
         
         if 0...24 ~= progress {
@@ -169,14 +160,15 @@ struct PersonalStatusWidget: Widget {
     let kind: String = "PersonalStatusWidget"
     
     var body: some WidgetConfiguration {
-        StaticConfiguration(kind: kind, provider: Provider()) { entry in
+        StaticConfiguration(kind: kind, provider: PersonalStatusProvider()) { entry in
             PersonalStatusWidgetEntryView(entry: entry)
         }
-        .configurationDisplayName("Sprout Progress Widget")
+        .configurationDisplayName("Progress Widget")
         .description("This shows your progress towards your 2 goals.")
         .supportedFamilies([.systemSmall])
     }
 }
+
 
 struct PersonalStatusWidget_Previews: PreviewProvider {
     static var previews: some View {
