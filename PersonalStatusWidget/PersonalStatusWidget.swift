@@ -65,6 +65,7 @@ struct PersonalStatusWidgetEntryView : View {
     }
     
     var completedGoals: Int {
+        if isToday(time: entry.lastUpdate) == false { return 0 }
         var count = 0
         let progress = entry.progress
         
