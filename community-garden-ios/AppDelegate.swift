@@ -47,7 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("ERROR: \(error)")
+        Debug.log.debug("ERROR: \(error)")
     }
     
     
@@ -60,19 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         }
         
         var message = NotificationMessage()
-        
-        if let type = userInfo["type"] {
-            
-            if type as! String == "encouragement" {
-                message.title = "Community Encouragement 🌟"
-                message.body  = "You got this 🌟!"
-            } else {
-                message.title = "Community Love 💖"
-                message.body  = "We love you 💖"
-            }
-            
-            NotificationService.shared.sendNotification(message: message)
-        }
         
         completionHandler(UIBackgroundFetchResult.newData)
     }

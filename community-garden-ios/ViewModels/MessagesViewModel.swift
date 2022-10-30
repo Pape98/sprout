@@ -16,17 +16,22 @@ class MessagesViewModel: ObservableObject {
     let collections = Collections.shared
     
     // TODO: Remove later
-    @Published var showSendMessageSheet = false
+    @Published var showSendSingleUserMessageSheet = false
+    @Published var showSendCommunityMessageSheet = false
     @Published var showUserMessageSheet = false
+    @Published var showCommunityFeedSheet = false
+    
     var selectedUser: User? = nil
     
     // Messages
     @Published var receivedMessages: [Message] = []
     @Published var sentMessages: [Message] = []
+    @Published var feedMessages: [CommunityMessage] = []
     
     
     init(){
         getUserMessages()
+        getCommunityFeed()
     }
     
     // MARK: Methods for sending and receiving messages
@@ -37,14 +42,41 @@ class MessagesViewModel: ObservableObject {
                                  receiverID: receiver.id, receiverName: receiver.name,
                                  receiverFcmToken: receiver.fcmToken,
                                  text: text, isPrivate: isPrivate, date: Date.now,
-                                 senderFlower: "\(sender.settings!.flowerColor)-\(addDash(sender.settings!.flower))"
+                                 senderFlower: "\(sender.settings!.flowerColor)-\(addDash(sender.settings!.flower))",
+                                 group: sender.group
         )
-                        
-        messagesRepository.sendMessage(newMessage)
+        
+        messagesRepository.sendMessage(newMessage, collectionName: CollectionName.messages)
+        {
+            self.getUserMessages()
+        }
+        
         SproutAnalytics.shared.individualMessage(senderID: sender.id,
                                                  senderName: sender.name,
                                                  receiverID: receiver.id,
-                                                 receiverName: receiver.name)
+                                                 receiverName: receiver.name,
+                                                 content: text,
+                                                 isPrivate: isPrivate,
+                                                 group: sender.group)
+    }
+    
+    func sendCommunityMessage(text: String, isPrivate: Bool){
+        let user = UserService.shared.user
+        guard let settings = user.settings else { return }
+        let message = CommunityMessage(senderID: user.id,
+                                       senderName: user.name,
+                                       date: Date(),
+                                       isPrivate: isPrivate,
+                                       text: text,
+                                       senderFlower: "\(settings.flowerColor)-\(addDash(settings.flower))",
+                                       group: user.group
+        )
+        
+        messagesRepository.sendMessage(message, collectionName: CollectionName.communityFeed){
+            self.getCommunityFeed()
+            SproutAnalytics.shared.groupMessage(message: message.dictionary)
+        }
+        
     }
     
     func getUserMessages(){
@@ -61,13 +93,26 @@ class MessagesViewModel: ObservableObject {
             .whereField("senderID", isEqualTo: userID)
             .order(by: "date", descending: true)
         
-        messagesRepository.getMessages(query: receivedMessagesQuery) { receivedMessages in
-            self.messagesRepository.getMessages(query: sentMessagesQuery) { sentMessages in
+        messagesRepository.getMessages(query: receivedMessagesQuery, type: Message.self) { receivedMessages in
+            self.messagesRepository.getMessages(query: sentMessagesQuery, type: Message.self) { sentMessages in
                 DispatchQueue.main.async {
                     self.receivedMessages = receivedMessages
                     self.sentMessages = sentMessages
                 }
             }
+        }
+    }
+    
+    func getCommunityFeed(){
+        let group = UserService.shared.user.group
+        let collection = collections.getCollectionReference(CollectionName.communityFeed.rawValue)
+        guard let collection = collection else { return }
+        
+        let query = collection.whereField("group", isEqualTo: group)
+                    .order(by: "date", descending: true)
+        
+        messagesRepository.getMessages(query: query, type: CommunityMessage.self) { feedMessages in
+            self.feedMessages = feedMessages
         }
         
     }

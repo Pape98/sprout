@@ -50,7 +50,7 @@ class RemoteConfiguration {
     func fetchRemoteConfig() {
         config.fetchAndActivate { status, error in
             guard error == nil else {
-                Debug.log.debug("Uh-oh. Got an error fetching remote values: \(String(describing: error))")
+                Debug.log.error("Uh-oh. Got an error fetching remote values: \(String(describing: error))")
                 return
             }
         }

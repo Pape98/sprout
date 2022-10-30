@@ -16,18 +16,18 @@ struct MainBackground: View {
     
     var body: some View {
         if let image = image {
-            Image(image)
-                .resizable()
-                .ignoresSafeArea(.all, edges: edges)
-                .onAppear {
-                    appViewModel.setBackground()
-                }
+            
+                Image(image)
+                    .resizable()
+                    .ignoresSafeArea(.all, edges: edges)
+                    .scaledToFill()
+            
         } else {
-            Image(getIntroBackground())
+            Image(appViewModel.introBackground)
                 .resizable()
                 .ignoresSafeArea(.all, edges: edges)
                 .onAppear {
-                    appViewModel.setBackground()
+                    appViewModel.setIntroBackground()
                 }
         }
     }

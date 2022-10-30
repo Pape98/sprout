@@ -47,6 +47,7 @@ class GardenRepository {
         }
     }
     
+    // TODO: Run in transaction or use FieldValue
     func udpateGardenItem(docName: String, updates: GardenItem, completion: @escaping () -> Void){
         let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
         guard let collection = collection else { return }
@@ -55,13 +56,6 @@ class GardenRepository {
         completion()
     }
     
-    func updateGardenItem(query: Query, updates: [String: Any]){
-        let collection = collections.getCollectionReference(CollectionName.gardenItems.rawValue)
-        guard let _ = collection else { return }
-        
-        // TODO: Finish if needed
-        
-    }
     
     // MARK: Utility Methods
     func saveData<T: Encodable>(docRef: DocumentReference, data: T){

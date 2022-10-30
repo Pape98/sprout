@@ -49,7 +49,7 @@ struct UserMessages: View {
                     
                     ScrollView {
                         
-                        VStack{
+                        VStack (spacing: 12.5){
                             ForEach(messages){ message in
                                 MessageCard(message: message, messageType: selectedMessageType)
                             }
@@ -82,6 +82,9 @@ struct UserMessages: View {
                             .foregroundColor(appViewModel.fontColor)
                     }
                 }
+            }
+            .onAppear {
+                messagesViewModel.getUserMessages()
             }
         }
         .navigationViewStyle(.stack)

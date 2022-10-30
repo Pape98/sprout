@@ -72,16 +72,21 @@ class SproutAnalytics {
     
     
     // Messages
-    func individualMessage(senderID: String, senderName: String, receiverID: String, receiverName: String){
+    func individualMessage(senderID: String, senderName: String, receiverID: String, receiverName: String, content: String, isPrivate: Bool, group: Int){
         guard isUserLoggedIn() == true else { return }
-        let params = ["senderID": senderID, "senderName": senderName, "receiverID": receiverID, "receiverName": receiverName]
+        let params: [String: Any] = ["senderID": senderID,
+                                     "senderName": senderName,
+                                     "receiverID": receiverID,
+                                     "receiverName": receiverName,
+                                     "content": content,
+                                     "isPrivate": isPrivate,
+                                     "group": group]
         Analytics.logEvent("individual_message", parameters: params)
     }
     
-    func groupMessage(senderID: String, senderName: String, type: ReactionType){
+    func groupMessage(message: [String: Any]){
         guard isUserLoggedIn() == true else { return }
-        let params : [String: Any] = ["senderID": senderID, "senderName": senderName, "type": type.rawValue]
-        Analytics.logEvent("group_message", parameters: params)
+        Analytics.logEvent("group_message", parameters: message)
     }
     
     // Customization

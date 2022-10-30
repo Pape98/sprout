@@ -23,13 +23,13 @@ struct Badges: View {
     var body: some View {
         NavigationView {
             ZStack {
-                MainBackground(image: "sky-cloud-bg")
+                MainBackground()
                 
                 ScrollView {
                     VStack {
                         
                         Text("Tap badge to view")
-                            .bodyStyle()
+                            .bodyStyle(foregroundColor: appViewModel.fontColor)
                         
                         LazyVGrid(columns: columns, spacing: 40) {
                             ForEach(badges, id: \.self) { badge in
@@ -53,7 +53,7 @@ struct Badges: View {
                                                 Image(systemName: "target")
                                                     .foregroundColor(.appleGreen)
                                                 Text("\(min(appViewModel.numFiftyPercentDays,badge.numberOfDaysRequired)) /\(badge.numberOfDaysRequired) day(s)")
-                                                    .bodyStyle()
+                                                    .bodyStyle(foregroundColor: appViewModel.fontColor)
                                             }
                                         }
                                     }
@@ -85,21 +85,20 @@ struct Badges: View {
                                             Image(systemName: "target")
                                                 .foregroundColor(.appleGreen)
                                             Text("\( min(appViewModel.numFiftyPercentDays,badge.numberOfDaysRequired)) / \(badge.numberOfDaysRequired) day(s)")
-                                                .bodyStyle()
+                                                .bodyStyle(foregroundColor: appViewModel.fontColor)
                                         }
                                     }
                                 }
                             }
                         }
                         
-                        Spacer()
                     }
                     .padding(.top)
                 }
                 
                 FloatingAnimal()
             }
-            .navigationTitle("Community Badges")
+            .navigationTitle("Community Badges 📛")
             .navigationBarTitleDisplayMode(.inline)
         }
         .navigationViewStyle(.stack)

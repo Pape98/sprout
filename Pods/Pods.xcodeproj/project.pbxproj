@@ -1226,6 +1226,7 @@
 				F0F3673C28ED1E9600F79D1A /* XCRemoteSwiftPackageReference "AlertToast" */,
 				F06558A428F1FA3F0077C50B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */,
 				F0AE96722901B5E300DD788C /* XCRemoteSwiftPackageReference "SwiftDate" */,
+				F03062022909DD1E009DAAD4 /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = 6A1666EA7787449E247EB91D424FC8A6 /* Products */;
 			projectDirPath = "";
@@ -2073,6 +2074,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F03062022909DD1E009DAAD4 /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucaszischka/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		F06558A428F1FA3F0077C50B /* XCRemoteSwiftPackageReference "SwiftyBeaver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyBeaver/SwiftyBeaver.git";

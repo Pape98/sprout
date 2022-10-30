@@ -66,7 +66,7 @@ class GardenViewModel: ObservableObject {
         }
     }
     
-    @objc func addTree(){
+    func addTree(groupNumber: Int){
         let settings = UserService.shared.user.settings
         guard settings != nil else { return }
         let treeName = "\(settings!.treeColor)-\(addDash(settings!.tree))"
@@ -74,7 +74,7 @@ class GardenViewModel: ObservableObject {
                               type: GardenItemType.tree,
                               name: treeName,
                               scale: 0.5,
-                              group: UserService.shared.user.group,
+                              group: groupNumber,
                               gardenName: settings!.gardenName,
                               userName: UserService.shared.user.name)
         gardenRepo.addItem(item: tree)

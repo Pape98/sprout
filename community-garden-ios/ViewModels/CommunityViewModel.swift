@@ -25,7 +25,6 @@ class CommunityViewModel: ObservableObject {
     @Published var members: [String: User] = [:]
     @Published var trees: [GardenItem] = []
     @Published var group: GardenGroup? = nil
-    @Published var reactions: Reactions? = nil
     @Published var goalsStat: GoalsStat? = nil
     
     let MAX_NUM_MESSAGES = 3
@@ -48,17 +47,12 @@ class CommunityViewModel: ObservableObject {
                        object: nil)
         
         getGoalCompletions()
-        
-        DispatchQueue.main.async {
-            self.reactions = Reactions(group: UserService.shared.user.group, date: Date.today, love: 0)
-        }
     }
     
     func refreshCommunity(){
         fetchTrees()
         fetchGroupMembers()
         fetchGroup()
-        fetchReactions()
     }
     
     @objc func getGoalCompletions(){
@@ -114,90 +108,5 @@ class CommunityViewModel: ObservableObject {
                 self.trees = trees
             }
         }
-    }
-    
-    func fetchReactions(){
-        reactionRepository.fetchReactions { result in
-            DispatchQueue.main.async {
-                self.reactions = result
-            }
-        }
-    }
-    
-    func sendLove(){
-        
-        let todayKey = todayDefaultKey(defaultKey: UserDefaultsKey.NUM_LOVE_SENT)
-        let yesterdayKey = yesterdayDefaultKey(defaultKey: UserDefaultsKey.NUM_LOVE_SENT)
-        let numLoveSent: Int? = userDefaults.get(key: todayKey)
-        
-        if numLoveSent == nil {
-            userDefaults.save(value: 1, key: todayKey)
-            userDefaults.remove(key: yesterdayKey)
-        }  else if numLoveSent! >= MAX_NUM_MESSAGES {
-            setToast(title: "Can only send \(MAX_NUM_MESSAGES) per day", image: "xmark.octagon.fill", color: .red)
-            showToast = true
-            return
-        } else {
-            userDefaults.save(value: numLoveSent! + 1, key: todayKey)
-        }
-        
-        setToast(title: "Sent love to 🧑‍🤝‍🧑", image: "heart.fill", color: .red)
-        showToast = true
-        
-        let tokens: [String] = members.values.map { $0.fcmToken }
-        reactionRepository.increaseReactionCount(reaction: ReactionType.love, tokens: tokens){
-            self.fetchReactions()
-            let user = UserService.shared.user
-            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.love)
-        }
-        
-    }
-    
-    func sendEncouragement(){
-        
-        let todayKey = todayDefaultKey(defaultKey: UserDefaultsKey.NUM_ENCOURAGEMENT_SENT)
-        let yesterdayKey = yesterdayDefaultKey(defaultKey: UserDefaultsKey.NUM_ENCOURAGEMENT_SENT)
-        let numEncouragementSent: Int? = userDefaults.get(key: todayKey)
-        
-        if numEncouragementSent == nil {
-            userDefaults.save(value: 1, key: todayKey)
-            userDefaults.remove(key: yesterdayKey)
-        }  else if numEncouragementSent! >= MAX_NUM_MESSAGES {
-            setToast(title: "Can only send \(MAX_NUM_MESSAGES) per day", image: "xmark.octagon.fill", color: .red)
-            showToast = true
-            return
-        } else {
-            userDefaults.save(value: numEncouragementSent! + 1, key: todayKey)
-        }
-        
-        setToast(title: "Sent cheers to 🧑‍🤝‍🧑", image:  "star.fill", color: .yellow)
-        showToast = true
-        
-        let tokens: [String] = members.values.map { $0.fcmToken }
-        reactionRepository.increaseReactionCount(reaction: ReactionType.encouragement, tokens: tokens){
-            self.fetchReactions()
-            let user = UserService.shared.user
-            SproutAnalytics.shared.groupMessage(senderID: user.id, senderName: user.name, type: ReactionType.encouragement)
-            self.showToast = true
-        }
-    }
-    
-    // helpers
-    func setToast(title: String, image: String, color: Color){
-        toastTitle = title
-        toastImage = image
-        toastColor = color
-    }
-    
-    func todayDefaultKey(defaultKey: UserDefaultsKey) -> String {
-        let today = Date()
-        let todayKey =  today.toFormat("dd MM yyyy").replacingOccurrences(of: " ", with: "-") + "-" + defaultKey.rawValue
-        return todayKey
-    }
-    
-    func yesterdayDefaultKey(defaultKey: UserDefaultsKey) -> String {
-        let yesterday = Date() - 1.days
-        let yesterdayKey =  yesterday.toFormat("dd MM yyyy").replacingOccurrences(of: " ", with: "-") + "-" + defaultKey.rawValue
-        return yesterdayKey
     }
 }

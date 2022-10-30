@@ -34,7 +34,7 @@ class HealthStoreRepository {
     // MARK: Saving data
     func saveStepCount(value v: Double){
         guard let settings = UserService.shared.user.settings else { return }
-        let goal = settings.stepsGoal
+        guard let goal = settings.stepsGoal else { return }
         let user = UserService.shared.user
         let updates: [String: Any] = ["date": today,
                                       "count": v,
@@ -53,7 +53,7 @@ class HealthStoreRepository {
     
     func saveWalkingRunningDistance(value v: Double){
         guard let settings = UserService.shared.user.settings else { return }
-        let goal = settings.walkingRunningGoal
+        guard let goal = settings.walkingRunningGoal else { return }
         let user = UserService.shared.user
         let updates: [String: Any] = ["date": today,
                                       "distance": v,
@@ -72,7 +72,7 @@ class HealthStoreRepository {
     
     func saveWorkouts(value v: Double){
         guard let settings = UserService.shared.user.settings else { return }
-        let goal = settings.workoutsGoal
+        guard let goal = settings.workoutsGoal else { return }
         let user = UserService.shared.user
         let updates: [String: Any] = ["date": today,
                                       "duration": v,
@@ -91,7 +91,7 @@ class HealthStoreRepository {
     
     func saveSleep(value v: Double){
         guard let settings = UserService.shared.user.settings else { return }
-        let goal = settings.sleepGoal
+        guard let goal = settings.sleepGoal else { return }
         let user = UserService.shared.user
         let updates: [String: Any] = ["date": today,
                                       "duration": v,

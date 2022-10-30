@@ -8,6 +8,7 @@
 import SwiftUI
 import Firebase
 import FirebaseFunctions
+import FirebaseAnalytics
 
 @main
 struct CommunityGardenIosApp: App {
@@ -61,6 +62,15 @@ struct CommunityGardenIosApp: App {
         Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
     }
     
+    func printFonts(){
+        for familyName in UIFont.familyNames {
+            print("\n-- \(familyName) \n")
+            for fontName in UIFont.fontNames(forFamilyName: familyName) {
+                print(fontName)
+            }
+        }
+    }
+    
     var body: some Scene {
         WindowGroup {
             LaunchView()
@@ -83,12 +93,23 @@ struct CommunityGardenIosApp: App {
                         UserViewModel.shared.getNumSeeds()
                         UserViewModel.shared.getNumDroplets()
                         AudioPlayer.shared.startBackgroundMusic()
+                        
+                        AppGroupService.shared.save(value: Date().millisecondsSince1970, key: AppGroupKey.lastUpdate)
+                        // Get anaylytics if user is logged in
+                        if Platform.isSimulator {
+                            Analytics.setAnalyticsCollectionEnabled(false)
+
+                        } else {
+                            Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
+
+                        }
                     }
                     else {
                         AudioPlayer.shared.stopBackgroundMusic()
                     }
                     
                     RemoteConfiguration.shared.fetchRemoteConfig()
+                    appViewModel.setBackground()
                 }
         }
     }

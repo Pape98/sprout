@@ -49,35 +49,45 @@ class HealthStoreService {
             self.requestAuthorization { success in
                 if success {
                     // Listen to changes in step counts
-                    self.startQuantityQuery(dataType: HKDataTypes.stepCount,
-                                            updateHandler: self.healthStoreRepo.saveStepCount)
+                    if isUserTrackingData(DataOptions.steps){
+                        self.startQuantityQuery(dataType: HKDataTypes.stepCount,
+                                                updateHandler: self.healthStoreRepo.saveStepCount)
+                    }
                     
                     // Listen to changes in walking+running distance
-                    self.startQuantityQuery(dataType: HKDataTypes.walkingRunningDistance,
-                                            updateHandler: self.healthStoreRepo.saveWalkingRunningDistance)
+                    if isUserTrackingData(DataOptions.walkingRunningDistance){
+                        self.startQuantityQuery(dataType: HKDataTypes.walkingRunningDistance,
+                                                updateHandler: self.healthStoreRepo.saveWalkingRunningDistance)
+                    }
+                    
                     
                     // Listen to changes in workouts
-                    let workoutComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
-                    let workoutDate = Calendar.current.date(from: workoutComponents)
-                    self.startSampleQuery(sampleType: HKDataTypes.workouts,
-                                          startDate: workoutDate!,
-                                          dataType: HKWorkout.self,
-                                          updateHandler: self.healthStoreRepo.saveWorkouts)
+                    if isUserTrackingData(DataOptions.workouts){
+                        let workoutComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
+                        let workoutDate = Calendar.current.date(from: workoutComponents)
+                        self.startSampleQuery(sampleType: HKDataTypes.workouts,
+                                              startDate: workoutDate!,
+                                              dataType: HKWorkout.self,
+                                              updateHandler: self.healthStoreRepo.saveWorkouts)
+                    }
                     
                     // Listen to changes in sleep
-                    let midnightComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
-                    let midnightDate = Calendar.current.date(from: midnightComponents)
-                   
-                    let sleepDate = Calendar.current.date(byAdding: .hour, value: -2, to: midnightDate!) // starts at 10 pm
-                    
-                    self.startSampleQuery(sampleType: HKDataTypes.sleep,
-                                          startDate: sleepDate!,
-                                          dataType: HKCategorySample.self,
-                                          updateHandler: self.healthStoreRepo.saveSleep)
+                    if isUserTrackingData(DataOptions.sleep){
+                        let midnightComponents = Calendar.current.dateComponents([.day, .month, .year], from: Date.now)
+                        let midnightDate = Calendar.current.date(from: midnightComponents)
+                        
+                        let sleepDate = Calendar.current.date(byAdding: .hour, value: -3, to: midnightDate!) // starts at 9 pm
+                        
+                        self.startSampleQuery(sampleType: HKDataTypes.sleep,
+                                              startDate: sleepDate!,
+                                              dataType: HKCategorySample.self,
+                                              updateHandler: self.healthStoreRepo.saveSleep)
+                    }
                 }
             }
         }
     }
+    
     
     // @escaping means closure argument can outlive scope of caller
     func requestAuthorization(completion: @escaping (Bool)  -> Void) {
@@ -111,13 +121,13 @@ class HealthStoreService {
         
         // Query predicate
         let predicate = NSPredicate(format: "startDate > %@", startDate as NSDate)
-                
+        
         // Observer query
         let observerQuery = HKObserverQuery(sampleType: sampleType, predicate: predicate) { query, completionHandler, error in
             
             if let error = error {
                 // Properly handle the error.
-                Debug.log.debug(error)
+                Debug.log.error(error)
                 return
             }
             
@@ -127,7 +137,7 @@ class HealthStoreService {
                                             sortDescriptors: [sortDescriptor]) { query, result, error in
                 // Handle error
                 if let error = error {
-                    Debug.log.debug(error)
+                    Debug.log.error(error)
                     return
                 }
                 guard result != nil else { return }
@@ -225,7 +235,7 @@ class HealthStoreService {
         let calendar = Calendar.current
         
         if let error = error as? HKError {
-            Debug.log.debug(error)
+            Debug.log.error(error)
             return
         }
         

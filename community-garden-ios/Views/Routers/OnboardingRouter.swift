@@ -14,7 +14,7 @@ class OnboardingRouter: ObservableObject {
     @Published var transition: AnyTransition = .slide
     var settings: [String: Any] = [:] {
         didSet {
-            Debug.log.debug(settings)
+            //Debug.log.debug(settings)
         }
     }
     

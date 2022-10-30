@@ -12,20 +12,27 @@ class MessagesRepository {
     static let shared = MessagesRepository()
     let collections = Collections.shared
     
-    func sendMessage(_ message: Message){
-        let collection = collections.getCollectionReference(CollectionName.messages.rawValue)
+    func sendMessage(_ message: any Messageable, collectionName: CollectionName, completion: @escaping () -> Void){
+        let collection = collections.getCollectionReference(collectionName.rawValue)
         
         guard let collection = collection else { return }
         
         do {
-            try collection.document(message.id).setData(from: message)
+            try collection.document(message.id).setData(from: message){ error in
+                if let error = error {
+                    Debug.log.error(error)
+                    return
+                }
+                completion()
+            }
+                      
         } catch let error {
             Debug.log.error("Error sending message to Firestore: \(error)")
         }
 
     }
     
-    func getMessages(query: Query, completion: @escaping ([Message]) -> Void){
+    func getMessages<T:Messageable>(query: Query, type: T.Type, completion: @escaping ([T]) -> Void){
         query.getDocuments { querySnapshot, error in
             
             if error != nil {
@@ -33,11 +40,11 @@ class MessagesRepository {
                 return
             }
             
-            var messages: [Message] = []
+            var messages: [T] = []
             
             do {
                 for doc in querySnapshot!.documents {
-                    messages.append(try doc.data(as: Message.self))
+                    messages.append(try doc.data(as: T.self))
                 }
             } catch {
                 Debug.log.error("getUserItems: Error reading from: \(error)")

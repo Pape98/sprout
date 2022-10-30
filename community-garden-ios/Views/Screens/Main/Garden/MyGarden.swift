@@ -27,92 +27,111 @@ struct MyGarden: View {
         return Int(goalStat.numberOfGoalsAchieved / numTargetGoals)
     }
     
+    var gardenName: String {
+        "🌻\(userViewModel.currentUser.settings?.gardenName ?? "")🌲"
+    }
+    
     var body: some View {
-        ZStack(alignment: .topTrailing) {
-            
-            // MARK: SpriteKit view
-            SpriteView(scene: scene, options: [.allowsTransparency])
-                .ignoresSafeArea(.container, edges:[.top])
-                .weatherOverlay()
-                .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
-                .onAppear {
-                    SproutAnalytics.shared.viewOwnGarden()
-                }
-                .onDisappear {
-                    gardenViewModel.getUserItems()
-                }
-            
-            ZStack {
-                // MARK: Mode button
-                Button {
-                    gardenViewModel.toggleGardenMode()
-                } label: {
-                    ZStack {
-                        
-                        Circle()
-                            .fill(gardenViewModel.gardenMode == .planting ? Color.appleGreen : Color.red)
-                            .opacity(0.5)
-                            .frame(width:40,height:40)
-                        
-                        Image(systemName: gardenViewModel.gardenMode == .planting ? "lock.open.fill" : "lock.fill")
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 25, height: 25)
-                        
-                        
+        GeometryReader { geo in
+            ZStack(alignment: .topTrailing) {
+                
+                // MARK: SpriteKit view
+                SpriteView(scene: scene, options: [.allowsTransparency])
+                    .ignoresSafeArea(.container, edges:[.top])
+                    .weatherOverlay()
+                    .navigationBarTitle(userViewModel.currentUser.settings?.gardenName ?? "", displayMode: NavigationBarItem.TitleDisplayMode.inline)
+                    .onAppear {
+                        SproutAnalytics.shared.viewOwnGarden()
                     }
-                    .frame(width:40,height: 40)
-                }
-                .padding()
-            }
-            
-            if gardenViewModel.gardenMode == .planting {
-                HStack {
-                    // Stats
-                    VStack(alignment: .leading, spacing: 10) {
-                        if let numDroplets = userViewModel.numDroplets {
-                            Stats(image: "droplet-icon", value: Int(numDroplets.value))
+                    .onDisappear {
+                        gardenViewModel.getUserItems()
+                    }
+                
+                ZStack {
+                    // MARK: Mode button
+                    Button {
+                        gardenViewModel.toggleGardenMode()
+                    } label: {
+                        ZStack {
+                            
+                            Circle()
+                                .fill(gardenViewModel.gardenMode == .planting ? Color.appleGreen : Color.red)
+                                .opacity(0.5)
+                                .frame(width:40,height:40)
+                            
+                            Image(systemName: gardenViewModel.gardenMode == .planting ? "lock.open.fill" : "lock.fill")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 25, height: 25)
+                            
+                            
                         }
-                        
-                        if let numSeeds = userViewModel.numSeeds {
-                            Stats(image: "seed-icon", value: Int(numSeeds.value))
-                        }
+                        .frame(width:40,height: 40)
                     }
                     .padding()
-                    
-                    Spacer()
                 }
                 
-            }
-            
-            
-        }
-        .toast(isPresenting: $gardenViewModel.showToast, duration: 5, tapToDismiss: true) {
-            AlertToast(displayMode: .banner(.slide),
-                       type: .systemImage(gardenViewModel.toastMessage.image, gardenViewModel.toastMessage.color),
-                       title: gardenViewModel.toastMessage.title, subTitle: gardenViewModel.toastMessage.subtitle)
-        }
-        .overlay {
-            VStack {
+                if gardenViewModel.gardenMode == .planting {
+                    HStack {
+                        // Stats
+                        VStack(alignment: .leading, spacing: 10) {
+                            if let numDroplets = userViewModel.numDroplets {
+                                Stats(image: "droplet-icon", value: Int(numDroplets.value))
+                            }
+                            
+                            if let numSeeds = userViewModel.numSeeds {
+                                Stats(image: "seed-icon", value: Int(numSeeds.value))
+                            }
+                        }
+                        .padding()
+                        
+                        Spacer()
+                    }
+                    
+                }
                 
-                LottieView(filename: "\(gardenViewModel.sunMoon)\(getSunMoonLevel())")
-                    .frame(width: 125, height: 125)
-                    .transition(.move(edge: .trailing))
-                Spacer()
+                
+                if gardenViewModel.gardenMode == .moving && appViewModel.isBadgeUnlocked(UnlockableBadge.dog) {
+                    VStack {
+                        Spacer()
+                        LottieView(filename: "dog_d2")
+                            .frame(height: geo.size.height * 0.15)
+                    }
+                }
             }
-        }
-        .onDisappear {
-            gardenViewModel.setSunMoon()
-            gardenViewModel.gardenMode = GardenViewModel.GardenMode.moving
-            communityViewModel.getGoalCompletions()
+            .toast(isPresenting: $gardenViewModel.showToast, duration: 5, tapToDismiss: true) {
+                AlertToast(displayMode: .banner(.slide),
+                           type: .systemImage(gardenViewModel.toastMessage.image, gardenViewModel.toastMessage.color),
+                           title: gardenViewModel.toastMessage.title, subTitle: gardenViewModel.toastMessage.subtitle)
+            }
+            .overlay {
+                VStack {
+                    
+                    LottieView(filename: "\(gardenViewModel.sunMoon)\(getSunMoonLevel())")
+                        .frame(width: 125, height: 125)
+                        .transition(.move(edge: .trailing))
+                    Spacer()
+                }
+            }
+            .onDisappear {
+                gardenViewModel.setSunMoon()
+                gardenViewModel.gardenMode = GardenViewModel.GardenMode.moving
+                communityViewModel.getGoalCompletions()
+            }
         }
     }
     
     func getSunMoonLevel() -> Int {
+        
+        let groupNumber = UserService.shared.user.group
+        let isSocial = RemoteConfiguration.shared.isSocialConfig(group: groupNumber)
+        
+        if isSocial == false { return 4 }
+        
         let numTargetGoals = (communityViewModel.members.count + 1) * 2
         guard let goalStat = communityViewModel.goalsStat else { return 1 }
         let percentCompletion = Double(goalStat.numberOfGoalsAchieved) / Double(numTargetGoals)
-                
+        
         if percentCompletion >= 0.75 { return 4 }
         else if percentCompletion >= 0.5 { return 3 }
         else if percentCompletion >= 0.25 { return 2 }
@@ -171,6 +190,7 @@ struct StepView_Previews: PreviewProvider {
             .environmentObject(UserViewModel())
             .environmentObject(GardenViewModel())
             .environmentObject(AppViewModel())
+            .environmentObject(CommunityViewModel())
         
     }
 }

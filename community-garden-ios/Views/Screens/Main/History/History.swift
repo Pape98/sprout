@@ -43,11 +43,8 @@ struct History: View {
                 
                 FloatingAnimal(animal: "penguin-waving-hello")
             }
-            .navigationBarTitle("History", displayMode: .inline)
+            .navigationBarTitle("History 📖", displayMode: .inline)
             
-        }
-        .onAppear {
-            appViewModel.setBackground()
         }
         .navigationViewStyle(.stack)
     }

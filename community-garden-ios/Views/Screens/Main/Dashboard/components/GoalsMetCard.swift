@@ -37,11 +37,11 @@ struct GoalsMetCard: View {
                     LazyVGrid(columns: columns, spacing: 20) {
                         ForEach(0..<totalNumberOfGoals, id: \.self){ i in
                             if goals != nil && i < goals!.trackedData.count {
-                                DataItem(width: geometry.size.width * 0.1,
+                                DataItem(width: geometry.size.width * 0.125,
                                          opacity: i < goals!.numberOfGoalsAchieved ? 1 : 0.125,
                                          icon: i < goals!.numberOfGoalsAchieved ?  icons[goals!.trackedData[i]]! : "")
                             } else {
-                                DataItem(width: geometry.size.width * 0.1,
+                                DataItem(width: geometry.size.width * 0.125,
                                          opacity: 0.125, icon: "questionmark")
                             }
                             
@@ -66,10 +66,14 @@ struct GoalsMetCard: View {
             Circle()
                 .fill(Color.appleGreen)
                 .opacity(opacity)
-                .frame(width: width)
+                .frame(width: width, height: width)
             
             if icon != "" {
                 Image(systemName: icon)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: width * 0.65, height: width * 0.65)
+                    .padding()
                     .foregroundColor(Color.white)
             }
         }
@@ -86,6 +90,7 @@ struct GoalsMetCard_Previews: PreviewProvider {
         }
         .background(Color.hawks)
         .environmentObject(GardenViewModel())
+        .environmentObject(CommunityViewModel())
         
     }
 }

@@ -56,7 +56,7 @@ class CommunityGardenScene: SKScene {
         }
         
         // TODO: Remove number of parcels hardcoding
-        addParcelsToColumn(firstColumn, count: NUM_PARCEL_PER_COLUMN, swap: true)
+        addParcelsToColumn(firstColumn, count: NUM_PARCEL_PER_COLUMN)
         addParcelsToColumn(secondColumn, count: NUM_PARCEL_PER_COLUMN)
         addTreesToParcels()
         addSoilsToParcels()
@@ -117,9 +117,14 @@ class CommunityGardenScene: SKScene {
     
     func addTreesToParcels(){
         var counter = 0
+
         for tree in communityViewModel.trees {
             addTree(tree: tree, parcel: &parcels[counter])
             counter += 1
+            
+            if counter >= 6 {
+                return
+            }
         }
     }
     
@@ -314,15 +319,18 @@ class CommunityGardenScene: SKScene {
         let grassLocation = CGPoint(x: treeNode.position.x - 15, y: treeNode.position.y)
         let _ = SceneHelper.addGrass(scene: self, location: grassLocation)
         
+
+        let treeScale = tree.scale * 0.4
+        treeNode.setScale(treeScale)
         
-        treeNode.setScale(tree.scale * 0.35)
-        //        let treeAction = SKAction.scale(to: tree.scale * 0.5, duration: SCALE_DURATION)
-        //        treeNode.run(treeAction)
+        let pulseAction = SceneHelper.getPulseAction(scale: treeScale, scaleOffset: 0.05)
+        
+        treeNode.run(pulseAction)
         
         // shadow
-        let shadowNode = SKSpriteNode(imageNamed: "shadow-community")
+        let shadowNode = SKSpriteNode(imageNamed: "shadow")
         shadowNode.zPosition = -1
-        shadowNode.setScale(0.5)
+        shadowNode.setScale(0.75)
         treeNode.addChild(shadowNode)
         
         // grass

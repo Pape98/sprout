@@ -15,7 +15,13 @@ class Collections {
     let db: Firestore
     
     let subCollections: [String] = []
-    let topLevelCollections = ["users","gardenItems","steps", "workouts", "walkingRunning", "sleep","messages","groups","reactions", "goals"]
+    let topLevelCollections = ["users","gardenItems",
+                               "steps", "workouts",
+                               "walkingRunning", "sleep",
+                               "messages","groups",
+                               "reactions", "goals",
+                               "communityFeed"]
+    
     let nc = NotificationCenter.default
     
     var subCollectionsMap: Dictionary<String, CollectionReference> = [:]
@@ -67,9 +73,15 @@ enum CollectionName: String, CaseIterable {
     case groups
     case reactions
     case goals
+    case communityFeed
     
     static var topLevelCollections: [CollectionName] {
-        [users, gardenItems, steps, workouts, walkingRunning, sleep, messages, groups, reactions, goals]
+        [users, gardenItems,
+         steps, workouts,
+         walkingRunning,
+         sleep, messages,
+         groups, reactions,
+         goals, communityFeed]
     }
     
     static var subCollections: [CollectionName] {

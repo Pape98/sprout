@@ -38,35 +38,42 @@ struct MessageCard: View {
         VStack {
             HStack {
                 
-                CircledFlower(option: userFlower, background: flowerColor)
+                CircledFlower(option: userFlower, background: .appleGreen)
                     .frame(width: 55, height: 55)
+                    .padding(.leading)
                 
                 
                 VStack(alignment: .leading, spacing: 5) {
                     
                     HStack {
                         Text(message.isPrivate ? "Anonymous User" : username)
-                            .bodyStyle(foregroundColor: appViewModel.fontColor)
+                            .bodyStyle(foregroundColor: .seaGreen)
                         
                         Spacer()
                         
-                        Text(message.date.getFormattedDate(format: "MMM d"))
-                            .bodyStyle(foregroundColor: .chalice)
+                        HStack(alignment: .center) {
+                            Text(message.date.getFormattedDate(format: "MMM d"))
+                                .bodyStyle(foregroundColor: .chalice)
+                            Image(systemName: "calendar")
+                                .foregroundColor(.appleGreen)
+                        }
                         
                     }
                     
                     Text(message.text)
-                        .bodyStyle(foregroundColor: appViewModel.fontColor, size: 13)
+                        .bodyStyle(foregroundColor: .seaGreen, size: 13)
                     
                 }
+                .padding()
                 
             }
             .frame(maxWidth: .infinity, alignment: .leading)
-            Divider()
+            .background {
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(.white)
+                    .opacity(0.5)
+            }
         }
-        .sheet(isPresented: $isShowingSheet, content: {
-           
-        })
     }
 }
 
@@ -75,10 +82,13 @@ struct MessageCard_Previews: PreviewProvider {
     static var message = Message(senderID: "", senderName: "Sender Name",
                                  receiverID: "", receiverName: "Receiver Name",
                                  receiverFcmToken: "", text: "Lundi matin le roi sa femme et le petit prince",
-                                 date: Date.now, senderFlower: "grenadier-joyful-clover")
+                                 date: Date.now, senderFlower: "grenadier-joyful-clover", group: 1)
     
     static var previews: some View {
-        MessageCard(message: message, messageType: .received)
-            .environmentObject(AppViewModel())
+        ZStack {
+            Color.hawks
+            MessageCard(message: message, messageType: .received)
+                .environmentObject(AppViewModel())
+        }
     }
 }

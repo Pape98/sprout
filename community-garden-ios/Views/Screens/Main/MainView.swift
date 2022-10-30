@@ -8,6 +8,7 @@
 import SwiftUI
 import AVFoundation
 import AlertToast
+import FirebaseAnalytics
 
 struct MainView: View {
     
@@ -92,10 +93,6 @@ struct MainView: View {
                        type: .systemImage(healthStoreViewModel.goalCompletedAlertImage, .appleGreen),
                        title: "Goal Completed! ", subTitle: healthStoreViewModel.goalCompletedAlertSubtitle)
         })
-        
-        .onAppear {
-            appViewModel.setBackground()
-        }
         .accentColor(.appleGreen)
         .environmentObject(userViewModel)
         .environmentObject(healthStoreViewModel)
@@ -109,10 +106,16 @@ struct MainView: View {
     func onAppearTabBarItem(){
         playSound()
         appViewModel.setBackground()
+        appViewModel.setIntroBackground()
         appViewModel.isSocialConfigGroup()
         appViewModel.isCustomizationGroup()
         userViewModel.refreshStats()
         setToolBarTitleColor()
+        if Platform.isSimulator {
+            Analytics.setAnalyticsCollectionEnabled(false)
+        } else {
+            Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
+        }
     }
     
     func playSound(){

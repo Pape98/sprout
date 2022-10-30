@@ -40,8 +40,9 @@ struct LottieView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIView, context: UIViewRepresentableContext<LottieView>) {
-    
+        
     }
+    
     
 //    func backgroundBehavior(_ behavior: Lottie.LottieBackgroundBehavior) -> Self {
 //            var view = self

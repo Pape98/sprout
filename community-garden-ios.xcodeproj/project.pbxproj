@@ -29,6 +29,7 @@
 		F01B635B284FB339004D079A /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F01B635A284FB339004D079A /* Helpers.swift */; };
 		F024BFF6286BB37100850018 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F024BFF5286BB37100850018 /* MainView.swift */; };
 		F02682D12850F13A004747FD /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02682D02850F13A004747FD /* UserDefaultService.swift */; };
+		F03062062909DD8E009DAAD4 /* SendCommunityMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F03062052909DD8E009DAAD4 /* SendCommunityMessage.swift */; };
 		F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F030B022283B2F660026F2E0 /* Dashboard.swift */; };
 		F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C372887500E00251FD0 /* SettingsViewModel.swift */; };
 		F0337C3A2887A9A400251FD0 /* NameChanging.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0337C392887A9A400251FD0 /* NameChanging.swift */; };
@@ -106,7 +107,6 @@
 		F0AE969A29027A1900DD788C /* loading-elephant.json in Resources */ = {isa = PBXBuildFile; fileRef = F0AE969929027A1900DD788C /* loading-elephant.json */; };
 		F0B07D1728EF190400AA99FC /* MessagingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B07D1628EF190400AA99FC /* MessagingService.swift */; };
 		F0B32CA0275AF77700C714A2 /* CommunityGardenIosApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32C9F275AF77700C714A2 /* CommunityGardenIosApp.swift */; };
-		F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA6275AF77900C714A2 /* Preview Assets.xcassets */; };
 		F0B32CB4275B222500C714A2 /* HealthStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B32CB3275B222500C714A2 /* HealthStoreService.swift */; };
 		F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0B6DAE42874B21000DD3F03 /* HealthStoreSQLRepository.swift */; };
@@ -132,7 +132,6 @@
 		F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065428FDD772007ADDED /* CommunityHistory.swift */; };
 		F0D9065828FDDC14007ADDED /* BadgeInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065728FDDC14007ADDED /* BadgeInfo.swift */; };
 		F0D9065A28FDE48C007ADDED /* JustifiedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0D9065928FDE48C007ADDED /* JustifiedText.swift */; };
-		F0D9065B28FDE7C6007ADDED /* Baloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672528EA026300F79D1A /* Baloo.ttf */; };
 		F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0528E0B50C007FBC04 /* water_droplet.mp3 */; };
 		F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0D28E13329007FBC04 /* spring_hamlet_evening.mp3 */; };
 		F0E9BF1128E133E7007FBC04 /* slightly_sour.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0E9BF0F28E133E7007FBC04 /* slightly_sour.mp3 */; };
@@ -160,9 +159,52 @@
 		F0F67B2B29048FF0007FACA1 /* moon1.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2729048FEF007FACA1 /* moon1.json */; };
 		F0F67B2C29048FF0007FACA1 /* moon4.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2829048FEF007FACA1 /* moon4.json */; };
 		F0F67B2D29048FF0007FACA1 /* moon3.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2929048FF0007FACA1 /* moon3.json */; };
+		F0F67B2F2905D779007FACA1 /* flower.json in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B2E2905D779007FACA1 /* flower.json */; };
+		F0F67B31290BF9DD007FACA1 /* CommunityFeed.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B30290BF9DD007FACA1 /* CommunityFeed.swift */; };
+		F0F67B33290BFBB6007FACA1 /* CommunityFeedCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B32290BFBB6007FACA1 /* CommunityFeedCard.swift */; };
+		F0F67B3A290DD832007FACA1 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F67B39290DD832007FACA1 /* WidgetKit.framework */; };
+		F0F67B3C290DD832007FACA1 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F67B3B290DD832007FACA1 /* SwiftUI.framework */; };
+		F0F67B3F290DD832007FACA1 /* PersonalStatusWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B3E290DD832007FACA1 /* PersonalStatusWidget.swift */; };
+		F0F67B41290DD834007FACA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0F67B40290DD834007FACA1 /* Assets.xcassets */; };
+		F0F67B45290DD834007FACA1 /* PersonalStatusWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = F0F67B38290DD832007FACA1 /* PersonalStatusWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F0F67B4F290DF6D6007FACA1 /* Catamaran-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0475B5F28610E4900C68B35 /* Catamaran-VariableFont_wght.ttf */; };
+		F0F67B52290DFE36007FACA1 /* Baloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672528EA026300F79D1A /* Baloo.ttf */; };
+		F0F67B53290DFE37007FACA1 /* Baloo.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F0F3672528EA026300F79D1A /* Baloo.ttf */; };
+		F0F67B56290DFEE5007FACA1 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B55290DFEE5007FACA1 /* FirebaseAuth */; };
+		F0F67B65290E03F4007FACA1 /* UserDefaultService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F02682D02850F13A004747FD /* UserDefaultService.swift */; };
+		F0F67B68290E074F007FACA1 /* AppGroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B67290E074F007FACA1 /* AppGroupService.swift */; };
+		F0F67B69290E074F007FACA1 /* AppGroupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B67290E074F007FACA1 /* AppGroupService.swift */; };
+		F0F67B6D290E3054007FACA1 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B6C290E3054007FACA1 /* SwiftDate */; };
+		F0F67B6F290E3087007FACA1 /* SwiftDate in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B6E290E3087007FACA1 /* SwiftDate */; };
+		F0F67B70290E3921007FACA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
+		F0F67B71290E3921007FACA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F0F67B43290DD834007FACA1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F0B32C94275AF77700C714A2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F0F67B37290DD832007FACA1;
+			remoteInfo = PersonalStatusWidgetExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F0F67B46290DD834007FACA1 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				F0F67B45290DD834007FACA1 /* PersonalStatusWidgetExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_community_garden_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -191,6 +233,7 @@
 		F01B635A284FB339004D079A /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		F024BFF5286BB37100850018 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F02682D02850F13A004747FD /* UserDefaultService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultService.swift; sourceTree = "<group>"; };
+		F03062052909DD8E009DAAD4 /* SendCommunityMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendCommunityMessage.swift; sourceTree = "<group>"; };
 		F030B022283B2F660026F2E0 /* Dashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dashboard.swift; sourceTree = "<group>"; };
 		F0337C372887500E00251FD0 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
 		F0337C392887A9A400251FD0 /* NameChanging.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameChanging.swift; sourceTree = "<group>"; };
@@ -316,6 +359,17 @@
 		F0F67B2729048FEF007FACA1 /* moon1.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon1.json; sourceTree = "<group>"; };
 		F0F67B2829048FEF007FACA1 /* moon4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon4.json; sourceTree = "<group>"; };
 		F0F67B2929048FF0007FACA1 /* moon3.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = moon3.json; sourceTree = "<group>"; };
+		F0F67B2E2905D779007FACA1 /* flower.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = flower.json; sourceTree = "<group>"; };
+		F0F67B30290BF9DD007FACA1 /* CommunityFeed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeed.swift; sourceTree = "<group>"; };
+		F0F67B32290BFBB6007FACA1 /* CommunityFeedCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityFeedCard.swift; sourceTree = "<group>"; };
+		F0F67B38290DD832007FACA1 /* PersonalStatusWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = PersonalStatusWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F0F67B39290DD832007FACA1 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		F0F67B3B290DD832007FACA1 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F0F67B3E290DD832007FACA1 /* PersonalStatusWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalStatusWidget.swift; sourceTree = "<group>"; };
+		F0F67B40290DD834007FACA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F0F67B42290DD834007FACA1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0F67B61290E031F007FACA1 /* PersonalStatusWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PersonalStatusWidgetExtension.entitlements; sourceTree = "<group>"; };
+		F0F67B67290E074F007FACA1 /* AppGroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupService.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -331,9 +385,21 @@
 				F042349F278491910063DA08 /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				F0ADEA1F275CE40E0039B134 /* FirebaseFirestore in Frameworks */,
 				F0ADEA23275ECCA80039B134 /* FirebaseAuth in Frameworks */,
+				F0F67B6D290E3054007FACA1 /* SwiftDate in Frameworks */,
 				F08C8C5F28AC1B0800DDDFB8 /* Lottie in Frameworks */,
 				F085A8B328C51EB100A08BE4 /* FirebaseAnalytics in Frameworks */,
 				F059833E28D4D88100542D64 /* FirebaseRemoteConfig in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0F67B35290DD832007FACA1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0F67B6F290E3087007FACA1 /* SwiftDate in Frameworks */,
+				F0F67B3C290DD832007FACA1 /* SwiftUI.framework in Frameworks */,
+				F0F67B56290DFEE5007FACA1 /* FirebaseAuth in Frameworks */,
+				F0F67B3A290DD832007FACA1 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -471,6 +537,9 @@
 				F0D66E3B288894B00095AEDE /* SendMessage.swift */,
 				F04AD4CE288B22DD00BC17AB /* UserMessages.swift */,
 				F0F0C87428B50A9B0047D9EA /* MessageCard.swift */,
+				F03062052909DD8E009DAAD4 /* SendCommunityMessage.swift */,
+				F0F67B30290BF9DD007FACA1 /* CommunityFeed.swift */,
+				F0F67B32290BFBB6007FACA1 /* CommunityFeedCard.swift */,
 			);
 			path = Messages;
 			sourceTree = "<group>";
@@ -575,6 +644,8 @@
 			children = (
 				F0964267275B3A8900F1CEC1 /* HealthKit.framework */,
 				47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */,
+				F0F67B39290DD832007FACA1 /* WidgetKit.framework */,
+				F0F67B3B290DD832007FACA1 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -672,6 +743,7 @@
 		F0AE969829027A0300DD788C /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				F0F67B2E2905D779007FACA1 /* flower.json */,
 				F0AE969929027A1900DD788C /* loading-elephant.json */,
 			);
 			path = Other;
@@ -680,8 +752,10 @@
 		F0B32C93275AF77700C714A2 = {
 			isa = PBXGroup;
 			children = (
+				F0F67B61290E031F007FACA1 /* PersonalStatusWidgetExtension.entitlements */,
 				F0B32C9E275AF77700C714A2 /* community-garden-ios */,
 				F0FCDE7A282CD7F500FDA5BA /* Resources */,
+				F0F67B3D290DD832007FACA1 /* PersonalStatusWidget */,
 				F0B32C9D275AF77700C714A2 /* Products */,
 				F0964266275B3A8900F1CEC1 /* Frameworks */,
 				C18ED0BE3AAC051BD9EE1AA1 /* Pods */,
@@ -692,6 +766,7 @@
 			isa = PBXGroup;
 			children = (
 				F0B32C9C275AF77700C714A2 /* community-garden-ios.app */,
+				F0F67B38290DD832007FACA1 /* PersonalStatusWidgetExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -729,14 +804,15 @@
 		F0B32CAD275AFA7A00C714A2 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				F0F67B67290E074F007FACA1 /* AppGroupService.swift */,
+				F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */,
+				F0B07D1628EF190400AA99FC /* MessagingService.swift */,
+				F0C99E1C2783B871004514D4 /* NotificationService.swift */,
 				F0B32CB3275B222500C714A2 /* HealthStoreService.swift */,
 				F0172736275F687A00FAEB12 /* UserService.swift */,
-				F0C99E1C2783B871004514D4 /* NotificationService.swift */,
 				F038369D2839497600D444E4 /* SQLiteService.swift */,
 				F02682D02850F13A004747FD /* UserDefaultService.swift */,
 				F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */,
-				F0B07D1628EF190400AA99FC /* MessagingService.swift */,
-				F08C8C6C28AC277500DDDFB8 /* AudioPlayerService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -746,6 +822,7 @@
 			children = (
 				F043F261287EEDD1008F211C /* AppViewModel.swift */,
 				F017272F275EDE6200FAEB12 /* AuthenticationViewModel.swift */,
+				F0D9064528FBD896007ADDED /* BadgesViewModel.swift */,
 				F07657F828D749B700C72F2C /* CommunityViewModel.swift */,
 				F0B6DAE62874B6DA00DD3F03 /* HealthStoreViewModel.swift */,
 				F0F0C87B28B53F9F0047D9EA /* HistoryViewModel.swift */,
@@ -754,7 +831,6 @@
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
-				F0D9064528FBD896007ADDED /* BadgesViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -890,6 +966,16 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		F0F67B3D290DD832007FACA1 /* PersonalStatusWidget */ = {
+			isa = PBXGroup;
+			children = (
+				F0F67B3E290DD832007FACA1 /* PersonalStatusWidget.swift */,
+				F0F67B40290DD834007FACA1 /* Assets.xcassets */,
+				F0F67B42290DD834007FACA1 /* Info.plist */,
+			);
+			path = PersonalStatusWidget;
+			sourceTree = "<group>";
+		};
 		F0FCDE7A282CD7F500FDA5BA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
@@ -910,10 +996,12 @@
 				F0B32C99275AF77700C714A2 /* Frameworks */,
 				F0B32C9A275AF77700C714A2 /* Resources */,
 				D1721EC04174E4FD2D855AF2 /* [CP] Embed Pods Frameworks */,
+				F0F67B46290DD834007FACA1 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				F0F67B44290DD834007FACA1 /* PBXTargetDependency */,
 			);
 			name = "community-garden-ios";
 			packageProductDependencies = (
@@ -925,10 +1013,32 @@
 				F0F0C86B28AF333B0047D9EA /* FirebaseFunctions */,
 				F085A8B228C51EB100A08BE4 /* FirebaseAnalytics */,
 				F059833D28D4D88100542D64 /* FirebaseRemoteConfig */,
+				F0F67B6C290E3054007FACA1 /* SwiftDate */,
 			);
 			productName = "community-garden-ios";
 			productReference = F0B32C9C275AF77700C714A2 /* community-garden-ios.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F0F67B37290DD832007FACA1 /* PersonalStatusWidgetExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F0F67B49290DD834007FACA1 /* Build configuration list for PBXNativeTarget "PersonalStatusWidgetExtension" */;
+			buildPhases = (
+				F0F67B34290DD832007FACA1 /* Sources */,
+				F0F67B35290DD832007FACA1 /* Frameworks */,
+				F0F67B36290DD832007FACA1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PersonalStatusWidgetExtension;
+			packageProductDependencies = (
+				F0F67B55290DFEE5007FACA1 /* FirebaseAuth */,
+				F0F67B6E290E3087007FACA1 /* SwiftDate */,
+			);
+			productName = PersonalStatusWidgetExtension;
+			productReference = F0F67B38290DD832007FACA1 /* PersonalStatusWidgetExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -937,11 +1047,14 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1310;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					F0B32C9B275AF77700C714A2 = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					F0F67B37290DD832007FACA1 = {
+						CreatedOnToolsVersion = 14.0.1;
 					};
 				};
 			};
@@ -958,12 +1071,14 @@
 				F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				F08C8C5D28AC1B0700DDDFB8 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 				F0F3673928ED178100F79D1A /* XCRemoteSwiftPackageReference "Toaster" */,
+				F0F67B6B290E3054007FACA1 /* XCRemoteSwiftPackageReference "SwiftDate" */,
 			);
 			productRefGroup = F0B32C9D275AF77700C714A2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
 				F0B32C9B275AF77700C714A2 /* community-garden-ios */,
+				F0F67B37290DD832007FACA1 /* PersonalStatusWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -973,12 +1088,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F0D9065B28FDE7C6007ADDED /* Baloo.ttf in Resources */,
 				F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */,
 				F0F67B2D29048FF0007FACA1 /* moon3.json in Resources */,
 				F09F822328FBABBD009287E6 /* penguin-waving-hello.json in Resources */,
 				F0F67B1D29048BC8007FACA1 /* dog_d2.json in Resources */,
 				F0B32CA7275AF77900C714A2 /* Preview Assets.xcassets in Resources */,
+				F0F67B2F2905D779007FACA1 /* flower.json in Resources */,
 				F0E9BF0628E0B50C007FBC04 /* water_droplet.mp3 in Resources */,
 				F0E9BF0E28E13329007FBC04 /* spring_hamlet_evening.mp3 in Resources */,
 				F0F67B2C29048FF0007FACA1 /* moon4.json in Resources */,
@@ -988,7 +1103,7 @@
 				F0F67B2429048FE9007FACA1 /* sun3.json in Resources */,
 				F0D9064B28FC85DF007ADDED /* pointGained.mp3 in Resources */,
 				F013199E28FA0FE9002B47A4 /* turtle_a2.json in Resources */,
-				F0B32CA4275AF77900C714A2 /* Assets.xcassets in Resources */,
+				F0F67B70290E3921007FACA1 /* Assets.xcassets in Resources */,
 				F01319A428FA1AF6002B47A4 /* deer_a5.json in Resources */,
 				F0D9064F28FCB597007ADDED /* congratulations.mp3 in Resources */,
 				F0F67B1B29047132007FACA1 /* dog_d1.json in Resources */,
@@ -1012,8 +1127,20 @@
 				F09F821F28FBA5C5009287E6 /* dog-walking.json in Resources */,
 				F0F67B2B29048FF0007FACA1 /* moon1.json in Resources */,
 				F0A898FE28FDE93A007018C1 /* Catamaran-VariableFont_wght.ttf in Resources */,
+				F0F67B52290DFE36007FACA1 /* Baloo.ttf in Resources */,
 				F0E9BF1428E1343B007FBC04 /* winter_glade_evening.mp3 in Resources */,
 				F09F821228FB1EAA009287E6 /* turtle_s3.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F0F67B36290DD832007FACA1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0F67B4F290DF6D6007FACA1 /* Catamaran-VariableFont_wght.ttf in Resources */,
+				F0F67B53290DFE37007FACA1 /* Baloo.ttf in Resources */,
+				F0F67B71290E3921007FACA1 /* Assets.xcassets in Resources */,
+				F0F67B41290DD834007FACA1 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1075,6 +1202,7 @@
 				F0B6DAEE2875CB5100DD3F03 /* StatsSQLRepository.swift in Sources */,
 				F0B6DAE52874B21000DD3F03 /* HealthStoreSQLRepository.swift in Sources */,
 				F0D9065528FDD772007ADDED /* CommunityHistory.swift in Sources */,
+				F0F67B31290BF9DD007FACA1 /* CommunityFeed.swift in Sources */,
 				F0F0C87528B50A9B0047D9EA /* MessageCard.swift in Sources */,
 				F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */,
 				F07657F528D6870E00C72F2C /* Community.swift in Sources */,
@@ -1088,6 +1216,7 @@
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
 				F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */,
 				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
+				F0F67B68290E074F007FACA1 /* AppGroupService.swift in Sources */,
 				F0AE96972902795A00DD788C /* Loader.swift in Sources */,
 				F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */,
 				F0B6DAF02876181D00DD3F03 /* ProgressRepository.swift in Sources */,
@@ -1112,6 +1241,7 @@
 				F04AD4BF288A4A4300BC17AB /* MessagesViewModel.swift in Sources */,
 				F08C8C6D28AC277500DDDFB8 /* AudioPlayerService.swift in Sources */,
 				F0D9064228FBD814007ADDED /* Badges.swift in Sources */,
+				F0F67B33290BFBB6007FACA1 /* CommunityFeedCard.swift in Sources */,
 				F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */,
 				F0F3672B28EB422900F79D1A /* GoalslEditing.swift in Sources */,
 				F0149D5B284ED5ED00782D27 /* CircledTree.swift in Sources */,
@@ -1158,6 +1288,7 @@
 				F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */,
 				F038369E2839497600D444E4 /* SQLiteService.swift in Sources */,
 				F0149D5F284F181600782D27 /* GardenInfoCard.swift in Sources */,
+				F03062062909DD8E009DAAD4 /* SendCommunityMessage.swift in Sources */,
 				F0B6DAEC2875C30100DD3F03 /* Statistics.swift in Sources */,
 				F0CA2CE62760A1D300F42683 /* Extensions.swift in Sources */,
 				F0172730275EDE6200FAEB12 /* AuthenticationViewModel.swift in Sources */,
@@ -1173,7 +1304,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F0F67B34290DD832007FACA1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0F67B65290E03F4007FACA1 /* UserDefaultService.swift in Sources */,
+				F0F67B3F290DD832007FACA1 /* PersonalStatusWidget.swift in Sources */,
+				F0F67B69290E074F007FACA1 /* AppGroupService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F0F67B44290DD834007FACA1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F0F67B37290DD832007FACA1 /* PersonalStatusWidgetExtension */;
+			targetProxy = F0F67B43290DD834007FACA1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		F0B32CA8275AF77900C714A2 /* Debug */ = {
@@ -1296,13 +1445,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E4541A2722F59D2EF7741719 /* Pods-community-garden-ios.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1342,13 +1492,14 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7E97010C2190A08C6A6A2D8F /* Pods-community-garden-ios.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 11;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1384,6 +1535,68 @@
 			};
 			name = Release;
 		};
+		F0F67B47290DD834007FACA1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = PersonalStatusWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 75URXTAXCM;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PersonalStatusWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PersonalStatusWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden.PersonalStatusWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		F0F67B48290DD834007FACA1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_ENTITLEMENTS = PersonalStatusWidgetExtension.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 75URXTAXCM;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = PersonalStatusWidget/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = PersonalStatusWidget;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "empower.lab.community-garden.PersonalStatusWidget";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1401,6 +1614,15 @@
 			buildConfigurations = (
 				F0B32CAB275AF77900C714A2 /* Debug */,
 				F0B32CAC275AF77900C714A2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F0F67B49290DD834007FACA1 /* Build configuration list for PBXNativeTarget "PersonalStatusWidgetExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0F67B47290DD834007FACA1 /* Debug */,
+				F0F67B48290DD834007FACA1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1427,6 +1649,14 @@
 		F0F3673928ED178100F79D1A /* XCRemoteSwiftPackageReference "Toaster" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/devxoul/Toaster.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		F0F67B6B290E3054007FACA1 /* XCRemoteSwiftPackageReference "SwiftDate" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/malcommac/SwiftDate";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1474,6 +1704,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFunctions;
+		};
+		F0F67B55290DFEE5007FACA1 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		F0F67B6C290E3054007FACA1 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0F67B6B290E3054007FACA1 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
+		};
+		F0F67B6E290E3087007FACA1 /* SwiftDate */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0F67B6B290E3054007FACA1 /* XCRemoteSwiftPackageReference "SwiftDate" */;
+			productName = SwiftDate;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
