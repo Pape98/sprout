@@ -161,6 +161,9 @@ struct Dashboard: View {
                     .navigationBarHidden(true)
                     .padding(.horizontal, 25)
                 }
+                .onAppear {
+                    appViewModel.setIntroBackground()
+                }
             }
         }
     }

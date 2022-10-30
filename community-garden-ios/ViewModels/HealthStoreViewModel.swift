@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftDate
 
 class HealthStoreViewModel: ObservableObject {
     
@@ -16,6 +17,7 @@ class HealthStoreViewModel: ObservableObject {
     let goalsRepo = GoalsRepository.shared
     let progressRepo = ProgressRepository.shared
     let collections = Collections.shared
+    let appGroup = AppGroupService.shared
         
     let today = Date.today
     var stepCounts: [Step] = []
@@ -107,7 +109,12 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getStepCountByDate(date: self.today) { result in
                 self.todayStepCount = result
                 guard let goal = result.goal else { return }
-                                
+                
+                
+                let progress: Float = Float(result.count) / Float(goal)
+                self.saveProgressDataAppGroup("steps",progress)
+
+                
                 if result.count >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.steps){
                         NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
@@ -124,6 +131,9 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getWalkingRunningDistanceByDate(date: self.today) { result in
                 self.todayWalkingRunningDistance = result
                 guard let goal = result.goal else { return }
+                
+                let progress: Float = Float(result.distance) / Float(goal)
+                self.saveProgressDataAppGroup("walkingRunning",progress)
 
                 if result.distance >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.walkingRunningDistance){
@@ -141,6 +151,9 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getWorkoutByDate(date: self.today) { result in
                 self.todayWorkout = result
                 guard let goal = result.goal else { return }
+                
+                let progress: Double = result.duration / Double(goal)
+                self.saveProgressDataAppGroup("workouts",Float(progress))
 
                 if result.duration >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.workouts){
@@ -158,6 +171,9 @@ class HealthStoreViewModel: ObservableObject {
             self.healthStoreRepo.getSleepByDate(date: self.today) { result in
                 self.todaySleep = result
                 guard let goal = result.goal  else { return }
+                
+                let progress: Float = Float(result.duration) / Float(goal)
+                self.saveProgressDataAppGroup("sleep",progress)
                 
                 if result.duration >= Double(goal) && result.hasReachedGoal == nil {
                     self.goalsRepo.updateGoalsAchieved(data: DataOptions.sleep){
@@ -179,5 +195,11 @@ class HealthStoreViewModel: ObservableObject {
         healthStoreRepo.saveData(docRef: docRef, updates: updates){
             NotificationSender.send(type: NotificationType.FetchGoalStat.rawValue)
         }
+    }
+    
+    func saveProgressDataAppGroup(_ key: String, _ value: Float){
+        var currProgress: [String: Float] = appGroup.get(key: AppGroupKey.progressData)
+        currProgress[key] = value
+        appGroup.save(value: currProgress, key: AppGroupKey.progressData)
     }
 }

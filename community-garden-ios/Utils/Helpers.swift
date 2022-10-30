@@ -10,7 +10,6 @@ import SwiftUI
 import CoreGraphics
 import FirebaseAuth
 
-
 struct Platform {
 
     static var isSimulator: Bool {

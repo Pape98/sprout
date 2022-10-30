@@ -224,9 +224,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         dogHouseNode.position = CGPoint(x: dogHouseNode.size.width  * -0.1, y: ground.size.height * 0.85 )
         dogHouseNode.setScale(0.5)
         
-        
-        Debug.log.debug(ground.zPosition, dogHouseNode.zPosition)
-        
         ground.addChild(dogHouseNode)
     }
     

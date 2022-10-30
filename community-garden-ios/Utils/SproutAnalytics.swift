@@ -15,7 +15,6 @@ class SproutAnalytics {
     
     init(){
         setDefaultParams()
-        Debug.log.debug(isUserLoggedIn())
     }
     
     func setDefaultParams(){

@@ -33,7 +33,7 @@ struct DataStatus: View {
             return "faces/sad"
         } else if 25...50 ~= progress {
             return "faces/meh"
-        } else if 51...75 ~= progress {
+        } else if 51...99 ~= progress {
             return "faces/content"
         } else {
             return "faces/happy"

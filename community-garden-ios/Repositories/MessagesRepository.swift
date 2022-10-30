@@ -20,7 +20,7 @@ class MessagesRepository {
         do {
             try collection.document(message.id).setData(from: message){ error in
                 if let error = error {
-                    Debug.log.debug(error)
+                    Debug.log.error(error)
                     return
                 }
                 completion()

@@ -29,7 +29,7 @@ struct Badges: View {
                     VStack {
                         
                         Text("Tap badge to view")
-                            .bodyStyle()
+                            .bodyStyle(foregroundColor: appViewModel.fontColor)
                         
                         LazyVGrid(columns: columns, spacing: 40) {
                             ForEach(badges, id: \.self) { badge in
@@ -53,7 +53,7 @@ struct Badges: View {
                                                 Image(systemName: "target")
                                                     .foregroundColor(.appleGreen)
                                                 Text("\(min(appViewModel.numFiftyPercentDays,badge.numberOfDaysRequired)) /\(badge.numberOfDaysRequired) day(s)")
-                                                    .bodyStyle()
+                                                    .bodyStyle(foregroundColor: appViewModel.fontColor)
                                             }
                                         }
                                     }
@@ -85,7 +85,7 @@ struct Badges: View {
                                             Image(systemName: "target")
                                                 .foregroundColor(.appleGreen)
                                             Text("\( min(appViewModel.numFiftyPercentDays,badge.numberOfDaysRequired)) / \(badge.numberOfDaysRequired) day(s)")
-                                                .bodyStyle()
+                                                .bodyStyle(foregroundColor: appViewModel.fontColor)
                                         }
                                     }
                                 }

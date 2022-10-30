@@ -111,7 +111,11 @@ struct MainView: View {
         appViewModel.isCustomizationGroup()
         userViewModel.refreshStats()
         setToolBarTitleColor()
-        Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
+        if Platform.isSimulator {
+            Analytics.setAnalyticsCollectionEnabled(false)
+        } else {
+            Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
+        }
     }
     
     func playSound(){

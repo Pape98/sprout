@@ -32,7 +32,7 @@ struct SendCommunityMessage: View {
                             .cornerRadius(10)
                         
                         Form {
-                            Section("Parameters"){
+                            Section(header: Text("Parameters").foregroundColor(appViewModel.fontColor)){
                                 Toggle("Anonymous", isOn: $isPrivate)
                             }
                         }

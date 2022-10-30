@@ -11,6 +11,7 @@ import Foundation
 class UserDefaultsService {
     
     let defaults = UserDefaults.standard
+    
     static let shared = UserDefaultsService()
     
     func remove(key: String){
@@ -39,7 +40,7 @@ class UserDefaultsService {
         return array
     }
     
-    func get(key: UserDefaultsKey) -> Float {
+    func get(key: UserDefaultsKey) -> Float? {
        return defaults.float(forKey: key.rawValue)
     }
     
