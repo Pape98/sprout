@@ -47,6 +47,7 @@ struct CommunityGardenIosApp: App {
         if Platform.isSimulator {
             setupLocalEmulator()
         }
+        
     }
     
     func setupLocalEmulator(){
@@ -61,15 +62,7 @@ struct CommunityGardenIosApp: App {
         // Cloud Functions
         Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
     }
-    
-    func printFonts(){
-        for familyName in UIFont.familyNames {
-            print("\n-- \(familyName) \n")
-            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                print(fontName)
-            }
-        }
-    }
+
     
     var body: some Scene {
         WindowGroup {
