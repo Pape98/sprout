@@ -42,12 +42,6 @@ struct PersonalStatusProvider: TimelineProvider {
     
 }
 
-struct ProgressEntry: TimelineEntry {
-    let date: Date
-    let progress: [Float]
-    let lastUpdate: Float
-}
-
 struct PersonalStatusWidgetEntryView : View {
     
     var entry: PersonalStatusProvider.Entry
@@ -105,23 +99,27 @@ struct PersonalStatusWidgetEntryView : View {
         
         ZStack(alignment: .bottom) {
             ContainerRelativeShape()
-                .fill(Color("dark-bg"))
+                .fill(Color("background"))
             
             VStack(spacing: 0) {
-
-                    HStack {
-                        Image(systemName: "clock")
-                            .foregroundColor(.green)
-                        Text(lastUpdateHourText)
-                            .foregroundColor(Color("font-color"))
-                            .opacity(0.9)
-                            .font(.custom("Baloo2-Regular", size: 12))
-                    }
+                
+                HStack(spacing: 4) {
+                    Image(systemName: "clock")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 12)
+                        .foregroundColor(Color("apple-green"))
                     
-                    Text("\(completedGoals)/2")
+                    Text(lastUpdateHourText)
                         .foregroundColor(Color("font-color"))
-                        .font(.custom("Baloo2-Bold", size: 40))
-
+                        .opacity(0.9)
+                        .font(.custom("Baloo2-Medium", size: 11))
+                }
+                
+                Text("\(completedGoals)/2")
+                    .foregroundColor(Color("font-color"))
+                    .font(.custom("Baloo2-Bold", size: 35))
+                
                 HStack {
                     Image(face1)
                         .resizable()
@@ -155,7 +153,6 @@ struct PersonalStatusWidgetEntryView : View {
     }
 }
 
-@main
 struct PersonalStatusWidget: Widget {
     let kind: String = "PersonalStatusWidget"
     

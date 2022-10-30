@@ -179,6 +179,12 @@
 		F0F67B70290E3921007FACA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0F67B71290E3921007FACA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F0B32CA3275AF77900C714A2 /* Assets.xcassets */; };
 		F0F67B77290ED83E007FACA1 /* CommunityWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B76290ED83E007FACA1 /* CommunityWidget.swift */; };
+		F0F67B7B290EDD3C007FACA1 /* SproutsWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B7A290EDD3C007FACA1 /* SproutsWidgets.swift */; };
+		F0F67B7D290EDE0E007FACA1 /* Entries.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B7C290EDE0E007FACA1 /* Entries.swift */; };
+		F0F67B7F290EE827007FACA1 /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B7E290EE827007FACA1 /* FirebaseHelper.swift */; };
+		F0F67B81290EE9C1007FACA1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B80290EE9C1007FACA1 /* FirebaseFirestore */; };
+		F0F67B83290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B82290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta */; };
+		F0F67B85290EEBC5007FACA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -372,6 +378,9 @@
 		F0F67B61290E031F007FACA1 /* PersonalStatusWidgetExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PersonalStatusWidgetExtension.entitlements; sourceTree = "<group>"; };
 		F0F67B67290E074F007FACA1 /* AppGroupService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroupService.swift; sourceTree = "<group>"; };
 		F0F67B76290ED83E007FACA1 /* CommunityWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityWidget.swift; sourceTree = "<group>"; };
+		F0F67B7A290EDD3C007FACA1 /* SproutsWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SproutsWidgets.swift; sourceTree = "<group>"; };
+		F0F67B7C290EDE0E007FACA1 /* Entries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entries.swift; sourceTree = "<group>"; };
+		F0F67B7E290EE827007FACA1 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -398,9 +407,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F67B83290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta in Frameworks */,
 				F0F67B6F290E3087007FACA1 /* SwiftDate in Frameworks */,
 				F0F67B3C290DD832007FACA1 /* SwiftUI.framework in Frameworks */,
 				F0F67B56290DFEE5007FACA1 /* FirebaseAuth in Frameworks */,
+				F0F67B81290EE9C1007FACA1 /* FirebaseFirestore in Frameworks */,
 				F0F67B3A290DD832007FACA1 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -754,7 +765,6 @@
 		F0B32C93275AF77700C714A2 = {
 			isa = PBXGroup;
 			children = (
-				F0F67B61290E031F007FACA1 /* PersonalStatusWidgetExtension.entitlements */,
 				F0B32C9E275AF77700C714A2 /* community-garden-ios */,
 				F0FCDE7A282CD7F500FDA5BA /* Resources */,
 				F0F67B3D290DD832007FACA1 /* Widgets */,
@@ -973,10 +983,22 @@
 			children = (
 				F0F67B3E290DD832007FACA1 /* PersonalStatusWidget.swift */,
 				F0F67B76290ED83E007FACA1 /* CommunityWidget.swift */,
+				F0F67B7A290EDD3C007FACA1 /* SproutsWidgets.swift */,
+				F0F67B84290EEA36007FACA1 /* Utils */,
 				F0F67B40290DD834007FACA1 /* Assets.xcassets */,
+				F0F67B61290E031F007FACA1 /* PersonalStatusWidgetExtension.entitlements */,
 				F0F67B42290DD834007FACA1 /* Info.plist */,
 			);
 			path = Widgets;
+			sourceTree = "<group>";
+		};
+		F0F67B84290EEA36007FACA1 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F0F67B7C290EDE0E007FACA1 /* Entries.swift */,
+				F0F67B7E290EE827007FACA1 /* FirebaseHelper.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		F0FCDE7A282CD7F500FDA5BA /* Resources */ = {
@@ -1038,6 +1060,8 @@
 			packageProductDependencies = (
 				F0F67B55290DFEE5007FACA1 /* FirebaseAuth */,
 				F0F67B6E290E3087007FACA1 /* SwiftDate */,
+				F0F67B80290EE9C1007FACA1 /* FirebaseFirestore */,
+				F0F67B82290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta */,
 			);
 			productName = PersonalStatusWidgetExtension;
 			productReference = F0F67B38290DD832007FACA1 /* PersonalStatusWidgetExtension.appex */;
@@ -1142,6 +1166,7 @@
 			files = (
 				F0F67B4F290DF6D6007FACA1 /* Catamaran-VariableFont_wght.ttf in Resources */,
 				F0F67B53290DFE37007FACA1 /* Baloo.ttf in Resources */,
+				F0F67B85290EEBC5007FACA1 /* GoogleService-Info.plist in Resources */,
 				F0F67B71290E3921007FACA1 /* Assets.xcassets in Resources */,
 				F0F67B41290DD834007FACA1 /* Assets.xcassets in Resources */,
 			);
@@ -1311,9 +1336,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F67B7F290EE827007FACA1 /* FirebaseHelper.swift in Sources */,
+				F0F67B7D290EDE0E007FACA1 /* Entries.swift in Sources */,
 				F0F67B65290E03F4007FACA1 /* UserDefaultService.swift in Sources */,
 				F0F67B77290ED83E007FACA1 /* CommunityWidget.swift in Sources */,
 				F0F67B3F290DD832007FACA1 /* PersonalStatusWidget.swift in Sources */,
+				F0F67B7B290EDD3C007FACA1 /* SproutsWidgets.swift in Sources */,
 				F0F67B69290E074F007FACA1 /* AppGroupService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1545,7 +1573,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = PersonalStatusWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/PersonalStatusWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1576,7 +1604,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_ENTITLEMENTS = PersonalStatusWidgetExtension.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Widgets/PersonalStatusWidgetExtension.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1723,6 +1751,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F0F67B6B290E3054007FACA1 /* XCRemoteSwiftPackageReference "SwiftDate" */;
 			productName = SwiftDate;
+		};
+		F0F67B80290EE9C1007FACA1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		F0F67B82290EE9CE007FACA1 /* FirebaseDatabaseSwift-Beta */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F0ADEA1D275CE40E0039B134 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = "FirebaseDatabaseSwift-Beta";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

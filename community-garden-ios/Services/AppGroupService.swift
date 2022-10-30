@@ -34,6 +34,7 @@ class AppGroupService {
 enum AppGroupKey: String {
     case lastUpdate = "lastUpdate"
     case progressData = "progressData"
+    case userGroup = "userGroup"
 }
 
 extension Date {
