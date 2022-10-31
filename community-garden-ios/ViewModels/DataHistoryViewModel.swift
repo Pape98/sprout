@@ -27,7 +27,6 @@ class DataHistoryViewModel: ObservableObject {
         gardenRepo.getUserItems(query: query) { result in
             DispatchQueue.main.async {
                 self.historyItems = result
-                Debug.log.debug(result)
             }
         }
     }

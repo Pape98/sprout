@@ -192,6 +192,7 @@
 		F0F67B9129103B1F007FACA1 /* DayHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B9029103B1F007FACA1 /* DayHistory.swift */; };
 		F0F67B9529104112007FACA1 /* GardenHistoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B9429104112007FACA1 /* GardenHistoryScene.swift */; };
 		F0F67B972910587B007FACA1 /* DataHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B962910587B007FACA1 /* DataHistoryViewModel.swift */; };
+		F0F67B9929105B94007FACA1 /* HistoryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B9829105B94007FACA1 /* HistoryCard.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -392,6 +393,7 @@
 		F0F67B9029103B1F007FACA1 /* DayHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHistory.swift; sourceTree = "<group>"; };
 		F0F67B9429104112007FACA1 /* GardenHistoryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenHistoryScene.swift; sourceTree = "<group>"; };
 		F0F67B962910587B007FACA1 /* DataHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHistoryViewModel.swift; sourceTree = "<group>"; };
+		F0F67B9829105B94007FACA1 /* HistoryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryCard.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -535,6 +537,7 @@
 				F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */,
 				F0D9065428FDD772007ADDED /* CommunityHistory.swift */,
 				F0F67B9029103B1F007FACA1 /* DayHistory.swift */,
+				F0F67B9829105B94007FACA1 /* HistoryCard.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -1255,6 +1258,7 @@
 				F043F25C287CF1BB008F211C /* HealthStoreRepository.swift in Sources */,
 				F0842BB2285D5DCE002C79BD /* PickerButton.swift in Sources */,
 				F0D9065328FDD4DE007ADDED /* PersonalHistory.swift in Sources */,
+				F0F67B9929105B94007FACA1 /* HistoryCard.swift in Sources */,
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,

@@ -76,6 +76,7 @@ struct DataStatus: View {
                     }
                 }
                 
+                Image(systemName: "arrow")
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             

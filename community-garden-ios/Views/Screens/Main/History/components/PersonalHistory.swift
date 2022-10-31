@@ -34,7 +34,7 @@ struct PersonalHistory: View {
                     if let dataList = historyViewModel.dataMapping[selectedData] {
                         ForEach(dataList, id: \.id){ item in
                             NavigationLink {
-                                DayHistory(date: item.date)
+                                DayHistory(data: item)
                             } label: {
                                 DataStatus(data: item)
                             }

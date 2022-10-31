@@ -17,10 +17,10 @@ struct MusicList: View {
             MainBackground()
             
             VStack(spacing: 0) {
-                Text("Tap on name to listen to song")
+                Text("Tap on name to select to song")
                     .bodyStyle()
                 List {
-                    ForEach(AudioPlayer.shared.backgroundSongs.sorted(), id: \.self){ song in
+                    ForEach(Array(AudioPlayer.shared.backgroundSongs.enumerated()), id: \.offset){ index, song in
                         HStack {
                             Image(systemName: "music.note")
                             Text(formatSong(song))
@@ -35,6 +35,7 @@ struct MusicList: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             currentSong = song
+                            AudioPlayer.shared.currentSongIndex = index
                             audioPlayer.playCustomSound(filename: song, volume: 0.05)
                         }
                     }
@@ -46,7 +47,6 @@ struct MusicList: View {
             AudioPlayer.shared.stopBackgroundMusic()
         }
         .onDisappear {
-            AudioPlayer.shared.changeSong()
             AudioPlayer.shared.startBackgroundMusic()
         }
         .navigationTitle("List of Songs")
