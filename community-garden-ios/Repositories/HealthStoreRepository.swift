@@ -21,6 +21,7 @@ class HealthStoreRepository {
     // MARK: - Properties
     static let shared = HealthStoreRepository()
     let collections = Collections.shared
+    let appGroup = AppGroupService.shared
     let healthStoreService: HealthStoreService = HealthStoreService()
     let userID: String?
     let today = Date.today
@@ -112,24 +113,41 @@ class HealthStoreRepository {
     // MARK: Retrieving data
     func getStepCountByDate(date: String, completion: @escaping (Step) -> Void) {
         getDataByDate(collectionName: Data.steps, date: date, type: Step.self) { result in
+            guard let result = result else {
+                self.saveProgressDataAppGroup("steps",0)
+                return
+            }
             completion(result)
         }
     }
     
     func getWalkingRunningDistanceByDate(date: String, completion: @escaping (WalkingRunningDistance) -> Void) {
         getDataByDate(collectionName: Data.walkingRunning, date: date, type: WalkingRunningDistance.self) { result in
+            guard let result = result else {
+                self.saveProgressDataAppGroup("walkingRunning",0)
+                Debug.log.debug("saving walkingrunning")
+                return
+            }
             completion(result)
         }
     }
     
     func getWorkoutByDate(date: String, completion: @escaping (Workout) -> Void) {
         getDataByDate(collectionName: Data.workouts, date: date, type: Workout.self) { result in
+            guard let result = result else {
+                self.saveProgressDataAppGroup("workouts",0)
+                return
+            }
             completion(result)
         }
     }
     
     func getSleepByDate(date: String, completion: @escaping (Sleep) -> Void) {
         getDataByDate(collectionName: Data.sleep, date: date, type: Sleep.self) { result in
+            guard let result = result else {
+                self.saveProgressDataAppGroup("sleep",0)
+                return
+            }
             completion(result)
         }
     }
@@ -160,6 +178,13 @@ class HealthStoreRepository {
     
     
     // MARK: Utility Methods
+    
+    func saveProgressDataAppGroup(_ key: String, _ value: Float){
+        var currProgress: [String: Float] = appGroup.get(key: AppGroupKey.progressData)
+        currProgress[key] = value
+        appGroup.save(value: currProgress, key: AppGroupKey.progressData)
+    }
+    
     func getDocName() -> String {
         return "\(userID!)-\(today)"
     }
@@ -183,17 +208,18 @@ class HealthStoreRepository {
 //        }
 //    }
     
-    func getDataByDate<T: Decodable>(collectionName name: Data, date: String, type: T.Type, completion: @escaping (T) -> Void) {
+    func getDataByDate<T: Decodable>(collectionName name: Data, date: String, type: T.Type, completion: @escaping (T?) -> Void) {
         let collection = collections.getCollectionReference(name.rawValue)
         guard let collection = collection else { return }
         let docRef = collection.document("\(userID!)-\(date)")
+                
         docRef.getDocument(as: type) { result in
-            
             switch result {
             case .success(let data):
                 completion(data)
             case .failure(let error):
-                Debug.log.error("Error getting \(name) from Firestore: \(error)")
+                Debug.log.error("\(name) for \(date) does not exist: \(error.localizedDescription)")
+                completion(nil)
             }
         }
     }

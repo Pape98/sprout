@@ -39,7 +39,7 @@ class HealthStoreService {
     init() {
         // Check if health data is available in current phone
         if HKHealthStore.isHealthDataAvailable() {
-            healthStore = HKHealthStore()
+            healthStore = HKHealthStore() 
         }
     }
     

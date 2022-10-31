@@ -8,12 +8,28 @@
 import SwiftUI
 import WidgetKit
 import Firebase
+import FirebaseAuth
+import FirebaseFirestore
+import FirebaseFunctions
 
 @main
 struct SproutsWidgets {
 
     init(){
         addKeyChainAccessGroup()
+        FirebaseApp.configure()
+   
+        if Platform.isSimulator {
+            // Local firestore
+            let settings = Firestore.firestore().settings
+            settings.host = "localhost:8080"
+            settings.isPersistenceEnabled = false
+            settings.isSSLEnabled = false
+            Firestore.firestore().settings = settings
+            
+            // Cloud Functions
+            Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
+        }
     }
     
     func addKeyChainAccessGroup(){

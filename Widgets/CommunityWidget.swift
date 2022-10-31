@@ -9,19 +9,19 @@ struct CommunityWidgetProvider: TimelineProvider {
     var firebase: FirebaseHelper
     
     init(){
-        FirebaseApp.configure()
-   
-        if Platform.isSimulator {
-            // Local firestore
-            let settings = Firestore.firestore().settings
-            settings.host = "localhost:8080"
-            settings.isPersistenceEnabled = false
-            settings.isSSLEnabled = false
-            Firestore.firestore().settings = settings
-            
-            // Cloud Functions
-            Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
-        }
+//        FirebaseApp.configure()
+//   
+//        if Platform.isSimulator {
+//            // Local firestore
+//            let settings = Firestore.firestore().settings
+//            settings.host = "localhost:8080"
+//            settings.isPersistenceEnabled = false
+//            settings.isSSLEnabled = false
+//            Firestore.firestore().settings = settings
+//            
+//            // Cloud Functions
+//            Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
+//        }
         firebase = FirebaseHelper()
     }
     
