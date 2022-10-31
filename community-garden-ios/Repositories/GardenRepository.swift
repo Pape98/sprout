@@ -29,7 +29,7 @@ class GardenRepository {
         query.getDocuments { querySnapshot, error in
             
             if error != nil {
-                print("getUserItems: Error reading from Firestore: \(error!)")
+                Debug.log.error("getUserItems: Error reading from Firestore: \(error!)")
                 return
             }
             
@@ -40,7 +40,7 @@ class GardenRepository {
                     items.append(try doc.data(as: GardenItem.self))
                 }
             } catch {
-                print("getUserItems: Error reading from Firestore: \(error)")
+                Debug.log.error("getUserItems: Error reading from Firestore: \(error)")
             }
             
             completion(items)
@@ -62,7 +62,7 @@ class GardenRepository {
         do {
             try docRef.setData(from: data, merge: true)
         } catch {
-            print("saveData: Error writing to Firestore: \(error)")
+            Debug.log.error("saveData: Error writing to Firestore: \(error)")
         }
     }
     

@@ -20,7 +20,7 @@ class NotificationService {
         // Ask for permission
         center.requestAuthorization(options: [.alert, .badge, .sound]) { isGranted, error in
             guard error == nil else {
-                print("requestAuthorizations()", error!)
+                Debug.log.error("requestAuthorizations()", error!)
                 return
             }
         }
@@ -65,7 +65,7 @@ class NotificationService {
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
         dateComponents.hour = 12    // 12:00 hours, noon
-        dateComponents.minute = 10
+        dateComponents.minute = 30
         dateComponents.second = 0
         dateComponents.nanosecond = 0
 

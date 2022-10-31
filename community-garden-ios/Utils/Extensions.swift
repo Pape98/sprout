@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftDate
 
 struct ListBackgroundModifier: ViewModifier {
 
@@ -55,10 +56,9 @@ extension Date {
     }
     
     static var hour: Int {
-        let date = Date()
-        let dateComponents = Calendar.current.dateComponents([.hour], from: date)
-        let hour = dateComponents.hour!
-        return hour
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.americaNewYork)
+        let date = DateInRegion(Date(), region: region)
+        return date.hour
     }
 }
 

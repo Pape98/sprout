@@ -55,7 +55,7 @@ class AuthenticationViewModel: ObservableObject {
         do {
           try Auth.auth().useUserAccessGroup("group.empower.lab.community-garden")
         } catch let error as NSError {
-            Debug.log.debug("Error changing user access group: %@", error.userInfo)
+            Debug.log.error("Error changing user access group: %@", error.userInfo)
         }
     }
     
@@ -74,7 +74,7 @@ class AuthenticationViewModel: ObservableObject {
             try firebaseAuth.signOut()
             self.checkLogin()
         } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            Debug.log.error("Error signing out: %@", signOutError)
         }
     }
     

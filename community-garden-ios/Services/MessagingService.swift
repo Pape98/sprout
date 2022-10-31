@@ -18,7 +18,7 @@ class MessagingService {
     func subscribeToTopic(_ topic: String){
         Messaging.messaging().subscribe(toTopic: topic) { error in
             if let error = error {
-                print(error)
+                Debug.log.error(error)
                 return
             }
             Debug.log.info("Subscribed to topic \(topic)")

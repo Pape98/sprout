@@ -50,7 +50,7 @@ class SQLiteService {
             resetTableValues()
             
         } catch {
-            print(error)
+            Debug.log.error(error)
         }
     }
     
@@ -97,7 +97,6 @@ class SQLiteService {
             })
             
         } catch {
-            print("createStatisticsTable()",error)
             Debug.log.error("createStatisticsTable()",error)
         }
         return statsTable

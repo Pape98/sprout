@@ -32,7 +32,7 @@ class UserRepository {
         do {
             try usersCollection.document(user.id).setData(from: user)
         } catch let err {
-            print("[createNewUser()]","Error writing document: \(err)")
+            Debug.log.error("[createNewUser()]","Error writing document: \(err)")
         }
     }
     

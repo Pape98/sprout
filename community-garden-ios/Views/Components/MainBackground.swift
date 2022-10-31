@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MainBackground: View {
     
-    @State var appViewModel : AppViewModel = AppViewModel.shared
+    @EnvironmentObject var appViewModel : AppViewModel
     
     var image: String? = nil
     var edges: Edge.Set = [.top]
@@ -34,8 +34,8 @@ struct MainBackground: View {
 }
 
 struct MainBackground_Previews: PreviewProvider {
-    @State static var appViewModel: AppViewModel = AppViewModel()
     static var previews: some View {
         MainBackground()
+            .environmentObject(AppViewModel())
     }
 }

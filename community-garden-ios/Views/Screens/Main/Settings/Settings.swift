@@ -25,6 +25,7 @@ struct Settings: View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
                 MainBackground()
+
                 List {
                     
                     Section(header: Text("System").foregroundColor(appViewModel.fontColor)){

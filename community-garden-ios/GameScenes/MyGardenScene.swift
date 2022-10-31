@@ -421,7 +421,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         case NodeNames.seed.rawValue:
             print("Playing seed")
         case .none:
-            print("Cannot play audio")
+            Debug.log.debug("Cannot play audio")
         case .some(_): break
         }
     }
