@@ -29,8 +29,10 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     var ground: SKSpriteNode!
     var fence: SKSpriteNode?
     var gameTimer: Timer?
+    var oldPosition = CGPoint(x: 0, y: 0)
     
     let clouds = ["cloud1", "cloud2"]
+    var offset = 1.25
     
     // ViewModels
     let userViewModel = UserViewModel.shared
@@ -132,6 +134,23 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
                 node.removeFromParent()
             }
         }
+        
+        // Move tree
+        if gardenViewModel.gardenMode == .planting && gardenViewModel.dropItem == .droplet {
+
+            if tree.position.x >= frame.maxX - 25 {
+                offset = -1.25
+            } else if tree.position.x <= 25 {
+                offset = 1.25
+            }
+            tree.position = CGPoint(x: tree.position.x + offset, y: tree.position.y)
+            tree.zPosition = -position.y
+        } else {
+            tree.position = oldPosition
+        }
+        
+        grass.position = CGPoint(x: tree.position.x - 15, y: tree.position.y)
+        grass.zPosition = tree.zPosition + 1
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -164,6 +183,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             
             // NOTE: Can only move tree
             tree.position = location
+            oldPosition = tree.position
             tree.zPosition = -location.y
             tree.childNode(withName: NodeNames.shadow.rawValue)?.zPosition = tree.zPosition - 1
             grass.position = CGPoint(x: tree.position.x - 15, y: tree.position.y)
@@ -191,7 +211,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         soundEffectHandler(nodeA)
         soundEffectHandler(nodeB)
-        
+                
         // Contact droplet + tree
         if nodeA.name == NodeNames.droplet.rawValue && nodeB.name == NodeNames.tree.rawValue {
             handleTreeDropletContact(droplet: nodeA)
@@ -279,6 +299,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             treeNode.position = CGPoint(x: tree.x, y: tree.y)
         }
         
+        oldPosition = treeNode.position
+        
         treeNode.name = NodeNames.tree.rawValue
         treeNode.zPosition = -tree.y
         
@@ -325,12 +347,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         ground.size = CGSize(width: frame.width, height: ground.size.height)
         ground.name = NodeNames.ground.rawValue
         ground.zPosition = -10000
-        
-        let groundPhysicsBodySize = CGSize(width: ground.size.width * 2, height: ground.size.height)
-        ground.physicsBody = SKPhysicsBody(texture: groundTexture, size: groundPhysicsBodySize)
-        ground.physicsBody?.categoryBitMask = CollisionTypes.ground.rawValue
-        ground.physicsBody?.contactTestBitMask = CollisionTypes.dropItem.rawValue
-        ground.physicsBody?.isDynamic = false
         
         addChild(ground)
         return ground
