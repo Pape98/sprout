@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseFunctions
 import SwiftyBeaver
+import HealthKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
@@ -36,6 +37,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: Constants.mainFont, size: 12)!], for: [])
 
         setToolBarTitleColor()
+         
+        let healthStoreService = HealthStoreService.shared
+        if let healthstore = healthStoreService.healthStore {
+            healthstore.enableBackgroundDelivery(for: HealthStoreService.HKDataTypes.stepCount, frequency: HKUpdateFrequency.immediate) { success, error in
+                guard error == nil else {
+                    Debug.log.error(error!.localizedDescription)
+                    return
+                }
+            }
+        }
         
         return true
     }

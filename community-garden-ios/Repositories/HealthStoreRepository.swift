@@ -22,7 +22,7 @@ class HealthStoreRepository {
     static let shared = HealthStoreRepository()
     let collections = Collections.shared
     let appGroup = AppGroupService.shared
-    let healthStoreService: HealthStoreService = HealthStoreService()
+    let healthStoreService: HealthStoreService = HealthStoreService.shared
     let userID: String?
     let today = Date.today
     
@@ -34,6 +34,7 @@ class HealthStoreRepository {
     
     // MARK: Saving data
     func saveStepCount(value v: Double){
+        Debug.log.debug("steps",v)
         guard let settings = UserService.shared.user.settings else { return }
         guard let goal = settings.stepsGoal else { return }
         let user = UserService.shared.user
@@ -125,7 +126,6 @@ class HealthStoreRepository {
         getDataByDate(collectionName: Data.walkingRunning, date: date, type: WalkingRunningDistance.self) { result in
             guard let result = result else {
                 self.saveProgressDataAppGroup("walkingRunning",0)
-                Debug.log.debug("saving walkingrunning")
                 return
             }
             completion(result)

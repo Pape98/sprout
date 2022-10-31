@@ -303,7 +303,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         
         // shadow
         let shadowNode = SKSpriteNode(imageNamed: "shadow")
-        shadowNode.zPosition = -tree.y
+        shadowNode.zPosition = -tree.y - 10
         shadowNode.name = NodeNames.shadow.rawValue
         
         treeNode.addChild(shadowNode)
