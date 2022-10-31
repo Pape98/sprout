@@ -51,6 +51,10 @@ class NotificationService {
     
     
     func setupHowAreYouNotification() {
+        
+        
+        center.removeAllPendingNotificationRequests()
+        
         // Step 1: Create the notification content
         let content = UNMutableNotificationContent()
         content.title = "Sprout"

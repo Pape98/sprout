@@ -12,12 +12,12 @@ import Firebase
 import SwiftDate
 
 class FirebaseHelper {
-    static let shared = FirebaseHelper()
-    let db = Firestore.firestore()
+    let db: Firestore
     
     @Published var isLoggedIn = false
     
     init(){
+        db = Firestore.firestore()
         isUserLoggedIn()
     }
     
@@ -46,7 +46,7 @@ class FirebaseHelper {
     }
     
     func getGroupProgress() async -> Int {
-        guard let user = Auth.auth().currentUser else {
+        guard let _ = Auth.auth().currentUser else {
             print("User is not logged in")
             return -1
         }

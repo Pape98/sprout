@@ -84,6 +84,7 @@ class AuthenticationViewModel: ObservableObject {
 
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
+            guard firebaseUser != nil else { return }
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
                 AppGroupService.shared.save(value: result.group, key: AppGroupKey.userGroup)
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
