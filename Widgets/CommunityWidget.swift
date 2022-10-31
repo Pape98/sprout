@@ -24,7 +24,8 @@ struct CommunityWidgetProvider: TimelineProvider {
             
             // Generate a timeline consisting of five entries an hour apart, starting from the current date.
             let currentDate = Date()
-            let progress = await firebase.getGroupProgress()
+            var progress = await firebase.getGroupProgress()
+            progress = progress < 0 ? 0 : progress
             
             for minuteOffset in [0,10] {
                 let entryDate = Calendar.current.date(byAdding: .minute, value: minuteOffset, to: currentDate)!
@@ -40,14 +41,6 @@ struct CommunityWidgetProvider: TimelineProvider {
 
 struct CommunityWidgetEntryView: View {
     var entry: CommunityWidgetProvider.Entry
-    
-    var lastUpdateTimeText: String {
-        let now = Date().millisecondsSince1970
-        let difference = now - entry.date.millisecondsSince1970
-        
-        let minutes = Int(difference / (60 * 1000))
-        return "\(minutes) min(s) ago"
-    }
     
     var body: some View {
         
@@ -84,8 +77,6 @@ struct CommunityWidgetEntryView: View {
                         .background(Color.white.opacity(0.3))
                         .cornerRadius(10)
                         .scaleEffect(x: 1, y: 2.25, anchor: .center)
-                    Text(lastUpdateTimeText)
-                        .font(.custom("Baloo2-Regular", size: 12))
                 }
                 
             }

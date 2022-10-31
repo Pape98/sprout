@@ -187,6 +187,8 @@
 		F0F67B85290EEBC5007FACA1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F0F0C86D28AFC6090047D9EA /* GoogleService-Info.plist */; };
 		F0F67B88290F1CB6007FACA1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F096426B275B513100F1CEC1 /* User.swift */; };
 		F0F67B8A290F2748007FACA1 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B89290F2748007FACA1 /* FirebaseFunctions */; };
+		F0F67B8C290F45FD007FACA1 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B8B290F45FD007FACA1 /* Platform.swift */; };
+		F0F67B8D290F4601007FACA1 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B8B290F45FD007FACA1 /* Platform.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -383,6 +385,7 @@
 		F0F67B7A290EDD3C007FACA1 /* SproutsWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SproutsWidgets.swift; sourceTree = "<group>"; };
 		F0F67B7C290EDE0E007FACA1 /* Entries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entries.swift; sourceTree = "<group>"; };
 		F0F67B7E290EE827007FACA1 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
+		F0F67B8B290F45FD007FACA1 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -678,6 +681,7 @@
 				F085A8B428C531D000A08BE4 /* SproutAnalytics.swift */,
 				F06558AA28F1FD230077C50B /* Debug.swift */,
 				F0D9065928FDE48C007ADDED /* JustifiedText.swift */,
+				F0F67B8B290F45FD007FACA1 /* Platform.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -1264,6 +1268,7 @@
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
 				F04234A52784C6F50063DA08 /* Collections.swift in Sources */,
 				F06558AB28F1FD230077C50B /* Debug.swift in Sources */,
+				F0F67B8C290F45FD007FACA1 /* Platform.swift in Sources */,
 				F0A8990528FF999D007018C1 /* Other.swift in Sources */,
 				F04AD4CC288B1EE500BC17AB /* LaunchScreen.swift in Sources */,
 				F09F81F628F67127009287E6 /* GoalsRepository.swift in Sources */,
@@ -1340,6 +1345,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F0F67B8D290F4601007FACA1 /* Platform.swift in Sources */,
 				F0F67B7F290EE827007FACA1 /* FirebaseHelper.swift in Sources */,
 				F0F67B7D290EDE0E007FACA1 /* Entries.swift in Sources */,
 				F0F67B65290E03F4007FACA1 /* UserDefaultService.swift in Sources */,

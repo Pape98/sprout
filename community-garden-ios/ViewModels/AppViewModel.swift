@@ -135,6 +135,8 @@ class AppViewModel: ObservableObject {
                 self.introBackground = "intro-bg-evening"
             }
         }
+        
+        print(self.introBackground)
     }
     
     

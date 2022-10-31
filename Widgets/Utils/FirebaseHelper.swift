@@ -9,6 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseAuth
 import Firebase
+import SwiftDate
 
 class FirebaseHelper {
     static let shared = FirebaseHelper()
@@ -29,7 +30,7 @@ class FirebaseHelper {
     func getUserGroup() async -> Int {
         guard let user = Auth.auth().currentUser else {
             print("User is not logged in")
-            return 0
+            return -1
         }
         let collection = db.collection("users")
         let userRef = collection.document(user.uid)
@@ -45,11 +46,20 @@ class FirebaseHelper {
     }
     
     func getGroupProgress() async -> Int {
+        guard let user = Auth.auth().currentUser else {
+            print("User is not logged in")
+            return -1
+        }
+        
         let groupNumber = await getUserGroup()
-        let date = Date().toFormat("MM-dd-yyyy")
+        
+        // get date
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.americaNewYork)
+        let date = DateInRegion(Date(), region: region).toFormat("MM-dd-yyyy")
+                
         let docName = "\(groupNumber)-\(date)"
         let docRef = db.collection("goals").document(docName)
-        
+                
         do {
             let document = try await docRef.getDocument().data()
             let numGoalsAchieved = document!["numberOfGoalsAchieved"] as! Int

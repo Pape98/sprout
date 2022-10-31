@@ -16,7 +16,9 @@ struct SproutsWidgets: WidgetBundle {
     
     init(){
         FirebaseApp.configure()
-        setupLocalEmulator()
+        if Platform.isSimulator {
+            setupLocalEmulator()
+        }
         addKeyChainAccessGroup()
     }
     
