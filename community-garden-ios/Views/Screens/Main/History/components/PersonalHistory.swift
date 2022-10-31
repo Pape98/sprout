@@ -33,7 +33,11 @@ struct PersonalHistory: View {
                 VStack {
                     if let dataList = historyViewModel.dataMapping[selectedData] {
                         ForEach(dataList, id: \.id){ item in
-                            DataStatus(data: item)
+                            NavigationLink {
+                                DayHistory(date: item.date)
+                            } label: {
+                                DataStatus(data: item)
+                            }
                         }
                     }
                 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftDate
 
 struct DataStatus: View {
     
@@ -14,8 +15,8 @@ struct DataStatus: View {
     var data: HealthData
     
     var date: String {
-        let tokens: [String] = data.date.components(separatedBy: "-")
-        return "\(tokens[0])/\(tokens[1])"
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.americaNewYork)
+        return data.date.toDate(region: region)!.date.getFormattedDate(format: "MMM d, yyyy")
     }
     
     var goal: Int {
@@ -38,8 +39,6 @@ struct DataStatus: View {
         } else {
             return "faces/happy"
         }
-        
-        
     }
     
     

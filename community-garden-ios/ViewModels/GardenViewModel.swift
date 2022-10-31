@@ -26,8 +26,10 @@ class GardenViewModel: ObservableObject {
     @Published var gardenMode = GardenMode.moving
     @Published var sunMoon = "sun"
     @Published var showToast = false
-    var toastMessage: ToastContent = ToastContent()
+    @Published var historyItems: [GardenItem] = []
     
+    
+    var toastMessage: ToastContent = ToastContent()
     var flowers: [GardenItem] = []
     var tree: GardenItem?
     
@@ -36,6 +38,7 @@ class GardenViewModel: ObservableObject {
         setSunMoon()
     }
     
+    // For today
     @objc func getUserItems() -> Void {
         let collection = collections.getCollectionReference("gardenItems")
         

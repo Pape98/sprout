@@ -51,8 +51,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         self.backgroundColor = .clear
         
         // Scene setup
-        ground = setupGround()
-        //        pond = setupPond()
+        ground = SceneHelper.setupGround(scene: self)
         
         if appViewModel.isBadgeUnlocked(UnlockableBadge.fence) { setupFence() }
         if appViewModel.isBadgeUnlocked(UnlockableBadge.dogHouse) { setupDogHouse() }
@@ -118,7 +117,7 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         for item in gardenViewModel.items {
             switch item.type {
             case .flower:
-                addExistingFlower(flower: item)
+                SceneHelper.addExistingFlower(scene: self, flower: item)
             case .tree:
                 let nodes = addTree(tree: item, ground: ground)
                 tree = nodes[0]
@@ -135,6 +134,8 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
+        guard tree != nil else { return }
+                
         // Move tree
         if gardenViewModel.gardenMode == .planting && gardenViewModel.dropItem == .droplet {
 
@@ -158,7 +159,14 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         let location = touch.location(in: self)
         
         // Check if user has enough drop item and is in planting mode
-        guard gardenViewModel.gardenMode == GardenViewModel.GardenMode.planting && gardenViewModel.hasEnoughDropItem() else { return }
+        
+        
+        guard gardenViewModel.gardenMode == GardenViewModel.GardenMode.planting && gardenViewModel.hasEnoughDropItem() else {
+            if gardenViewModel.hasEnoughDropItem() == false {
+                Debug.log.error("Not enough \(gardenViewModel.dropItem)")
+            }
+            return
+        }
         
         if gardenViewModel.dropItem == .droplet {
             releaseDropItem(position: location)
@@ -227,7 +235,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    
     // MARK: Garden item creation methods
     
     func setupFence(){
@@ -248,8 +255,11 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func releaseDropItem(position: CGPoint){
-        
-        guard gardenViewModel.tree != nil else { return }
+    
+        guard gardenViewModel.tree != nil else {
+            Debug.log.error("Tree in garden is nil")
+            return
+        }
         
         // Case tree has reached max height for tree
         if gardenViewModel.dropItem == GardenElement.droplet && gardenViewModel.tree!.scale >= TREE_MAX_SCALE {
@@ -336,40 +346,6 @@ class MyGardenScene: SKScene, SKPhysicsContactDelegate {
         grassNode.zPosition = -treeNode.zPosition + 1
         
         return [treeNode, grassNode]
-    }
-    
-    func setupGround() -> SKSpriteNode {
-        let groundTexture = SKTexture(imageNamed: "ground")
-        let ground = SKSpriteNode(texture: groundTexture)
-        
-        ground.anchorPoint = CGPoint(x: 0, y:0)
-        ground.position = CGPoint(x: 0, y:0)
-        ground.size = CGSize(width: frame.width, height: ground.size.height)
-        ground.name = NodeNames.ground.rawValue
-        ground.zPosition = -10000
-        
-        addChild(ground)
-        return ground
-    }
-    
-    func addExistingFlower(flower: GardenItem, isAnimated: Bool = true){
-        let flowerNode = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
-        flowerNode.anchorPoint = CGPoint(x: 0.5, y: 0)
-        flowerNode.position = CGPoint(x: flower.x * frame.width, y: flower.y * frame.height)
-        flowerNode.zPosition =  (flower.y * frame.height) * -1
-        flowerNode.setScale(flower.scale)
-                
-        // Animation
-        if isAnimated {
-            flowerNode.setScale(0)
-            let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
-            flowerNode.run(nodeAction)
-        }
-        
-        // Shadow
-        let shadowNode = SKSpriteNode(imageNamed: "flower-shadow")
-        flowerNode.addChild(shadowNode)
-        addChild(flowerNode)
     }
     
     func addItemsToGround(name: String, count: Int){

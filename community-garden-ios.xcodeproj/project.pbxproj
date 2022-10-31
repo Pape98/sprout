@@ -189,6 +189,9 @@
 		F0F67B8A290F2748007FACA1 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = F0F67B89290F2748007FACA1 /* FirebaseFunctions */; };
 		F0F67B8C290F45FD007FACA1 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B8B290F45FD007FACA1 /* Platform.swift */; };
 		F0F67B8D290F4601007FACA1 /* Platform.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B8B290F45FD007FACA1 /* Platform.swift */; };
+		F0F67B9129103B1F007FACA1 /* DayHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B9029103B1F007FACA1 /* DayHistory.swift */; };
+		F0F67B9529104112007FACA1 /* GardenHistoryScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B9429104112007FACA1 /* GardenHistoryScene.swift */; };
+		F0F67B972910587B007FACA1 /* DataHistoryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0F67B962910587B007FACA1 /* DataHistoryViewModel.swift */; };
 		F0FCDE79282CD7EB00FDA5BA /* dropletSoundEffect.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */; };
 		F20EF335F01832F6D94EDD8D /* Pods_community_garden_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 47DCC899C5920C5161E45C76 /* Pods_community_garden_ios.framework */; };
 /* End PBXBuildFile section */
@@ -386,6 +389,9 @@
 		F0F67B7C290EDE0E007FACA1 /* Entries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Entries.swift; sourceTree = "<group>"; };
 		F0F67B7E290EE827007FACA1 /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		F0F67B8B290F45FD007FACA1 /* Platform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Platform.swift; sourceTree = "<group>"; };
+		F0F67B9029103B1F007FACA1 /* DayHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayHistory.swift; sourceTree = "<group>"; };
+		F0F67B9429104112007FACA1 /* GardenHistoryScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GardenHistoryScene.swift; sourceTree = "<group>"; };
+		F0F67B962910587B007FACA1 /* DataHistoryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataHistoryViewModel.swift; sourceTree = "<group>"; };
 		F0FCDE78282CD7EA00FDA5BA /* dropletSoundEffect.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = dropletSoundEffect.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -528,6 +534,7 @@
 				F04085FD28B862AD002EDECD /* DataStatus.swift */,
 				F0D9065228FDD4DE007ADDED /* PersonalHistory.swift */,
 				F0D9065428FDD772007ADDED /* CommunityHistory.swift */,
+				F0F67B9029103B1F007FACA1 /* DayHistory.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -577,6 +584,7 @@
 		F065B17B2825BEDA00F1E1ED /* GameScenes */ = {
 			isa = PBXGroup;
 			children = (
+				F0F67B9429104112007FACA1 /* GardenHistoryScene.swift */,
 				F065B17C2825C8B700F1E1ED /* MyGardenScene.swift */,
 				F07657F628D6A69700C72F2C /* CommunityGardenScene.swift */,
 				F01319A728FA6B65002B47A4 /* Utils */,
@@ -850,6 +858,7 @@
 				F0132C6C286B9E8300267B9D /* OnboardingViewModel.swift */,
 				F0337C372887500E00251FD0 /* SettingsViewModel.swift */,
 				F096426F275B52AC00F1CEC1 /* UserViewModel.swift */,
+				F0F67B962910587B007FACA1 /* DataHistoryViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1249,6 +1258,7 @@
 				F005739227702F9B00EB487B /* ActionButton.swift in Sources */,
 				F0D66E3528836AD50095AEDE /* SettingPicker.swift in Sources */,
 				F030B023283B2F660026F2E0 /* Dashboard.swift in Sources */,
+				F0F67B9529104112007FACA1 /* GardenHistoryScene.swift in Sources */,
 				F0964270275B52AC00F1CEC1 /* UserViewModel.swift in Sources */,
 				F07657F728D6A69700C72F2C /* CommunityGardenScene.swift in Sources */,
 				F01B635B284FB339004D079A /* Helpers.swift in Sources */,
@@ -1263,6 +1273,7 @@
 				F07657F928D749B700C72F2C /* CommunityViewModel.swift in Sources */,
 				F0149D56284EAD1400782D27 /* PickerCard.swift in Sources */,
 				F0D66E3728886E4D0095AEDE /* Message.swift in Sources */,
+				F0F67B9129103B1F007FACA1 /* DayHistory.swift in Sources */,
 				F0149D54284E9E0D00782D27 /* TreePicker.swift in Sources */,
 				F0B07D1728EF190400AA99FC /* MessagingService.swift in Sources */,
 				F00A6F40283C966300A176D6 /* NotificationSender.swift in Sources */,
@@ -1320,6 +1331,7 @@
 				F0ADEA2D275ED1740039B134 /* LaunchView.swift in Sources */,
 				F09F81F828F71D67009287E6 /* GoalsMetCard.swift in Sources */,
 				F00A6F3C283C6DDA00A176D6 /* Garden.swift in Sources */,
+				F0F67B972910587B007FACA1 /* DataHistoryViewModel.swift in Sources */,
 				F0842BB5285E2957002C79BD /* OnboardingRouter.swift in Sources */,
 				F0337C382887500E00251FD0 /* SettingsViewModel.swift in Sources */,
 				F0B6DAE72874B6DA00DD3F03 /* HealthStoreViewModel.swift in Sources */,
@@ -1495,7 +1507,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;
@@ -1542,7 +1554,7 @@
 				CODE_SIGN_ENTITLEMENTS = "community-garden-ios/community-garden-ios.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 14;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_ASSET_PATHS = "\"community-garden-ios/Preview Content\"";
 				DEVELOPMENT_TEAM = 75URXTAXCM;
 				ENABLE_PREVIEWS = YES;

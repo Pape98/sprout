@@ -228,7 +228,7 @@ class HealthStoreRepository {
         let collection = collections.getCollectionReference(name.rawValue)
         guard let collection = collection else { return }
         
-        let docRef = collection.whereField("userID", isEqualTo: userID!).order(by: "date", descending: true)
+        let docRef = collection.whereField("userID", isEqualTo: userID!).whereField("date", isNotEqualTo: Date.today).order(by: "date", descending: true)
         var res :  [T] = []
         
         docRef.getDocuments() {(snapshot, err) in

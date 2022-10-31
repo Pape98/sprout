@@ -23,6 +23,7 @@ class HistoryViewModel: ObservableObject {
     static let shared  = HistoryViewModel()
     let healthstoreRepo: HealthStoreRepository = HealthStoreRepository.shared
     let goalsRepo: GoalsRepository = GoalsRepository.shared
+    let gardenRepo: GardenRepository = GardenRepository.shared
     let collections = Collections.shared
     
     var steps: [Step] = []
@@ -81,5 +82,4 @@ class HistoryViewModel: ObservableObject {
             self.dataMapping["Walking+running Distance"]  = distances
         }
     }
-    
 }
