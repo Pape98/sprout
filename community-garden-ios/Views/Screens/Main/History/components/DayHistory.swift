@@ -67,6 +67,9 @@ struct DayHistory: View {
                 .padding()
                 .frame(width: geo.size.width, height: geo.size.height, alignment: .bottomLeading)
             }
+            .onAppear {
+                SproutAnalytics.shared.viewIndividualHistoryPage(data: data.label, date: data.date)
+            }
         }
     }
     

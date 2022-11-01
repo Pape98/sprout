@@ -93,7 +93,6 @@ struct CommunityGardenIosApp: App {
 
                         } else {
                             Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
-
                         }
                     }
                     else {
