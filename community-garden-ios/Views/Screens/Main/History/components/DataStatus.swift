@@ -76,7 +76,9 @@ struct DataStatus: View {
                     }
                 }
                 
-                Image(systemName: "arrow")
+                Image(systemName: "chevron.right")
+                    .foregroundColor(appViewModel.fontColor)
+                    .padding()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             

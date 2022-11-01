@@ -133,6 +133,7 @@ class GardenViewModel: ObservableObject {
     }
     
     func hasEnoughDropItem () -> Bool {
+        guard gardenMode == .planting else { return false }
         let enoughDroplets = hasEnoughDroplets()
         let enoughtSeeds = hasEnoughSeeds()
         

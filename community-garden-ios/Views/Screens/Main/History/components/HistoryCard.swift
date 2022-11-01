@@ -29,7 +29,7 @@ struct HistoryCard: View {
     var body: some View {
         GeometryReader { geo in
             ZStack {
-                Color.white.opacity(0.8)
+                Color.white.opacity(0.6)
                 
                 VStack(spacing: 10) {
                     
@@ -43,12 +43,12 @@ struct HistoryCard: View {
                             Image(systemName: "target")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 10, height: 10)
+                                .frame(width: 13, height: 13)
                                 .foregroundColor(.appleGreen)
                             
                             if let goal = data.goal {
                                 Text("\(goal)")
-                                    .bodyStyle(size: 11)
+                                    .bodyStyle(size: 12)
                             }
                         }
                         
@@ -56,11 +56,11 @@ struct HistoryCard: View {
                             Image(systemName: "person.fill")
                                 .resizable()
                                 .scaledToFit()
-                                .frame(width: 10, height: 10)
+                                .frame(width: 13, height: 13)
                                 .foregroundColor(.seaGreen)
                             
                             Text("\(data.textDisplay)")
-                                .bodyStyle(size: 11)
+                                .bodyStyle(size: 12)
                         }
                     }
                     
@@ -68,7 +68,7 @@ struct HistoryCard: View {
                 .padding()
             }
             
-            .cornerRadius(20)
+            .cornerRadius(10)
         }
     }
 }

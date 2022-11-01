@@ -17,7 +17,7 @@ struct MusicList: View {
             MainBackground()
             
             VStack(spacing: 0) {
-                Text("Tap on name to select to song")
+                Text("Tap on name to select default song")
                     .bodyStyle()
                 List {
                     ForEach(Array(AudioPlayer.shared.backgroundSongs.enumerated()), id: \.offset){ index, song in

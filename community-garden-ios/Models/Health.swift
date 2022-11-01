@@ -76,6 +76,6 @@ struct WalkingRunningDistance: HealthData, Identifiable {
     var hasReachedGoal: Bool?
     
     var value: Double { distance }
-    var textDisplay: String { "\(distance.truncate(to: 2)) Mile(s)" }
+    var textDisplay: String { "\(distance.truncate(to: 1)) Mile(s)" }
     var label: String { "walkingRunning" }
 }

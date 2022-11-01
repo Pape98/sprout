@@ -49,7 +49,7 @@ struct Settings: View {
                             NavigationLink {
                               MusicList()
                             } label: {
-                                Text("View list of songs")
+                                Text("Select default song")
                             }
                         }
                     }
