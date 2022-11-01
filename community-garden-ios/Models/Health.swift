@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 protocol HealthData: Codable {
     var id: String { get } 
     var textDisplay: String { get }
+    var goalDisplay: String { get }
     var value: Double { get }
     var date: String { get set }
     var label: String { get  }
@@ -31,7 +32,8 @@ struct Step: HealthData {
     var hasReachedGoal: Bool?
     
     var value: Double { count }
-    var textDisplay: String { "\(Int(count)) Step(s)" }
+    var textDisplay: String { "\(Int(count)) step(s)" }
+    var goalDisplay: String { "\(Int(goal ?? 0))" }
     var label: String { "step" }
 }
 
@@ -46,7 +48,8 @@ struct Sleep: HealthData, Identifiable {
     var hasReachedGoal: Bool?
     
     var value: Double { duration }
-    var textDisplay: String { "\(Int(duration)/60) Hour(s)" }
+    var textDisplay: String { "\(duration.asString(style: .short))" }
+    var goalDisplay: String { "\(Double(goal ?? 0).asString(style: .short))" }
     var label: String { "sleep" }
 }
 
@@ -61,7 +64,8 @@ struct Workout: HealthData, Identifiable {
     var hasReachedGoal: Bool?
     
     var value: Double { duration }
-    var textDisplay: String { "\(Int(duration)) Minute(s)" }
+    var textDisplay: String { "\(duration.asString(style: .short))"}
+    var goalDisplay: String { "\(Double(goal ?? 0).asString(style: .short))" }
     var label: String { "workout" }
 }
 
@@ -76,6 +80,7 @@ struct WalkingRunningDistance: HealthData, Identifiable {
     var hasReachedGoal: Bool?
     
     var value: Double { distance }
-    var textDisplay: String { "\(distance.truncate(to: 1)) Mile(s)" }
+    var textDisplay: String { "\(distance.truncate(to: 1)) mi" }
+    var goalDisplay: String { "\(Double(goal ?? 0).truncate(to: 1)) mi" }
     var label: String { "walkingRunning" }
 }

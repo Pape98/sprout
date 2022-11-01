@@ -210,6 +210,13 @@ extension Double {
         return Double(Int((pow(10, Double(places)) * self).rounded())) / pow(10, Double(places))
     }
     
+    func asString(style: DateComponentsFormatter.UnitsStyle) -> String {
+       let formatter = DateComponentsFormatter()
+       formatter.allowedUnits = [.hour, .minute]
+       formatter.unitsStyle = style
+       return formatter.string(from: self * 60) ?? ""
+     }
+    
 }
 
 extension Dictionary where Value : Hashable {

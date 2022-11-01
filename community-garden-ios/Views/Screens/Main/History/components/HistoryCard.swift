@@ -46,10 +46,9 @@ struct HistoryCard: View {
                                 .frame(width: 13, height: 13)
                                 .foregroundColor(.appleGreen)
                             
-                            if let goal = data.goal {
-                                Text("\(goal)")
-                                    .bodyStyle(size: 12)
-                            }
+                            Text("\(data.goalDisplay)")
+                                .bodyStyle(size: 12)
+                            
                         }
                         
                         HStack {

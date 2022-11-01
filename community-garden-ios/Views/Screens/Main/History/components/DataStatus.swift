@@ -19,14 +19,9 @@ struct DataStatus: View {
         return data.date.toDate(region: region)!.date.getFormattedDate(format: "MMM d, yyyy")
     }
     
-    var goal: Int {
-        if let goal = data.goal {
-            return goal
-        }
-        return 0;
-    }
-    
     var image: String {
+        
+        guard let goal = data.goal else { return "faces/sad"}
         
         let progress = (data.value / Double(goal)) * 100;
         
@@ -69,7 +64,7 @@ struct DataStatus: View {
                         Image(systemName: "target")
                             .foregroundColor(.appleGreen)
                         
-                        Text(String(goal))
+                        Text(data.goalDisplay)
                             .font(.system(size: 13))
                             .foregroundColor(.appleGreen)
                             .bodyStyle(foregroundColor: .appleGreen, size: 13)
