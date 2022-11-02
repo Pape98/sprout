@@ -16,6 +16,7 @@ struct MainView: View {
     
     @EnvironmentObject var authViewModel: AuthenticationViewModel
     @EnvironmentObject var appViewModel: AppViewModel
+    
     @StateObject var healthStoreViewModel: HealthStoreViewModel = HealthStoreViewModel.shared
     @StateObject var userViewModel: UserViewModel = UserViewModel.shared
     @StateObject var gardenViewModel: GardenViewModel = GardenViewModel.shared

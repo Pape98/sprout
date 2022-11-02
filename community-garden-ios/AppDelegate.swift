@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         UIApplication.shared.registerForRemoteNotifications()
-
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         // Styling
         UITableView.appearance().backgroundColor = .clear
@@ -51,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         return true
     }
     
-    
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data){
         Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
     }
@@ -59,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         Debug.log.error("ERROR: \(error)")
     }
-    
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         MessagesViewModel.shared.getUserMessages()
@@ -69,8 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             return
         }
         
-        var message = NotificationMessage()
-        
+        Debug.log.debug("new message")
+                
         completionHandler(UIBackgroundFetchResult.newData)
     }
     

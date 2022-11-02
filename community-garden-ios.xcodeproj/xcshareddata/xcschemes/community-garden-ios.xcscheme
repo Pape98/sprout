@@ -53,15 +53,15 @@
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-FIRAnalyticsDebugEnabled "
-            isEnabled = "YES">
-         </CommandLineArgument>
-         <CommandLineArgument
-            argument = "-FIRDebugEnabled"
             isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
-            argument = "-FIRAnalyticsVerboseLoggingEnabled"
+            argument = "-FIRDebugEnabled"
             isEnabled = "YES">
+         </CommandLineArgument>
+         <CommandLineArgument
+            argument = "-FIRAnalyticsVerboseLoggingEnabled"
+            isEnabled = "NO">
          </CommandLineArgument>
          <CommandLineArgument
             argument = "-FIRDebugDisabled"

@@ -29,8 +29,8 @@ struct CommunityGardenIosApp: App {
     var fontColor: Color {
         let weather = getWeatherInfo()
         
-        if weather["color"]! == "evening"{
-            return Color.black
+        if weather["color"]! == "night"{
+            return Color.white
         }
         
         return Color.black
@@ -62,7 +62,6 @@ struct CommunityGardenIosApp: App {
         Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
     }
 
-    
     var body: some Scene {
         WindowGroup {
             LaunchView()

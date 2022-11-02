@@ -12,7 +12,8 @@ struct PersonalHistory: View {
     @EnvironmentObject var historyViewModel: HistoryViewModel
     @EnvironmentObject var appViewModel: AppViewModel
     
-    @State var selectedData: String = UserService.shared.user.settings!.data[0]
+    // TODO: Fix later
+    @State var selectedData: String = HistoryViewModel.Data.steps.rawValue
     
     var body: some View {
         VStack {
@@ -27,6 +28,10 @@ struct PersonalHistory: View {
                             .tag(text)
                     }
                 }
+            }
+            .onAppear {
+                guard let settings = UserService.shared.user.settings else { return }
+                selectedData = settings.data[0]
             }
             
             ScrollView {

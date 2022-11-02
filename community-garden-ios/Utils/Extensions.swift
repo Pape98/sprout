@@ -182,6 +182,26 @@ extension View {
         modifier(Droppable(condition: condition, action: action))
     }
     
+    // Create an immediate animation.
+    func animate(using animation: Animation = .easeInOut(duration: 1), _ action: @escaping () -> Void) -> some View {
+        onAppear {
+            withAnimation(animation) {
+                action()
+            }
+        }
+    }
+    
+    // Create an immediate, looping animation
+    func animateForever(using animation: Animation = .easeInOut(duration: 1.5), autoreverses: Bool = false, _ action: @escaping () -> Void) -> some View {
+            let repeated = animation.repeatForever(autoreverses: autoreverses)
+
+            return onAppear {
+                withAnimation(repeated) {
+                    action()
+                }
+            }
+        }
+    
 }
 
 extension EnvironmentValues {
