@@ -78,16 +78,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         
         if let userID = getUserID(), let token = fcmToken {
             if UserService.shared.user.fcmToken == fcmToken { return }
+            // Unsusbcribe from all group topics
             MessagingService.shared.unsubscribeFromAllTopics()
+            
             userRepository.doesUserExist(userID: userID) { userExists in
                 guard let userExists = userExists else {
                     Debug.log.error("User does not exist so cannot set FCM Token")
                     return
                 }
                 if userExists {
-                    self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {
-                        // Unsusbcribe from all group topics
-                    }
+                    self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
                 }
             }
         }
