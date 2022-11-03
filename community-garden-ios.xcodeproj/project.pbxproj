@@ -62,6 +62,7 @@
 		F07657F928D749B700C72F2C /* CommunityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657F828D749B700C72F2C /* CommunityViewModel.swift */; };
 		F07657FB28D7D7BF00C72F2C /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */; };
 		F07657FE28D7D81200C72F2C /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07657FD28D7D81200C72F2C /* Group.swift */; };
+		F07C608029134A53007FA2C3 /* CloudFunctionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F07C607F29134A53007FA2C3 /* CloudFunctionsService.swift */; };
 		F0842B54285A3DF0002C79BD /* ItemPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B53285A3DF0002C79BD /* ItemPicker.swift */; };
 		F0842B56285A4060002C79BD /* FlowerPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B55285A4060002C79BD /* FlowerPicker.swift */; };
 		F0842B5A285A4A32002C79BD /* CircledFlower.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0842B59285A4A32002C79BD /* CircledFlower.swift */; };
@@ -280,6 +281,7 @@
 		F07657F828D749B700C72F2C /* CommunityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityViewModel.swift; sourceTree = "<group>"; };
 		F07657FA28D7D7BF00C72F2C /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
 		F07657FD28D7D81200C72F2C /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
+		F07C607F29134A53007FA2C3 /* CloudFunctionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudFunctionsService.swift; sourceTree = "<group>"; };
 		F0842B53285A3DF0002C79BD /* ItemPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemPicker.swift; sourceTree = "<group>"; };
 		F0842B55285A4060002C79BD /* FlowerPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowerPicker.swift; sourceTree = "<group>"; };
 		F0842B59285A4A32002C79BD /* CircledFlower.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircledFlower.swift; sourceTree = "<group>"; };
@@ -843,6 +845,7 @@
 				F038369D2839497600D444E4 /* SQLiteService.swift */,
 				F02682D02850F13A004747FD /* UserDefaultService.swift */,
 				F059833F28D4D8CF00542D64 /* RemoteConfiguration.swift */,
+				F07C607F29134A53007FA2C3 /* CloudFunctionsService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -1320,6 +1323,7 @@
 				F0C99E1D2783B871004514D4 /* NotificationService.swift in Sources */,
 				F0149D63284F18B300782D27 /* IconButton.swift in Sources */,
 				F0F0C87C28B53F9F0047D9EA /* HistoryViewModel.swift in Sources */,
+				F07C608029134A53007FA2C3 /* CloudFunctionsService.swift in Sources */,
 				F0D66E3C288894B00095AEDE /* SendMessage.swift in Sources */,
 				F0E9BF1828E25C3E007FBC04 /* ReactionRepository.swift in Sources */,
 				F0AE96952902664800DD788C /* ChooseGroup.swift in Sources */,

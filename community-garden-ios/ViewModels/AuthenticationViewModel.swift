@@ -109,6 +109,7 @@ class AuthenticationViewModel: ObservableObject {
             guard rootViewController != nil else {
                 return
             }
+            
             // Start the Google sign in flow!
             GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController!) { user, error in
                 
@@ -118,7 +119,6 @@ class AuthenticationViewModel: ObservableObject {
                     }
                     return
                 }
-                
                 guard let authenticaton = user?.authentication,
                       // let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
@@ -126,6 +126,9 @@ class AuthenticationViewModel: ObservableObject {
                                 
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
+                
+                Debug.log.debug("idToken", idToken)
+                Debug.log.debug("accessToken", authenticaton.accessToken)
                 
                 // Complete the Firebase login process with the auth credential created in the previous step
                 Auth.auth().signIn(with: credential) { result , error in

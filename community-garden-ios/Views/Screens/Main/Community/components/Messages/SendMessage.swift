@@ -65,6 +65,7 @@ struct SendSingleUserMessage: View {
                                         .frame(width: geometry.size.width * 0.9)
                                 }
                                 .padding()
+                                .foregroundColor(.seaGreen)
                             
                             // Form
                             

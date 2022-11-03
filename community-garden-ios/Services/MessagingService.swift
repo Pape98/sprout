@@ -26,10 +26,14 @@ class MessagingService {
     }
     
     func unsubscribeFromTopic(topic: String){
+        
         Messaging.messaging().unsubscribe(fromTopic: topic) { err in
             if let error = err {
-                Debug.log.error("Messaging error: \(error)")
+                Debug.log.error("Messaging error: \(error.localizedDescription)")
                 return
+            } else {
+                Debug.log.info("Unsubscribed from \(topic)")
+
             }
         }
     }
@@ -37,6 +41,6 @@ class MessagingService {
     func unsubscribeFromAllTopics(){
         for i in 0...3 {
             unsubscribeFromTopic(topic: "group\(i)")
-        }
+        }        
     }
 }

@@ -66,9 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             completionHandler(UIBackgroundFetchResult.newData)
             return
         }
-        
-        Debug.log.debug("new message")
-                
+                        
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -76,21 +74,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         if let fcmToken = fcmToken {
             Debug.log.verbose("FCM TOKEN: \(fcmToken)")
             UserDefaultsService.shared.save(value: fcmToken, key: UserDefaultsKey.FCM_TOKEN)
-                
-            // TODO: Find more effective way to do this
-            // Unsusbcribe from all group topics
-            MessagingService.shared.unsubscribeFromAllTopics()
         }
         
         if let userID = getUserID(), let token = fcmToken {
             if UserService.shared.user.fcmToken == fcmToken { return }
+            MessagingService.shared.unsubscribeFromAllTopics()
             userRepository.doesUserExist(userID: userID) { userExists in
                 guard let userExists = userExists else {
-                    print("User does not exist so cannot set FCM Token")
+                    Debug.log.error("User does not exist so cannot set FCM Token")
                     return
                 }
                 if userExists {
-                    self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {}
+                    self.userRepository.updateUser(userID: userID, updates: ["fcmToken": token]) {
+                        // Unsusbcribe from all group topics
+                    }
                 }
             }
         }

@@ -30,7 +30,7 @@ struct CommunityGardenIosApp: App {
         let weather = getWeatherInfo()
         
         if weather["color"]! == "night"{
-            return Color.white
+            return Color.black
         }
         
         return Color.black
@@ -53,7 +53,7 @@ struct CommunityGardenIosApp: App {
         
         // Local firestore
         let settings = Firestore.firestore().settings
-        settings.host = "localhost:8080"
+        settings.host = "localhost:8090"
         settings.isPersistenceEnabled = false
         settings.isSSLEnabled = false
         Firestore.firestore().settings = settings

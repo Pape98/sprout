@@ -67,7 +67,7 @@ class UserRepository {
         userRef.getDocument { document, error in
             
             guard error == nil else {
-                Debug.log.error("[fetchLoggedInUser()]: \(error)!")
+                Debug.log.error("[fetchLoggedInUser()]: \(error!.localizedDescription)!")
                 return
             }
             
@@ -76,7 +76,7 @@ class UserRepository {
                 UserService.shared.user = decodedUser
                 completion(decodedUser)
             } catch {
-                Debug.log.error("[fetchLoggedInUser() decoding]: \(error)")
+                Debug.log.error("[fetchLoggedInUser() decoding]: \(error.localizedDescription)")
                 
                 // FIXME: Remove later in production
                 AuthenticationViewModel.shared.signOut()

@@ -34,7 +34,6 @@ class HealthStoreRepository {
     
     // MARK: Saving data
     func saveStepCount(value v: Double){
-        Debug.log.debug("steps",v)
         guard let settings = UserService.shared.user.settings else { return }
         guard let goal = settings.stepsGoal else { return }
         let user = UserService.shared.user

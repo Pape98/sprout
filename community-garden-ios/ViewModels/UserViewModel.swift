@@ -53,8 +53,7 @@ class UserViewModel: ObservableObject {
         self.userRepository.fetchLoggedInUser(userID: userID) { user in
             
             let topic = "group\(user.group)"
-//            MessagingService.shared.subscribeToTopic(topic)
-            MessagingService.shared.subscribeToTopic("group22")
+            MessagingService.shared.subscribeToTopic(topic)
             
             DispatchQueue.main.async {
                 self.currentUser = user
@@ -84,7 +83,7 @@ class UserViewModel: ObservableObject {
         case .FetchSleep:
             statsRepository.sleepChangeCallback(value: value)
         default:
-            Debug.log.debug("Error in updateNumDroplets")
+            Debug.log.error("Error in updateNumDroplets")
         }
         
         refreshStats()
