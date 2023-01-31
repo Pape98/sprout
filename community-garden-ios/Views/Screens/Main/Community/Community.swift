@@ -58,7 +58,7 @@ struct Community: View {
                         Image("community-bg-2")
                             .resizable()
                             .ignoresSafeArea(.all, edges: [.all])
-                            .frame(height: geo.size.height * 1.5)
+                            .frame(height: geo.size.height * 1)
                         
                         
                         // Sprites

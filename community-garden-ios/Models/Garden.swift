@@ -7,6 +7,12 @@
 
 import Foundation
 
+struct UserGarden: Identifiable {
+    var id: String { UUID().uuidString }
+    var user: User
+    var items: [GardenItem]
+}
+
 enum GardenItemType: String, Codable {
     case tree
     case flower
@@ -20,7 +26,7 @@ struct GardenItem: Identifiable, Codable {
     var x: Double = 0 // Proportion
     var y: Double = 0 // Proportion
     var scale: Double = 1
-    var date = Date.now.getFormattedDate(format: "MM-dd-yyyy")
+    var date =  Date.today
     var documentName: String?
     var group: Int = 0
     var gardenName = ""

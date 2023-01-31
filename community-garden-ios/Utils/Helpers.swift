@@ -10,13 +10,6 @@ import SwiftUI
 import CoreGraphics
 import FirebaseAuth
 
-struct Platform {
-
-    static var isSimulator: Bool {
-        return TARGET_OS_SIMULATOR != 0
-    }
-
-}
 
 func setToolBarTitleColor(){
     let hour = Date.hour
@@ -64,6 +57,8 @@ func splitString(str: String) -> String {
 func getWeatherInfo() -> [String: String]{
         
     let hour = Date.hour
+    
+    return ["image": "night-bg", "color": "night"]
             
     if hour >= 0 && hour <= 6 { // night
         return ["image": "night-bg", "color": "night"]

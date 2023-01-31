@@ -19,7 +19,17 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
                            "autumn_town_day",
                            "spring_hamlet_evening"]
     
-    var currentSongIndex = 0
+    var currentSongIndex: Int {
+        get {
+            let index: Float? = UserDefaultsService.shared.get(key: UserDefaultsKey.BACKGROUND_MUSIC)
+            guard let index = index else { return 0}
+            return Int(index)
+        }
+        set(index) {
+            UserDefaultsService.shared.save(value: index, key: UserDefaultsKey.BACKGROUND_MUSIC)
+        }
+    }
+    
     let userDefaults = UserDefaultsService.shared
     
     override init(){
@@ -59,7 +69,6 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
         
         guard isMusicOn != nil && isMusicOn! == true else { return }
         
-        changeSong()
         let song = backgroundSongs[currentSongIndex]
         if let bundle = Bundle.main.path(forResource: song, ofType: "mp3") {
             let backgroundMusic = NSURL(fileURLWithPath: bundle)
@@ -87,14 +96,14 @@ class AudioPlayer: NSObject, AVAudioPlayerDelegate  {
         AudioServicesPlaySystemSound(soundID)
     }
     
-    func changeSong(){
-        if AppViewModel.shared.isBadgeUnlocked(UnlockableBadge.music) == false {
-            currentSongIndex = 0
-            return
-        }
-        
-        if currentSongIndex == backgroundSongs.endIndex{
-            currentSongIndex = 0
-        }
-    }
+//    func changeSong(){
+//        if AppViewModel.shared.isBadgeUnlocked(UnlockableBadge.music) == false {
+//            currentSongIndex = 0
+//            return
+//        }
+//        
+//        if currentSongIndex == backgroundSongs.endIndex{
+//            currentSongIndex = 0
+//        }
+//    }
 }

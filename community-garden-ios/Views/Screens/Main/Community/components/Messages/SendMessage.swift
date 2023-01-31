@@ -65,6 +65,7 @@ struct SendSingleUserMessage: View {
                                         .frame(width: geometry.size.width * 0.9)
                                 }
                                 .padding()
+                                .foregroundColor(.seaGreen)
                             
                             // Form
                             
@@ -72,34 +73,35 @@ struct SendSingleUserMessage: View {
                                 .bodyStyle(foregroundColor: appViewModel.fontColor,size: 16)
                                 .frame(width: geometry.size.width * 0.9, alignment: .leading)
                             
-                            Form {
-                                TextEditor(text: $messageText)
-                                    .cornerRadius(10)
-                                
-                                Toggle("Make Anonymous", isOn: $isMessagePrivate)
-                                
-                                
-                            }
-                            .offset(y: -20)
-                            .modifier(ListBackgroundModifier())
-                            .frame(height: geometry.size.height * 0.4)
-                            
-                            ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
-                                if messageText.isEmpty || selectedUser == nil {
-                                    showErrorAlert = true
-                                    return
+                            VStack(spacing: 0) {
+                                Form {
+                                    TextEditor(text: $messageText)
+                                        .cornerRadius(10)
+                                    
+                                    Toggle("Make Anonymous", isOn: $isMessagePrivate)
+                                    
+                                    
                                 }
+                                .offset(y: -20)
+                                .modifier(ListBackgroundModifier())
+                                .frame(height: geometry.size.height * 0.3)
                                 
-                                AudioPlayer.shared.playSystemSound(soundID: 1004)
-                                
-                                messagesViewModel.sendMessage(receiver: selectedUser!,
-                                                              text: messageText,
-                                                              isPrivate: isMessagePrivate)
-                                
-                                messagesViewModel.showSendSingleUserMessageSheet = false
+                                ActionButton(title: "Send", backgroundColor: .appleGreen, fontColor: .white) {
+                                    if messageText.isEmpty || selectedUser == nil {
+                                        showErrorAlert = true
+                                        return
+                                    }
+                                    
+                                    AudioPlayer.shared.playSystemSound(soundID: 1004)
+                                    
+                                    messagesViewModel.sendMessage(receiver: selectedUser!,
+                                                                  text: messageText,
+                                                                  isPrivate: isMessagePrivate)
+                                    
+                                    messagesViewModel.showSendSingleUserMessageSheet = false
+                                }
+                                .frame(width: 150)
                             }
-                            .padding()
-                            .frame(width: 150)
                             
                         }
                     }

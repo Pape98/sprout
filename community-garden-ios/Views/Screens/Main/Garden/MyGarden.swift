@@ -53,7 +53,6 @@ struct MyGarden: View {
                         gardenViewModel.toggleGardenMode()
                     } label: {
                         ZStack {
-                            
                             Circle()
                                 .fill(gardenViewModel.gardenMode == .planting ? Color.appleGreen : Color.red)
                                 .opacity(0.5)
@@ -63,8 +62,6 @@ struct MyGarden: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 25, height: 25)
-                            
-                            
                         }
                         .frame(width:40,height: 40)
                     }
@@ -107,7 +104,8 @@ struct MyGarden: View {
             .overlay {
                 VStack {
                     
-                    LottieView(filename: "\(gardenViewModel.sunMoon)\(getSunMoonLevel())")
+                    //                    LottieView(filename: "\(gardenViewModel.sunMoon)\(getSunMoonLevel())")
+                    LottieView(filename: "moon4")
                         .frame(width: 125, height: 125)
                         .transition(.move(edge: .trailing))
                     Spacer()

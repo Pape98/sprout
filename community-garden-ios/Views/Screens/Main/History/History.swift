@@ -23,7 +23,7 @@ struct History: View {
         NavigationView {
             ZStack {
                 MainBackground()
-                
+
                 VStack {
                     
                     if remoteConfig.isSocialConfig(group: UserService.shared.user.group){

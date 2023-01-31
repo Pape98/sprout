@@ -110,6 +110,9 @@ class AppViewModel: ObservableObject {
             color = "evening"
         }
         
+        image = "intro-bg"
+        color = "day"
+        
         DispatchQueue.main.async {
             
             self.backgroundImage = image
@@ -134,8 +137,8 @@ class AppViewModel: ObservableObject {
             } else { // evening
                 self.introBackground = "intro-bg-evening"
             }
+            
+            self.introBackground = "intro-bg-day"
         }
     }
-    
-    
 }

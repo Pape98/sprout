@@ -10,6 +10,8 @@ import HealthKit
 
 class HealthStoreService {
     
+    static let shared = HealthStoreService()
+    
     struct HKDataTypes {
         static let stepCount = HKObjectType.quantityType(forIdentifier: .stepCount)!
         static let sleep = HKObjectType.categoryType(forIdentifier: .sleepAnalysis)!
@@ -21,7 +23,7 @@ class HealthStoreService {
     // MARK: - Properties
     
     // Provides all functionalities related health data
-    private var healthStore: HKHealthStore?
+    public var healthStore: HKHealthStore?
     private let dataCollectionStartDate = Date() // (day, month, year)
     private let SQLite = SQLiteService.shared
     private let units = [
@@ -94,7 +96,6 @@ class HealthStoreService {
         
         let healthKitTypesToRead = Set([
             HKDataTypes.walkingRunningDistance,
-            HKDataTypes.exerciseTime,
             HKDataTypes.sleep,
             HKDataTypes.stepCount,
             HKDataTypes.workouts

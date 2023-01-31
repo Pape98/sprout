@@ -9,6 +9,7 @@ import SwiftUI
 import Firebase
 import FirebaseFunctions
 import SwiftyBeaver
+import HealthKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUserNotificationCenterDelegate {
     
@@ -24,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
         UIApplication.shared.registerForRemoteNotifications()
-
+        UIApplication.shared.applicationIconBadgeNumber = 0
         
         // Styling
         UITableView.appearance().backgroundColor = .clear
@@ -34,22 +35,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         UILabel.appearance().font = UIFont.preferredFont(forTextStyle: UIFont.TextStyle(rawValue: Constants.mainFont))
         UITabBar.appearance().backgroundColor = .white
         UITabBarItem.appearance().setTitleTextAttributes([.font : UIFont(name: Constants.mainFont, size: 12)!], for: [])
-    
 
         setToolBarTitleColor()
+         
+        let healthStoreService = HealthStoreService.shared
+        if let healthstore = healthStoreService.healthStore {
+            healthstore.enableBackgroundDelivery(for: HealthStoreService.HKDataTypes.stepCount, frequency: HKUpdateFrequency.immediate) { success, error in
+                guard error == nil else {
+                    Debug.log.error(error!.localizedDescription)
+                    return
+                }
+            }
+        }
         
         return true
     }
-    
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data){
         Messaging.messaging().setAPNSToken(deviceToken, type: .unknown)
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        Debug.log.debug("ERROR: \(error)")
+        Debug.log.error("ERROR: \(error)")
     }
-    
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         MessagesViewModel.shared.getUserMessages()
@@ -58,9 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
             completionHandler(UIBackgroundFetchResult.newData)
             return
         }
-        
-        var message = NotificationMessage()
-        
+                        
         completionHandler(UIBackgroundFetchResult.newData)
     }
     
@@ -68,17 +74,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate, UNUser
         if let fcmToken = fcmToken {
             Debug.log.verbose("FCM TOKEN: \(fcmToken)")
             UserDefaultsService.shared.save(value: fcmToken, key: UserDefaultsKey.FCM_TOKEN)
-                
-            // TODO: Find more effective way to do this
-            // Unsusbcribe from all group topics
-            MessagingService.shared.unsubscribeFromAllTopics()
         }
         
         if let userID = getUserID(), let token = fcmToken {
             if UserService.shared.user.fcmToken == fcmToken { return }
+            // Unsusbcribe from all group topics
+            MessagingService.shared.unsubscribeFromAllTopics()
+            
             userRepository.doesUserExist(userID: userID) { userExists in
                 guard let userExists = userExists else {
-                    print("User does not exist so cannot set FCM Token")
+                    Debug.log.error("User does not exist so cannot set FCM Token")
                     return
                 }
                 if userExists {

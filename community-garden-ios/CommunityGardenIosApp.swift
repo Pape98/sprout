@@ -29,7 +29,7 @@ struct CommunityGardenIosApp: App {
     var fontColor: Color {
         let weather = getWeatherInfo()
         
-        if weather["color"]! == "evening"{
+        if weather["color"]! == "night"{
             return Color.black
         }
         
@@ -61,16 +61,7 @@ struct CommunityGardenIosApp: App {
         // Cloud Functions
         Functions.functions().useEmulator(withHost: "http://localhost", port:5001)
     }
-    
-    func printFonts(){
-        for familyName in UIFont.familyNames {
-            print("\n-- \(familyName) \n")
-            for fontName in UIFont.fontNames(forFamilyName: familyName) {
-                print(fontName)
-            }
-        }
-    }
-    
+
     var body: some Scene {
         WindowGroup {
             LaunchView()
@@ -101,7 +92,6 @@ struct CommunityGardenIosApp: App {
 
                         } else {
                             Analytics.setAnalyticsCollectionEnabled(isUserLoggedIn())
-
                         }
                     }
                     else {

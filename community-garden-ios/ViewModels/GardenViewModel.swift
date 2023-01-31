@@ -26,8 +26,10 @@ class GardenViewModel: ObservableObject {
     @Published var gardenMode = GardenMode.moving
     @Published var sunMoon = "sun"
     @Published var showToast = false
-    var toastMessage: ToastContent = ToastContent()
+    @Published var historyItems: [GardenItem] = []
     
+    
+    var toastMessage: ToastContent = ToastContent()
     var flowers: [GardenItem] = []
     var tree: GardenItem?
     
@@ -36,6 +38,7 @@ class GardenViewModel: ObservableObject {
         setSunMoon()
     }
     
+    // For today
     @objc func getUserItems() -> Void {
         let collection = collections.getCollectionReference("gardenItems")
         
@@ -88,7 +91,8 @@ class GardenViewModel: ObservableObject {
         let hour = Int(Date.hour)
         
         DispatchQueue.main.async {
-            self.sunMoon = hour >= 18 || hour <= 7 ? "moon" : "sun"
+//            self.sunMoon = hour >= 18 || hour <= 7 ? "moon" : "sun"
+            self.sunMoon = "sun"
         }
     }
     
@@ -130,6 +134,7 @@ class GardenViewModel: ObservableObject {
     }
     
     func hasEnoughDropItem () -> Bool {
+        guard gardenMode == .planting else { return false }
         let enoughDroplets = hasEnoughDroplets()
         let enoughtSeeds = hasEnoughSeeds()
         

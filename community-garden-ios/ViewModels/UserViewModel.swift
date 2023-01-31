@@ -83,7 +83,7 @@ class UserViewModel: ObservableObject {
         case .FetchSleep:
             statsRepository.sleepChangeCallback(value: value)
         default:
-            print("Error in updateNumDroplets")
+            Debug.log.error("Error in updateNumDroplets")
         }
         
         refreshStats()

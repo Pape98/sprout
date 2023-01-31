@@ -27,6 +27,9 @@ enum NodeNames: String {
 
 class SceneHelper {
     
+    static let SCALE_DURATION = 2.0
+
+    
     // MARK: Properties
     static let clouds = ["cloud1", "cloud2"]
     
@@ -40,6 +43,40 @@ class SceneHelper {
         scene.addChild(grassNode)
             
         return grassNode
+    }
+    
+    static func setupGround(scene: SKScene) -> SKSpriteNode {
+        let groundTexture = SKTexture(imageNamed: "ground")
+        let ground = SKSpriteNode(texture: groundTexture)
+        
+        ground.anchorPoint = CGPoint(x: 0, y:0)
+        ground.position = CGPoint(x: 0, y:0)
+        ground.size = CGSize(width: scene.frame.width, height: ground.size.height)
+        ground.name = NodeNames.ground.rawValue
+        ground.zPosition = -10000
+        
+        scene.addChild(ground)
+        return ground
+    }
+    
+    static func addExistingFlower(scene: SKScene, flower: GardenItem, isAnimated: Bool = true){
+        let flowerNode = SKSpriteNode(imageNamed: "flowers/\(flower.name)")
+        flowerNode.anchorPoint = CGPoint(x: 0.5, y: 0)
+        flowerNode.position = CGPoint(x: flower.x * scene.frame.width, y: flower.y * scene.frame.height)
+        flowerNode.zPosition =  (flower.y * scene.frame.height) * -1
+        flowerNode.setScale(flower.scale)
+                
+        // Animation
+        if isAnimated {
+            flowerNode.setScale(0)
+            let nodeAction = SKAction.scale(to: flower.scale, duration: SCALE_DURATION)
+            flowerNode.run(nodeAction)
+        }
+        
+        // Shadow
+        let shadowNode = SKSpriteNode(imageNamed: "flower-shadow")
+        flowerNode.addChild(shadowNode)
+        scene.addChild(flowerNode)
     }
     
     

@@ -25,6 +25,7 @@ struct Settings: View {
         NavigationView {
             ZStack(alignment: .bottomTrailing) {
                 MainBackground()
+
                 List {
                     
                     Section(header: Text("System").foregroundColor(appViewModel.fontColor)){
@@ -48,7 +49,7 @@ struct Settings: View {
                             NavigationLink {
                               MusicList()
                             } label: {
-                                Text("View list of songs")
+                                Text("Select default song")
                             }
                         }
                     }

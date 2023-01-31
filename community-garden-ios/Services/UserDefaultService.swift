@@ -67,6 +67,7 @@ enum UserDefaultsKey: String {
     case IS_MUSIC_ON = "isMusicOn"
     case NUM_LOVE_SENT = "loveSent"
     case NUM_ENCOURAGEMENT_SENT = "encouragementSent"
+    case BACKGROUND_MUSIC = "backgroundMusic"
 }
 
 

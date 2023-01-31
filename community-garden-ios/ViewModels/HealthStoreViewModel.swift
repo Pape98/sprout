@@ -121,6 +121,11 @@ class HealthStoreViewModel: ObservableObject {
                     }
                     self.updateTrackedData(data: HealthStoreRepository.Data.steps, updates: ["hasReachedGoal": true])
                     self.setGoalCompletionAlertData(image: "figure.walk")
+                    
+                    // Send achievement to group
+                    let group = UserService.shared.user.group
+                    guard group <= 1 else { return }
+                    CloudFunctionsService.shared.sendMessageToTopic(data: ["group" : group, "goal": "steps"])
                 }
             }
         }
@@ -141,6 +146,11 @@ class HealthStoreViewModel: ObservableObject {
                     }
                     self.updateTrackedData(data: HealthStoreRepository.Data.walkingRunning, updates: ["hasReachedGoal": true])
                     self.setGoalCompletionAlertData(image: "sportscourt.fill")
+                    
+                    // Send achievement to group
+                    let group = UserService.shared.user.group
+                    guard group <= 1 else { return }
+                    CloudFunctionsService.shared.sendMessageToTopic(data: ["group" : group, "goal": "walking & running distance"])
                 }
             }
         }
@@ -161,6 +171,11 @@ class HealthStoreViewModel: ObservableObject {
                     }
                     self.updateTrackedData(data: HealthStoreRepository.Data.workouts, updates: ["hasReachedGoal": true])
                     self.setGoalCompletionAlertData(image: "bicycle")
+                    
+                    // Send achievement to group
+                    let group = UserService.shared.user.group
+                    guard group <= 1 else { return }
+                    CloudFunctionsService.shared.sendMessageToTopic(data: ["group" : group, "goal": "workout"])
                 }
             }
         }
@@ -181,6 +196,11 @@ class HealthStoreViewModel: ObservableObject {
                     }
                     self.updateTrackedData(data: HealthStoreRepository.Data.sleep, updates: ["hasReachedGoal": true])
                     self.setGoalCompletionAlertData(image: "bed.double")
+                    
+                    // Send achievement to group
+                    let group = UserService.shared.user.group
+                    guard group <= 1 else { return }
+                    CloudFunctionsService.shared.sendMessageToTopic(data: ["group" : group, "goal": "sleep"])
                 }
             }
         }

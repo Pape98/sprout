@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import SwiftDate
 
 struct ListBackgroundModifier: ViewModifier {
 
@@ -55,10 +56,9 @@ extension Date {
     }
     
     static var hour: Int {
-        let date = Date()
-        let dateComponents = Calendar.current.dateComponents([.hour], from: date)
-        let hour = dateComponents.hour!
-        return hour
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.americaNewYork)
+        let date = DateInRegion(Date(), region: region)
+        return date.hour
     }
 }
 
@@ -182,6 +182,26 @@ extension View {
         modifier(Droppable(condition: condition, action: action))
     }
     
+    // Create an immediate animation.
+    func animate(using animation: Animation = .easeInOut(duration: 1), _ action: @escaping () -> Void) -> some View {
+        onAppear {
+            withAnimation(animation) {
+                action()
+            }
+        }
+    }
+    
+    // Create an immediate, looping animation
+    func animateForever(using animation: Animation = .easeInOut(duration: 1.5), autoreverses: Bool = false, _ action: @escaping () -> Void) -> some View {
+            let repeated = animation.repeatForever(autoreverses: autoreverses)
+
+            return onAppear {
+                withAnimation(repeated) {
+                    action()
+                }
+            }
+        }
+    
 }
 
 extension EnvironmentValues {
@@ -209,6 +229,13 @@ extension Double {
     func truncate(to places: Int) -> Double {
         return Double(Int((pow(10, Double(places)) * self).rounded())) / pow(10, Double(places))
     }
+    
+    func asString(style: DateComponentsFormatter.UnitsStyle) -> String {
+       let formatter = DateComponentsFormatter()
+       formatter.allowedUnits = [.hour, .minute]
+       formatter.unitsStyle = style
+       return formatter.string(from: self * 60) ?? ""
+     }
     
 }
 

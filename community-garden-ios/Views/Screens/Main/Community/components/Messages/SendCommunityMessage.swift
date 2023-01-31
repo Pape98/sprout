@@ -30,6 +30,7 @@ struct SendCommunityMessage: View {
                         TextEditor(text: $text)
                             .frame(width: geo.size.width * 0.82, height: geo.size.height * 0.25)
                             .cornerRadius(10)
+                            .foregroundColor(.seaGreen)
                         
                         Form {
                             Section(header: Text("Parameters").foregroundColor(appViewModel.fontColor)){

@@ -81,7 +81,6 @@ struct GoalEditingSlider: View {
             .onChange(of: isEditing) { newValue in
                 if newValue == true {
                     oldValue = value
-                    print(oldValue)
                 } else if newValue == false {
                     settingsViewModel.updateSettings(settingKey: firestoreKey, value: value)
                     SproutAnalytics.shared.goalChange(goal: firestoreKey.rawValue, old: oldValue, new: value)

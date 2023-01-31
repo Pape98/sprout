@@ -45,7 +45,7 @@ class ReactioRepository: ObservableObject {
             case .success(let reactions):
                 completion(reactions)
             case .failure(let error):
-                print("Error decoding reactions: \(error)")
+                Debug.log.error("Error decoding reactions: \(error)")
             }
         }
     }

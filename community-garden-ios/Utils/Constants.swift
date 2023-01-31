@@ -73,7 +73,7 @@ struct Constants {
     
     
     
-    static let mainFont = "Baloo2-medium"
+    static let mainFont = "Baloo2-Medium"
     
     init(){}
 }

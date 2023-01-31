@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftDate
 
 struct DataStatus: View {
     
@@ -14,18 +15,13 @@ struct DataStatus: View {
     var data: HealthData
     
     var date: String {
-        let tokens: [String] = data.date.components(separatedBy: "-")
-        return "\(tokens[0])/\(tokens[1])"
-    }
-    
-    var goal: Int {
-        if let goal = data.goal {
-            return goal
-        }
-        return 0;
+        let region = Region(calendar: Calendars.gregorian, zone: Zones.americaNewYork)
+        return data.date.toDate(region: region)!.date.getFormattedDate(format: "MMM d, yyyy")
     }
     
     var image: String {
+        
+        guard let goal = data.goal else { return "faces/sad"}
         
         let progress = (data.value / Double(goal)) * 100;
         
@@ -38,8 +34,6 @@ struct DataStatus: View {
         } else {
             return "faces/happy"
         }
-        
-        
     }
     
     
@@ -70,13 +64,16 @@ struct DataStatus: View {
                         Image(systemName: "target")
                             .foregroundColor(.appleGreen)
                         
-                        Text(String(goal))
+                        Text(data.goalDisplay)
                             .font(.system(size: 13))
                             .foregroundColor(.appleGreen)
                             .bodyStyle(foregroundColor: .appleGreen, size: 13)
                     }
                 }
                 
+                Image(systemName: "chevron.right")
+                    .foregroundColor(appViewModel.fontColor)
+                    .padding()
             }
             .frame(maxWidth: .infinity, alignment: .leading)
             

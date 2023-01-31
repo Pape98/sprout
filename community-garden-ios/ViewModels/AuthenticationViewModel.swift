@@ -38,7 +38,6 @@ class AuthenticationViewModel: ObservableObject {
         configuration = GIDConfiguration.init(clientID: Constants.clientID)
         checkLogin()
         setLoggedInUserProfile()
-//        signOut()
     }
     
     func checkLogin() {
@@ -47,8 +46,17 @@ class AuthenticationViewModel: ObservableObject {
         
         if isLoggedIn {
             updateNewUserStatus()
+            addKeyChainAccessGroup()
         }
         
+    }
+    
+    func addKeyChainAccessGroup(){
+        do {
+          try Auth.auth().useUserAccessGroup("group.empower.lab.community-garden")
+        } catch let error as NSError {
+            Debug.log.error("Error changing user access group: %@", error.userInfo)
+        }
     }
     
     func updateNewUserStatus(){
@@ -66,7 +74,7 @@ class AuthenticationViewModel: ObservableObject {
             try firebaseAuth.signOut()
             self.checkLogin()
         } catch let signOutError as NSError {
-            print("Error signing out: %@", signOutError)
+            Debug.log.error("Error signing out: %@", signOutError)
         }
     }
     
@@ -76,7 +84,9 @@ class AuthenticationViewModel: ObservableObject {
 
         if isLoggedIn {
             let firebaseUser = Auth.auth().currentUser
+            guard firebaseUser != nil else { return }
             userRepository.fetchLoggedInUser(userID: firebaseUser!.uid) { result in
+                AppGroupService.shared.save(value: result.group, key: AppGroupKey.userGroup)
                 NotificationSender.send(type: NotificationType.UserLoggedIn.rawValue)
             }
             // Check login status again to update UI
@@ -99,6 +109,7 @@ class AuthenticationViewModel: ObservableObject {
             guard rootViewController != nil else {
                 return
             }
+            
             // Start the Google sign in flow!
             GIDSignIn.sharedInstance.signIn(with: configuration, presenting: rootViewController!) { user, error in
                 
@@ -108,7 +119,6 @@ class AuthenticationViewModel: ObservableObject {
                     }
                     return
                 }
-                
                 guard let authenticaton = user?.authentication,
                       // let userEmail = user?.profile?.email,
                       let idToken = authenticaton.idToken
@@ -116,6 +126,9 @@ class AuthenticationViewModel: ObservableObject {
                                 
                 // Create a Firebase auth credential from the Google Auth Token
                 let credential = GoogleAuthProvider.credential(withIDToken: idToken, accessToken: authenticaton.accessToken)
+                
+                Debug.log.debug("idToken", idToken)
+                Debug.log.debug("accessToken", authenticaton.accessToken)
                 
                 // Complete the Firebase login process with the auth credential created in the previous step
                 Auth.auth().signIn(with: credential) { result , error in

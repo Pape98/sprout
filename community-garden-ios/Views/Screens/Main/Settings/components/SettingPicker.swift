@@ -77,7 +77,6 @@ struct SettingPicker: View {
         }
         .onTapGesture {
             selection = label
-            print(label)
             settingsViewModel.updateSettings(settingKey: settingKey, value: selection)
             self.presentationMode.wrappedValue.dismiss()
             

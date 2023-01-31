@@ -34,9 +34,10 @@ class CommunityGardenScene: SKScene {
     // Constants
     let SCALE_DURATION = 2.0    
     var NUM_PARCEL_PER_COLUMN: Int {
-        let communityViewParams = RemoteConfiguration.shared.getConfigs(key: "communityViewParams")
-        guard let communityViewParams = communityViewParams else { return 1 }
-        return communityViewParams["numParcelPerColumn"] as! Int
+//        let communityViewParams = RemoteConfiguration.shared.getConfigs(key: "communityViewParams")
+//        guard let communityViewParams = communityViewParams else { return 1 }
+//        return communityViewParams["numParcelPerColumn"] as! Int
+        return 2
     }
     
     override func didMove(to view: SKView) {
@@ -59,8 +60,8 @@ class CommunityGardenScene: SKScene {
         addParcelsToColumn(firstColumn, count: NUM_PARCEL_PER_COLUMN)
         addParcelsToColumn(secondColumn, count: NUM_PARCEL_PER_COLUMN)
         addTreesToParcels()
-        addSoilsToParcels()
-        addFlowersToSoils()
+//        addSoilsToParcels()
+//        addFlowersToSoils()
         
         
         addChild(firstColumn)
