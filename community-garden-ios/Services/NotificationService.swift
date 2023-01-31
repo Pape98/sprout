@@ -64,7 +64,7 @@ class NotificationService {
         // Step 2: Create the notification trigger
         var dateComponents = DateComponents()
         dateComponents.calendar = Calendar.current
-        dateComponents.hour = 12    // 12:00 hours, noon
+        dateComponents.hour = 12    // 12:30 hours
         dateComponents.minute = 30
         dateComponents.second = 0
         dateComponents.nanosecond = 0

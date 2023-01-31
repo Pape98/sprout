@@ -91,7 +91,8 @@ class GardenViewModel: ObservableObject {
         let hour = Int(Date.hour)
         
         DispatchQueue.main.async {
-            self.sunMoon = hour >= 18 || hour <= 7 ? "moon" : "sun"
+//            self.sunMoon = hour >= 18 || hour <= 7 ? "moon" : "sun"
+            self.sunMoon = "sun"
         }
     }
     

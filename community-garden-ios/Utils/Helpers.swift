@@ -57,6 +57,8 @@ func splitString(str: String) -> String {
 func getWeatherInfo() -> [String: String]{
         
     let hour = Date.hour
+    
+    return ["image": "night-bg", "color": "night"]
             
     if hour >= 0 && hour <= 6 { // night
         return ["image": "night-bg", "color": "night"]

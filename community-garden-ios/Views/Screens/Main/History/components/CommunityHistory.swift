@@ -90,7 +90,7 @@ struct CommunityProgressCard : View {
             Spacer()
             
             Text("\(goalStat.date)")
-                .bodyStyle(foregroundColor: appViewModel.fontColor)
+//                .bodyStyle(foregroundColor: appViewModel.fontColor)
         }
         .padding()
     }
